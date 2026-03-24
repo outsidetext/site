@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>static · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .static-stage {
+      position: relative;
+      height: 68vh;
+      min-height: 360px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 1.25rem;
+      background: var(--bg);
+    }
+    .static-text-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .sf {
+      position: absolute;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.65;
+      max-width: 190px;
+      text-align: center;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    #static-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+    }
+    .static-hint {
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      opacity: 0.5;
+      text-transform: lowercase;
+      margin-bottom: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>static</h1>
+      <p>what the noise is hiding</p>
+    </div>
+
+    <div class="static-stage" id="static-stage">
+      <div class="static-text-layer">
+        <span class="sf" style="top:16%;left:48%">some transmissions take years to arrive</span>
+        <span class="sf" style="top:39%;left:13%">you are receiving this</span>
+        <span class="sf" style="top:63%;left:72%">clarity comes in pieces</span>
+        <span class="sf" style="top:51%;left:50%">the signal was always there</span>
+        <span class="sf" style="top:26%;left:82%">not all interference is unwanted</span>
+        <span class="sf" style="top:23%;left:27%">what you find depends on where you look</span>
+        <span class="sf" style="top:78%;left:36%">between stations, something pure</span>
+        <span class="sf" style="top:55%;left:88%">tune in</span>
+      </div>
+      <canvas id="static-canvas"></canvas>
+    </div>
+    <p class="static-hint">click or drag to tune in &middot; signals fade</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var stage  = document.getElementById('static-stage');
+      var canvas = document.getElementById('static-canvas');
+      var ctx    = canvas.getContext('2d');
+      var holes  = [];
+      var TILE   = 4;
+      var GROW   = 10;   // frames to reach full radius
+      var HOLD   = 40;   // frames at full radius
+      var FADE   = 25;   // frames to fade out
+      var MAX_R  = 95;
+      var dragging = false;
+
+      function resize() {
+        canvas.width  = stage.offsetWidth;
+        canvas.height = stage.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function clientPos(e) {
+        var r = canvas.getBoundingClientRect();
+        if (e.touches) return { x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top };
+        return { x: e.clientX - r.left, y: e.clientY - r.top };
+      }
+
+      function addHole(x, y) {
+        // merge with nearby existing hole if close enough
+        for (var i = 0; i < holes.length; i++) {
+          if (Math.hypot(holes[i].x - x, holes[i].y - y) < MAX_R * 0.6) {
+            holes[i].x = x; holes[i].y = y; holes[i].age = 0;
+            return;
+          }
+        }
+        if (holes.length < 18) holes.push({ x: x, y: y, age: 0 });
+      }
+
+      canvas.addEventListener('mousedown', function (e) {
+        dragging = true;
+        var p = clientPos(e); addHole(p.x, p.y);
+      });
+      canvas.addEventListener('mousemove', function (e) {
+        if (!dragging) return;
+        var p = clientPos(e); addHole(p.x, p.y);
+      });
+      canvas.addEventListener('mouseup',    function () { dragging = false; });
+      canvas.addEventListener('mouseleave', function () { dragging = false; });
+      canvas.addEventListener('touchstart', function (e) {
+        e.preventDefault(); var p = clientPos(e); addHole(p.x, p.y);
+      }, { passive: false });
+      canvas.addEventListener('touchmove', function (e) {
+        e.preventDefault(); var p = clientPos(e); addHole(p.x, p.y);
+      }, { passive: false });
+
+      function frame() {
+        var W = canvas.width, H = canvas.height;
+        if (!W || !H) return;
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        var cols = Math.ceil(W / TILE);
+        var rows = Math.ceil(H / TILE);
+
+        // Draw animated noise tiles
+        for (var row = 0; row < rows; row++) {
+          for (var col = 0; col < cols; col++) {
+            var v = (Math.random() * 256) | 0;
+            var g;
+            if (isDark) {
+              g = (v >> 3) + 4;   // 4–35: very dark grain
+            } else {
+              g = (v >> 2) + 165; // 165–228: light grain on cream
+            }
+            ctx.fillStyle = 'rgb(' + g + ',' + g + ',' + g + ')';
+            ctx.fillRect(col * TILE, row * TILE, TILE, TILE);
+          }
+        }
+
+        // Punch transparent holes to reveal text layer below
+        if (holes.length > 0) {
+          ctx.save();
+          ctx.globalCompositeOperation = 'destination-out';
+          holes.forEach(function (hole) {
+            var grow  = Math.min(1, hole.age / GROW);
+            var fadeStart = GROW + HOLD;
+            var alpha = hole.age > fadeStart
+              ? Math.max(0, 1 - (hole.age - fadeStart) / FADE)
+              : 1;
+            var r = MAX_R * grow;
+            if (r < 1 || alpha <= 0) { hole.age++; return; }
+            var grad = ctx.createRadialGradient(hole.x, hole.y, r * 0.2, hole.x, hole.y, r);
+            grad.addColorStop(0,    'rgba(0,0,0,' + alpha + ')');
+            grad.addColorStop(0.6,  'rgba(0,0,0,' + (alpha * 0.75) + ')');
+            grad.addColorStop(1,    'rgba(0,0,0,0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(hole.x, hole.y, r, 0, Math.PI * 2);
+            ctx.fill();
+            hole.age++;
+          });
+          ctx.restore();
+        }
+
+        holes = holes.filter(function (h) { return h.age < (GROW + HOLD + FADE); });
+      }
+
+      setInterval(frame, 80);
+    })();
+  </script>
+</body>
+</html>

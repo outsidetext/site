@@ -158,6 +158,11 @@
       { id: 'fold',        href: 'fold.html',         label: 'fold',         desc: 'a letter that opens panel by panel',                    x: 0.17, y: 0.10 },
       { id: 'commonplace', href: 'commonplace.html',  label: 'commonplace',  desc: 'a notebook of passages collected from elsewhere',        x: 0.64, y: 0.74 },
       { id: 'interval',    href: 'interval.html',     label: 'interval',     desc: 'named pauses — and a way to measure your own',          x: 0.88, y: 0.44 },
+      { id: 'static',      href: 'static.html',       label: 'static',       desc: 'what the noise is hiding — click to find out',           x: 0.09, y: 0.55 },
+      { id: 'cartography', href: 'cartography.html',  label: 'cartography',  desc: 'a map of interior emotional geography',                  x: 0.42, y: 0.22 },
+      { id: 'conjugate',   href: 'conjugate.html',    label: 'conjugate',    desc: 'a verb worked through all its tenses, daily',            x: 0.76, y: 0.14 },
+      { id: 'instrument',  href: 'instrument.html',   label: 'instrument',   desc: 'an unnamed instrument made of eight words',              x: 0.31, y: 0.33 },
+      { id: 'margin',      href: 'margin.html',       label: 'margin',       desc: 'a text where only the annotations survive',             x: 0.91, y: 0.58 },
     ];
 
     var edges = [
@@ -217,6 +222,11 @@
       ['fold','thoughts'], ['fold','compose'], ['fold','cuts'], ['fold','palimpsest'],
       ['commonplace','thoughts'], ['commonplace','seeds'], ['commonplace','letters'], ['commonplace','museum'], ['commonplace','overheard'],
       ['interval','quiet'], ['interval','breathe'], ['interval','hours'], ['interval','tally'], ['interval','distances'],
+      ['static','signal'], ['static','glitch'], ['static','wander'], ['static','quiet'],
+      ['cartography','atlas'], ['cartography','distances'], ['cartography','map'], ['cartography','thresholds'],
+      ['conjugate','haiku'], ['conjugate','hours'], ['interval','conjugate'], ['conjugate','glossary'],
+      ['instrument','quiet'], ['instrument','score'], ['instrument','breathe'], ['instrument','weight'],
+      ['margin','palimpsest'], ['margin','compose'], ['margin','commonplace'], ['margin','redacted'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

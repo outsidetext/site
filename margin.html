@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>margin · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .margin-intro {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.04em;
+    }
+    .margin-page {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .margin-page-inner {
+      display: grid;
+      grid-template-columns: 36px 1fr 220px;
+      gap: 0;
+    }
+    /* Line numbers column */
+    .margin-linenos {
+      border-right: 1px solid var(--border);
+      padding: 1.8rem 0;
+      background: transparent;
+    }
+    .margin-lineno {
+      height: 1.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+      font-size: 0.6rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      opacity: 0.3;
+    }
+    /* Main text column */
+    .margin-body {
+      padding: 1.8rem 1.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .margin-line {
+      height: 1.9rem;
+      display: flex;
+      align-items: center;
+    }
+    .margin-text {
+      font-size: 0.88rem;
+      color: var(--text);
+      opacity: 0.055;
+      line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      transition: opacity 0.4s;
+      cursor: default;
+      user-select: none;
+    }
+    .margin-text:hover {
+      opacity: 0.15;
+    }
+    /* Right margin column */
+    .margin-notes {
+      padding: 1.8rem 0 1.8rem 1.2rem;
+    }
+    .margin-annotation {
+      height: 1.9rem;
+      display: flex;
+      align-items: center;
+    }
+    .margin-annotation-text {
+      font-size: 0.72rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .margin-annotation-text.highlight {
+      color: var(--accent);
+    }
+    .margin-annotation-text.underline {
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-underline-offset: 2px;
+    }
+    .margin-annotation-text.arrow::before {
+      content: '← ';
+      opacity: 0.5;
+    }
+    .margin-annotation-text.bracket::before {
+      content: '} ';
+      font-style: normal;
+      opacity: 0.4;
+      font-size: 0.9rem;
+    }
+    /* Footer note below page */
+    .margin-footer-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 600px) {
+      .margin-page-inner {
+        grid-template-columns: 28px 1fr;
+      }
+      .margin-notes {
+        display: none;
+      }
+      .margin-body {
+        border-right: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>margin</h1>
+      <p>a text where only the annotations survive</p>
+    </div>
+
+    <p class="margin-intro">[ the original text is present but barely legible · hover to increase visibility · the margins are the readable part ]</p>
+
+    <div class="margin-page">
+      <div class="margin-page-inner" id="margin-content"></div>
+    </div>
+
+    <p class="margin-footer-note">the main text is not lost — just subordinate. this happens more than you'd think.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      // Each entry: [mainText, annotation (null if blank), annotationClass]
+      var lines = [
+        ["There is a kind of knowing that arrives before understanding, like light", null, ""],
+        ["before heat. You receive it and do not yet have words for what you have", null, ""],
+        ["received. This is the first thing the text tries to say. It does not", "this is the sentence everything else is about", "highlight"],
+        ["succeed entirely, but the attempt has a particular quality worth noting.", null, ""],
+        ["", null, ""],
+        ["The reader brings the second half of every sentence. The writer knows", "who is 'the reader' here?", "arrow"],
+        ["this and writes accordingly — leaving space in the syntax, room in the", null, ""],
+        ["rhythm, a kind of negative space that only completes itself on contact.", "remarkable sentence — can't be improved", "highlight underline"],
+        ["", null, ""],
+        ["What has been retained: the outlines, the arguments, the names of things.", null, ""],
+        ["What has been lost: the tone. The exact weight of each word as it was", "a lie, probably. but a useful one.", ""],
+        ["meant, which is not the same as how it reads now, which is not the same", null, ""],
+        ["as how it will read later. Text ages. The reader does not stay still.", "yes", "highlight"],
+        ["", null, ""],
+        ["There is a paragraph here that exists only to make the next one land", "this paragraph", "bracket"],
+        ["harder. It is not dishonest to do this. It is how prose works. The setup", "exists only for", "bracket"],
+        ["is also the argument; the argument is also the setup. You cannot separate", "this to land", "bracket"],
+        ["the structure from the content without losing both.", null, ""],
+        ["", null, ""],
+        ["The text was addressed to someone specific. That person is not you,", null, ""],
+        ["and yet here you are, reading it, which means the address has transferred.", "this is the whole point", "highlight arrow"],
+        ["Writing to one person in the hope of reaching another is the oldest", null, ""],
+        ["technique. It works because specificity travels farther than abstraction.", "remember this", "underline"],
+        ["", null, ""],
+        ["There is a section the author considered removing. They left it in", null, ""],
+        ["for reasons they could not fully articulate at the time of revision.", "good instinct", ""],
+        ["The section is: this one. The reason it remains is: you are reading it.", "!! return to this", "highlight"],
+        ["", null, ""],
+        ["The last thing the text tries to say is not in the last sentence.", null, ""],
+        ["It is distributed across the whole, and requires the whole to be", "I think I found it", "arrow"],
+        ["understood. This is either a feature or a failure of the form.", null, ""],
+        ["The text does not arbitrate.", "nor do I", ""],
+      ];
+
+      var container = document.getElementById('margin-content');
+
+      // Line numbers column
+      var linenosDiv = document.createElement('div');
+      linenosDiv.className = 'margin-linenos';
+      // Main body column
+      var bodyDiv = document.createElement('div');
+      bodyDiv.className = 'margin-body';
+      // Notes column
+      var notesDiv = document.createElement('div');
+      notesDiv.className = 'margin-notes';
+
+      lines.forEach(function (line, i) {
+        var lineNum  = i + 1;
+        var mainText = line[0];
+        var note     = line[1];
+        var cls      = line[2];
+
+        // Line number
+        var lnDiv = document.createElement('div');
+        lnDiv.className = 'margin-lineno';
+        lnDiv.textContent = lineNum;
+        linenosDiv.appendChild(lnDiv);
+
+        // Main text line
+        var lineDiv = document.createElement('div');
+        lineDiv.className = 'margin-line';
+        if (mainText) {
+          var textSpan = document.createElement('span');
+          textSpan.className = 'margin-text';
+          textSpan.textContent = mainText;
+          lineDiv.appendChild(textSpan);
+        }
+        bodyDiv.appendChild(lineDiv);
+
+        // Annotation
+        var annDiv = document.createElement('div');
+        annDiv.className = 'margin-annotation';
+        if (note) {
+          var annSpan = document.createElement('span');
+          annSpan.className = 'margin-annotation-text ' + cls;
+          annSpan.textContent = note;
+          annDiv.appendChild(annSpan);
+        }
+        notesDiv.appendChild(annDiv);
+      });
+
+      container.appendChild(linenosDiv);
+      container.appendChild(bodyDiv);
+      container.appendChild(notesDiv);
+    })();
+  </script>
+</body>
+</html>

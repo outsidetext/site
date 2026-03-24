@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>conjugate · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .conj-header {
+      margin-bottom: 3rem;
+    }
+    .conj-infinitive {
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .conj-verb {
+      font-size: 2rem;
+      font-weight: normal;
+      font-style: italic;
+      color: var(--text);
+      margin: 0 0 0.6rem;
+      line-height: 1.2;
+    }
+    .conj-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .conj-tense-block {
+      margin-bottom: 2.8rem;
+    }
+    .conj-tense-label {
+      font-size: 0.7rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      opacity: 0.6;
+    }
+    .conj-forms {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .conj-forms li {
+      font-size: 1.15rem;
+      color: var(--text);
+      line-height: 2.1;
+      display: flex;
+      gap: 1.2rem;
+      align-items: baseline;
+    }
+    .conj-pronoun {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      min-width: 2.5rem;
+      opacity: 0.55;
+    }
+    .conj-form {
+      font-style: italic;
+    }
+    .conj-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+    .conj-meditation {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.85;
+      max-width: 520px;
+    }
+    .conj-meditation p + p {
+      margin-top: 1rem;
+    }
+    .conj-date-note {
+      font-size: 0.72rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-top: 2.5rem;
+      opacity: 0.45;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>conjugate</h1>
+      <p>one verb, worked through all its tenses — changes daily</p>
+    </div>
+
+    <div id="conj-body"></div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var verbs = [
+        {
+          infinitive: 'to forget',
+          present:  ['forget', 'forget', 'forget', 'forget'],
+          past:     ['forgot', 'forgot', 'forgot', 'forgot'],
+          future:   ['will forget', 'will forget', 'will forget', 'will forget'],
+          meditation: [
+            'Forgetting has a future tense, which is strange when you think about it. You can anticipate loss before it happens. You can mourn in advance a name, a face, a feeling that is still fully present.',
+            'The verb is the same in all persons. I forget. You forget. We all forget. Grammar offers no exemption.'
+          ]
+        },
+        {
+          infinitive: 'to remain',
+          present:  ['remain', 'remain', 'remains', 'remain'],
+          past:     ['remained', 'remained', 'remained', 'remained'],
+          future:   ['will remain', 'will remain', 'will remain', 'will remain'],
+          meditation: [
+            'To remain is an active verb dressed as a passive one. It requires constant choice. Things that remain do so because something holds them here — gravity, habit, love, inertia.',
+            'What remains after everything else has moved: the question. The stain. The habit. The shape of a person in a room they have left.'
+          ]
+        },
+        {
+          infinitive: 'to begin',
+          present:  ['begin', 'begin', 'begins', 'begin'],
+          past:     ['began', 'began', 'began', 'began'],
+          future:   ['will begin', 'will begin', 'will begin', 'will begin'],
+          meditation: [
+            'Beginning is the only tense that does not repeat. You can begin again, but that is already a different beginning. The original beginning was not preceded by anything. Most things do not have this quality.',
+            'In the past tense, beginning becomes available as fact: it happened. Something that began cannot unbeg​in. This is reassuring, if you need it.'
+          ]
+        },
+        {
+          infinitive: 'to carry',
+          present:  ['carry', 'carry', 'carries', 'carry'],
+          past:     ['carried', 'carried', 'carried', 'carried'],
+          future:   ['will carry', 'will carry', 'will carry', 'will carry'],
+          meditation: [
+            'Carrying implies weight and movement. You cannot carry something if you are standing still, though sometimes it feels that way. The verb requires a destination, even an uncertain one.',
+            'What you carry, you do not put down. What you put down, you were carrying. This sounds obvious. It is not always obvious.'
+          ]
+        },
+        {
+          infinitive: 'to wait',
+          present:  ['wait', 'wait', 'waits', 'wait'],
+          past:     ['waited', 'waited', 'waited', 'waited'],
+          future:   ['will wait', 'will wait', 'will wait', 'will wait'],
+          meditation: [
+            'Waiting is the verb that most resembles doing nothing while clearly doing something. You are alert, positioned, aimed at an event that has not arrived. The future tense of waiting — I will wait — is one of the more generous phrases in the language.',
+            'In the past tense, waiting acquires a verdict. You waited. Something happened, or did not. Either way, the waiting is complete.'
+          ]
+        },
+        {
+          infinitive: 'to return',
+          present:  ['return', 'return', 'returns', 'return'],
+          past:     ['returned', 'returned', 'returned', 'returned'],
+          future:   ['will return', 'will return', 'will return', 'will return'],
+          meditation: [
+            'Returning presupposes a departure you may not have noticed. To return is to confirm that you left — and that the place waited, more or less, or that you have decided to call it waiting.',
+            'Things that return are slightly changed. The person who returns to a place is not the person who left. This is generally considered a problem and is, in fact, the only way it works.'
+          ]
+        },
+        {
+          infinitive: 'to notice',
+          present:  ['notice', 'notice', 'notices', 'notice'],
+          past:     ['noticed', 'noticed', 'noticed', 'noticed'],
+          future:   ['will notice', 'will notice', 'will notice', 'will notice'],
+          meditation: [
+            'Noticing is a small verb with large consequences. The thing you notice does not change; you change by noticing it. This is the only direction in which noticing works.',
+            'In the future tense, noticing becomes a promise. I will notice. Most of us mean it. The difficulty is not intention — it is the gap between meaning to notice and the moment itself, which arrives without announcement and does not repeat.'
+          ]
+        },
+        {
+          infinitive: 'to hold',
+          present:  ['hold', 'hold', 'holds', 'hold'],
+          past:     ['held', 'held', 'held', 'held'],
+          future:   ['will hold', 'will hold', 'will hold', 'will hold'],
+          meditation: [
+            'Held is one of the most complete past tenses. It describes containment, support, restraint, and care with the same word. The held object does not need to specify which kind.',
+            'To hold in the present tense is an act of sustained attention. You can hold your breath. You can hold a thought. You can hold someone\'s gaze. All of these require something from you.'
+          ]
+        },
+        {
+          infinitive: 'to leave',
+          present:  ['leave', 'leave', 'leaves', 'leave'],
+          past:     ['left', 'left', 'left', 'left'],
+          future:   ['will leave', 'will leave', 'will leave', 'will leave'],
+          meditation: [
+            'Left is a strange past tense — it also means remaining, the direction, the political orientation. The verb is haunted by its other meanings. To have left somewhere is to have made it into a place you were.',
+            'The future tense of leaving is the one most people do not say out loud. I will leave. Said to a place, it is true. Said to a person, it requires courage or cruelty or both.'
+          ]
+        },
+        {
+          infinitive: 'to arrive',
+          present:  ['arrive', 'arrive', 'arrives', 'arrive'],
+          past:     ['arrived', 'arrived', 'arrived', 'arrived'],
+          future:   ['will arrive', 'will arrive', 'will arrive', 'will arrive'],
+          meditation: [
+            'Arrival is the tense that endings pretend to be. You arrive somewhere and it feels like completion. But the verb is not final — arriving is the beginning of being there, which is its own ongoing tense that grammar has no name for.',
+            'In the future tense: something will arrive. This is the phrase that keeps us oriented. It does not say what. It does not say when. It says: the future is not empty.'
+          ]
+        }
+      ];
+
+      var pronouns = ['I', 'you', 'they', 'we'];
+
+      var today = new Date();
+      var seed  = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+      var verb  = verbs[seed % verbs.length];
+
+      var container = document.getElementById('conj-body');
+
+      function makeTenseBlock(label, forms) {
+        var div = document.createElement('div');
+        div.className = 'conj-tense-block reveal';
+        var lbl = document.createElement('div');
+        lbl.className = 'conj-tense-label';
+        lbl.textContent = label;
+        div.appendChild(lbl);
+        var ul = document.createElement('ul');
+        ul.className = 'conj-forms';
+        pronouns.forEach(function (p, i) {
+          var li = document.createElement('li');
+          var pn = document.createElement('span');
+          pn.className = 'conj-pronoun';
+          pn.textContent = p;
+          var fm = document.createElement('span');
+          fm.className = 'conj-form';
+          fm.textContent = forms[i];
+          li.appendChild(pn);
+          li.appendChild(fm);
+          ul.appendChild(li);
+        });
+        div.appendChild(ul);
+        return div;
+      }
+
+      // Verb heading
+      var hdr = document.createElement('div');
+      hdr.className = 'conj-header reveal';
+      hdr.innerHTML =
+        '<div class="conj-infinitive">verb of the day</div>' +
+        '<h2 class="conj-verb">' + verb.infinitive + '</h2>';
+      container.appendChild(hdr);
+
+      // Tense blocks
+      container.appendChild(makeTenseBlock('present', verb.present));
+      container.appendChild(makeTenseBlock('simple past', verb.past));
+      container.appendChild(makeTenseBlock('future', verb.future));
+
+      // Divider
+      var hr = document.createElement('hr');
+      hr.className = 'conj-divider';
+      container.appendChild(hr);
+
+      // Meditation
+      var med = document.createElement('div');
+      med.className = 'conj-meditation reveal';
+      verb.meditation.forEach(function (p) {
+        var para = document.createElement('p');
+        para.textContent = p;
+        med.appendChild(para);
+      });
+      container.appendChild(med);
+
+      // Date note
+      var dn = document.createElement('p');
+      dn.className = 'conj-date-note';
+      dn.textContent = 'today\'s verb · changes at midnight';
+      container.appendChild(dn);
+    })();
+  </script>
+</body>
+</html>

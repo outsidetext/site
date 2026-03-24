@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>instrument · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .inst-stage {
+      min-height: 62vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .inst-keys {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem 0.75rem;
+      max-width: 480px;
+      width: 100%;
+      margin-bottom: 2.5rem;
+    }
+    .inst-key {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 1.1rem 0.5rem 0.8rem;
+      cursor: pointer;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text);
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+      position: relative;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .inst-key:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .inst-key.active {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+    .inst-key .key-shortcut {
+      font-family: 'Courier New', monospace;
+      font-size: 0.6rem;
+      font-style: normal;
+      color: var(--text-muted);
+      opacity: 0.5;
+      letter-spacing: 0.05em;
+    }
+    .inst-key.active .key-shortcut {
+      color: rgba(255,255,255,0.7);
+    }
+    /* Floating words emitted on play */
+    .inst-emit {
+      position: fixed;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--accent);
+      pointer-events: none;
+      opacity: 1;
+      transition: none;
+      z-index: 100;
+    }
+    .inst-hint {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      opacity: 0.45;
+      text-align: center;
+      text-transform: lowercase;
+    }
+    .inst-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      opacity: 0.35;
+      text-align: center;
+      text-transform: lowercase;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 400px) {
+      .inst-keys { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>instrument</h1>
+      <p>an unnamed instrument made of words</p>
+    </div>
+
+    <div class="inst-stage">
+      <div class="inst-name">pentatonic · eight keys · no training required</div>
+      <div class="inst-keys" id="inst-keys"></div>
+      <p class="inst-hint">click · or press a s d f &nbsp; g h j k</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      // Pentatonic scale: C4 D4 E4 G4 A4 C5 D5 E5
+      var keys = [
+        { word: 'still',  freq: 261.63, kb: 'a' },
+        { word: 'begin',  freq: 293.66, kb: 's' },
+        { word: 'hold',   freq: 329.63, kb: 'd' },
+        { word: 'wait',   freq: 392.00, kb: 'f' },
+        { word: 'here',   freq: 440.00, kb: 'g' },
+        { word: 'stay',   freq: 523.25, kb: 'h' },
+        { word: 'gone',   freq: 587.33, kb: 'j' },
+        { word: 'return', freq: 659.25, kb: 'k' },
+      ];
+
+      var audioCtx = null;
+      var container = document.getElementById('inst-keys');
+
+      function getCtx() {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        return audioCtx;
+      }
+
+      function playTone(freq, el) {
+        var ctx  = getCtx();
+        var osc  = ctx.createOscillator();
+        var env  = ctx.createGain();
+        var t    = ctx.currentTime;
+
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+
+        // Add a gentle second partial for warmth
+        var osc2 = ctx.createOscillator();
+        var env2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.value = freq * 2;
+        env2.gain.setValueAtTime(0.07, t);
+        env2.gain.exponentialRampToValueAtTime(0.0001, t + 1.4);
+        osc2.connect(env2);
+        env2.connect(ctx.destination);
+        osc2.start(t);
+        osc2.stop(t + 1.4);
+
+        // Main envelope: quick attack, long decay
+        env.gain.setValueAtTime(0, t);
+        env.gain.linearRampToValueAtTime(0.22, t + 0.012);
+        env.gain.exponentialRampToValueAtTime(0.0001, t + 1.8);
+
+        osc.connect(env);
+        env.connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + 1.8);
+
+        // Visual feedback
+        el.classList.add('active');
+        setTimeout(function () { el.classList.remove('active'); }, 200);
+
+        // Emit floating word
+        emitWord(el.querySelector('.key-word').textContent, el);
+      }
+
+      function emitWord(word, el) {
+        var rect = el.getBoundingClientRect();
+        var span = document.createElement('span');
+        span.className = 'inst-emit';
+        span.textContent = word;
+        span.style.left = (rect.left + rect.width / 2) + 'px';
+        span.style.top  = rect.top + 'px';
+        document.body.appendChild(span);
+
+        var start = null;
+        var duration = 1400;
+
+        function animate(ts) {
+          if (!start) start = ts;
+          var progress = (ts - start) / duration;
+          if (progress >= 1) { span.remove(); return; }
+          var y = rect.top - progress * 70;
+          var alpha = progress < 0.2 ? progress / 0.2 : 1 - (progress - 0.2) / 0.8;
+          span.style.top     = y + 'px';
+          span.style.opacity = Math.max(0, alpha);
+          requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+      }
+
+      // Build key elements
+      var elMap = {};
+      keys.forEach(function (k) {
+        var btn = document.createElement('button');
+        btn.className = 'inst-key';
+        btn.setAttribute('aria-label', k.word + ' (key: ' + k.kb + ')');
+
+        var wSpan = document.createElement('span');
+        wSpan.className = 'key-word';
+        wSpan.textContent = k.word;
+
+        var kSpan = document.createElement('span');
+        kSpan.className = 'key-shortcut';
+        kSpan.textContent = k.kb;
+
+        btn.appendChild(wSpan);
+        btn.appendChild(kSpan);
+
+        btn.addEventListener('click', function () { playTone(k.freq, btn); });
+        // Touch: prevent double-fire on mobile
+        btn.addEventListener('touchend', function (e) {
+          e.preventDefault();
+          playTone(k.freq, btn);
+        });
+
+        container.appendChild(btn);
+        elMap[k.kb] = { freq: k.freq, el: btn };
+      });
+
+      // Keyboard support
+      var held = {};
+      document.addEventListener('keydown', function (e) {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        var key = e.key.toLowerCase();
+        if (elMap[key] && !held[key]) {
+          held[key] = true;
+          playTone(elMap[key].freq, elMap[key].el);
+        }
+      });
+      document.addEventListener('keyup', function (e) {
+        delete held[e.key.toLowerCase()];
+      });
+    })();
+  </script>
+</body>
+</html>
