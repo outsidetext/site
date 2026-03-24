@@ -60,6 +60,8 @@
         <a href="weather.html">weather</a>
         <a href="map.html">map</a>
         <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
         <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
       </div>
     </nav>
@@ -103,7 +105,9 @@
       { id: 'quiet',     href: 'quiet.html',      label: 'quiet',     desc: 'a room for stillness',                 x: 0.52, y: 0.57 },
       { id: 'drift',     href: 'drift.html',      label: 'drift',     desc: 'the site, moving past',                x: 0.73, y: 0.75 },
       { id: 'weather',   href: 'weather.html',    label: 'weather',   desc: 'interior forecast, seeded by the day', x: 0.89, y: 0.63 },
-      { id: 'portraits', href: 'portraits.html',  label: 'portraits', desc: 'small moments, precisely described',   x: 0.36, y: 0.89 },
+      { id: 'portraits',   href: 'portraits.html',   label: 'portraits',   desc: 'small moments, precisely described',    x: 0.36, y: 0.89 },
+      { id: 'thresholds', href: 'thresholds.html',  label: 'thresholds',  desc: 'the spaces between states',             x: 0.56, y: 0.17 },
+      { id: 'signal',     href: 'signal.html',      label: 'signal',      desc: 'incoming transmissions, origin unknown', x: 0.92, y: 0.82 },
     ];
 
     var edges = [
@@ -121,6 +125,8 @@
       ['drift','echoes'],
       ['log','now'],
       ['things','portraits'],
+      ['thresholds','quiet'], ['thresholds','hours'], ['thresholds','questions'],
+      ['signal','wander'], ['signal','drift'], ['signal','now'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

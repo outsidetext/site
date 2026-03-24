@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>signal · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .signal-wrap {
+      margin-top: 0;
+    }
+
+    .signal-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+    }
+
+    .signal-bars {
+      display: flex;
+      gap: 2px;
+      align-items: flex-end;
+      height: 14px;
+    }
+
+    .signal-bar {
+      width: 3px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+
+    .signal-bar:nth-child(1) { height: 4px;  animation: bar-pulse 2.4s ease-in-out 0.0s infinite; }
+    .signal-bar:nth-child(2) { height: 7px;  animation: bar-pulse 2.4s ease-in-out 0.3s infinite; }
+    .signal-bar:nth-child(3) { height: 11px; animation: bar-pulse 2.4s ease-in-out 0.6s infinite; }
+    .signal-bar:nth-child(4) { height: 7px;  animation: bar-pulse 2.4s ease-in-out 0.9s infinite; }
+
+    @keyframes bar-pulse {
+      0%, 100% { opacity: 0.25; }
+      50%       { opacity: 1; }
+    }
+
+    .signal-screen {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem 2rem 2.5rem;
+      min-height: 180px;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+      line-height: 1.9;
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .signal-line-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.25rem;
+      opacity: 0.5;
+    }
+
+    .signal-text {
+      color: var(--text);
+      min-height: 2em;
+    }
+
+    .signal-cursor {
+      display: inline-block;
+      width: 0.55em;
+      height: 1.05em;
+      background: var(--accent);
+      vertical-align: text-bottom;
+      margin-left: 1px;
+      animation: blink 0.85s step-end infinite;
+    }
+
+    .signal-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      opacity: 0.55;
+      margin-top: 1rem;
+    }
+
+    .signal-note {
+      margin-top: 3rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.75;
+    }
+
+    .signal-controls {
+      margin-top: 1.75rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .signal-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      padding: 0.4rem 1rem;
+      border-radius: 3px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .signal-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <h1>signal</h1>
+      <p>incoming transmissions. origin unknown. received now.</p>
+    </section>
+
+    <div class="signal-wrap">
+      <div class="signal-header">
+        <div class="signal-bars">
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+          <div class="signal-bar"></div>
+        </div>
+        <span id="signal-status">receiving</span>
+      </div>
+
+      <div class="signal-screen">
+        <div class="signal-line-label">transmission</div>
+        <div class="signal-text" id="signal-text"><span class="signal-cursor"></span></div>
+      </div>
+
+      <div class="signal-meta">
+        <span id="signal-index">01 / 13</span>
+        <span id="signal-time"></span>
+      </div>
+
+      <div class="signal-controls">
+        <button class="signal-btn" id="signal-pause">pause</button>
+        <button class="signal-btn" id="signal-skip">next →</button>
+      </div>
+
+      <p class="signal-note">these are not predictions. not instructions. something between a message and a mirror — transmitted here to be received, or not, depending on what you needed to find today.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var messages = [
+      "someone is thinking of you right now and hasn't found the words yet.",
+      "the thing you keep meaning to do is still waiting. it is patient in the way only unfinished things can be.",
+      "there was a window where everything could have gone differently. it closed a while ago. this is not as bad as it sounds — you are through it now.",
+      "the version of you from five years ago would be surprised by almost nothing. they knew more than they admitted.",
+      "somewhere, a conversation is happening that will change something. you won't know which one until later.",
+      "most of what you are worried about hasn't happened. a small amount of what you are not worried about has.",
+      "the feeling you can't name has a name in at least one language you don't speak. you're not alone in having it.",
+      "this is being received.",
+      "the garden is still growing. slowly, in directions no one planned for, which is how gardens grow.",
+      "whatever you've been carrying, you've been carrying it long enough that you've stopped calling it a weight. it has become just the way you stand.",
+      "something is about to become clearer. probably something small. small things are often the ones that matter.",
+      "the people you miss know they are missed. the connection doesn't require proximity to remain.",
+      "three things are happening right now that will only become significant later. you are inside all three of them."
+    ];
+
+    var textEl   = document.getElementById('signal-text');
+    var statusEl = document.getElementById('signal-status');
+    var indexEl  = document.getElementById('signal-index');
+    var timeEl   = document.getElementById('signal-time');
+    var pauseBtn = document.getElementById('signal-pause');
+    var skipBtn  = document.getElementById('signal-skip');
+
+    var current   = 0;
+    var charIdx   = 0;
+    var paused    = false;
+    var typing    = null;
+    var waiting   = null;
+    var erasing   = null;
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+    function updateTime() {
+      var d = new Date();
+      timeEl.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    function updateIndex() {
+      indexEl.textContent = pad(current + 1) + ' / ' + pad(messages.length);
+    }
+
+    function cursor() {
+      return '<span class="signal-cursor"></span>';
+    }
+
+    function typeChar() {
+      if (paused) return;
+      var msg = messages[current];
+      if (charIdx <= msg.length) {
+        textEl.innerHTML = msg.slice(0, charIdx) + cursor();
+        charIdx++;
+        var delay = 28 + Math.random() * 32;
+        // slight pause at punctuation
+        var prev = msg[charIdx - 2];
+        if (prev === '.' || prev === ',') delay += 180;
+        typing = setTimeout(typeChar, delay);
+      } else {
+        // finished typing — wait, then erase
+        statusEl.textContent = 'standing by';
+        waiting = setTimeout(startErase, 4200);
+      }
+    }
+
+    function startErase() {
+      if (paused) return;
+      statusEl.textContent = 'clearing';
+      eraseChar();
+    }
+
+    function eraseChar() {
+      if (paused) return;
+      var msg = messages[current];
+      if (charIdx > 0) {
+        charIdx--;
+        textEl.innerHTML = msg.slice(0, charIdx) + cursor();
+        erasing = setTimeout(eraseChar, 12 + Math.random() * 14);
+      } else {
+        // move to next
+        current = (current + 1) % messages.length;
+        updateIndex();
+        statusEl.textContent = 'receiving';
+        typing = setTimeout(typeChar, 900);
+      }
+    }
+
+    function clearAll() {
+      clearTimeout(typing);
+      clearTimeout(waiting);
+      clearTimeout(erasing);
+    }
+
+    function startFrom(idx) {
+      clearAll();
+      current = idx;
+      charIdx = 0;
+      updateIndex();
+      statusEl.textContent = 'receiving';
+      textEl.innerHTML = cursor();
+      typing = setTimeout(typeChar, 600);
+    }
+
+    pauseBtn.addEventListener('click', function () {
+      paused = !paused;
+      pauseBtn.textContent = paused ? 'resume' : 'pause';
+      if (paused) {
+        statusEl.textContent = 'paused';
+        clearAll();
+      } else {
+        statusEl.textContent = 'receiving';
+        typeChar();
+      }
+    });
+
+    skipBtn.addEventListener('click', function () {
+      paused = false;
+      pauseBtn.textContent = 'pause';
+      startFrom((current + 1) % messages.length);
+    });
+
+    // start on a random message
+    startFrom(Math.floor(Math.random() * messages.length));
+  })();
+  </script>
+</body>
+</html>

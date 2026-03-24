@@ -135,7 +135,7 @@
     'thoughts.html','seeds.html','wander.html','now.html','letters.html','quiet.html',
     'glossary.html','hours.html','questions.html','echoes.html','colors.html',
     'numbers.html','things.html','log.html','drift.html','weather.html',
-    'map.html','portraits.html'
+    'map.html','portraits.html','thresholds.html','signal.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
@@ -210,6 +210,18 @@
       showGhost();
       resetTimer();
     }
+  });
+
+  // ── Page exit transition ─────────────────────────
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href || href.charAt(0) === '#' || href.indexOf('mailto:') === 0 || href.indexOf('javascript:') === 0) return;
+    if (link.target === '_blank') return;
+    e.preventDefault();
+    document.body.classList.add('page-exit');
+    setTimeout(function () { window.location.href = href; }, 220);
   });
 
   // ── Scroll reveal ────────────────────────────────

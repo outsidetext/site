@@ -867,6 +867,18 @@ footer {
   flex-shrink: 0;
 }
 
+/* ── Page exit transition ─────────────────── */
+
+@keyframes sink {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-8px); }
+}
+
+body.page-exit main {
+  animation: sink 0.2s ease forwards;
+  pointer-events: none;
+}
+
 /* ── Mobile ───────────────────────────────── */
 
 @media (max-width: 580px) {
