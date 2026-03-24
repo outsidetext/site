@@ -38,6 +38,31 @@
     bar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
   }, { passive: true });
 
+  // ── Word of the day (homepage) ──────────────────
+  var wodWords = [
+    { term: 'screenache',   pos: 'n.', def: 'the fatigue that settles behind the eyes after long hours in front of light; a tiredness that sleep doesn\'t quite reach' },
+    { term: 'tab guilt',    pos: 'n.', def: 'the quiet shame of browser tabs held open in good faith — each one a small promise made to a former self who intended to follow up' },
+    { term: '404 grief',    pos: 'n.', def: 'the particular small loss of arriving at a URL and finding nothing; the internet\'s form of forgetting, which is absolute and unannounced' },
+    { term: 'ghost scroll', pos: 'n.', def: 'the reflex of pulling down at the bottom of a feed, seeking content that isn\'t there; a hunger the thumb learned without consent' },
+    { term: 'pre-nostalgia',pos: 'n.', def: 'the ache of missing something while still inside it; the grief that arrives before the loss' },
+    { term: 'signal lag',   pos: 'n.', def: 'the three seconds between sending a message and wondering if you should have; the gap where regret is born' },
+    { term: 'the draft',    pos: 'n.', def: 'the version of something written and not sent; where most honest things live' },
+    { term: 'deep tab',     pos: 'n.', def: 'a browser tab opened months ago and never closed; a small monument to a past version of what mattered' },
+    { term: 'cursor drift', pos: 'n.', def: 'the way a mouse moves toward the corner of a screen when attention wanders; the body\'s honest report' },
+    { term: 'night mode',   pos: 'n.', def: 'not a display setting, but the version of yourself after ten p.m. — when the filters come down and you become, briefly, more accurate' }
+  ];
+  var wodTerm = document.getElementById('wod-term');
+  var wodPos  = document.getElementById('wod-pos');
+  var wodDef  = document.getElementById('wod-def');
+  if (wodTerm && wodPos && wodDef) {
+    var d = new Date();
+    var dayIndex = Math.floor(d.getTime() / 86400000) % wodWords.length;
+    var w = wodWords[dayIndex];
+    wodTerm.textContent = w.term;
+    wodPos.textContent  = w.pos;
+    wodDef.textContent  = w.def;
+  }
+
   // ── Active nav link ─────────────────────────────
   var links = document.querySelectorAll('.nav-links a');
   var path = window.location.pathname.replace(/\/$/, '') || '/';

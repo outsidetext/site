@@ -98,6 +98,20 @@ nav {
   border-color: var(--accent);
 }
 
+/* ── Scroll progress ──────────────────────── */
+
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  z-index: 200;
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
 /* ── Page shell ───────────────────────────── */
 
 main {
@@ -295,18 +309,128 @@ footer {
   padding-top: 0.18rem;
 }
 
-/* ── Scroll progress ──────────────────────── */
+/* ── Glossary ─────────────────────────────── */
 
-#progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: var(--accent);
-  z-index: 200;
-  transition: width 0.08s linear;
-  pointer-events: none;
+.glossary {
+  margin-top: 0;
+}
+
+.gloss-entry {
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.gloss-entry:first-child {
+  padding-top: 0;
+}
+
+.gloss-entry dt {
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.25rem;
+}
+
+.gloss-pos {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.gloss-entry dd {
+  margin-left: 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* ── Hours ───────────────────────────────── */
+
+.hour-display {
+  margin-bottom: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.hour-time {
+  font-family: 'Courier New', monospace;
+  font-size: 2.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.hour-fragment {
+  font-size: 1.45rem;
+  font-weight: normal;
+  line-height: 1.45;
+  margin-bottom: 0.85rem;
+  animation: breathe 11s ease-in-out 0.5s infinite;
+}
+
+.hour-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.hour-list {
+  list-style: none;
+}
+
+.hour-row {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.93rem;
+  align-items: baseline;
+}
+
+.hour-row.current-hour {
+  color: var(--accent);
+}
+
+.hr-num {
+  font-family: 'Courier New', monospace;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: 2rem;
+}
+
+.hour-row.current-hour .hr-num {
+  color: var(--accent);
+}
+
+/* ── Word of day (homepage) ──────────────── */
+
+.word-of-day {
+  margin-bottom: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.wod-term {
+  display: block;
+  font-size: 1.3rem;
+  margin-bottom: 0.25rem;
+}
+
+.wod-pos {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 0.55rem;
+}
+
+.wod-def {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  display: block;
+  margin-bottom: 1rem;
 }
 
 /* ── Animations ───────────────────────────── */
