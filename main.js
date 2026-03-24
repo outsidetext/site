@@ -167,6 +167,7 @@
     'glitch.html','compose.html','census.html','cuts.html','odds.html',
     'maze.html','tally.html','haiku.html','score.html','palimpsest.html',
     'weight.html','redacted.html','atlas.html','bones.html','venn.html',
+    'ritual.html','mirror.html','debris.html','liturgy.html','catalog.html',
     'breathe.html','oracle.html','spiral.html','tide.html','unread.html'
   ];
   function goRandom() {
