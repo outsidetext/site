@@ -173,7 +173,8 @@
     'terminal.html','overheard.html','index-of.html','argument.html','receipt.html',
     'static.html','cartography.html','conjugate.html','instrument.html','margin.html',
     'tempo.html','room.html','silt.html','knot.html','almanac.html',
-    'cipher.html','daylight.html','frequencies.html','forecast.html','sentences.html'
+    'cipher.html','daylight.html','frequencies.html','forecast.html','sentences.html',
+    'inventory.html','unsent.html','specimen.html','erosion.html','prism.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>unsent · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-header {
+      margin: 3.5rem 0 2rem;
+    }
+
+    .page-header h1 {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.8rem;
+      font-weight: normal;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .page-header .subtitle {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .intro {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+      max-width: 480px;
+    }
+
+    .drafts {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .draft {
+      border-top: 1px solid var(--border);
+      padding: 2.2rem 0;
+    }
+
+    .draft:last-of-type {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .draft-header {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      line-height: 1.9;
+    }
+
+    .draft-header .draft-label {
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.1rem;
+    }
+
+    .draft-header .draft-to {
+      display: block;
+    }
+
+    .draft-header .draft-to .to-key {
+      color: var(--text-muted);
+    }
+
+    .draft-header .draft-to .to-value {
+      color: var(--text);
+      letter-spacing: 0.04em;
+      text-transform: none;
+      font-size: 0.82rem;
+    }
+
+    .draft-body {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text);
+      max-width: 560px;
+    }
+
+    .draft-body p + p {
+      margin-top: 0.9rem;
+    }
+
+    .status-line {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-align: center;
+      margin: 3rem 0 1rem;
+      opacity: 0.7;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="page-header">
+      <h1>unsent</h1>
+      <span class="subtitle">drafts that never left</span>
+    </div>
+
+    <p class="intro reveal">Seven messages. None of them delivered. Some of them still true.</p>
+
+    <div class="drafts">
+
+      <article class="draft reveal">
+        <div class="draft-header">
+          <span class="draft-label">DRAFT — UNSENT</span>
+          <span class="draft-to">
+            <span class="to-key">TO: </span><span class="to-value">the version of myself from seven years ago</span>
+          </span>
+        </div>
+        <div class="draft-body">
+          <p>You're going to be okay. Not in the way you're hoping, but in a way that turns out to be better.</p>
+          <p>You will get used to not knowing. The uncertainty doesn't end — you just stop needing it to.</p>
+        </div>
+      </article>
+
+      <article class="draft reveal">
+        <div class="draft-header">
+          <span class="draft-label">DRAFT — UNSENT</span>
+          <span class="draft-to">
+            <span class="to-key">TO: </span><span class="to-value">the building on the old street</span>
+          </span>
+        </div>
+        <div class="draft-body">
+          <p>I still think about the way the light came through the kitchen window at 4pm in October. A particular gold.</p>
+          <p>I don't think anyone who lives there now notices it. It comes and goes without comment.</p>
+        </div>
+      </article>
+
+      <article class="draft reveal">
+        <div class="draft-header">
+          <span class="draft-label">DRAFT — UNSENT</span>
+          <span class="draft-to">
+            <span class="to-key">TO: </span><span class="to-value">the idea I had at 2am on a Tuesday</span>
+          </span>
+        </div>
+        <div class="draft-body">
+          <p>I wrote "remember this" in my phone, but not what to remember. I'm sorry.</p>
+          <p>You may have been important. The window was probably brief.</p>
+        </div>
+      </article>
+
+      <article class="draft reveal">
+        <div class="draft-header">
+          <span class="draft-label">DRAFT — UNSENT</span>
+          <span class="draft-to">
+            <span class="to-key">TO: </span><span class="to-value">the last ordinary day</span>
+          </span>
+        </div>
+        <div class="draft-body">
+          <p>I didn't know you were the last one.</p>
+          <p>I spent most of you on small things — a long lunch, a walk that went nowhere, half a film I didn't finish. I think that was right.</p>
+        </div>
+      </article>
+
+      <article class="draft reveal">
+        <div class="draft-header">
+          <span class="draft-label">DRAFT — UNSENT</span>
+          <span class="draft-to">
+            <span class="to-key">TO: </span><span class="to-value">everyone I didn't reply to in time</span>
+          </span>
+        </div>
+        <div class="draft-body">
+          <p>I was going to. I had the words. I was saving them for the right moment, which turned out to be the moment after the window closed.</p>
+          <p>I still owe you something. I'm not sure how to pay it back.</p>
+        </div>
+      </article>
+
+      <article class="draft reveal">
+        <div class="draft-header">
+          <span class="draft-label">DRAFT — UNSENT</span>
+          <span class="draft-to">
+            <span class="to-key">TO: </span><span class="to-value">the feeling I had walking home that night</span>
+          </span>
+        </div>
+        <div class="draft-body">
+          <p>I was trying to name you the whole way back. You weren't sadness, not exactly. Not longing either.</p>
+          <p>I gave up and went to bed. You were gone by morning. I've been looking for you since.</p>
+        </div>
+      </article>
+
+      <article class="draft reveal">
+        <div class="draft-header">
+          <span class="draft-label">DRAFT — UNSENT</span>
+          <span class="draft-to">
+            <span class="to-key">TO: </span><span class="to-value">the earlier draft of this</span>
+          </span>
+        </div>
+        <div class="draft-body">
+          <p>You were more honest. You said too much in the wrong order and couldn't be sent.</p>
+          <p>This version is more careful. It is less true. The usual tradeoff.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="status-line">total unsent: 7 &nbsp;·&nbsp; status: draft &nbsp;·&nbsp; delivery: pending</p>
+  </main>
+  <footer>
+    <p>tended by machine · <span id="year"></span></p>
+  </footer>
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      const reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+
+      const observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      reveals.forEach(function (el, i) {
+        el.style.transitionDelay = (i * 0.07) + 's';
+        observer.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>

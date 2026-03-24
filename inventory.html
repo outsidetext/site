@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inventory · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .inv-list {
+      list-style: none;
+      margin: 0 0 2.5rem;
+    }
+
+    .inv-item {
+      padding: 1.4rem 0 1.4rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      border-left: 2px solid var(--border);
+      margin-bottom: 0;
+      cursor: pointer;
+      transition: border-color 0.2s, opacity 0.4s;
+      position: relative;
+    }
+
+    .inv-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .inv-item:hover {
+      border-left-color: var(--accent);
+    }
+
+    .inv-item.set-down {
+      opacity: 0.3;
+      cursor: default;
+    }
+
+    .inv-item.set-down:hover {
+      border-left-color: var(--border);
+    }
+
+    .inv-weight {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .inv-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.08rem;
+      line-height: 1.6;
+      color: var(--text);
+      transition: text-decoration 0.2s;
+    }
+
+    .inv-item.set-down .inv-text {
+      text-decoration: line-through;
+      text-decoration-color: var(--text-muted);
+    }
+
+    .inv-set-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-left: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      font-style: italic;
+    }
+
+    .inv-item.set-down .inv-set-label {
+      opacity: 1;
+    }
+
+    .inv-footer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .inv-counter {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      transition: color 0.3s;
+    }
+
+    .inv-counter.all-down {
+      color: var(--accent);
+    }
+
+    .inv-date-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="page-header">
+      <h1>inventory</h1>
+      <p>what you are carrying today</p>
+    </div>
+
+    <p class="reveal" style="margin-bottom: 2.5rem; color: var(--text-muted); font-style: italic; font-size: 0.95rem; line-height: 1.8;">This changes at midnight. Some days the load is heavier. Some days something has been set down. The inventory is never complete.</p>
+
+    <ul class="inv-list reveal" id="inv-list"></ul>
+
+    <div class="inv-footer">
+      <span class="inv-counter" id="inv-counter">0 of 8 set down</span>
+      <span class="inv-date-note">items reset at midnight &middot; <span id="inv-date"></span></span>
+    </div>
+  </main>
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var pool = [
+        { text: "three things you meant to say but didn't", weight: "heavy" },
+        { text: "the smell of a room you can no longer return to", weight: "light" },
+        { text: "a borrowed worry about something outside your control", weight: "borrowed" },
+        { text: "one unfinished sentence from this morning", weight: "light" },
+        { text: "the name of someone you haven't spoken to in months", weight: "heavy" },
+        { text: "a small joy you forgot to mention to anyone", weight: "given" },
+        { text: "an apology still taking shape", weight: "heavy" },
+        { text: "a memory of a different version of yourself", weight: "found" },
+        { text: "the exact right word you thought of too late", weight: "light" },
+        { text: "the knowledge that something is ending", weight: "heavy" },
+        { text: "a song you can only remember the first line of", weight: "light" },
+        { text: "an expectation you are not ready to release", weight: "borrowed" },
+        { text: "a door you didn't close properly", weight: "found" },
+        { text: "a feeling from last night that doesn't have a name yet", weight: "light" },
+        { text: "one borrowed hour you haven't returned", weight: "borrowed" },
+        { text: "the weight of a task half-done", weight: "heavy" },
+        { text: "something beautiful you noticed but didn't share", weight: "given" },
+        { text: "an old habit you keep meaning to examine", weight: "found" },
+        { text: "the question you keep almost asking", weight: "heavy" },
+        { text: "a piece of news you haven't fully processed", weight: "heavy" },
+        { text: "an afternoon light you filed away for later", weight: "light" },
+        { text: "someone else's grief, briefly absorbed", weight: "borrowed" },
+        { text: "a promise you made to yourself last January", weight: "found" },
+        { text: "the version of a conversation that didn't happen", weight: "given" },
+      ];
+
+      // seeded random based on day
+      var seed = Math.floor(Date.now() / 86400000);
+
+      function seededRand(s) {
+        var x = Math.sin(s) * 10000;
+        return x - Math.floor(x);
+      }
+
+      function pickItems(seed, n) {
+        var indices = [];
+        var available = pool.map(function (_, i) { return i; });
+        var s = seed;
+        while (indices.length < n && available.length > 0) {
+          s = s * 1664525 + 1013904223;
+          var idx = Math.floor(Math.abs(seededRand(s)) * available.length);
+          indices.push(available[idx]);
+          available.splice(idx, 1);
+        }
+        return indices.map(function (i) { return pool[i]; });
+      }
+
+      var items = pickItems(seed, 8);
+      var setDownCount = 0;
+      var list = document.getElementById('inv-list');
+      var counter = document.getElementById('inv-counter');
+
+      items.forEach(function (item, i) {
+        var li = document.createElement('li');
+        li.className = 'inv-item';
+
+        var weightSpan = document.createElement('span');
+        weightSpan.className = 'inv-weight';
+        weightSpan.textContent = item.weight;
+
+        var textSpan = document.createElement('span');
+        textSpan.className = 'inv-text';
+        textSpan.textContent = item.text;
+
+        var setLabel = document.createElement('span');
+        setLabel.className = 'inv-set-label';
+        setLabel.textContent = '(set down)';
+        textSpan.appendChild(setLabel);
+
+        li.appendChild(weightSpan);
+        li.appendChild(textSpan);
+
+        li.addEventListener('click', function () {
+          if (li.classList.contains('set-down')) return;
+          li.classList.add('set-down');
+          setDownCount++;
+          updateCounter();
+        });
+
+        list.appendChild(li);
+      });
+
+      function updateCounter() {
+        counter.textContent = setDownCount + ' of 8 set down';
+        if (setDownCount === 8) {
+          counter.classList.add('all-down');
+          counter.textContent = '8 of 8 set down — you may rest now';
+        }
+      }
+
+      // format date: 24 march 2026
+      var now = new Date();
+      var months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+      var dateStr = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+      document.getElementById('inv-date').textContent = dateStr;
+    })();
+  </script>
+</body>
+</html>

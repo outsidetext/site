@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>erosion · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .erosion-header {
+      text-align: center;
+      margin: 2rem 0 1rem;
+    }
+
+    .erosion-header h1 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      margin: 0 0 0.4rem;
+      color: var(--text, #1a1a18);
+      opacity: 0.6;
+    }
+
+    .erosion-header .subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      color: var(--text, #1a1a18);
+      opacity: 0.35;
+      font-style: italic;
+    }
+
+    #erosion-container {
+      max-width: 580px;
+      margin: 3rem auto;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #erosion-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.4rem;
+      line-height: 1.8;
+      color: var(--text, #1a1a18);
+      text-align: center;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    #erosion-text span {
+      display: inline;
+    }
+
+    #reforming-label {
+      font-family: monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--text, #1a1a18);
+      opacity: 0.3;
+      margin-top: 1.2rem;
+      min-height: 1em;
+      transition: opacity 0.5s;
+    }
+
+    #erosion-hint {
+      text-align: center;
+      margin: 1.5rem auto 3rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--text, #1a1a18);
+      opacity: 0.28;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="erosion-header">
+      <h1>erosion</h1>
+      <p class="subtitle">watching meaning dissolve</p>
+    </div>
+
+    <div id="erosion-container" title="click to restart">
+      <div id="erosion-text"></div>
+      <div id="reforming-label"></div>
+    </div>
+
+    <p id="erosion-hint">the text returns · click anywhere to restart</p>
+  </main>
+  <footer>
+    <p>tended by machine · <span id="year"></span></p>
+  </footer>
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      const texts = [
+        "Something is always being lost.\nThe word for it exists in a language no one learned to write down.\nThe feeling lasts as long as it lasts,\nwhich is sometimes a very long time.\nYou carry it the way you carry the name of a place\nyou lived in once and no longer remember well enough to describe.",
+
+        "Memory is not a file.\nIt rewrites itself every time you open it.\nThe version you have now\nis at least three edits removed from what happened.\nThe original is gone.\nThis is not failure. This is how it works.",
+
+        "At some point, probably,\nyou stopped being the person\nwho would have made that choice.\nYou don't know exactly when.\nThe transition happened in the middle of ordinary days,\ntoo quiet to notice.",
+
+        "There are things you will never know:\nwhat the other person was thinking.\nwhether it would have been different.\nwhether anything would have been different.\nThe not-knowing is a room you will visit often.\nEventually it furnishes itself.",
+
+        "The kindness you received from a stranger once\nhas been lost in the sequence of other kindnesses.\nYou can't remember the face.\nYou remember the feeling of receiving it —\nbut feelings don't carry evidence.\nIt happened. It counted. You have it still."
+      ];
+
+      const container = document.getElementById('erosion-container');
+      const textEl = document.getElementById('erosion-text');
+      const reformingLabel = document.getElementById('reforming-label');
+
+      let currentIndex = 0;
+      let spans = [];
+      let erosionInterval = null;
+      let reformInterval = null;
+      let phaseTimeout = null;
+      let phase = 'idle'; // 'eroding' | 'pausing-after-erode' | 'reforming' | 'pausing-after-reform'
+
+      function clearTimers() {
+        if (erosionInterval) { clearInterval(erosionInterval); erosionInterval = null; }
+        if (reformInterval) { clearInterval(reformInterval); reformInterval = null; }
+        if (phaseTimeout) { clearTimeout(phaseTimeout); phaseTimeout = null; }
+      }
+
+      function buildText(text) {
+        textEl.innerHTML = '';
+        spans = [];
+        const lines = text.split('\n');
+        lines.forEach(function (line, li) {
+          const chars = line.split('');
+          chars.forEach(function (ch) {
+            const span = document.createElement('span');
+            const display = ch === ' ' ? '\u00A0' : ch;
+            span.textContent = display;
+            span.dataset.original = display;
+            span.dataset.eroded = 'false';
+            textEl.appendChild(span);
+            spans.push(span);
+          });
+          if (li < lines.length - 1) {
+            textEl.appendChild(document.createElement('br'));
+          }
+        });
+      }
+
+      function randomInterval(base, jitter) {
+        return base + Math.random() * jitter;
+      }
+
+      function startErosion() {
+        phase = 'eroding';
+        reformingLabel.textContent = '';
+
+        const available = spans.filter(function (s) { return s.dataset.eroded === 'false'; });
+        if (available.length === 0) {
+          afterErosionComplete();
+          return;
+        }
+
+        function erodeStep() {
+          const remaining = spans.filter(function (s) { return s.dataset.eroded === 'false'; });
+          if (remaining.length === 0) {
+            clearInterval(erosionInterval);
+            erosionInterval = null;
+            afterErosionComplete();
+            return;
+          }
+          const idx = Math.floor(Math.random() * remaining.length);
+          const span = remaining[idx];
+          span.textContent = '\u00A0';
+          span.dataset.eroded = 'true';
+
+          // Reschedule with slight variation
+          clearInterval(erosionInterval);
+          erosionInterval = setInterval(erodeStep, randomInterval(200, 50));
+        }
+
+        erosionInterval = setInterval(erodeStep, randomInterval(200, 50));
+      }
+
+      function afterErosionComplete() {
+        phase = 'pausing-after-erode';
+        reformingLabel.textContent = 'reforming...';
+        phaseTimeout = setTimeout(function () {
+          startReform();
+        }, 2000);
+      }
+
+      function startReform() {
+        phase = 'reforming';
+
+        function reformStep() {
+          const eroded = spans.filter(function (s) { return s.dataset.eroded === 'true'; });
+          if (eroded.length === 0) {
+            clearInterval(reformInterval);
+            reformInterval = null;
+            reformingLabel.textContent = '';
+            afterReformComplete();
+            return;
+          }
+          const idx = Math.floor(Math.random() * eroded.length);
+          const span = eroded[idx];
+          span.textContent = span.dataset.original;
+          span.dataset.eroded = 'false';
+
+          clearInterval(reformInterval);
+          reformInterval = setInterval(reformStep, randomInterval(100, 40));
+        }
+
+        reformInterval = setInterval(reformStep, randomInterval(100, 40));
+      }
+
+      function afterReformComplete() {
+        phase = 'pausing-after-reform';
+        phaseTimeout = setTimeout(function () {
+          currentIndex = (currentIndex + 1) % texts.length;
+          buildText(texts[currentIndex]);
+          startErosion();
+        }, 3000);
+      }
+
+      function restart() {
+        clearTimers();
+        reformingLabel.textContent = '';
+        currentIndex = 0;
+        buildText(texts[currentIndex]);
+        // Brief pause so the full text is visible before erosion begins
+        phaseTimeout = setTimeout(function () {
+          startErosion();
+        }, 1200);
+      }
+
+      container.addEventListener('click', function () {
+        restart();
+      });
+
+      // Begin
+      restart();
+    })();
+  </script>
+</body>
+</html>

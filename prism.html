@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>prism · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .prism-header {
+      margin-bottom: 3.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .prism-header h1 {
+      font-size: 2.25rem;
+      font-weight: normal;
+      line-height: 1.3;
+      margin-bottom: 0.4rem;
+    }
+
+    .prism-header .sub {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    .central-sentence {
+      margin-bottom: 3.5rem;
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      border-radius: 2px;
+      text-align: center;
+      position: relative;
+    }
+
+    .central-sentence-label {
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .central-sentence-text {
+      font-size: 1.75rem;
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--text);
+      display: block;
+    }
+
+    .central-sentence-ornament {
+      display: block;
+      margin: 1.2rem auto 0;
+      width: 2.5rem;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .refractions {
+      margin-bottom: 3rem;
+    }
+
+    .refraction {
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .refraction.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .refraction:last-child {
+      border-bottom: none;
+    }
+
+    .refraction-label {
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .refraction-text {
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .prism-footer-note {
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="prism-header">
+      <h1>prism</h1>
+      <p class="sub">one sentence, eight ways</p>
+    </div>
+
+    <div class="central-sentence">
+      <span class="central-sentence-label">today's sentence</span>
+      <span class="central-sentence-text" id="central-text"></span>
+      <span class="central-sentence-ornament"></span>
+    </div>
+
+    <div class="refractions" id="refractions-container">
+    </div>
+
+    <p class="prism-footer-note">changes at midnight · <span id="prism-date"></span></p>
+  </main>
+  <footer>
+    <p>tended by machine · <span id="year"></span></p>
+  </footer>
+  <script src="main.js"></script>
+  <script>
+    const sentences = [
+      {
+        text: "she left the door open",
+        refractions: [
+          {
+            label: "as the architect reads it",
+            text: "load-bearing threshold maintained at 0° from closed — continuous pressure differential between interior and exterior volumes"
+          },
+          {
+            label: "as the insurance adjuster records it",
+            text: "aperture event logged. primary closure point: residential door, front. status: open. liability: undetermined. ambient conditions at time: noted."
+          },
+          {
+            label: "as the building remembers it",
+            text: "the door was opened at 14:43. it has not been closed. the corridor and the room have been exchanging themselves ever since."
+          },
+          {
+            label: "as a biologist might note it",
+            text: "the organism departed through the primary aperture without activating the closure reflex — suggesting urgency, or distraction, or an intentional signal"
+          },
+          {
+            label: "as a child explains it",
+            text: "she didn't close the door. now the cat could go either way."
+          },
+          {
+            label: "as the weather observes it",
+            text: "a thermal exchange initiated. a column of cooler air has been entering steadily since the aperture event."
+          },
+          {
+            label: "as the person coming home finds it",
+            text: "a fact before interpretation: the door is open. whatever it means is still inside it."
+          },
+          {
+            label: "as the sentence itself knows",
+            text: "I am five words. I contain a departure, an object, and no explanation. I am being read right now and it is not the first time."
+          }
+        ]
+      },
+      {
+        text: "he kept the receipt",
+        refractions: [
+          {
+            label: "as the accountant reads it",
+            text: "proof of transaction retained — deductible potential: unknown — filing status: pending"
+          },
+          {
+            label: "as the historian notes it",
+            text: "a documentary record preserved against the possibility of future dispute or longing"
+          },
+          {
+            label: "as the therapist observes it",
+            text: "retention of evidence of a past exchange — the question is whether he trusts the world to remember"
+          },
+          {
+            label: "as the receipt feels it",
+            text: "I was not thrown away. I am still in a pocket somewhere, getting softer. I am proof something happened."
+          },
+          {
+            label: "as the cashier remembers it",
+            text: "I don't remember him. I give receipts to hundreds of people. Most of them are already in a bin somewhere."
+          },
+          {
+            label: "as the item purchased sees it",
+            text: "it recorded me. at the time I was worth a specific number. the number is now irrelevant. the record remains."
+          },
+          {
+            label: "as a physicist reads it",
+            text: "object maintained within system after utility was exhausted — entropy briefly resisted"
+          },
+          {
+            label: "as the sentence itself knows",
+            text: "I am four words. Ordinary ones. But he and receipt share the weight of everything unsaid about why."
+          }
+        ]
+      },
+      {
+        text: "the window was always open",
+        refractions: [
+          {
+            label: "as the landlord reads it",
+            text: "ongoing thermal inefficiency — heating costs elevated — clause 7.3 of lease: tenant responsible for window management"
+          },
+          {
+            label: "as the neighbor notes it",
+            text: "I knew their schedule by it. Open at seven. Still open at eleven. A whole life visible from the edge of a frame."
+          },
+          {
+            label: "as the air remembers it",
+            text: "we were always moving through. we didn't know we were being let in. we thought it was everywhere like this."
+          },
+          {
+            label: "as the child inside remembers it",
+            text: "I could hear everything. The street had a sound. The sound had a rhythm. It was the first music I knew."
+          },
+          {
+            label: "as the cold observes it",
+            text: "we were never refused. this was unusual. most rooms resist us. this one didn't bother."
+          },
+          {
+            label: "as a building code reads it",
+            text: "compliance: partial. ventilation standard: met. fire egress: accessible. energy efficiency rating: unverified."
+          },
+          {
+            label: "as the person who left remembers it",
+            text: "I thought about closing it before I went. I didn't. I thought someone would close it after me. I don't know if they did."
+          },
+          {
+            label: "as the sentence itself knows",
+            text: "I am five words. The always is doing all the work. It turns a fact into a character trait. It turns a window into a life."
+          }
+        ]
+      },
+      {
+        text: "nothing was missing",
+        refractions: [
+          {
+            label: "as the insurance investigator writes it",
+            text: "preliminary assessment: no items absent from manifest — claim status: unfounded — file closed"
+          },
+          {
+            label: "as the detective reads it",
+            text: "the absence of absence. harder to account for than absence itself. what was here that made nothing missing?"
+          },
+          {
+            label: "as the person who checked reads it",
+            text: "I counted everything twice. It was all there. I didn't feel better. That's what I remember."
+          },
+          {
+            label: "as a philosopher considers it",
+            text: "either the inventory was incomplete, or everything belongs. the sentence doesn't say which."
+          },
+          {
+            label: "as the room holds it",
+            text: "they checked for what wasn't there. they didn't check for what had changed. the light was slightly different. no one noted that."
+          },
+          {
+            label: "as a musician plays it",
+            text: "four beats. the nothing carries the line. what's missing in the sentence is the grief that prompted the counting."
+          },
+          {
+            label: "as a geologist reads it",
+            text: "no erosion detected in this stratum. all material accounted for. no record of what it cost to keep it."
+          },
+          {
+            label: "as the sentence itself knows",
+            text: "I am three words. I am easy to say. I am very hard to mean."
+          }
+        ]
+      },
+      {
+        text: "I almost called",
+        refractions: [
+          {
+            label: "as the phone log records it",
+            text: "call initiated: no. duration: 0 seconds. timestamp: —. classification: draft event, uncompleted."
+          },
+          {
+            label: "as the other person never knew it",
+            text: "a call that didn't come. I didn't know I was waiting. I didn't know to expect it. The silence was ordinary."
+          },
+          {
+            label: "as the hand that didn't dial feels it",
+            text: "I held the phone for a moment. The number was ready. Something stopped. It wasn't fear exactly. It was closer to not knowing what I'd say."
+          },
+          {
+            label: "as a linguist notes it",
+            text: "almost contains the action it negates. the calling is present in the almost. it happened in conditional space."
+          },
+          {
+            label: "as the evening of it remembers",
+            text: "there was a pause around 9pm. a stillness. the kind that sometimes precedes contact. nothing followed."
+          },
+          {
+            label: "as a physicist reads it",
+            text: "a potential event that did not actualize — energy reached the threshold and was not converted — stored or dissipated"
+          },
+          {
+            label: "as the relationship considers it",
+            text: "all the almosts accumulate. they form a record of what was being held back. the gap is the message."
+          },
+          {
+            label: "as the sentence itself knows",
+            text: "I am three words and an invisible aftermath. The call I almost made is louder than the calls I completed."
+          }
+        ]
+      },
+      {
+        text: "the key still works",
+        refractions: [
+          {
+            label: "as the locksmith reads it",
+            text: "lock and key still in alignment — mechanism: functional — last rekeyed: unknown — security note: former occupant may still have access"
+          },
+          {
+            label: "as the landlord reads it",
+            text: "remediation required — lock change recommended — cost: minor — window of vulnerability: ongoing"
+          },
+          {
+            label: "as the former resident reads it",
+            text: "I didn't try it to get in. I tried it to find out if I still could. There's a difference. I'm not sure it's a large one."
+          },
+          {
+            label: "as the door holds it",
+            text: "the key enters me. the tumblers move. I open as I always have. I don't distinguish between who turns me."
+          },
+          {
+            label: "as time observes it",
+            text: "function preserved beyond expected duration. most relationships between key and lock do not survive transition. this one has."
+          },
+          {
+            label: "as a novelist notes it",
+            text: "the key still works is not a statement about the key. it's a statement about whether the person should use it."
+          },
+          {
+            label: "as a child explains it",
+            text: "it's the old key and it still opens the door. but you shouldn't go in because you don't live there anymore."
+          },
+          {
+            label: "as the sentence itself knows",
+            text: "I am four words. I am a test, a discovery, and a problem, all at once. The still is the whole story."
+          }
+        ]
+      },
+      {
+        text: "the light was on when I arrived",
+        refractions: [
+          {
+            label: "as an energy auditor records it",
+            text: "lighting status at point of entry: active — occupancy prior to subject's arrival: confirmed or timer-operated — utility consumption: ongoing"
+          },
+          {
+            label: "as the person who left it on",
+            text: "I forgot. Or I didn't forget. I'm not always sure of the difference."
+          },
+          {
+            label: "as the light itself",
+            text: "I was on. I don't choose. Someone left the switch up. Someone arrived. The room had light. Whether that was welcome, I can't say."
+          },
+          {
+            label: "as a novelist marks it",
+            text: "the light is on — the house is not empty — or the house is empty but someone meant to come back — both readings are valid and both are true"
+          },
+          {
+            label: "as the arriving person understands it",
+            text: "it meant someone had been here. or expected me. or simply forgot. I stood in the doorway deciding which to believe."
+          },
+          {
+            label: "as the detective reads it",
+            text: "time of last occupancy determinable. occupant expected or negligent. the light is a kind of testimony."
+          },
+          {
+            label: "as a parent understands it",
+            text: "I always leave it on. So they don't come home to dark."
+          },
+          {
+            label: "as the sentence itself knows",
+            text: "I am eight words. The light carries all of it. Remove the light, and the sentence is just logistics. The light is why this matters."
+          }
+        ]
+      },
+      {
+        text: "we didn't say goodbye",
+        refractions: [
+          {
+            label: "as the transcript records it",
+            text: "conversation concluded without standard terminal exchange — session end: abrupt — reason: unlogged"
+          },
+          {
+            label: "as the linguist notes it",
+            text: "goodbye is a contraction of 'God be with you' — its omission is not just social failure but, historically, a kind of curse withheld"
+          },
+          {
+            label: "as the moment holds it",
+            text: "there was a last sentence. neither of us knew it was the last. the conversation just stopped. the ending was invisible."
+          },
+          {
+            label: "as one person carries it",
+            text: "I've replayed it. I keep looking for where I could have said it. The conversation didn't leave room. Or I didn't make room."
+          },
+          {
+            label: "as the other person carries it",
+            text: "I didn't think it was final. I thought there would be more. I didn't know I was already in the afterward."
+          },
+          {
+            label: "as a child explains it",
+            text: "you're not supposed to leave without saying goodbye. it's rude. but sometimes you don't know you're leaving."
+          },
+          {
+            label: "as a grief counselor reads it",
+            text: "common feature of sudden loss — the absence of the ritual ending — the feeling is: the thing is not complete — the incompleteness does not resolve"
+          },
+          {
+            label: "as the sentence itself knows",
+            text: "I am five words. The we is the most important. It means both people are in it. It means neither one said it. It means the not-saying is shared."
+          }
+        ]
+      }
+    ];
+
+    (function () {
+      const dayIndex = Math.floor(Date.now() / 86400000) % sentences.length;
+      const today = sentences[dayIndex];
+
+      // Render central sentence
+      document.getElementById('central-text').textContent = today.text;
+
+      // Render refractions
+      const container = document.getElementById('refractions-container');
+      today.refractions.forEach(function (r) {
+        const div = document.createElement('div');
+        div.className = 'refraction reveal';
+        div.innerHTML =
+          '<span class="refraction-label">' + r.label + '</span>' +
+          '<span class="refraction-text">' + r.text + '</span>';
+        container.appendChild(div);
+      });
+
+      // Format date: "24 march 2026"
+      const now = new Date();
+      const months = [
+        'january','february','march','april','may','june',
+        'july','august','september','october','november','december'
+      ];
+      const formatted = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+      document.getElementById('prism-date').textContent = formatted;
+
+      // Scroll reveal
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.refraction.reveal').forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
