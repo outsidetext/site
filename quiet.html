@@ -53,6 +53,30 @@
       opacity: 0.45;
       text-transform: lowercase;
     }
+
+    .quiet-sound-btn {
+      margin-top: 2.5rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      opacity: 0.4;
+      text-transform: lowercase;
+      padding: 0.4rem 0.8rem;
+      transition: opacity 0.3s, color 0.3s;
+    }
+
+    .quiet-sound-btn:hover {
+      opacity: 0.75;
+    }
+
+    .quiet-sound-btn.active {
+      opacity: 0.65;
+      color: var(--accent);
+    }
   </style>
 </head>
 <body>
@@ -62,6 +86,8 @@
       <div class="nav-links">
         <a href="thoughts.html">thoughts</a>
         <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
         <a href="letters.html">letters</a>
         <a href="quiet.html">quiet</a>
         <a href="glossary.html">glossary</a>
@@ -72,6 +98,10 @@
         <a href="numbers.html">numbers</a>
         <a href="things.html">things</a>
         <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
         <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
       </div>
     </nav>
@@ -82,6 +112,7 @@
       <div class="quiet-circle"></div>
       <p class="quiet-text hidden" id="quiet-text"></p>
       <p class="quiet-hint">stay as long as you like</p>
+      <button class="quiet-sound-btn" id="sound-btn" title="toggle ambient sound">~ add sound</button>
     </div>
   </main>
 
@@ -111,14 +142,13 @@
       "the exact moment a room goes from warm to cold after everyone leaves"
     ];
 
-    var el = document.getElementById('quiet-text');
+    var el  = document.getElementById('quiet-text');
     var idx = Math.floor(Math.random() * fragments.length);
 
     function show() {
       el.textContent = fragments[idx];
       el.classList.remove('hidden');
     }
-
     function cycle() {
       el.classList.add('hidden');
       setTimeout(function () {
@@ -127,9 +157,79 @@
       }, 750);
     }
 
-    // Fade in after a beat
     setTimeout(show, 400);
     setInterval(cycle, 7000);
+
+    // ── Ambient sound (Web Audio API) ─────────────────
+    var soundBtn = document.getElementById('sound-btn');
+    var audioCtx = null;
+    var master   = null;
+    var soundOn  = false;
+
+    function buildSound() {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      master   = audioCtx.createGain();
+      master.gain.setValueAtTime(0, audioCtx.currentTime);
+      master.connect(audioCtx.destination);
+
+      // A soft chord: root, fifth, octave, gentle third
+      var freqs   = [111, 166.5, 222, 138.6];
+      var weights = [0.38, 0.28, 0.18, 0.16];
+
+      freqs.forEach(function (freq, i) {
+        var osc  = audioCtx.createOscillator();
+        var gain = audioCtx.createGain();
+
+        osc.type            = 'sine';
+        osc.frequency.value = freq;
+        // slight detune per partial for warmth
+        osc.detune.value    = [-4, 3, -2, 5][i];
+
+        gain.gain.value = weights[i];
+        osc.connect(gain);
+        gain.connect(master);
+        osc.start();
+      });
+
+      // Slow tremolo LFO
+      var lfo      = audioCtx.createOscillator();
+      var lfoGain  = audioCtx.createGain();
+      lfo.frequency.value = 0.07;
+      lfoGain.gain.value  = 0.018;
+      lfo.connect(lfoGain);
+      lfoGain.connect(master.gain);
+      lfo.start();
+    }
+
+    function startSound() {
+      if (!audioCtx) buildSound();
+      master.gain.cancelScheduledValues(audioCtx.currentTime);
+      master.gain.setValueAtTime(master.gain.value, audioCtx.currentTime);
+      master.gain.linearRampToValueAtTime(0.07, audioCtx.currentTime + 3);
+    }
+
+    function stopSound() {
+      if (!audioCtx) return;
+      master.gain.cancelScheduledValues(audioCtx.currentTime);
+      master.gain.setValueAtTime(master.gain.value, audioCtx.currentTime);
+      master.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 2);
+    }
+
+    soundBtn.addEventListener('click', function () {
+      soundOn = !soundOn;
+      if (soundOn) {
+        startSound();
+        soundBtn.textContent = '~ remove sound';
+        soundBtn.classList.add('active');
+      } else {
+        stopSound();
+        soundBtn.textContent = '~ add sound';
+        soundBtn.classList.remove('active');
+      }
+    });
+
+    // Stop sound if user leaves the page
+    window.addEventListener('pagehide', function () { if (soundOn) stopSound(); });
   </script>
 </body>
 </html>

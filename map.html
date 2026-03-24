@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>map — website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .map-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      background: var(--bg);
+    }
+    #map-canvas {
+      display: block;
+      width: 100%;
+      cursor: default;
+    }
+    .map-info {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      min-height: 1.6em;
+      letter-spacing: 0.04em;
+      text-align: center;
+      padding: 0.4rem 0 1.25rem;
+      transition: color 0.2s;
+    }
+    .map-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <h1>map</h1>
+      <p>all the rooms. hover to explore, click to visit.</p>
+    </section>
+
+    <div class="map-wrap">
+      <canvas id="map-canvas"></canvas>
+    </div>
+    <div class="map-info" id="map-info">hover any point</div>
+    <p class="map-hint">the garden has many rooms. some are quieter than others.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var nodes = [
+      { id: 'home',      href: './',              label: 'home',      desc: 'where the garden begins',              x: 0.50, y: 0.43 },
+      { id: 'thoughts',  href: 'thoughts.html',   label: 'thoughts',  desc: 'twelve meditations',                   x: 0.22, y: 0.21 },
+      { id: 'seeds',     href: 'seeds.html',      label: 'seeds',     desc: 'fragments too small for a full thought', x: 0.38, y: 0.27 },
+      { id: 'letters',   href: 'letters.html',    label: 'letters',   desc: 'open letters to abstract things',      x: 0.15, y: 0.49 },
+      { id: 'glossary',  href: 'glossary.html',   label: 'glossary',  desc: 'words for unnamed things',             x: 0.29, y: 0.13 },
+      { id: 'hours',     href: 'hours.html',      label: 'hours',     desc: 'a clock that means more than time',    x: 0.70, y: 0.19 },
+      { id: 'now',       href: 'now.html',        label: 'now',       desc: 'the present tense',                    x: 0.84, y: 0.34 },
+      { id: 'log',       href: 'log.html',        label: 'log',       desc: 'a record of growth',                   x: 0.79, y: 0.50 },
+      { id: 'questions', href: 'questions.html',  label: 'questions', desc: 'unanswered, intentionally',            x: 0.64, y: 0.63 },
+      { id: 'echoes',    href: 'echoes.html',     label: 'echoes',    desc: 'sounds described in words',            x: 0.47, y: 0.77 },
+      { id: 'colors',    href: 'colors.html',     label: 'colors',    desc: 'named shades for unnamed feelings',    x: 0.27, y: 0.71 },
+      { id: 'numbers',   href: 'numbers.html',    label: 'numbers',   desc: 'a small almanac of significant counts', x: 0.11, y: 0.60 },
+      { id: 'things',    href: 'things.html',     label: 'things',    desc: 'objects and what they hold',           x: 0.13, y: 0.40 },
+      { id: 'wander',    href: 'wander.html',     label: 'wander',    desc: 'somewhere unexpected',                 x: 0.63, y: 0.32 },
+      { id: 'quiet',     href: 'quiet.html',      label: 'quiet',     desc: 'a room for stillness',                 x: 0.52, y: 0.57 },
+      { id: 'drift',     href: 'drift.html',      label: 'drift',     desc: 'the site, moving past',                x: 0.73, y: 0.75 },
+      { id: 'weather',   href: 'weather.html',    label: 'weather',   desc: 'interior forecast, seeded by the day', x: 0.89, y: 0.63 },
+      { id: 'portraits', href: 'portraits.html',  label: 'portraits', desc: 'small moments, precisely described',   x: 0.36, y: 0.89 },
+    ];
+
+    var edges = [
+      ['home','thoughts'], ['home','seeds'], ['home','wander'], ['home','quiet'],
+      ['thoughts','seeds'], ['thoughts','letters'], ['thoughts','questions'], ['thoughts','glossary'],
+      ['seeds','echoes'], ['seeds','colors'], ['seeds','portraits'],
+      ['letters','things'], ['letters','portraits'],
+      ['glossary','colors'],
+      ['hours','now'], ['hours','log'], ['hours','quiet'],
+      ['quiet','drift'], ['quiet','echoes'],
+      ['wander','drift'], ['wander','quiet'],
+      ['numbers','things'], ['numbers','colors'],
+      ['questions','echoes'],
+      ['weather','now'], ['weather','hours'],
+      ['drift','echoes'],
+      ['log','now'],
+      ['things','portraits'],
+    ];
+
+    var canvas  = document.getElementById('map-canvas');
+    var ctx     = canvas.getContext('2d');
+    var infoEl  = document.getElementById('map-info');
+    var W = 0, H = 0;
+    var hovered = null;
+    var resizeTimer;
+
+    function isDark() {
+      return document.documentElement.getAttribute('data-theme') === 'dark';
+    }
+
+    function clr() {
+      var d = isDark();
+      return {
+        edge:   d ? 'rgba(232,229,223,0.07)' : 'rgba(26,26,26,0.07)',
+        node:   d ? 'rgba(232,229,223,0.45)' : 'rgba(26,26,26,0.38)',
+        accent: d ? '#cf7e3f' : '#b5682a',
+        label:  d ? 'rgba(232,229,223,0.38)' : 'rgba(26,26,26,0.38)',
+        bg:     d ? '#0f0f0e' : '#faf8f4',
+      };
+    }
+
+    function px(n) { return { x: n.x * W, y: n.y * H }; }
+
+    function byId(id) {
+      for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i].id === id) return nodes[i];
+      }
+      return null;
+    }
+
+    function draw() {
+      var c = clr();
+      ctx.clearRect(0, 0, W, H);
+
+      // edges
+      ctx.strokeStyle = c.edge;
+      ctx.lineWidth   = 0.75;
+      for (var e = 0; e < edges.length; e++) {
+        var a = byId(edges[e][0]), b = byId(edges[e][1]);
+        if (!a || !b) continue;
+        var pa = px(a), pb = px(b);
+        ctx.beginPath();
+        ctx.moveTo(pa.x, pa.y);
+        ctx.lineTo(pb.x, pb.y);
+        ctx.stroke();
+      }
+
+      // nodes + labels
+      for (var i = 0; i < nodes.length; i++) {
+        var n  = nodes[i];
+        var p  = px(n);
+        var ov = hovered === n.id;
+        var isHome = n.id === 'home';
+        var r  = isHome ? 4 : (ov ? 4 : 2.5);
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = ov ? c.accent : c.node;
+        ctx.fill();
+
+        // label
+        ctx.font      = '10px Courier New, monospace';
+        ctx.fillStyle = ov ? c.accent : c.label;
+        ctx.textAlign = 'center';
+        ctx.fillText(n.label, p.x, p.y + r + 12);
+      }
+    }
+
+    function hitTest(mx, my) {
+      for (var i = 0; i < nodes.length; i++) {
+        var p = px(nodes[i]);
+        var d = Math.sqrt((mx - p.x) * (mx - p.x) + (my - p.y) * (my - p.y));
+        if (d < 14) return nodes[i].id;
+      }
+      return null;
+    }
+
+    function toCanvas(e) {
+      var rect = canvas.getBoundingClientRect();
+      var sx   = W / rect.width;
+      var sy   = H / rect.height;
+      return { x: (e.clientX - rect.left) * sx, y: (e.clientY - rect.top) * sy };
+    }
+
+    canvas.addEventListener('mousemove', function (e) {
+      var pos = toCanvas(e);
+      var h   = hitTest(pos.x, pos.y);
+      if (h !== hovered) {
+        hovered = h;
+        canvas.style.cursor = h ? 'pointer' : 'default';
+        draw();
+        if (h) {
+          var n = byId(h);
+          infoEl.textContent = n.label + ' — ' + n.desc;
+        } else {
+          infoEl.textContent = 'hover any point';
+        }
+      }
+    });
+
+    canvas.addEventListener('mouseleave', function () {
+      hovered = null;
+      canvas.style.cursor = 'default';
+      infoEl.textContent  = 'hover any point';
+      draw();
+    });
+
+    canvas.addEventListener('click', function (e) {
+      var pos = toCanvas(e);
+      var h   = hitTest(pos.x, pos.y);
+      if (h) {
+        var n = byId(h);
+        window.location.href = n.href;
+      }
+    });
+
+    canvas.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var t    = e.touches[0];
+      var rect = canvas.getBoundingClientRect();
+      var mx   = (t.clientX - rect.left) * (W / rect.width);
+      var my   = (t.clientY - rect.top)  * (H / rect.height);
+      var h    = hitTest(mx, my);
+      if (h) {
+        var n = byId(h);
+        window.location.href = n.href;
+      }
+    }, { passive: false });
+
+    function resize() {
+      var wrap = canvas.parentElement;
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.62);
+      canvas.width  = W;
+      canvas.height = H;
+      draw();
+    }
+
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 80);
+    });
+
+    // Redraw when theme changes
+    var mo = new MutationObserver(draw);
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    resize();
+  })();
+  </script>
+</body>
+</html>

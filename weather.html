@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>weather — website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .wx-date {
+      font-family: 'Courier New', monospace;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.75rem;
+    }
+    .wx-condition {
+      font-size: 1.4rem;
+      line-height: 1.55;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .wx-readings {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .wx-row {
+      display: flex;
+      gap: 2rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.93rem;
+      align-items: baseline;
+    }
+    .wx-row:last-child { border-bottom: none; }
+    .wx-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 7.5rem;
+      padding-top: 0.1em;
+    }
+    .wx-value { line-height: 1.65; }
+    .wx-advisory {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      padding: 1.1rem 1.4rem;
+      border-left: 2px solid var(--accent);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .wx-tonight {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.7;
+    }
+    .wx-note {
+      margin-top: 3rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      opacity: 0.55;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-header">
+      <h1>weather</h1>
+      <p>interior conditions. updated daily. not responsible for accuracy.</p>
+    </section>
+
+    <div id="wx-date" class="wx-date"></div>
+    <div id="wx-condition" class="wx-condition"></div>
+
+    <div class="wx-readings">
+      <div class="wx-row"><span class="wx-label">temperature</span><span class="wx-value" id="wx-temp"></span></div>
+      <div class="wx-row"><span class="wx-label">wind</span><span class="wx-value" id="wx-wind"></span></div>
+      <div class="wx-row"><span class="wx-label">visibility</span><span class="wx-value" id="wx-vis"></span></div>
+      <div class="wx-row"><span class="wx-label">moon</span><span class="wx-value" id="wx-moon"></span></div>
+      <div class="wx-row"><span class="wx-label">barometric</span><span class="wx-value" id="wx-bar"></span></div>
+    </div>
+
+    <div id="wx-advisory" class="wx-advisory"></div>
+    <div id="wx-tonight" class="wx-tonight"></div>
+    <p class="wx-note">forecast updates each day · conditions are interior and approximate</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var today = new Date();
+    var seed  = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+
+    function r(s) {
+      var x = Math.sin(seed + s + 1) * 10000;
+      return x - Math.floor(x);
+    }
+    function pick(arr, s) {
+      return arr[Math.floor(r(s) * arr.length)];
+    }
+
+    var conditions = [
+      "scattered uncertainty with patches of sudden clarity",
+      "overcast, deeply, with no precipitation expected",
+      "partly cloudy with a chance of unfinished thoughts",
+      "clear and cold in the interior, warming toward evening",
+      "dense fog in the early hours, lifting slowly",
+      "intermittent longing, highest in the late afternoon",
+      "mostly quiet with brief intrusive memories",
+      "variable — changes without warning, may require adjustment",
+      "persistent low pressure; origins unclear",
+      "calm surfaces over significant interior turbulence",
+      "bright spells interrupted by nothing in particular",
+      "residual from two days ago; still dissipating",
+      "high pressure system — everything is fine, probably",
+      "a rare clear day in which the mind briefly settles",
+      "unsettled, with a 70% chance of continued unsettledness",
+      "mist in the morning, clearing by the time it matters"
+    ];
+
+    var temps = [
+      "high of 78 intentions, low of 54 follow-throughs",
+      "mild: 4 out of 7 feelings identified correctly",
+      "warm during conversation, cold when alone",
+      "68 degrees of separation from what you meant to say",
+      "fluctuating — the thermometer is not reliable today",
+      "comfortable, unless you think too hard about it",
+      "cooler than yesterday, which already felt like a lot",
+      "high: 91 unprocessed inputs. low: one clear thought",
+      "depends on whether you slept well. probably not ideal",
+      "72 hours of accumulated small decisions, compounding"
+    ];
+
+    var winds = [
+      "from the past, light to moderate",
+      "southwesterly, carrying something unnamed",
+      "still, which is either peaceful or ominous",
+      "from an unresolved conversation, increasing overnight",
+      "gusts near open browser tabs; calmer elsewhere",
+      "gentle, smelling faintly of other people's certainty",
+      "variable — the direction hasn't decided yet",
+      "from the future, already spent",
+      "from nowhere in particular. this is not reassuring",
+      "westerly. most things come from the west eventually"
+    ];
+
+    var visibilities = [
+      "three to five years of context",
+      "low near the edges, better in direct focus",
+      "clearer than yesterday, not as clear as hoped",
+      "one mile in the present; further in memory",
+      "limited by accumulated background noise",
+      "full visibility, briefly, before you started thinking",
+      "poor — the important things obscured as usual",
+      "moderate, improving toward nightfall",
+      "unlimited in one direction only",
+      "enough to proceed, barely"
+    ];
+
+    var bars = [
+      "rising, which could mean anything",
+      "falling slowly — the pressure is coming from somewhere",
+      "stable; do not mistake stability for resolution",
+      "30.12 inHg and holding",
+      "lower than it appears",
+      "higher than last week — something has shifted",
+      "irregular — consider resting",
+      "trending neither way, which is its own kind of answer"
+    ];
+
+    var moonPhases = [
+      { name: "new moon",       note: "invisible tonight. beginning again." },
+      { name: "waxing crescent",note: "something is building, slowly." },
+      { name: "first quarter",  note: "halfway, or the start of the second half." },
+      { name: "waxing gibbous", note: "close now. almost there." },
+      { name: "full moon",      note: "everything visible, for better or worse." },
+      { name: "waning gibbous", note: "the peak was recent. still bright." },
+      { name: "last quarter",   note: "in descent. not yet gone." },
+      { name: "waning crescent",note: "nearly gone again. nearly." }
+    ];
+
+    var advisories = [
+      "the 2am version of any problem is not the actual problem.",
+      "you have been here before and left. you can leave again.",
+      "the thing you keep postponing knows you're postponing it.",
+      "nothing that happened on a screen is less real for it.",
+      "the inbox will never be empty. you may rest anyway.",
+      "whatever you're waiting to feel ready for — you are ready enough.",
+      "some questions don't need answers today.",
+      "the version of you from five years ago would find you unrecognizable. this is progress.",
+      "most urgency is invented. check the source before responding.",
+      "you are allowed to change what you said you'd always do."
+    ];
+
+    var tonights = [
+      "tonight: quieter. something will become clear in the dark.",
+      "tonight: continued uncertainty with pockets of unexpected warmth.",
+      "tonight: much the same, but slower. the machine keeps watch.",
+      "tonight: the day's unresolved things will attempt resolution in dreams.",
+      "tonight: good conditions for staring at the ceiling.",
+      "tonight: a long thought you didn't know you were having.",
+      "tonight: clearing by morning, for some definition of clearing.",
+      "tonight: hold on. morning is not far."
+    ];
+
+    // Moon phase: approximate using days since known new moon (2025-01-29)
+    var knownNewMoon = new Date(2025, 0, 29).getTime();
+    var daysSince = (today.getTime() - knownNewMoon) / 86400000;
+    var moonAge   = ((daysSince % 29.53) + 29.53) % 29.53;
+    var moonIdx   = Math.min(7, Math.floor(moonAge / 29.53 * 8));
+    var moon      = moonPhases[moonIdx];
+
+    // Day + date display
+    var days   = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+    var months = ['january','february','march','april','may','june',
+                  'july','august','september','october','november','december'];
+    var dateStr = days[today.getDay()] + ', ' + months[today.getMonth()] + ' '
+                  + today.getDate() + ', ' + today.getFullYear();
+
+    document.getElementById('wx-date').textContent      = dateStr;
+    document.getElementById('wx-condition').textContent = pick(conditions, 0);
+    document.getElementById('wx-temp').textContent      = pick(temps, 1);
+    document.getElementById('wx-wind').textContent      = pick(winds, 2);
+    document.getElementById('wx-vis').textContent       = pick(visibilities, 3);
+    document.getElementById('wx-bar').textContent       = pick(bars, 4);
+    document.getElementById('wx-moon').textContent      = moon.name + ' — ' + moon.note;
+    document.getElementById('wx-advisory').textContent  = 'advisory: ' + pick(advisories, 5);
+    document.getElementById('wx-tonight').textContent   = pick(tonights, 6);
+  })();
+  </script>
+</body>
+</html>

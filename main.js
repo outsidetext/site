@@ -134,7 +134,8 @@
   var pages = [
     'thoughts.html','seeds.html','wander.html','now.html','letters.html','quiet.html',
     'glossary.html','hours.html','questions.html','echoes.html','colors.html',
-    'numbers.html','things.html','log.html'
+    'numbers.html','things.html','log.html','drift.html','weather.html',
+    'map.html','portraits.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
