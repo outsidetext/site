@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>residue · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .intro {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      max-width: 500px;
+      margin-bottom: 3rem;
+    }
+
+    .column-heads {
+      display: grid;
+      grid-template-columns: 1fr 1fr 130px;
+      gap: 0 2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .residue-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr 1fr 130px;
+      gap: 0 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .entry-thing {
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    .entry-left {
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .entry-duration {
+      font-family: 'Courier New', monospace;
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .entry-duration.perm {
+      color: var(--accent);
+    }
+
+    @media (max-width: 620px) {
+      .column-heads {
+        display: none;
+      }
+
+      .entry {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .entry-duration {
+        font-size: 0.72rem;
+        opacity: 0.8;
+      }
+
+      .entry-duration::before {
+        content: 'lasts: ';
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.62rem;
+      }
+
+      .entry-thing::before {
+        content: 'the thing: ';
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.62rem;
+        color: var(--text-muted);
+        font-family: 'Courier New', monospace;
+        display: block;
+        margin-bottom: 0.15rem;
+      }
+    }
+
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>residue</h1>
+      <p>what things leave behind after they are gone</p>
+    </div>
+
+    <p class="intro">Nothing disappears completely. Everything that exists leaves something in its aftermath — a mark, a changed vocabulary, a rearrangement of what surrounds it. A record of residues is a different kind of history: not what happened, but what it left when it was over.</p>
+
+    <div class="column-heads">
+      <span>the thing</span>
+      <span>what it leaves</span>
+      <span>duration</span>
+    </div>
+
+    <div class="residue-list">
+
+      <div class="entry reveal">
+        <div class="entry-thing">a coffee cup on paper</div>
+        <div class="entry-left">a ring, brown and circular, as precisely drawn as if intended — a record of the vessel's presence without the vessel; sometimes layered, one inside the other, a year of mornings compressed into concentric marks</div>
+        <div class="entry-duration perm">permanent</div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-thing">a long conversation</div>
+        <div class="entry-left">a changed vocabulary; certain words said differently now, certain phrases abandoned, certain phrases adopted; sometimes a whole subject approached from a new angle without knowing why, until you trace it back to one afternoon and what was said in it</div>
+        <div class="entry-duration perm">permanent</div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-thing">summer on skin</div>
+        <div class="entry-left">a tan line at the sleeve's end; a precise record of where the light reached and where it did not; a boundary between the self that was covered and the self that was exposed; this boundary was invisible until it wasn't</div>
+        <div class="entry-duration">three months</div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-thing">grief</div>
+        <div class="entry-left">a new precision about light; certain colors perceived with more accuracy than before; the ability to notice when a room changes temperature; a threshold lowered for beauty in ordinary things, as if something had been stripped away that was previously in the way</div>
+        <div class="entry-duration">variable; possibly permanent</div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-thing">a window in winter sun</div>
+        <div class="entry-left">a rectangle of warmth on the floor, moving slowly west across the afternoon as the sun moves; precise and warm and gone; the floor returns to its ordinary temperature in minutes after the light shifts off it</div>
+        <div class="entry-duration">as long as the sun holds</div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-thing">a lie told convincingly</div>
+        <div class="entry-left">a slight formality in how the liar afterward tells the truth to the same person; a residual care in phrasing; the original lie has been forgotten, but the relationship with truth in that direction was permanently adjusted</div>
+        <div class="entry-duration">unknown</div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-thing">an afternoon nap</div>
+        <div class="entry-left">warmth in the sheets, distributed unevenly; the impression of a body — a shallow declivity in the pillow, a slight disarrangement of the covers — that persists for longer than expected, as if the sleep itself had weight</div>
+        <div class="entry-duration">twenty minutes</div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-thing">a friendship that ended without conclusion</div>
+        <div class="entry-left">the reflex to send something to that person when you encounter certain things — a particular kind of sentence, a reference they would have noticed, an object they would have appreciated; the reflex persists after the contact stops; it gradually becomes a kind of private acknowledgment</div>
+        <div class="entry-duration">years; diminishing</div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-thing">rain on a window</div>
+        <div class="entry-left">streaks on the glass as each drop runs down in the current of its own descent; then, as it dries, the mineral residue of the water itself — a faint ghost of the path taken, visible only at certain angles in certain light</div>
+        <div class="entry-duration">one hour</div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-thing">reading something that mattered</div>
+        <div class="entry-left">the posture held while reading, briefly retained in the body after the book is set down; the particular quality of attention that was in use; a sense of having been elsewhere that lingers for a few minutes before the room reasserts itself</div>
+        <div class="entry-duration">three minutes</div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-thing">a house lived in for years</div>
+        <div class="entry-left">muscle memory that knows the house in the dark: which floorboard, where the light switch is, the exact weight of that particular door; this knowledge persists in the body after departure, offering itself uselessly in new spaces for years</div>
+        <div class="entry-duration">four years after leaving, on average</div>
+      </div>
+
+      <div class="entry reveal">
+        <div class="entry-thing">an apology not given</div>
+        <div class="entry-left">the specific shape of the conversation that almost happened, held separately by both parties; the other person also has a version of the conversation that didn't occur; neither version is identical; both persist indefinitely</div>
+        <div class="entry-duration">indeterminate</div>
+      </div>
+
+    </div>
+
+    <p class="closing reveal">The residue is sometimes more durable than the thing that left it. The coffee ring outlasts the coffee. The muscle memory outlasts the house. The phantom reflex to send a message outlasts the friendship. This asymmetry is not accidental. The residue is what the thing was made of, or what it made in the world, and those materials are often harder and slower than the event itself. The event is temporary. The mark is not always.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

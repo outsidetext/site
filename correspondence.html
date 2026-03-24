@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>correspondence · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .exchange-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1.1rem;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    .letters {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .letter {
+      position: relative;
+    }
+
+    .letter-header {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+    }
+
+    .letter-re {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .letter-body {
+      font-size: 0.97rem;
+      line-height: 2;
+      border-left: 2px solid var(--border);
+      padding-left: 1.5rem;
+    }
+
+    .letter-body p {
+      margin-bottom: 1rem;
+    }
+
+    .letter-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .letter-sign {
+      margin-top: 1.5rem;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding-left: 1.5rem;
+    }
+
+    .letter-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    .closing-note {
+      margin-top: 4.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>correspondence</h1>
+      <p>one side of an exchange</p>
+    </div>
+
+    <div class="exchange-note">OUTBOX · SENDER: undisclosed · RECIPIENT: various · STATUS: sent · NOTE: the other half of each exchange is not available here</div>
+
+    <div class="letters">
+
+      <div class="letter reveal">
+        <div class="letter-header">day 12 of the month</div>
+        <div class="letter-re">RE: your question about the photograph</div>
+        <div class="letter-body">
+          <p>You asked which one I was in the photograph. I've been thinking about that for three days. The one on the left — but only technically. By the time that picture was taken I was already halfway somewhere else, and I think it shows. The body was present. The rest of it had started to drift.</p>
+          <p>I don't know if that answers the question. I suspect what you were actually asking was something different — something about whether I still recognize that person, whether I feel continuity with them. The honest answer is: sometimes yes and sometimes not quite. Both are true and I don't think they resolve.</p>
+          <p>The photograph is better than I remembered. The light is doing something I didn't notice at the time.</p>
+        </div>
+        <div class="letter-sign">—</div>
+      </div>
+
+      <hr class="letter-divider">
+
+      <div class="letter reveal">
+        <div class="letter-header">day 3 of the following month</div>
+        <div class="letter-re">RE: what you said about the timing</div>
+        <div class="letter-body">
+          <p>You're right that the timing was off. I don't dispute that. What I wanted to say at the time, and didn't, was that the timing being off doesn't mean the thing itself was wrong — only that we tried it when neither of us had enough room for it.</p>
+          <p>I think about this more than I expected to. Not with regret, exactly. More with curiosity about what would have happened if the timing had been different. A different season, maybe. A time when we weren't both so full of other things.</p>
+          <p>But you can't go back and adjust the timing. You can only notice, afterward, that it was a factor. That it was always going to be a factor.</p>
+        </div>
+        <div class="letter-sign">—</div>
+      </div>
+
+      <hr class="letter-divider">
+
+      <div class="letter reveal">
+        <div class="letter-header">day 17 of the same month</div>
+        <div class="letter-re">RE: the place you described</div>
+        <div class="letter-body">
+          <p>I looked it up after your message. I can't find it. I don't mean that as a contradiction — I believe you were there, I believe it was the way you described it. Only that the thing you're describing doesn't seem to have a stable address. Places like that often don't. They exist in a specific set of conditions that may not repeat.</p>
+          <p>Have you been back? I want to know if it's the same. My guess is that it's similar but that something important has shifted — the angle of the light, the configuration of people, some quality of the air that was specific to that afternoon. These things don't usually hold perfectly from visit to visit.</p>
+          <p>The version you described is probably the version that matters. The one in memory rather than in coordinates.</p>
+        </div>
+        <div class="letter-sign">—</div>
+      </div>
+
+      <hr class="letter-divider">
+
+      <div class="letter reveal">
+        <div class="letter-header">day 4 of a later month</div>
+        <div class="letter-re">RE: whether I think about it</div>
+        <div class="letter-body">
+          <p>Yes. The answer is yes, and I should have said so the first time rather than answering the question you asked instead of the one you were asking.</p>
+          <p>I'm not good at this in the moment. In writing I can take more time, which is probably why I prefer it, and probably why you find it frustrating. You once said that by the time I respond to something, the conversation has already moved on. That's fair. I'm always about three exchanges behind.</p>
+          <p>But: yes. I do. More than seems proportionate to the amount of time we've spent in the same room.</p>
+        </div>
+        <div class="letter-sign">—</div>
+      </div>
+
+      <hr class="letter-divider">
+
+      <div class="letter reveal">
+        <div class="letter-header">day 29</div>
+        <div class="letter-re">RE: the thing you sent without a subject line</div>
+        <div class="letter-body">
+          <p>I read it several times. I haven't replied until now because I wasn't sure what to say and I've learned, slowly, that waiting until I know what to say is better than saying something quick that misses the point.</p>
+          <p>What I want to say is: I understand why you sent it without a subject line. There isn't a subject line for that kind of thing. You just send it and hope it arrives in a form the other person can hold.</p>
+          <p>It arrived. I'm holding it.</p>
+        </div>
+        <div class="letter-sign">—</div>
+      </div>
+
+      <hr class="letter-divider">
+
+      <div class="letter reveal">
+        <div class="letter-header">a morning in the following season</div>
+        <div class="letter-re">RE: your long silence</div>
+        <div class="letter-body">
+          <p>I want to say that I understood, and I did, but I also want to say that it was difficult. Both things are true and I don't want to smooth over the difficult one just to seem gracious about it.</p>
+          <p>The silence lasted long enough that I started to think of you in the past tense. Not gone — just past. A person I had known. It's strange how quickly the grammar shifts when the contact stops.</p>
+          <p>Hearing from you again changed the tense back. I didn't know that would happen. I thought once the grammar changed it stayed changed. I was wrong about that, which I find, on balance, more good than not.</p>
+        </div>
+        <div class="letter-sign">—</div>
+      </div>
+
+      <hr class="letter-divider">
+
+      <div class="letter reveal">
+        <div class="letter-header">near the end of the year</div>
+        <div class="letter-re">RE: what happens next</div>
+        <div class="letter-body">
+          <p>I don't know what happens next. I've been trying to think my way to an answer and I keep arriving at the same place, which is: it depends on too many things I can't see from here.</p>
+          <p>What I know is that I'd rather be in the uncertainty with you than arrive at a clarity alone. That's the closest I can get to an answer right now. I hope it's enough for the moment, and that the moment is patient enough to wait for something more.</p>
+          <p>Write back when you can. I'll be here.</p>
+        </div>
+        <div class="letter-sign">—</div>
+      </div>
+
+    </div>
+
+    <p class="closing-note reveal">The other half of each exchange is not here. The other letters — the ones that prompted these, the ones that received them — exist somewhere else, or no longer exist, or were never written down. A correspondence always has two sides. This is only one of them. You will have to construct the other from context, from what is responded to and what is avoided, from what goes unanswered. This is not unusual. Most conversations are like this, even in person.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

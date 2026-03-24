@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>posture · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .preface {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      max-width: 500px;
+      margin-bottom: 3rem;
+    }
+
+    .postures {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .stance {
+      padding: 2.25rem 0;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0 2.5rem;
+    }
+
+    .stance:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (max-width: 560px) {
+      .stance {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+      }
+    }
+
+    .stance-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-top: 0.15rem;
+      line-height: 1.5;
+    }
+
+    .stance-note {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.75rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.04em;
+      margin-top: 0.4rem;
+    }
+
+    .stance-body {
+      font-size: 0.97rem;
+      line-height: 1.9;
+    }
+
+    .stance-body p {
+      margin-bottom: 0.75rem;
+    }
+
+    .stance-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>posture</h1>
+      <p>how the body knows before the mind does</p>
+    </div>
+
+    <p class="preface">The body holds its states differently. Before the thought is finished, the shoulders have already started to drop or brace. The emotional state has a shape, and the shape is physical. Here are ten states described entirely through what they do to the body. The names are in the margin. The body doesn't use names.</p>
+
+    <div class="postures">
+
+      <div class="stance reveal">
+        <div>
+          <div class="stance-label">waiting</div>
+        </div>
+        <div class="stance-body">
+          <p>Weight shifted slightly forward onto the balls of the feet. Knees not fully bent but also not fully extended. Hands low, not quite relaxed — the fingers loosely together rather than spread. Eyes ahead of where there is currently anything to look at, aimed at where something will arrive.</p>
+          <p>The body is already aimed at a future event. It has pre-organized itself for a motion that has not yet been triggered. This costs something. The muscles required for readiness are not the same muscles required for rest, and using readiness for what is only waiting accumulates a fatigue that is hard to name because it isn't tied to any specific action.</p>
+        </div>
+      </div>
+
+      <div class="stance reveal">
+        <div>
+          <div class="stance-label">grief</div>
+        </div>
+        <div class="stance-body">
+          <p>The chest pulls inward first — a compression across the sternum that is not quite pain. Then the shoulders follow, rotating forward and down, drawn by the same force. The head becomes heavier. The neck allows this. The body's vertical line softens.</p>
+          <p>Things are carried closer to the torso. The arms do not swing as freely. Rising from seated takes a beat longer than it did. There is a gravitational quality to the movement, as if the specific weight of the body has increased without the mass changing. Other people can see it, even when no one is crying. The body announces grief before the person does.</p>
+        </div>
+      </div>
+
+      <div class="stance reveal">
+        <div>
+          <div class="stance-label">about to leave</div>
+        </div>
+        <div class="stance-body">
+          <p>Movement that already has a direction. One foot slightly forward, the body's center of mass beginning to commit. Belongings gathered before the thought has finished. The hands are completing the work of leaving while the mouth is still saying goodbye.</p>
+          <p>A turning begins in the torso before the leave-taking is formally complete. Other people in the room can feel it — something has already started that will not be reversed. The conversation does not end; the body simply begins to exit it, and the words keep going for a moment on their own momentum.</p>
+        </div>
+      </div>
+
+      <div class="stance reveal">
+        <div>
+          <div class="stance-label">pretending to be fine</div>
+        </div>
+        <div class="stance-body">
+          <p>The chin is elevated slightly — a degree or two above neutral, enough to open the throat and project the voice forward. The hands are placed rather than settled; they know where they are. The shoulders are pulled back with a small but continuous effort that is not natural rest.</p>
+          <p>Smiling uses muscles not normally recruited for smiling — the effort extends past the mouth and into the cheeks and around the eyes in a way that looks slightly too complete. The body is working. There is more being held than is visible. This costs energy that is not available later, which is why pretending is so tiring and why people who do it a lot are often inexplicably exhausted at the end of days when nothing happened.</p>
+        </div>
+      </div>
+
+      <div class="stance reveal">
+        <div>
+          <div class="stance-label">absorbed in something</div>
+        </div>
+        <div class="stance-body">
+          <p>The jaw releases without the person noticing. The shoulders descend from wherever they had been. The mouth falls slightly open — not slack, but not closed either, as if breathing has become more important than the usual small social performance of a closed mouth.</p>
+          <p>A stillness that is not rest but attention. The body stops doing the small maintenance motions — the adjustments, the small self-presentations — and directs everything to the object of focus. People who see this from outside describe it as a particular quality of quiet. The person is not relaxed; they are occupied. The distinction is in the quality of the stillness, which is directed rather than released.</p>
+        </div>
+      </div>
+
+      <div class="stance reveal">
+        <div>
+          <div class="stance-label">the small hours</div>
+        </div>
+        <div class="stance-body">
+          <p>The body neither fully sits nor fully lies down, but occupies a territory between. The posture that would be unacceptable in public is permitted now. Things are held loosely — the phone, the mug, the thought. The face relaxes into something closer to its default, without the organizing intention that daylight hours require.</p>
+          <p>The lights are lower and the body knows this. There is a change in the quality of presence — a kind of permission that only arrives past a certain hour, when the day has given up asking anything further. The body settles into this permission without being told. It has been waiting for it since morning.</p>
+        </div>
+      </div>
+
+      <div class="stance reveal">
+        <div>
+          <div class="stance-label">arriving somewhere new</div>
+        </div>
+        <div class="stance-body">
+          <p>A slight bracing across the upper back and chest — not fear, but readiness. The eyes moving in their first pass through the space: exits, occupied areas, the configuration of furniture, who is here. The weight is back on the heels rather than forward on the toes. The body is gathering information before committing.</p>
+          <p>The hands want to be occupied. A drink, a phone, a bag — something to hold that signals engagement with the space without requiring attention. The face arranges itself for a neutral impression while the body continues its quiet assessment. This takes about sixty seconds. After that, the weight begins to shift forward again. The new place has been accepted.</p>
+        </div>
+      </div>
+
+      <div class="stance reveal">
+        <div>
+          <div class="stance-label">being recognized</div>
+        </div>
+        <div class="stance-body">
+          <p>A release that is sudden rather than gradual. The shoulders settle all at once from wherever they had been. The jaw unlocks. Something in the chest that was held without awareness of being held is briefly let go. The face changes — not into an expression exactly, but into an absence of the expression that was there before.</p>
+          <p>This happens when someone sees you accurately — not what you're presenting, but what is actually there. The body responds before the conscious mind decides how to respond. The relief is physical. It can be mistaken for sadness because the face, released, sometimes resembles the face of someone about to cry. It is not sadness. It is the relaxation of sustained effort.</p>
+        </div>
+      </div>
+
+      <div class="stance reveal">
+        <div>
+          <div class="stance-label">just before sleep</div>
+        </div>
+        <div class="stance-body">
+          <p>The body goes first. The hands stop. The feet stop. The small adjustments that the body makes throughout the day — the micro-corrections, the readiness held in the muscles — dissolve from the periphery inward, feet to ankles to knees to hips to shoulders, until only the face is still doing what faces do in the day.</p>
+          <p>Then the face stops too. The breathing takes over. It has been there all along, but now it is the primary event. The thoughts continue for a while, growing less grammatical, losing their connective tissue, arriving as images or half-sentences. Then those stop. The body has already been there for some time.</p>
+        </div>
+      </div>
+
+      <div class="stance reveal">
+        <div>
+          <div class="stance-label">ordinary contentment</div>
+        </div>
+        <div class="stance-body">
+          <p>The one most people miss while they're in it. The body is not doing anything unusual. Weight is distributed evenly across both feet or across the chair. The hands are wherever they are without arrangement. The face is not performing anything in particular — it is arranged for nothing, which is to say it is arranged for whatever is actually happening.</p>
+          <p>This is what fine, genuinely, looks like. It is very similar to neutrality, which is why it is so often missed — it has no distinguishing marks, no evidence of effort or its absence. You will only know you were in it later, when you are not, and you remember what it felt like when the body was simply doing what it was doing without requiring anything from you.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="closing reveal">The body does not wait for the mind to decide what is happening. It has already decided, in the way that bodies decide — through tension, through release, through the angle of the head and the direction of the weight. The mind catches up later and gives it a name. The name is useful. But the body already knew.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

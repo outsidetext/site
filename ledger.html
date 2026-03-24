@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ledger · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ledger-header {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      margin-bottom: 3rem;
+      line-height: 2;
+    }
+
+    .account {
+      margin-bottom: 3.5rem;
+    }
+
+    .account-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .account-currency {
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-style: italic;
+      text-transform: none;
+    }
+
+    .ledger-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+    }
+
+    .ledger-table thead tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ledger-table th {
+      text-align: left;
+      padding: 0.55rem 0.5rem 0.55rem 0;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    .ledger-table th.col-side {
+      width: 70px;
+    }
+
+    .ledger-table th.col-amount {
+      width: 90px;
+      text-align: right;
+    }
+
+    .ledger-table td {
+      padding: 0.75rem 0.5rem 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.65;
+    }
+
+    .ledger-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .side-debit {
+      color: var(--text-muted);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-top: 0.1rem;
+    }
+
+    .side-credit {
+      color: var(--accent);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-top: 0.1rem;
+    }
+
+    .amount {
+      font-size: 0.75rem;
+      text-align: right;
+      color: var(--text-muted);
+      white-space: nowrap;
+      padding-top: 0.1rem;
+    }
+
+    .desc {
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    .balance-row {
+      border-top: 2px solid var(--border) !important;
+      margin-top: 0.25rem;
+    }
+
+    .balance-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .balance-value {
+      font-size: 0.8rem;
+      color: var(--text);
+    }
+
+    .balance-value.deficit {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .balance-value.surplus {
+      color: var(--accent);
+    }
+
+    .ledger-footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      line-height: 2;
+    }
+
+    .auditor-note {
+      margin-top: 2rem;
+      font-style: italic;
+      font-family: Georgia, serif;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>ledger</h1>
+      <p>a double-entry record of unmeasurable things</p>
+    </div>
+
+    <div class="ledger-header">
+      ENTITY: an ordinary person &middot; PERIOD: a representative day &middot; ACCOUNTING METHOD: approximate &middot; AUDITOR: none &middot; CURRENCY: varies by account
+    </div>
+
+    <div class="account reveal">
+      <div class="account-name">
+        <span>Account: Attention</span>
+        <span class="account-currency">currency: minutes, quality-adjusted</span>
+      </div>
+      <table class="ledger-table">
+        <thead>
+          <tr>
+            <th class="col-side">type</th>
+            <th>description</th>
+            <th class="col-amount">amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="side-debit">debit</span></td>
+            <td class="desc">anxiety about things outside your control; applied repeatedly to a fixed set of concerns</td>
+            <td class="amount">138 min</td>
+          </tr>
+          <tr>
+            <td><span class="side-debit">debit</span></td>
+            <td class="desc">scrolling without purpose; the thumb moving while the mind was somewhere else entirely</td>
+            <td class="amount">47 min</td>
+          </tr>
+          <tr>
+            <td><span class="side-debit">debit</span></td>
+            <td class="desc">small urgencies that resolved themselves without intervention</td>
+            <td class="amount">23 min</td>
+          </tr>
+          <tr>
+            <td><span class="side-credit">credit</span></td>
+            <td class="desc">genuine absorption in something small; the kind where you look up and the hour has passed</td>
+            <td class="amount">12 min</td>
+          </tr>
+          <tr>
+            <td><span class="side-credit">credit</span></td>
+            <td class="desc">one extraordinary sentence encountered in an ordinary book, held for some time</td>
+            <td class="amount">4 min</td>
+          </tr>
+          <tr class="balance-row">
+            <td><span class="balance-label">balance</span></td>
+            <td class="desc"><span class="balance-value deficit">running deficit · debits exceed credits by a ratio of approximately 16:1 · this is typical · the excess dissipates rather than carrying forward</span></td>
+            <td class="amount">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="account reveal">
+      <div class="account-name">
+        <span>Account: Memory</span>
+        <span class="account-currency">currency: fidelity to original event</span>
+      </div>
+      <table class="ledger-table">
+        <thead>
+          <tr>
+            <th class="col-side">type</th>
+            <th>description</th>
+            <th class="col-amount">amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="side-debit">debit</span></td>
+            <td class="desc">the exact name of someone met three years ago; shape of name still present, content gone</td>
+            <td class="amount">1 name</td>
+          </tr>
+          <tr>
+            <td><span class="side-debit">debit</span></td>
+            <td class="desc">what you were going to do before walking into this room; complete loss, no recovery</td>
+            <td class="amount">1 intention</td>
+          </tr>
+          <tr>
+            <td><span class="side-debit">debit</span></td>
+            <td class="desc">progressive reduction in the resolution of early childhood; compression ongoing</td>
+            <td class="amount">gradual</td>
+          </tr>
+          <tr>
+            <td><span class="side-credit">credit</span></td>
+            <td class="desc">the smell of something cooking recalled without prompting, intact and specific</td>
+            <td class="amount">1 sense memory</td>
+          </tr>
+          <tr>
+            <td><span class="side-credit">credit</span></td>
+            <td class="desc">the exact quality of light in a kitchen on a winter morning, retained without effort for approximately thirty years</td>
+            <td class="amount">1 impression</td>
+          </tr>
+          <tr class="balance-row">
+            <td><span class="balance-label">balance</span></td>
+            <td class="desc"><span class="balance-value">irregular · long-term deposits hold better than short-term · emotional charge affects retention in ways not fully understood · auditors recommend not relying on this account for precision</span></td>
+            <td class="amount">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="account reveal">
+      <div class="account-name">
+        <span>Account: Care</span>
+        <span class="account-currency">currency: units of concern extended to others</span>
+      </div>
+      <table class="ledger-table">
+        <thead>
+          <tr>
+            <th class="col-side">type</th>
+            <th>description</th>
+            <th class="col-amount">amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="side-debit">debit</span></td>
+            <td class="desc">more care extended than was asked for, to someone who may not have noticed the surplus</td>
+            <td class="amount">unquantified</td>
+          </tr>
+          <tr>
+            <td><span class="side-debit">debit</span></td>
+            <td class="desc">worry applied at a distance where it could not reach the thing worried about</td>
+            <td class="amount">variable</td>
+          </tr>
+          <tr>
+            <td><span class="side-credit">credit</span></td>
+            <td class="desc">a short message from someone who was thinking of you, sent without occasion</td>
+            <td class="amount">1 message</td>
+          </tr>
+          <tr>
+            <td><span class="side-credit">credit</span></td>
+            <td class="desc">someone holding a door open for longer than strictly necessary; a small deliberate act</td>
+            <td class="amount">1 gesture</td>
+          </tr>
+          <tr>
+            <td><span class="side-credit">credit</span></td>
+            <td class="desc">a question asked about how you were, with the clear intention of listening to the answer</td>
+            <td class="amount">1 inquiry</td>
+          </tr>
+          <tr class="balance-row">
+            <td><span class="balance-label">balance</span></td>
+            <td class="desc"><span class="balance-value">approximate · not all debits are losses · the account does not always balance and this is not necessarily a problem · care does not operate on strict reciprocity</span></td>
+            <td class="amount">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="account reveal">
+      <div class="account-name">
+        <span>Account: Sleep</span>
+        <span class="account-currency">currency: hours below consciousness</span>
+      </div>
+      <table class="ledger-table">
+        <thead>
+          <tr>
+            <th class="col-side">type</th>
+            <th>description</th>
+            <th class="col-amount">amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="side-debit">debit</span></td>
+            <td class="desc">two hours lost to thoughts about decisions already made; the deliberation cycle continuing after close</td>
+            <td class="amount">2.1 hr</td>
+          </tr>
+          <tr>
+            <td><span class="side-debit">debit</span></td>
+            <td class="desc">an unfinished conversation playing on loop; no resolution arrived at</td>
+            <td class="amount">0.8 hr</td>
+          </tr>
+          <tr>
+            <td><span class="side-credit">credit</span></td>
+            <td class="desc">the half-hour after waking when you know you can stay; the rarest and most valuable entry in this account</td>
+            <td class="amount">0.5 hr</td>
+          </tr>
+          <tr>
+            <td><span class="side-credit">credit</span></td>
+            <td class="desc">the brief descent immediately after lying down; consciousness releasing smoothly without resistance</td>
+            <td class="amount">0.1 hr</td>
+          </tr>
+          <tr class="balance-row">
+            <td><span class="balance-label">balance</span></td>
+            <td class="desc"><span class="balance-value deficit">below recommended reserves · cumulative deficit not recorded · note: the account runs a deficit most weeks and the body adjusts downward rather than auditing the loss</span></td>
+            <td class="amount">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="account reveal">
+      <div class="account-name">
+        <span>Account: Time</span>
+        <span class="account-currency">currency: hours, non-renewable</span>
+      </div>
+      <table class="ledger-table">
+        <thead>
+          <tr>
+            <th class="col-side">type</th>
+            <th>description</th>
+            <th class="col-amount">amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="side-debit">debit</span></td>
+            <td class="desc">the day, in total; all entries above are drawn from this account</td>
+            <td class="amount">24 hr</td>
+          </tr>
+          <tr>
+            <td><span class="side-credit">credit</span></td>
+            <td class="desc">the day, experienced; a different quantity than the day as a unit of clock time</td>
+            <td class="amount">variable</td>
+          </tr>
+          <tr class="balance-row">
+            <td><span class="balance-label">balance</span></td>
+            <td class="desc"><span class="balance-value deficit">this account always runs to zero · no carrying forward is possible · closing balance: nil · the question is only what was entered before it closed</span></td>
+            <td class="amount">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ledger-footer reveal">
+      <div>PERIOD CLOSING STATEMENT</div>
+      <div>All accounts above represent estimates. Precision is not available for these categories of asset and liability.</div>
+      <div>Standard double-entry practice requires that debits equal credits. This ledger does not balance in that sense.</div>
+      <div>This is not an error in the accounting method. It is a property of the things being accounted for.</div>
+    </div>
+
+    <p class="auditor-note reveal">The accounts in this ledger do not close cleanly. The figures are approximate and the currency in each account is different and non-convertible. There is no standard chart of accounts for this kind of record — the categories were invented to hold the entries, not the other way around. The auditors recommend continued operation under the same conditions and annual review of what is being counted and why.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
