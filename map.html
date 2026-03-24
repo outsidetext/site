@@ -77,6 +77,11 @@
         <a href="haiku.html">haiku</a>
         <a href="score.html">score</a>
         <a href="palimpsest.html">palimpsest</a>
+        <a href="weight.html">weight</a>
+        <a href="redacted.html">redacted</a>
+        <a href="atlas.html">atlas</a>
+        <a href="bones.html">bones</a>
+        <a href="venn.html">venn</a>
         <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
       </div>
     </nav>
@@ -138,6 +143,11 @@
       { id: 'haiku',       href: 'haiku.html',        label: 'haiku',       desc: 'one poem, assembled fresh each day',         x: 0.08, y: 0.34 },
       { id: 'score',       href: 'score.html',        label: 'score',       desc: 'a day notated as a graphic score',           x: 0.72, y: 0.04 },
       { id: 'palimpsest',  href: 'palimpsest.html',   label: 'palimpsest',  desc: 'a manuscript with its revisions showing',    x: 0.90, y: 0.90 },
+      { id: 'weight',      href: 'weight.html',       label: 'weight',      desc: 'words that fall — heavy ones faster',         x: 0.69, y: 0.47 },
+      { id: 'redacted',    href: 'redacted.html',     label: 'redacted',    desc: 'classified documents, hover to read',         x: 0.30, y: 0.46 },
+      { id: 'atlas',       href: 'atlas.html',        label: 'atlas',       desc: 'interior geography — places that are real',   x: 0.53, y: 0.82 },
+      { id: 'bones',       href: 'bones.html',        label: 'bones',       desc: 'the anatomy of a webpage, held to the light', x: 0.47, y: 0.12 },
+      { id: 'venn',        href: 'venn.html',         label: 'venn',        desc: 'a diagram of what overlaps between you and this', x: 0.78, y: 0.29 },
     ];
 
     var edges = [
@@ -172,6 +182,11 @@
       ['haiku','seeds'], ['haiku','weather'], ['haiku','quiet'],
       ['score','hours'], ['score','tally'], ['score','weather'],
       ['palimpsest','thoughts'], ['palimpsest','cuts'], ['palimpsest','compose'],
+      ['weight','distances'], ['weight','quiet'], ['weight','thresholds'],
+      ['redacted','compose'], ['redacted','cuts'], ['redacted','census'],
+      ['atlas','distances'], ['atlas','thresholds'], ['atlas','portraits'],
+      ['bones','census'], ['bones','field-notes'], ['bones','compose'],
+      ['venn','home'], ['venn','distances'], ['venn','thoughts'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

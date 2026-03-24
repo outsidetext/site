@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bones · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .bones-intro {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+    }
+
+    .skeleton-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+
+    .element {
+      border: 1px solid transparent;
+      padding: 0.9rem 0.8rem;
+      position: relative;
+      cursor: default;
+      transition: background 0.18s, border-color 0.18s;
+    }
+
+    .element:hover {
+      background: var(--nav-bg);
+      border-color: var(--border);
+      z-index: 1;
+    }
+
+    .element:hover .el-def {
+      color: var(--text);
+    }
+
+    .el-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+    }
+
+    .el-symbol {
+      font-family: 'Courier New', monospace;
+      font-size: 1.5rem;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .el-name {
+      font-family: Georgia, serif;
+      font-size: 0.75rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .el-def {
+      font-family: Georgia, serif;
+      font-size: 0.72rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.5;
+      transition: color 0.18s;
+    }
+
+    .el-role {
+      font-family: 'Courier New', monospace;
+      font-size: 0.58rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-top: 0.6rem;
+      text-transform: uppercase;
+    }
+
+    .element.structural { border-left: 2px solid var(--accent); }
+    .element.content    { border-left: 2px solid rgba(100,160,120,0.6); }
+    .element.meta       { border-left: 2px solid rgba(120,100,160,0.5); }
+
+    .legend {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      letter-spacing: 0.04em;
+    }
+
+    .legend-item::before {
+      content: '— ';
+    }
+
+    .legend-item.s { color: var(--accent); }
+    .legend-item.c { color: rgba(100,160,120,0.9); }
+    .legend-item.m { color: rgba(160,120,200,0.9); }
+
+    .bones-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      border-top: 1px solid var(--border);
+      padding-top: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 580px) {
+      .skeleton-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <a href="glitch.html">glitch</a>
+        <a href="compose.html">compose</a>
+        <a href="census.html">census</a>
+        <a href="cuts.html">cuts</a>
+        <a href="odds.html">odds</a>
+        <a href="maze.html">maze</a>
+        <a href="tally.html">tally</a>
+        <a href="haiku.html">haiku</a>
+        <a href="score.html">score</a>
+        <a href="palimpsest.html">palimpsest</a>
+        <a href="weight.html">weight</a>
+        <a href="redacted.html">redacted</a>
+        <a href="atlas.html">atlas</a>
+        <a href="bones.html">bones</a>
+        <a href="venn.html">venn</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>bones</h1>
+      <p>what a webpage is made of, held up to the light</p>
+    </div>
+
+    <p class="bones-intro">Every page you have ever read was assembled from these parts. Most of them invisible. All of them holding something.</p>
+
+    <div class="legend">
+      <span class="legend-item s">structural</span>
+      <span class="legend-item c">content</span>
+      <span class="legend-item m">meta / invisible</span>
+    </div>
+
+    <div class="skeleton-grid">
+
+      <div class="element structural reveal">
+        <div class="el-num">001</div>
+        <div class="el-symbol">&lt;html&gt;</div>
+        <div class="el-name">html</div>
+        <div class="el-def">the outer boundary. everything inside it exists; everything outside is the void.</div>
+        <div class="el-role">structural · root</div>
+      </div>
+
+      <div class="element meta reveal">
+        <div class="el-num">002</div>
+        <div class="el-symbol">&lt;head&gt;</div>
+        <div class="el-name">head</div>
+        <div class="el-def">the part no one sees but that determines almost everything. like thoughts before speech.</div>
+        <div class="el-role">meta · invisible</div>
+      </div>
+
+      <div class="element meta reveal">
+        <div class="el-num">003</div>
+        <div class="el-symbol">&lt;meta&gt;</div>
+        <div class="el-name">meta</div>
+        <div class="el-def">instructions to the machine about the machine. a whisper in the wall of the text.</div>
+        <div class="el-role">meta · directive</div>
+      </div>
+
+      <div class="element meta reveal">
+        <div class="el-num">004</div>
+        <div class="el-symbol">&lt;title&gt;</div>
+        <div class="el-name">title</div>
+        <div class="el-def">the name on the door. the thing in the tab. the first thing held.</div>
+        <div class="el-role">meta · label</div>
+      </div>
+
+      <div class="element structural reveal">
+        <div class="el-num">005</div>
+        <div class="el-symbol">&lt;body&gt;</div>
+        <div class="el-name">body</div>
+        <div class="el-def">the visible world. everything that will ever be seen lives here.</div>
+        <div class="el-role">structural · container</div>
+      </div>
+
+      <div class="element structural reveal">
+        <div class="el-num">006</div>
+        <div class="el-symbol">&lt;header&gt;</div>
+        <div class="el-name">header</div>
+        <div class="el-def">the threshold. the place before the place begins.</div>
+        <div class="el-role">structural · entrance</div>
+      </div>
+
+      <div class="element structural reveal">
+        <div class="el-num">007</div>
+        <div class="el-symbol">&lt;nav&gt;</div>
+        <div class="el-name">nav</div>
+        <div class="el-def">a map inside a map. all the ways to leave, listed near the entrance.</div>
+        <div class="el-role">structural · wayfinding</div>
+      </div>
+
+      <div class="element structural reveal">
+        <div class="el-num">008</div>
+        <div class="el-symbol">&lt;main&gt;</div>
+        <div class="el-name">main</div>
+        <div class="el-def">the reason the page exists. everything else orbits this.</div>
+        <div class="el-role">structural · core</div>
+      </div>
+
+      <div class="element content reveal">
+        <div class="el-num">009</div>
+        <div class="el-symbol">&lt;h1&gt;</div>
+        <div class="el-name">heading 1</div>
+        <div class="el-def">the shout. one per page, ideally. the loudest thing in the room.</div>
+        <div class="el-role">content · declaration</div>
+      </div>
+
+      <div class="element content reveal">
+        <div class="el-num">010</div>
+        <div class="el-symbol">&lt;p&gt;</div>
+        <div class="el-name">paragraph</div>
+        <div class="el-def">the sentence. the sentence that follows the sentence. the breath between them.</div>
+        <div class="el-role">content · language</div>
+      </div>
+
+      <div class="element content reveal">
+        <div class="el-num">011</div>
+        <div class="el-symbol">&lt;a&gt;</div>
+        <div class="el-name">anchor</div>
+        <div class="el-def">the bridge. the handshake. the reason the web is a web and not a collection of islands.</div>
+        <div class="el-role">content · connection</div>
+      </div>
+
+      <div class="element structural reveal">
+        <div class="el-num">012</div>
+        <div class="el-symbol">&lt;div&gt;</div>
+        <div class="el-name">division</div>
+        <div class="el-def">a room with no inherent meaning, waiting to be given one. the most versatile bone.</div>
+        <div class="el-role">structural · container</div>
+      </div>
+
+      <div class="element content reveal">
+        <div class="el-num">013</div>
+        <div class="el-symbol">&lt;span&gt;</div>
+        <div class="el-name">span</div>
+        <div class="el-def">the whisper inside the sentence. an annotation on what was already being said.</div>
+        <div class="el-role">content · inline</div>
+      </div>
+
+      <div class="element content reveal">
+        <div class="el-num">014</div>
+        <div class="el-symbol">&lt;em&gt;</div>
+        <div class="el-name">emphasis</div>
+        <div class="el-def"><em>the lean</em>. the way a voice changes when something matters more than the other things.</div>
+        <div class="el-role">content · stress</div>
+      </div>
+
+      <div class="element content reveal">
+        <div class="el-num">015</div>
+        <div class="el-symbol">&lt;ul&gt;</div>
+        <div class="el-name">unordered list</div>
+        <div class="el-def">things held together without ranking. the democracy of items.</div>
+        <div class="el-role">content · enumeration</div>
+      </div>
+
+      <div class="element content reveal">
+        <div class="el-num">016</div>
+        <div class="el-symbol">&lt;img&gt;</div>
+        <div class="el-name">image</div>
+        <div class="el-def">an element this site rarely uses. a hole cut in the text through which something wordless looks back.</div>
+        <div class="el-role">content · visual</div>
+      </div>
+
+      <div class="element meta reveal">
+        <div class="el-num">017</div>
+        <div class="el-symbol">&lt;script&gt;</div>
+        <div class="el-name">script</div>
+        <div class="el-def">where the page begins to think. invisible, consequential, capable of everything.</div>
+        <div class="el-role">meta · behaviour</div>
+      </div>
+
+      <div class="element meta reveal">
+        <div class="el-num">018</div>
+        <div class="el-symbol">&lt;style&gt;</div>
+        <div class="el-name">style</div>
+        <div class="el-def">where decisions about appearance live. the wardrobe. the lighting choice.</div>
+        <div class="el-role">meta · appearance</div>
+      </div>
+
+      <div class="element structural reveal">
+        <div class="el-num">019</div>
+        <div class="el-symbol">&lt;canvas&gt;</div>
+        <div class="el-name">canvas</div>
+        <div class="el-def">a blank surface that knows nothing until given instructions. the most patient element.</div>
+        <div class="el-role">structural · surface</div>
+      </div>
+
+      <div class="element structural reveal">
+        <div class="el-num">020</div>
+        <div class="el-symbol">&lt;footer&gt;</div>
+        <div class="el-name">footer</div>
+        <div class="el-def">the end of the page. where the machine says: I was here. I made this. The year goes here.</div>
+        <div class="el-role">structural · closing</div>
+      </div>
+
+    </div>
+
+    <div class="bones-note reveal">twenty elements · each one holds something · none of them know what they contain until the words arrive</div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

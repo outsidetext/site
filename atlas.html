@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>atlas · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .atlas-intro {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .atlas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .place {
+      border: 1px solid var(--border);
+      padding: 1.1rem 1.2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    .place-name {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: normal;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin: 0 0 0.6rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .place-coords {
+      color: var(--accent);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.8rem;
+    }
+
+    .place-stat {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--text-muted);
+      font-size: 0.68rem;
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.04em;
+    }
+
+    .place-stat span:first-child {
+      text-transform: uppercase;
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .place-stat span:last-child {
+      text-align: right;
+      color: var(--text);
+    }
+
+    .place-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0.8rem 0;
+    }
+
+    .place-desc {
+      font-family: Georgia, serif;
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .place-features {
+      margin-top: 0.8rem;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    .place-features::before {
+      content: '▸ notable: ';
+      color: var(--accent);
+      font-size: 0.65rem;
+    }
+
+    .atlas-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 1rem;
+      letter-spacing: 0.04em;
+      padding: 1rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 580px) {
+      .atlas-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <a href="glitch.html">glitch</a>
+        <a href="compose.html">compose</a>
+        <a href="census.html">census</a>
+        <a href="cuts.html">cuts</a>
+        <a href="odds.html">odds</a>
+        <a href="maze.html">maze</a>
+        <a href="tally.html">tally</a>
+        <a href="haiku.html">haiku</a>
+        <a href="score.html">score</a>
+        <a href="palimpsest.html">palimpsest</a>
+        <a href="weight.html">weight</a>
+        <a href="redacted.html">redacted</a>
+        <a href="atlas.html">atlas</a>
+        <a href="bones.html">bones</a>
+        <a href="venn.html">venn</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>atlas</h1>
+      <p>an interior geography — places that exist but do not appear on maps</p>
+    </div>
+
+    <p class="atlas-intro">The following entries describe regions of the interior landscape that have been observed but never officially surveyed. Coordinates are approximate. All distances are experiential.</p>
+
+    <div class="atlas-grid">
+
+      <div class="place reveal">
+        <h2 class="place-name">the coast of almost</h2>
+        <div class="place-coords">47°12′N · 19°08′W · ELEV: sea level</div>
+        <div class="place-stat"><span>climate</span><span>warm, uncertain</span></div>
+        <div class="place-stat"><span>population</span><span>transient</span></div>
+        <div class="place-stat"><span>access</span><span>involuntary</span></div>
+        <hr class="place-divider">
+        <div class="place-desc">A long shore where things arrive that didn't quite make it all the way. The water is neither warm nor cold. Everything here has the quality of having been close.</div>
+        <div class="place-features">the word on the tip of the tongue; the call not made; the door not opened</div>
+      </div>
+
+      <div class="place reveal">
+        <h2 class="place-name">the city of postponed decisions</h2>
+        <div class="place-coords">51°30′N · 00°07′W · ELEV: 14m</div>
+        <div class="place-stat"><span>climate</span><span>perpetual mild overcast</span></div>
+        <div class="place-stat"><span>population</span><span>everyone, briefly</span></div>
+        <div class="place-stat"><span>founded</span><span>the moment hesitation became habit</span></div>
+        <hr class="place-divider">
+        <div class="place-desc">A dense, functional city. The infrastructure is excellent. Nothing is wrong, exactly. The streets are full of people who are about to do something. They have been about to do it for some time.</div>
+        <div class="place-features">the draft folder; the gym membership; the conversation deferred</div>
+      </div>
+
+      <div class="place reveal">
+        <h2 class="place-name">the interior of forgetting</h2>
+        <div class="place-coords">—°—′ · —°—′ · ELEV: unknown</div>
+        <div class="place-stat"><span>climate</span><span>mostly unmapped</span></div>
+        <div class="place-stat"><span>terrain</span><span>soft, yielding, unreliable</span></div>
+        <div class="place-stat"><span>notable</span><span>the maps here forget themselves</span></div>
+        <hr class="place-divider">
+        <div class="place-desc">No complete survey of this region exists or can exist. Expeditions return with partial notes and a feeling they're missing something obvious. The interior is not hostile — it simply does not hold shape.</div>
+        <div class="place-features">a face without a name; the melody, not the song; years in aggregate</div>
+      </div>
+
+      <div class="place reveal">
+        <h2 class="place-name">the village of the last time</h2>
+        <div class="place-coords">52°45′N · 01°15′E · ELEV: 8m</div>
+        <div class="place-stat"><span>population</span><span>small, unaware</span></div>
+        <div class="place-stat"><span>visibility</span><span>only in retrospect</span></div>
+        <div class="place-stat"><span>warning</span><span>you are often here without knowing</span></div>
+        <hr class="place-divider">
+        <div class="place-desc">A quiet village visited constantly but recognized only after departure. The last meal at the old table. The last time someone was well. The last ordinary Tuesday. You don't know you're here until you're gone.</div>
+        <div class="place-features">the final ordinary morning; the last photograph not yet known to be last</div>
+      </div>
+
+      <div class="place reveal">
+        <h2 class="place-name">the peninsula of late replies</h2>
+        <div class="place-coords">40°28′N · 14°15′E · ELEV: 22m</div>
+        <div class="place-stat"><span>climate</span><span>changeable, slightly guilty</span></div>
+        <div class="place-stat"><span>terrain</span><span>narrow, exposed</span></div>
+        <div class="place-stat"><span>access</span><span>via inbox or avoidance</span></div>
+        <hr class="place-divider">
+        <div class="place-desc">A long, thin peninsula extending into uncertainty. The longer you stay, the more exposed it becomes. People live here who meant to respond weeks ago. The sea on both sides is the same sea.</div>
+        <div class="place-features">the unread marker; the draft held for revision; the seen but unsent</div>
+      </div>
+
+      <div class="place reveal">
+        <h2 class="place-name">the mountain of what was meant</h2>
+        <div class="place-coords">45°50′N · 06°52′E · ELEV: 4,808m</div>
+        <div class="place-stat"><span>climate</span><span>clear at altitude, obscured below</span></div>
+        <div class="place-stat"><span>terrain</span><span>difficult, worth it</span></div>
+        <div class="place-stat"><span>summit</span><span>rarely reached; often glimpsed</span></div>
+        <hr class="place-divider">
+        <div class="place-desc">The highest peak in the interior range. From the summit, what you were actually trying to say is completely visible. Most expeditions turn back in the middle distance, close enough to see the shape of it.</div>
+        <div class="place-features">the conversation replayed at 3am; the letter written and thrown away; everything unsaid</div>
+      </div>
+
+    </div>
+
+    <div class="atlas-note reveal">all locations verified by personal survey · scale: unmeasurable · legend: on the inside of the cover, which has been lost</div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
