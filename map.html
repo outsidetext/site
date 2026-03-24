@@ -183,6 +183,11 @@
       { id: 'evidence',    href: 'evidence.html',     label: 'evidence',     desc: 'ten exhibits. a case file. the verdict is still pending.',          x: 0.20, y: 0.58 },
       { id: 'equations',   href: 'equations.html',    label: 'equations',    desc: 'arithmetic for things that don\'t resolve cleanly',                x: 0.82, y: 0.85 },
       { id: 'translation', href: 'translation.html',  label: 'translation',  desc: 'words from other languages for feelings with no English name',     x: 0.35, y: 0.43 },
+      { id: 'dream',       href: 'dream.html',        label: 'dream',        desc: 'last night\'s record, assembled each day from what remained',          x: 0.02, y: 0.05 },
+      { id: 'compass',     href: 'compass.html',      label: 'compass',      desc: 'eight interior directions — hover any point to get your bearing',      x: 0.97, y: 0.06 },
+      { id: 'strata',      href: 'strata.html',       label: 'strata',       desc: 'what compresses under the weight of time — scroll to go deeper',       x: 0.01, y: 0.53 },
+      { id: 'latency',     href: 'latency.html',      label: 'latency',      desc: 'click to wait — the space between cause and effect',                   x: 0.27, y: 0.07 },
+      { id: 'lacuna',      href: 'lacuna.html',       label: 'lacuna',       desc: 'a gap, a missing portion — hover the blanks to read them',             x: 0.72, y: 0.98 },
     ];
 
     var edges = [
@@ -267,6 +272,11 @@
       ['evidence','museum'], ['evidence','catalog'], ['evidence','field-notes'], ['evidence','bones'], ['evidence','redacted'],
       ['equations','distances'], ['equations','numbers'], ['equations','thoughts'], ['equations','odds'], ['equations','glossary'],
       ['translation','glossary'], ['translation','knot'], ['translation','distances'], ['translation','thoughts'], ['translation','seeds'],
+      ['dream','wander'], ['dream','thoughts'], ['dream','quiet'], ['dream','seeds'], ['dream','oracle'],
+      ['compass','atlas'], ['compass','cartography'], ['compass','distances'], ['compass','wander'], ['compass','thresholds'],
+      ['strata','silt'], ['strata','thoughts'], ['strata','palimpsest'], ['strata','atlas'], ['strata','log'], ['strata','commonplace'],
+      ['latency','interval'], ['latency','signal'], ['latency','quiet'], ['latency','clocks'], ['latency','questions'],
+      ['lacuna','glossary'], ['lacuna','negative'], ['lacuna','redacted'], ['lacuna','palimpsest'], ['lacuna','erosion'], ['lacuna','cuts'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>strata · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .stratum {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+    .stratum:first-child {
+      border-top: none;
+    }
+    .stratum-depth {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .stratum-age {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      opacity: 0.7;
+    }
+    .stratum-body {
+      line-height: 1.8;
+    }
+    .stratum-body p {
+      margin-bottom: 0.8rem;
+    }
+    .stratum-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Each layer gets progressively more muted and compressed */
+    .stratum-0 { opacity: 1; }
+    .stratum-0 .stratum-body { font-size: 1rem; }
+
+    .stratum-1 { opacity: 0.9; }
+    .stratum-1 .stratum-body { font-size: 0.97rem; }
+
+    .stratum-2 { opacity: 0.8; }
+    .stratum-2 .stratum-body { font-size: 0.94rem; line-height: 1.7; }
+
+    .stratum-3 { opacity: 0.7; }
+    .stratum-3 .stratum-body { font-size: 0.9rem; line-height: 1.65; font-style: italic; }
+
+    .stratum-4 { opacity: 0.6; }
+    .stratum-4 .stratum-body { font-size: 0.86rem; line-height: 1.6; font-style: italic; }
+
+    .stratum-5 { opacity: 0.45; }
+    .stratum-5 .stratum-body { font-size: 0.82rem; line-height: 1.55; font-style: italic; letter-spacing: 0.01em; }
+
+    .stratum-6 { opacity: 0.3; }
+    .stratum-6 .stratum-body { font-size: 0.78rem; line-height: 1.5; font-style: italic; letter-spacing: 0.02em; }
+
+    .strata-note {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .depth-marker {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .depth-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      opacity: 0.5;
+    }
+    .depth-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>strata</h1>
+      <p>what compresses under the weight of time — scroll to go deeper</p>
+    </div>
+
+    <!-- Surface -->
+    <div class="stratum stratum-0 reveal">
+      <div class="stratum-depth">surface</div>
+      <div class="stratum-age">depth: 0 · the present tense · still soft</div>
+      <div class="stratum-body">
+        <p>At the surface, everything is provisional. The days here have not yet settled into what they will become — they are still in motion, still deciding. You are still in them. This is the most unstable layer. It is also the only one you can affect.</p>
+        <p>The surface contains: this hour. The thing you were thinking about before you came here. The email you didn't answer. The word you used this morning without being certain it was the right one.</p>
+      </div>
+    </div>
+
+    <div class="depth-marker reveal">
+      <div class="depth-line"></div>
+      <div class="depth-label">↓ 1–2 years ↓</div>
+      <div class="depth-line"></div>
+    </div>
+
+    <!-- 1-2 years -->
+    <div class="stratum stratum-1 reveal">
+      <div class="stratum-depth">recent deposit</div>
+      <div class="stratum-age">depth: 1–2 years · beginning to compact · some detail lost</div>
+      <div class="stratum-body">
+        <p>A year settles faster than you'd expect. By now you can hold it in one hand — the whole year, compressed. You remember its texture more than its contents: whether it was heavy or light, whether it moved quickly or sat still on you.</p>
+        <p>What remains: a few conversations that changed the shape of things. A decision that seemed smaller at the time than it turned out to be. The particular quality of the light in a room you no longer enter.</p>
+      </div>
+    </div>
+
+    <div class="depth-marker reveal">
+      <div class="depth-line"></div>
+      <div class="depth-label">↓ 3–5 years ↓</div>
+      <div class="depth-line"></div>
+    </div>
+
+    <!-- 3-5 years -->
+    <div class="stratum stratum-2 reveal">
+      <div class="stratum-depth">mid stratum</div>
+      <div class="stratum-age">depth: 3–5 years · compressed · mineralized at the edges</div>
+      <div class="stratum-body">
+        <p>At this depth, individual days have mostly merged. What survives: impressions, not events. You were becoming something, here. You didn't know what yet — you still don't, fully. The formation process was continuous and unannounced.</p>
+        <p>The names of the people in this layer are all still there. Their faces are still mostly intact. What you said to each other has been paraphrased by repetition into something more essential, which is to say something less accurate.</p>
+      </div>
+    </div>
+
+    <div class="depth-marker reveal">
+      <div class="depth-line"></div>
+      <div class="depth-label">↓ 5–10 years ↓</div>
+      <div class="depth-line"></div>
+    </div>
+
+    <!-- 5-10 years -->
+    <div class="stratum stratum-3 reveal">
+      <div class="stratum-depth">deep layer</div>
+      <div class="stratum-age">depth: 5–10 years · dense · slow to access</div>
+      <div class="stratum-body">
+        <p>This is where the major formations are. The things that became structural — the beliefs you walk around with, the ways you read a room, the instincts you now simply call instinct. All of it compressed here into habits of the self.</p>
+        <p>You were different at this depth and the same. The features were all present but arranged differently. Someone who knew you here would recognize you now. They would also notice the settling.</p>
+      </div>
+    </div>
+
+    <div class="depth-marker reveal">
+      <div class="depth-line"></div>
+      <div class="depth-label">↓ 10–20 years ↓</div>
+      <div class="depth-line"></div>
+    </div>
+
+    <!-- 10-20 years -->
+    <div class="stratum stratum-4 reveal">
+      <div class="stratum-depth">old formation</div>
+      <div class="stratum-age">depth: 10–20 years · crystalline · certain memories fossilized</div>
+      <div class="stratum-body">
+        <p>At this depth, some events have become stories. The story is not quite the event, but it has replaced it — it is what you have access to now. The original is still here, somewhere in the compression, but you would need instruments to find it.</p>
+        <p>What fossilizes: the first time certain feelings were identified by name. The places that became internal geography. The losses that defined the shape of what came after.</p>
+      </div>
+    </div>
+
+    <div class="depth-marker reveal">
+      <div class="depth-line"></div>
+      <div class="depth-label">↓ early formation ↓</div>
+      <div class="depth-line"></div>
+    </div>
+
+    <!-- Childhood -->
+    <div class="stratum stratum-5 reveal">
+      <div class="stratum-depth">early formation</div>
+      <div class="stratum-age">depth: childhood · pre-narrative · some images intact</div>
+      <div class="stratum-body">
+        <p>Before the stories, there were just images. A specific quality of afternoon light through a window. The smell of something — a place, a person — so precise it still has no word. A sound from another room. The size of things, before you had grown into them.</p>
+        <p>This layer was laid down before you were keeping records. It has been influencing everything above it, continuously, without acknowledgment. It will continue to do so.</p>
+      </div>
+    </div>
+
+    <div class="depth-marker reveal">
+      <div class="depth-line"></div>
+      <div class="depth-label">↓ pre-memory ↓</div>
+      <div class="depth-line"></div>
+    </div>
+
+    <!-- Pre-memory -->
+    <div class="stratum stratum-6 reveal">
+      <div class="stratum-depth">pre-memory</div>
+      <div class="stratum-age">depth: before language · before record · foundational</div>
+      <div class="stratum-body">
+        <p>Below memory. Below language. The first impressions of warmth and cold, of being held or not held, of the particular quality of a voice before you knew what voices were for. None of it accessible directly. All of it load-bearing.</p>
+        <p>This is the basement of the self. Whatever is built above rests on this. It cannot be reached by the usual methods. It can sometimes be felt in the body, when the body remembers something the mind has no record of.</p>
+      </div>
+    </div>
+
+    <div class="strata-note reveal">
+      drilling method: memory / depth not to scale / some layers may be missing / the core sample is incomplete, as all core samples are
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

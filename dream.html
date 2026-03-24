@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dream · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dream-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .dream-body {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      max-width: 600px;
+    }
+    .dream-body p {
+      margin-bottom: 1.4rem;
+    }
+    .dream-body p:last-child {
+      margin-bottom: 0;
+    }
+    .dream-fade {
+      opacity: 0.55;
+      font-style: italic;
+    }
+    .dream-note {
+      margin-top: 3rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .dream-separator {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+      opacity: 0.5;
+    }
+    .recurring {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .recurring strong {
+      font-style: normal;
+      font-weight: normal;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>dream</h1>
+      <p>last night's record, assembled from what remained</p>
+    </div>
+
+    <div class="dream-label" id="dream-date"></div>
+
+    <div class="dream-body reveal" id="dream-body">
+    </div>
+
+    <div class="recurring reveal" id="dream-recurring"></div>
+
+    <p class="dream-note reveal">changes at midnight · assembled from fragments · some details may already be fading</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var today = new Date();
+      var dateKey = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+
+      function seededRng(seed) {
+        var s = seed >>> 0;
+        return function () {
+          s = Math.imul(1664525, s) + 1013904223 >>> 0;
+          return s / 4294967296;
+        };
+      }
+
+      var rng = seededRng(dateKey);
+      function pick(arr) { return arr[Math.floor(rng() * arr.length)]; }
+
+      var dateEl = document.getElementById('dream-date');
+      var y = today.getFullYear(), m = today.getMonth() + 1, d = today.getDate();
+      dateEl.textContent = y + '-' + (m < 10 ? '0' + m : m) + '-' + (d < 10 ? '0' + d : d);
+
+      var settings = [
+        'a library where all the books were written in your handwriting',
+        'a house you used to know, but with rooms that had never been there before',
+        'a train station where the departure boards showed only feelings, not destinations',
+        'your childhood street, slightly wrong — the proportions off, the color of a door changed',
+        'a hotel corridor with numbered doors that skipped certain numbers for no reason anyone could say',
+        'an empty restaurant after closing, the chairs still warm',
+        'a city that seemed familiar but had no name, and you had been there before',
+        'a beach where the tide moved sideways, running parallel to the shore',
+        'an office building after hours, every screen still on, showing something you couldn\'t quite read',
+        'somewhere underground — not unpleasant, just below the surface of the usual world'
+      ];
+
+      var presences = [
+        'someone whose face you couldn\'t hold when you woke',
+        'a person from years ago, unchanged, as if no time had passed',
+        'a version of yourself who had made different decisions and seemed, on balance, fine',
+        'no one in particular, only the sense of someone recently having left',
+        'a crowd that never quite looked at you directly',
+        'an animal — you\'re not sure what kind — that seemed to understand more than it should',
+        'someone you have never met but knew well in the dream, with that specific dream-logic certainty',
+        'a figure at the edge of most scenes, never closer, never further',
+        'your past self, at an age you can\'t quite place, doing something ordinary'
+      ];
+
+      var events = [
+        'you were looking for something whose name kept escaping you',
+        'you were trying to leave but kept returning to the same corridor by a different route',
+        'you had certain knowledge that something was about to happen and didn\'t know what to do with the knowing',
+        'you were explaining something important that dissolved as you spoke, the words fine until you needed them',
+        'you were late, urgently, for something whose nature kept shifting each time you thought about it',
+        'you found something you had lost and then, in the way of these things, lost it again',
+        'you were being shown something you understood you needed to remember and couldn\'t quite hold',
+        'you were waiting for something — patient, unconcerned — and it arrived exactly as you woke',
+        'nothing happened, exactly, but you moved through it all with a sense of purpose',
+        'you were reading something whose meaning you understood completely and cannot now recover'
+      ];
+
+      var details = [
+        'there was a door you knew, without being told, not to open',
+        'the light was wrong — too golden, or not quite golden enough, like late afternoon in the wrong season',
+        'your hands didn\'t look like your hands, though you don\'t know quite how they differed',
+        'you knew you were dreaming and decided, consciously, to stay',
+        'something was written on a wall that you couldn\'t read before the scene changed',
+        'a phone that wouldn\'t connect — you kept dialing something, the number slipping',
+        'a clock whose hands moved in a direction that made sense in the dream',
+        'the color of things kept shifting, not dramatically — just enough that you noticed',
+        'there was music, though you can\'t recover the melody, only that it fit perfectly',
+        'everything was slightly oversaturated, the way a place looks when you know you\'re saying goodbye to it'
+      ];
+
+      var closings = [
+        'you woke with the feeling that something had been settled — you can\'t say what.',
+        'you woke with the sense that you had been somewhere important and were already forgetting why.',
+        'it dissolved faster than you could hold it. what remains is mostly the feeling.',
+        'you stayed in it as long as you could before the morning called you back.',
+        'some residue of it is still here, wherever that is. it will be gone by noon.',
+        'you tried to write it down immediately. by the time you found something to write with, the main thing was already gone.',
+        'you don\'t know if it meant something. most of them don\'t. some of them do.',
+        'you\'ve had this dream before, or one very like it. you can\'t remember how it ended that time either.'
+      ];
+
+      var recurrings = [
+        { label: 'recurring symbol', text: pick(['a door at the end of a corridor', 'a staircase that adds a floor each time', 'a window looking out on the wrong view', 'a key that fits nothing you can find', 'water in a room where it shouldn\'t be', 'a telephone that is somehow important']) },
+        { label: 'recurrence rate', text: pick(['third time this week', 'hasn\'t happened in months', 'first time', 'irregular — no pattern established', 'every few weeks, roughly']) },
+        { label: 'on waking', text: pick(['heart rate elevated slightly, for no catalogued reason', 'calm — unusual', 'the immediate need to locate something ordinary', 'the sense of having traveled', 'ordinary, as if no time had passed at all']) }
+      ];
+
+      var body = document.getElementById('dream-body');
+      var setting = pick(settings);
+      var presence = pick(presences);
+      var event = pick(events);
+      var detail = pick(details);
+      var closing = pick(closings);
+
+      body.innerHTML =
+        '<p>The setting: ' + setting + '.</p>' +
+        '<p>There was ' + presence + '. ' + event.charAt(0).toUpperCase() + event.slice(1) + '.</p>' +
+        '<p class="dream-fade">' + detail.charAt(0).toUpperCase() + detail.slice(1) + '.</p>' +
+        '<p>' + closing.charAt(0).toUpperCase() + closing.slice(1) + '</p>';
+
+      var recEl = document.getElementById('dream-recurring');
+      var recHtml = '';
+      recurrings.forEach(function (r) {
+        recHtml += '<p><strong>' + r.label + '</strong>: ' + r.text + '</p>';
+      });
+      recEl.innerHTML = recHtml;
+    })();
+  </script>
+</body>
+</html>

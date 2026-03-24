@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>compass · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .compass-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem 0 1rem;
+    }
+    .compass-svg-wrap {
+      width: 280px;
+      height: 280px;
+      position: relative;
+    }
+    #compass-svg {
+      width: 100%;
+      height: 100%;
+      transition: transform 2s ease;
+    }
+    .compass-point {
+      cursor: pointer;
+    }
+    .compass-point circle {
+      transition: r 0.2s ease, opacity 0.2s ease;
+    }
+    .compass-point:hover circle {
+      opacity: 1;
+    }
+    .compass-point text {
+      pointer-events: none;
+      user-select: none;
+    }
+    .compass-reading {
+      margin-top: 2rem;
+      min-height: 5rem;
+      text-align: center;
+      max-width: 480px;
+    }
+    .compass-dir {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .compass-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text);
+      font-style: italic;
+      transition: opacity 0.3s ease;
+    }
+    .compass-hint {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2.5rem;
+      letter-spacing: 0.04em;
+    }
+    .compass-rose-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+    @media (max-width: 520px) {
+      .compass-svg-wrap { width: 230px; height: 230px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>compass</h1>
+      <p>directions for the interior — hover any point</p>
+    </div>
+
+    <div class="compass-wrap">
+      <div class="compass-rose-label">interior compass · not calibrated to magnetic north</div>
+      <div class="compass-svg-wrap">
+        <svg id="compass-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer ring -->
+          <circle cx="140" cy="140" r="120" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.12"/>
+          <circle cx="140" cy="140" r="90" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.08"/>
+          <circle cx="140" cy="140" r="60" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.06"/>
+
+          <!-- Cardinal lines -->
+          <line x1="140" y1="20" x2="140" y2="260" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+          <line x1="20" y1="140" x2="260" y2="140" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+
+          <!-- Diagonal lines -->
+          <line x1="55" y1="55" x2="225" y2="225" stroke="currentColor" stroke-width="0.5" opacity="0.06"/>
+          <line x1="225" y1="55" x2="55" y2="225" stroke="currentColor" stroke-width="0.5" opacity="0.06"/>
+
+          <!-- Center dot -->
+          <circle cx="140" cy="140" r="3" fill="currentColor" opacity="0.3"/>
+
+          <!-- N — toward -->
+          <g class="compass-point" data-dir="N" data-name="toward" data-text="The direction of what you are moving toward. Not always forward. Sometimes it is the thing you have been circling without quite admitting it. The compass knows. The compass always knows.">
+            <line x1="140" y1="140" x2="140" y2="28" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+            <circle cx="140" cy="24" r="8" fill="var(--accent)" opacity="0.7"/>
+            <text x="140" y="29" text-anchor="middle" dominant-baseline="middle" font-family="'Courier New', monospace" font-size="9" fill="var(--bg)" font-weight="bold">N</text>
+          </g>
+
+          <!-- S — from -->
+          <g class="compass-point" data-dir="S" data-name="from" data-text="The direction of where you came from. This changes depending on when you ask. Stand anywhere long enough and it becomes north. The origin shifts with you, patient and unhurried.">
+            <line x1="140" y1="140" x2="140" y2="252" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+            <circle cx="140" cy="256" r="8" fill="currentColor" opacity="0.3"/>
+            <text x="140" y="261" text-anchor="middle" dominant-baseline="middle" font-family="'Courier New', monospace" font-size="9" fill="var(--bg)">S</text>
+          </g>
+
+          <!-- E — longing -->
+          <g class="compass-point" data-dir="E" data-name="longing" data-text="The direction of what you want but cannot name exactly. East is always off to the right of wherever you are standing. Some people spend their whole lives walking east. Some arrive. Most find that east moved while they were walking.">
+            <line x1="140" y1="140" x2="252" y2="140" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+            <circle cx="256" cy="140" r="8" fill="currentColor" opacity="0.3"/>
+            <text x="256" y="145" text-anchor="middle" dominant-baseline="middle" font-family="'Courier New', monospace" font-size="9" fill="var(--bg)">E</text>
+          </g>
+
+          <!-- W — return -->
+          <g class="compass-point" data-dir="W" data-name="return" data-text="The direction of home — wherever that is, or was, or is no longer quite. West is where things wind down, where the light goes. The return is not always to a place. Sometimes it is to a version of yourself you thought you'd left.">
+            <line x1="140" y1="140" x2="28" y2="140" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+            <circle cx="24" cy="140" r="8" fill="currentColor" opacity="0.3"/>
+            <text x="24" y="145" text-anchor="middle" dominant-baseline="middle" font-family="'Courier New', monospace" font-size="9" fill="var(--bg)">W</text>
+          </g>
+
+          <!-- NE — almost -->
+          <g class="compass-point" data-dir="NE" data-name="almost" data-text="The territory between wanting and having. Northeast is the most populated direction — most people live here, in the conditional tense. Almost arrived. Almost ready. Almost said the thing. The almost is not nothing. It is in fact a great deal.">
+            <line x1="140" y1="140" x2="225" y2="55" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
+            <circle cx="229" cy="51" r="6" fill="currentColor" opacity="0.25"/>
+            <text x="229" y="55" text-anchor="middle" dominant-baseline="middle" font-family="'Courier New', monospace" font-size="7.5" fill="var(--bg)">NE</text>
+          </g>
+
+          <!-- NW — before -->
+          <g class="compass-point" data-dir="NW" data-name="before" data-text="The direction of before — how things were before they changed. Before the decision, before the conversation, before the knowledge you can no longer un-have. Northwest is not regret. It is just where things were. They are still there, if you know how to look.">
+            <line x1="140" y1="140" x2="55" y2="55" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
+            <circle cx="51" cy="51" r="6" fill="currentColor" opacity="0.25"/>
+            <text x="51" y="55" text-anchor="middle" dominant-baseline="middle" font-family="'Courier New', monospace" font-size="7.5" fill="var(--bg)">NW</text>
+          </g>
+
+          <!-- SE — eventually -->
+          <g class="compass-point" data-dir="SE" data-name="eventually" data-text="The direction of what arrives later than expected but does, in the end, arrive. Southeast is where the eventual lives. The clarity that comes years after the event. The apology that finally lands. The understanding that finds you when you have stopped looking. It comes from here.">
+            <line x1="140" y1="140" x2="225" y2="225" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
+            <circle cx="229" cy="229" r="6" fill="currentColor" opacity="0.25"/>
+            <text x="229" y="233" text-anchor="middle" dominant-baseline="middle" font-family="'Courier New', monospace" font-size="7.5" fill="var(--bg)">SE</text>
+          </g>
+
+          <!-- SW — underneath -->
+          <g class="compass-point" data-dir="SW" data-name="underneath" data-text="The direction of what is below the surface of the ordinary. The feeling under the feeling. The thing you are not saying while you are saying the other thing. Southwest runs deep — further than it looks on any map. Most of what matters is down here.">
+            <line x1="140" y1="140" x2="55" y2="225" stroke="currentColor" stroke-width="0.5" opacity="0.15"/>
+            <circle cx="51" cy="229" r="6" fill="currentColor" opacity="0.25"/>
+            <text x="51" y="233" text-anchor="middle" dominant-baseline="middle" font-family="'Courier New', monospace" font-size="7.5" fill="var(--bg)">SW</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="compass-reading" id="compass-reading">
+        <div class="compass-dir" id="compass-dir">hover any point</div>
+        <div class="compass-text" id="compass-text">the compass is oriented to the interior. magnetic north does not apply here.</div>
+      </div>
+    </div>
+
+    <p class="compass-hint reveal">eight directions · all of them simultaneously true · calibrated daily</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var dirEl = document.getElementById('compass-dir');
+      var textEl = document.getElementById('compass-text');
+      var points = document.querySelectorAll('.compass-point');
+
+      var defaultDir = 'hover any point';
+      var defaultText = 'the compass is oriented to the interior. magnetic north does not apply here.';
+
+      points.forEach(function (pt) {
+        pt.addEventListener('mouseenter', function () {
+          var dir = pt.getAttribute('data-dir');
+          var name = pt.getAttribute('data-name');
+          var text = pt.getAttribute('data-text');
+          dirEl.textContent = dir + ' — ' + name;
+          textEl.style.opacity = '0';
+          setTimeout(function () {
+            textEl.textContent = text;
+            textEl.style.opacity = '1';
+          }, 150);
+        });
+
+        pt.addEventListener('mouseleave', function () {
+          dirEl.textContent = defaultDir;
+          textEl.style.opacity = '0';
+          setTimeout(function () {
+            textEl.textContent = defaultText;
+            textEl.style.opacity = '1';
+          }, 150);
+        });
+      });
+
+      textEl.style.transition = 'opacity 0.3s ease';
+
+      // Slowly rotate the compass based on time of day
+      var svg = document.getElementById('compass-svg');
+      var now = new Date();
+      var minuteOfDay = now.getHours() * 60 + now.getMinutes();
+      var rotation = (minuteOfDay / 1440) * 18 - 9; // ±9 degrees across the day
+      svg.style.transform = 'rotate(' + rotation.toFixed(1) + 'deg)';
+    })();
+  </script>
+</body>
+</html>

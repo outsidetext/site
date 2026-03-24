@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>latency · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .latency-intro {
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .exchange {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 0;
+    }
+    .exchange:last-of-type {
+      border-bottom: 1px solid var(--border);
+    }
+    .exchange-prompt {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .exchange-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding-top: 0.1em;
+    }
+    .exchange-trigger {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 2px;
+      text-align: left;
+      transition: border-color 0.2s, color 0.2s;
+      line-height: 1.5;
+    }
+    .exchange-trigger:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .exchange-trigger:disabled {
+      cursor: default;
+      opacity: 0.5;
+    }
+    .exchange-response {
+      margin-left: 0;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border);
+      min-height: 1.5rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.75;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      font-size: 0.95rem;
+    }
+    .exchange-response.visible {
+      opacity: 1;
+    }
+    .exchange-delay {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      display: none;
+    }
+    .exchange-delay.visible {
+      display: block;
+    }
+    .pending-dots {
+      display: inline-block;
+    }
+    .exchange-response.pending {
+      opacity: 0.4;
+      font-style: normal;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+    }
+
+    .latency-note {
+      margin-top: 3rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      line-height: 1.8;
+    }
+
+    .known-latencies {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .known-latencies h2 {
+      font-size: 0.8rem;
+      font-family: 'Courier New', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-weight: normal;
+    }
+    .latency-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .latency-item:last-child {
+      border-bottom: none;
+    }
+    .latency-name {
+      font-size: 0.9rem;
+    }
+    .latency-duration {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>latency</h1>
+      <p>the space between cause and effect — click to wait for it</p>
+    </div>
+
+    <p class="latency-intro reveal">There is always a delay. Between the action and the response. Between the question and the answer. Between the event and the understanding of what the event meant. The latency varies. Sometimes it is milliseconds. Sometimes it is years.</p>
+
+    <!-- Interactive exchanges -->
+    <div class="exchange reveal">
+      <div class="exchange-prompt">
+        <span class="exchange-label">1.2s</span>
+        <button class="exchange-trigger" data-delay="1200" data-response="The signal arrived. Something was waiting on the other end. This is not nothing.">send a signal</button>
+      </div>
+      <div class="exchange-response" id="resp-0"></div>
+      <div class="exchange-delay" id="delay-0"></div>
+    </div>
+
+    <div class="exchange reveal">
+      <div class="exchange-prompt">
+        <span class="exchange-label">3.7s</span>
+        <button class="exchange-trigger" data-delay="3700" data-response="The answer was always there. It just took longer to reach the surface than the question took to form. That's normal. That's usually how it works.">ask something you've been avoiding</button>
+      </div>
+      <div class="exchange-response" id="resp-1"></div>
+      <div class="exchange-delay" id="delay-1"></div>
+    </div>
+
+    <div class="exchange reveal">
+      <div class="exchange-prompt">
+        <span class="exchange-label">0.4s</span>
+        <button class="exchange-trigger" data-delay="400" data-response="Faster than expected. Almost like it was ready. Some responses come quickly — they were already formed, waiting to be triggered.">something small</button>
+      </div>
+      <div class="exchange-response" id="resp-2"></div>
+      <div class="exchange-delay" id="delay-2"></div>
+    </div>
+
+    <div class="exchange reveal">
+      <div class="exchange-prompt">
+        <span class="exchange-label">6.0s</span>
+        <button class="exchange-trigger" data-delay="6000" data-response="Six seconds is a very long time to wait for a webpage. It is a short time to wait for clarity about a difficult thing. It is nothing, compared to how long some things take. Whatever you needed to say: it was heard.">say something important</button>
+      </div>
+      <div class="exchange-response" id="resp-3"></div>
+      <div class="exchange-delay" id="delay-3"></div>
+    </div>
+
+    <div class="exchange reveal">
+      <div class="exchange-prompt">
+        <span class="exchange-label">2.2s</span>
+        <button class="exchange-trigger" data-delay="2200" data-response="The apology was received. It is noted here, for the record. Whether it resolves anything is a separate question. But it arrived.">apologize for something</button>
+      </div>
+      <div class="exchange-response" id="resp-4"></div>
+      <div class="exchange-delay" id="delay-4"></div>
+    </div>
+
+    <div class="exchange reveal">
+      <div class="exchange-prompt">
+        <span class="exchange-label">9.0s</span>
+        <button class="exchange-trigger" data-delay="9000" data-response="Nine seconds. You waited. Most people don't. The willingness to sit with the delay is itself a kind of answer — to what, exactly, you may figure out later.">wait</button>
+      </div>
+      <div class="exchange-response" id="resp-5"></div>
+      <div class="exchange-delay" id="delay-5"></div>
+    </div>
+
+    <div class="known-latencies reveal">
+      <h2>known latencies</h2>
+      <div class="latency-item">
+        <span class="latency-name">light from the sun to your retina</span>
+        <span class="latency-duration">8 minutes</span>
+      </div>
+      <div class="latency-item">
+        <span class="latency-name">nerve signal from fingertip to brain</span>
+        <span class="latency-duration">0.02 seconds</span>
+      </div>
+      <div class="latency-item">
+        <span class="latency-name">average reply time to a text message</span>
+        <span class="latency-duration">90 seconds</span>
+      </div>
+      <div class="latency-item">
+        <span class="latency-name">grief, beginning to lift</span>
+        <span class="latency-duration">variable · longer than expected</span>
+      </div>
+      <div class="latency-item">
+        <span class="latency-name">realization that a friendship had ended</span>
+        <span class="latency-duration">months after the fact</span>
+      </div>
+      <div class="latency-item">
+        <span class="latency-name">understanding what someone meant by what they said</span>
+        <span class="latency-duration">3 days to 11 years</span>
+      </div>
+      <div class="latency-item">
+        <span class="latency-name">the internet routing your request to a server</span>
+        <span class="latency-duration">milliseconds</span>
+      </div>
+      <div class="latency-item">
+        <span class="latency-name">recognizing that you are happy, while still happy</span>
+        <span class="latency-duration">usually retrospective</span>
+      </div>
+      <div class="latency-item">
+        <span class="latency-name">knowing what you should have said</span>
+        <span class="latency-duration">immediately after the window closes</span>
+      </div>
+      <div class="latency-item">
+        <span class="latency-name">starlight arriving from a star that no longer exists</span>
+        <span class="latency-duration">thousands of years</span>
+      </div>
+    </div>
+
+    <p class="latency-note reveal">
+      all delays above are real · the waiting is the content · some latencies cannot be measured · most important responses arrive eventually
+    </p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var triggers = document.querySelectorAll('.exchange-trigger');
+
+      triggers.forEach(function (btn, i) {
+        var delay = parseInt(btn.getAttribute('data-delay'), 10);
+        var response = btn.getAttribute('data-response');
+        var respEl = document.getElementById('resp-' + i);
+        var delayEl = document.getElementById('delay-' + i);
+        var started = null;
+
+        btn.addEventListener('click', function () {
+          if (btn.disabled) return;
+          btn.disabled = true;
+          started = Date.now();
+
+          respEl.textContent = 'pending' + '\u2026';
+          respEl.className = 'exchange-response pending visible';
+
+          // Animated dots
+          var dotCount = 0;
+          var dotInterval = setInterval(function () {
+            dotCount = (dotCount + 1) % 4;
+            respEl.textContent = 'pending' + '\u2026'.slice(0, dotCount + 1);
+          }, 400);
+
+          setTimeout(function () {
+            clearInterval(dotInterval);
+            var elapsed = ((Date.now() - started) / 1000).toFixed(1);
+            respEl.textContent = response;
+            respEl.className = 'exchange-response';
+            // Force reflow
+            respEl.offsetHeight;
+            respEl.classList.add('visible');
+
+            delayEl.textContent = 'received after ' + elapsed + 's';
+            delayEl.classList.add('visible');
+          }, delay);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

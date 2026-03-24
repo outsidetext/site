@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lacuna · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lacuna-intro {
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .lacuna-intro em {
+      font-style: normal;
+      font-family: 'Courier New', monospace;
+      font-size: 0.88em;
+      color: var(--accent);
+    }
+    .lacuna-section {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+    }
+    .lacuna-section:last-of-type {
+      border-bottom: 1px solid var(--border);
+    }
+    .lacuna-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .lacuna-text {
+      font-size: 1.05rem;
+      line-height: 2;
+      max-width: 580px;
+    }
+    .lacuna-text p {
+      margin-bottom: 1.2rem;
+    }
+    .lacuna-text p:last-child {
+      margin-bottom: 0;
+    }
+    /* The gap — a missing word or phrase */
+    .gap {
+      display: inline-block;
+      border-bottom: 1px solid var(--text-muted);
+      min-width: 60px;
+      height: 1.1em;
+      vertical-align: bottom;
+      position: relative;
+      cursor: help;
+      opacity: 0.6;
+    }
+    .gap::after {
+      content: attr(data-missing);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.5rem;
+      font-size: 0.72rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      letter-spacing: 0.04em;
+    }
+    .gap:hover::after {
+      opacity: 1;
+    }
+    .gap-short { min-width: 40px; }
+    .gap-medium { min-width: 80px; }
+    .gap-long { min-width: 130px; }
+    .gap-blank { min-width: 20px; }
+
+    /* Ellipsis gap */
+    .ellipsis {
+      color: var(--text-muted);
+      font-style: normal;
+      letter-spacing: 0.15em;
+      opacity: 0.5;
+    }
+
+    .lacuna-note {
+      margin-top: 3rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      letter-spacing: 0.03em;
+    }
+
+    /* Glossary entry style for lacuna definition */
+    .lacuna-definition {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .lacuna-word {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+    .lacuna-etymology {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .lacuna-def-text {
+      line-height: 1.75;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>lacuna</h1>
+      <p>a gap, a missing part — hover the blanks</p>
+    </div>
+
+    <div class="lacuna-definition reveal">
+      <div class="lacuna-word">lacuna</div>
+      <div class="lacuna-etymology">latin · lacus, lake · a pool, a pit, a hollow · 1660s</div>
+      <div class="lacuna-def-text">1. a gap or missing portion, especially in a manuscript, text, or argument. 2. a cavity, depression, or empty space. 3. (anatomy) a small cavity or depression in bone. 4. what remains when something is removed, and the shape left behind is more telling than whatever filled it.</div>
+    </div>
+
+    <!-- Memory -->
+    <div class="lacuna-section reveal">
+      <div class="lacuna-label">from memory · some sections damaged</div>
+      <div class="lacuna-text">
+        <p>I remember the <span class="gap gap-medium" data-missing="[word not recovered]"></span> of it — the specific quality of the light, the sound from the other room, the feeling of being about to understand something. What I cannot recover is <span class="gap gap-long" data-missing="[central event, absent]"></span>. The surrounding details are intact. The thing itself is gone.</p>
+        <p>You were there. You said <span class="gap gap-medium" data-missing="[exact words lost]"></span>, and it mattered at the time — I'm certain of that much. The mattering remains. The content has been <span class="gap gap-short" data-missing="[redacted by time]"></span>.</p>
+        <p>The last ordinary day was <span class="gap gap-short" data-missing="[date unknown]"></span>. I didn't know it was the last one. That's always how it is.</p>
+      </div>
+    </div>
+
+    <!-- Conversation -->
+    <div class="lacuna-section reveal">
+      <div class="lacuna-label">from a conversation · transcription incomplete</div>
+      <div class="lacuna-text">
+        <p>"The thing about <span class="gap gap-medium" data-missing="[subject unclear]"></span> is that you can't <span class="gap gap-short" data-missing="[verb missing]"></span> it once you <span class="ellipsis">…</span>" — and then something else was happening, and by the time I came back to it, the thread was gone.</p>
+        <p>"I've been <span class="gap gap-medium" data-missing="[emotional state]"></span> about it for <span class="gap gap-short" data-missing="[duration]"></span>. I think what I needed was to just <span class="gap gap-long" data-missing="[resolution, unspoken]"></span>."</p>
+        <p>There was a pause here. Long enough that it was its own kind of response. What came after: <span class="gap gap-long" data-missing="[not transcribed]"></span>.</p>
+      </div>
+    </div>
+
+    <!-- Letter -->
+    <div class="lacuna-section reveal">
+      <div class="lacuna-label">from a letter · water damage · some sections unreadable</div>
+      <div class="lacuna-text">
+        <p>By the time you read this, I will have already <span class="gap gap-medium" data-missing="[illegible]"></span>. I want you to know that <span class="gap gap-long" data-missing="[illegible — 2–3 sentences]"></span>. I should have said this <span class="gap gap-short" data-missing="[illegible]"></span>.</p>
+        <p>The <span class="gap gap-short" data-missing="[illegible]"></span> is in the <span class="gap gap-medium" data-missing="[location, illegible]"></span>. You'll find it when <span class="ellipsis">…</span></p>
+        <p>I don't know if any of this makes sense from where you're reading it. I hope <span class="gap gap-long" data-missing="[illegible — final sentence]"></span>.</p>
+      </div>
+    </div>
+
+    <!-- The self -->
+    <div class="lacuna-section reveal">
+      <div class="lacuna-label">from an attempt at self-description · several drafts</div>
+      <div class="lacuna-text">
+        <p>I am someone who <span class="gap gap-long" data-missing="[draft 1, discarded]"></span>. Or — more accurately — I am someone who <span class="gap gap-long" data-missing="[draft 2, also discarded]"></span>. The true version would begin: I am someone who <span class="gap gap-medium" data-missing="[no satisfactory draft]"></span>.</p>
+        <p>What I know for certain: <span class="gap gap-short" data-missing="[blank]"></span>. What I suspect: <span class="gap gap-medium" data-missing="[inconclusive]"></span>. What I keep meaning to figure out: <span class="gap gap-long" data-missing="[see previous attempts]"></span>.</p>
+      </div>
+    </div>
+
+    <!-- Pure gap -->
+    <div class="lacuna-section reveal">
+      <div class="lacuna-label">a gap without context · source unknown</div>
+      <div class="lacuna-text">
+        <p><span class="gap gap-long" data-missing="[no surrounding text to clarify]"></span></p>
+        <p>The blank above is 130 pixels wide. This is the shape of the missing thing. It is not nothing — it has dimension, a location in the sentence, a relationship to what would have come before and after. The gap is evidence of something that was here. This is always true of gaps.</p>
+      </div>
+    </div>
+
+    <p class="lacuna-note reveal">
+      hover any blank to read what the blank is standing in for ·
+      some lacunae are recoverable · most are not ·
+      the shape of the gap is always more durable than what filled it
+    </p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
