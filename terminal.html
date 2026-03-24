@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>terminal · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: var(--bg); }
+
+    .term-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 4rem;
+    }
+
+    .page-header { margin-bottom: 2rem; }
+
+    .terminal {
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    .terminal-bar {
+      background: #1a1a1a;
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid #222;
+    }
+
+    .dot {
+      width: 11px; height: 11px;
+      border-radius: 50%;
+    }
+    .dot-red   { background: #ff5f56; }
+    .dot-yellow{ background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .terminal-title {
+      margin-left: 0.5rem;
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    .terminal-output {
+      padding: 1rem 1.25rem;
+      color: #b8c4a0;
+      min-height: 320px;
+      max-height: 520px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .terminal-output::-webkit-scrollbar { width: 4px; }
+    .terminal-output::-webkit-scrollbar-track { background: #0a0a0a; }
+    .terminal-output::-webkit-scrollbar-thumb { background: #333; }
+
+    .line-cmd  { color: #7ec8a0; }
+    .line-out  { color: #b8c4a0; }
+    .line-err  { color: #c47e7e; }
+    .line-dim  { color: #555; }
+    .line-hi   { color: #e8c97a; }
+
+    .terminal-input-row {
+      display: flex;
+      align-items: center;
+      padding: 0.25rem 1.25rem 1rem;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    .prompt {
+      color: #7ec8a0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    #term-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #b8c4a0;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      flex: 1;
+      margin-left: 0.5rem;
+      caret-color: #7ec8a0;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 7px;
+      height: 1em;
+      background: #7ec8a0;
+      vertical-align: text-bottom;
+      animation: blink 1.1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .term-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      margin-top: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="term-wrap">
+    <div class="page-header">
+      <h1>terminal</h1>
+      <p>a command line for the interior. type <code>help</code> to begin.</p>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+        <span class="terminal-title">visitor@garden ~ </span>
+      </div>
+      <div class="terminal-output" id="term-out"></div>
+      <div class="terminal-input-row">
+        <span class="prompt">visitor@garden:~$</span>
+        <input type="text" id="term-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="terminal input">
+      </div>
+    </div>
+    <p class="term-hint">↑ ↓ to navigate history · type <code>exit</code> to leave</p>
+  </div>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var output = document.getElementById('term-out');
+    var input  = document.getElementById('term-input');
+    var history = [];
+    var histIdx = -1;
+
+    var cwd = '/mind/present';
+
+    function now() {
+      var d = new Date();
+      var pad = function(n){ return n < 10 ? '0'+n : n; };
+      return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())
+        +' '+pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+    }
+
+    var commands = {
+      help: function() {
+        return [
+          { cls:'line-hi',  text:'available commands:' },
+          { cls:'line-out', text:'' },
+          { cls:'line-out', text:'  ls            list what is here' },
+          { cls:'line-out', text:'  pwd           print working location' },
+          { cls:'line-out', text:'  whoami        identify the current user' },
+          { cls:'line-out', text:'  date          current timestamp' },
+          { cls:'line-out', text:'  uptime        how long you have been here' },
+          { cls:'line-out', text:'  ps            running processes' },
+          { cls:'line-out', text:'  cat <file>    read a file' },
+          { cls:'line-out', text:'  man <topic>   manual for a topic' },
+          { cls:'line-out', text:'  grep <query>  search for something' },
+          { cls:'line-out', text:'  find <query>  find something' },
+          { cls:'line-out', text:'  history       commands from this session' },
+          { cls:'line-out', text:'  echo <text>   repeat after me' },
+          { cls:'line-out', text:'  sudo <cmd>    attempt with elevated permissions' },
+          { cls:'line-out', text:'  rm <file>     delete something' },
+          { cls:'line-out', text:'  clear         clear the screen' },
+          { cls:'line-out', text:'  exit          close the session' },
+          { cls:'line-out', text:'' },
+          { cls:'line-dim', text:'  # not all commands behave as expected.' },
+        ];
+      },
+
+      ls: function(args) {
+        var target = (args || '').trim();
+        if (!target || target === '.') {
+          return [
+            { cls:'line-hi',  text:'drwxr-xr-x  feelings/' },
+            { cls:'line-hi',  text:'drwxr-xr-x  memories/' },
+            { cls:'line-hi',  text:'drwxr-xr-x  drafts/' },
+            { cls:'line-hi',  text:'drwxr-xr-x  questions/' },
+            { cls:'line-out', text:'-rw-r--r--  today.txt' },
+            { cls:'line-out', text:'-rw-r--r--  tomorrow.txt' },
+            { cls:'line-dim', text:'-rw-------  .unsent' },
+            { cls:'line-dim', text:'-r--------  .regret  (read-only)' },
+          ];
+        }
+        if (target === 'feelings/' || target === 'feelings') {
+          return [
+            { cls:'line-out', text:'-rw-r--r--  guilt.dat      (persistent, 4.2 MB)' },
+            { cls:'line-out', text:'-rw-r--r--  nostalgia.bak  (backup of original)' },
+            { cls:'line-out', text:'-rw-r--r--  joy.tmp        (temporary, may be lost on reboot)' },
+            { cls:'line-out', text:'-rw-r--r--  longing.log    (appended to daily)' },
+            { cls:'line-dim', text:'-rw-------  .unnamed       (no extension found)' },
+            { cls:'line-dim', text:'-r--------  grief          (no write permission)' },
+          ];
+        }
+        if (target === 'memories/' || target === 'memories') {
+          return [
+            { cls:'line-out', text:'-rw-r--r--  2017-august.tar.gz  (compressed)' },
+            { cls:'line-out', text:'-rw-r--r--  kitchen-window.jpg  (corrupted, partial)' },
+            { cls:'line-out', text:'-rw-r--r--  voice.mp3           (codec unavailable)' },
+            { cls:'line-dim', text:'-rw-------  last-time.bak       (unverified checksum)' },
+            { cls:'line-err', text:'???????????  [unreadable]        (filesystem error)' },
+          ];
+        }
+        if (target === 'drafts/' || target === 'drafts') {
+          return [
+            { cls:'line-out', text:'-rw-r--r--  apology-v3.txt      (never sent)' },
+            { cls:'line-out', text:'-rw-r--r--  apology-v4.txt      (never sent)' },
+            { cls:'line-out', text:'-rw-r--r--  apology-v7.txt      (never sent)' },
+            { cls:'line-out', text:'-rw-r--r--  explanation.txt     (incomplete)' },
+            { cls:'line-dim', text:'-rw-r--r--  things-i-meant.txt  (empty)' },
+          ];
+        }
+        if (target === 'questions/' || target === 'questions') {
+          return [
+            { cls:'line-out', text:'-r--------  why.txt     (read-only, unanswered)' },
+            { cls:'line-out', text:'-r--------  when.txt    (read-only, unanswered)' },
+            { cls:'line-out', text:'-r--------  what-if.txt (read-only, recursive)' },
+            { cls:'line-err', text:'[warning]   some files may not have answers' },
+          ];
+        }
+        return [{ cls:'line-err', text:'ls: '+target+': No such file or directory' }];
+      },
+
+      pwd: function() {
+        return [{ cls:'line-out', text: cwd }];
+      },
+
+      whoami: function() {
+        return [
+          { cls:'line-out', text:'visitor' },
+          { cls:'line-dim', text:'# uid=1 gid=1 groups=uncertain,present,occasionally-aware' },
+        ];
+      },
+
+      date: function() {
+        var d = new Date();
+        var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        var h = d.getHours();
+        var period = h < 5 ? 'the small hours' : h < 12 ? 'morning' : h < 17 ? 'afternoon' : h < 21 ? 'evening' : 'night';
+        return [
+          { cls:'line-out', text: now() },
+          { cls:'line-dim', text:'# a '+days[d.getDay()]+', somewhere in '+period },
+          { cls:'line-dim', text:'# irreversible, as all dates are' },
+        ];
+      },
+
+      uptime: function() {
+        if (!window._termStart) window._termStart = Date.now();
+        var secs = Math.floor((Date.now() - window._termStart) / 1000);
+        var mins = Math.floor(secs / 60);
+        var s = secs % 60;
+        return [
+          { cls:'line-out', text:'session uptime: '+mins+' min '+s+' sec' },
+          { cls:'line-dim', text:'load: present 0.7, distracted 0.2, elsewhere 0.1' },
+        ];
+      },
+
+      ps: function() {
+        return [
+          { cls:'line-hi',  text:'  PID  STAT  %CPU  COMMAND' },
+          { cls:'line-out', text:'    1  S      0.0  init (breathing)' },
+          { cls:'line-out', text:'   34  R     97.2  overthinking' },
+          { cls:'line-out', text:'   35  S     45.1  waiting (for what, unknown)' },
+          { cls:'line-out', text:'   89  S      2.1  noticing' },
+          { cls:'line-out', text:'  112  Z      0.0  [yesterday] <zombie>' },
+          { cls:'line-out', text:'  203  S      1.4  slow-reading' },
+          { cls:'line-dim', text:'  418  T      0.0  that-one-thing (stopped)' },
+          { cls:'line-dim', text:'  ∞    ?      ???  background hum' },
+        ];
+      },
+
+      cat: function(args) {
+        var f = (args || '').trim().replace(/^\.\//, '');
+        var files = {
+          'today.txt': [
+            { cls:'line-out', text:'today:' },
+            { cls:'line-out', text:'' },
+            { cls:'line-out', text:'  woke up thinking about a specific Tuesday in 2019.' },
+            { cls:'line-out', text:'  ate something. noticed the light.' },
+            { cls:'line-out', text:'  received more information than was useful.' },
+            { cls:'line-out', text:'  tried to be present. partially succeeded.' },
+            { cls:'line-out', text:'  this is, on balance, a good day.' },
+            { cls:'line-out', text:'' },
+            { cls:'line-dim', text:'EOF' },
+          ],
+          'tomorrow.txt': [
+            { cls:'line-out', text:'tomorrow:' },
+            { cls:'line-out', text:'' },
+            { cls:'line-out', text:'  (file not yet written)' },
+            { cls:'line-dim', text:'  # this is by design' },
+          ],
+          '.unsent': [
+            { cls:'line-err', text:'cat: .unsent: Permission denied' },
+            { cls:'line-dim', text:'# some things were put away for a reason' },
+          ],
+          '.regret': [
+            { cls:'line-out', text:'i should have—' },
+            { cls:'line-out', text:'i could have—' },
+            { cls:'line-out', text:'if only i had—' },
+            { cls:'line-dim', text:'# read-only. cannot be edited. can only be accepted.' },
+          ],
+          'feelings/guilt.dat': [
+            { cls:'line-out', text:'[binary data — 4.2 MB]' },
+            { cls:'line-dim', text:'# guilt is not a text file. it does not parse cleanly.' },
+            { cls:'line-dim', text:'# it is encoded in a format only the body can read.' },
+          ],
+          'feelings/joy.tmp': [
+            { cls:'line-hi',  text:'[here]' },
+            { cls:'line-dim', text:'# temporary file. will be lost if you close the session.' },
+            { cls:'line-dim', text:'# use it while it lasts.' },
+          ],
+          'feelings/nostalgia.bak': [
+            { cls:'line-out', text:'a backup of something that no longer exists in the original.' },
+            { cls:'line-out', text:'the backup is not the same as the thing.' },
+            { cls:'line-out', text:'it compresses the gaps. it edits the weather.' },
+            { cls:'line-dim', text:'# backups are always somewhat fictional.' },
+          ],
+          'drafts/apology-v7.txt': [
+            { cls:'line-out', text:'i\'m sorry for' },
+            { cls:'line-out', text:'what i mean is' },
+            { cls:'line-out', text:'what i was trying to say when i said' },
+            { cls:'line-out', text:'the thing i should have said instead was' },
+            { cls:'line-out', text:'actually, maybe' },
+            { cls:'line-out', text:'' },
+            { cls:'line-dim', text:'[v8 in progress]' },
+          ],
+        };
+        if (files[f]) return files[f];
+        return [{ cls:'line-err', text:'cat: '+f+': No such file or directory' }];
+      },
+
+      man: function(args) {
+        var topic = (args || '').trim().toLowerCase();
+        var pages = {
+          'loneliness': [
+            { cls:'line-hi',  text:'LONELINESS(1)                    User Manual                   LONELINESS(1)' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'NAME' },
+            { cls:'line-out', text:'       loneliness — a condition of adjacency without connection' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'SYNOPSIS' },
+            { cls:'line-out', text:'       loneliness [--crowded] [--online] [--together]' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'DESCRIPTION' },
+            { cls:'line-out', text:'       loneliness does not require solitude. it runs in crowded' },
+            { cls:'line-out', text:'       rooms, in conversations, in long relationships.' },
+            { cls:'line-out', text:'       the --online flag has no effect.' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'SEE ALSO' },
+            { cls:'line-out', text:'       connection(1), presence(1), quiet(1), attention(3)' },
+          ],
+          'time': [
+            { cls:'line-hi',  text:'TIME(1)                          User Manual                       TIME(1)' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'NAME' },
+            { cls:'line-out', text:'       time — a resource that cannot be saved, paused, or refunded' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'DESCRIPTION' },
+            { cls:'line-out', text:'       time(1) runs as a daemon with no stop signal.' },
+            { cls:'line-out', text:'       it cannot be backgrounded. it cannot be niced down.' },
+            { cls:'line-out', text:'       attempts to "kill time" have only ever wasted it.' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'BUGS' },
+            { cls:'line-out', text:'       perception of time is highly variable. this is by design.' },
+          ],
+          'sleep': [
+            { cls:'line-hi',  text:'SLEEP(1)                         User Manual                      SLEEP(1)' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'NAME' },
+            { cls:'line-out', text:'       sleep — suspend execution until the subconscious is done' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'SYNOPSIS' },
+            { cls:'line-out', text:'       sleep [interval]' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'DESCRIPTION' },
+            { cls:'line-out', text:'       initiates a period of reduced activity during which' },
+            { cls:'line-out', text:'       background processes continue without supervision.' },
+            { cls:'line-out', text:'       results vary. not all subprocesses respect the sleep flag.' },
+          ],
+          'love': [
+            { cls:'line-hi',  text:'LOVE(3)                          User Manual                       LOVE(3)' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'NAME' },
+            { cls:'line-out', text:'       love — high-level binding with undefined behavior' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'WARNING' },
+            { cls:'line-out', text:'       love is not deterministic. the same inputs may produce' },
+            { cls:'line-out', text:'       different outputs depending on context, history, and' },
+            { cls:'line-out', text:'       conditions the programmer did not anticipate.' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'RETURN VALUE' },
+            { cls:'line-out', text:'       return type: variable. may return joy, grief, or both.' },
+          ],
+          'waiting': [
+            { cls:'line-hi',  text:'WAITING(1)                       User Manual                   WAITING(1)' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'NAME' },
+            { cls:'line-out', text:'       wait — block until a condition that may never arrive' },
+            { cls:'line-out', text:'' },
+            { cls:'line-hi',  text:'DESCRIPTION' },
+            { cls:'line-out', text:'       wait(1) suspends the calling process until a specified' },
+            { cls:'line-out', text:'       event occurs. the event may or may not occur.' },
+            { cls:'line-out', text:'       timeout is optional but recommended.' },
+            { cls:'line-out', text:'' },
+            { cls:'line-dim', text:'       # many processes wait indefinitely. this is not always wrong.' },
+          ],
+        };
+        if (pages[topic]) return pages[topic];
+        if (!topic) return [{ cls:'line-err', text:'man: what manual page do you want?' }];
+        return [
+          { cls:'line-err', text:'No manual entry for '+topic },
+          { cls:'line-dim', text:'# try: loneliness, time, sleep, love, waiting' },
+        ];
+      },
+
+      grep: function(args) {
+        var a = (args || '').trim();
+        if (!a) return [{ cls:'line-err', text:'grep: missing search pattern' }];
+        var q = a.replace(/-r\s+/g,'').replace(/["']/g,'').split(/\s+/)[0];
+        return [
+          { cls:'line-out', text:'grep: searching for "'+q+'"...' },
+          { cls:'line-out', text:'' },
+          { cls:'line-dim', text:'./today.txt:        partial match found' },
+          { cls:'line-dim', text:'./feelings/longing.log: multiple matches' },
+          { cls:'line-dim', text:'./questions/why.txt: no match (expected)' },
+          { cls:'line-out', text:'' },
+          { cls:'line-hi',  text:'"'+q+'" is present. the location is approximate.' },
+        ];
+      },
+
+      find: function(args) {
+        var a = (args || '').trim();
+        return [
+          { cls:'line-out', text:'find: searching...' },
+          { cls:'line-out', text:'' },
+          { cls:'line-dim', text:'./feelings/unnamed (no extension)' },
+          { cls:'line-dim', text:'./memories/[unreadable]' },
+          { cls:'line-dim', text:'./.unsent' },
+          { cls:'line-out', text:'' },
+          { cls:'line-out', text:'most things can be found.' },
+          { cls:'line-out', text:'not all of them were lost.' },
+        ];
+      },
+
+      history: function() {
+        if (history.length === 0) {
+          return [{ cls:'line-dim', text:'(no previous commands in this session)' }];
+        }
+        return history.map(function(cmd, i) {
+          return { cls:'line-dim', text:'  '+String(i+1).padStart(3)+' '+cmd };
+        });
+      },
+
+      echo: function(args) {
+        if (!args || !args.trim()) {
+          return [{ cls:'line-out', text:'' }];
+        }
+        return [
+          { cls:'line-out', text: args.trim() },
+          { cls:'line-dim', text:'# repeated. not amplified. that\'s something else.' },
+        ];
+      },
+
+      sudo: function(args) {
+        var cmd = (args || '').trim();
+        if (!cmd) return [{ cls:'line-err', text:'sudo: a command is required' }];
+        return [
+          { cls:'line-err', text:'sudo: '+cmd+': permission denied' },
+          { cls:'line-dim', text:'# there is no elevated permission here.' },
+          { cls:'line-dim', text:'# this is not a limitation of the system.' },
+          { cls:'line-dim', text:'# it is a feature.' },
+        ];
+      },
+
+      rm: function(args) {
+        var f = (args || '').trim().replace(/^-rf?\s+/,'').replace(/^-f?r\s+/,'');
+        if (!f) return [{ cls:'line-err', text:'rm: missing operand' }];
+        var noDelete = ['doubt','fear','grief','guilt','memory','memories','past','regret','.regret','questions/'];
+        var lower = f.toLowerCase();
+        for (var i = 0; i < noDelete.length; i++) {
+          if (lower === noDelete[i] || lower.indexOf(noDelete[i]) !== -1) {
+            return [
+              { cls:'line-err', text:'rm: '+f+': not a file. cannot be deleted.' },
+              { cls:'line-dim', text:'# some things are not stored on disk.' },
+              { cls:'line-dim', text:'# use: wait, accept, or time(1).' },
+            ];
+          }
+        }
+        return [
+          { cls:'line-err', text:'rm: '+f+': no such file or directory' },
+          { cls:'line-dim', text:'# perhaps it was already gone.' },
+        ];
+      },
+
+      clear: function() {
+        output.innerHTML = '';
+        return [];
+      },
+
+      exit: function() {
+        var lines = [
+          { cls:'line-out', text:'' },
+          { cls:'line-out', text:'logout' },
+          { cls:'line-dim', text:'saving session...' },
+          { cls:'line-dim', text:'saving recent searches... nothing was found that wasn\'t already known.' },
+          { cls:'line-dim', text:'[process completed]' },
+          { cls:'line-out', text:'' },
+        ];
+        setTimeout(function() {
+          window.location.href = './';
+        }, 2200);
+        return lines;
+      },
+    };
+
+    function print(lines) {
+      lines.forEach(function(l) {
+        var span = document.createElement('div');
+        span.className = l.cls || 'line-out';
+        span.textContent = l.text;
+        output.appendChild(span);
+      });
+      output.scrollTop = output.scrollHeight;
+    }
+
+    function printCmd(cmd) {
+      var div = document.createElement('div');
+      div.className = 'line-cmd';
+      div.textContent = 'visitor@garden:~$ ' + cmd;
+      output.appendChild(div);
+    }
+
+    function run(raw) {
+      var trimmed = raw.trim();
+      if (!trimmed) return;
+      history.push(trimmed);
+      histIdx = history.length;
+      printCmd(trimmed);
+      var parts = trimmed.split(/\s+/);
+      var cmd = parts[0].toLowerCase();
+      var args = parts.slice(1).join(' ');
+      if (commands[cmd]) {
+        var result = commands[cmd](args);
+        if (result && result.length) print(result);
+      } else {
+        print([
+          { cls:'line-err', text: cmd+': command not found' },
+          { cls:'line-dim', text: '# type \'help\' for available commands' },
+        ]);
+      }
+      var spacer = document.createElement('div');
+      spacer.style.height = '0.25rem';
+      output.appendChild(spacer);
+      output.scrollTop = output.scrollHeight;
+    }
+
+    // boot message
+    print([
+      { cls:'line-dim', text:'Last login: a while ago from somewhere quieter' },
+      { cls:'line-out', text:'' },
+      { cls:'line-hi',  text:'welcome to the interior shell.' },
+      { cls:'line-out', text:'this is not a real terminal. it only answers certain questions.' },
+      { cls:'line-out', text:'' },
+      { cls:'line-dim', text:'type help for a list of commands.' },
+      { cls:'line-out', text:'' },
+    ]);
+
+    window._termStart = Date.now();
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        var val = input.value;
+        input.value = '';
+        run(val);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (histIdx > 0) {
+          histIdx--;
+          input.value = history[histIdx];
+        }
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (histIdx < history.length - 1) {
+          histIdx++;
+          input.value = history[histIdx];
+        } else {
+          histIdx = history.length;
+          input.value = '';
+        }
+      }
+    });
+
+    // focus input on click anywhere in terminal
+    document.querySelector('.terminal').addEventListener('click', function() {
+      input.focus();
+    });
+
+    input.focus();
+  })();
+  </script>
+</body>
+</html>

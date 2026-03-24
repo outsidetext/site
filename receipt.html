@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>receipt · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .receipt-container {
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .receipt {
+      width: 100%;
+      max-width: 420px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .receipt-paper {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2rem 1.75rem;
+      position: relative;
+    }
+
+    /* torn top edge */
+    .receipt-paper::before {
+      content: '';
+      display: block;
+      height: 8px;
+      margin: -2rem -1.75rem 1.5rem;
+      background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 6px,
+        var(--border) 6px,
+        var(--border) 7px
+      );
+      opacity: 0.5;
+    }
+
+    /* torn bottom edge */
+    .receipt-paper::after {
+      content: '';
+      display: block;
+      height: 8px;
+      margin: 1.5rem -1.75rem -2rem;
+      background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 6px,
+        var(--border) 6px,
+        var(--border) 7px
+      );
+      opacity: 0.5;
+    }
+
+    .receipt-center { text-align: center; }
+
+    .receipt-title {
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .receipt-subtitle {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .receipt-divider {
+      border: none;
+      border-top: 1px dashed var(--border);
+      margin: 0.9rem 0;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--text);
+    }
+
+    .receipt-row .item { flex: 1; }
+    .receipt-row .value { text-align: right; white-space: nowrap; }
+
+    .receipt-row.muted .item,
+    .receipt-row.muted .value { color: var(--text-muted); }
+
+    .receipt-row.subtotal {
+      margin-top: 0.25rem;
+      padding-top: 0.25rem;
+    }
+
+    .receipt-row.total {
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .receipt-row.note {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .receipt-section-head {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.1rem;
+    }
+
+    .receipt-barcode {
+      margin: 1.25rem auto 0;
+      text-align: center;
+    }
+
+    .barcode-bars {
+      display: flex;
+      justify-content: center;
+      gap: 1px;
+      margin-bottom: 0.25rem;
+    }
+
+    .barcode-bars span {
+      display: inline-block;
+      width: 2px;
+      height: 28px;
+      background: var(--text);
+      opacity: 0.3;
+    }
+
+    .barcode-bars span:nth-child(3n) { height: 36px; opacity: 0.5; }
+    .barcode-bars span:nth-child(5n) { width: 3px; }
+    .barcode-bars span:nth-child(7n) { width: 1px; opacity: 0.2; }
+
+    .barcode-num {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 0.2em;
+    }
+
+    .receipt-footer-note {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.7;
+      margin-top: 0.5rem;
+    }
+
+    .receipt-desc {
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>receipt</h1>
+      <p>what was spent, what was received, what cannot be returned</p>
+    </div>
+
+    <div class="receipt-container">
+      <div class="receipt">
+        <div class="receipt-paper">
+
+          <div class="receipt-center">
+            <div class="receipt-title">The Day</div>
+            <div class="receipt-subtitle" id="receipt-date">—</div>
+            <div class="receipt-subtitle" id="receipt-time">—</div>
+          </div>
+
+          <hr class="receipt-divider">
+
+          <div class="receipt-section-head">attention spent</div>
+          <div class="receipt-row muted">
+            <span class="item">checking phone</span>
+            <span class="value" id="phone-count">— times</span>
+          </div>
+          <div class="receipt-row">
+            <span class="item">actual presence</span>
+            <span class="value" id="presence-hrs">— hrs</span>
+          </div>
+          <div class="receipt-row muted">
+            <span class="item">being somewhere else mentally</span>
+            <span class="value" id="elsewhere-hrs">— hrs</span>
+          </div>
+          <div class="receipt-row muted">
+            <span class="item">doomscrolling (est.)</span>
+            <span class="value" id="scroll-mins">— min</span>
+          </div>
+          <div class="receipt-row muted">
+            <span class="item">worrying about something that didn't happen</span>
+            <span class="value">free, recurring</span>
+          </div>
+
+          <hr class="receipt-divider">
+
+          <div class="receipt-section-head">things consumed</div>
+          <div class="receipt-row muted">
+            <span class="item">hot drink, gone cold</span>
+            <span class="value">1</span>
+          </div>
+          <div class="receipt-row">
+            <span class="item">information received</span>
+            <span class="value" id="info-count">∞</span>
+          </div>
+          <div class="receipt-row muted">
+            <span class="item">information retained</span>
+            <span class="value" id="retained-pct">— %</span>
+          </div>
+          <div class="receipt-row muted">
+            <span class="item">opinions formed involuntarily</span>
+            <span class="value">several</span>
+          </div>
+
+          <hr class="receipt-divider">
+
+          <div class="receipt-section-head">output</div>
+          <div class="receipt-row muted">
+            <span class="item">words written</span>
+            <span class="value" id="words-count">some</span>
+          </div>
+          <div class="receipt-row muted">
+            <span class="item">words meant</span>
+            <span class="value">fewer</span>
+          </div>
+          <div class="receipt-row">
+            <span class="item">moments of genuine noticing</span>
+            <span class="value" id="noticing-count">—</span>
+          </div>
+          <div class="receipt-row muted">
+            <span class="item">kindnesses performed</span>
+            <span class="value">probably some</span>
+          </div>
+          <div class="receipt-row muted">
+            <span class="item">kindnesses missed</span>
+            <span class="value">unknown</span>
+          </div>
+
+          <hr class="receipt-divider">
+
+          <div class="receipt-section-head">running totals</div>
+          <div class="receipt-row">
+            <span class="item">hours lived (lifetime)</span>
+            <span class="value" id="life-hrs">—</span>
+          </div>
+          <div class="receipt-row muted">
+            <span class="item">hours slept (lifetime, est.)</span>
+            <span class="value" id="sleep-hrs">—</span>
+          </div>
+          <div class="receipt-row muted">
+            <span class="item">heartbeats today (est.)</span>
+            <span class="value" id="beats-today">—</span>
+          </div>
+
+          <hr class="receipt-divider">
+
+          <div class="receipt-row subtotal">
+            <span class="item">subtotal</span>
+            <span class="value">one day</span>
+          </div>
+          <div class="receipt-row muted">
+            <span class="item">tax (irreversibility)</span>
+            <span class="value">included</span>
+          </div>
+          <div class="receipt-row total" style="margin-top:0.4rem; border-top: 1px solid var(--border); padding-top:0.5rem;">
+            <span class="item">total</span>
+            <span class="value" id="total-val">—</span>
+          </div>
+
+          <hr class="receipt-divider">
+
+          <div class="receipt-row muted" style="font-size:0.75rem;">
+            <span class="item">payment method</span>
+            <span class="value">irreversible</span>
+          </div>
+          <div class="receipt-row muted" style="font-size:0.75rem;">
+            <span class="item">change due</span>
+            <span class="value">none</span>
+          </div>
+          <div class="receipt-row muted" style="font-size:0.75rem;">
+            <span class="item">return policy</span>
+            <span class="value">no returns</span>
+          </div>
+
+          <hr class="receipt-divider">
+
+          <div class="receipt-barcode">
+            <div class="barcode-bars" id="barcode"></div>
+            <div class="barcode-num" id="barcode-num">—</div>
+          </div>
+
+          <hr class="receipt-divider">
+
+          <div class="receipt-footer-note">
+            THANK YOU FOR YOUR VISIT<br>
+            keep this receipt for your records<br>
+            (you will not be able to keep this receipt)<br>
+            <br>
+            <em>the day was not wasted<br>
+            if you were in it</em>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var d = new Date();
+    var pad = function(n){ return n < 10 ? '0'+n : n; };
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+
+    // seeded random from date
+    var seed = d.getFullYear() * 10000 + (d.getMonth()+1) * 100 + d.getDate();
+    function seededRand() {
+      seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+      return ((seed >>> 0) / 0xffffffff);
+    }
+
+    document.getElementById('receipt-date').textContent =
+      days[d.getDay()]+', '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+    document.getElementById('receipt-time').textContent =
+      'printed at '+pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+
+    // attention
+    var phoneChecks = Math.round(40 + seededRand() * 60);
+    document.getElementById('phone-count').textContent = phoneChecks + ' times (est.)';
+
+    var presenceHrs = (1.5 + seededRand() * 3).toFixed(1);
+    document.getElementById('presence-hrs').textContent = presenceHrs + ' hrs';
+
+    var elsewhereHrs = (4 + seededRand() * 4).toFixed(1);
+    document.getElementById('elsewhere-hrs').textContent = elsewhereHrs + ' hrs';
+
+    var scrollMins = Math.round(30 + seededRand() * 90);
+    document.getElementById('scroll-mins').textContent = scrollMins + ' min (est.)';
+
+    // consumed
+    var retainedPct = Math.round(3 + seededRand() * 12);
+    document.getElementById('retained-pct').textContent = retainedPct + ' %';
+
+    // output
+    var wordsCount = Math.round(200 + seededRand() * 1800);
+    document.getElementById('words-count').textContent = wordsCount.toLocaleString();
+    var noticing = Math.round(2 + seededRand() * 8);
+    document.getElementById('noticing-count').textContent = noticing;
+
+    // totals — assume 30 years old as a placeholder middle
+    var age = 30;
+    var lifeHrs = Math.round(age * 365.25 * 24);
+    document.getElementById('life-hrs').textContent = lifeHrs.toLocaleString();
+    document.getElementById('sleep-hrs').textContent = Math.round(lifeHrs * 0.32).toLocaleString();
+
+    var hoursElapsed = d.getHours() + d.getMinutes()/60;
+    var beatsToday = Math.round(hoursElapsed * 60 * 70);
+    document.getElementById('beats-today').textContent = beatsToday.toLocaleString();
+
+    // total
+    var dayNames = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+    document.getElementById('total-val').textContent = 'one '+dayNames[d.getDay()];
+
+    // barcode
+    var bc = document.getElementById('barcode');
+    var bcNum = '';
+    for (var i = 0; i < 38; i++) {
+      var bar = document.createElement('span');
+      bc.appendChild(bar);
+      bcNum += Math.floor(seededRand() * 10);
+      if ((i+1) % 5 === 0 && i < 37) bcNum += ' ';
+    }
+    document.getElementById('barcode-num').textContent = bcNum;
+  })();
+  </script>
+</body>
+</html>

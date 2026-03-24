@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index of /self/ · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .index-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 1.5rem 1.5rem 4rem;
+    }
+
+    .index-header {
+      font-family: 'Courier New', monospace;
+      font-size: 0.92rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .index-rule {
+      border: none;
+      border-top: 1px solid var(--text);
+      margin: 0.25rem 0 0.25rem;
+    }
+
+    .index-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      line-height: 1.9;
+    }
+
+    .index-table th {
+      text-align: left;
+      color: var(--text);
+      font-weight: normal;
+      padding-right: 1.5rem;
+      padding-bottom: 0.1rem;
+      white-space: nowrap;
+    }
+
+    .index-table td {
+      padding-right: 1.5rem;
+      color: var(--text-muted);
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    .index-table td.name {
+      color: var(--accent);
+      min-width: 220px;
+    }
+
+    .index-table td.name a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .index-table td.name a:hover {
+      text-decoration: underline;
+    }
+
+    .index-table td.name .dir-icon::before {
+      content: '[DIR]  ';
+      color: var(--text-muted);
+    }
+
+    .index-table td.desc {
+      color: var(--text-muted);
+      white-space: normal;
+      font-size: 0.78rem;
+    }
+
+    .index-table tr.dir-row td.name { color: var(--text); }
+    .index-table tr.dir-row td.name a { color: var(--text); }
+
+    .index-table tr.section-sep td {
+      padding-top: 1rem;
+      padding-bottom: 0.1rem;
+      color: var(--border);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .index-footer {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .breadcrumb {
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .breadcrumb a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    .index-nav {
+      margin-bottom: 2rem;
+    }
+
+    .dir-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      padding: 0.25rem 0.6rem;
+      cursor: pointer;
+      margin-right: 0.5rem;
+      border-radius: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .dir-btn:hover, .dir-btn.active {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .dir-section { display: none; }
+    .dir-section.visible { display: table-row-group; }
+
+    @media (max-width: 580px) {
+      .index-table th:nth-child(3),
+      .index-table td:nth-child(3) { display: none; }
+      .index-table td.name { min-width: 150px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="index-wrap">
+    <div class="page-header">
+      <h1>index of /self/</h1>
+      <p>a directory listing. not all files are accessible. not all are meant to be.</p>
+    </div>
+
+    <div class="breadcrumb">
+      <a href="./">home</a> / <a href="index-of.html">self</a> / <span id="current-path">—</span>
+    </div>
+
+    <div class="index-nav">
+      <button class="dir-btn active" data-dir="root">/ root</button>
+      <button class="dir-btn" data-dir="feelings">/feelings</button>
+      <button class="dir-btn" data-dir="memories">/memories</button>
+      <button class="dir-btn" data-dir="drafts">/drafts</button>
+      <button class="dir-btn" data-dir="deleted">/deleted</button>
+    </div>
+
+    <div class="index-header" id="index-title">Index of /self/</div>
+    <hr class="index-rule">
+
+    <table class="index-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Last modified</th>
+          <th>Size</th>
+          <th class="desc">Description</th>
+        </tr>
+      </thead>
+
+      <!-- ROOT -->
+      <tbody class="dir-section visible" id="dir-root">
+        <tr>
+          <td class="name dir-icon"><a href="#" data-dir="feelings">feelings/</a></td>
+          <td>ongoing</td><td>—</td>
+          <td class="desc">primary emotional storage</td>
+        </tr>
+        <tr>
+          <td class="name dir-icon"><a href="#" data-dir="memories">memories/</a></td>
+          <td>variable</td><td>—</td>
+          <td class="desc">compressed, lossy, unverified</td>
+        </tr>
+        <tr>
+          <td class="name dir-icon"><a href="#" data-dir="drafts">drafts/</a></td>
+          <td>2017-present</td><td>—</td>
+          <td class="desc">things not yet sent</td>
+        </tr>
+        <tr>
+          <td class="name dir-icon"><a href="#" data-dir="deleted">deleted/</a></td>
+          <td>various</td><td>—</td>
+          <td class="desc">not as deleted as believed</td>
+        </tr>
+        <tr class="section-sep"><td colspan="4">— files ——</td></tr>
+        <tr>
+          <td class="name"><a href="#">today.txt</a></td>
+          <td id="today-date">—</td><td>4.1 KB</td>
+          <td class="desc">in progress; may be revised</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">tomorrow.txt</a></td>
+          <td>—</td><td>0 B</td>
+          <td class="desc">not yet written</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">README.md</a></td>
+          <td>2026-03-24</td><td>1 line</td>
+          <td class="desc">"still figuring it out."</td>
+        </tr>
+        <tr>
+          <td class="name" style="color:var(--text-muted)"><a href="#" style="color:var(--text-muted)">.unsent</a></td>
+          <td>2019-11-03</td><td>2.8 KB</td>
+          <td class="desc">hidden file. permissions: 000.</td>
+        </tr>
+        <tr>
+          <td class="name" style="color:var(--text-muted)"><a href="#" style="color:var(--text-muted)">.regret</a></td>
+          <td>before</td><td>unknown</td>
+          <td class="desc">read-only. cannot be modified.</td>
+        </tr>
+      </tbody>
+
+      <!-- FEELINGS -->
+      <tbody class="dir-section" id="dir-feelings">
+        <tr>
+          <td class="name"><a href="#">guilt.dat</a></td>
+          <td>persistent</td><td>4.2 MB</td>
+          <td class="desc">binary format; resists parsing</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">nostalgia.bak</a></td>
+          <td>2018-06-∞</td><td>47 MB</td>
+          <td class="desc">backup of original; not the same thing</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">joy.tmp</a></td>
+          <td>now</td><td>0.3 KB</td>
+          <td class="desc">temporary; may be lost on reboot</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">longing.log</a></td>
+          <td>appending</td><td>growing</td>
+          <td class="desc">appended to daily; no flush interval set</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">dread.conf</a></td>
+          <td>sunday evenings</td><td>12 B</td>
+          <td class="desc">a configuration file for anticipation</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">relief.swp</a></td>
+          <td>after</td><td>brief</td>
+          <td class="desc">swap file; created automatically; deleted after session</td>
+        </tr>
+        <tr>
+          <td class="name" style="color:var(--text-muted)"><a href="#" style="color:var(--text-muted)">.unnamed</a></td>
+          <td>unknown</td><td>???</td>
+          <td class="desc">no extension; no known application can open it</td>
+        </tr>
+        <tr>
+          <td class="name" style="color:var(--text-muted)"><a href="#" style="color:var(--text-muted)">grief</a></td>
+          <td>varies</td><td>—</td>
+          <td class="desc">no read permission; no write permission; present anyway</td>
+        </tr>
+      </tbody>
+
+      <!-- MEMORIES -->
+      <tbody class="dir-section" id="dir-memories">
+        <tr>
+          <td class="name"><a href="#">2017-august.tar.gz</a></td>
+          <td>2017-08-14</td><td>compressed</td>
+          <td class="desc">archived; checksum unverified</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">kitchen-window.jpg</a></td>
+          <td>childhood</td><td>partial</td>
+          <td class="desc">corrupted read; only the light survived</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">voice.mp3</a></td>
+          <td>before 2014</td><td>fading</td>
+          <td class="desc">codec unavailable; playback degraded each access</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">last-time.bak</a></td>
+          <td>not known yet</td><td>unknown</td>
+          <td class="desc">last times are rarely labeled at the time</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">first-snow.dat</a></td>
+          <td>early</td><td>vivid</td>
+          <td class="desc">stored at high fidelity; no compression applied</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">the-drive.mp4</a></td>
+          <td>summer, year unclear</td><td>26 min</td>
+          <td class="desc">remembered in full; every song, every exit</td>
+        </tr>
+        <tr>
+          <td class="name" style="color:var(--text-muted)"><a href="#" style="color:var(--text-muted)">[unreadable]</a></td>
+          <td>???</td><td>???</td>
+          <td class="desc">filesystem error; data present but inaccessible</td>
+        </tr>
+      </tbody>
+
+      <!-- DRAFTS -->
+      <tbody class="dir-section" id="dir-drafts">
+        <tr>
+          <td class="name"><a href="#">apology-v1.txt</a></td>
+          <td>2019-04-12</td><td>2.1 KB</td>
+          <td class="desc">first attempt; too defensive</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">apology-v3.txt</a></td>
+          <td>2019-04-15</td><td>1.8 KB</td>
+          <td class="desc">better; still not sent</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">apology-v7.txt</a></td>
+          <td>2019-05-22</td><td>0.9 KB</td>
+          <td class="desc">the shortest version; probably the truest; never sent</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">explanation.txt</a></td>
+          <td>open</td><td>growing</td>
+          <td class="desc">incomplete; the right words have not arrived</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">things-i-meant.txt</a></td>
+          <td>2022-11-08</td><td>0 B</td>
+          <td class="desc">empty file; the meaning was in the title</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">goodbye-message.txt</a></td>
+          <td>2023-03-01</td><td>34 B</td>
+          <td class="desc">for when leaving; not for leaving</td>
+        </tr>
+      </tbody>
+
+      <!-- DELETED -->
+      <tbody class="dir-section" id="dir-deleted">
+        <tr>
+          <td class="name"><a href="#">certainty.old</a></td>
+          <td>circa 2010</td><td>was large</td>
+          <td class="desc">deleted; not as gone as intended</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">the-plan.txt</a></td>
+          <td>many versions</td><td>—</td>
+          <td class="desc">revised, superseded, discarded; residue remains</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">anger.log</a></td>
+          <td>2021-08-∞</td><td>—</td>
+          <td class="desc">marked for deletion; not yet garbage collected</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">earlier-self/</a></td>
+          <td>2007-2016</td><td>—</td>
+          <td class="desc">directory deprecated; partially unlinked</td>
+        </tr>
+        <tr>
+          <td class="name"><a href="#">expectations.tar</a></td>
+          <td>recurring</td><td>was large</td>
+          <td class="desc">compressed, renamed, deleted, and recreated many times</td>
+        </tr>
+        <tr>
+          <td class="name" style="color:var(--text-muted)"><a href="#" style="color:var(--text-muted)">what-could-have-been.txt</a></td>
+          <td>always</td><td>infinite</td>
+          <td class="desc">cannot be deleted; inode persistent</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="index-footer">
+      Apache/∞ Server at <em>self</em> Port 443 &nbsp;·&nbsp;
+      <span id="index-count"></span> items listed &nbsp;·&nbsp;
+      not all of them are meant to be opened
+    </div>
+  </div>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    // set today's date
+    var d = new Date();
+    var pad = function(n){ return n < 10 ? '0'+n : n; };
+    var dateStr = d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+    var todayEl = document.getElementById('today-date');
+    if (todayEl) todayEl.textContent = dateStr;
+
+    var dirs = {
+      root:     { path: '/self/', label: 'Index of /self/' },
+      feelings: { path: '/self/feelings/', label: 'Index of /self/feelings/' },
+      memories: { path: '/self/memories/', label: 'Index of /self/memories/' },
+      drafts:   { path: '/self/drafts/', label: 'Index of /self/drafts/' },
+      deleted:  { path: '/self/deleted/', label: 'Index of /self/deleted/' },
+    };
+
+    function showDir(key) {
+      // hide all
+      document.querySelectorAll('.dir-section').forEach(function(el) {
+        el.classList.remove('visible');
+      });
+      // show target
+      var sec = document.getElementById('dir-'+key);
+      if (sec) sec.classList.add('visible');
+      // update header
+      var info = dirs[key];
+      document.getElementById('index-title').textContent = info.label;
+      document.getElementById('current-path').textContent = info.path;
+      // update buttons
+      document.querySelectorAll('.dir-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.dir === key);
+      });
+      // update count
+      var rows = sec ? sec.querySelectorAll('tr:not(.section-sep)').length : 0;
+      document.getElementById('index-count').textContent = rows;
+    }
+
+    // button clicks
+    document.querySelectorAll('.dir-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        showDir(btn.dataset.dir);
+      });
+    });
+
+    // link clicks (directory links inside table)
+    document.querySelectorAll('[data-dir]').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        showDir(el.dataset.dir);
+      });
+    });
+
+    // all other links: prevent navigation
+    document.querySelectorAll('.index-table a:not([data-dir])').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+      });
+    });
+
+    showDir('root');
+  })();
+  </script>
+</body>
+</html>

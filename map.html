@@ -148,6 +148,11 @@
       { id: 'spiral',      href: 'spiral.html',       label: 'spiral',      desc: 'a text that turns inward — follow it all the way', x: 0.17, y: 0.82 },
       { id: 'tide',        href: 'tide.html',         label: 'tide',        desc: 'the day as a body of water — a chart of the energy', x: 0.83, y: 0.78 },
       { id: 'unread',      href: 'unread.html',       label: 'unread',      desc: 'messages that arrived while you were elsewhere',   x: 0.06, y: 0.45 },
+      { id: 'terminal',    href: 'terminal.html',     label: 'terminal',    desc: 'a command line for the interior — type help',         x: 0.35, y: 0.04 },
+      { id: 'overheard',   href: 'overheard.html',    label: 'overheard',   desc: 'other people\'s sentences, without context',          x: 0.19, y: 0.35 },
+      { id: 'index-of',    href: 'index-of.html',     label: 'index of',    desc: 'a directory listing of the interior',                 x: 0.62, y: 0.08 },
+      { id: 'argument',    href: 'argument.html',     label: 'argument',    desc: 'both sides of nine recurring internal debates',       x: 0.44, y: 0.44 },
+      { id: 'receipt',     href: 'receipt.html',      label: 'receipt',     desc: 'what was spent today, and what was received',         x: 0.96, y: 0.70 },
     ];
 
     var edges = [
@@ -197,6 +202,11 @@
       ['spiral','thoughts'], ['spiral','distances'], ['spiral','wander'],
       ['tide','hours'], ['tide','now'], ['tide','weather'], ['tide','score'],
       ['unread','compose'], ['unread','signal'], ['unread','letters'], ['unread','cuts'],
+      ['terminal','compose'], ['terminal','bones'], ['terminal','glitch'], ['terminal','oracle'],
+      ['overheard','portraits'], ['overheard','distances'], ['overheard','seeds'],
+      ['index-of','census'], ['index-of','cuts'], ['index-of','bones'], ['index-of','catalog'],
+      ['argument','thoughts'], ['argument','questions'], ['argument','distances'], ['argument','cuts'],
+      ['receipt','tally'], ['receipt','numbers'], ['receipt','now'], ['receipt','odds'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

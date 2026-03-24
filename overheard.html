@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>overheard · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .overheard-list {
+      list-style: none;
+      margin: 2rem 0;
+    }
+
+    .overheard-list li {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.65;
+      position: relative;
+      padding-left: 1.5rem;
+      transition: color 0.2s;
+    }
+
+    .overheard-list li::before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      top: 1.1rem;
+      color: var(--border);
+      font-size: 1.4rem;
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+
+    .overheard-list li:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .oh-context {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+
+    .oh-note {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>overheard</h1>
+      <p>fragments of other people's conversations, without context or conclusion</p>
+    </div>
+
+    <ul class="overheard-list reveal">
+
+      <li>
+        I just don't think about it anymore.
+        <span class="oh-context">café, near the window, afternoon</span>
+      </li>
+
+      <li>
+        She said she'd be here by now.
+        <span class="oh-context">platform 3, checking phone</span>
+      </li>
+
+      <li>
+        It's not the same since.
+        <span class="oh-context">(no other context available)</span>
+      </li>
+
+      <li>
+        I told him and he just — he just nodded.
+        <span class="oh-context">walking, behind me, quickly</span>
+      </li>
+
+      <li>
+        We used to do this every Sunday.
+        <span class="oh-context">park bench, older man, to no one particular</span>
+      </li>
+
+      <li>
+        I knew what she meant. I just needed her to say it.
+        <span class="oh-context">standing outside, one person, end of call</span>
+      </li>
+
+      <li>
+        The thing is, I was happy. I just didn't know it at the time.
+        <span class="oh-context">restaurant, adjacent table, not to me</span>
+      </li>
+
+      <li>
+        It doesn't even matter now.
+        <span class="oh-context">said quickly, as if to close a door</span>
+      </li>
+
+      <li>
+        Do you ever get the feeling that you were supposed to be somewhere else?
+        <span class="oh-context">bus, late evening, asked of a stranger</span>
+      </li>
+
+      <li>
+        I keep meaning to call.
+        <span class="oh-context">said to herself, grocery store, fruit aisle</span>
+      </li>
+
+      <li>
+        He was right, that's the worst part.
+        <span class="oh-context">stairwell, not looking up</span>
+      </li>
+
+      <li>
+        I think I've forgotten what it feels like to not be tired.
+        <span class="oh-context">break room, no one responded</span>
+      </li>
+
+      <li>
+        We were good at it for a while.
+        <span class="oh-context">the context would not have helped</span>
+      </li>
+
+      <li>
+        I'm not angry. I'm just —
+        <span class="oh-context">(sentence not completed)</span>
+      </li>
+
+      <li>
+        It was exactly what I expected, which was the problem.
+        <span class="oh-context">phone call, pacing the kitchen</span>
+      </li>
+
+      <li>
+        Nobody remembers it the way I do.
+        <span class="oh-context">quietly, in a group, not heard</span>
+      </li>
+
+      <li>
+        Some things you don't say once and they're gone. You carry them.
+        <span class="oh-context">long pause before this, longer after</span>
+      </li>
+
+      <li>
+        I should have left earlier.
+        <span class="oh-context">ambiguous. all senses apply.</span>
+      </li>
+
+      <li>
+        I don't know. I think I'm okay.
+        <span class="oh-context">said sincerely, with no certainty at all</span>
+      </li>
+
+      <li>
+        That's the version I tell myself.
+        <span class="oh-context">airport, gate C, flight delayed</span>
+      </li>
+
+      <li>
+        There's a version of this that goes well.
+        <span class="oh-context">before something, hard to say what</span>
+      </li>
+
+      <li>
+        I keep waiting for it to feel real.
+        <span class="oh-context">a good thing or a bad thing — could not tell</span>
+      </li>
+
+      <li>
+        Honestly? I don't know who I was then.
+        <span class="oh-context">laughing, but not lightly</span>
+      </li>
+
+      <li>
+        She knew. She always knew. I just liked pretending she didn't.
+        <span class="oh-context">standing in a doorway, going nowhere</span>
+      </li>
+
+      <li>
+        I thought it would feel like more.
+        <span class="oh-context">after something finished. something large.</span>
+      </li>
+
+    </ul>
+
+    <p class="oh-note reveal">
+      Collected without permission, which is the only way conversations like these are ever collected.
+      No names. No conclusions. The context you bring is the only context there is.
+    </p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>argument · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .arg-intro {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 3rem;
+    }
+
+    .arg-topic {
+      margin-bottom: 3.5rem;
+    }
+
+    .arg-topic-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .arg-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .arg-side {
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    .arg-side-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .arg-side.for .arg-side-label  { color: var(--accent); opacity: 0.8; }
+    .arg-side.against .arg-side-label { color: var(--text-muted); }
+
+    .arg-side p {
+      color: var(--text);
+    }
+
+    .arg-divider {
+      grid-column: 1 / -1;
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0.5rem 0;
+    }
+
+    .arg-silence {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+    }
+
+    .arg-verdict {
+      margin-top: 3rem;
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      line-height: 1.65;
+    }
+
+    @media (max-width: 580px) {
+      .arg-pair {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .arg-side.against {
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--border);
+      }
+      .arg-side.against .arg-side-label::before { content: 'but: '; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>argument</h1>
+      <p>both sides of nine recurring internal debates. no verdicts.</p>
+    </div>
+
+    <p class="arg-intro reveal">Two voices. The same person. They have been having these arguments for years.</p>
+
+    <!-- 1 -->
+    <div class="arg-topic reveal">
+      <div class="arg-topic-title">on checking the phone</div>
+      <div class="arg-pair">
+        <div class="arg-side for">
+          <div class="arg-side-label">for</div>
+          <p>Someone might need something. There could be news. It takes two seconds. The anxiety of not knowing is worse than the anxiety of knowing.</p>
+        </div>
+        <div class="arg-side against">
+          <div class="arg-side-label">against</div>
+          <p>You checked four minutes ago. Nothing has happened. You are conditioning yourself to need constant confirmation that the world exists. The world will exist without your surveillance of it.</p>
+        </div>
+      </div>
+      <p class="arg-silence">— neither side wins this one</p>
+    </div>
+
+    <!-- 2 -->
+    <div class="arg-topic reveal">
+      <div class="arg-topic-title">on staying home</div>
+      <div class="arg-pair">
+        <div class="arg-side for">
+          <div class="arg-side-label">for</div>
+          <p>You are tired. The body needs rest. There is no obligation to be somewhere else. Saying no is a form of care.</p>
+        </div>
+        <div class="arg-side against">
+          <div class="arg-side-label">against</div>
+          <p>You said this last time. And the time before. The inertia is getting comfortable. There is a difference between rest and avoidance, and you have not been honest about which this is.</p>
+        </div>
+      </div>
+      <p class="arg-silence">— probably the second one</p>
+    </div>
+
+    <!-- 3 -->
+    <div class="arg-topic reveal">
+      <div class="arg-topic-title">on whether to send the message</div>
+      <div class="arg-pair">
+        <div class="arg-side for">
+          <div class="arg-side-label">for</div>
+          <p>You have been thinking about it for three days. That's enough time to know whether it's worth sending. The worst that happens is silence. Silence is already happening.</p>
+        </div>
+        <div class="arg-side against">
+          <div class="arg-side-label">against</div>
+          <p>The version you want to send is the version you've been editing in your head, not the version you will actually send. Wait until those two things are the same.</p>
+        </div>
+      </div>
+      <p class="arg-silence">— it stayed in drafts</p>
+    </div>
+
+    <!-- 4 -->
+    <div class="arg-topic reveal">
+      <div class="arg-topic-title">on whether things were better before</div>
+      <div class="arg-pair">
+        <div class="arg-side for">
+          <div class="arg-side-label">for</div>
+          <p>There was a quality to certain years that is not present now. A texture. The pace was different. The expectations were smaller. That's not nostalgia — that's accurate recall.</p>
+        </div>
+        <div class="arg-side against">
+          <div class="arg-side-label">against</div>
+          <p>You are remembering the highlight reel. The anxiety was there. The longing was there too — for something different, something ahead. You were not as content as you remember.</p>
+        </div>
+      </div>
+      <p class="arg-silence">— both are true at the same time, which is the problem</p>
+    </div>
+
+    <!-- 5 -->
+    <div class="arg-topic reveal">
+      <div class="arg-topic-title">on asking for help</div>
+      <div class="arg-pair">
+        <div class="arg-side for">
+          <div class="arg-side-label">for</div>
+          <p>People want to help. They feel useful when asked. You are not a burden for having a need. Everyone has needs. The performance of not having them helps no one.</p>
+        </div>
+        <div class="arg-side against">
+          <div class="arg-side-label">against</div>
+          <p>You don't want to owe anything. You don't want to be seen as someone who can't manage. You'll figure it out. You always figure it out.</p>
+          <p style="margin-top:0.5em; font-size:0.88rem; color:var(--text-muted); font-style:italic;">— the first voice interrupts: this is pride, not self-sufficiency</p>
+        </div>
+      </div>
+      <p class="arg-silence">— still unresolved</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="arg-topic reveal">
+      <div class="arg-topic-title">on whether it was your fault</div>
+      <div class="arg-pair">
+        <div class="arg-side for">
+          <div class="arg-side-label">yes</div>
+          <p>You knew what you were doing. You chose it anyway. Saying otherwise is convenient. The discomfort you feel right now is accurate.</p>
+        </div>
+        <div class="arg-side against">
+          <div class="arg-side-label">not entirely</div>
+          <p>You were doing what you knew how to do at the time. You did not have the information you have now. Accountability and punishment are different. You have done enough of one.</p>
+        </div>
+      </div>
+      <p class="arg-silence">— this one runs the longest</p>
+    </div>
+
+    <!-- 7 -->
+    <div class="arg-topic reveal">
+      <div class="arg-topic-title">on sleeping</div>
+      <div class="arg-pair">
+        <div class="arg-side for">
+          <div class="arg-side-label">go to sleep</div>
+          <p>It is late. Nothing productive will happen now. The thought you are following will still be there in the morning, or it won't, in which case it wasn't important.</p>
+        </div>
+        <div class="arg-side against">
+          <div class="arg-side-label">not yet</div>
+          <p>This is the only quiet. The only time no one needs anything. The tiredness is manageable. Tomorrow is manageable too. Right now is the only moment that belongs entirely to—</p>
+        </div>
+      </div>
+      <p class="arg-silence">— it was 2am, then 3am</p>
+    </div>
+
+    <!-- 8 -->
+    <div class="arg-topic reveal">
+      <div class="arg-topic-title">on whether you are okay</div>
+      <div class="arg-pair">
+        <div class="arg-side for">
+          <div class="arg-side-label">yes</div>
+          <p>Nothing is specifically wrong. You have what you need. You are functioning. The feelings you're having are weather, not fact. Wait a few days.</p>
+        </div>
+        <div class="arg-side against">
+          <div class="arg-side-label">not entirely</div>
+          <p>"Functioning" is a low bar. You set that bar during a harder time and never moved it. Something is heavy that shouldn't be this heavy. That's worth noticing, even if it's not worth acting on yet.</p>
+        </div>
+      </div>
+      <p class="arg-silence">— you said you were fine</p>
+    </div>
+
+    <!-- 9 -->
+    <div class="arg-topic reveal">
+      <div class="arg-topic-title">on whether any of this matters</div>
+      <div class="arg-pair">
+        <div class="arg-side for">
+          <div class="arg-side-label">yes</div>
+          <p>The present moment is not diminished by its impermanence. A meal is not less nourishing because it ends. What matters is whether you were here for it.</p>
+        </div>
+        <div class="arg-side against">
+          <div class="arg-side-label">uncertain</div>
+          <p>In the long run, the sun will expand. Every archive will fail. The question "does it matter?" is unanswerable and also unanswerable. Which means you get to decide, which means you are responsible, which is—</p>
+          <p style="margin-top:0.5em; font-size:0.88rem; color:var(--text-muted); font-style:italic;">— the first voice: yes, exactly, that's the point</p>
+        </div>
+      </div>
+      <p class="arg-silence">— no conclusion reached. argument continues.</p>
+    </div>
+
+    <div class="arg-verdict reveal">
+      No verdicts are issued here. Both voices are you. Neither is wrong enough to dismiss.
+      The arguments continue because resolution would require certainty, and certainty is not available.
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
