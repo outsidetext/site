@@ -137,7 +137,8 @@
     'numbers.html','things.html','log.html','drift.html','weather.html',
     'map.html','portraits.html','thresholds.html','signal.html',
     'recipes.html','field-notes.html','distances.html','presence.html','museum.html',
-    'glitch.html','compose.html','census.html','cuts.html','odds.html'
+    'glitch.html','compose.html','census.html','cuts.html','odds.html',
+    'maze.html','tally.html','haiku.html','score.html','palimpsest.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

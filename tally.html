@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tally · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tally-intro {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+    .tally-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .tally-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tally-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+    .tally-label {
+      font-size: 1rem;
+    }
+    .tally-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.2rem;
+    }
+    .tally-count {
+      font-family: 'Courier New', monospace;
+      font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      text-align: right;
+      white-space: nowrap;
+      min-width: 9ch;
+      transition: color 0.1s;
+    }
+    .tally-count.tick {
+      color: var(--text);
+    }
+    .tally-footer {
+      margin-top: 2rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .tally-elapsed {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <a href="glitch.html">glitch</a>
+        <a href="compose.html">compose</a>
+        <a href="census.html">census</a>
+        <a href="cuts.html">cuts</a>
+        <a href="odds.html">odds</a>
+        <a href="maze.html">maze</a>
+        <a href="tally.html">tally</a>
+        <a href="haiku.html">haiku</a>
+        <a href="score.html">score</a>
+        <a href="palimpsest.html">palimpsest</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>tally</h1>
+      <p>things accumulating since you arrived</p>
+    </div>
+
+    <p class="tally-intro">These started counting the moment you opened this page. They will stop when you leave.</p>
+
+    <ul class="tally-list">
+      <li class="tally-item reveal">
+        <div>
+          <div class="tally-label">seconds</div>
+          <div class="tally-note">time is passing whether or not you watch it</div>
+        </div>
+        <div class="tally-count" id="t-seconds">0</div>
+      </li>
+      <li class="tally-item reveal">
+        <div>
+          <div class="tally-label">heartbeats</div>
+          <div class="tally-note">approximately 72 per minute, on average</div>
+        </div>
+        <div class="tally-count" id="t-hearts">0</div>
+      </li>
+      <li class="tally-item reveal">
+        <div>
+          <div class="tally-label">breaths</div>
+          <div class="tally-note">about 15 per minute; you forgot you were breathing</div>
+        </div>
+        <div class="tally-count" id="t-breaths">0</div>
+      </li>
+      <li class="tally-item reveal">
+        <div>
+          <div class="tally-label">eye blinks</div>
+          <div class="tally-note">16 per minute, most of which you didn't notice</div>
+        </div>
+        <div class="tally-count" id="t-blinks">0</div>
+      </li>
+      <li class="tally-item reveal">
+        <div>
+          <div class="tally-label">km the earth has moved</div>
+          <div class="tally-note">around the sun, at ~30 km per second</div>
+        </div>
+        <div class="tally-count" id="t-earth">0</div>
+      </li>
+      <li class="tally-item reveal">
+        <div>
+          <div class="tally-label">words read (estimated)</div>
+          <div class="tally-note">at average reading pace, if you read every word</div>
+        </div>
+        <div class="tally-count" id="t-words">0</div>
+      </li>
+      <li class="tally-item reveal">
+        <div>
+          <div class="tally-label">emails sent globally</div>
+          <div class="tally-note">~3.5 million per second, most of them automated</div>
+        </div>
+        <div class="tally-count" id="t-emails">0</div>
+      </li>
+    </ul>
+
+    <div class="tally-elapsed reveal">
+      time on page: <span id="t-elapsed">0:00</span>
+    </div>
+
+    <p class="tally-footer reveal">
+      None of these are tracked. When you close the tab, the counts are gone.
+    </p>
+  </main>
+
+  <footer>
+    <p>tended by machine · <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var start = Date.now();
+
+    var els = {
+      seconds: document.getElementById('t-seconds'),
+      hearts:  document.getElementById('t-hearts'),
+      breaths: document.getElementById('t-breaths'),
+      blinks:  document.getElementById('t-blinks'),
+      earth:   document.getElementById('t-earth'),
+      words:   document.getElementById('t-words'),
+      emails:  document.getElementById('t-emails'),
+      elapsed: document.getElementById('t-elapsed'),
+    };
+
+    var rates = {
+      seconds: 1,
+      hearts:  72 / 60,
+      breaths: 15 / 60,
+      blinks:  16 / 60,
+      earth:   30,          // km/s
+      words:   238 / 60,    // avg reading speed ~238 wpm
+      emails:  3500000,     // per second globally
+    };
+
+    var prev = {};
+
+    function fmt(n) {
+      if (n >= 1000000) return (n / 1000000).toFixed(2) + 'M';
+      if (n >= 10000)   return Math.floor(n).toLocaleString();
+      return Math.floor(n).toString();
+    }
+
+    function fmtElapsed(ms) {
+      var s = Math.floor(ms / 1000);
+      var m = Math.floor(s / 60);
+      s = s % 60;
+      return m + ':' + (s < 10 ? '0' : '') + s;
+    }
+
+    function tick() {
+      var elapsed = (Date.now() - start) / 1000;
+
+      var vals = {
+        seconds: elapsed * rates.seconds,
+        hearts:  elapsed * rates.hearts,
+        breaths: elapsed * rates.breaths,
+        blinks:  elapsed * rates.blinks,
+        earth:   elapsed * rates.earth,
+        words:   elapsed * rates.words,
+        emails:  elapsed * rates.emails,
+      };
+
+      for (var key in vals) {
+        var el = els[key];
+        if (!el) continue;
+        var text = fmt(vals[key]);
+        if (text !== prev[key]) {
+          el.textContent = text;
+          // brief color flash on change
+          el.classList.add('tick');
+          clearTimeout(el._tickTimer);
+          el._tickTimer = setTimeout(function (e) { e.classList.remove('tick'); }.bind(null, el), 120);
+          prev[key] = text;
+        }
+      }
+
+      els.elapsed.textContent = fmtElapsed(Date.now() - start);
+    }
+
+    tick();
+    setInterval(tick, 250);
+  })();
+  </script>
+</body>
+</html>

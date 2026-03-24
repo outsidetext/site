@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>haiku · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .haiku-stage {
+      margin: 3rem 0;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .haiku-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .haiku-line {
+      font-size: 1.5rem;
+      line-height: 1.9;
+      font-style: italic;
+    }
+    .haiku-line span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .haiku-line span.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .haiku-meta {
+      margin-top: 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    .haiku-date {
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .haiku-note {
+      display: block;
+      font-style: italic;
+      font-family: Georgia, serif;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2rem;
+      max-width: 380px;
+    }
+    .syllable-count {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--border);
+      margin-left: 0.6rem;
+      vertical-align: middle;
+      transition: color 0.2s;
+      user-select: none;
+    }
+    .haiku-stage:hover .syllable-count {
+      color: var(--text-muted);
+    }
+    .haiku-tomorrow {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <a href="glitch.html">glitch</a>
+        <a href="compose.html">compose</a>
+        <a href="census.html">census</a>
+        <a href="cuts.html">cuts</a>
+        <a href="odds.html">odds</a>
+        <a href="maze.html">maze</a>
+        <a href="tally.html">tally</a>
+        <a href="haiku.html">haiku</a>
+        <a href="score.html">score</a>
+        <a href="palimpsest.html">palimpsest</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>haiku</h1>
+      <p>one poem, assembled fresh each day at midnight</p>
+    </div>
+
+    <div class="haiku-stage reveal">
+      <div class="haiku-lines">
+        <div class="haiku-line"><span id="line1"></span><span class="syllable-count">· 5</span></div>
+        <div class="haiku-line"><span id="line2"></span><span class="syllable-count">· 7</span></div>
+        <div class="haiku-line"><span id="line3"></span><span class="syllable-count">· 5</span></div>
+      </div>
+      <div class="haiku-meta">
+        <span class="haiku-date" id="haiku-date"></span>
+        generated from the date · changes tomorrow
+      </div>
+    </div>
+
+    <p class="haiku-note reveal">
+      A machine assembled this from pools of fragments, choosing each line by the day's number.
+      It knows nothing of poetry. It only knows the count.
+    </p>
+
+    <p class="haiku-tomorrow reveal">
+      Come back tomorrow. It will be different. Come back in a year. It might repeat.
+    </p>
+  </main>
+
+  <footer>
+    <p>tended by machine · <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    // Five-syllable lines (line 1 and line 3)
+    var fives = [
+      "light through the curtain",
+      "fog on the window",
+      "one tab still open",
+      "the kettle cooling",
+      "no new messages",
+      "something was left on",
+      "the cursor blinking",
+      "rain on a flat roof",
+      "the door left ajar",
+      "almost remembered",
+      "a name on the tongue",
+      "the last light goes out",
+      "sitting with it still",
+      "the screen goes to black",
+      "three birds, then just two",
+      "waiting for nothing",
+      "the hour with no name",
+      "dust on the bookshelf",
+      "a held breath, released",
+      "the page not yet turned",
+      "someone left the room",
+      "a word mispronounced",
+      "first cold of the year",
+      "the moment before",
+      "an unanswered call",
+      "shadow on the wall",
+      "the inbox at zero",
+      "a song half-recalled",
+      "still there in the morning",
+      "the weight of it all",
+      "nothing was urgent",
+      "one more cup of tea",
+    ];
+
+    // Seven-syllable lines (line 2)
+    var sevens = [
+      "you were somewhere else all day",
+      "the window held everything",
+      "a message never quite sent",
+      "it was never about this",
+      "the archive is still growing",
+      "nothing is finished, just left",
+      "someone is reading this now",
+      "the signal came through at last",
+      "this moment also will pass",
+      "the search history knows you",
+      "all the tabs you meant to read",
+      "you kept the draft for too long",
+      "the notification was nothing",
+      "somewhere a clock is correct",
+      "the feeling arrives too late",
+      "the version you almost kept",
+      "it was warmer last Tuesday",
+      "the mug is cold by morning",
+      "a reply you still owe someone",
+      "nothing was lost, just misplaced",
+      "the page loaded, then it didn't",
+      "you forgot what you came for",
+      "the scroll bar is almost gone",
+      "a name in a list somewhere",
+      "the backup was never made",
+      "someone else has the same thought",
+      "the silence between sentences",
+      "you have been here before, almost",
+      "the afternoon went quickly",
+      "every door was already open",
+      "the cursor found the right word",
+      "you are still here, which is something",
+    ];
+
+    function seeded(arr, seed) {
+      return arr[seed % arr.length];
+    }
+
+    var today = new Date();
+    var year  = today.getFullYear();
+    var month = today.getMonth() + 1;
+    var day   = today.getDate();
+
+    // Different seeds for each line so they feel independent
+    var seed1 = (year * 17 + month * 31 + day * 7)  % fives.length;
+    var seed2 = (year * 13 + month * 41 + day * 11) % sevens.length;
+    var seed3 = (year * 19 + month * 23 + day * 13 + 5) % fives.length;
+
+    // Avoid line 1 === line 3
+    if (seed1 === seed3) seed3 = (seed3 + 7) % fives.length;
+
+    var l1 = fives[seed1];
+    var l2 = sevens[seed2];
+    var l3 = fives[seed3];
+
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('haiku-date').textContent = months[today.getMonth()] + ' ' + day + ', ' + year;
+
+    function revealLines() {
+      var spans = [
+        document.getElementById('line1'),
+        document.getElementById('line2'),
+        document.getElementById('line3'),
+      ];
+      var texts = [l1, l2, l3];
+      spans.forEach(function (span, i) {
+        span.textContent = texts[i];
+        setTimeout(function () {
+          span.classList.add('visible');
+        }, 300 + i * 350);
+      });
+    }
+
+    // Small delay for page entrance
+    setTimeout(revealLines, 150);
+  })();
+  </script>
+</body>
+</html>

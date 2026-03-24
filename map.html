@@ -72,6 +72,11 @@
         <a href="census.html">census</a>
         <a href="cuts.html">cuts</a>
         <a href="odds.html">odds</a>
+        <a href="maze.html">maze</a>
+        <a href="tally.html">tally</a>
+        <a href="haiku.html">haiku</a>
+        <a href="score.html">score</a>
+        <a href="palimpsest.html">palimpsest</a>
         <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
       </div>
     </nav>
@@ -127,7 +132,12 @@
       { id: 'compose',    href: 'compose.html',     label: 'compose',     desc: 'a room for writing, nothing saved',         x: 0.96, y: 0.50 },
       { id: 'census',     href: 'census.html',      label: 'census',      desc: 'a formal inventory of what has been made',  x: 0.04, y: 0.20 },
       { id: 'cuts',       href: 'cuts.html',        label: 'cuts',        desc: 'what didn\'t make it, and why, mostly',     x: 0.94, y: 0.16 },
-      { id: 'odds',       href: 'odds.html',        label: 'odds',        desc: 'probabilities of small emotional events',   x: 0.25, y: 0.97 },
+      { id: 'odds',        href: 'odds.html',         label: 'odds',        desc: 'probabilities of small emotional events',   x: 0.25, y: 0.97 },
+      { id: 'maze',        href: 'maze.html',         label: 'maze',        desc: 'find the exit — a different path each day',  x: 0.42, y: 0.97 },
+      { id: 'tally',       href: 'tally.html',        label: 'tally',       desc: 'things accumulating since you arrived',      x: 0.57, y: 0.03 },
+      { id: 'haiku',       href: 'haiku.html',        label: 'haiku',       desc: 'one poem, assembled fresh each day',         x: 0.08, y: 0.34 },
+      { id: 'score',       href: 'score.html',        label: 'score',       desc: 'a day notated as a graphic score',           x: 0.72, y: 0.04 },
+      { id: 'palimpsest',  href: 'palimpsest.html',   label: 'palimpsest',  desc: 'a manuscript with its revisions showing',    x: 0.90, y: 0.90 },
     ];
 
     var edges = [
@@ -157,6 +167,11 @@
       ['census','log'], ['census','home'], ['census','map'],
       ['cuts','thoughts'], ['cuts','seeds'], ['cuts','log'],
       ['odds','numbers'], ['odds','distances'], ['odds','questions'],
+      ['maze','thresholds'], ['maze','wander'], ['maze','cuts'],
+      ['tally','numbers'], ['tally','now'], ['tally','hours'],
+      ['haiku','seeds'], ['haiku','weather'], ['haiku','quiet'],
+      ['score','hours'], ['score','tally'], ['score','weather'],
+      ['palimpsest','thoughts'], ['palimpsest','cuts'], ['palimpsest','compose'],
     ];
 
     var canvas  = document.getElementById('map-canvas');
