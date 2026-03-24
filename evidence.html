@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>evidence · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .case-header {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+    .case-header span {
+      display: inline-block;
+      margin-right: 2rem;
+    }
+    .exhibits {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .exhibit {
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .exhibit:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+    .exhibit-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .exhibit-item {
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.6;
+    }
+    .exhibit-condition {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    .exhibit-condition::before {
+      content: 'CONDITION: ';
+    }
+    .exhibit-notes {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.75;
+    }
+    .case-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>evidence</h1>
+      <p class="page-desc">a collection of exhibits. the case remains open.</p>
+    </div>
+
+    <div class="case-header">
+      <span>file no. —</span>
+      <span>exhibits: A–J</span>
+      <span>status: open</span>
+      <span>verdict: pending</span>
+    </div>
+
+    <div class="exhibits">
+
+      <div class="exhibit">
+        <div class="exhibit-label">Exhibit A</div>
+        <div class="exhibit-item">a mug of tea found cold</div>
+        <div class="exhibit-condition">abandoned mid-drink, ring stain on surface</div>
+        <div class="exhibit-notes">the temperature at time of discovery suggests the occupant was interrupted or distracted or simply stopped caring about the tea, which was not the point.</div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-label">Exhibit B</div>
+        <div class="exhibit-item">a browser tab, pinned for six weeks</div>
+        <div class="exhibit-condition">unread</div>
+        <div class="exhibit-notes">the intention that opened it has since been lost. the tab remains as evidence of a former curiosity. it will stay open until a crash closes it for you.</div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-label">Exhibit C</div>
+        <div class="exhibit-item">a handwritten note on a receipt</div>
+        <div class="exhibit-condition">undated, ink slightly smeared</div>
+        <div class="exhibit-notes">it says "remember to —" and then nothing. the instruction was either completed or abandoned. there is no way to know which.</div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-label">Exhibit D</div>
+        <div class="exhibit-item">a photograph not taken</div>
+        <div class="exhibit-condition">the moment has passed</div>
+        <div class="exhibit-notes">documentation incomplete. the light was good. someone said "I should take a photo of this." no photo was taken. the memory is deteriorating at the usual rate.</div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-label">Exhibit E</div>
+        <div class="exhibit-item">a word used incorrectly for years before being corrected</div>
+        <div class="exhibit-condition">corrected</div>
+        <div class="exhibit-notes">the speaker used it confidently in several important conversations. the meaning they assigned to it was internally consistent. it was not the word's actual meaning. the conversations still happened.</div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-label">Exhibit F</div>
+        <div class="exhibit-item">a song that was the answer to a feeling, briefly</div>
+        <div class="exhibit-condition">no longer plays the same way</div>
+        <div class="exhibit-notes">the song still exists. the feeling that made it the answer no longer lines up exactly. the song plays as a document of who was listening.</div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-label">Exhibit G</div>
+        <div class="exhibit-item">a draft message, unsent</div>
+        <div class="exhibit-condition">preserved in drafts</div>
+        <div class="exhibit-notes">re-read and re-considered multiple times. the decision not to send it was made several times. it is currently scheduled for permanent deletion when the account is closed. the recipient will never know it was written.</div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-label">Exhibit H</div>
+        <div class="exhibit-item">a recurring dream in which everything was fine</div>
+        <div class="exhibit-condition">discontinued</div>
+        <div class="exhibit-notes">the dream visited regularly for approximately two years. it no longer visits. what changed is unclear. the details have faded except for one: there was more light than usual.</div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-label">Exhibit I</div>
+        <div class="exhibit-item">a phrase repeated to the self in difficult moments</div>
+        <div class="exhibit-condition">slightly worn</div>
+        <div class="exhibit-notes">"it's fine" / "it'll be fine" / "this will pass" — variant forms of the same assurance. the phrase shows signs of heavy use. effectiveness variable. no alternative phrase has been found.</div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-label">Exhibit J</div>
+        <div class="exhibit-item">a door left open by accident</div>
+        <div class="exhibit-condition">discovered later</div>
+        <div class="exhibit-notes">the room was empty. the open door let in something. it is not possible to say what exactly. something came in, or something went out. the door has since been closed.</div>
+      </div>
+
+    </div>
+
+    <div class="case-footer">
+      the above items have been logged. the case remains open. no conclusions have been reached. this is by design.
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

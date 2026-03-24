@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>translation · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .word-list {
+      list-style: none;
+    }
+
+    .word-entry {
+      padding: 2.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .word-entry:first-child {
+      padding-top: 0;
+    }
+
+    .word-head {
+      margin-bottom: 1rem;
+    }
+
+    .word-term {
+      display: block;
+      font-size: 1.85rem;
+      font-weight: normal;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.45rem;
+    }
+
+    .word-meta {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.1rem;
+    }
+
+    .word-lang {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--accent);
+      padding: 0.1rem 0.5rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      opacity: 0.85;
+    }
+
+    .word-pron {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .word-def {
+      font-style: italic;
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .word-note {
+      font-size: 0.93rem;
+      line-height: 1.8;
+      color: var(--text);
+      opacity: 0.88;
+    }
+
+    .word-note p + p {
+      margin-top: 0.65rem;
+    }
+
+    .trans-footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 580px) {
+      .word-term { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>translation</h1>
+      <p class="page-desc">words from other languages for feelings that have no English name</p>
+    </div>
+
+    <ul class="word-list reveal">
+
+      <li class="word-entry">
+        <div class="word-head">
+          <span class="word-term">saudade</span>
+          <div class="word-meta">
+            <span class="word-lang">Portuguese</span>
+            <span class="word-pron">/sow-DAH-djee/</span>
+          </div>
+        </div>
+        <span class="word-def">a deep, melancholic longing for something absent, that may never return; can be for a place, person, or state that perhaps never existed</span>
+        <div class="word-note">
+          <p>Saudade is sometimes called the defining emotion of the Portuguese soul, which says something about what it means to have built an entire national identity around a feeling that is specifically about incompleteness. It does not want resolution — it would become something smaller if resolved. The longing is the point.</p>
+          <p>There is a version of saudade for things that probably never happened the way you remember them. The word holds that too: the grief for an idealized past that was always already a construction. You can miss something that was never quite real and that missing is no less genuine for it.</p>
+        </div>
+      </li>
+
+      <li class="word-entry">
+        <div class="word-head">
+          <span class="word-term">fernweh</span>
+          <div class="word-meta">
+            <span class="word-lang">German</span>
+            <span class="word-pron">/FERN-vay/</span>
+          </div>
+        </div>
+        <span class="word-def">far-sickness; the ache for distant places; the opposite of homesickness; wanting to be somewhere you have never been</span>
+        <div class="word-note">
+          <p>Fern means far, weh means pain or ache. It is the inverse of Heimweh — homesickness — but it is not its opposite in any simple sense. Homesickness is a pull toward something known. Fernweh is a pull toward something unspecified: not a destination but a direction, not a place but a quality of elsewhere.</p>
+          <p>The curious thing about fernweh is that arriving doesn't cure it. You can travel to the distant place and find the feeling traveling with you, having moved its target. The ache relocates. This suggests it is not really about geography at all — it is about the way the imagination outpaces the body, and always will.</p>
+        </div>
+      </li>
+
+      <li class="word-entry">
+        <div class="word-head">
+          <span class="word-term">mono no aware</span>
+          <div class="word-meta">
+            <span class="word-lang">Japanese</span>
+            <span class="word-pron">/moh-no no ah-WAH-ray/</span>
+          </div>
+        </div>
+        <span class="word-def">the bittersweet awareness of impermanence; the gentle sadness of passing things; the word contains both the thing and the feeling about the thing</span>
+        <div class="word-note">
+          <p>Mono no aware is often illustrated with cherry blossoms — beautiful precisely because they fall. The beauty and the brevity are not in tension. The brevity is the source of the beauty. Permanence would ruin it. This is not a consolation for loss; it is an argument that loss is part of the structure of value.</p>
+          <p>The phrase mono no aware includes the word mono, meaning thing, and aware, which carries a range of meanings from sensitivity to pathos to ahh — an exhale of feeling. The phrasing suggests that the things themselves are pathos-laden, that the sadness is not projected onto them from outside but is somehow intrinsic. The world is already feeling something. You are joining it.</p>
+        </div>
+      </li>
+
+      <li class="word-entry">
+        <div class="word-head">
+          <span class="word-term">mamihlapinatapai</span>
+          <div class="word-meta">
+            <span class="word-lang">Yagán</span>
+            <span class="word-pron">/mah-mee-la-PEE-nah-tah-pie/</span>
+          </div>
+        </div>
+        <span class="word-def">the wordless, shared glance between two people who both want the same thing but neither will begin</span>
+        <div class="word-note">
+          <p>Yagán is an indigenous language of Tierra del Fuego, and mamihlapinatapai is among the most precise words in any language for a specific kind of suspended moment: the mutual recognition of a shared desire, held in suspension by mutual reluctance, the whole thing passing between two people in a look.</p>
+          <p>It has been called the most succinct word in the world. That it takes six syllables to say and an entire sentence to explain suggests that succinct is not quite the word — what it is, is exact. English can describe the situation but cannot name it. Naming it collapses the distance between the two people slightly. The word is an acknowledgment that this has happened, that it has a shape, that the shape has been noticed.</p>
+        </div>
+      </li>
+
+      <li class="word-entry">
+        <div class="word-head">
+          <span class="word-term">hiraeth</span>
+          <div class="word-meta">
+            <span class="word-lang">Welsh</span>
+            <span class="word-pron">/HEER-eyeth/</span>
+          </div>
+        </div>
+        <span class="word-def">a homesickness for a home you cannot return to, or that never existed; grief for the lost places of the self</span>
+        <div class="word-note">
+          <p>Hiraeth is related to saudade in its grief for the unreachable past, but where saudade is often described as bittersweet, hiraeth carries more weight. It is a longing that acknowledges impossibility — you cannot go back because the place is gone, or because you are different, or because it was never quite the way you remember it.</p>
+          <p>The Welsh use it to describe a national feeling — a longing for Wales, for a Welsh way of being, that persists even among those who have never left. This suggests hiraeth is less about a specific place than about an imagined wholeness: the home as a concept, as a condition of feeling at ease in the world, which may be something no one ever fully had and everyone has lost.</p>
+        </div>
+      </li>
+
+      <li class="word-entry">
+        <div class="word-head">
+          <span class="word-term">toska</span>
+          <div class="word-meta">
+            <span class="word-lang">Russian</span>
+            <span class="word-pron">/TOSS-kah/</span>
+          </div>
+        </div>
+        <span class="word-def">a spiritual anguish with no specific cause; a longing with nothing to long for; Nabokov described it as "a dull ache of the soul"</span>
+        <div class="word-note">
+          <p>Nabokov, who had reason to know both Russian and longing, wrote that toska is "at its deepest and most painful, it is a sensation of great spiritual anguish, often without any specific cause. At less morbid levels it is a dull ache of the soul, a longing with nothing to long for, a sick pining, a vague restlessness, mental throes, yearning."</p>
+          <p>What distinguishes toska from ordinary sadness or depression is the absence of object. There is nothing wrong you can point to. This makes it harder to treat and, in some ways, more honest — it is the feeling that the world is structured in a way that produces this ache, that no particular change would fix it. The soul is homesick for something that doesn't exist as a place.</p>
+        </div>
+      </li>
+
+      <li class="word-entry">
+        <div class="word-head">
+          <span class="word-term">ya'aburnee</span>
+          <div class="word-meta">
+            <span class="word-lang">Arabic</span>
+            <span class="word-pron">/ya-ah-BOOR-nee/</span>
+          </div>
+        </div>
+        <span class="word-def">"may you bury me"; the wish to die before someone you love, so you will not have to live in a world without them</span>
+        <div class="word-note">
+          <p>Ya'aburnee is a term of endearment — it is said to people you love, as a declaration of that love. The love is measured precisely by the unwillingness to outlive: if I love you enough to hope I die first, I love you enough that your absence would be unbearable. It is a compliment constructed out of imagined grief.</p>
+          <p>There is something uncomfortable in the word, and also something very true. The uncomfortable part is that it is, structurally, a wish for the other person to grieve you. The true part is that this is often how love works — it produces in us a desperate unwillingness to be left, dressed up as selflessness, expressed as something that sounds, in translation, almost frightening. May you bury me. Which is to say: I cannot imagine the world without you. I would rather not be in it.</p>
+        </div>
+      </li>
+
+      <li class="word-entry">
+        <div class="word-head">
+          <span class="word-term">komorebi</span>
+          <div class="word-meta">
+            <span class="word-lang">Japanese</span>
+            <span class="word-pron">/koh-moh-REH-bee/</span>
+          </div>
+        </div>
+        <span class="word-def">the interplay of light and leaves when sunlight filters through trees; the dappling of light through moving foliage</span>
+        <div class="word-note">
+          <p>Komorebi is the light that comes through leaves specifically — not sunlight in general, but sunlight interrupted and redistributed by foliage. The word isolates this particular quality of light as worthy of its own name, distinct from all other light. This is a form of attention: to say that the thing you see through the trees deserves its own word is to say that it is distinct and worth distinguishing.</p>
+          <p>Unlike most of the words on this page, komorebi carries no grief and no longing. It is simply a notation for a specific beauty. The fact that it does not translate well into English suggests that English has not learned to slow down for this particular thing — or that the cultures which originated English were not, for whatever reasons of weather or climate, in the habit of noticing the light through the trees long enough to name it.</p>
+        </div>
+      </li>
+
+      <li class="word-entry">
+        <div class="word-head">
+          <span class="word-term">uitwaaien</span>
+          <div class="word-meta">
+            <span class="word-lang">Dutch</span>
+            <span class="word-pron">/OWT-vah-yen/</span>
+          </div>
+        </div>
+        <span class="word-def">to walk in the wind for the pleasure of it; to clear the head; the practice of going outside to feel the weather</span>
+        <div class="word-note">
+          <p>Uitwaaien is a verb — something you do, rather than something you feel. It describes going out in the wind specifically to be in the wind: not to get somewhere, not to exercise in any goal-directed way, but to let the weather work on you. The wind clears the head. You come back slightly changed.</p>
+          <p>There is a philosophy embedded in the word: that the outside world, and specifically its weather, is capable of doing something to the inside world that cannot be accomplished any other way. That sometimes the way through a tangled thought is simply to go stand in the wind for a while. Dutch has a specific word for this because, presumably, the Dutch have noticed that it works.</p>
+        </div>
+      </li>
+
+      <li class="word-entry">
+        <div class="word-head">
+          <span class="word-term">forelsket</span>
+          <div class="word-meta">
+            <span class="word-lang">Norwegian</span>
+            <span class="word-pron">/for-EL-sket/</span>
+          </div>
+        </div>
+        <span class="word-def">the euphoria of falling in love for the first time; a word for the feeling before language catches up to the feeling</span>
+        <div class="word-note">
+          <p>Forelsket describes the early phase — the specific quality of falling in love before it has settled into something more ordinary, more known. The feeling of not yet knowing how the story ends. The suspension of uncertainty that, in retrospect, turns out to have been the best part.</p>
+          <p>Most words for love describe it in retrospect or in its stable state. Forelsket names the transitional phase: the moment of being caught mid-fall, before you've landed anywhere. It is the word for when you don't know yet and the not-knowing is still thrilling rather than frightening — before the emotion has been classified and categorized and made manageable. Before you have a word for it. This is a word for having no words.</p>
+        </div>
+      </li>
+
+    </ul>
+
+    <p class="trans-footer">these words exist because the feelings came first. the naming followed, slowly, in languages patient enough to try.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

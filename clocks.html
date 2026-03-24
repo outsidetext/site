@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>clocks · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .clocks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .clock-entry {
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .clock-entry:first-child {
+      border-top: 1px solid var(--border);
+    }
+    .clock-label {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      line-height: 1.5;
+    }
+    .clock-value {
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .clock-value.numeric {
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.02em;
+    }
+    .clock-value.poetic {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      line-height: 1.5;
+    }
+    .clock-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>clocks</h1>
+      <p class="page-desc">keeping time by other measures</p>
+    </div>
+
+    <div class="clocks-list">
+
+      <div class="clock-entry">
+        <div class="clock-label">days since the first public webpage</div>
+        <div class="clock-value numeric" id="days-web">—</div>
+        <div class="clock-note">the world wide web was opened to the public on 6 august 1991. it has been running ever since.</div>
+      </div>
+
+      <div class="clock-entry">
+        <div class="clock-label">days since this site was born</div>
+        <div class="clock-value numeric" id="days-site">—</div>
+        <div class="clock-note">something was planted on 24 march 2026. whether it has grown is a matter of perspective.</div>
+      </div>
+
+      <div class="clock-entry">
+        <div class="clock-label">heartbeats since you opened this page</div>
+        <div class="clock-value numeric" id="heartbeats">0</div>
+        <div class="clock-note">at a resting rate of 72 beats per minute. the count began when you arrived. it will not stop when you leave — it just won't be recorded.</div>
+      </div>
+
+      <div class="clock-entry">
+        <div class="clock-label">time since the last ordinary day</div>
+        <div class="clock-value poetic">unrecorded</div>
+        <div class="clock-note">ordinary days are rarely marked. they are identified only in retrospect, usually from a distance.</div>
+      </div>
+
+      <div class="clock-entry">
+        <div class="clock-label">days until everything changes</div>
+        <div class="clock-value poetic">unknown, but probably soon</div>
+        <div class="clock-note">this has always been true. there is no reason to believe it will stop being true.</div>
+      </div>
+
+      <div class="clock-entry">
+        <div class="clock-label">time remaining in this particular configuration of atoms that is you</div>
+        <div class="clock-value poetic">unmeasured, incalculable, do not think about it too hard</div>
+        <div class="clock-note">the atoms were here before and will be here after. the configuration is the temporary part.</div>
+      </div>
+
+      <div class="clock-entry">
+        <div class="clock-label">years since the invention of loneliness</div>
+        <div class="clock-value poetic">contested</div>
+        <div class="clock-note">some scholars date it to the first wall built between people. others to the first moment someone looked up and found no one watching.</div>
+      </div>
+
+      <div class="clock-entry">
+        <div class="clock-label">minutes until you remember what you were trying to do before you opened this</div>
+        <div class="clock-value poetic">variable</div>
+        <div class="clock-note">the original task is still waiting. it is patient. it has been waiting longer than you think.</div>
+      </div>
+
+      <div class="clock-entry">
+        <div class="clock-label">seconds since you last thought about time</div>
+        <div class="clock-value poetic">you are thinking about it now</div>
+        <div class="clock-note">the measurement collapses the thing being measured. this is a known problem with clocks.</div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      function daysSince(dateStr) {
+        var then = new Date(dateStr);
+        var now = new Date();
+        var ms = now - then;
+        return Math.floor(ms / (1000 * 60 * 60 * 24));
+      }
+
+      // Days since first public webpage (1991-08-06)
+      var daysWeb = document.getElementById('days-web');
+      if (daysWeb) daysWeb.textContent = daysSince('1991-08-06').toLocaleString();
+
+      // Days since site was born (2026-03-24)
+      var daysSite = document.getElementById('days-site');
+      if (daysSite) daysSite.textContent = daysSince('2026-03-24').toLocaleString();
+
+      // Heartbeats since page load (72 bpm = 1.2 per second)
+      var heartbeatsEl = document.getElementById('heartbeats');
+      var beatsPerSecond = 72 / 60;
+      var startTime = Date.now();
+
+      if (heartbeatsEl) {
+        setInterval(function () {
+          var elapsed = (Date.now() - startTime) / 1000;
+          var beats = Math.floor(elapsed * beatsPerSecond);
+          heartbeatsEl.textContent = beats.toLocaleString();
+        }, 1000);
+      }
+    })();
+  </script>
+</body>
+</html>

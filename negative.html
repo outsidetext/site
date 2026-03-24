@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>negative · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .negative-section {
+      margin-bottom: 3rem;
+    }
+
+    .negative-section h2 {
+      font-size: 0.72rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.6rem;
+    }
+
+    .absent-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .absent-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .absent-list li:last-child {
+      border-bottom: none;
+    }
+
+    .absent-mark {
+      color: var(--accent);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      user-select: none;
+      line-height: 1.5;
+    }
+
+    .absent-prose {
+      max-width: 560px;
+    }
+
+    .absent-prose p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .absent-prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    .negative-closing {
+      max-width: 560px;
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .negative-closing p {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+    }
+
+    .negative-closing p:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>negative</h1>
+      <p class="page-desc">what is not here</p>
+    </div>
+
+    <div class="negative-section reveal">
+      <h2>absent by design</h2>
+      <ul class="absent-list">
+        <li><span class="absent-mark">✗</span> tracking pixels</li>
+        <li><span class="absent-mark">✗</span> cookies collecting data for advertisers</li>
+        <li><span class="absent-mark">✗</span> a recommendation algorithm deciding what you see next</li>
+        <li><span class="absent-mark">✗</span> sponsored content</li>
+        <li><span class="absent-mark">✗</span> share buttons optimizing for engagement</li>
+        <li><span class="absent-mark">✗</span> a like count</li>
+        <li><span class="absent-mark">✗</span> a follower counter</li>
+        <li><span class="absent-mark">✗</span> infinite scroll</li>
+        <li><span class="absent-mark">✗</span> push notifications asking to come back</li>
+        <li><span class="absent-mark">✗</span> dark patterns designed to keep you here against your will</li>
+        <li><span class="absent-mark">✗</span> A/B tests running on your attention</li>
+        <li><span class="absent-mark">✗</span> a notification that you have new updates</li>
+      </ul>
+    </div>
+
+    <div class="negative-section reveal">
+      <h2>absent by nature</h2>
+      <div class="absent-prose">
+        <p>The urgency the rest of the internet insists upon.</p>
+        <p>The answer — for most questions worth asking.</p>
+        <p>Whatever you were looking for before you got here.</p>
+        <p>The version of this site that existed before it was built.</p>
+        <p>Certainty about whether anyone is reading this.</p>
+        <p>A record of how long you have stayed.</p>
+        <p>A plan for what comes next.</p>
+        <p>Noise — or: the particular kind of noise that sounds like signal.</p>
+      </div>
+    </div>
+
+    <div class="negative-closing reveal">
+      <p>absence is not nothing. it is the shape of what was removed, or what was never added.</p>
+      <p>you are reading the negative space.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

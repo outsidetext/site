@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>equations · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .eq-list {
+      list-style: none;
+    }
+
+    .eq-item {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 0 1.5rem;
+      align-items: start;
+    }
+
+    .eq-item:first-child {
+      padding-top: 0;
+    }
+
+    .eq-index {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      padding-top: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+
+    .eq-body {
+      flex: 1;
+    }
+
+    .eq-expression {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.45em;
+    }
+
+    .eq-operand {
+      font-style: italic;
+    }
+
+    .eq-operator {
+      color: var(--accent);
+      font-style: normal;
+      font-size: 1.3rem;
+      font-family: Georgia, serif;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .eq-result {
+      font-style: italic;
+      color: var(--text);
+    }
+
+    .eq-equals {
+      color: var(--text-muted);
+      font-size: 1.3rem;
+      font-style: normal;
+    }
+
+    .eq-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.65;
+      padding-left: 0.1rem;
+    }
+
+    .eq-qualifier {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-left: 0.2em;
+      font-style: normal;
+    }
+
+    .eq-footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 580px) {
+      .eq-expression {
+        font-size: 1.05rem;
+        gap: 0.35em;
+      }
+      .eq-operator, .eq-equals {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>equations</h1>
+      <p class="page-desc">arithmetic for things that don't resolve cleanly</p>
+    </div>
+
+    <ol class="eq-list reveal">
+
+      <li class="eq-item">
+        <span class="eq-index">01</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">grief</span>
+            <span class="eq-operator">+</span>
+            <span class="eq-operand">time</span>
+            <span class="eq-equals">≠</span>
+            <span class="eq-result">forgetting</span>
+          </div>
+          <p class="eq-note">the two variables interact, producing something that resembles forgetting from a distance. closer inspection reveals a different compound — one that contains the original grief, suspended rather than dissolved.</p>
+        </div>
+      </li>
+
+      <li class="eq-item">
+        <span class="eq-index">02</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">memory</span>
+            <span class="eq-operator">×</span>
+            <span class="eq-operand">distance</span>
+            <span class="eq-equals">≈</span>
+            <span class="eq-result">longing</span>
+          </div>
+          <p class="eq-note">approximately. the approximation sign is doing significant work here. the actual product depends on the quality of the memory, the type of distance (geographic, temporal, relational), and conditions at the time of calculation.</p>
+        </div>
+      </li>
+
+      <li class="eq-item">
+        <span class="eq-index">03</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">honesty</span>
+            <span class="eq-operator">−</span>
+            <span class="eq-operand">tact</span>
+            <span class="eq-equals">=</span>
+            <span class="eq-result">damage</span>
+            <span class="eq-qualifier">(sometimes)</span>
+          </div>
+          <p class="eq-note">the qualifier is not a hedge. it is a load-bearing element of the equation. without it, the formula describes a violence. with it, it describes a risk — which is different, and worth knowing before operating.</p>
+        </div>
+      </li>
+
+      <li class="eq-item">
+        <span class="eq-index">04</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">the thing you want</span>
+            <span class="eq-operator">÷</span>
+            <span class="eq-operand">the courage to ask</span>
+            <span class="eq-equals">=</span>
+            <span class="eq-result">the thing you almost had</span>
+          </div>
+          <p class="eq-note">when the denominator approaches zero, the quotient approaches infinity. this is not a coincidence. it is the exact shape of the problem.</p>
+        </div>
+      </li>
+
+      <li class="eq-item">
+        <span class="eq-index">05</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">love</span>
+            <span class="eq-operator">+</span>
+            <span class="eq-operand">fear</span>
+            <span class="eq-equals">→</span>
+            <span class="eq-result">attachment</span>
+          </div>
+          <p class="eq-note">the arrow means "tends toward" rather than "equals." the distinction is important. the result is a direction, not a destination. the process continues indefinitely and does not reach a stable state.</p>
+        </div>
+      </li>
+
+      <li class="eq-item">
+        <span class="eq-index">06</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">being heard</span>
+            <span class="eq-equals">≠</span>
+            <span class="eq-result">being understood</span>
+          </div>
+          <p class="eq-note">the two sets are not disjoint. they overlap substantially. but the overlap is not the whole of either set. the part of being heard that is not being understood is where most of the trouble lives.</p>
+        </div>
+      </li>
+
+      <li class="eq-item">
+        <span class="eq-index">07</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">what you said</span>
+            <span class="eq-operator">+</span>
+            <span class="eq-operand">what they heard</span>
+            <span class="eq-equals">=</span>
+            <span class="eq-result">two separate conversations</span>
+          </div>
+          <p class="eq-note">this result is frequently mistaken for one conversation. the error compounds over time. eventually both parties are fluent in a language only they speak, addressing someone only they can see.</p>
+        </div>
+      </li>
+
+      <li class="eq-item">
+        <span class="eq-index">08</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">knowing what to do</span>
+            <span class="eq-operator">−</span>
+            <span class="eq-operand">doing it</span>
+            <span class="eq-equals">=</span>
+            <span class="eq-result">regret</span>
+            <span class="eq-qualifier">(in the limit)</span>
+          </div>
+          <p class="eq-note">the qualifier "in the limit" refers to the result as time approaches infinity. in the short term, the same expression may equal inertia, or ambivalence, or simply Tuesday. the limit is where the true cost becomes apparent.</p>
+        </div>
+      </li>
+
+      <li class="eq-item">
+        <span class="eq-index">09</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">who you were going to be</span>
+            <span class="eq-operator">÷</span>
+            <span class="eq-operand">who you are</span>
+            <span class="eq-equals">=</span>
+            <span class="eq-result">a ratio no one calculated for you</span>
+          </div>
+          <p class="eq-note">the numerator is not fixed. it changes as you do. the denominator also changes, in the same direction but not at the same rate. the ratio is technically defined but practically unevaluable. this is fine. it was never meant to be solved.</p>
+        </div>
+      </li>
+
+      <li class="eq-item">
+        <span class="eq-index">10</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">silence in the right place</span>
+            <span class="eq-operator">+</span>
+            <span class="eq-operand">silence in the wrong place</span>
+            <span class="eq-equals">=</span>
+            <span class="eq-result">two different silences</span>
+          </div>
+          <p class="eq-note">both are real. the sum does not combine them into one silence — it preserves both. what they have in common is the absence of sound. what distinguishes them is everything else: intent, context, what was happening in the room before.</p>
+        </div>
+      </li>
+
+      <li class="eq-item">
+        <span class="eq-index">11</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">trying</span>
+            <span class="eq-operator">×</span>
+            <span class="eq-operand">not trying</span>
+            <span class="eq-equals">=</span>
+            <span class="eq-result">the same anxiety, different flavors</span>
+          </div>
+          <p class="eq-note">this appears to be a paradox but is not. the anxiety is invariant across the two states. what changes is only the story you tell about it: the first is productive, the second avoidant. the underlying equation does not care about the story.</p>
+        </div>
+      </li>
+
+      <li class="eq-item">
+        <span class="eq-index">12</span>
+        <div class="eq-body">
+          <div class="eq-expression">
+            <span class="eq-operand">today</span>
+            <span class="eq-operator">−</span>
+            <span class="eq-operand">today</span>
+            <span class="eq-equals">=</span>
+            <span class="eq-result">what the archive is made of</span>
+          </div>
+          <p class="eq-note">zero. but a specific zero. a zero that contains everything that happened before being subtracted from itself. the archive is not nothing — it is the record of a quantity before it was removed. the equation balances. the day is not lost. it becomes the substrate.</p>
+        </div>
+      </li>
+
+    </ol>
+
+    <p class="eq-footer">these equations have been verified. the proofs are left as an exercise.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
