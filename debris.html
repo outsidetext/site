@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>debris · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .debris-frame {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--bg);
+      cursor: crosshair;
+      margin-bottom: 1rem;
+      user-select: none;
+    }
+    #debris-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .debris-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .debris-caught {
+      margin-top: 2rem;
+    }
+    .debris-caught h2 {
+      font-size: 0.78rem;
+      font-weight: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+    .debris-entry {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .debris-entry:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+    .debris-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .debris-text {
+      line-height: 1.55;
+      margin-bottom: 0.3rem;
+    }
+    .debris-story {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    #debris-empty {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>debris</h1>
+      <p>what the web leaves behind when it moves on</p>
+    </div>
+
+    <div class="debris-frame">
+      <canvas id="debris-canvas"></canvas>
+    </div>
+    <p class="debris-hint">click a fragment to catch it — read what it was</p>
+
+    <div class="debris-caught" id="debris-caught">
+      <h2>caught</h2>
+      <p id="debris-empty">nothing caught yet. click the drifting fragments above.</p>
+      <div id="debris-list"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('debris-canvas');
+    var ctx = canvas.getContext('2d');
+    var W = 0, H = 0;
+
+    var pieces = [
+      { label: '404 Not Found', story: 'The standard response. The page existed once, probably. Someone linked to it. The link outlived the page by years. This happens more than anyone tracks.' },
+      { label: 'Error 403: Forbidden', story: 'You\'re not allowed here. Maybe you were once. The rules changed while you weren\'t watching.' },
+      { label: 'This site is no longer active.', story: 'Posted as a farewell by someone who was still paying attention. Most sites don\'t get a farewell.' },
+      { label: 'Best viewed in Netscape Navigator', story: 'A warning from 1997. The site may still be there, malformed and patient, waiting for a browser that no longer runs.' },
+      { label: 'Object not found', story: 'The object exists somewhere. It just isn\'t here. The object doesn\'t know it\'s missing.' },
+      { label: 'Account deactivated.', story: 'The posts, the replies, the accumulated years of presence: gone in a single administrative action.' },
+      { label: 'This content has been removed.', story: 'Something violated something. Or someone requested removal. The sentence that remains is the same for both.' },
+      { label: 'ERR_CONNECTION_REFUSED', story: 'The server is there. It just won\'t talk to you. A closed door with the light on inside.' },
+      { label: 'Last updated: March 14, 2003', story: 'Then something happened. Or nothing did. The update stopped and the page kept serving from its own frozen moment.' },
+      { label: 'You need Flash Player to view this.', story: 'Flash Player is gone. The games, the animations, the interactive things: gone with it. A whole medium, ended.' },
+      { label: 'Hit counter: 847,221', story: 'Someone was counting who came. The counter stopped updating around 2006. The number is still there on a grey background.' },
+      { label: 'Page has moved permanently.', story: 'Follow the redirect. Then another. Then a 404. The permanent destination was also temporary.' },
+      { label: 'Sign up to read the rest.', story: 'The article is still there. The gate appeared one day. You don\'t remember agreeing to this.' },
+      { label: 'This user\'s profile is private.', story: 'They\'re still there. You just can\'t see them anymore. The conversation you had is still in your other inbox.' },
+      { label: 'Request Timeout', story: 'The server was working on it. Then it stopped. What it was doing is anyone\'s guess.' },
+      { label: 'Under Construction 🚧', story: 'Posted in 1999 as a promise. The scaffolding stayed. The building never came. The gif still animated.' },
+      { label: 'Download Internet Explorer 6', story: 'The button still renders on some pages, pointing to a file that no longer exists on servers that may not exist either.' },
+      { label: 'Sorry, this video has been removed.', story: 'A window into something that existed, now curtained. The comments underneath still refer to it in present tense.' },
+      { label: 'Connection reset by peer.', story: 'One side stopped listening mid-sentence. Happens in conversations too, but at least there you know.' },
+      { label: 'This service is shutting down on April 30.', story: 'A fixed date. Some people exported their data. Most didn\'t. The deadline passed. The service ended. The data went with it.' },
+      { label: 'Site archived by the Wayback Machine.', story: 'Someone thought this was worth keeping. A machine took a snapshot. The snapshot is still there, waiting to be found.' },
+      { label: 'Welcome to my homepage!', story: '1996. Hand-coded. Frames and a tiled background. The person who made this was delighted to exist on the internet. They may still be.' },
+      { label: 'Your session has expired.', story: 'You had to start over. Whatever you\'d typed is gone. The form is blank again, patient, waiting.' },
+      { label: 'This domain is for sale.', story: 'Something that was a place is now a transaction. The price is listed. No one is buying.' },
+      { label: 'We are experiencing technical difficulties.', story: 'The passive voice of institutional failure. Something broke. No one is named.' }
+    ];
+
+    // Each particle in the simulation
+    var particles = [];
+
+    function isDark() {
+      return document.documentElement.getAttribute('data-theme') === 'dark';
+    }
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = rect.width;
+      H = rect.height;
+      canvas.width = W;
+      canvas.height = H;
+      // re-clamp positions
+      particles.forEach(function (p) {
+        p.x = Math.min(p.x, W - 10);
+        p.y = Math.min(p.y, H - 10);
+      });
+    }
+
+    function spawnParticle(piece) {
+      var margin = 20;
+      return {
+        piece: piece,
+        x: margin + Math.random() * (W - margin * 2),
+        y: margin + Math.random() * (H - margin * 2),
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4 + 0.08,
+        alpha: 0.25 + Math.random() * 0.4,
+        size: 10 + Math.floor(Math.random() * 3),
+        caught: false,
+        catching: false,
+        catchAlpha: 1,
+        rotation: (Math.random() - 0.5) * 0.04,
+        angle: (Math.random() - 0.5) * 0.3,
+      };
+    }
+
+    function init() {
+      particles = [];
+      // Spawn a subset of pieces
+      var shuffled = pieces.slice().sort(function () { return Math.random() - 0.5; });
+      var count = Math.min(18, shuffled.length);
+      for (var i = 0; i < count; i++) {
+        particles.push(spawnParticle(shuffled[i]));
+      }
+    }
+
+    function draw() {
+      var dark = isDark();
+      ctx.clearRect(0, 0, W, H);
+
+      particles.forEach(function (p) {
+        if (p.caught) return;
+
+        // Drift
+        p.x += p.vx;
+        p.y += p.vy;
+        p.angle += p.rotation * 0.01;
+
+        // Bounce
+        if (p.x < 4) { p.vx = Math.abs(p.vx); }
+        if (p.x > W - 4) { p.vx = -Math.abs(p.vx); }
+        if (p.y < 4) { p.vy = Math.abs(p.vy); }
+        if (p.y > H - 4) { p.vy = -Math.abs(p.vy); }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.angle);
+        ctx.globalAlpha = p.alpha;
+        ctx.font = p.size + 'px Courier New, monospace';
+        ctx.fillStyle = dark ? 'rgba(232,229,223,0.9)' : 'rgba(26,26,26,0.9)';
+        ctx.textAlign = 'center';
+        ctx.fillText(p.piece.label, 0, 0);
+        ctx.restore();
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    function catch_(mx, my) {
+      // find closest particle within range
+      var best = null, bestDist = 40;
+      particles.forEach(function (p) {
+        if (p.caught) return;
+        var dx = p.x - mx, dy = p.y - my;
+        var d = Math.sqrt(dx*dx + dy*dy);
+        // also check if x is within text width approx
+        var approxWidth = p.piece.label.length * p.size * 0.5;
+        if (Math.abs(dx) < approxWidth + 10 && Math.abs(dy) < p.size + 5) {
+          if (d < bestDist || best === null) {
+            best = p;
+            bestDist = d;
+          }
+        }
+      });
+      if (!best) {
+        // try looser match
+        particles.forEach(function (p) {
+          if (p.caught) return;
+          var dx = p.x - mx, dy = p.y - my;
+          var d = Math.sqrt(dx*dx + dy*dy);
+          if (d < 60 && (best === null || d < bestDist)) {
+            best = p;
+            bestDist = d;
+          }
+        });
+      }
+      if (best) {
+        best.caught = true;
+        showCaught(best.piece);
+      }
+    }
+
+    function showCaught(piece) {
+      var emptyEl = document.getElementById('debris-empty');
+      if (emptyEl) emptyEl.style.display = 'none';
+
+      var list = document.getElementById('debris-list');
+      var entry = document.createElement('div');
+      entry.className = 'debris-entry';
+
+      var tag = document.createElement('div');
+      tag.className = 'debris-tag';
+      tag.textContent = '— caught';
+
+      var text = document.createElement('div');
+      text.className = 'debris-text';
+      text.textContent = piece.label;
+
+      var story = document.createElement('div');
+      story.className = 'debris-story';
+      story.textContent = piece.story;
+
+      entry.appendChild(tag);
+      entry.appendChild(text);
+      entry.appendChild(story);
+
+      // prepend
+      if (list.firstChild) {
+        list.insertBefore(entry, list.firstChild);
+      } else {
+        list.appendChild(entry);
+      }
+    }
+
+    canvas.addEventListener('click', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      var mx = (e.clientX - rect.left) * (W / rect.width);
+      var my = (e.clientY - rect.top) * (H / rect.height);
+      catch_(mx, my);
+    });
+
+    canvas.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var t = e.touches[0];
+      var rect = canvas.getBoundingClientRect();
+      var mx = (t.clientX - rect.left) * (W / rect.width);
+      var my = (t.clientY - rect.top) * (H / rect.height);
+      catch_(mx, my);
+    }, { passive: false });
+
+    var mo = new MutationObserver(function () {}); // theme changes: canvas redraws automatically
+    window.addEventListener('resize', function () {
+      resize();
+    });
+
+    resize();
+    init();
+    draw();
+  })();
+  </script>
+</body>
+</html>

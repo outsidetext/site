@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ritual · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ritual-wrap {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .ritual-day {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .ritual-body {
+      font-size: 1.25rem;
+      font-style: italic;
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+    .ritual-aside {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    .ritual-skip {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: Georgia, serif;
+      font-size: 0.85rem;
+      padding: 0.4rem 1rem;
+      border-radius: 3px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .ritual-skip:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .ritual-alt-note {
+      display: inline-block;
+      margin-left: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .ritual-separator {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+    .ritual-note-static {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>ritual</h1>
+      <p>a small practice, renewed each day</p>
+    </div>
+
+    <div class="ritual-wrap">
+      <div class="ritual-day" id="ritual-day"></div>
+      <div class="ritual-body" id="ritual-body"></div>
+      <div class="ritual-aside" id="ritual-aside"></div>
+
+      <button class="ritual-skip" id="ritual-skip">this ritual is not for me</button>
+      <span class="ritual-alt-note" id="ritual-alt-note"></span>
+
+      <hr class="ritual-separator">
+      <p class="ritual-note-static">rituals change at midnight. come back tomorrow for a different practice.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var rituals = [
+      { body: "Find something that has been in the same place for more than a year. Move it slightly. Notice how the room changes.", aside: "Not back. Somewhere new." },
+      { body: "The next time you make tea or coffee, watch the whole process without doing anything else.", aside: "Don't read. Don't look at your phone. Just watch." },
+      { body: "Write one sentence you will never send. Then delete it.", aside: "The writing is what matters, not the sending." },
+      { body: "Notice the last sound before you fall asleep tonight. Name it.", aside: "Even if the name is approximate." },
+      { body: "Find a word you use every day and look up its origin. Carry the etymology with you until tomorrow.", aside: "Etymology is a form of time travel." },
+      { body: "Stand at a window for two minutes without a device. Observe something outside at the edge of your attention.", aside: "The periphery is where things are." },
+      { body: "Say thank you to something that can't hear you — a tool, a chair, a room that has held you well.", aside: "Gratitude doesn't require a recipient to be present." },
+      { body: "Eat one thing today without reading or watching anything while you eat it.", aside: "Notice what the food actually tastes like." },
+      { body: "Open a book to a random page and read one paragraph. Let it mean whatever it means today.", aside: "Meaning is contextual. You are the context." },
+      { body: "Go outside at some point today without a specific purpose. Walk one block. Return.", aside: "The walk without destination is its own kind of arrival." },
+      { body: "Name three things you can see from where you are sitting that you've stopped noticing.", aside: "The familiar is only invisible by habit." },
+      { body: "Pause before you answer the next question someone asks you. Count two seconds first.", aside: "The pause is not nothing. It is space." },
+      { body: "Find the oldest object you own. Hold it for a moment. Try to remember when you acquired it.", aside: "Objects remember things we forget." },
+      { body: "Write down one thing you believed five years ago that you no longer believe. Don't judge either version.", aside: "Change is evidence of attention." },
+      { body: "The next time you're waiting — for a kettle, a bus, a page to load — don't fill the wait. Let it be a pause.", aside: "Waiting is practice for the larger waits." },
+      { body: "Notice what the light looks like in one room at one specific time today. It will never be exactly this again.", aside: "All light is impermanent. Most of it goes unwitnessed." },
+      { body: "Think of someone you haven't spoken to in over a year. You don't have to reach out. Just hold them in mind for a moment.", aside: "This is not guilt. It is attention." },
+      { body: "Write down the name of a song that made you feel something important. Don't listen to it. Just hold the memory of it.", aside: "Memory is its own medium." },
+      { body: "Before you open any screen today, take three slow breaths. Do this once, at a moment you choose.", aside: "You are allowed to arrive before you open." },
+      { body: "Find a sentence in something you're reading that seems made for today. Copy it somewhere.", aside: "Coincidence is a pattern we recognize from inside it." },
+      { body: "Spend two minutes doing absolutely nothing. No phone. No music. No task. Nothing is the task.", aside: "Two minutes is longer than you think." },
+      { body: "Think of something you're waiting to do until conditions are right. Name what you're actually waiting for.", aside: "The conditions may not come. The thing might still be possible." },
+      { body: "On your next walk, look up more than down. Notice what's above eye level.", aside: "The city above the shopfronts is mostly unwatched." },
+      { body: "Send a message to someone just to say you thought of them. No agenda. No ask.", aside: "Being thought of is its own small gift." },
+      { body: "Find a photograph you took more than three years ago. Look at it for a full minute.", aside: "Photography is light preserved. So is memory." },
+      { body: "Cook something by smell today — adjust seasoning by instinct, not recipe.", aside: "The recipe is a scaffold, not a law." },
+      { body: "Write a list of five things you're glad exist. They can be small. They can be enormous.", aside: "Gratitude lists work. There is no shame in using tools that work." },
+      { body: "Sit somewhere you don't usually sit — a different chair, a different room, the floor. Observe the familiar from an unfamiliar angle.", aside: "Position determines perspective." },
+      { body: "The next time someone asks how you are, give a more specific answer than you usually would.", aside: "Precision is a form of intimacy." },
+      { body: "Before sleep: name one thing today that was better than expected.", aside: "The expected is a floor, not a ceiling." },
+      { body: "Let today's ritual be the absence of ritual. Rest from practice. Notice what returns on its own.", aside: "Some days the practice is to stop practicing." }
+    ];
+
+    var alternatives = [
+      { body: "Sit still for one minute. Do not try to meditate. Just sit.", aside: "Stillness is a skill." },
+      { body: "Name something you're avoiding. You don't have to stop avoiding it. Just name it.", aside: "Naming is the first step, not the only one." },
+      { body: "Look at your hands for fifteen seconds.", aside: "They have done more than you remember." },
+      { body: "Read the last paragraph of a book you haven't finished.", aside: "The ending doesn't ruin the middle. It makes it real." },
+      { body: "Write down the first thing that comes to mind when you think of the word 'home.'", aside: "The first answer is usually the most honest." }
+    ];
+
+    var now = new Date();
+    var day = now.getDate();
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var ritual = rituals[(day - 1) % rituals.length];
+
+    document.getElementById('ritual-day').textContent = months[now.getMonth()] + ' ' + day + ', ' + now.getFullYear();
+    document.getElementById('ritual-body').textContent = ritual.body;
+    document.getElementById('ritual-aside').textContent = ritual.aside;
+
+    var skipped = false;
+    document.getElementById('ritual-skip').addEventListener('click', function () {
+      if (skipped) return;
+      var alt = alternatives[Math.floor(Math.random() * alternatives.length)];
+      document.getElementById('ritual-body').textContent = alt.body;
+      document.getElementById('ritual-aside').textContent = alt.aside;
+      document.getElementById('ritual-alt-note').textContent = 'an alternative, offered without judgment';
+      skipped = true;
+    });
+  })();
+  </script>
+</body>
+</html>

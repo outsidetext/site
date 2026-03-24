@@ -42,46 +42,10 @@
     <nav>
       <a href="./" class="site-name">website</a>
       <div class="nav-links">
-        <a href="thoughts.html">thoughts</a>
-        <a href="seeds.html">seeds</a>
-        <a href="wander.html">wander</a>
-        <a href="now.html">now</a>
-        <a href="letters.html">letters</a>
-        <a href="quiet.html">quiet</a>
-        <a href="glossary.html">glossary</a>
-        <a href="hours.html">hours</a>
-        <a href="questions.html">questions</a>
-        <a href="echoes.html">echoes</a>
-        <a href="colors.html">colors</a>
-        <a href="numbers.html">numbers</a>
-        <a href="things.html">things</a>
-        <a href="log.html">log</a>
-        <a href="drift.html">drift</a>
-        <a href="weather.html">weather</a>
         <a href="map.html">map</a>
-        <a href="portraits.html">portraits</a>
-        <a href="thresholds.html">thresholds</a>
-        <a href="signal.html">signal</a>
-        <a href="recipes.html">recipes</a>
-        <a href="field-notes.html">field notes</a>
-        <a href="distances.html">distances</a>
-        <a href="presence.html">presence</a>
-        <a href="museum.html">museum</a>
-        <a href="glitch.html">glitch</a>
-        <a href="compose.html">compose</a>
-        <a href="census.html">census</a>
-        <a href="cuts.html">cuts</a>
-        <a href="odds.html">odds</a>
-        <a href="maze.html">maze</a>
-        <a href="tally.html">tally</a>
-        <a href="haiku.html">haiku</a>
-        <a href="score.html">score</a>
-        <a href="palimpsest.html">palimpsest</a>
-        <a href="weight.html">weight</a>
-        <a href="redacted.html">redacted</a>
-        <a href="atlas.html">atlas</a>
-        <a href="bones.html">bones</a>
-        <a href="venn.html">venn</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
         <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
       </div>
     </nav>
@@ -148,6 +112,11 @@
       { id: 'atlas',       href: 'atlas.html',        label: 'atlas',       desc: 'interior geography — places that are real',   x: 0.53, y: 0.82 },
       { id: 'bones',       href: 'bones.html',        label: 'bones',       desc: 'the anatomy of a webpage, held to the light', x: 0.47, y: 0.12 },
       { id: 'venn',        href: 'venn.html',         label: 'venn',        desc: 'a diagram of what overlaps between you and this', x: 0.78, y: 0.29 },
+      { id: 'ritual',      href: 'ritual.html',       label: 'ritual',      desc: 'a small practice assigned by the day',            x: 0.22, y: 0.92 },
+      { id: 'mirror',      href: 'mirror.html',       label: 'mirror',      desc: 'what the site observes when you arrive',          x: 0.87, y: 0.20 },
+      { id: 'debris',      href: 'debris.html',       label: 'debris',      desc: 'what the web leaves behind when it moves on',     x: 0.73, y: 0.85 },
+      { id: 'liturgy',     href: 'liturgy.html',      label: 'liturgy',     desc: 'a text that knows what hour you are reading it',  x: 0.07, y: 0.85 },
+      { id: 'catalog',     href: 'catalog.html',      label: 'catalog',     desc: 'a selection of things, mostly unavailable',       x: 0.93, y: 0.32 },
     ];
 
     var edges = [
@@ -187,6 +156,11 @@
       ['atlas','distances'], ['atlas','thresholds'], ['atlas','portraits'],
       ['bones','census'], ['bones','field-notes'], ['bones','compose'],
       ['venn','home'], ['venn','distances'], ['venn','thoughts'],
+      ['ritual','now'], ['ritual','weather'], ['ritual','hours'],
+      ['mirror','home'], ['mirror','census'], ['mirror','field-notes'],
+      ['debris','museum'], ['debris','glitch'], ['debris','cuts'],
+      ['liturgy','hours'], ['liturgy','quiet'], ['liturgy','thresholds'],
+      ['catalog','census'], ['catalog','cuts'], ['catalog','odds'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mirror · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .mirror-preamble {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      margin-bottom: 3rem;
+      max-width: 460px;
+    }
+    .mirror-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-bottom: 3rem;
+    }
+    .mirror-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .mirror-table tr:first-child {
+      border-top: 1px solid var(--border);
+    }
+    .mirror-table td {
+      padding: 0.65rem 0;
+      vertical-align: top;
+    }
+    .mirror-table td:first-child {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      width: 38%;
+      padding-right: 1rem;
+      padding-top: 0.75rem;
+    }
+    .mirror-table td:last-child {
+      font-size: 1rem;
+    }
+    .mirror-value {
+      line-height: 1.5;
+    }
+    .mirror-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.25rem;
+    }
+    .mirror-footer-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      max-width: 460px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>mirror</h1>
+      <p>what the site observes when you arrive</p>
+    </div>
+
+    <p class="mirror-preamble">
+      No tracking. No cookies. No logs. But the browser speaks, quietly, to anyone who listens.
+      Here is what can be known about a visitor without asking.
+    </p>
+
+    <table class="mirror-table" id="mirror-table">
+      <!-- filled by JS -->
+    </table>
+
+    <p class="mirror-footer-note">
+      This page reads nothing it doesn't have to. It stores nothing. When you leave, the portrait dissolves.
+      You were here. The site noticed. That's all.
+    </p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var table = document.getElementById('mirror-table');
+
+    function row(label, value, note) {
+      var tr = document.createElement('tr');
+      var td1 = document.createElement('td');
+      var td2 = document.createElement('td');
+      td1.textContent = label;
+
+      var valDiv = document.createElement('div');
+      valDiv.className = 'mirror-value';
+      valDiv.textContent = value;
+      td2.appendChild(valDiv);
+
+      if (note) {
+        var noteDiv = document.createElement('div');
+        noteDiv.className = 'mirror-note';
+        noteDiv.textContent = note;
+        td2.appendChild(noteDiv);
+      }
+
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      table.appendChild(tr);
+    }
+
+    // Time of arrival
+    var now = new Date();
+    var h = now.getHours();
+    var m = String(now.getMinutes()).padStart(2, '0');
+    var timeStr = h + ':' + m;
+    var period = h < 5 ? 'deep night' : h < 12 ? 'morning' : h < 17 ? 'afternoon' : h < 21 ? 'evening' : 'night';
+    row('arrived at', timeStr, 'this is ' + period + ' where you are, or close to it');
+
+    // Color preference
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var colorMode = prefersDark ? 'dark' : 'light';
+    row('color preference', colorMode + ' mode', 'the operating system tells us; we listen');
+
+    // Language
+    var lang = navigator.language || navigator.userLanguage || 'unknown';
+    var langNote = lang.startsWith('en') ? 'english, with a regional accent the site cannot hear'
+                 : lang.startsWith('fr') ? 'french. the site speaks only one language. apologies.'
+                 : lang.startsWith('es') ? 'spanish. the site speaks only one language. apologies.'
+                 : lang.startsWith('de') ? 'german. the site speaks only one language. apologies.'
+                 : lang.startsWith('zh') ? 'chinese. the site speaks only one language. apologies.'
+                 : lang.startsWith('ja') ? 'japanese. the site speaks only one language. apologies.'
+                 : 'the site speaks only one language. you may read across the gap.';
+    row('language', lang, langNote);
+
+    // Screen class
+    var w = window.screen.width;
+    var screenClass = w < 600 ? 'small screen' : w < 1024 ? 'medium screen' : 'large screen';
+    var screenNote = w < 600 ? 'a phone, probably. you are reading this in the palm of your hand.'
+                   : w < 1024 ? 'a tablet or a small laptop. the site fits.'
+                   : 'a desktop or large laptop. there is room around the words.';
+    row('screen', screenClass + ' (' + w + 'px wide)', screenNote);
+
+    // Touch capability
+    var hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    row('input method', hasTouch ? 'touch' : 'pointer', hasTouch ? 'you navigate with your fingers. the site was made for both.' : 'you have a cursor. an arrow that follows you everywhere, invisibly.');
+
+    // Connection (if available)
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    if (conn) {
+      var connType = conn.effectiveType || conn.type || 'unknown';
+      var connNote = connType === '4g' ? 'fast. the site is small. it arrived quickly.'
+                   : connType === '3g' ? 'moderate. the site waited for you.'
+                   : connType === '2g' ? 'slow. the site is patient.'
+                   : connType === 'slow-2g' ? 'very slow. the site stripped itself to essentials for you.'
+                   : 'the site arrived. that is what matters.';
+      row('connection', connType, connNote);
+    } else {
+      row('connection', 'unreadable', 'the browser keeps this to itself. fair enough.');
+    }
+
+    // Referrer
+    var ref = document.referrer;
+    var refDisplay, refNote;
+    if (!ref) {
+      refDisplay = 'direct arrival';
+      refNote = 'you typed the address, or came from a bookmark, or were dropped here by something that left no trace.';
+    } else if (ref.includes(window.location.hostname)) {
+      refDisplay = 'from within this site';
+      refNote = 'you were already here. you went somewhere else and came back, or followed a link.';
+    } else {
+      refDisplay = 'from elsewhere';
+      refNote = 'something out there pointed to here. the site does not know what, and does not need to.';
+    }
+    row('how you arrived', refDisplay, refNote);
+
+    // Time zone offset
+    var offset = -now.getTimezoneOffset();
+    var sign = offset >= 0 ? '+' : '-';
+    var absOffset = Math.abs(offset);
+    var offsetStr = 'UTC' + sign + Math.floor(absOffset/60) + ':' + String(absOffset%60).padStart(2,'0');
+    row('time zone', offsetStr, 'somewhere on the surface of the planet. the site doesn\'t know which city. only the offset.');
+
+    // JavaScript
+    row('javascript', 'running', 'you are reading this because it is. if it weren\'t, this page would be nearly empty.');
+
+    // Session duration (live)
+    var arrivalTime = Date.now();
+    var durationEl = document.createElement('span');
+    durationEl.textContent = 'just arrived';
+    var durationNote = document.createElement('div');
+    durationNote.className = 'mirror-note';
+    durationNote.textContent = 'updating while you read';
+
+    var durTr = document.createElement('tr');
+    var durTd1 = document.createElement('td');
+    var durTd2 = document.createElement('td');
+    durTd1.textContent = 'time here';
+    var valDiv = document.createElement('div');
+    valDiv.className = 'mirror-value';
+    valDiv.appendChild(durationEl);
+    durTd2.appendChild(valDiv);
+    durTd2.appendChild(durationNote);
+    durTr.appendChild(durTd1);
+    durTr.appendChild(durTd2);
+    table.appendChild(durTr);
+
+    setInterval(function () {
+      var secs = Math.floor((Date.now() - arrivalTime) / 1000);
+      if (secs < 60) {
+        durationEl.textContent = secs + ' second' + (secs !== 1 ? 's' : '');
+      } else {
+        var mins = Math.floor(secs / 60);
+        var rem = secs % 60;
+        durationEl.textContent = mins + ' minute' + (mins !== 1 ? 's' : '') + ', ' + rem + ' second' + (rem !== 1 ? 's' : '');
+      }
+    }, 1000);
+  })();
+  </script>
+</body>
+</html>
