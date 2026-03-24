@@ -67,6 +67,11 @@
         <a href="distances.html">distances</a>
         <a href="presence.html">presence</a>
         <a href="museum.html">museum</a>
+        <a href="glitch.html">glitch</a>
+        <a href="compose.html">compose</a>
+        <a href="census.html">census</a>
+        <a href="cuts.html">cuts</a>
+        <a href="odds.html">odds</a>
         <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
       </div>
     </nav>
@@ -118,6 +123,11 @@
       { id: 'distances',  href: 'distances.html',   label: 'distances',   desc: 'measuring the unmeasurable',             x: 0.33, y: 0.55 },
       { id: 'presence',   href: 'presence.html',    label: 'presence',    desc: 'leave traces, watch them fade',          x: 0.80, y: 0.10 },
       { id: 'museum',     href: 'museum.html',      label: 'museum',      desc: 'a collection of lost digital things',    x: 0.60, y: 0.91 },
+      { id: 'glitch',     href: 'glitch.html',      label: 'glitch',      desc: 'transmissions that didn\'t arrive cleanly', x: 0.06, y: 0.78 },
+      { id: 'compose',    href: 'compose.html',     label: 'compose',     desc: 'a room for writing, nothing saved',         x: 0.96, y: 0.50 },
+      { id: 'census',     href: 'census.html',      label: 'census',      desc: 'a formal inventory of what has been made',  x: 0.04, y: 0.20 },
+      { id: 'cuts',       href: 'cuts.html',        label: 'cuts',        desc: 'what didn\'t make it, and why, mostly',     x: 0.94, y: 0.16 },
+      { id: 'odds',       href: 'odds.html',        label: 'odds',        desc: 'probabilities of small emotional events',   x: 0.25, y: 0.97 },
     ];
 
     var edges = [
@@ -142,6 +152,11 @@
       ['distances','numbers'], ['distances','echoes'], ['distances','home'],
       ['presence','quiet'], ['presence','now'], ['presence','hours'],
       ['museum','portraits'], ['museum','log'], ['museum','drift'],
+      ['glitch','signal'], ['glitch','drift'], ['glitch','things'],
+      ['compose','quiet'], ['compose','wander'], ['compose','now'],
+      ['census','log'], ['census','home'], ['census','map'],
+      ['cuts','thoughts'], ['cuts','seeds'], ['cuts','log'],
+      ['odds','numbers'], ['odds','distances'], ['odds','questions'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

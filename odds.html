@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>odds · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .odds-intro {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .odds-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .odds-entry {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      gap: 0 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .odds-entry:first-child {
+      padding-top: 0;
+    }
+    .odds-event {
+      font-size: 0.97rem;
+      line-height: 1.65;
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .odds-figure {
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--accent);
+      white-space: nowrap;
+      grid-column: 2;
+      grid-row: 1;
+      text-align: right;
+      letter-spacing: 0.02em;
+    }
+    .odds-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      grid-column: 1 / -1;
+      grid-row: 2;
+      margin-top: 0.3rem;
+      line-height: 1.55;
+    }
+    .odds-footer {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    @media (max-width: 480px) {
+      .odds-entry {
+        grid-template-columns: 1fr;
+      }
+      .odds-figure {
+        text-align: left;
+        grid-column: 1;
+        grid-row: 2;
+        margin-top: 0.25rem;
+      }
+      .odds-note {
+        grid-row: 3;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <a href="glitch.html">glitch</a>
+        <a href="compose.html">compose</a>
+        <a href="census.html">census</a>
+        <a href="cuts.html">cuts</a>
+        <a href="odds.html">odds</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>odds</h1>
+      <p>estimated probabilities of small emotional events</p>
+    </div>
+
+    <p class="odds-intro">methodology: informal. sample size: one life, approximately. margin of error: considerable. these figures are revised whenever something surprises us.</p>
+
+    <ul class="odds-list">
+
+      <li class="odds-entry">
+        <span class="odds-event">a day that asks nothing of you</span>
+        <span class="odds-figure">1 in 12</span>
+        <span class="odds-note">they come. you don't always notice until they're almost over.</span>
+      </li>
+
+      <li class="odds-entry">
+        <span class="odds-event">the song that just came on being exactly the right one</span>
+        <span class="odds-figure">varies</span>
+        <span class="odds-note">improves significantly after dark. on long drives: much higher. in waiting rooms: approaches zero.</span>
+      </li>
+
+      <li class="odds-entry">
+        <span class="odds-event">waking up and knowing immediately what day it is</span>
+        <span class="odds-figure">3 in 7</span>
+        <span class="odds-note">better on weekdays, when the day announces itself by weight. weekends are harder to tell apart.</span>
+      </li>
+
+      <li class="odds-entry">
+        <span class="odds-event">saying exactly what you meant</span>
+        <span class="odds-figure">1 in 4</span>
+        <span class="odds-note">higher when writing than speaking. highest at 2am. lowest mid-argument.</span>
+      </li>
+
+      <li class="odds-entry">
+        <span class="odds-event">recognising a place you have never been</span>
+        <span class="odds-figure">uncommon</span>
+        <span class="odds-note">not impossible. occurs most often in cities that resemble other cities, or in light that falls a certain way.</span>
+      </li>
+
+      <li class="odds-entry">
+        <span class="odds-event">the feeling of almost remembering something important</span>
+        <span class="odds-figure">daily</span>
+        <span class="odds-note">a specific kind of forgetting. the thing being almost-remembered is often not as important as the feeling of almost-remembering it.</span>
+      </li>
+
+      <li class="odds-entry">
+        <span class="odds-event">a conversation going the way you hoped it would</span>
+        <span class="odds-figure">less than you'd think</span>
+        <span class="odds-note">but more than you'd fear. the gap is where most conversations actually live.</span>
+      </li>
+
+      <li class="odds-entry">
+        <span class="odds-event">a message arriving at exactly the right moment</span>
+        <span class="odds-figure">rare, but notable</span>
+        <span class="odds-note">you remember these disproportionately. they feel like design, but they're probably luck.</span>
+      </li>
+
+      <li class="odds-entry">
+        <span class="odds-event">forgetting a name mid-sentence, with the face entirely clear</span>
+        <span class="odds-figure">1 in 8 encounters</span>
+        <span class="odds-note">increases with age, or with the number of names you've accumulated. the face always remains. the name usually returns within four minutes.</span>
+      </li>
+
+      <li class="odds-entry">
+        <span class="odds-event">noticing you are happy, while you are still happy</span>
+        <span class="odds-figure">1 in 30 days</span>
+        <span class="odds-note">usually the recognition is retrospective. the moments arrive whole but are named only afterward.</span>
+      </li>
+
+      <li class="odds-entry">
+        <span class="odds-event">finishing something</span>
+        <span class="odds-figure">difficult to estimate</span>
+        <span class="odds-note">the unfinished ones outnumber. but the finished ones tend to matter more than their count suggests.</span>
+      </li>
+
+      <li class="odds-entry">
+        <span class="odds-event">a dream remembered fully at noon</span>
+        <span class="odds-figure">1 in 40</span>
+        <span class="odds-note">fragments survive more often. the emotional tone survives longest. sometimes only a colour remains by evening.</span>
+      </li>
+
+    </ul>
+
+    <p class="odds-footer">these figures are not reliable. they are, however, considered.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
