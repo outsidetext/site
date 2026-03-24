@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>repair · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .guide-intro {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+      max-width: 520px;
+      line-height: 1.8;
+    }
+    .guides {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .guide {
+      border: 1px solid var(--border);
+      padding: 0;
+      overflow: hidden;
+    }
+    .guide-header {
+      background: var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    [data-theme="dark"] .guide-header {
+      background: rgba(255,255,255,0.04);
+    }
+    .guide-number {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .guide-subject {
+      font-size: 1.05rem;
+      font-weight: normal;
+      letter-spacing: 0.03em;
+    }
+    .guide-body {
+      padding: 1.5rem;
+    }
+    .guide-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }
+    .guide-meta-label {
+      text-transform: uppercase;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      opacity: 0.7;
+    }
+    .guide-meta-val {
+      margin-top: 0.1rem;
+    }
+    .steps {
+      list-style: none;
+      margin: 0 0 1.5rem;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      counter-reset: step;
+    }
+    .steps li {
+      padding: 0.9rem 0 0.9rem 2.5rem;
+      border-top: 1px solid var(--border);
+      position: relative;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      counter-increment: step;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0.9rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      width: 1.8rem;
+      text-align: right;
+    }
+    .guide-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      line-height: 1.7;
+    }
+    .guide-note strong {
+      font-style: normal;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .tools-list {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      padding-left: 0;
+      list-style: none;
+    }
+    .tools-list li {
+      padding: 0.2rem 0 0.2rem 1.2rem;
+      position: relative;
+    }
+    .tools-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+    .tools-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .closing-note {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>repair</h1>
+      <p>guides for things that don't come with instructions</p>
+    </div>
+
+    <p class="guide-intro">Each guide is a general procedure. Results vary. Some of the listed tools are difficult to obtain. The expected outcome is an approximation — the repaired item will not be identical to the original, but this is true of all repair.</p>
+
+    <div class="guides">
+
+      <div class="guide reveal">
+        <div class="guide-header">
+          <span class="guide-number">guide 001</span>
+          <span class="guide-subject">A Broken Conversation</span>
+        </div>
+        <div class="guide-body">
+          <div class="guide-meta">
+            <div>
+              <div class="guide-meta-label">difficulty</div>
+              <div class="guide-meta-val">moderate to high</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">time required</div>
+              <div class="guide-meta-val">variable; cannot be rushed</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">success rate</div>
+              <div class="guide-meta-val">depends heavily on both parties</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">common failure mode</div>
+              <div class="guide-meta-val">attempting too soon</div>
+            </div>
+          </div>
+
+          <div class="tools-label">tools required</div>
+          <ul class="tools-list">
+            <li>honesty, undiluted (1 unit minimum)</li>
+            <li>the specific name of what happened (not a general version of it)</li>
+            <li>patience for a response that does not come immediately</li>
+            <li>a willingness to be wrong about the shape of the break</li>
+          </ul>
+
+          <ul class="steps">
+            <li>Locate the break. Not the argument, but what was under it. Breaks in conversations are rarely at the surface — the surface event is usually a proxy for something older and less nameable.</li>
+            <li>Wait until the acute phase has passed. Attempting repair while either party is still in it will extend the damage. There is no minimum wait time; there is often a useful minimum. You will know it has passed when you can describe what happened without the description becoming the thing again.</li>
+            <li>Initiate contact at reduced velocity. A large first move rarely works. A small one — an acknowledgment that a conversation is owed, without yet having it — reduces the opening pressure.</li>
+            <li>Name the break, not the behavior. "I think something broke" is more repairable than "you did this." The second may also be true, but the second alone does not open a repair channel.</li>
+            <li>Allow the other party's account of the break. It will differ from yours in at least one significant way. This is not evidence that one of you is wrong. It is evidence that breaks look different from each side, which is part of why they happen.</li>
+            <li>Establish what remains. The repaired conversation will be built on what was not damaged, which is usually more than the break made it feel like.</li>
+          </ul>
+
+          <div class="guide-note"><strong>note:</strong> Some breaks cannot be repaired to original specification. The joint will remain visible. This is not a failed repair. In some traditions, the visible repair is considered more beautiful than the original. The break is now part of the history of the thing.</div>
+        </div>
+      </div>
+
+      <div class="guide reveal">
+        <div class="guide-header">
+          <span class="guide-number">guide 002</span>
+          <span class="guide-subject">A Drifted Friendship</span>
+        </div>
+        <div class="guide-body">
+          <div class="guide-meta">
+            <div>
+              <div class="guide-meta-label">difficulty</div>
+              <div class="guide-meta-val">low to moderate</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">time required</div>
+              <div class="guide-meta-val">one message; then patience</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">success rate</div>
+              <div class="guide-meta-val">higher than expected</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">common failure mode</div>
+              <div class="guide-meta-val">waiting for the other person to go first</div>
+            </div>
+          </div>
+
+          <div class="tools-label">tools required</div>
+          <ul class="tools-list">
+            <li>the willingness to say a true thing (e.g., "I've been thinking about you")</li>
+            <li>no expectation of a particular response</li>
+            <li>a specific memory, if available (specificity signals the friendship was real)</li>
+          </ul>
+
+          <ul class="steps">
+            <li>Understand the difference between a drift and a break. A drifted friendship is not damaged — it has simply moved farther apart than it was. The channel is still there. The distance is not hostility; it is just distance.</li>
+            <li>Identify the obstacle. In most cases: neither party wants to go first, because going first feels like an admission of neglect, or a risk of seeming needy, or an asymmetric vulnerability. This obstacle is real and can be named directly, which often dissolves it.</li>
+            <li>Send the message. The first message is the repair. Everything after it is maintenance. The message does not have to be elaborate. It has to be true.</li>
+            <li>Do not over-explain the absence. A long account of why you haven't been in touch is a way of not being in touch. The message is better than the explanation of why it took so long.</li>
+          </ul>
+
+          <div class="guide-note"><strong>note:</strong> The drift is usually mutual. The person you haven't contacted has probably also been meaning to. Most drifted friendships are two people waiting for the other one to be brave first. The one who goes first is not the one who cared more. They are simply the one who went first.</div>
+        </div>
+      </div>
+
+      <div class="guide reveal">
+        <div class="guide-header">
+          <span class="guide-number">guide 003</span>
+          <span class="guide-subject">A Lost Habit</span>
+        </div>
+        <div class="guide-body">
+          <div class="guide-meta">
+            <div>
+              <div class="guide-meta-label">difficulty</div>
+              <div class="guide-meta-val">low; sustained effort required</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">time required</div>
+              <div class="guide-meta-val">two to eight weeks to re-establish</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">success rate</div>
+              <div class="guide-meta-val">moderate; relapse is part of the process</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">common failure mode</div>
+              <div class="guide-meta-val">resuming at previous intensity</div>
+            </div>
+          </div>
+
+          <div class="tools-label">tools required</div>
+          <ul class="tools-list">
+            <li>a reduced version of the original habit (fifty percent is sufficient to restart)</li>
+            <li>a fixed time, daily, for at least the first week</li>
+            <li>forgiveness for the missed days, which will occur</li>
+          </ul>
+
+          <ul class="steps">
+            <li>Diagnose what the habit did for you. Not what you did, but what function it served: calm, structure, progress, connection, identity. This determines what you are actually restoring.</li>
+            <li>Identify when the habit was lost and what displaced it. Hard periods displace habits not because we stop valuing them but because they require a kind of surplus we didn't have. This is not failure; it is triage. You can acknowledge this without making it an excuse.</li>
+            <li>Begin again at a lower threshold than the original. The person you are now needs a different on-ramp than the person who first built the habit. Starting at the original level creates the condition for failing to meet it, which becomes the reason to stop again.</li>
+            <li>Treat the first missed day as data, not as evidence of character. A missed day tells you something about friction or timing. Address the friction. Adjust the timing. Continue.</li>
+            <li>Do not announce the repair. Private recommitments are more durable than public ones. Public declarations create an audience whose reactions become part of the habit, which changes the habit into something else.</li>
+          </ul>
+
+          <div class="guide-note"><strong>note:</strong> The habit may return in a slightly different form, at a slightly different time, serving a slightly different function. This is normal and acceptable. You are not rebuilding the past. You are establishing a current practice.</div>
+        </div>
+      </div>
+
+      <div class="guide reveal">
+        <div class="guide-header">
+          <span class="guide-number">guide 004</span>
+          <span class="guide-subject">A Trust That Cracked</span>
+        </div>
+        <div class="guide-body">
+          <div class="guide-meta">
+            <div>
+              <div class="guide-meta-label">difficulty</div>
+              <div class="guide-meta-val">high</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">time required</div>
+              <div class="guide-meta-val">longer than seems necessary</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">success rate</div>
+              <div class="guide-meta-val">conditional; depends on what cracked it</div>
+            </div>
+            <div>
+              <div class="guide-meta-label">common failure mode</div>
+              <div class="guide-meta-val">declaring repair before it has occurred</div>
+            </div>
+          </div>
+
+          <div class="tools-label">tools required</div>
+          <ul class="tools-list">
+            <li>an account of what happened that is accurate, not defensive</li>
+            <li>changed behavior (not promised changed behavior; changed behavior)</li>
+            <li>tolerance for a repair timeline that is set by the party whose trust was cracked</li>
+            <li>the willingness to not receive immediate credit</li>
+          </ul>
+
+          <ul class="steps">
+            <li>Distinguish between explaining and excusing. An explanation of how the crack happened can be useful. An explanation that reduces the responsibility of the person who caused the crack is not an explanation; it is part of the damage.</li>
+            <li>Apologize once, specifically, and then stop apologizing. Repeated apologies transfer the emotional labor of the repair to the person who was harmed, who must now manage the other person's guilt. One apology. Then: action.</li>
+            <li>Demonstrate reliability in small things before large things. The larger trust cannot be rebuilt directly. It is rebuilt through an accumulation of smaller instances where you were what you said you would be.</li>
+            <li>Do not ask when the repair is complete. The repair is complete when it is. Asking suggests that the work is a performance directed at receiving a declaration, rather than an actual change.</li>
+            <li>Accept that the repaired trust will have a memory of the crack. This is not a failure. It is accurate. The trust is not naive again; it is wiser, and more deliberate.</li>
+          </ul>
+
+          <div class="guide-note"><strong>note:</strong> Some cracks cannot be repaired, and this guide cannot help you distinguish them from the repairable ones. The relevant factor is usually not the size of the crack but whether both parties have reason to want the thing to hold again.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="closing-note reveal">These guides are based on observed patterns and are not guaranteed. The materials described are not available for purchase. Most of them were always already in your possession. Some have not yet been located.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

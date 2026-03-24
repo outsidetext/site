@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>obituaries · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .masthead {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 2px solid var(--text);
+      border-top: 2px solid var(--text);
+      padding: 0.5rem 0;
+      margin-bottom: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .obit-intro {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+      max-width: 520px;
+      line-height: 1.8;
+    }
+    .obits {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .obit {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .obit:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+    .obit-name {
+      font-size: 1.25rem;
+      font-weight: normal;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.2rem;
+    }
+    .obit-dates {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+    .obit-body {
+      line-height: 1.85;
+      font-size: 0.96rem;
+      margin-bottom: 1rem;
+    }
+    .obit-survived {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border);
+    }
+    .obit-cause {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .closing-note {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>obituaries</h1>
+      <p>formal notices for things that no longer exist</p>
+    </div>
+
+    <div class="masthead">
+      <span>digital record</span>
+      <span>notices of passing</span>
+      <span>dates approximate</span>
+    </div>
+
+    <p class="obit-intro">They are published here in the order they became unreachable. Most left without announcement. A few had memorial threads. None of the threads are accessible now either.</p>
+
+    <div class="obits">
+
+      <div class="obit reveal">
+        <div class="obit-cause">cause of death: discontinued by parent company</div>
+        <h2 class="obit-name">The Away Message</h2>
+        <div class="obit-dates">c. 1997 – 2017</div>
+        <div class="obit-body">
+          <p>The Away Message died as it had always lived: quietly, with a song lyric and a claim to be "out but back soon."</p>
+          <p>It was, for a decade, the most intimate public space on the internet. You could learn more about a person from their AIM away message than from anything they said directly. They were brooding, or happy, or in love, or listening to something you'd never heard of. They were at dinner. They were sleeping. They were <em>out.</em></p>
+          <p>It required nothing of you. You read it; they never knew. The asymmetry was the point. A note left on a door for anyone who might come by. Most people came by.</p>
+          <p>In its final years it had already been replaced by a dozen successors — the status update, the story, the mood indicator — each louder, each more visible, each more tracked. None of them were quite the same room.</p>
+        </div>
+        <div class="obit-survived">Survived by: the bio field, the status emoji, and a particular kind of yearning you can't quite locate.</div>
+      </div>
+
+      <div class="obit reveal">
+        <div class="obit-cause">cause of death: browser consensus</div>
+        <h2 class="obit-name">The Blink Tag</h2>
+        <div class="obit-dates">1994 – 2013</div>
+        <div class="obit-body">
+          <p>It blinked. That was the entire thing. On, off. On, off. It was added to Netscape Navigator as a joke, or nearly a joke — a feature implemented after-hours, shipped by accident, never formally specified. The standard committees refused to adopt it. Every browser eventually implemented it anyway.</p>
+          <p>For nearly twenty years, you could make text blink on a webpage with four characters: <code style="font-family:'Courier New',monospace;font-size:0.88em;">&lt;blink&gt;</code>. No one ever agreed it was a good idea. Everyone used it. It was the kind of thing that existed because the web was still being invented and no one had decided what it wasn't allowed to be.</p>
+          <p>It was removed from Firefox in 2013. Chrome had already ignored it for years. The specification that never existed was never missed. The feeling of text blinking — urgent, amateur, alive — has not been replicated.</p>
+        </div>
+        <div class="obit-survived">Survived by: the animated GIF, the loading spinner, the attention economy, which blinks constantly and calls it engagement.</div>
+      </div>
+
+      <div class="obit reveal">
+        <div class="obit-cause">cause of death: the site was eventually finished</div>
+        <h2 class="obit-name">The Under Construction GIF</h2>
+        <div class="obit-dates">c. 1993 – c. 2005</div>
+        <div class="obit-body">
+          <p>A small man with a hard hat, or a row of orange cones, or a sign — <em>Under Construction</em> — with a gif of something digging. They meant: this isn't ready yet, but come back. We're working on it. The incompleteness was posted proudly, not hidden behind maintenance pages and holding screens.</p>
+          <p>The early web was mostly under construction. Everyone understood. The construction GIF was an acknowledgment that building something takes time, and that the thing being built was worth noting even in its unfinished state. There was no shame in the scaffolding.</p>
+          <p>As professional web design arrived, unfinished things became embarrassing. The construction GIF disappeared. Sites were launched complete, or launched looking complete, which is different. The scaffolding was hidden. The under-construction signs were taken down, and with them went a certain honesty about the process of making things.</p>
+          <p>This site is, in some ways, a tribute.</p>
+        </div>
+        <div class="obit-survived">Survived by: the beta label, the "coming soon" page, the launch date that keeps moving, and every project that needed more time than it got.</div>
+      </div>
+
+      <div class="obit reveal">
+        <div class="obit-cause">cause of death: search engines</div>
+        <h2 class="obit-name">The Web Ring</h2>
+        <div class="obit-dates">1994 – c. 2010</div>
+        <div class="obit-body">
+          <p>Before search engines were reliable — before they existed, really — the web was navigated by trust. A web ring was a circle of sites that had agreed to link to each other. You'd find one site you liked, click "next," and arrive somewhere related but different, chosen by a human who had also liked the first site.</p>
+          <p>There were web rings for everything. Cat lovers, regional poets, fans of particular television programs from 1987, people interested in the acoustic properties of cathedrals. The rings were maintained by volunteers who agreed on a shared interest and nothing else. Most of the sites in most of the rings were not professionally made. They were made by someone, for reasons, for other someones who would understand.</p>
+          <p>When Google arrived, you no longer needed rings to navigate. You could search. The rings went quiet, then defunct. Webring.org shut down in 2001, reopened, shut down again. The idea — that a person's recommendation should connect you to another person's recommendation, in a circle, for free — has been trying to return ever since in different forms. It hasn't quite made it.</p>
+        </div>
+        <div class="obit-survived">Survived by: the recommendation algorithm, which selects based on engagement rather than affinity, and is not the same thing at all.</div>
+      </div>
+
+      <div class="obit reveal">
+        <div class="obit-cause">cause of death: the browser address bar, which became a search bar, which became everything</div>
+        <h2 class="obit-name">The Browser Homepage</h2>
+        <div class="obit-dates">c. 1993 – c. 2015</div>
+        <div class="obit-body">
+          <p>Every browser had a home. When you opened it, you went somewhere specific — a place you or someone had chosen, that you would see first. The homepage was a beginning, an orientation, a declaration of what you valued enough to see before anything else.</p>
+          <p>People set them to search engines, to news aggregators, to blank pages, to their own half-finished websites, to the personal pages of people they admired. Some never changed them from the manufacturer default and saw the same portal every morning for eleven years. The homepage held a life's orientation the way a mantelpiece holds its objects: casually, permanently, revealingly.</p>
+          <p>The browser homepage was not killed but absorbed. The address bar became the search bar became the portal. New tabs opened to dashboards. The home button disappeared from default browser toolbars around 2015, its function presumed unnecessary. There was no longer a homepage — just a starting point that had been decided by someone else for reasons that were not yours.</p>
+        </div>
+        <div class="obit-survived">Survived by: the new tab page, the pinned tab, and the faint memory of typing a single URL from habit every morning, a ritual you didn't know you were performing.</div>
+      </div>
+
+    </div>
+
+    <p class="closing-note reveal">Records are incomplete. Many things passed without being noticed in time to file. If you remember something that should be here, the garden has no mechanism for receiving your report. That is, perhaps, appropriate.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

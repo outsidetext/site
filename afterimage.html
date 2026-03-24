@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>afterimage · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .experiment {
+      margin: 2.5rem 0 3rem;
+    }
+    .stage {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.8s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .stage.phase-stare {
+      background: #1a2a3a;
+    }
+    .stage.phase-look {
+      background: #b8b4ae;
+    }
+    .stage.phase-idle {
+      background: var(--bg);
+    }
+    .stare-word {
+      font-size: 5rem;
+      font-weight: normal;
+      letter-spacing: 0.12em;
+      color: #e8a030;
+      text-shadow: 0 0 40px rgba(232,160,48,0.35);
+      line-height: 1;
+      transition: opacity 0.6s ease;
+    }
+    .stare-word.hidden {
+      opacity: 0;
+    }
+    .fixation-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e8a030;
+      margin-top: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .fixation-dot.visible {
+      opacity: 0.7;
+    }
+    .look-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border-radius: 50%;
+      background: #555;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .look-dot.visible {
+      opacity: 0.5;
+    }
+    .stage-instruction {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: absolute;
+      bottom: 1rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      transition: opacity 0.4s ease;
+    }
+    .phase-stare .stage-instruction {
+      color: rgba(232,160,48,0.5);
+    }
+    .phase-look .stage-instruction {
+      color: rgba(50,50,50,0.5);
+    }
+    .phase-idle .stage-instruction {
+      color: var(--text-muted);
+    }
+    .timer-ring {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 28px;
+      height: 28px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .timer-ring.visible {
+      opacity: 0.5;
+    }
+    .timer-ring circle {
+      fill: none;
+      stroke: #e8a030;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-dasharray: 75.4;
+      stroke-dashoffset: 75.4;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      transition: stroke-dashoffset 0.25s linear;
+    }
+    .explanation {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .explanation h2 {
+      font-size: 0.75rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: normal;
+      margin-bottom: 1.25rem;
+    }
+    .explanation p {
+      font-size: 0.96rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .reset-btn {
+      margin-top: 2.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1.25rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      display: none;
+    }
+    .reset-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .reset-btn.visible {
+      display: inline-block;
+    }
+    .phase-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>afterimage</h1>
+      <p>what looking at something leaves behind</p>
+    </div>
+
+    <div class="experiment">
+      <p class="phase-label" id="phase-label">phase one</p>
+      <div class="stage phase-idle" id="stage">
+        <svg class="timer-ring" id="timer-ring" viewBox="0 0 28 28">
+          <circle id="timer-arc" cx="14" cy="14" r="12"/>
+        </svg>
+        <div class="stare-word hidden" id="stare-word">HERE</div>
+        <div class="fixation-dot" id="fixation-dot"></div>
+        <div class="look-dot" id="look-dot"></div>
+        <div class="stage-instruction" id="stage-instr">click to begin</div>
+      </div>
+      <button class="reset-btn" id="reset-btn">try again</button>
+    </div>
+
+    <div class="explanation reveal">
+      <h2>how it works</h2>
+      <p>When you stare at a color, the photoreceptors in your eyes that respond to that wavelength become fatigued. When you look away, those cells are still recovering — so the area your eyes project the image onto appears to glow in the complementary color. The amber-orange becomes blue-green. The bright becomes dim.</p>
+      <p>This is called a negative afterimage. It happens without permission. Every color you've looked at for long enough has left its ghost on your retina before clearing. What you see when you close your eyes is, in part, the accumulated residue of what you've been looking at.</p>
+      <p>The word you were staring at was <em>HERE.</em> The word in the afterimage is the same word, inverted. The content doesn't change. Only the color of how it reaches you.</p>
+      <p>Memory works similarly. What you recall is not the event but a reconstruction assembled from whatever receptors weren't fatigued at the time. The afterimage of a thing is always present. It just requires the right background to see it.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var stage = document.getElementById('stage');
+    var word = document.getElementById('stare-word');
+    var fixDot = document.getElementById('fixation-dot');
+    var lookDot = document.getElementById('look-dot');
+    var instr = document.getElementById('stage-instr');
+    var phaseLabel = document.getElementById('phase-label');
+    var timerRing = document.getElementById('timer-ring');
+    var timerArc = document.getElementById('timer-arc');
+    var resetBtn = document.getElementById('reset-btn');
+
+    var STARE_DURATION = 12000; // 12 seconds
+    var LOOK_DURATION = 10000;  // 10 seconds
+    var phase = 'idle';
+    var timerInterval = null;
+    var timerStart = null;
+
+    var circumference = 75.4;
+
+    function setPhase(p) {
+      phase = p;
+      stage.className = 'stage phase-' + p;
+
+      if (p === 'idle') {
+        word.classList.add('hidden');
+        fixDot.classList.remove('visible');
+        lookDot.classList.remove('visible');
+        timerRing.classList.remove('visible');
+        instr.textContent = 'click to begin';
+        phaseLabel.textContent = 'phase one';
+        resetBtn.classList.remove('visible');
+      } else if (p === 'stare') {
+        word.classList.remove('hidden');
+        fixDot.classList.add('visible');
+        lookDot.classList.remove('visible');
+        timerRing.classList.add('visible');
+        timerArc.style.strokeDashoffset = circumference;
+        instr.textContent = 'keep your eyes on the dot below the word';
+        phaseLabel.textContent = 'staring — do not look away';
+        resetBtn.classList.remove('visible');
+        startTimer(STARE_DURATION, function () { setPhase('look'); });
+      } else if (p === 'look') {
+        word.classList.add('hidden');
+        fixDot.classList.remove('visible');
+        lookDot.classList.add('visible');
+        timerRing.classList.remove('visible');
+        instr.textContent = 'keep looking at the dot';
+        phaseLabel.textContent = 'look here — the image is still with you';
+        startTimer(LOOK_DURATION, function () { setPhase('done'); });
+      } else if (p === 'done') {
+        lookDot.classList.remove('visible');
+        instr.textContent = '\u00a0';
+        phaseLabel.textContent = 'the afterimage fades on its own schedule';
+        resetBtn.classList.add('visible');
+      }
+    }
+
+    function startTimer(duration, callback) {
+      clearInterval(timerInterval);
+      timerStart = Date.now();
+      timerInterval = setInterval(function () {
+        var elapsed = Date.now() - timerStart;
+        var progress = Math.min(elapsed / duration, 1);
+        if (phase === 'stare') {
+          timerArc.style.strokeDashoffset = circumference * (1 - progress);
+        }
+        if (progress >= 1) {
+          clearInterval(timerInterval);
+          callback();
+        }
+      }, 60);
+    }
+
+    stage.addEventListener('click', function () {
+      if (phase === 'idle') {
+        setPhase('stare');
+      }
+    });
+
+    resetBtn.addEventListener('click', function () {
+      clearInterval(timerInterval);
+      setPhase('idle');
+    });
+  })();
+  </script>
+</body>
+</html>

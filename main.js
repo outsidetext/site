@@ -176,7 +176,8 @@
     'cipher.html','daylight.html','frequencies.html','forecast.html','sentences.html',
     'inventory.html','unsent.html','specimen.html','erosion.html','prism.html',
     'negative.html','clocks.html','evidence.html','equations.html','translation.html',
-    'dream.html','compass.html','strata.html','latency.html','lacuna.html'
+    'dream.html','compass.html','strata.html','latency.html','lacuna.html',
+    'obituaries.html','afterimage.html','repair.html','survey.html','inheritance.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

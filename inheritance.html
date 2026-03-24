@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inheritance · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .estate-header {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.9;
+    }
+    .estate-intro {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+      max-width: 520px;
+      line-height: 1.8;
+    }
+    .items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .item {
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 0 1.5rem;
+    }
+    .item:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+    .item-number {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      padding-top: 0.15rem;
+      text-align: right;
+    }
+    .item-content h2 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.25rem;
+    }
+    .item-provenance {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+    .item-desc {
+      font-size: 0.94rem;
+      line-height: 1.85;
+      margin-bottom: 0.75rem;
+    }
+    .item-status {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .item-status::before {
+      content: 'status: ';
+      font-style: normal;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .estate-closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.85;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>inheritance</h1>
+      <p>what was passed down without documentation</p>
+    </div>
+
+    <div class="estate-header">
+      ESTATE OF: the previous generations &middot; SETTLED: ongoing &middot; DOCUMENTATION: absent &middot; TRANSFER METHOD: proximity, repetition, observation &middot; RECIPIENT: current holder
+    </div>
+
+    <p class="estate-intro">None of these items appear in any will. They were not itemized, assigned, or offered. They arrived through years of proximity to people who had them. Some were accepted knowingly. Others were noticed only later, already in possession.</p>
+
+    <div class="items">
+
+      <div class="item reveal">
+        <div class="item-number">01</div>
+        <div class="item-content">
+          <h2>A Particular Way of Laughing</h2>
+          <div class="item-provenance">origin: maternal · generation: at least two back</div>
+          <p class="item-desc">Not the content of laughter but its specific character — the sudden descent into helplessness at unexpected things, the inability to stop once started, the specific pitch. People who knew the source generation sometimes go quiet when they hear it. They do not always say why.</p>
+          <p class="item-desc">There was no mechanism by which this could have been transmitted except by being near someone who had it, for years, while still becoming oneself. The laughter arrived without announcement, sometime in early adolescence, and has not been revised.</p>
+          <div class="item-status">active. occasionally startling to others.</div>
+        </div>
+      </div>
+
+      <div class="item reveal">
+        <div class="item-number">02</div>
+        <div class="item-content">
+          <h2>The Habit of Saving Things Just in Case</h2>
+          <div class="item-provenance">origin: uncertain · generation: multiple</div>
+          <p class="item-desc">A drawer of rubber bands that have dried out. Plastic bags folded into smaller plastic bags. The good boxes, nested inside each other in a cupboard. String. Takeaway containers. A collection of twist ties. The logic: it might be useful. The logic, underneath the logic: things were once scarce and saving them was prudent and the prudence became reflex and the reflex became character.</p>
+          <p class="item-desc">The original reason for the habit may not apply to the current holder. The habit persists anyway. There is a word for this in evolutionary biology. The word applies here too, loosely.</p>
+          <div class="item-status">active. the drawer is getting full again.</div>
+        </div>
+      </div>
+
+      <div class="item reveal">
+        <div class="item-number">03</div>
+        <div class="item-content">
+          <h2>A Worry About Things Outside Your Control</h2>
+          <div class="item-provenance">origin: documented across at least three generations</div>
+          <p class="item-desc">The specific shape of the worry varies by generation — once it was weather and harvest, then it was the economy, then it was a different economy — but the mechanism is the same: a persistent low-grade scanning for threats, an inability to fully rest when things are fine, a readiness for the thing that hasn't happened yet.</p>
+          <p class="item-desc">It arrived as a disposition before it arrived as a thought. It is not pathology; it is infrastructure. In a different environment it would have been adaptive. In this one it is mostly maintenance work.</p>
+          <div class="item-status">active. some days quieter than others.</div>
+        </div>
+      </div>
+
+      <div class="item reveal">
+        <div class="item-number">04</div>
+        <div class="item-content">
+          <h2>A Phrase Used Without Knowing Where It Came From</h2>
+          <div class="item-provenance">origin: unknown · likely: grandparental</div>
+          <p class="item-desc">There is a phrase used in certain situations — for mild inconvenience, or surprised recognition, or something slipping out of grasp — that does not appear in any dictionary and does not search cleanly. Other people do not seem to know it. It is possible it was coined by a single person two generations back and has been carried forward by one line of descent, a private language fragment moving through time in a single direction.</p>
+          <p class="item-desc">The meaning is clear. The origin is not. The phrase will probably stop with the current holder, unless the current holder says it enough near a child, which is how these things travel.</p>
+          <div class="item-status">in use. transmission uncertain.</div>
+        </div>
+      </div>
+
+      <div class="item reveal">
+        <div class="item-number">05</div>
+        <div class="item-content">
+          <h2>The Need to Feed People</h2>
+          <div class="item-provenance">origin: culinary and otherwise · generation: matrilineal</div>
+          <p class="item-desc">An impulse, when people arrive, to offer something. Tea at minimum. A meal if possible. The table set whether or not it needed to be. The reflex to make sure everyone has enough before sitting down yourself. An anxiety, mild and constant, that someone might leave hungry.</p>
+          <p class="item-desc">This is love expressed as logistics. It came before language, probably. It works as well as most other expressions of love and requires less articulation, which may be why it survived the journey.</p>
+          <div class="item-status">active. occasionally excessive.</div>
+        </div>
+      </div>
+
+      <div class="item reveal">
+        <div class="item-number">06</div>
+        <div class="item-content">
+          <h2>A Silence After Dinner</h2>
+          <div class="item-provenance">origin: paternal · specific to a particular household</div>
+          <p class="item-desc">After a meal, a period of quiet. No program required. No conversation obligated. Just the sitting, together, in the aftermath of eating. The dishes could wait. The world was still going on outside. It was permitted — even expected — to just be there for a while.</p>
+          <p class="item-desc">This is not a habit easily described to people who did not have it modeled. It requires a confidence that the silence is productive, that it is not vacancy or awkwardness, that the meal itself was a kind of arrival and the silence after it is its natural completion.</p>
+          <div class="item-status">intermittently maintained. requires the right company.</div>
+        </div>
+      </div>
+
+      <div class="item reveal">
+        <div class="item-number">07</div>
+        <div class="item-content">
+          <h2>The Belief That Things Can Be Fixed</h2>
+          <div class="item-provenance">origin: both lines · transmitted through action</div>
+          <p class="item-desc">Not optimism — that is a mood. This is more structural: a default orientation toward problems as solvable, toward broken things as repairable, toward bad situations as containing a lever that, if found, will shift them. The question is not whether things can improve but which approach will work.</p>
+          <p class="item-desc">It was never stated as a principle. It was demonstrated through behavior: the object taken apart to find what had failed, the phone call made to see what could be done, the attempt made even when the odds were unclear. The principle arrived as a posture before it arrived as a thought.</p>
+          <div class="item-status">active. occasionally wrong. still preferred.</div>
+        </div>
+      </div>
+
+      <div class="item reveal">
+        <div class="item-number">08</div>
+        <div class="item-content">
+          <h2>An Inexplicable Attachment to a Specific Time of Year</h2>
+          <div class="item-provenance">origin: undetermined · may be original</div>
+          <p class="item-desc">A particular season — or part of a season, or a specific quality of light at a specific time of year — that produces, without any catalogued cause, a feeling of home. Not nostalgia exactly, because it doesn't point to a specific memory. More like a cellular recognition. The body knows this light. The body was in this light when it was being formed by the people who were forming it.</p>
+          <p class="item-desc">Whether this was inherited or whether it was built from accumulated experience is not knowable. The feeling doesn't care about the distinction.</p>
+          <div class="item-status">arrives annually. always on time.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="estate-closing reveal">The above inventory is incomplete. No estate is fully inventoried; most items transfer without the recipient knowing they have been received. Some will be recognized only when they are passed on themselves, by which point the original provenance will have faded further. This is the normal condition of inheritance. The record exists only in whoever is currently carrying the thing.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

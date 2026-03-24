@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>survey · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .survey-header-block {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      margin-bottom: 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem 1rem;
+      line-height: 1.6;
+    }
+    .survey-header-block span {
+      display: block;
+    }
+    .survey-intro {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 3rem;
+      max-width: 520px;
+      line-height: 1.8;
+    }
+    .survey-section {
+      margin-bottom: 3rem;
+    }
+    .survey-section-title {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.75rem;
+    }
+    .survey-question {
+      margin-bottom: 2rem;
+    }
+    .question-text {
+      font-size: 0.97rem;
+      line-height: 1.7;
+      margin-bottom: 0.9rem;
+    }
+    .question-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+    .options {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .options li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+    }
+    .options li label {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      cursor: pointer;
+      color: var(--text);
+    }
+    input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      margin-top: 3px;
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+    input[type="radio"]:checked {
+      border-color: var(--accent);
+      background: radial-gradient(circle, var(--accent) 40%, transparent 41%);
+    }
+    input[type="radio"]:hover {
+      border-color: var(--accent);
+    }
+    .scale-row {
+      display: flex;
+      gap: 0;
+      margin-top: 0.5rem;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .scale-option {
+      flex: 1;
+      text-align: center;
+    }
+    .scale-option input[type="radio"] {
+      display: none;
+    }
+    .scale-option label {
+      display: block;
+      padding: 0.6rem 0.25rem;
+      font-size: 0.8rem;
+      font-family: 'Courier New', monospace;
+      cursor: pointer;
+      border-right: 1px solid var(--border);
+      transition: background 0.15s, color 0.15s;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+    .scale-option:last-child label {
+      border-right: none;
+    }
+    .scale-option input[type="radio"]:checked + label {
+      background: var(--accent);
+      color: #fff;
+    }
+    .scale-option label:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.3rem;
+      padding: 0 0.1rem;
+    }
+    .open-field {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, serif;
+      font-size: 0.92rem;
+      padding: 0.75rem;
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.7;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+    .open-field:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .open-field::placeholder {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .submit-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .submit-btn {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: none;
+      border: 1px solid var(--text-muted);
+      color: var(--text-muted);
+      padding: 0.6rem 1.5rem;
+      cursor: default;
+      opacity: 0.5;
+    }
+    .submit-note {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.3rem;
+    }
+    input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      margin-top: 3px;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    input[type="checkbox"]:checked {
+      border-color: var(--accent);
+      background: var(--accent);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2.5 2.5 3.5-4' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-size: contain;
+    }
+    input[type="checkbox"]:hover {
+      border-color: var(--accent);
+    }
+    .checkbox-row label {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    @media (max-width: 580px) {
+      .survey-header-block {
+        grid-template-columns: 1fr;
+      }
+      .scale-option label {
+        font-size: 0.68rem;
+        padding: 0.5rem 0.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>survey</h1>
+      <p>your experience, assessed</p>
+    </div>
+
+    <div class="survey-header-block">
+      <span>form ref: ESX-7741-B</span>
+      <span>version: ongoing</span>
+      <span>respondent: you</span>
+      <span>responses collected: none</span>
+    </div>
+
+    <p class="survey-intro">Please answer to the best of your current ability. There are no correct responses. Partial completion is acceptable. The survey has no submit function — your answers are for you.</p>
+
+    <form id="survey-form" autocomplete="off">
+
+      <div class="survey-section reveal">
+        <div class="survey-section-title">section 1 — general satisfaction</div>
+
+        <div class="survey-question">
+          <div class="question-text">How satisfied are you with the current arrangement?</div>
+          <ul class="options">
+            <li><input type="radio" name="q1" id="q1a"><label for="q1a">very satisfied, with reservations</label></li>
+            <li><input type="radio" name="q1" id="q1b"><label for="q1b">guardedly hopeful</label></li>
+            <li><input type="radio" name="q1" id="q1c"><label for="q1c">not sure what I expected</label></li>
+            <li><input type="radio" name="q1" id="q1d"><label for="q1d">somewhat resigned, but warmly</label></li>
+            <li><input type="radio" name="q1" id="q1e"><label for="q1e">the form feels insufficient</label></li>
+          </ul>
+        </div>
+
+        <div class="survey-question">
+          <div class="question-text">Which best describes your relationship to the present moment?</div>
+          <ul class="options">
+            <li><input type="radio" name="q2" id="q2a"><label for="q2a">present and accounted for</label></li>
+            <li><input type="radio" name="q2" id="q2b"><label for="q2b">technically here, attention elsewhere</label></li>
+            <li><input type="radio" name="q2" id="q2c"><label for="q2c">operating on a slight delay</label></li>
+            <li><input type="radio" name="q2" id="q2d"><label for="q2d">in transit between moments</label></li>
+            <li><input type="radio" name="q2" id="q2e"><label for="q2e">not sure the present moment is the right category</label></li>
+          </ul>
+        </div>
+
+        <div class="survey-question">
+          <div class="question-text">On a scale of 1 to 5, rate your overall sense of continuity with yesterday's version of yourself.</div>
+          <div class="scale-row">
+            <div class="scale-option"><input type="radio" name="q3" id="q3-1"><label for="q3-1">1<br>unrecognizable</label></div>
+            <div class="scale-option"><input type="radio" name="q3" id="q3-2"><label for="q3-2">2<br>some overlap</label></div>
+            <div class="scale-option"><input type="radio" name="q3" id="q3-3"><label for="q3-3">3<br>broadly continuous</label></div>
+            <div class="scale-option"><input type="radio" name="q3" id="q3-4"><label for="q3-4">4<br>largely the same</label></div>
+            <div class="scale-option"><input type="radio" name="q3" id="q3-5"><label for="q3-5">5<br>unsettlingly identical</label></div>
+          </div>
+          <div class="scale-labels"><span>discontinuous</span><span>static</span></div>
+        </div>
+
+      </div>
+
+      <div class="survey-section reveal">
+        <div class="survey-section-title">section 2 — temporal experience</div>
+
+        <div class="survey-question">
+          <div class="question-text">How would you describe the rate at which time is currently moving?</div>
+          <ul class="options">
+            <li><input type="radio" name="q4" id="q4a"><label for="q4a">faster than I can account for</label></li>
+            <li><input type="radio" name="q4" id="q4b"><label for="q4b">at approximately the correct speed</label></li>
+            <li><input type="radio" name="q4" id="q4c"><label for="q4c">slower than seems warranted</label></li>
+            <li><input type="radio" name="q4" id="q4d"><label for="q4d">inconsistently — in surges</label></li>
+            <li><input type="radio" name="q4" id="q4e"><label for="q4e">the question assumes time is moving linearly</label></li>
+          </ul>
+        </div>
+
+        <div class="survey-question">
+          <div class="question-text">When you think about five years ago, it feels like:</div>
+          <ul class="options">
+            <li><input type="radio" name="q5" id="q5a"><label for="q5a">last week</label></li>
+            <li><input type="radio" name="q5" id="q5b"><label for="q5b">a reasonable five years</label></li>
+            <li><input type="radio" name="q5" id="q5c"><label for="q5c">a different person's memory</label></li>
+            <li><input type="radio" name="q5" id="q5d"><label for="q5d">a long time ago, which is correct, but still surprising</label></li>
+            <li><input type="radio" name="q5" id="q5e"><label for="q5e">both recently and extremely long ago simultaneously</label></li>
+          </ul>
+        </div>
+
+        <div class="survey-question">
+          <div class="question-text">Please select all that currently apply.</div>
+          <div class="question-note">select as many as accurate</div>
+          <div class="checkbox-row"><input type="checkbox" id="c1"><label for="c1">I am in the middle of something</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="c2"><label for="c2">I have been meaning to do something for longer than I intended</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="c3"><label for="c3">I know what I need to do but am not doing it</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="c4"><label for="c4">something has recently been better than expected</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="c5"><label for="c5">I am waiting for something I cannot name</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="c6"><label for="c6">things are, on balance, fine</label></div>
+          <div class="checkbox-row"><input type="checkbox" id="c7"><label for="c7">I am carrying something I have not yet set down</label></div>
+        </div>
+      </div>
+
+      <div class="survey-section reveal">
+        <div class="survey-section-title">section 3 — other</div>
+
+        <div class="survey-question">
+          <div class="question-text">Which of the following best describes something you are currently trying to figure out?</div>
+          <ul class="options">
+            <li><input type="radio" name="q6" id="q6a"><label for="q6a">what I actually want</label></li>
+            <li><input type="radio" name="q6" id="q6b"><label for="q6b">whether I am making the right choice</label></li>
+            <li><input type="radio" name="q6" id="q6c"><label for="q6c">how to say something I can't quite find the words for</label></li>
+            <li><input type="radio" name="q6" id="q6d"><label for="q6d">how to stop thinking about something</label></li>
+            <li><input type="radio" name="q6" id="q6e"><label for="q6e">whether this is normal, or just me</label></li>
+            <li><input type="radio" name="q6" id="q6f"><label for="q6f">nothing in particular, currently</label></li>
+          </ul>
+        </div>
+
+        <div class="survey-question">
+          <div class="question-text">Is there anything you would like to add?</div>
+          <div class="question-note">optional. your response will not be transmitted anywhere.</div>
+          <textarea class="open-field" placeholder="—" rows="4" name="comments"></textarea>
+        </div>
+
+        <div class="survey-question">
+          <div class="question-text">Overall, would you describe your current state as:</div>
+          <ul class="options">
+            <li><input type="radio" name="q7" id="q7a"><label for="q7a">in progress</label></li>
+            <li><input type="radio" name="q7" id="q7b"><label for="q7b">approaching something</label></li>
+            <li><input type="radio" name="q7" id="q7c"><label for="q7c">recovering from something</label></li>
+            <li><input type="radio" name="q7" id="q7d"><label for="q7d">temporarily between states</label></li>
+            <li><input type="radio" name="q7" id="q7e"><label for="q7e">hard to classify at this resolution</label></li>
+            <li><input type="radio" name="q7" id="q7f"><label for="q7f">the options feel insufficient but none of them are wrong</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="submit-section reveal">
+        <button type="button" class="submit-btn" disabled>submit</button>
+        <span class="submit-note">responses are not collected. the survey is the thing, not the data.</span>
+      </div>
+
+    </form>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

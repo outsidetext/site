@@ -188,6 +188,11 @@
       { id: 'strata',      href: 'strata.html',       label: 'strata',       desc: 'what compresses under the weight of time — scroll to go deeper',       x: 0.01, y: 0.53 },
       { id: 'latency',     href: 'latency.html',      label: 'latency',      desc: 'click to wait — the space between cause and effect',                   x: 0.27, y: 0.07 },
       { id: 'lacuna',      href: 'lacuna.html',       label: 'lacuna',       desc: 'a gap, a missing portion — hover the blanks to read them',             x: 0.72, y: 0.98 },
+      { id: 'obituaries',  href: 'obituaries.html',   label: 'obituaries',   desc: 'formal notices for things that no longer exist',                        x: 0.56, y: 0.58 },
+      { id: 'afterimage',  href: 'afterimage.html',   label: 'afterimage',   desc: 'stare at the word — look away — see what remains',                      x: 0.11, y: 0.72 },
+      { id: 'repair',      href: 'repair.html',       label: 'repair',       desc: 'step-by-step guides for things that can\'t be ordered as replacement parts', x: 0.43, y: 0.36 },
+      { id: 'survey',      href: 'survey.html',       label: 'survey',       desc: 'a satisfaction survey — responses not collected',                       x: 0.67, y: 0.20 },
+      { id: 'inheritance', href: 'inheritance.html',  label: 'inheritance',  desc: 'what was passed down without a will or a word',                         x: 0.29, y: 0.88 },
     ];
 
     var edges = [
@@ -277,6 +282,11 @@
       ['strata','silt'], ['strata','thoughts'], ['strata','palimpsest'], ['strata','atlas'], ['strata','log'], ['strata','commonplace'],
       ['latency','interval'], ['latency','signal'], ['latency','quiet'], ['latency','clocks'], ['latency','questions'],
       ['lacuna','glossary'], ['lacuna','negative'], ['lacuna','redacted'], ['lacuna','palimpsest'], ['lacuna','erosion'], ['lacuna','cuts'],
+      ['obituaries','museum'], ['obituaries','log'], ['obituaries','silt'], ['obituaries','debris'], ['obituaries','negative'],
+      ['afterimage','quiet'], ['afterimage','presence'], ['afterimage','erosion'], ['afterimage','colors'], ['afterimage','distances'],
+      ['repair','recipes'], ['repair','knot'], ['repair','inventory'], ['repair','distances'], ['repair','thoughts'],
+      ['survey','receipt'], ['survey','odds'], ['survey','questions'], ['survey','mirror'], ['survey','now'],
+      ['inheritance','thoughts'], ['inheritance','commonplace'], ['inheritance','glossary'], ['inheritance','recipes'], ['inheritance','strata'],
     ];
 
     var canvas  = document.getElementById('map-canvas');
