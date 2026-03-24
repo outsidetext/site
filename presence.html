@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>presence · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { overflow: hidden; }
+
+    main {
+      padding: 0;
+      max-width: none;
+    }
+
+    #presence-canvas {
+      display: block;
+      width: 100%;
+      cursor: crosshair;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+    }
+
+    .presence-ui {
+      position: fixed;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    #presence-hint {
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: opacity 1s ease;
+    }
+
+    #presence-verse {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      max-width: 340px;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      opacity: 0;
+      transition: opacity 2s ease;
+      padding: 0 1.5rem;
+    }
+
+    #presence-verse.visible {
+      opacity: 0.5;
+    }
+
+    #presence-count {
+      top: calc(60px + 1.5rem);
+      right: 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    #presence-count.visible {
+      opacity: 0.6;
+    }
+
+    /* Override nav to be above canvas */
+    header {
+      z-index: 10;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    footer { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <canvas id="presence-canvas" aria-label="Interactive presence canvas — move your cursor or touch to leave traces"></canvas>
+
+  <div class="presence-ui" id="presence-hint">move · touch · leave something</div>
+
+  <div class="presence-ui" id="presence-verse">
+    your traces remain<br>
+    for a little while.<br><br>
+    this is also true<br>
+    of most things.
+  </div>
+
+  <div class="presence-ui" id="presence-count"></div>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    const canvas = document.getElementById('presence-canvas');
+    const ctx = canvas.getContext('2d');
+    const hint = document.getElementById('presence-hint');
+    const verse = document.getElementById('presence-verse');
+    const countEl = document.getElementById('presence-count');
+
+    let particles = [];
+    let totalSpawned = 0;
+    let hasInteracted = false;
+    let idleTimer = null;
+    let lastMove = 0;
+
+    function resize() {
+      // Preserve existing particle positions proportionally
+      const oldW = canvas.width || window.innerWidth;
+      const oldH = canvas.height || window.innerHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      if (oldW && oldH) {
+        const rx = canvas.width / oldW;
+        const ry = canvas.height / oldH;
+        particles.forEach(p => { p.x *= rx; p.y *= ry; });
+      }
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    function getAccentRgb() {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      return isDark ? [207, 126, 63] : [181, 104, 42];
+    }
+
+    function spawnParticle(x, y, size, life, decay) {
+      particles.push({ x, y, r: size, life, decay });
+      totalSpawned++;
+    }
+
+    // Mouse trail
+    canvas.addEventListener('mousemove', (e) => {
+      const now = Date.now();
+      // Throttle to ~60fps density
+      if (now - lastMove < 16) return;
+      lastMove = now;
+
+      spawnParticle(
+        e.clientX,
+        e.clientY,
+        Math.random() * 2.5 + 0.8,
+        1,
+        Math.random() * 0.007 + 0.003
+      );
+
+      onInteract();
+    });
+
+    // Touch trail
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      const now = Date.now();
+      if (now - lastMove < 30) return;
+      lastMove = now;
+
+      for (const touch of e.touches) {
+        spawnParticle(
+          touch.clientX,
+          touch.clientY,
+          Math.random() * 3 + 1,
+          1,
+          Math.random() * 0.006 + 0.003
+        );
+      }
+      onInteract();
+    }, { passive: false });
+
+    // Click burst
+    canvas.addEventListener('click', (e) => {
+      for (let i = 0; i < 24; i++) {
+        const angle = (i / 24) * Math.PI * 2 + Math.random() * 0.3;
+        const dist = Math.random() * 50 + 5;
+        spawnParticle(
+          e.clientX + Math.cos(angle) * dist,
+          e.clientY + Math.sin(angle) * dist,
+          Math.random() * 4 + 1.5,
+          1,
+          Math.random() * 0.004 + 0.002
+        );
+      }
+      onInteract();
+    });
+
+    // Touch tap burst
+    canvas.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      for (const touch of e.touches) {
+        for (let i = 0; i < 12; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const dist = Math.random() * 30 + 5;
+          spawnParticle(
+            touch.clientX + Math.cos(angle) * dist,
+            touch.clientY + Math.sin(angle) * dist,
+            Math.random() * 3 + 1,
+            1,
+            Math.random() * 0.006 + 0.003
+          );
+        }
+      }
+      onInteract();
+    }, { passive: false });
+
+    function onInteract() {
+      if (!hasInteracted) {
+        hasInteracted = true;
+        hint.style.opacity = '0';
+        setTimeout(() => hint.style.display = 'none', 1200);
+      }
+
+      verse.classList.remove('visible');
+      countEl.classList.add('visible');
+
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        verse.classList.add('visible');
+      }, 4000);
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const [r, g, b] = getAccentRgb();
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.life -= p.decay;
+
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        const alpha = Math.pow(p.life, 1.5);
+        const outerR = p.r * 4;
+
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, outerR);
+        gradient.addColorStop(0,   `rgba(${r},${g},${b},${alpha * 0.9})`);
+        gradient.addColorStop(0.3, `rgba(${r},${g},${b},${alpha * 0.4})`);
+        gradient.addColorStop(1,   `rgba(${r},${g},${b},0)`);
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, outerR, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
+
+      // Update count display
+      if (totalSpawned > 0) {
+        countEl.textContent = totalSpawned.toLocaleString() + ' traces left';
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Show verse after a moment if no interaction
+    setTimeout(() => {
+      if (!hasInteracted) {
+        verse.classList.add('visible');
+        idleTimer = setTimeout(() => {
+          if (!hasInteracted) verse.classList.remove('visible');
+        }, 8000);
+      }
+    }, 3000);
+  </script>
+</body>
+</html>

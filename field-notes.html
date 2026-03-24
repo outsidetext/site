@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>field notes · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .notes-list { margin: 0; }
+
+    .note {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .note:last-child { border-bottom: none; }
+    .note:first-child { padding-top: 0; }
+
+    .note-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .note-entry {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .note-subject {
+      font-size: 1.05rem;
+      font-weight: bold;
+      line-height: 1.3;
+    }
+
+    .note-location {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.9rem;
+    }
+
+    .note-body {
+      font-size: 0.96rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+
+    .note-body p + p {
+      margin-top: 0.8rem;
+    }
+
+    .note-classification {
+      margin-top: 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      border-left: 2px solid var(--border);
+      padding-left: 0.8rem;
+    }
+
+    .note-classification span {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>field notes</h1>
+      <p class="page-desc">observations from the digital ecosystem, recorded in the field</p>
+    </div>
+
+    <div class="notes-list reveal">
+
+      <div class="note">
+        <div class="note-header">
+          <span class="note-entry">Entry 003</span>
+          <span class="note-subject">The Cursor</span>
+        </div>
+        <div class="note-location">habitat: all screens · status: ubiquitous</div>
+        <div class="note-body">
+          <p>The cursor blinks at approximately 530 milliseconds on, 530 milliseconds off. This interval was not chosen arbitrarily. Early interface designers discovered that this rate matches the resting human heartbeat. Whether this was intended to make the cursor feel alive, or simply to make waiting feel less hostile, is unclear from surviving documentation.</p>
+          <p>The cursor is the only part of the interface that follows you. Everything else waits. The cursor goes where you go. In this sense, it is the most honest representation of attention the digital world has produced.</p>
+        </div>
+        <div class="note-classification">classification: <span>interface fauna</span> · first observed: approx. 1967</div>
+      </div>
+
+      <div class="note">
+        <div class="note-header">
+          <span class="note-entry">Entry 018</span>
+          <span class="note-subject">The Abandoned Tab</span>
+        </div>
+        <div class="note-location">habitat: browser · lifespan: days to years</div>
+        <div class="note-body">
+          <p>Specimen was opened eleven weeks ago for a purpose that has since been forgotten. It has survived three browser restarts. It is no longer loading. It simply exists — a reference to something that seemed important once, sustained now by guilt alone.</p>
+          <p>The abandoned tab is remarkable for its psychological mass. It occupies almost no computational resources and yet exerts a persistent presence on its host. Subjects report knowing the tab is there. They do not close it. They cannot quite say why.</p>
+          <p>Population density varies wildly. Some users maintain two or three. Others maintain hundreds. The relationship between tab count and anxiety appears nonlinear and deserves further study.</p>
+        </div>
+        <div class="note-classification">classification: <span>digital persistence</span> · behaviour: guilt-sustaining</div>
+      </div>
+
+      <div class="note">
+        <div class="note-header">
+          <span class="note-entry">Entry 031</span>
+          <span class="note-subject">The Notification Dot</span>
+        </div>
+        <div class="note-location">habitat: app icons, inboxes, corners · population: growing</div>
+        <div class="note-body">
+          <p>Small. Red. Theoretically informative. The notification dot contains no content — only implication. It is the thought of a thought. It says: something happened, and you don't know what, and you should probably look.</p>
+          <p>Field observation suggests the notification dot has evolved beyond its original function. Once a neutral indicator, it now triggers a low-grade anxiety response in a significant portion of its hosts. The response occurs even when the subject knows, rationally, that what the dot indicates is unimportant.</p>
+          <p>Note: subjects report relief upon clearing notifications that is disproportionate to the importance of the notifications themselves. The relief is about the dot, not the content. The dot is the message.</p>
+        </div>
+        <div class="note-classification">classification: <span>attention mechanism</span> · effect: compulsive</div>
+      </div>
+
+      <div class="note">
+        <div class="note-header">
+          <span class="note-entry">Entry 047</span>
+          <span class="note-subject">The Drafts Folder</span>
+        </div>
+        <div class="note-location">habitat: email clients, messaging apps · largely unstudied</div>
+        <div class="note-body">
+          <p>The average drafts folder contains between 14 and 80 incomplete messages. Some date back years. Each is a thought that approached becoming contact and then stopped.</p>
+          <p>Composition varies. Some are unsent apologies. Some are questions that felt too large to ask. Some are messages started in one mood that could not be finished in another. Some are notes to people who have since moved or changed or ended the relationship that would have received them.</p>
+          <p>The drafts folder is quieter than it seems. It holds conversations that almost happened. Its archive is more intimate than the sent folder, which contains only what the subject was willing to say.</p>
+        </div>
+        <div class="note-classification">classification: <span>unsent communications</span> · emotional weight: high</div>
+      </div>
+
+      <div class="note">
+        <div class="note-header">
+          <span class="note-entry">Entry 059</span>
+          <span class="note-subject">The Autocomplete Prediction</span>
+        </div>
+        <div class="note-location">habitat: search bars, message fields · adaptive</div>
+        <div class="note-body">
+          <p>Autocomplete has learned the subject's patterns better than the subject has. It finishes sentences before their author knows what they intend to say. Occasionally, it is wrong in ways that reveal something true.</p>
+          <p>Unusual behaviour observed: autocomplete sometimes surfaces a word the subject had been avoiding. The subject wanted to say one thing; the system suggests what they meant. The suggestion is accepted or rejected, but either way, something has been named that was previously circling unnamed.</p>
+          <p>There is something strange about a system that predicts you. It is built on your past. It knows your patterns. It is not you, but it rhymes with you. The ghost of your previous sentences, making suggestions.</p>
+        </div>
+        <div class="note-classification">classification: <span>predictive interface</span> · accuracy: uncanny</div>
+      </div>
+
+      <div class="note">
+        <div class="note-header">
+          <span class="note-entry">Entry 072</span>
+          <span class="note-subject">The Scroll</span>
+        </div>
+        <div class="note-location">habitat: all feeds · behaviour: infinite</div>
+        <div class="note-body">
+          <p>The scroll is infinite. This is technically false — content is finite — but it is functionally true because the supply replenishes faster than any subject can deplete it. The scroll does not end. The subject usually does.</p>
+          <p>Observed behaviour: subjects continue scrolling past the point where anything new has appeared. The scroll has become the activity, not the finding. This is not a failure of the subject. It is a success of the mechanism. The scroll was designed to continue. It works as intended.</p>
+          <p>The scrolling motion — downward, rhythmic, unceasing — has no analog in the pre-digital world. Nothing else moves this way: not turning pages, not walking, not watching. The scroll is a new gesture. We have not yet decided what it means that we do it so often.</p>
+        </div>
+        <div class="note-classification">classification: <span>navigation behaviour</span> · endpoint: none</div>
+      </div>
+
+      <div class="note">
+        <div class="note-header">
+          <span class="note-entry">Entry 088</span>
+          <span class="note-subject">The Three Dots (Typing Indicator)</span>
+        </div>
+        <div class="note-location">habitat: messaging applications · duration: seconds, felt like minutes</div>
+        <div class="note-body">
+          <p>Three small dots appear in sequence to indicate that another person is composing a message. The dots are almost certainly the most psychologically potent three-pixel element in modern interface design.</p>
+          <p>Observation: subjects watching the typing indicator report an elevated state of attention and mild suspense regardless of the expected message content. The indicator creates a window into someone else's present tense. They are there, typing, now. You are watching them think.</p>
+          <p>A peculiar sub-phenomenon: the dots disappear, and no message arrives. The subject is left in a state that has no name but is widely recognised. Someone thought something, and then thought better of it. The silence that follows is loaded differently from ordinary silence.</p>
+        </div>
+        <div class="note-classification">classification: <span>presence signal</span> · associated phenomena: anticipation, sudden quiet</div>
+      </div>
+
+      <div class="note">
+        <div class="note-header">
+          <span class="note-entry">Entry 104</span>
+          <span class="note-subject">The Read Receipt</span>
+        </div>
+        <div class="note-location">habitat: messaging apps · contested territory</div>
+        <div class="note-body">
+          <p>A small indicator, usually a colour change or a word — "read" — that confirms a message has been seen. Technically neutral. Socially complex.</p>
+          <p>The read receipt transformed silence from ambiguous to deliberate. Before it existed, no reply could mean: message not received, phone left behind, too busy to respond, didn't notice, or choosing not to reply. After it existed, no reply means: they saw it, and chose not to respond. The ambiguity — which was its own kind of mercy — was removed.</p>
+          <p>Many subjects have disabled read receipts. This is itself a form of communication. The absence of receipt is a message about preferred ambiguity. Systems are still being designed around this discovery.</p>
+        </div>
+        <div class="note-classification">classification: <span>communication metadata</span> · effect: collapsing plausible deniability</div>
+      </div>
+
+      <div class="note">
+        <div class="note-header">
+          <span class="note-entry">Entry 119</span>
+          <span class="note-subject">The Search History</span>
+        </div>
+        <div class="note-location">habitat: private · rarely examined</div>
+        <div class="note-body">
+          <p>The search history is the most honest record of a person's mind at any given moment. It contains questions too strange to ask aloud, fears investigated at 2am, conditions half-diagnosed, emotions named in desperation, and searches that begin "is it normal to..."</p>
+          <p>Unlike a diary, the search history is not composed for an audience. Unlike conversation, it is not shaped for another person's comfort. It is a raw archive of what was wondered, worried, feared, and wanted. It is more private than almost anything else.</p>
+          <p>The fact that this archive is stored, analyzed, and used to make inferences is perhaps the most significant data ethics question of the current era. It is not that our searches are seen. It is that our unguarded moments of wondering — our most human habit — have become data.</p>
+        </div>
+        <div class="note-classification">classification: <span>private archive</span> · intimacy level: high</div>
+      </div>
+
+      <div class="note">
+        <div class="note-header">
+          <span class="note-entry">Entry 137</span>
+          <span class="note-subject">The Video Call Lag</span>
+        </div>
+        <div class="note-location">habitat: remote conversations · frequency: universal</div>
+        <div class="note-body">
+          <p>A delay between speaking and being heard. Between seeing and being understood. The human face is read in real time, as a continuous stream of micro-expressions. The video call introduces a gap — sometimes 200 milliseconds, sometimes two seconds — that disrupts this reading. Subjects find it more tiring than in-person conversation and often cannot say precisely why.</p>
+          <p>They are compensating, unconsciously, for a desynchronisation the brain was not designed to handle. The lag introduces a question into every pause: are they thinking, or did the connection fail? Have they finished speaking, or are their last words still travelling?</p>
+          <p>We have adapted. But the tiredness is the adaptation. This is something to remember.</p>
+        </div>
+        <div class="note-classification">classification: <span>communication distortion</span> · side effect: fatigue</div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

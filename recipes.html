@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>recipes · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .recipe-list { margin: 0; }
+
+    .recipe {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .recipe:last-child { border-bottom: none; }
+    .recipe:first-child { padding-top: 0; }
+
+    .recipe-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .recipe-serves {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+    }
+
+    .recipe-section {
+      margin-bottom: 1rem;
+    }
+
+    .recipe-section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .recipe-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .recipe-section ul li {
+      padding: 0.1rem 0;
+      padding-left: 1.1rem;
+      position: relative;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+
+    .recipe-section ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    .recipe-section p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .recipe-note {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text-muted);
+      border-left: 2px solid var(--border);
+      padding-left: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>recipes</h1>
+      <p class="page-desc">instructions for states of being</p>
+    </div>
+
+    <div class="recipe-list reveal">
+
+      <div class="recipe">
+        <div class="recipe-name">How to Prepare Nostalgia</div>
+        <div class="recipe-serves">serves: 1 · cannot be shared, though often attempted</div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">ingredients</div>
+          <ul>
+            <li>one photograph you can't quite reach</li>
+            <li>a song you haven't heard in several years</li>
+            <li>a particular quality of afternoon light (the golden hour, specifically, around 4pm in autumn)</li>
+            <li>one object that belonged to a different version of you</li>
+            <li>time, unsupervised</li>
+          </ul>
+        </div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">method</div>
+          <p>Begin with something small — a smell, or a sound. Do not seek it out; let it find you. When it arrives, do not try to hold it still. Nostalgia cannot be pinned. It only passes through. The feeling will come when it is ready, usually at a quiet moment when you weren't watching for it. Sit with it. Let it move through the room like weather.</p>
+        </div>
+        <div class="recipe-note">Nostalgia tastes slightly different every time. This is because it is not memory. It is the feeling of almost-remembering.</div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-name">A Recipe for Waiting Well</div>
+        <div class="recipe-serves">serves: all durations equally</div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">ingredients</div>
+          <ul>
+            <li>one unanswered message, recent</li>
+            <li>a window (any size, any view)</li>
+            <li>something to do with your hands</li>
+            <li>the decision not to check again for at least ten minutes</li>
+          </ul>
+        </div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">method</div>
+          <p>Arrange yourself near the window. Set no timer — timers make waiting hostile. Give your hands something gentle: a cup, a pen, a page. Permit yourself to notice what is outside the window. You are not waiting. You are simply here, and something will happen later. The distinction matters.</p>
+        </div>
+        <div class="recipe-note">Best served without a phone nearby. Substituting phone-checking for patience does not produce the same result.</div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-name">How to Make Silence</div>
+        <div class="recipe-serves">serves: the whole room</div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">ingredients</div>
+          <ul>
+            <li>absence of speech (at least ninety seconds)</li>
+            <li>two or more people who trust each other</li>
+            <li>something worth listening to beneath the quiet</li>
+          </ul>
+        </div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">method</div>
+          <p>Stop. All at once if possible. Do not fill the pause with filler words or nervous laughter. Let the other sounds come in: the building, the street, the season. Silence between people who know each other is not empty. It is a different kind of full.</p>
+        </div>
+        <div class="recipe-note">Shared silence that feels comfortable is a sign of something. Pay attention to who you can be quiet with.</div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-name">The Recipe for Leaving Somewhere</div>
+        <div class="recipe-serves">serves: 1 · yields enough grief to last the drive home</div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">ingredients</div>
+          <ul>
+            <li>a place you have been long enough to belong to</li>
+            <li>one last walk through it, alone</li>
+            <li>the knowledge that you will not return in the same way</li>
+            <li>something small to take with you — not a souvenir, a detail: the way the light looked at 7am, the specific sound of a particular door</li>
+          </ul>
+        </div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">method</div>
+          <p>Do the last walk slowly. Look at ordinary things. The window you looked out of every morning. The floor's particular creak. Leaving is not only the moment of departure — it begins when you know you're leaving. Let it begin early. Let it run its full course. You cannot rush it without losing something.</p>
+        </div>
+        <div class="recipe-note">The grief of leaving is proportional to how much you were actually there. This is not a bad thing.</div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-name">How to Prepare Wonder</div>
+        <div class="recipe-serves">serves: any number · increases with sharing</div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">ingredients</div>
+          <ul>
+            <li>one fact about something you thought you understood</li>
+            <li>a question you cannot answer yet</li>
+            <li>the willingness to feel small without feeling diminished</li>
+          </ul>
+        </div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">method</div>
+          <p>Read about something you never thought to read about — a biological process, a geological event, the lifespan of a particular star. Let it be inconsequential to your daily life. That is the point. Inconsequential wonder is the purest kind. The feeling of suddenly understanding how large everything is, without being frightened by it, is wonder at its best.</p>
+        </div>
+        <div class="recipe-note">Wonder does not require drama. It works equally well with ant colonies, prime numbers, and the fact that octopuses have three hearts.</div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-name">A Recipe for Making Peace with a Decision</div>
+        <div class="recipe-serves">serves: 1 · the other options are not invited</div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">ingredients</div>
+          <ul>
+            <li>the decision (already made)</li>
+            <li>a full accounting of what you knew at the time</li>
+            <li>the understanding that the self who decided was doing their best</li>
+            <li>a willingness to stop re-running the alternatives</li>
+          </ul>
+        </div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">method</div>
+          <p>The hardest ingredient to find is the last one. Alternatives are compelling because they are always theoretical — untested by reality, perfect in imagination. The decision you made has already been tested. It has a shape. The others are only shadows of shapes. Prefer the real, even when it is harder.</p>
+        </div>
+        <div class="recipe-note">This recipe takes longer than most. Some batches take years. Start anyway.</div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-name">How to Make Sunday Last</div>
+        <div class="recipe-serves">serves: the whole day · pairs well with no plans</div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">ingredients</div>
+          <ul>
+            <li>no obligations before noon</li>
+            <li>something to read that isn't work</li>
+            <li>one meal cooked slowly, without a recipe</li>
+            <li>a conversation that goes nowhere useful</li>
+            <li>the decision not to prepare for Monday until Monday</li>
+          </ul>
+        </div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">method</div>
+          <p>The most common mistake is trying to be productive on Sunday. Sunday is not a small Monday. It is its own thing. Resist the urge to optimize it. Read slowly. Cook something warm. Talk to someone about nothing in particular. The day lengthens when it is not being used for anything.</p>
+        </div>
+        <div class="recipe-note">Sunday lasts longer when you are not watching the clock for Monday's approach. The clock knows. You don't have to help it.</div>
+      </div>
+
+      <div class="recipe">
+        <div class="recipe-name">The Recipe for Arriving Somewhere New</div>
+        <div class="recipe-serves">serves: 1 in unfamiliar territory</div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">ingredients</div>
+          <ul>
+            <li>a place you don't know yet</li>
+            <li>no agenda for the first hour</li>
+            <li>the willingness to get briefly lost</li>
+            <li>a question you would only ask a stranger</li>
+          </ul>
+        </div>
+        <div class="recipe-section">
+          <div class="recipe-section-label">method</div>
+          <p>Before you consult the map, walk. Any direction. New places reveal themselves through detours and wrong turns. The thing you will remember best from any trip is rarely on the itinerary. It is the coffee shop you found by accident. The street that looked interesting. The alley with the good light. Give the first hour to chance.</p>
+        </div>
+        <div class="recipe-note">Familiarity arrives faster than expected. On the third day you will know which direction is north. On the seventh you will have a favourite route. Savour the disorientation while it lasts.</div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

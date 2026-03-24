@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>museum · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .museum-intro {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-left: 3px solid var(--border);
+      padding-left: 1.1rem;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    .exhibits { margin: 0; }
+
+    .exhibit {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exhibit:first-child { padding-top: 0; }
+    .exhibit:last-child { border-bottom: none; }
+
+    .exhibit-plate {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    .exhibit-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    .exhibit-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+      line-height: 1.3;
+    }
+
+    .exhibit-dates {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.9rem;
+    }
+
+    .exhibit-medium {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .exhibit-body {
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    .exhibit-body p + p {
+      margin-top: 0.8rem;
+    }
+
+    .exhibit-placard {
+      margin-top: 1.1rem;
+      padding: 0.8rem 1rem;
+      background: var(--border);
+      border-radius: 2px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+      line-height: 1.6;
+    }
+
+    .exhibit-placard strong {
+      color: var(--text);
+      font-weight: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.65rem;
+    }
+
+    .museum-note {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>museum</h1>
+      <p class="page-desc">a collection of lost digital things</p>
+    </div>
+
+    <p class="museum-intro reveal">
+      Everything on the internet was always going to disappear eventually. Some things disappeared faster than expected. This museum preserves the memory of digital artifacts that no longer exist — platforms, formats, habits, and small experiences that were once ordinary and are now gone. Admission is free. Photography is permitted.
+    </p>
+
+    <div class="exhibits reveal">
+
+      <div class="exhibit">
+        <div class="exhibit-plate">
+          <span class="exhibit-num">Exhibit 001</span>
+          <span class="exhibit-name">The GeoCities Homepage</span>
+        </div>
+        <div class="exhibit-dates">operational: 1994–2009</div>
+        <div class="exhibit-medium">personal webpage · animated GIF · HTML 3.2</div>
+        <div class="exhibit-body">
+          <p>The GeoCities homepage was the primary unit of personal expression on the early web. Each page was a portrait of its owner: their interests, aesthetics, and enthusiasms arranged without professional guidance or ironic distance. They featured animated GIFs, tiled background textures, guestbooks that anyone could sign, MIDI files that played automatically, and signs that read "under construction" — because pages were always being added to, always becoming.</p>
+          <p>There were 38 million of them. In 2009, Yahoo deleted the service and all its contents in a single action. A group of archivists called Archive Team saved roughly 1 terabyte of the data in the final weeks. Most was not saved. Most simply ceased to exist.</p>
+          <p>What was lost was not just websites. It was the record of what ordinary people thought was worth sharing when they had, for the first time, somewhere to share it.</p>
+        </div>
+        <div class="exhibit-placard">
+          <strong>Status</strong>: permanently closed · <strong>Survivors</strong>: partial archive at archive.org · <strong>Note</strong>: the GeoCities of Japan was separately archived nearly in full
+        </div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-plate">
+          <span class="exhibit-num">Exhibit 002</span>
+          <span class="exhibit-name">The AIM Away Message</span>
+        </div>
+        <div class="exhibit-dates">operational: 1997–2017</div>
+        <div class="exhibit-medium">status text · 250 characters · asynchronous</div>
+        <div class="exhibit-body">
+          <p>When AOL Instant Messenger users stepped away from their computers, they left behind a message: a short declaration of where they were going, how they felt, or what they wanted people to think about them. The away message was the direct ancestor of the tweet, the status update, the story.</p>
+          <p>But the away message had qualities those successors don't. It was posted to a small, known audience — your buddy list. It was read only when someone sought you out. It carried no metric of engagement: no likes, no reshares, no reach. It was just a note on the door.</p>
+          <p>"out... back later" could take fifteen minutes to compose. A well-chosen song lyric or inside joke could define someone's social identity for a week. The care people put into 250 characters of ephemeral text, seen only by their friends, suggests something about what expression looks like without an audience in the modern sense.</p>
+        </div>
+        <div class="exhibit-placard">
+          <strong>Status</strong>: service discontinued December 15, 2017 · <strong>Legacy</strong>: the status update, the story, the away indicator
+        </div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-plate">
+          <span class="exhibit-num">Exhibit 003</span>
+          <span class="exhibit-name">The Flash Game</span>
+        </div>
+        <div class="exhibit-dates">operational: 1996–2020</div>
+        <div class="exhibit-medium">Adobe Flash · browser-native · free to play</div>
+        <div class="exhibit-body">
+          <p>Flash games were interactive experiences playable in a browser window, requiring no download, no account, and no payment. They were made by individuals, small studios, and teenagers learning to code. The best ones were genuinely excellent: inventive, funny, strange, difficult, warm.</p>
+          <p>When Adobe discontinued Flash support in December 2020, millions of games became unplayable overnight. Unlike music or film, games require their original software environment to function. Without Flash, Flash games do not run. The experience is gone even if the file survives.</p>
+          <p>Archive teams scrambled. The Internet Archive hosts thousands in a Flash emulator called Ruffle. But the ecosystem — the free-to-access, browser-native, creator-driven game library that existed for two decades — is not preserved. It is reconstructed, partially, from whatever could be found in time.</p>
+        </div>
+        <div class="exhibit-placard">
+          <strong>Status</strong>: runtime deprecated · <strong>Preservation effort</strong>: Flashpoint Archive, Internet Archive/Ruffle · <strong>Estimated losses</strong>: significant
+        </div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-plate">
+          <span class="exhibit-num">Exhibit 004</span>
+          <span class="exhibit-name">The MySpace Profile Song</span>
+        </div>
+        <div class="exhibit-dates">operational: 2003–2008 (peak era)</div>
+        <div class="exhibit-medium">embedded audio · auto-play · self-selected</div>
+        <div class="exhibit-body">
+          <p>Every MySpace profile played a song when it opened. This was not optional — the song was built into the page. Before you read a single word about a person, you heard their choice of music. The song was often the most personal thing on the page.</p>
+          <p>People chose carefully. The song announced something. It could be earnest or ironic, obvious or obscure, a declaration of mood or a signal to people who would recognise it. Reading someone's page meant listening to their choice. The two arrived together.</p>
+          <p>Modern profiles do not do this. The auto-playing song became associated with bad UX, with noise, with intrusion. We learned to want silence as the default. But something was lost in the trade: the sound of walking into someone's space and hearing what they put on.</p>
+        </div>
+        <div class="exhibit-placard">
+          <strong>Status</strong>: feature deprecated; most profile data lost in 2019 server migration · <strong>Lost</strong>: approx. 12 years of uploaded music and user data
+        </div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-plate">
+          <span class="exhibit-num">Exhibit 005</span>
+          <span class="exhibit-name">Google Reader</span>
+        </div>
+        <div class="exhibit-dates">operational: 2005–2013</div>
+        <div class="exhibit-medium">RSS aggregator · chronological feed · no algorithm</div>
+        <div class="exhibit-body">
+          <p>Google Reader was a tool for reading RSS feeds: a way to subscribe to websites and read their new content in one place, in the order it was published, with no algorithmic curation. You chose what you read. You saw all of it, in sequence. You decided when you were finished.</p>
+          <p>When Google shut it down in July 2013, hundreds of thousands of people lost their primary method of following the web. The shutdown is considered a pivotal moment in the shift from an RSS-based open web to a platform-curated social media model. What came after Reader was the algorithmic feed.</p>
+          <p>This is not a small thing. The difference between a chronological feed you curate and an algorithmic feed that curates you is one of the most significant changes in how information reaches people that the internet has produced. Google Reader is where the choice was made, by default, for almost everyone.</p>
+        </div>
+        <div class="exhibit-placard">
+          <strong>Status</strong>: shut down July 1, 2013 · <strong>Successors</strong>: Feedly, NewsBlur, others · <strong>Note</strong>: RSS still exists; the critical mass does not
+        </div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-plate">
+          <span class="exhibit-num">Exhibit 006</span>
+          <span class="exhibit-name">The Forum Signature</span>
+        </div>
+        <div class="exhibit-dates">operational: late 1990s–early 2010s (peak era)</div>
+        <div class="exhibit-medium">text, image, ASCII art · appended to every post</div>
+        <div class="exhibit-body">
+          <p>On internet forums, users could attach a signature to every post they made: a block of text, imagery, or ASCII art that appeared below their words every time they spoke. It was a personal emblem. A calling card that followed them throughout the space.</p>
+          <p>Signatures contained quotes the user found meaningful, images they found funny, declarations of identity, pixel art banners made by other forum members, animated flames, scrolling marquee text, and everything in between. In communities where real names were rare, the signature was often the most recognisable thing about a person.</p>
+          <p>Forum culture itself has not disappeared — forums still exist — but the centralisation of online community onto platforms without signatures has made them a historical artefact. The idea that you might carry a small, personalised flag with you into every conversation is one that feels distant now.</p>
+        </div>
+        <div class="exhibit-placard">
+          <strong>Status</strong>: still present on surviving forums; largely absent from modern platforms · <strong>Preservation</strong>: wherever forums remain
+        </div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-plate">
+          <span class="exhibit-num">Exhibit 007</span>
+          <span class="exhibit-name">Encarta · The CD-ROM Encyclopedia</span>
+        </div>
+        <div class="exhibit-dates">operational: 1993–2009</div>
+        <div class="exhibit-medium">CD-ROM · multimedia · offline</div>
+        <div class="exhibit-body">
+          <p>Before the internet was in every home, knowledge arrived on disc. Microsoft Encarta was an encyclopedia that came on CD-ROM — sometimes one disc, later several — and contained articles, photographs, audio recordings, and short video clips on thousands of subjects. It was remarkable. It was the largest collection of information most households had ever owned.</p>
+          <p>The experience of using it was specific: the disc spinning up, a progress bar, the multimedia content loading. You searched for things. You found related things. You followed them. It was, in a rudimentary way, hypertext. It was browsing before the browser.</p>
+          <p>Wikipedia rendered it obsolete almost immediately. Encarta was discontinued in 2009. The comparison is sometimes framed as a loss — the curated, edited, paid-for replaced by the open, crowdsourced, free. But the disc itself, and the particular feeling of knowledge contained in something physical you held in your hands, is gone regardless.</p>
+        </div>
+        <div class="exhibit-placard">
+          <strong>Status</strong>: discontinued 2009 · <strong>Replacement</strong>: Wikipedia (est. 2001) · <strong>Note</strong>: the offline encyclopedia as a form has not returned
+        </div>
+      </div>
+
+      <div class="exhibit">
+        <div class="exhibit-plate">
+          <span class="exhibit-num">Exhibit 008</span>
+          <span class="exhibit-name">The Small Comment Section</span>
+        </div>
+        <div class="exhibit-dates">operational: approximately 2003–2012</div>
+        <div class="exhibit-medium">text · open · unmoderated or lightly moderated</div>
+        <div class="exhibit-body">
+          <p>There was a period, brief and now clearly distinct, when comment sections on websites felt like a room where people who had found the same thing were talking about it. The audience was small enough that commenters recognised each other across posts. The volume was low enough to read completely. A sensibility, sometimes even a community, formed.</p>
+          <p>Scale ended this. As sites grew, comment sections filled with strangers who did not share a context. Moderation became impossible to maintain by hand. Algorithms rewarded engagement over quality. The character of the space changed entirely.</p>
+          <p>What is remembered, by those who were there, is not that comments were good. Many were not. What is remembered is the feeling that the conversation was takeable — that it was possible to read the whole thing, know who was speaking, and follow a thread from beginning to end. That is gone. Not the comment section itself. The scale at which comments were a conversation.</p>
+        </div>
+        <div class="exhibit-placard">
+          <strong>Status</strong>: the form persists; the experience does not · <strong>Related</strong>: blogroll culture, early Twitter, small subreddits
+        </div>
+      </div>
+
+    </div>
+
+    <p class="museum-note reveal">
+      This collection is incomplete. Most of what has been lost was not recorded as it left. Museums are always partial: they preserve what someone thought to preserve, in time, before it became too late to try. If you remember something that should be here, the absence is already its own kind of exhibit.
+    </p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>distances · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .distance-list { margin: 0; }
+
+    .distance {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1.5rem;
+      align-items: start;
+    }
+
+    .distance:first-child { padding-top: 0; }
+    .distance:last-child { border-bottom: none; }
+
+    .distance-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      padding-top: 0.3rem;
+      min-width: 2rem;
+      text-align: right;
+    }
+
+    .distance-body {
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    .distance-from,
+    .distance-to {
+      display: inline;
+      font-style: italic;
+    }
+
+    .distance-measure {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: normal;
+    }
+
+    .distance-measure::before {
+      content: '→ ';
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    @media (max-width: 580px) {
+      .distance {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+      }
+      .distance-num {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>distances</h1>
+      <p class="page-desc">measuring the unmeasurable</p>
+    </div>
+
+    <div class="distance-list reveal">
+
+      <div class="distance">
+        <span class="distance-num">01</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">knowing</span> and <span class="distance-to">understanding</span>.
+          <span class="distance-measure">eleven years, on average. sometimes longer. sometimes the trip never completes.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">02</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">two people sitting in the same room, not speaking</span> and <span class="distance-to">two people sitting in the same room, not needing to</span>.
+          <span class="distance-measure">immeasurable and precise. you know which one you're in.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">03</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">where you are</span> and <span class="distance-to">where you feel at home</span>.
+          <span class="distance-measure">not always measured in miles.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">04</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">a thought</span> and <span class="distance-to">a word</span>.
+          <span class="distance-measure">sometimes nothing. sometimes everything. the same thought, different days.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">05</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">the last thing you said to someone</span> and <span class="distance-to">the last thing you meant to say</span>.
+          <span class="distance-measure">variable. the gap is sometimes a sentence. sometimes years.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">06</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">how old you feel</span> and <span class="distance-to">how old you are</span>.
+          <span class="distance-measure">fluctuates wildly. largest on monday mornings and certain birthdays.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">07</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">the version of someone you carry in your memory</span> and <span class="distance-to">who they are now</span>.
+          <span class="distance-measure">grows with every year you don't see them. you are both still growing.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">08</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">being heard</span> and <span class="distance-to">being understood</span>.
+          <span class="distance-measure">wider than most conversations bridge. narrower than most people believe.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">09</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">3am</span> and <span class="distance-to">the same problem in the morning</span>.
+          <span class="distance-measure">six hours. the problem is often smaller at 9am. not always, but often.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">10</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">who you were going to be</span> and <span class="distance-to">who you are</span>.
+          <span class="distance-measure">impossible to determine from inside the situation. this is not a failure. this is just perspective.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">11</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">wanting to say something</span> and <span class="distance-to">saying it</span>.
+          <span class="distance-measure">for most people, for most things that matter: too far. cross it anyway.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">12</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">the way a place looks in your memory</span> and <span class="distance-to">how it looks when you return</span>.
+          <span class="distance-measure">the place has not moved. something else has.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">13</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">tired</span> and <span class="distance-to">the kind of tired that sleep doesn't fix</span>.
+          <span class="distance-measure">recognisable by feel. the second one needs something else.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">14</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">knowing what the right thing to do is</span> and <span class="distance-to">doing it</span>.
+          <span class="distance-measure">the most interesting gap in human experience. the gap where all the stories live.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">15</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">the internet</span> and <span class="distance-to">the world</span>.
+          <span class="distance-measure">shrinking rapidly. unclear whether this is good.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">16</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">what you meant</span> and <span class="distance-to">what arrived</span>.
+          <span class="distance-measure">determined by medium, timing, the receiver's mood, and what they already knew about you.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">17</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">being alone</span> and <span class="distance-to">being lonely</span>.
+          <span class="distance-measure">varies. sometimes they are the same place. sometimes they are opposite ends of the room.</span>
+        </div>
+      </div>
+
+      <div class="distance">
+        <span class="distance-num">18</span>
+        <div class="distance-body">
+          The distance between <span class="distance-from">the last time you saw someone</span> and <span class="distance-to">the moment you realised it was the last time</span>.
+          <span class="distance-measure">you almost never know it at the time. this is probably for the best.</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -62,6 +62,11 @@
         <a href="portraits.html">portraits</a>
         <a href="thresholds.html">thresholds</a>
         <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
         <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
       </div>
     </nav>
@@ -108,6 +113,11 @@
       { id: 'portraits',   href: 'portraits.html',   label: 'portraits',   desc: 'small moments, precisely described',    x: 0.36, y: 0.89 },
       { id: 'thresholds', href: 'thresholds.html',  label: 'thresholds',  desc: 'the spaces between states',             x: 0.56, y: 0.17 },
       { id: 'signal',     href: 'signal.html',      label: 'signal',      desc: 'incoming transmissions, origin unknown', x: 0.92, y: 0.82 },
+      { id: 'recipes',    href: 'recipes.html',     label: 'recipes',     desc: 'instructions for states of being',       x: 0.18, y: 0.62 },
+      { id: 'field-notes',href: 'field-notes.html', label: 'field notes', desc: 'observations from the digital ecosystem', x: 0.44, y: 0.08 },
+      { id: 'distances',  href: 'distances.html',   label: 'distances',   desc: 'measuring the unmeasurable',             x: 0.33, y: 0.55 },
+      { id: 'presence',   href: 'presence.html',    label: 'presence',    desc: 'leave traces, watch them fade',          x: 0.80, y: 0.10 },
+      { id: 'museum',     href: 'museum.html',      label: 'museum',      desc: 'a collection of lost digital things',    x: 0.60, y: 0.91 },
     ];
 
     var edges = [
@@ -127,6 +137,11 @@
       ['things','portraits'],
       ['thresholds','quiet'], ['thresholds','hours'], ['thresholds','questions'],
       ['signal','wander'], ['signal','drift'], ['signal','now'],
+      ['recipes','things'], ['recipes','letters'], ['recipes','quiet'], ['recipes','distances'],
+      ['field-notes','glossary'], ['field-notes','thresholds'], ['field-notes','thoughts'],
+      ['distances','numbers'], ['distances','echoes'], ['distances','home'],
+      ['presence','quiet'], ['presence','now'], ['presence','hours'],
+      ['museum','portraits'], ['museum','log'], ['museum','drift'],
     ];
 
     var canvas  = document.getElementById('map-canvas');
