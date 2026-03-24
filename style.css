@@ -668,6 +668,205 @@ footer {
   50% { opacity: 0; }
 }
 
+/* ── Colors page ─────────────────────────── */
+
+.color-list {
+  margin-top: 0;
+}
+
+.color-entry {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.color-entry:first-child {
+  padding-top: 0;
+}
+
+.color-swatch {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  border: 1px solid rgba(128,128,128,0.15);
+}
+
+.color-body {
+  flex: 1;
+}
+
+.color-entry dt {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.color-hex {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.color-entry dd {
+  margin-left: 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* ── Numbers page ─────────────────────────── */
+
+.number-list {
+  list-style: none;
+}
+
+.number-entry {
+  display: flex;
+  gap: 2rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.number-entry:first-child {
+  padding-top: 0;
+}
+
+.number-val {
+  font-family: 'Courier New', monospace;
+  font-size: 1.15rem;
+  color: var(--accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 4.5rem;
+  padding-top: 0.1rem;
+  letter-spacing: -0.01em;
+}
+
+.number-body {
+  flex: 1;
+}
+
+.number-body p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* ── Things page ──────────────────────────── */
+
+.thing-list {
+  margin-top: 0;
+}
+
+.thing {
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.thing:first-child {
+  padding-top: 0;
+}
+
+.thing-name {
+  font-size: 1.25rem;
+  font-weight: normal;
+  margin-bottom: 0.75rem;
+  font-style: italic;
+  color: var(--text);
+}
+
+.thing p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* ── Starfield (dark mode) ────────────────── */
+
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+[data-theme="dark"] #stars {
+  opacity: 1;
+}
+
+/* ── Keyboard shortcuts overlay ───────────── */
+
+#shortcuts-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+#shortcuts-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.shortcuts-panel {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem 2.25rem;
+  min-width: 260px;
+  max-width: 340px;
+  width: 90vw;
+}
+
+.shortcuts-title {
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.shortcuts-row {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.shortcuts-row:last-child {
+  border-bottom: none;
+}
+
+.key {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  background: var(--border);
+  color: var(--text);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  min-width: 2.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
 /* ── Mobile ───────────────────────────────── */
 
 @media (max-width: 580px) {

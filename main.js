@@ -65,11 +65,15 @@
 
   // ── Active nav link ─────────────────────────────
   var links = document.querySelectorAll('.nav-links a');
-  var path = window.location.pathname.replace(/\/$/, '') || '/';
+  var pathname = window.location.pathname;
+  var isHome = pathname.slice(-1) === '/' && !pathname.replace(/\/$/, '').split('/').pop().includes('.');
+  var currentFile = isHome ? '' : pathname.split('/').pop();
   links.forEach(function (a) {
-    var href = a.getAttribute('href').replace(/\/$/, '') || '/';
-    if (href === path || (path === '' && href === '/')) {
-      a.classList.add('active');
+    var href = a.getAttribute('href');
+    if (href === './' || href === '/' || href === '') {
+      if (isHome) a.classList.add('active');
+    } else {
+      if (href.split('/').pop() === currentFile) a.classList.add('active');
     }
   });
 
@@ -93,6 +97,48 @@
         break;
       }
     }
+  }
+
+  // ── Starfield (dark mode) ────────────────────────
+  var starEl = document.createElement('div');
+  starEl.id = 'stars';
+  var starShadows = [];
+  var sw = window.innerWidth || 1200;
+  var sh = window.innerHeight || 800;
+  for (var si = 0; si < 90; si++) {
+    var sx = Math.floor(Math.random() * sw);
+    var sy = Math.floor(Math.random() * sh);
+    var sa = (Math.random() * 0.4 + 0.08).toFixed(2);
+    var sr = Math.random() < 0.15 ? '1.5px' : '1px';
+    starShadows.push(sx + 'px ' + sy + 'px 0 ' + sr + ' rgba(232,229,223,' + sa + ')');
+  }
+  starEl.style.boxShadow = starShadows.join(',');
+  document.body.insertBefore(starEl, document.body.firstChild);
+
+  // ── Keyboard shortcuts overlay ────────────────────
+  var overlayEl = document.createElement('div');
+  overlayEl.id = 'shortcuts-overlay';
+  overlayEl.innerHTML =
+    '<div class="shortcuts-panel">' +
+    '<div class="shortcuts-title">keyboard shortcuts</div>' +
+    '<div class="shortcuts-row"><span class="key">?</span><span>show / hide this</span></div>' +
+    '<div class="shortcuts-row"><span class="key">r</span><span>go somewhere unexpected</span></div>' +
+    '<div class="shortcuts-row"><span class="key">esc</span><span>clear what you\'ve typed</span></div>' +
+    '</div>';
+  document.body.appendChild(overlayEl);
+  overlayEl.addEventListener('click', function (e) {
+    if (e.target === overlayEl) overlayEl.classList.remove('visible');
+  });
+
+  // ── Random page navigation ────────────────────────
+  var pages = [
+    'thoughts.html','seeds.html','wander.html','now.html','letters.html','quiet.html',
+    'glossary.html','hours.html','questions.html','echoes.html','colors.html',
+    'numbers.html','things.html','log.html'
+  ];
+  function goRandom() {
+    var dest = pages[Math.floor(Math.random() * pages.length)];
+    window.location.href = dest;
   }
 
   // ── Ghost typing ────────────────────────────────
@@ -132,9 +178,20 @@
     if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
 
+    if (e.key === '?') {
+      overlayEl.classList.toggle('visible');
+      return;
+    }
+
     if (e.key === 'Escape') {
+      overlayEl.classList.remove('visible');
       clearTimeout(ghostTimer);
       hideGhost();
+      return;
+    }
+
+    if (e.key === 'r' && !ghostText) {
+      goRandom();
       return;
     }
 
