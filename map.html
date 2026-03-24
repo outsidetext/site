@@ -168,6 +168,11 @@
       { id: 'silt',        href: 'silt.html',         label: 'silt',         desc: 'what the digital life deposits, layer by layer',         x: 0.80, y: 0.93 },
       { id: 'knot',        href: 'knot.html',         label: 'knot',         desc: 'words that hold more than one thing at once',            x: 0.04, y: 0.68 },
       { id: 'almanac',     href: 'almanac.html',      label: 'almanac',      desc: 'on this day — eight entries from the record',            x: 0.49, y: 0.01 },
+      { id: 'cipher',      href: 'cipher.html',       label: 'cipher',       desc: 'a poem, encoded — decode it letter by letter',            x: 0.07, y: 0.10 },
+      { id: 'daylight',    href: 'daylight.html',     label: 'daylight',     desc: 'the room changes completely with the hour',               x: 0.75, y: 0.42 },
+      { id: 'frequencies', href: 'frequencies.html',  label: 'frequencies',  desc: 'a radio dial — tune to receive what is broadcasting',     x: 0.97, y: 0.22 },
+      { id: 'forecast',    href: 'forecast.html',     label: 'forecast',     desc: 'the emotional weather this week — updated on monday',     x: 0.45, y: 0.62 },
+      { id: 'sentences',   href: 'sentences.html',    label: 'sentences',    desc: 'one thousand possible sentences — generate one',          x: 0.05, y: 0.97 },
     ];
 
     var edges = [
@@ -194,7 +199,7 @@
       ['museum','portraits'], ['museum','log'], ['museum','drift'],
       ['glitch','signal'], ['glitch','drift'], ['glitch','things'],
       ['compose','quiet'], ['compose','wander'], ['compose','now'],
-      ['census','log'], ['census','home'], ['census','map'],
+      ['census','log'], ['census','home'],
       ['cuts','thoughts'], ['cuts','seeds'], ['cuts','log'],
       ['odds','numbers'], ['odds','distances'], ['odds','questions'],
       ['maze','thresholds'], ['maze','wander'], ['maze','cuts'],
@@ -222,7 +227,7 @@
       ['index-of','census'], ['index-of','cuts'], ['index-of','bones'], ['index-of','catalog'],
       ['argument','thoughts'], ['argument','questions'], ['argument','distances'], ['argument','cuts'],
       ['receipt','tally'], ['receipt','numbers'], ['receipt','now'], ['receipt','odds'],
-      ['browse','map'], ['browse','wander'], ['browse','census'], ['browse','log'], ['browse','distances'],
+      ['browse','wander'], ['browse','census'], ['browse','log'], ['browse','distances'],
       ['elsewhere','now'], ['elsewhere','quiet'], ['elsewhere','tally'], ['elsewhere','portraits'], ['elsewhere','overheard'],
       ['fold','thoughts'], ['fold','compose'], ['fold','cuts'], ['fold','palimpsest'],
       ['commonplace','thoughts'], ['commonplace','seeds'], ['commonplace','letters'], ['commonplace','museum'], ['commonplace','overheard'],
@@ -237,6 +242,11 @@
       ['silt','museum'], ['silt','debris'], ['silt','log'], ['silt','commonplace'], ['silt','atlas'],
       ['knot','glossary'], ['knot','distances'], ['knot','argument'], ['knot','thoughts'], ['knot','colors'],
       ['almanac','log'], ['almanac','field-notes'], ['almanac','haiku'], ['almanac','receipt'], ['almanac','hours'],
+      ['cipher','palimpsest'], ['cipher','fold'], ['cipher','compose'], ['cipher','glossary'], ['cipher','cuts'],
+      ['daylight','liturgy'], ['daylight','hours'], ['daylight','tide'], ['daylight','weather'], ['daylight','now'],
+      ['frequencies','signal'], ['frequencies','static'], ['frequencies','quiet'], ['frequencies','wander'], ['frequencies','glitch'],
+      ['forecast','weather'], ['forecast','odds'], ['forecast','receipt'], ['forecast','now'], ['forecast','tide'],
+      ['sentences','compose'], ['sentences','seeds'], ['sentences','oracle'], ['sentences','haiku'], ['sentences','cuts'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

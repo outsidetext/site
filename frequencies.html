@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>frequencies · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dial-wrap {
+      position: relative;
+      margin: 2rem 0 0.75rem;
+      user-select: none;
+      touch-action: none;
+    }
+    .dial-bar {
+      height: 48px;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      position: relative;
+      cursor: crosshair;
+      overflow: visible;
+    }
+    .dial-spectrum {
+      position: absolute;
+      inset: 0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .dial-band {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      opacity: 0;
+      transition: opacity 0.4s;
+      transform: translateX(-50%);
+    }
+    .dial-band.near { opacity: 0.6; }
+    .dial-tuner {
+      position: absolute;
+      top: -6px;
+      bottom: -6px;
+      width: 2px;
+      background: var(--accent);
+      transform: translateX(-50%);
+      pointer-events: none;
+      transition: left 0.08s;
+    }
+    .dial-tuner::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .dial-labels {
+      display: flex;
+      position: relative;
+      margin-top: 0.5rem;
+      height: 2.8rem;
+    }
+    .dial-label {
+      position: absolute;
+      transform: translateX(-50%);
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.3;
+      cursor: pointer;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .dial-label:hover, .dial-label.active { color: var(--accent); }
+    .dial-ends {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      opacity: 0.5;
+      margin-top: 0.25rem;
+    }
+    .broadcast {
+      margin-top: 2.5rem;
+      min-height: 6em;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg);
+    }
+    .broadcast-station {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .broadcast-text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text);
+      transition: opacity 0.4s;
+    }
+    .broadcast-text.fading { opacity: 0; }
+    .static-bars {
+      display: flex;
+      gap: 2px;
+      align-items: flex-end;
+      height: 32px;
+    }
+    .static-bar {
+      width: 3px;
+      background: var(--text-muted);
+      opacity: 0.3;
+      border-radius: 1px;
+      animation: staticPulse 0.12s infinite alternate;
+    }
+    @keyframes staticPulse {
+      from { transform: scaleY(0.2); }
+      to   { transform: scaleY(1.0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>frequencies</h1>
+      <p>tune to a station. receive what's broadcasting.</p>
+    </div>
+
+    <div class="dial-wrap">
+      <div class="dial-bar" id="dial-bar">
+        <div class="dial-spectrum" id="dial-spectrum"></div>
+        <div class="dial-tuner" id="dial-tuner" style="left:50%"></div>
+      </div>
+      <div class="dial-labels" id="dial-labels"></div>
+      <div class="dial-ends">
+        <span>540 AM</span>
+        <span>107.9 FM</span>
+      </div>
+    </div>
+
+    <div class="broadcast" id="broadcast">
+      <div class="broadcast-station" id="broadcast-station">— tuning —</div>
+      <div class="broadcast-text" id="broadcast-text">
+        <div class="static-bars" id="static-bars"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var stations = [
+      {
+        pos: 0.05,
+        id: 'WLST',
+        name: '540 AM · WLST · the last station',
+        broadcast: "You've been listening so long you forgot you were listening. This station plays things you already know — songs, sentences, the particular quality of a Sunday afternoon from years ago. The signal is faint. That's part of it."
+      },
+      {
+        pos: 0.20,
+        id: 'KMEM',
+        name: '720 AM · KMEM · memory',
+        broadcast: "KMEM has been broadcasting continuously since you first had a memory you couldn't explain. Reception varies by season. Some transmissions arrive years late. Others arrive before the event they're about. The station does not apologize for the irregular timing."
+      },
+      {
+        pos: 0.35,
+        id: 'WGRV',
+        name: '940 AM · WGRV · grief',
+        broadcast: "Broadcasting ongoing. No end date has been announced. The format is long-form. There are no commercial breaks. The station does not apologize for the length — grief doesn't have a three-minute version, and this station doesn't pretend otherwise."
+      },
+      {
+        pos: 0.50,
+        id: 'WPBL',
+        name: '88.5 FM · WPBL · the ordinary',
+        broadcast: "Right now, someone is making tea. Someone is rereading a paragraph they've read before. Someone is watching the light move across a floor and deciding not to mention it. The ordinary is the most continuous thing there is. This station covers it without interruption."
+      },
+      {
+        pos: 0.64,
+        id: 'WBTY',
+        name: '94.3 FM · WBTY · unexpected beauty',
+        broadcast: "This station broadcasts without warning. You cannot tune in reliably — it finds you. If you're receiving it now, something has already caught your attention. Don't look away. The transmission is brief and won't repeat at the same frequency."
+      },
+      {
+        pos: 0.76,
+        id: 'WNOW',
+        name: '98.7 FM · WNOW · the present',
+        broadcast: "This is the only station broadcasting live. Everything else is delayed. The present is difficult to receive clearly because it arrives faster than you can process it. What you're hearing right now is already, technically, slightly in the past. This is the closest you can get."
+      },
+      {
+        pos: 0.87,
+        id: 'WQET',
+        name: '103.1 FM · WQET · quiet',
+        broadcast: "— — —\n\n(dead air, intentionally)\n\n(stay as long as you need)"
+      },
+      {
+        pos: 0.97,
+        id: 'WEND',
+        name: '107.9 FM · WEND · signal\'s end',
+        broadcast: "·                    ·          ·\n\n(the broadcast ends here)\n\n·"
+      }
+    ];
+
+    var bar = document.getElementById('dial-bar');
+    var tuner = document.getElementById('dial-tuner');
+    var labelsEl = document.getElementById('dial-labels');
+    var stationEl = document.getElementById('broadcast-station');
+    var textEl = document.getElementById('broadcast-text');
+    var staticBars = document.getElementById('static-bars');
+
+    // Build static bars
+    for (var sb = 0; sb < 18; sb++) {
+      var b = document.createElement('div');
+      b.className = 'static-bar';
+      b.style.height = (Math.random() * 24 + 8) + 'px';
+      b.style.animationDelay = (Math.random() * 0.12) + 's';
+      staticBars.appendChild(b);
+    }
+
+    // Build station labels
+    stations.forEach(function (s) {
+      var lbl = document.createElement('div');
+      lbl.className = 'dial-label';
+      lbl.style.left = (s.pos * 100) + '%';
+      lbl.innerHTML = s.id;
+      lbl.title = s.name;
+      lbl.addEventListener('click', function () { tuneToStation(s); });
+      labelsEl.appendChild(lbl);
+
+      // Band highlight
+      var band = document.createElement('div');
+      band.className = 'dial-band';
+      band.style.left = (s.pos * 100) + '%';
+      band.style.background = 'var(--accent)';
+      document.getElementById('dial-spectrum').appendChild(band);
+    });
+
+    var currentStation = null;
+    var tunerPos = 0.5;
+
+    function setTuner(pos) {
+      pos = Math.max(0, Math.min(1, pos));
+      tunerPos = pos;
+      tuner.style.left = (pos * 100) + '%';
+
+      // Find nearest station
+      var nearest = null;
+      var nearestDist = Infinity;
+      stations.forEach(function (s) {
+        var d = Math.abs(s.pos - pos);
+        if (d < nearestDist) { nearestDist = d; nearest = s; }
+      });
+
+      // Update band highlights
+      document.querySelectorAll('.dial-band').forEach(function (b, i) {
+        b.classList.toggle('near', Math.abs(stations[i].pos - pos) < 0.06);
+      });
+
+      // Update labels
+      document.querySelectorAll('.dial-label').forEach(function (l, i) {
+        l.classList.toggle('active', Math.abs(stations[i].pos - pos) < 0.06);
+      });
+
+      if (nearestDist < 0.06) {
+        if (nearest !== currentStation) {
+          currentStation = nearest;
+          showBroadcast(nearest);
+        }
+      } else {
+        if (currentStation) {
+          currentStation = null;
+          showStatic();
+        }
+      }
+    }
+
+    function showBroadcast(station) {
+      textEl.classList.add('fading');
+      setTimeout(function () {
+        staticBars.style.display = 'none';
+        stationEl.textContent = station.name;
+        textEl.style.whiteSpace = 'pre-line';
+        textEl.textContent = station.broadcast;
+        textEl.classList.remove('fading');
+      }, 350);
+    }
+
+    function showStatic() {
+      textEl.classList.add('fading');
+      setTimeout(function () {
+        stationEl.textContent = '— between stations —';
+        textEl.textContent = '';
+        staticBars.style.display = 'flex';
+        textEl.appendChild(staticBars);
+        textEl.classList.remove('fading');
+      }, 350);
+    }
+
+    // Mouse drag
+    var dragging = false;
+    bar.addEventListener('mousedown', function (e) {
+      dragging = true;
+      var rect = bar.getBoundingClientRect();
+      setTuner((e.clientX - rect.left) / rect.width);
+    });
+    window.addEventListener('mousemove', function (e) {
+      if (!dragging) return;
+      var rect = bar.getBoundingClientRect();
+      setTuner((e.clientX - rect.left) / rect.width);
+    });
+    window.addEventListener('mouseup', function () { dragging = false; });
+
+    // Touch
+    bar.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var rect = bar.getBoundingClientRect();
+      setTuner((e.touches[0].clientX - rect.left) / rect.width);
+    }, { passive: false });
+    bar.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      var rect = bar.getBoundingClientRect();
+      setTuner((e.touches[0].clientX - rect.left) / rect.width);
+    }, { passive: false });
+
+    // Start at WPBL (the ordinary)
+    setTimeout(function () { tuneToStation(stations[3]); }, 400);
+
+    function tuneToStation(s) {
+      tuner.style.transition = 'left 0.3s ease';
+      setTuner(s.pos);
+      setTimeout(function () { tuner.style.transition = 'left 0.08s'; }, 350);
+    }
+  })();
+  </script>
+</body>
+</html>

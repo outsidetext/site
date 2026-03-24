@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cipher · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cipher-display {
+      font-family: 'Courier New', monospace;
+      font-size: 1.05rem;
+      line-height: 2.4;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      white-space: pre-line;
+      min-height: 10em;
+      transition: color 0.5s, letter-spacing 0.5s;
+    }
+    .cipher-display.decoded {
+      font-family: Georgia, serif;
+      color: var(--text);
+      letter-spacing: 0;
+      font-size: 1.15rem;
+      line-height: 2.6;
+    }
+    .char { display: inline; transition: color 0.1s; }
+    .char.live { color: var(--accent); }
+    .cipher-controls {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .cipher-status {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.04em;
+    }
+    .cipher-key {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>cipher</h1>
+      <p>a poem, encoded. press decode to resolve it.</p>
+    </div>
+
+    <div id="cipher-display" class="cipher-display"></div>
+
+    <div class="cipher-controls">
+      <button id="decode-btn" class="wander-btn">decode</button>
+      <button id="next-btn" class="wander-btn" style="display:none">next poem</button>
+      <span id="cipher-status" class="cipher-status">encoded · press decode to resolve</span>
+    </div>
+
+    <div id="cipher-key" class="cipher-key"></div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var poems = [
+      "the window knows\nwhat the room does not:\nthat outside\nsomething is already\ndifferent",
+      "I carried it\nfurther than I needed to\nset it down\nexactly here\nand called that arrival",
+      "the last light\ntakes longer to leave\nthan you expected\nthis is always the case\nyou never learn",
+      "something was said\nin the pause\nbetween the question\nand the answer\nsomething true",
+      "here is the fact:\nyou were in that room\nthe room no longer exists\nyou are the only\nrecord of it now"
+    ];
+
+    var cipherKeys = [
+      'QWERTYUIOPASDFGHJKLZXCVBNM',
+      'PHQGIUMEAYLNOFDXJKRCVSTZWB',
+      'ZYXWVUTSRQPONMLKJIHGFEDCBA',
+      'MNBVCXZLKJHGFDSAPOIUYTREWQ',
+      'JKLMNOPQRSTUVWXYZABCDEFGHI'
+    ];
+
+    var poemIdx = Math.floor(Date.now() / 86400000) % poems.length;
+    var currentPoem = poems[poemIdx];
+    var currentKey = cipherKeys[poemIdx];
+
+    function encodeChar(ch) {
+      var code = ch.charCodeAt(0);
+      if (code >= 65 && code <= 90) return currentKey[code - 65];
+      if (code >= 97 && code <= 122) return currentKey[code - 97].toLowerCase();
+      return ch;
+    }
+
+    var display = document.getElementById('cipher-display');
+    var decodeBtn = document.getElementById('decode-btn');
+    var nextBtn = document.getElementById('next-btn');
+    var statusEl = document.getElementById('cipher-status');
+    var keyEl = document.getElementById('cipher-key');
+
+    var spans = [];
+
+    function buildDisplay() {
+      display.innerHTML = '';
+      display.classList.remove('decoded');
+      spans = [];
+      var encodedText = currentPoem.split('').map(encodeChar).join('');
+      encodedText.split('').forEach(function (ch, i) {
+        if (ch === '\n') {
+          display.appendChild(document.createTextNode('\n'));
+          spans.push(null);
+        } else {
+          var s = document.createElement('span');
+          s.className = 'char';
+          s.textContent = ch;
+          display.appendChild(s);
+          spans.push({ el: s, plain: currentPoem[i], encoded: ch });
+        }
+      });
+      keyEl.textContent = 'key: ' + currentKey;
+    }
+
+    buildDisplay();
+
+    var decoding = false;
+    var isDecoded = false;
+
+    decodeBtn.addEventListener('click', function () {
+      if (decoding || isDecoded) return;
+      decoding = true;
+      decodeBtn.disabled = true;
+      statusEl.textContent = 'decoding…';
+
+      var delay = 0;
+      var charDelay = 22;
+
+      spans.forEach(function (entry) {
+        if (!entry) return;
+        if (entry.plain === entry.encoded) return; // non-letter, already correct
+
+        (function (e, d) {
+          var flickCount = 5;
+          var flickInterval = 38;
+          setTimeout(function () {
+            e.el.classList.add('live');
+            var n = 0;
+            var t = setInterval(function () {
+              e.el.textContent = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+              n++;
+              if (n >= flickCount) {
+                clearInterval(t);
+                e.el.textContent = e.plain;
+                e.el.classList.remove('live');
+              }
+            }, flickInterval);
+          }, d);
+        })(entry, delay);
+
+        delay += charDelay;
+      });
+
+      setTimeout(function () {
+        display.classList.add('decoded');
+        statusEl.textContent = 'decoded · poem ' + (poemIdx + 1) + ' of ' + poems.length;
+        decoding = false;
+        isDecoded = true;
+        nextBtn.style.display = '';
+      }, delay + 400);
+    });
+
+    nextBtn.addEventListener('click', function () {
+      poemIdx = (poemIdx + 1) % poems.length;
+      currentPoem = poems[poemIdx];
+      currentKey = cipherKeys[poemIdx];
+      buildDisplay();
+      decodeBtn.disabled = false;
+      decodeBtn.style.display = '';
+      nextBtn.style.display = 'none';
+      statusEl.textContent = 'encoded · press decode to resolve';
+      isDecoded = false;
+    });
+  })();
+  </script>
+</body>
+</html>

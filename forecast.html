@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>forecast · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .forecast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .forecast-card {
+      padding: 1.25rem 1rem;
+      border: none;
+      background: var(--bg);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .forecast-card.today {
+      background: var(--border);
+    }
+    .forecast-card:hover { background: var(--border); }
+    .fc-day {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+    .fc-day .today-badge {
+      color: var(--accent);
+      margin-left: 0.5em;
+    }
+    .fc-icon {
+      margin-bottom: 0.6rem;
+      line-height: 1;
+    }
+    .fc-temp {
+      font-size: 1.6rem;
+      font-weight: normal;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+      line-height: 1;
+    }
+    .fc-temp span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0;
+    }
+    .fc-condition {
+      font-size: 0.78rem;
+      color: var(--text);
+      line-height: 1.45;
+      margin-bottom: 0.5rem;
+    }
+    .fc-detail {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      font-style: italic;
+      font-family: Georgia, serif;
+    }
+    .fc-precip {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-top: 0.65rem;
+      letter-spacing: 0.03em;
+    }
+    .forecast-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 1rem;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>forecast</h1>
+      <p>the emotional weather this week. updates on monday.</p>
+    </div>
+
+    <div class="forecast-grid" id="forecast-grid"></div>
+    <p class="forecast-note" id="forecast-note"></p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var conditions = [
+      { text: 'partly cloudy with isolated wonder',      icon: '⛅', precip: 'trace wonder' },
+      { text: 'heavy nostalgia, clearing by evening',    icon: '🌧', precip: 'moderate nostalgia' },
+      { text: 'scattered regret, otherwise clear',       icon: '🌤', precip: 'light regret' },
+      { text: 'dense fog of obligation, lifting by noon',icon: '🌫', precip: 'none expected' },
+      { text: 'brief morning clarity, clouding over',    icon: '☁', precip: 'chance of doubt' },
+      { text: 'sustained gratitude with gentle gusts',   icon: '🌬', precip: 'none' },
+      { text: 'overcast, small chance of grace',         icon: '☁', precip: 'grace: 20%' },
+      { text: 'high pressure system of contentment',     icon: '☀', precip: 'none' },
+      { text: 'light longing from the southwest',        icon: '🌤', precip: 'trace longing' },
+      { text: 'variable moods, seasonal',                icon: '🌦', precip: 'variable' },
+      { text: 'clear and direct, no hedging expected',   icon: '☀', precip: 'none' },
+      { text: 'intermittent sadness, passing',           icon: '🌦', precip: 'light sadness' },
+    ];
+
+    var readings = [
+      "the forecast is approximate. the feelings arrive when they arrive.",
+      "recommended: sit with whatever comes. it has information.",
+      "conditions subject to revision. the revision is also the forecast.",
+      "the clearing comes. it always does, eventually.",
+      "heavy systems move through. you have moved through heavy systems before.",
+      "the visibility is low but improving. this is the normal rate of improvement.",
+      "a front is stalled nearby. most fronts are temporary.",
+      "fair and mild. note it. these days are worth noting.",
+      "incoming system from the past. allow 48 hours for it to pass through.",
+      "the pressure is high. high pressure often precedes clarity.",
+      "changeable. the forecast reflects conditions, not conclusions.",
+      "the week is not the weather. the weather is just the week's texture.",
+    ];
+
+    var temps = [44, 51, 58, 63, 67, 72, 75, 68, 61, 54, 49, 55];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    // Seed by week (Monday's date as integer)
+    var now = new Date();
+    var dayOfWeek = now.getDay(); // 0=Sun
+    var monday = new Date(now);
+    monday.setDate(now.getDate() - ((dayOfWeek + 6) % 7));
+    monday.setHours(0, 0, 0, 0);
+    var seed = Math.floor(monday.getTime() / 86400000);
+
+    function seededRand(n, offset) {
+      return ((seed + offset * 7 + n * 13) * 2654435761) >>> 0;
+    }
+
+    var grid = document.getElementById('forecast-grid');
+
+    for (var i = 0; i < 7; i++) {
+      var date = new Date(monday);
+      date.setDate(monday.getDate() + i);
+      var dow = date.getDay();
+      var isToday = (dow === now.getDay() &&
+                     date.getDate() === now.getDate() &&
+                     date.getMonth() === now.getMonth());
+
+      var condIdx = seededRand(i, 0) % conditions.length;
+      var tempBase = temps[seededRand(i, 1) % temps.length];
+      var readingIdx = seededRand(i, 2) % readings.length;
+      var hi = tempBase + Math.floor(seededRand(i, 3) % 8);
+      var lo = tempBase - Math.floor(seededRand(i, 4) % 10) - 2;
+
+      var cond = conditions[condIdx];
+
+      var card = document.createElement('div');
+      card.className = 'forecast-card' + (isToday ? ' today' : '');
+
+      card.innerHTML =
+        '<div class="fc-day">' + days[dow] +
+          (isToday ? '<span class="today-badge">today</span>' : '') +
+        '</div>' +
+        '<div class="fc-icon">' + cond.icon + '</div>' +
+        '<div class="fc-temp">' + hi + '<span>° / ' + lo + '°</span></div>' +
+        '<div class="fc-condition">' + cond.text + '</div>' +
+        '<div class="fc-detail">' + readings[readingIdx] + '</div>' +
+        '<div class="fc-precip">precipitation: ' + cond.precip + '</div>';
+
+      grid.appendChild(card);
+    }
+
+    document.getElementById('forecast-note').textContent =
+      'forecast is updated each monday. all readings are approximate.';
+  })();
+  </script>
+</body>
+</html>

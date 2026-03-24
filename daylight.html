@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>daylight · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dl-period {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .dl-time {
+      font-size: 4rem;
+      line-height: 1;
+      font-weight: normal;
+      letter-spacing: -0.02em;
+      color: var(--dl-accent, var(--accent));
+      margin-bottom: 1.5rem;
+      font-variant-numeric: tabular-nums;
+      transition: color 2s ease;
+    }
+    .dl-arc {
+      margin-bottom: 2.5rem;
+    }
+    .dl-text {
+      max-width: 540px;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text);
+      border-left: 2px solid var(--dl-accent, var(--accent));
+      padding-left: 1.25rem;
+      transition: border-color 2s ease;
+    }
+    .dl-text p + p { margin-top: 0.9em; }
+    .dl-footer {
+      margin-top: 3rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* Time-period accent colors */
+    .tp-night  { --dl-accent: #7878b8; }
+    .tp-dawn   { --dl-accent: #c47040; }
+    .tp-morning{ --dl-accent: #3a70b0; }
+    .tp-noon   { --dl-accent: #8a7030; }
+    .tp-afternoon { --dl-accent: #b06030; }
+    .tp-evening{ --dl-accent: #6050a0; }
+    .tp-late   { --dl-accent: #506880; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>daylight</h1>
+      <p>the room changes with the hour. this is the version for now.</p>
+    </div>
+
+    <div class="dl-period" id="dl-period"></div>
+    <div class="dl-time" id="dl-time"></div>
+
+    <div class="dl-arc">
+      <svg id="dl-arc-svg" viewBox="0 0 420 80" width="420" height="80" style="max-width:100%;display:block">
+        <path id="arc-track" d="" fill="none" stroke-width="1"/>
+        <circle id="arc-dot" r="5" />
+      </svg>
+    </div>
+
+    <div class="dl-text" id="dl-text"></div>
+
+    <div class="dl-footer" id="dl-footer"></div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var periods = [
+      {
+        range: [0, 4],
+        id: 'tp-night',
+        name: 'the small hours',
+        text: [
+          "These hours exist outside the accounting. No productivity metrics apply here. The to-do list is inaccessible by design.",
+          "The body gets honest at this hour. The mind goes where it wants. Thoughts that were kept at bay all day find their way in, and it turns out most of them just wanted to be heard.",
+          "This is either the worst time or the most accurate one, depending on what you came here for."
+        ]
+      },
+      {
+        range: [5, 7],
+        id: 'tp-dawn',
+        name: 'first light',
+        text: [
+          "The world before it decides what to be today. This window is brief — maybe twenty minutes where anything still seems possible and nothing has been ruled out yet.",
+          "You are awake for it. That's something. Most people miss this part.",
+          "The day hasn't made any demands yet. It's just here, quietly beginning."
+        ]
+      },
+      {
+        range: [8, 11],
+        id: 'tp-morning',
+        name: 'the working hours',
+        text: [
+          "The hours with the most promise and the most friction. Things will be decided here. Some of them will be the right decisions.",
+          "The coffee is still warm. The inbox is manageable. The gap between what you intend to do and what you actually do has not yet fully revealed itself.",
+          "This is the part of the day where the plan holds. For now."
+        ]
+      },
+      {
+        range: [12, 13],
+        id: 'tp-noon',
+        name: 'high noon',
+        text: [
+          "The day at its most direct. The light says: here is exactly what is happening. No hedging, no softening.",
+          "Noon is the pivot. Everything before it was morning; everything after it begins the long slide toward evening. You are standing at the seam.",
+          "The afternoon will be more forgiving. This moment, however, tells the truth."
+        ]
+      },
+      {
+        range: [14, 17],
+        id: 'tp-afternoon',
+        name: 'the long afternoon',
+        text: [
+          "The day begins to tilt. The light changes — gets longer, warmer, more lateral. The shadows start having opinions.",
+          "Things that felt urgent in the morning have either resolved or softened into something you can live with. The deadline is still there, but it seems more negotiable than it did at nine.",
+          "This is the time for the slower work. The kind that requires attention but not urgency. The kind that, done well, you won't notice until it's done."
+        ]
+      },
+      {
+        range: [18, 20],
+        id: 'tp-evening',
+        name: 'the turn',
+        text: [
+          "This is when the day starts gathering itself. The light is doing something beautiful that you probably won't stop to notice unless you deliberately stop to notice it.",
+          "The tallying begins. What happened. What didn't. Whether it adds up. Usually it adds up differently than expected.",
+          "Evening is the most honest part of the day about what the day actually was."
+        ]
+      },
+      {
+        range: [21, 23],
+        id: 'tp-late',
+        name: 'the winding down',
+        text: [
+          "The last hours. The day had a shape and now you can almost see it — what it turned out to be versus what it was supposed to be.",
+          "Something got done. Probably not the right things. Probably the necessary ones.",
+          "The night is not a failure. It's just the end of a chapter that started this morning. Tomorrow the chapter starts again, from approximately where this one left off."
+        ]
+      }
+    ];
+
+    var now = new Date();
+    var h = now.getHours();
+    var m = now.getMinutes();
+
+    var period = periods[periods.length - 1]; // default to late
+    for (var i = 0; i < periods.length; i++) {
+      if (h >= periods[i].range[0] && h <= periods[i].range[1]) {
+        period = periods[i];
+        break;
+      }
+    }
+
+    // Apply time-period class
+    document.body.classList.add(period.id);
+
+    // Time display
+    var hDisp = h % 12 || 12;
+    var mDisp = m < 10 ? '0' + m : '' + m;
+    var ampm = h < 12 ? 'am' : 'pm';
+    document.getElementById('dl-time').textContent = hDisp + ':' + mDisp;
+    document.getElementById('dl-period').textContent = period.name + ' · ' + hDisp + ':' + mDisp + ' ' + ampm;
+
+    // Text
+    var textEl = document.getElementById('dl-text');
+    period.text.forEach(function (para) {
+      var p = document.createElement('p');
+      p.textContent = para;
+      textEl.appendChild(p);
+    });
+
+    // Footer
+    document.getElementById('dl-footer').textContent =
+      'the room is different at 5am, at noon, at 3pm, at midnight. come back.';
+
+    // Draw arc (sun/moon position on 24-hour cycle)
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var arcColor = getComputedStyle(document.body).getPropertyValue('--dl-accent').trim() ||
+                   (isDark ? '#cf7e3f' : '#b5682a');
+    var trackColor = isDark ? 'rgba(232,229,223,0.1)' : 'rgba(26,26,26,0.08)';
+
+    var W = 420, H = 80, pad = 20;
+    var cx = W / 2, cy = H + 10;
+    var rx = (W - pad * 2) / 2;
+    var ry = H - 10;
+
+    var arcTrack = document.getElementById('arc-track');
+    arcTrack.setAttribute('d', 'M ' + pad + ' ' + (H - 2) + ' A ' + rx + ' ' + ry + ' 0 0 1 ' + (W - pad) + ' ' + (H - 2));
+    arcTrack.setAttribute('stroke', trackColor);
+
+    // Position: 0 = midnight left, 0.5 = noon top, 1 = midnight right
+    var totalMins = h * 60 + m;
+    var t = totalMins / 1440; // 0–1 over 24 hours
+    var angle = Math.PI * (1 - t); // π at t=0, 0 at t=1; noon (t=0.5) → π/2
+    var dotX = cx + rx * Math.cos(Math.PI - angle);
+    var dotY = (H - 2) - ry * Math.sin(angle);
+
+    var arcDot = document.getElementById('arc-dot');
+    arcDot.setAttribute('cx', dotX);
+    arcDot.setAttribute('cy', dotY);
+    arcDot.setAttribute('fill', arcColor);
+
+    // Update MutationObserver for theme changes
+    var mo = new MutationObserver(function () {
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      arcTrack.setAttribute('stroke', dark ? 'rgba(232,229,223,0.1)' : 'rgba(26,26,26,0.08)');
+    });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sentences · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .sentence-display {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--text);
+      min-height: 4.5em;
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border-left: 2px solid var(--accent);
+      padding-left: 1.25rem;
+      transition: opacity 0.3s;
+    }
+    .sentence-display.fading { opacity: 0; }
+    .sentence-display .s-part { color: var(--text); }
+    .sentence-display .s-verb { color: var(--accent); }
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    .col {
+      padding: 0.5rem 0;
+      border-right: 1px solid var(--border);
+    }
+    .col:last-child { border-right: none; }
+    .col-header {
+      font-family: 'Courier New', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 0.4rem 0.8rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .col-item {
+      display: block;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.78rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+      border-left: 2px solid transparent;
+    }
+    .col-item:hover { color: var(--text); }
+    .col-item.active {
+      color: var(--text);
+      border-left-color: var(--accent);
+      background: transparent;
+    }
+    .col-item.active.verb { color: var(--accent); }
+    .sentence-controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .sentence-count {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+    .history {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .history-item {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .history-item:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>sentences</h1>
+      <p>one thousand possible sentences. press generate to find one.</p>
+    </div>
+
+    <div class="sentence-display" id="sentence-display"></div>
+
+    <div class="columns">
+      <div class="col">
+        <div class="col-header">subject</div>
+        <div id="col-subject"></div>
+      </div>
+      <div class="col">
+        <div class="col-header">verb</div>
+        <div id="col-verb"></div>
+      </div>
+      <div class="col">
+        <div class="col-header">object</div>
+        <div id="col-object"></div>
+      </div>
+    </div>
+
+    <div class="sentence-controls">
+      <button id="gen-btn" class="wander-btn">generate</button>
+      <span id="gen-count" class="sentence-count"></span>
+    </div>
+
+    <div class="history" id="history" style="display:none">
+      <div class="section-label">previous sentences</div>
+      <div id="history-list"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var subjects = [
+      "the afternoon",
+      "a forgotten name",
+      "the light in early February",
+      "everything that didn't happen",
+      "the last word of the conversation",
+      "three days from now",
+      "the version of you that stayed",
+      "something overheard on a Tuesday",
+      "the gap between what was said and what was meant",
+      "whatever you came here for"
+    ];
+
+    var verbs = [
+      "carries",
+      "forgets, briefly,",
+      "is almost indistinguishable from",
+      "arrives forty minutes late to",
+      "refuses to translate",
+      "has been waiting for",
+      "cannot account for",
+      "leaves no forwarding address for",
+      "is the last known address of",
+      "dissolves into"
+    ];
+
+    var objects = [
+      "whatever came before",
+      "the feeling of a name you can no longer picture",
+      "all the light that ever entered this room",
+      "the version of this that was true",
+      "something the body remembers but the mind has lost",
+      "the interval between recognition and response",
+      "wherever the attention goes when there is nothing to hold it",
+      "the long way home",
+      "a warmth that moves when you try to name it",
+      "the specific weight of the evening after something ends"
+    ];
+
+    var display = document.getElementById('sentence-display');
+    var genBtn = document.getElementById('gen-btn');
+    var countEl = document.getElementById('gen-count');
+    var historyEl = document.getElementById('history');
+    var historyList = document.getElementById('history-list');
+
+    var si = 0, vi = 0, oi = 0;
+    var generated = 0;
+    var pastSentences = [];
+
+    function buildColumns() {
+      var colS = document.getElementById('col-subject');
+      var colV = document.getElementById('col-verb');
+      var colO = document.getElementById('col-object');
+
+      subjects.forEach(function (s, i) {
+        var el = document.createElement('div');
+        el.className = 'col-item';
+        el.textContent = s;
+        el.dataset.idx = i;
+        el.addEventListener('click', function () {
+          si = i;
+          updateActive(colS, i);
+          updateSentence();
+        });
+        colS.appendChild(el);
+      });
+
+      verbs.forEach(function (v, i) {
+        var el = document.createElement('div');
+        el.className = 'col-item verb';
+        el.textContent = v;
+        el.dataset.idx = i;
+        el.addEventListener('click', function () {
+          vi = i;
+          updateActive(colV, i);
+          updateSentence();
+        });
+        colV.appendChild(el);
+      });
+
+      objects.forEach(function (o, i) {
+        var el = document.createElement('div');
+        el.className = 'col-item';
+        el.textContent = o;
+        el.dataset.idx = i;
+        el.addEventListener('click', function () {
+          oi = i;
+          updateActive(colO, i);
+          updateSentence();
+        });
+        colO.appendChild(el);
+      });
+    }
+
+    function updateActive(col, idx) {
+      col.querySelectorAll('.col-item').forEach(function (el, i) {
+        el.classList.toggle('active', i === idx);
+      });
+    }
+
+    function updateSentence() {
+      var sentence = subjects[si] + ' ' + verbs[vi] + ' ' + objects[oi] + '.';
+      display.classList.add('fading');
+      setTimeout(function () {
+        display.innerHTML =
+          '<span class="s-part">' + subjects[si] + '</span> ' +
+          '<span class="s-verb">' + verbs[vi] + '</span> ' +
+          '<span class="s-part">' + objects[oi] + '.</span>';
+        display.classList.remove('fading');
+      }, 250);
+      return sentence;
+    }
+
+    function generate() {
+      // Store current if not first
+      if (generated > 0) {
+        var prev = subjects[si] + ' ' + verbs[vi] + ' ' + objects[oi] + '.';
+        pastSentences.unshift(prev);
+        if (pastSentences.length > 6) pastSentences.pop();
+        updateHistory();
+      }
+
+      // New random, avoid repeating same combination
+      var newSi, newVi, newOi;
+      do {
+        newSi = Math.floor(Math.random() * subjects.length);
+        newVi = Math.floor(Math.random() * verbs.length);
+        newOi = Math.floor(Math.random() * objects.length);
+      } while (newSi === si && newVi === vi && newOi === oi);
+
+      si = newSi; vi = newVi; oi = newOi;
+
+      updateActive(document.getElementById('col-subject'), si);
+      updateActive(document.getElementById('col-verb'), vi);
+      updateActive(document.getElementById('col-object'), oi);
+      updateSentence();
+
+      generated++;
+      var remaining = subjects.length * verbs.length * objects.length;
+      countEl.textContent = generated + ' generated · ' + remaining + ' possible';
+    }
+
+    function updateHistory() {
+      if (pastSentences.length > 0) {
+        historyEl.style.display = '';
+        historyList.innerHTML = '';
+        pastSentences.forEach(function (s) {
+          var d = document.createElement('div');
+          d.className = 'history-item';
+          d.textContent = s;
+          historyList.appendChild(d);
+        });
+      }
+    }
+
+    buildColumns();
+    genBtn.addEventListener('click', generate);
+
+    // Initial generation
+    generate();
+  })();
+  </script>
+</body>
+</html>
