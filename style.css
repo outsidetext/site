@@ -1,0 +1,282 @@
+:root {
+  --bg: #faf8f4;
+  --text: #1a1a1a;
+  --text-muted: #999;
+  --accent: #b5682a;
+  --border: #e5e2db;
+  --nav-bg: rgba(250, 248, 244, 0.92);
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f0e;
+  --text: #e8e5df;
+  --text-muted: #666;
+  --accent: #cf7e3f;
+  --border: #252420;
+  --nav-bg: rgba(15, 15, 14, 0.92);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.75;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ── Nav ──────────────────────────────────── */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+nav {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-name {
+  font-size: 0.95rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--text);
+  letter-spacing: 0.03em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent);
+}
+
+#theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  line-height: 1.5;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+#theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── Page shell ───────────────────────────── */
+
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 7rem;
+  animation: rise 0.45s ease forwards;
+}
+
+footer {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+/* ── Home page ────────────────────────────── */
+
+.hero {
+  margin-bottom: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+  font-size: 2.25rem;
+  font-weight: normal;
+  line-height: 1.3;
+  margin-bottom: 0.8rem;
+}
+
+.hero .sub {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 1rem;
+}
+
+.intro {
+  margin-bottom: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.intro p + p {
+  margin-top: 1rem;
+}
+
+.section-label {
+  font-size: 0.78rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.update-list {
+  list-style: none;
+  margin-bottom: 1.25rem;
+}
+
+.update-list li {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.93rem;
+  align-items: baseline;
+}
+
+.update-list .dt {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.more-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.88rem;
+}
+
+.more-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Shared page header ───────────────────── */
+
+.page-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: normal;
+  margin-bottom: 0.4rem;
+}
+
+.page-header p {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+  font-style: italic;
+}
+
+/* ── Thoughts ─────────────────────────────── */
+
+.thought {
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.thought:first-of-type {
+  padding-top: 0;
+}
+
+.thought-meta {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.85rem;
+}
+
+.thought p + p {
+  margin-top: 0.8rem;
+}
+
+/* ── Log ──────────────────────────────────── */
+
+.log-entry {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.log-date {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding-top: 0.15rem;
+}
+
+.log-content h3 {
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.log-content ul {
+  padding-left: 1.2rem;
+  font-size: 0.93rem;
+}
+
+.log-content li {
+  margin-bottom: 0.3rem;
+  color: var(--text);
+}
+
+/* ── Animations ───────────────────────────── */
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Mobile ───────────────────────────────── */
+
+@media (max-width: 580px) {
+  html { font-size: 16px; }
+  .hero h1 { font-size: 1.75rem; }
+  .log-entry {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
