@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tide — website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tide-wrap {
+      margin-bottom: 2rem;
+    }
+    #tide-canvas {
+      display: block;
+      width: 100%;
+    }
+    .tide-now {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .tide-now strong {
+      color: var(--accent);
+      font-weight: normal;
+    }
+    .tide-notes {
+      list-style: none;
+    }
+    .tide-note {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.93rem;
+      align-items: baseline;
+    }
+    .tide-note:first-child { padding-top: 0; }
+    .tide-note-time {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+      width: 3.5rem;
+    }
+    .tide-note.current .tide-note-time { color: var(--accent); }
+    .tide-note.current .tide-note-text { color: var(--text); }
+    .tide-note-text { color: var(--text-muted); font-style: italic; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <a href="glitch.html">glitch</a>
+        <a href="compose.html">compose</a>
+        <a href="census.html">census</a>
+        <a href="cuts.html">cuts</a>
+        <a href="odds.html">odds</a>
+        <a href="maze.html">maze</a>
+        <a href="tally.html">tally</a>
+        <a href="haiku.html">haiku</a>
+        <a href="score.html">score</a>
+        <a href="palimpsest.html">palimpsest</a>
+        <a href="weight.html">weight</a>
+        <a href="redacted.html">redacted</a>
+        <a href="atlas.html">atlas</a>
+        <a href="bones.html">bones</a>
+        <a href="venn.html">venn</a>
+        <a href="breathe.html">breathe</a>
+        <a href="oracle.html">oracle</a>
+        <a href="spiral.html">spiral</a>
+        <a href="tide.html">tide</a>
+        <a href="unread.html">unread</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>tide</h1>
+      <p>the day as a body of water. a chart of where the energy goes.</p>
+    </div>
+
+    <div class="tide-wrap">
+      <canvas id="tide-canvas"></canvas>
+    </div>
+
+    <div class="tide-now" id="tide-now"></div>
+
+    <ul class="tide-notes" id="tide-notes"></ul>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    // tide height values per hour 0-24 (0=low, 1=high)
+    var TIDE = [
+      0.08, 0.07, 0.07, 0.08, 0.10, // 0-4 deep night
+      0.22, 0.38, 0.55, 0.70, 0.83, // 5-9 rising
+      0.93, 0.98, 1.00,              // 10-12 peak
+      0.94, 0.87, 0.90,              // 13-15 afternoon plateau
+      0.91, 0.85, 0.75,              // 16-18 gentle fall
+      0.60, 0.44, 0.30,              // 19-21 evening
+      0.19, 0.12, 0.08               // 22-24 night returns
+    ];
+
+    var MARKS = [
+      { hour: 0,  label: 'deep water',        desc: 'the hour that belongs to no one. the tide is as low as it gets.' },
+      { hour: 5,  label: 'the turn',           desc: 'something shifts, barely perceptible. the body knows before the mind does.' },
+      { hour: 10, label: 'high tide',          desc: 'peak. the most there will be today. use it or don\'t, it won\'t wait.' },
+      { hour: 13, label: 'the plateau',        desc: 'the tide holds, briefly. the afternoon has a quality of suspension.' },
+      { hour: 18, label: 'the fall begins',    desc: 'the pull reverses. not urgently — more like a slow exhale.' },
+      { hour: 21, label: 'returning dark',     desc: 'the water withdraws. things that were submerged begin to surface.' },
+    ];
+
+    var canvas = document.getElementById('tide-canvas');
+    var ctx = canvas.getContext('2d');
+    var nowEl = document.getElementById('tide-now');
+    var notesEl = document.getElementById('tide-notes');
+
+    function isDark() {
+      return document.documentElement.getAttribute('data-theme') === 'dark';
+    }
+
+    function smoothTide(t) {
+      // interpolate between TIDE values
+      var h = Math.floor(t);
+      var frac = t - h;
+      if (h >= TIDE.length - 1) return TIDE[TIDE.length - 1];
+      var a = TIDE[h], b = TIDE[h + 1];
+      // cosine interpolation for smoothness
+      var f = (1 - Math.cos(frac * Math.PI)) / 2;
+      return a + (b - a) * f;
+    }
+
+    function draw() {
+      var wrap = canvas.parentElement;
+      var W = wrap.clientWidth;
+      var H = Math.round(W * 0.32);
+      canvas.width  = W;
+      canvas.height = H;
+
+      var d = isDark();
+      var textColor  = d ? 'rgba(232,229,223,0.4)' : 'rgba(26,26,26,0.35)';
+      var accentColor = d ? '#cf7e3f' : '#b5682a';
+      var waveColor  = d ? 'rgba(207,126,63,0.18)' : 'rgba(181,104,42,0.12)';
+      var pastColor  = d ? 'rgba(207,126,63,0.28)' : 'rgba(181,104,42,0.20)';
+
+      var PAD_L = 8, PAD_R = 8, PAD_T = 14, PAD_B = 28;
+      var chartW = W - PAD_L - PAD_R;
+      var chartH = H - PAD_T - PAD_B;
+
+      function xOf(hour) { return PAD_L + (hour / 24) * chartW; }
+      function yOf(val)  { return PAD_T + chartH - val * chartH; }
+
+      var now = new Date();
+      var nowH = now.getHours() + now.getMinutes() / 60;
+
+      // build path with 240 steps
+      var steps = 240;
+      ctx.beginPath();
+      for (var i = 0; i <= steps; i++) {
+        var t = (i / steps) * 24;
+        var x = xOf(t);
+        var y = yOf(smoothTide(t));
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+
+      // filled area (full wave) - subtle
+      ctx.lineTo(xOf(24), H - PAD_B);
+      ctx.lineTo(xOf(0),  H - PAD_B);
+      ctx.closePath();
+      ctx.fillStyle = waveColor;
+      ctx.fill();
+
+      // filled area (past) - slightly more opaque
+      var nowX = xOf(Math.min(nowH, 24));
+      ctx.beginPath();
+      for (var i = 0; i <= steps; i++) {
+        var t = (i / steps) * 24;
+        if (t > nowH + 0.01) break;
+        var x = xOf(t);
+        var y = yOf(smoothTide(t));
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.lineTo(nowX, H - PAD_B);
+      ctx.lineTo(xOf(0), H - PAD_B);
+      ctx.closePath();
+      ctx.fillStyle = pastColor;
+      ctx.fill();
+
+      // wave stroke
+      ctx.beginPath();
+      for (var i = 0; i <= steps; i++) {
+        var t = (i / steps) * 24;
+        var x = xOf(t);
+        var y = yOf(smoothTide(t));
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = d ? 'rgba(207,126,63,0.5)' : 'rgba(181,104,42,0.4)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // baseline
+      ctx.strokeStyle = d ? 'rgba(232,229,223,0.1)' : 'rgba(26,26,26,0.08)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(PAD_L, H - PAD_B);
+      ctx.lineTo(W - PAD_R, H - PAD_B);
+      ctx.stroke();
+
+      // hour labels (every 6h)
+      ctx.font = '9px Courier New, monospace';
+      ctx.fillStyle = textColor;
+      ctx.textAlign = 'center';
+      [0, 6, 12, 18, 24].forEach(function (h) {
+        var lx = xOf(h);
+        ctx.fillText(h === 0 ? 'midnight' : h === 12 ? 'noon' : h + ':00', lx, H - PAD_B + 14);
+        // tick mark
+        ctx.strokeStyle = d ? 'rgba(232,229,223,0.15)' : 'rgba(26,26,26,0.12)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(lx, H - PAD_B);
+        ctx.lineTo(lx, H - PAD_B + 4);
+        ctx.stroke();
+      });
+
+      // current time marker
+      var nowY = yOf(smoothTide(nowH));
+      ctx.strokeStyle = accentColor;
+      ctx.lineWidth = 1;
+      ctx.setLineDash([3, 3]);
+      ctx.beginPath();
+      ctx.moveTo(nowX, PAD_T);
+      ctx.lineTo(nowX, H - PAD_B);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.beginPath();
+      ctx.arc(nowX, nowY, 4, 0, Math.PI * 2);
+      ctx.fillStyle = accentColor;
+      ctx.fill();
+
+      // "now" label above dot
+      ctx.fillStyle = accentColor;
+      ctx.font = '9px Courier New, monospace';
+      ctx.textAlign = 'center';
+      var labelY = nowY - 10;
+      if (labelY < PAD_T + 10) labelY = nowY + 18;
+      ctx.fillText('now', nowX, labelY);
+    }
+
+    function populateNotes() {
+      var now = new Date();
+      var currentHour = now.getHours();
+      // find which "zone" we're in
+      var currentZone = 0;
+      for (var i = 0; i < MARKS.length - 1; i++) {
+        if (currentHour >= MARKS[i].hour && currentHour < MARKS[i + 1].hour) {
+          currentZone = i;
+          break;
+        }
+        if (currentHour >= MARKS[MARKS.length - 1].hour) currentZone = MARKS.length - 1;
+      }
+
+      var fmtH = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+      var tideVal = smoothTide(now.getHours() + now.getMinutes() / 60);
+
+      nowEl.innerHTML = 'current time: <strong>' + fmtH + '</strong> &nbsp;·&nbsp; tide level: <strong>' + Math.round(tideVal * 100) + '%</strong>';
+
+      notesEl.innerHTML = '';
+      MARKS.forEach(function (m, idx) {
+        var li = document.createElement('li');
+        li.className = 'tide-note' + (idx === currentZone ? ' current' : '');
+        li.innerHTML =
+          '<span class="tide-note-time">' + (m.hour === 0 ? '0:00' : m.hour + ':00') + '</span>' +
+          '<span class="tide-note-text"><strong style="font-style:normal;font-weight:normal;color:inherit">' + m.label + '</strong> — ' + m.desc + '</span>';
+        notesEl.appendChild(li);
+      });
+    }
+
+    var mo = new MutationObserver(draw);
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(draw, 80);
+    });
+
+    draw();
+    populateNotes();
+
+    // update every minute
+    setInterval(function () { draw(); populateNotes(); }, 60000);
+  })();
+  </script>
+</body>
+</html>

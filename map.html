@@ -117,6 +117,11 @@
       { id: 'debris',      href: 'debris.html',       label: 'debris',      desc: 'what the web leaves behind when it moves on',     x: 0.73, y: 0.85 },
       { id: 'liturgy',     href: 'liturgy.html',      label: 'liturgy',     desc: 'a text that knows what hour you are reading it',  x: 0.07, y: 0.85 },
       { id: 'catalog',     href: 'catalog.html',      label: 'catalog',     desc: 'a selection of things, mostly unavailable',       x: 0.93, y: 0.32 },
+      { id: 'breathe',     href: 'breathe.html',      label: 'breathe',     desc: 'a guided breath — four in, two hold, six out',    x: 0.40, y: 0.70 },
+      { id: 'oracle',      href: 'oracle.html',       label: 'oracle',      desc: 'ask anything. receive what you need or something else', x: 0.74, y: 0.60 },
+      { id: 'spiral',      href: 'spiral.html',       label: 'spiral',      desc: 'a text that turns inward — follow it all the way', x: 0.17, y: 0.82 },
+      { id: 'tide',        href: 'tide.html',         label: 'tide',        desc: 'the day as a body of water — a chart of the energy', x: 0.83, y: 0.78 },
+      { id: 'unread',      href: 'unread.html',       label: 'unread',      desc: 'messages that arrived while you were elsewhere',   x: 0.06, y: 0.45 },
     ];
 
     var edges = [
@@ -161,6 +166,11 @@
       ['debris','museum'], ['debris','glitch'], ['debris','cuts'],
       ['liturgy','hours'], ['liturgy','quiet'], ['liturgy','thresholds'],
       ['catalog','census'], ['catalog','cuts'], ['catalog','odds'],
+      ['breathe','quiet'], ['breathe','hours'], ['breathe','now'], ['breathe','weight'],
+      ['oracle','wander'], ['oracle','questions'], ['oracle','compose'],
+      ['spiral','thoughts'], ['spiral','distances'], ['spiral','wander'],
+      ['tide','hours'], ['tide','now'], ['tide','weather'], ['tide','score'],
+      ['unread','compose'], ['unread','signal'], ['unread','letters'], ['unread','cuts'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

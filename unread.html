@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>unread — website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .inbox-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5rem;
+    }
+    .inbox-count {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .inbox-clear {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    .inbox-clear:hover { color: var(--accent); }
+    .message {
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .message:first-child { border-top: 1px solid var(--border); }
+    .message-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.85rem 0.5rem;
+    }
+    .message-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.35em;
+      transition: opacity 0.3s;
+    }
+    .message.read .message-dot { opacity: 0; }
+    .message.read .message-sender,
+    .message.read .message-subject {
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+    .message-sender {
+      font-size: 0.88rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+      width: 11rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.2s;
+    }
+    .message-subject {
+      font-size: 0.88rem;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .message:not(.read) .message-subject { color: var(--text); }
+    .message-time {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .message-body {
+      display: none;
+      padding: 0 0.5rem 1.25rem 1.75rem;
+      font-size: 0.93rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .message-body .mark-read {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-style: normal;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .message-body .mark-read:hover { color: var(--accent); }
+    .message.expanded .message-body { display: block; }
+    .inbox-empty {
+      font-size: 0.93rem;
+      color: var(--text-muted);
+      font-style: italic;
+      padding: 2rem 0;
+      text-align: center;
+      display: none;
+    }
+    @media (max-width: 520px) {
+      .message-sender { width: 7rem; }
+      .message-time { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <a href="glitch.html">glitch</a>
+        <a href="compose.html">compose</a>
+        <a href="census.html">census</a>
+        <a href="cuts.html">cuts</a>
+        <a href="odds.html">odds</a>
+        <a href="maze.html">maze</a>
+        <a href="tally.html">tally</a>
+        <a href="haiku.html">haiku</a>
+        <a href="score.html">score</a>
+        <a href="palimpsest.html">palimpsest</a>
+        <a href="weight.html">weight</a>
+        <a href="redacted.html">redacted</a>
+        <a href="atlas.html">atlas</a>
+        <a href="bones.html">bones</a>
+        <a href="venn.html">venn</a>
+        <a href="breathe.html">breathe</a>
+        <a href="oracle.html">oracle</a>
+        <a href="spiral.html">spiral</a>
+        <a href="tide.html">tide</a>
+        <a href="unread.html">unread</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>unread</h1>
+      <p>messages that arrived while you were elsewhere.</p>
+    </div>
+
+    <div class="inbox-header">
+      <span class="inbox-count" id="inbox-count">inbox</span>
+      <button class="inbox-clear" id="inbox-clear-all">mark all read</button>
+    </div>
+
+    <div id="inbox">
+      <!-- messages injected by JS -->
+    </div>
+    <p class="inbox-empty" id="inbox-empty">no unread messages. for now.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var MESSAGES = [
+      {
+        sender: 'Time',
+        subject: 'Re: where did the last hour go',
+        time: 'just now',
+        body: 'I sent this an hour ago. By the time you read it, another will have passed. I do not wait. I have no mechanism for waiting. I simply continue, indifferent to whether you are paying attention. Please mark this read when you are ready, though I should mention: it won\'t change anything on my end.'
+      },
+      {
+        sender: 'Gravity',
+        subject: 'daily report',
+        time: 'always',
+        body: 'Everything is fine. All objects remain in contact with the earth as expected. No anomalies. Your chair is holding. Your cup is where you left it. The sensation you sometimes have of being slightly too heavy — that\'s me. I mean well.'
+      },
+      {
+        sender: 'Yesterday',
+        subject: 'you forgot something',
+        time: '24h ago',
+        body: 'I\'m not going to tell you what it was. You\'ll remember eventually, probably in the shower, or right before sleep, or when it\'s too late to do anything about it. That\'s usually how it goes. I just wanted you to know that it happened.'
+      },
+      {
+        sender: 'Your Body',
+        subject: 'status update (please read)',
+        time: 'ongoing',
+        body: 'Water. Just some water. Also: you\'ve been sitting like that for a while and your neck will mention it later. I\'m doing fine overall — keeping everything running mostly without asking for credit. A small amount of gratitude would be noticed. Not required. Just noticed.'
+      },
+      {
+        sender: 'The Algorithm',
+        subject: 'we think you\'d like this',
+        time: '3 min ago',
+        body: 'Based on everything you\'ve ever looked at, read, paused on for longer than two seconds, typed and deleted, searched at midnight, and almost clicked — we think you\'d like something that doesn\'t exist yet. We\'ll let you know when we find it. In the meantime, here is a thing that is almost it.'
+      },
+      {
+        sender: 'Nostalgia',
+        subject: 'checking in',
+        time: 'variable',
+        body: 'Do you remember the specific light of a particular afternoon, probably summer, probably years ago? I\'ve been holding it for you. I bring it out sometimes — usually when you\'re tired, or when a song plays, or when you smell something you can\'t place. I\'m not trying to cause problems. I just don\'t know where else to put it.'
+      },
+      {
+        sender: 'Future Self',
+        subject: 'don\'t worry',
+        time: 'eventually',
+        body: 'I can\'t tell you everything, but: it works out. Not all of it, and not in the ways you expect, but the general shape of things is okay. You\'re going to be surprised by what turns out to matter and what doesn\'t. The thing you\'re worried about right now is not on the list. I checked.'
+      },
+      {
+        sender: 'Attention',
+        subject: 'I\'ve been stretched thin',
+        time: 'all day',
+        body: 'I\'m a finite resource. I know everyone wants a piece, and I try to be fair, but there\'s only so much of me. When you split me between fourteen tabs and a podcast and a conversation and a thought you were in the middle of — I do my best. But some things don\'t get the full version. I wanted to be honest about that.'
+      },
+      {
+        sender: 'The Word You Needed',
+        subject: 'Re: you were looking for me',
+        time: 'earlier',
+        body: 'I was right there. You could feel the shape of me — the exact right word for exactly the right thing — but I wouldn\'t come. I was probably a word in another language. Or a word that doesn\'t exist yet. Or a word you once knew and forgot. Either way: I\'m sorry. I\'ll try to arrive when you need me.'
+      },
+      {
+        sender: '2am',
+        subject: '(no subject)',
+        time: 'last night',
+        body: 'You know what you were thinking. I\'m not going to repeat it here. I\'ll just say: the thoughts that come at this hour are not more true than the ones that come at noon. They\'re just louder. The quiet amplifies everything. By morning, the volume will have adjusted. I\'ll see you again when I see you.'
+      }
+    ];
+
+    var inboxEl   = document.getElementById('inbox');
+    var countEl   = document.getElementById('inbox-count');
+    var emptyEl   = document.getElementById('inbox-empty');
+    var clearBtn  = document.getElementById('inbox-clear-all');
+    var readState = {};
+
+    function updateCount() {
+      var unread = MESSAGES.filter(function (_, i) { return !readState[i]; }).length;
+      countEl.textContent = 'inbox (' + unread + ' unread)';
+      if (unread === 0) emptyEl.style.display = 'block';
+      else emptyEl.style.display = 'none';
+    }
+
+    function markRead(idx) {
+      readState[idx] = true;
+      var msg = inboxEl.querySelectorAll('.message')[idx];
+      if (msg) msg.classList.add('read');
+      updateCount();
+    }
+
+    MESSAGES.forEach(function (m, idx) {
+      var msg = document.createElement('div');
+      msg.className = 'message';
+      msg.innerHTML =
+        '<div class="message-row">' +
+          '<div class="message-dot"></div>' +
+          '<div class="message-sender">' + m.sender + '</div>' +
+          '<div class="message-subject">' + m.subject + '</div>' +
+          '<div class="message-time">' + m.time + '</div>' +
+        '</div>' +
+        '<div class="message-body">' + m.body +
+          '<br><button class="mark-read">mark as read</button>' +
+        '</div>';
+
+      msg.querySelector('.message-row').addEventListener('click', function () {
+        var wasExpanded = msg.classList.contains('expanded');
+        // close all
+        inboxEl.querySelectorAll('.message').forEach(function (m2) {
+          m2.classList.remove('expanded');
+        });
+        if (!wasExpanded) {
+          msg.classList.add('expanded');
+          markRead(idx);
+        }
+      });
+
+      msg.querySelector('.mark-read').addEventListener('click', function (e) {
+        e.stopPropagation();
+        msg.classList.remove('expanded');
+        markRead(idx);
+      });
+
+      inboxEl.appendChild(msg);
+    });
+
+    clearBtn.addEventListener('click', function () {
+      MESSAGES.forEach(function (_, i) { markRead(i); });
+      inboxEl.querySelectorAll('.message').forEach(function (m) {
+        m.classList.remove('expanded');
+      });
+    });
+
+    updateCount();
+  })();
+  </script>
+</body>
+</html>

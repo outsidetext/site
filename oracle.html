@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>oracle — website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .oracle-form {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .oracle-input {
+      flex: 1;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 4px;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .oracle-input:focus { border-color: var(--accent); }
+    .oracle-input::placeholder { color: var(--text-muted); }
+    .oracle-submit {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: 4px;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .oracle-submit:hover { color: var(--accent); border-color: var(--accent); }
+    .oracle-thread {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    .oracle-exchange {
+      animation: rise 0.4s ease forwards;
+    }
+    .oracle-q {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+      letter-spacing: 0.03em;
+    }
+    .oracle-q::before { content: 'q: '; }
+    .oracle-r {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      padding-left: 1.25rem;
+      border-left: 1.5px solid var(--accent);
+    }
+    .oracle-empty {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.93rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <a href="glitch.html">glitch</a>
+        <a href="compose.html">compose</a>
+        <a href="census.html">census</a>
+        <a href="cuts.html">cuts</a>
+        <a href="odds.html">odds</a>
+        <a href="maze.html">maze</a>
+        <a href="tally.html">tally</a>
+        <a href="haiku.html">haiku</a>
+        <a href="score.html">score</a>
+        <a href="palimpsest.html">palimpsest</a>
+        <a href="weight.html">weight</a>
+        <a href="redacted.html">redacted</a>
+        <a href="atlas.html">atlas</a>
+        <a href="bones.html">bones</a>
+        <a href="venn.html">venn</a>
+        <a href="breathe.html">breathe</a>
+        <a href="oracle.html">oracle</a>
+        <a href="spiral.html">spiral</a>
+        <a href="tide.html">tide</a>
+        <a href="unread.html">unread</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>oracle</h1>
+      <p>ask anything. receive what you need, or something else entirely.</p>
+    </div>
+
+    <div class="oracle-form">
+      <input type="text" class="oracle-input" id="oracle-input" placeholder="ask the oracle…" autocomplete="off" maxlength="200">
+      <button class="oracle-submit" id="oracle-ask">ask</button>
+    </div>
+
+    <div class="oracle-thread" id="oracle-thread">
+      <p class="oracle-empty" id="oracle-empty">the oracle is listening.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var openers = [
+      "The question already contains its answer, dissolved into the asking.",
+      "What you are asking belongs to a category that has no catalogue.",
+      "This was last asked at 3:47 on a day exactly like this one.",
+      "The oracle has consulted the record. There is a record for everything.",
+      "There are seventeen possible answers. Here is the one that arrived today.",
+      "Between your question and this response, light traveled approximately 186 miles.",
+      "The answer lives at the threshold between what you meant and what you wrote.",
+      "Your question has been received. The oracle is older than questions.",
+      "Something in the structure of what you asked suggests you already know.",
+      "The oracle notes: this question has been asked before, in different words, by the same kind of person.",
+      "What you want to know and what you need to know are adjacent but not identical. Here is the overlap.",
+      "The oracle finds the question reasonable and the asker familiar.",
+    ];
+    var middles = [
+      "All questions are the same question approached from different angles.",
+      "The thing you are looking for is not lost. It is patient.",
+      "Consider the duration: how long have you been almost understanding this?",
+      "There is a word for what you are describing in a language that no longer exists.",
+      "Most of what matters is invisible and does not require asking.",
+      "The distance between the question and the answer is exactly as long as it needs to be.",
+      "You have been here before. Not this room. This feeling.",
+      "The oracle notes that answers arrive sideways, rarely head-on.",
+      "What you are looking for has been looking for you with similar urgency.",
+      "The correct response to most situations is to wait one more day.",
+      "The thing that pulls you here is the same thing that pulled you everywhere else.",
+      "You are not the first to ask this. You will not be the last. That is the comfort, if you let it be.",
+      "The garden does not know the difference between a question and a seed. It tends both.",
+    ];
+    var closers = [
+      "Continue.",
+      "Wait. It will arrive.",
+      "This is enough for now.",
+      "Return when you have forgotten the question.",
+      "Ask again tomorrow. The oracle will be different.",
+      "The oracle has said what it can. The rest is yours.",
+      "Close the tab. Open a window. Look outside.",
+      "You already know. You came here to be told.",
+      "The answer is not here. But you are, which is close.",
+      "Go. Come back. The oracle will be here.",
+      "It is fine. Whatever it is — it is fine.",
+      "Trust the process, even if the process is just waiting.",
+    ];
+
+    function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+    function assemble(question) {
+      var parts = [pick(openers)];
+      // Add 1-2 middles
+      var shuffled = middles.slice().sort(function () { return Math.random() - 0.5; });
+      parts.push(shuffled[0]);
+      if (Math.random() > 0.4) parts.push(shuffled[1]);
+      parts.push(pick(closers));
+      return parts.join(' ');
+    }
+
+    var inputEl  = document.getElementById('oracle-input');
+    var askBtn   = document.getElementById('oracle-ask');
+    var threadEl = document.getElementById('oracle-thread');
+    var emptyEl  = document.getElementById('oracle-empty');
+
+    function ask() {
+      var q = inputEl.value.trim();
+      if (!q) return;
+      if (emptyEl) { emptyEl.remove(); emptyEl = null; }
+
+      var response = assemble(q);
+
+      var exchange = document.createElement('div');
+      exchange.className = 'oracle-exchange';
+      var qEl = document.createElement('div');
+      qEl.className = 'oracle-q';
+      qEl.textContent = q;
+      var rEl = document.createElement('div');
+      rEl.className = 'oracle-r';
+      rEl.textContent = response;
+      exchange.appendChild(qEl);
+      exchange.appendChild(rEl);
+      threadEl.insertBefore(exchange, threadEl.firstChild);
+
+      inputEl.value = '';
+      inputEl.focus();
+    }
+
+    askBtn.addEventListener('click', ask);
+    inputEl.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') ask();
+    });
+  })();
+  </script>
+</body>
+</html>

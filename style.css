@@ -98,6 +98,30 @@ nav {
   border-color: var(--accent);
 }
 
+/* ── Nav filter ───────────────────────────── */
+
+#nav-filter {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  width: 100px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#nav-filter:focus {
+  border-color: var(--accent);
+}
+
+#nav-filter::placeholder {
+  color: var(--text-muted);
+}
+
 /* ── Scroll progress ──────────────────────── */
 
 #progress-bar {

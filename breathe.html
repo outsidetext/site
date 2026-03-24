@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>breathe — website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    main {
+      max-width: none;
+      padding: 0;
+      animation: none;
+      min-height: calc(100vh - 65px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .b-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 2rem;
+      max-width: 480px;
+      width: 100%;
+    }
+    .b-intro h1 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin-bottom: 0.6rem;
+    }
+    .b-intro p {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.93rem;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 340px;
+    }
+    .b-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+      padding: 0.55rem 1.5rem;
+      border-radius: 4px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .b-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .b-active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .b-circle {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+    }
+    .b-phase {
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      min-height: 2rem;
+      font-weight: normal;
+    }
+    .b-count {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      min-height: 1.2rem;
+    }
+    .b-done-text {
+      font-size: 0.93rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 360px;
+    }
+    .b-hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="thoughts.html">thoughts</a>
+        <a href="seeds.html">seeds</a>
+        <a href="wander.html">wander</a>
+        <a href="now.html">now</a>
+        <a href="letters.html">letters</a>
+        <a href="quiet.html">quiet</a>
+        <a href="glossary.html">glossary</a>
+        <a href="hours.html">hours</a>
+        <a href="questions.html">questions</a>
+        <a href="echoes.html">echoes</a>
+        <a href="colors.html">colors</a>
+        <a href="numbers.html">numbers</a>
+        <a href="things.html">things</a>
+        <a href="log.html">log</a>
+        <a href="drift.html">drift</a>
+        <a href="weather.html">weather</a>
+        <a href="map.html">map</a>
+        <a href="portraits.html">portraits</a>
+        <a href="thresholds.html">thresholds</a>
+        <a href="signal.html">signal</a>
+        <a href="recipes.html">recipes</a>
+        <a href="field-notes.html">field notes</a>
+        <a href="distances.html">distances</a>
+        <a href="presence.html">presence</a>
+        <a href="museum.html">museum</a>
+        <a href="glitch.html">glitch</a>
+        <a href="compose.html">compose</a>
+        <a href="census.html">census</a>
+        <a href="cuts.html">cuts</a>
+        <a href="odds.html">odds</a>
+        <a href="maze.html">maze</a>
+        <a href="tally.html">tally</a>
+        <a href="haiku.html">haiku</a>
+        <a href="score.html">score</a>
+        <a href="palimpsest.html">palimpsest</a>
+        <a href="weight.html">weight</a>
+        <a href="redacted.html">redacted</a>
+        <a href="atlas.html">atlas</a>
+        <a href="bones.html">bones</a>
+        <a href="venn.html">venn</a>
+        <a href="breathe.html">breathe</a>
+        <a href="oracle.html">oracle</a>
+        <a href="spiral.html">spiral</a>
+        <a href="tide.html">tide</a>
+        <a href="unread.html">unread</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="b-wrap">
+
+      <div id="b-intro" class="b-intro">
+        <h1>breathe</h1>
+        <p>a room for the body, not the screen.<br>four counts in. two to hold. six counts out. two of nothing.</p>
+        <button class="b-btn" id="b-start">begin</button>
+      </div>
+
+      <div id="b-active" class="b-active b-hidden">
+        <div class="b-circle" id="b-circle"></div>
+        <div class="b-phase" id="b-phase">&nbsp;</div>
+        <div class="b-count" id="b-count">&nbsp;</div>
+        <button class="b-btn" id="b-stop">stop</button>
+      </div>
+
+      <div id="b-done" class="b-hidden">
+        <p class="b-done-text" id="b-done-msg"></p>
+        <button class="b-btn" id="b-again">breathe again</button>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var PHASES = [
+      { name: 'inhale',  dur: 4000, size: 220, accent: true  },
+      { name: 'hold',    dur: 2000, size: 220, accent: false },
+      { name: 'exhale',  dur: 6000, size:  90, accent: false },
+      { name: 'pause',   dur: 2000, size:  90, accent: false }
+    ];
+    var CYCLE = PHASES.reduce(function (s, p) { return s + p.dur; }, 0);
+
+    var introEl  = document.getElementById('b-intro');
+    var activeEl = document.getElementById('b-active');
+    var doneEl   = document.getElementById('b-done');
+    var circleEl = document.getElementById('b-circle');
+    var phaseEl  = document.getElementById('b-phase');
+    var countEl  = document.getElementById('b-count');
+    var doneMsgEl = document.getElementById('b-done-msg');
+
+    var running = false, phaseIdx = 0, cycles = 0, timer = null;
+
+    function show(el) { el.classList.remove('b-hidden'); }
+    function hide(el) { el.classList.add('b-hidden'); }
+
+    function setCircle(size, dur, accent) {
+      var t = dur + 'ms linear';
+      circleEl.style.transition = 'width ' + t + ',height ' + t + ',border-color ' + t + ',background ' + t;
+      circleEl.style.width  = size + 'px';
+      circleEl.style.height = size + 'px';
+      circleEl.style.borderColor = accent ? 'var(--accent)' : 'var(--border)';
+      circleEl.style.background  = accent ? 'rgba(181,104,42,0.05)' : 'transparent';
+    }
+
+    function tick() {
+      if (!running) return;
+      var p = PHASES[phaseIdx];
+      phaseEl.textContent = p.name;
+      if (phaseIdx === 0) { cycles++; countEl.textContent = 'cycle ' + cycles; }
+      setCircle(p.size, p.dur, p.accent);
+      timer = setTimeout(function () {
+        phaseIdx = (phaseIdx + 1) % PHASES.length;
+        tick();
+      }, p.dur);
+    }
+
+    function start() {
+      running = true; phaseIdx = 0; cycles = 0;
+      hide(introEl); hide(doneEl); show(activeEl);
+      circleEl.style.transition = 'none';
+      circleEl.style.width  = '90px';
+      circleEl.style.height = '90px';
+      circleEl.style.borderColor = 'var(--border)';
+      circleEl.style.background  = 'transparent';
+      setTimeout(tick, 60);
+    }
+
+    function stop() {
+      running = false; clearTimeout(timer);
+      hide(activeEl);
+      var secs = cycles * (CYCLE / 1000);
+      doneMsgEl.textContent = cycles + ' cycle' + (cycles !== 1 ? 's' : '') +
+        '. that is ' + secs + ' seconds given to something that keeps you here.';
+      show(doneEl);
+    }
+
+    document.getElementById('b-start').addEventListener('click', start);
+    document.getElementById('b-stop').addEventListener('click', stop);
+    document.getElementById('b-again').addEventListener('click', start);
+  })();
+  </script>
+</body>
+</html>

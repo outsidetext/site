@@ -123,11 +123,38 @@
     '<div class="shortcuts-title">keyboard shortcuts</div>' +
     '<div class="shortcuts-row"><span class="key">?</span><span>show / hide this</span></div>' +
     '<div class="shortcuts-row"><span class="key">r</span><span>go somewhere unexpected</span></div>' +
+    '<div class="shortcuts-row"><span class="key">/</span><span>filter pages</span></div>' +
     '<div class="shortcuts-row"><span class="key">esc</span><span>clear what you\'ve typed</span></div>' +
     '</div>';
   document.body.appendChild(overlayEl);
   overlayEl.addEventListener('click', function (e) {
     if (e.target === overlayEl) overlayEl.classList.remove('visible');
+  });
+
+  // ── Nav filter (scale adaptation) ────────────────
+  var navFilter = document.createElement('input');
+  navFilter.type = 'text';
+  navFilter.id = 'nav-filter';
+  navFilter.setAttribute('placeholder', 'filter…');
+  navFilter.setAttribute('aria-label', 'Filter navigation');
+  var themeBtn = document.getElementById('theme-toggle');
+  var navLinksEl = document.querySelector('.nav-links');
+  if (navLinksEl && themeBtn) {
+    navLinksEl.insertBefore(navFilter, themeBtn);
+  }
+  navFilter.addEventListener('input', function () {
+    var val = this.value.toLowerCase().trim();
+    var navAs = document.querySelectorAll('.nav-links a');
+    navAs.forEach(function (a) {
+      a.style.display = (val && !a.textContent.toLowerCase().includes(val)) ? 'none' : '';
+    });
+  });
+  navFilter.addEventListener('blur', function () {
+    setTimeout(function () {
+      navFilter.value = '';
+      document.querySelectorAll('.nav-links a').forEach(function (a) { a.style.display = ''; });
+      navFilter.style.display = 'none';
+    }, 180);
   });
 
   // ── Random page navigation ────────────────────────
@@ -139,7 +166,8 @@
     'recipes.html','field-notes.html','distances.html','presence.html','museum.html',
     'glitch.html','compose.html','census.html','cuts.html','odds.html',
     'maze.html','tally.html','haiku.html','score.html','palimpsest.html',
-    'weight.html','redacted.html','atlas.html','bones.html','venn.html'
+    'weight.html','redacted.html','atlas.html','bones.html','venn.html',
+    'breathe.html','oracle.html','spiral.html','tide.html','unread.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
@@ -185,6 +213,13 @@
 
     if (e.key === '?') {
       overlayEl.classList.toggle('visible');
+      return;
+    }
+
+    if (e.key === '/') {
+      e.preventDefault();
+      navFilter.style.display = 'inline-block';
+      navFilter.focus();
       return;
     }
 
