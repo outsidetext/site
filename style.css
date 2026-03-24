@@ -343,7 +343,7 @@ footer {
   line-height: 1.75;
 }
 
-/* ── Hours ───────────────────────────────── */
+/* ── Hours ────────────────────────────────── */
 
 .hour-display {
   margin-bottom: 3.5rem;
@@ -433,6 +433,95 @@ footer {
   margin-bottom: 1rem;
 }
 
+/* ── Questions ────────────────────────────── */
+
+.question-list {
+  list-style: none;
+  counter-reset: question-counter;
+}
+
+.question {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.97rem;
+  line-height: 1.65;
+  display: flex;
+  gap: 1.5rem;
+  align-items: baseline;
+}
+
+.question:first-child {
+  padding-top: 0;
+}
+
+.question::before {
+  counter-increment: question-counter;
+  content: counter(question-counter, decimal-leading-zero);
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 0.18rem;
+}
+
+/* ── Echoes ───────────────────────────────── */
+
+.echo-list {
+  list-style: none;
+}
+
+.echo {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.97rem;
+  line-height: 1.65;
+  font-style: italic;
+  display: flex;
+  gap: 1.5rem;
+  align-items: baseline;
+}
+
+.echo:first-child {
+  padding-top: 0;
+}
+
+.echo::before {
+  content: '~';
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+/* ── Scroll reveal ────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── State ────────────────────────────────── */
+
+.state {
+  margin-bottom: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.state-text {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
 /* ── Animations ───────────────────────────── */
 
 @keyframes rise {
@@ -454,14 +543,18 @@ footer {
 @media (max-width: 580px) {
   html { font-size: 16px; }
   .hero h1 { font-size: 1.75rem; }
-  .nav-links { gap: 0.9rem; }
   .log-entry {
     grid-template-columns: 1fr;
     gap: 0.5rem;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    justify-content: flex-end;
   }
 }
 
 @media (max-width: 420px) {
   .nav-links a { font-size: 0.78rem; }
-  .nav-links { gap: 0.6rem; }
+  .nav-links { gap: 0.5rem 0.8rem; }
 }
