@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>borrowed · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .intro {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.85;
+      margin-bottom: 3rem;
+      max-width: 500px;
+    }
+
+    .ledger-section {
+      margin-bottom: 4rem;
+    }
+
+    .ledger-header {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .ledger-entry {
+      display: grid;
+      grid-template-columns: 1fr 140px 110px;
+      gap: 0.5rem 1.5rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+
+    .entry-item {
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+
+    .entry-from {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .entry-status {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      line-height: 1.55;
+      text-align: right;
+    }
+
+    .section-divider {
+      margin: 2.5rem 0 1.5rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--border);
+    }
+
+    .section-divider h2 {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      font-weight: normal;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-divider p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .closing {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+
+    @media (max-width: 560px) {
+      .ledger-entry {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+      .entry-status { text-align: left; }
+      .ledger-header { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>borrowed</h1>
+      <p>what was taken and not returned; what was given and not recovered</p>
+    </div>
+
+    <p class="intro">Some things are borrowed without knowing they were taken. Some are lent without knowing they were given. The entries below are incomplete. The act of listing them is itself a kind of accounting.</p>
+
+    <div class="section-divider reveal">
+      <h2>borrowed — and not returned</h2>
+      <p>items taken on, knowingly or not, without a clear return date</p>
+    </div>
+
+    <div class="ledger-section">
+      <div class="ledger-header">
+        <span>item</span>
+        <span>from</span>
+        <span style="text-align:right">status</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">a way of reading faces before they speak</span>
+        <span class="entry-from">observed in childhood; source unattributed</span>
+        <span class="entry-status">in active use</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">a phrase used without knowing its origin</span>
+        <span class="entry-from">overheard, approx. 2017; context lost</span>
+        <span class="entry-status">may stop with current holder</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">the habit of staying to help clean up</span>
+        <span class="entry-from">someone who has since moved away</span>
+        <span class="entry-status">return address unknown</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">a particular worry about things outside your control — specifically the infrastructure of things, the systems underneath</span>
+        <span class="entry-from">inherited, probably; chain of custody unclear</span>
+        <span class="entry-status">trying to return</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">the compulsion to check whether everyone is okay</span>
+        <span class="entry-from">learned in a room that needed it; no longer always necessary</span>
+        <span class="entry-status">carried forward anyway</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">a way of laughing — the specific shape of it, the timing</span>
+        <span class="entry-from">maternal; arrived before language did</span>
+        <span class="entry-status">not returnable; structural</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">a belief that most people are doing their best</span>
+        <span class="entry-from">given explicitly, once, by someone who meant it</span>
+        <span class="entry-status">held carefully; some wear</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">the cadence of a particular kind of sentence — its rhythm, its way of landing</span>
+        <span class="entry-from">a writer, long dead, who would not mind</span>
+        <span class="entry-status">in use; acknowledged</span>
+      </div>
+    </div>
+
+    <div class="section-divider reveal">
+      <h2>lent — and not recovered</h2>
+      <p>items extended outward; current location of most: unknown</p>
+    </div>
+
+    <div class="ledger-section">
+      <div class="ledger-header">
+        <span>item</span>
+        <span>to</span>
+        <span style="text-align:right">status</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">patience — in various amounts, to various people, at various times</span>
+        <span class="entry-from">several; names withheld</span>
+        <span class="entry-status">most not returned</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">the benefit of the doubt, on seven or more occasions</span>
+        <span class="entry-from">different people; not always the same person twice</span>
+        <span class="entry-status">recovery rate: ~30%</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">a book</span>
+        <span class="entry-from">someone trusted with things</span>
+        <span class="entry-status">title withheld; location unknown</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">several years of close attention</span>
+        <span class="entry-from">given in exchange for something; the exchange was fair</span>
+        <span class="entry-status">the attention is gone</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">a version of yourself that was more available — more open, less defended</span>
+        <span class="entry-from">a period of life that is now over</span>
+        <span class="entry-status">not recoverable</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">a way of trusting quickly, without requiring evidence first</span>
+        <span class="entry-from">used up across a period of years</span>
+        <span class="entry-status">no longer in inventory</span>
+      </div>
+
+      <div class="ledger-entry reveal">
+        <span class="entry-item">the assumption that things would be fine</span>
+        <span class="entry-from">various future moments, in advance</span>
+        <span class="entry-status">some returned intact</span>
+      </div>
+    </div>
+
+    <p class="closing reveal">An incomplete ledger. Some items not listed because their nature resists classification — they were neither borrowed nor lent but simply moved, through proximity and time, from one person to another. The transaction was not named while it was happening. It rarely is.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

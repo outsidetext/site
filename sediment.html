@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sediment · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .epigraph {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.85;
+      max-width: 480px;
+      margin-bottom: 3rem;
+      border-left: 2px solid var(--border);
+      padding-left: 1.25rem;
+    }
+
+    .sediment-column {
+      max-width: 560px;
+      margin: 0 auto 3rem;
+    }
+
+    .deposit-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--border);
+      gap: 1.5rem;
+      transition: opacity 0.4s;
+    }
+
+    /* Base sizing — overridden per age class */
+    .deposit-row.age-0 { padding: 1rem 0 0.9rem; }
+    .deposit-row.age-1 { padding: 0.9rem 0 0.8rem; }
+    .deposit-row.age-2 { padding: 0.85rem 0 0.75rem; }
+    .deposit-row.age-3 { padding: 0.8rem 0 0.7rem; }
+    .deposit-row.age-4 { padding: 0.75rem 0 0.65rem; }
+    .deposit-row.age-5 { padding: 0.7rem 0 0.6rem; }
+    .deposit-row.age-6 { padding: 0.65rem 0 0.55rem; }
+    .deposit-row.age-7 { padding: 0.6rem 0 0.5rem; }
+    .deposit-row.age-8 { padding: 0.55rem 0 0.45rem; }
+    .deposit-row.age-9 { padding: 0.5rem 0 0.4rem; }
+    .deposit-row.age-10 { padding: 0.45rem 0 0.35rem; }
+    .deposit-row.age-11 { padding: 0.4rem 0 0.3rem; }
+
+    .deposit-word {
+      font-family: Georgia, serif;
+      color: var(--text);
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .deposit-row.age-0 .deposit-word  { font-size: 1.08rem; }
+    .deposit-row.age-1 .deposit-word  { font-size: 1.03rem; }
+    .deposit-row.age-2 .deposit-word  { font-size: 0.99rem; font-style: italic; }
+    .deposit-row.age-3 .deposit-word  { font-size: 0.95rem; font-style: italic; }
+    .deposit-row.age-4 .deposit-word  { font-size: 0.92rem; font-style: italic; }
+    .deposit-row.age-5 .deposit-word  { font-size: 0.89rem; font-style: italic; }
+    .deposit-row.age-6 .deposit-word  { font-size: 0.86rem; font-style: italic; }
+    .deposit-row.age-7 .deposit-word  { font-size: 0.83rem; font-style: italic; }
+    .deposit-row.age-8 .deposit-word  { font-size: 0.81rem; font-style: italic; }
+    .deposit-row.age-9 .deposit-word  { font-size: 0.79rem; font-style: italic; }
+    .deposit-row.age-10 .deposit-word { font-size: 0.77rem; font-style: italic; }
+    .deposit-row.age-11 .deposit-word { font-size: 0.75rem; font-style: italic; }
+
+    .deposit-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.07em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .single-visit {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+    }
+
+    .max-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
+      padding: 0.55rem 0.9rem;
+      border: 1px solid var(--border);
+      display: inline-block;
+    }
+
+    .closing {
+      margin-top: 2.5rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">&#9680;</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>sediment</h1>
+      <p>what each visit deposits</p>
+    </div>
+
+    <p class="epigraph">something settles with each visit. it may take a few returns to see it.</p>
+
+    <div id="sediment-output"></div>
+
+    <div class="closing">
+      deposits persist across sessions. clearing your browser history clears the column.
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var STORAGE_KEY = 'sediment_deposits';
+      var MAX = 12;
+
+      var wordPool = [
+        'still', 'here', 'returning', 'present', 'awake', 'familiar',
+        'changed', 'remembered', 'again', 'altered', 'wondering', 'arrived',
+        'searching', 'resting', 'passing through', 'pausing', 'noticing',
+        'listening', 'almost', 'nearly', 'already', 'just now', 'settling',
+        'anchored', 'drifting', 'looking', 'waiting', 'finding', 'beginning', 'held'
+      ];
+
+      var opacities = [1.0, 0.85, 0.72, 0.60, 0.50, 0.42, 0.36, 0.30, 0.26, 0.22, 0.19, 0.16];
+
+      function loadDeposits() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) return JSON.parse(raw);
+        } catch (e) {}
+        return [];
+      }
+
+      function saveDeposits(arr) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+        } catch (e) {}
+      }
+
+      function pickWord(existing) {
+        var unused = wordPool.filter(function (w) { return existing.indexOf(w) === -1; });
+        var pool = unused.length > 0 ? unused : wordPool;
+        return pool[Math.floor(Math.random() * pool.length)];
+      }
+
+      // Load existing, add new deposit for this visit, trim to MAX
+      var deposits = loadDeposits();
+      var newWord = pickWord(deposits);
+      deposits.unshift(newWord); // newest first
+      if (deposits.length > MAX) deposits = deposits.slice(0, MAX);
+      saveDeposits(deposits);
+
+      // Render
+      var container = document.getElementById('sediment-output');
+
+      if (deposits.length === 1) {
+        var p = document.createElement('p');
+        p.className = 'single-visit';
+        p.textContent = 'first visit. a single layer. come back to see it build.';
+        container.appendChild(p);
+      }
+
+      if (deposits.length >= MAX) {
+        var note = document.createElement('div');
+        note.className = 'max-note';
+        note.textContent = 'the column is full. older layers are being compressed.';
+        container.appendChild(note);
+      }
+
+      var col = document.createElement('div');
+      col.className = 'sediment-column';
+
+      // deposits[0] = this visit (newest), deposits[N-1] = oldest
+      var total = deposits.length;
+      for (var i = 0; i < total; i++) {
+        var row = document.createElement('div');
+        row.className = 'deposit-row age-' + i;
+        row.style.opacity = opacities[i] !== undefined ? String(opacities[i]) : '0.16';
+
+        var wordEl = document.createElement('span');
+        wordEl.className = 'deposit-word';
+        wordEl.textContent = deposits[i];
+
+        var labelEl = document.createElement('span');
+        labelEl.className = 'deposit-label';
+        // Newest = #N (highest number), oldest = #1
+        var visitNum = total - i;
+        labelEl.textContent = '#' + visitNum;
+
+        row.appendChild(wordEl);
+        row.appendChild(labelEl);
+        col.appendChild(row);
+      }
+
+      container.appendChild(col);
+    }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pulse · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .pulse-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 0 2rem;
+      gap: 2rem;
+    }
+
+    .orb-wrap {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .orb {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1.5px solid var(--border);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      transform-origin: center center;
+    }
+
+    .orb.flash {
+      border-color: var(--accent);
+      box-shadow: 0 0 24px 4px rgba(181, 104, 42, 0.18);
+    }
+
+    [data-theme="dark"] .orb.flash {
+      box-shadow: 0 0 24px 4px rgba(207, 126, 63, 0.22);
+    }
+
+    @keyframes orb-pulse {
+      0%   { transform: scale(1.0); }
+      50%  { transform: scale(1.08); }
+      100% { transform: scale(1.0); }
+    }
+
+    .orb.breathing {
+      animation: orb-pulse linear infinite;
+    }
+
+    .bpm-display {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      opacity: 0;
+      transition: opacity 0.6s;
+      text-align: center;
+    }
+
+    .bpm-display.visible {
+      opacity: 1;
+    }
+
+    .interpretation {
+      font-style: italic;
+      font-size: 0.94rem;
+      line-height: 1.85;
+      color: var(--text);
+      text-align: center;
+      max-width: 400px;
+      min-height: 3em;
+      opacity: 0;
+      transition: opacity 0.8s;
+    }
+
+    .interpretation.visible {
+      opacity: 1;
+    }
+
+    .pulse-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      transition: opacity 0.4s;
+    }
+
+    .pulse-hint-calibrated {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      opacity: 0;
+      transition: opacity 0.8s;
+    }
+
+    .pulse-hint-calibrated.visible {
+      opacity: 1;
+    }
+
+    .closing-note {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.8;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.8s;
+    }
+
+    .closing-note.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">&#9680;</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>pulse</h1>
+      <p>tap spacebar, or click, to set your rhythm</p>
+    </div>
+
+    <div class="pulse-stage">
+      <div class="orb-wrap" id="orb-wrap" aria-label="Tap to set rhythm">
+        <div class="orb" id="orb"></div>
+      </div>
+
+      <div class="bpm-display" id="bpm-display">-- bpm</div>
+
+      <div class="interpretation" id="interpretation"></div>
+
+      <div class="pulse-hint" id="pulse-hint">tap spacebar or click anywhere &middot; four taps to calibrate</div>
+      <div class="pulse-hint-calibrated" id="pulse-hint-calibrated">the orb is breathing at your pace</div>
+    </div>
+
+    <div class="closing-note" id="closing-note">
+      the orb will keep this rhythm until you tap again.
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var orb         = document.getElementById('orb');
+      var bpmDisplay  = document.getElementById('bpm-display');
+      var interp      = document.getElementById('interpretation');
+      var hint        = document.getElementById('pulse-hint');
+      var hintCal     = document.getElementById('pulse-hint-calibrated');
+      var closingNote = document.getElementById('closing-note');
+
+      var taps        = [];
+      var flashTimeout = null;
+
+      var readings = [
+        { max: 50,       text: "very slow. anchored. the body knows it\u2019s safe to be slow here." },
+        { max: 65,       text: "resting. the weight is distributed evenly. the breath is full." },
+        { max: 80,       text: "steady. this is the pace things keep when they have nowhere urgent to be." },
+        { max: 95,       text: "quickened. something has your attention." },
+        { max: 115,      text: "elevated. the body is ahead of you \u2014 it already knows something." },
+        { max: Infinity, text: "fast. the body is deciding something. it will tell you what in a moment." }
+      ];
+
+      function getReading(bpm) {
+        for (var i = 0; i < readings.length; i++) {
+          if (bpm < readings[i].max) return readings[i].text;
+        }
+        return readings[readings.length - 1].text;
+      }
+
+      function flashOrb() {
+        if (flashTimeout) clearTimeout(flashTimeout);
+        orb.classList.add('flash');
+        flashTimeout = setTimeout(function () {
+          orb.classList.remove('flash');
+        }, 200);
+      }
+
+      function computeBpm() {
+        if (taps.length < 5) return null;
+        var last5 = taps.slice(-5);
+        var intervals = [];
+        for (var i = 1; i < last5.length; i++) {
+          intervals.push(last5[i] - last5[i - 1]);
+        }
+        var sum = 0;
+        for (var j = 0; j < intervals.length; j++) sum += intervals[j];
+        var avgMs = sum / intervals.length;
+        return 60000 / avgMs;
+      }
+
+      function startBreathing(bpm) {
+        var durationSec = 60 / bpm;
+        orb.classList.remove('breathing');
+        void orb.offsetWidth; // force reflow to restart animation
+        orb.style.animationDuration = durationSec.toFixed(3) + 's';
+        orb.classList.add('breathing');
+      }
+
+      function onTap() {
+        var now = Date.now();
+        taps.push(now);
+        if (taps.length > 8) taps = taps.slice(-8);
+
+        flashOrb();
+
+        var bpm = computeBpm();
+        if (bpm !== null) {
+          var rounded = Math.round(bpm);
+
+          bpmDisplay.textContent = rounded + ' bpm';
+          bpmDisplay.classList.add('visible');
+
+          interp.textContent = getReading(rounded);
+          interp.classList.add('visible');
+
+          hint.style.opacity = '0';
+          hintCal.classList.add('visible');
+          closingNote.classList.add('visible');
+
+          startBreathing(bpm);
+        }
+      }
+
+      document.addEventListener('click', function () {
+        onTap();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.code === 'Space' || e.key === ' ') {
+          e.preventDefault();
+          onTap();
+        }
+      });
+    }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>half-life · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .epigraph {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.85;
+      max-width: 480px;
+      margin-bottom: 3.5rem;
+      border-left: 2px solid var(--border);
+      padding-left: 1.25rem;
+    }
+
+    .duration-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 4rem;
+    }
+
+    .duration-row {
+      display: grid;
+      grid-template-columns: 1fr 160px;
+      gap: 1rem 2rem;
+      padding: 1.35rem 0;
+      border-top: 1px solid var(--border);
+      align-items: baseline;
+    }
+
+    .duration-row:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .duration-thing {
+      font-size: 0.94rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .duration-measure {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    .duration-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.3rem;
+      line-height: 1.6;
+      grid-column: 1;
+    }
+
+    .section-divider {
+      margin: 2.5rem 0 1.5rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--border);
+    }
+
+    .section-divider h2 {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      font-weight: normal;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-divider p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .closing {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+
+    @media (max-width: 520px) {
+      .duration-row {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
+      .duration-measure {
+        text-align: left;
+        color: var(--text-muted);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">&#9680;</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>half-life</h1>
+      <p>how quickly feelings decay</p>
+    </div>
+
+    <p class="epigraph">A radioactive substance decays at a constant rate: after one half-life, half remains; after two, a quarter. Feelings do not follow this rule. But they follow something like it.</p>
+
+    <div class="section-divider reveal">
+      <h2>the fast-moving</h2>
+      <p>feelings that move through in hours</p>
+    </div>
+
+    <div class="duration-list">
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">the specific embarrassment of a social misstep</span>
+        <span class="duration-measure">11 min (acute); recurring</span>
+        <span class="duration-note">the acute flush passes in minutes. the memory visits later, at night, without warning.</span>
+      </div>
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">anger from a small frustration</span>
+        <span class="duration-measure">18&ndash;45 minutes</span>
+        <span class="duration-note">longer if the object of the anger is present or discussed. shorter if there is nowhere to put it.</span>
+      </div>
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">the mood set by a song</span>
+        <span class="duration-measure">15 min &ndash; 3 hours</span>
+        <span class="duration-note">duration correlates with how many times you listen on repeat.</span>
+      </div>
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">the self-consciousness of being observed</span>
+        <span class="duration-measure">20&ndash;50 minutes</span>
+        <span class="duration-note">extends significantly if the observer was someone whose opinion carries weight.</span>
+      </div>
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">delight at an unexpected small thing</span>
+        <span class="duration-measure">2&ndash;8 hours</span>
+        <span class="duration-note">among the most unstable of the positive states. dissipates faster with distraction.</span>
+      </div>
+
+    </div>
+
+    <div class="section-divider reveal">
+      <h2>the slow ones</h2>
+      <p>feelings that stay through the night and into the next day</p>
+    </div>
+
+    <div class="duration-list">
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">relief after a deadline</span>
+        <span class="duration-measure">4&ndash;12 hours</span>
+        <span class="duration-note">often mistaken for happiness. it is the absence of a weight, not the presence of a thing.</span>
+      </div>
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">longing (activated by a trigger)</span>
+        <span class="duration-measure">2&ndash;7 days</span>
+        <span class="duration-note">recurs. each recurrence resets the clock approximately. the half-life does not compound.</span>
+      </div>
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">joy from significant good news</span>
+        <span class="duration-measure">3&ndash;5 days before becoming ordinary</span>
+        <span class="duration-note">hedonic adaptation is not a malfunction. it is how the system makes room.</span>
+      </div>
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">the homesickness of the first weeks somewhere new</span>
+        <span class="duration-measure">10&ndash;21 days</span>
+        <span class="duration-note">highly variable. familiarity accelerates decay. some strains are resistant.</span>
+      </div>
+
+    </div>
+
+    <div class="section-divider reveal">
+      <h2>the ones that don&rsquo;t decay</h2>
+      <p>no half-life observed; classified separately</p>
+    </div>
+
+    <div class="duration-list">
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">grief (transitioning from acute to chronic)</span>
+        <span class="duration-measure">6&ndash;18 months (acute phase only)</span>
+        <span class="duration-note">the acute phase decays. what remains after is not absence &mdash; it is a different substance entirely.</span>
+      </div>
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">the knowledge that something is over</span>
+        <span class="duration-measure">does not decay</span>
+        <span class="duration-note">reclassified. not a feeling with a half-life but a permanent update to the record. present in all subsequent readings.</span>
+      </div>
+
+      <div class="duration-row reveal">
+        <span class="duration-thing">a love that has since changed form</span>
+        <span class="duration-measure">half-life not applicable</span>
+        <span class="duration-note">does not disappear; transforms. the substance is conserved even as the state changes. chemistry, not physics.</span>
+      </div>
+
+    </div>
+
+    <p class="closing reveal">Unlike radioactive decay, emotional half-life is not constant across individuals or contexts. The same grief, revisited, may have a different rate. Attention changes the rate. Memory resets the clock. These measurements are approximate and personal, which means they may not be yours.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

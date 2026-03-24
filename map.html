@@ -203,6 +203,11 @@
       { id: 'scatter',      href: 'scatter.html',     label: 'scatter',      desc: 'a scatterplot of small moments — axes unlabeled; hover to read',           x: 0.54, y: 0.32 },
       { id: 'appetite',     href: 'appetite.html',    label: 'appetite',     desc: 'seven forms of wanting — from food to silence to the irretrievable',       x: 0.09, y: 0.80 },
       { id: 'duration',     href: 'duration.html',    label: 'duration',     desc: 'how long things last — approximate measurements of experiences',           x: 0.68, y: 0.57 },
+      { id: 'pulse',        href: 'pulse.html',       label: 'pulse',        desc: 'tap to set your rhythm — the page breathes with you',                        x: 0.58, y: 0.68 },
+      { id: 'sediment',     href: 'sediment.html',    label: 'sediment',     desc: 'what each visit deposits — layers accumulate across sessions',                x: 0.14, y: 0.92 },
+      { id: 'half-life',    href: 'half-life.html',   label: 'half-life',    desc: 'emotional decay rates — how quickly feelings diminish, or don\'t',           x: 0.86, y: 0.73 },
+      { id: 'rumors',       href: 'rumors.html',      label: 'rumors',       desc: 'things said about you, collected without confirmation or denial',             x: 0.42, y: 0.54 },
+      { id: 'borrowed',     href: 'borrowed.html',    label: 'borrowed',     desc: 'what was taken and not returned; what was given and not recovered',           x: 0.21, y: 0.44 },
     ];
 
     var edges = [
@@ -307,6 +312,11 @@
       ['scatter','distances'], ['scatter','numbers'], ['scatter','evidence'], ['scatter','cartography'], ['scatter','atlas'],
       ['appetite','things'], ['appetite','catalog'], ['appetite','inventory'], ['appetite','translation'], ['appetite','glossary'],
       ['duration','interval'], ['duration','clocks'], ['duration','latency'], ['duration','residue'], ['duration','tally'],
+      ['pulse','breathe'], ['pulse','tempo'], ['pulse','interval'], ['pulse','tally'], ['pulse','quiet'],
+      ['sediment','silt'], ['sediment','strata'], ['sediment','residue'], ['sediment','log'], ['sediment','presence'],
+      ['half-life','duration'], ['half-life','equations'], ['half-life','clocks'], ['half-life','residue'], ['half-life','thoughts'],
+      ['rumors','overheard'], ['rumors','evidence'], ['rumors','mirror'], ['rumors','survey'], ['rumors','thoughts'],
+      ['borrowed','ledger'], ['borrowed','inventory'], ['borrowed','inheritance'], ['borrowed','residue'], ['borrowed','things'],
     ];
 
     var canvas  = document.getElementById('map-canvas');
