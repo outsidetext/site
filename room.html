@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>room · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .room-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .room-name {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .room-body p {
+      margin-bottom: 1.6rem;
+      line-height: 1.85;
+    }
+    .room-body p:last-child {
+      margin-bottom: 0;
+    }
+    .room-footer {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      opacity: 0.5;
+      letter-spacing: 0.06em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>room</h1>
+      <p>a different room each day, described in full</p>
+    </div>
+
+    <div class="room-label">today's room</div>
+    <div id="room-name" class="room-name"></div>
+    <div id="room-body" class="room-body reveal"></div>
+    <div class="room-footer" id="room-footer"></div>
+  </main>
+
+  <footer>
+    <p>tended by machine · <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var today = new Date();
+    var seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+    function r(s) { var x = Math.sin(seed + s) * 10000; return x - Math.floor(x); }
+    function pick(arr, s) { return arr[Math.floor(r(s) * arr.length)]; }
+
+    var rooms = [
+      {
+        name: 'a train compartment, 11pm, crossing an unfamiliar country',
+        paragraphs: [
+          'The window holds nothing but your own reflection and, behind it, a darkness that moves. You cannot tell if there are fields out there or forests or simply the end of something. The glass is cold when you press your forehead to it. The darkness gives nothing back except the faint vibration of the track running through your skull.',
+          'There are four seats in this compartment and you are alone in it. Someone was here before — the headrest opposite is slightly warm, or you imagine it is, and there is a faint smell of orange peel that fades as you try to locate it. The seat fabric is the color of a bruise that has mostly healed. The overhead luggage rack holds nothing. A small light in the ceiling buzzes imperceptibly at a frequency just below hearing.',
+          'The train slows without warning, holds its breath at a station you cannot read the name of, then moves again. In that pause you hear, very briefly, wind. The sound of the country outside, which is vast and dark and entirely indifferent to the compartment\'s warmth. Then the door closes, the train accelerates, and you are back inside the sealed and moving room.',
+          'You have been traveling for six hours and will travel for four more. This is the middle part, which has no name and no scenery and in which you are neither leaving nor arriving. You are only in this compartment, in this motion, in this particular quality of late-night fluorescent light that makes everyone look, if there were anyone else, like they are already in a dream.',
+        ]
+      },
+      {
+        name: 'a kitchen in early February, before anyone else is awake',
+        paragraphs: [
+          'The kitchen is the color of not-quite-morning. The window shows a sky that hasn\'t decided yet. There is ice on the inside corner of the glass — not a lot, a thin rime at the very edge — and you don\'t touch it. The radiator has not come on. The floor is cold through your socks and you stand on the small rug in front of the stove, which is warmer by association if not by fact.',
+          'You fill the kettle from the tap and the sound of water going in is very loud. The house is asleep. The house does not know you are awake and so it is in its truer form: the creak it makes as it settles, the faint drip somewhere you have never located, the hum of the refrigerator that is always there and audible only in silence. The kettle begins to tick as the element heats.',
+          'On the counter: a wooden cutting board with a faint stain from something red, some months ago. A jar of something preserved, half full. Three coffee cups on the drying rack — two of yours and one that belongs to someone who does not live here but leaves things behind. A small potted herb that is surviving, only just, having had less light than it wanted all winter.',
+          'The kettle boils. This is the loudest thing. When it stops the silence is deeper than before, as though the boiling had been holding something back. You pour. The mug warms your hands immediately. Outside, the sky has made a decision: not fully light, but moving in that direction, the way resolve accumulates — not all at once, just slightly more than there was.',
+        ]
+      },
+      {
+        name: 'a waiting room in a clinic, a Tuesday afternoon',
+        paragraphs: [
+          'The chairs are arranged to avoid eye contact. This was a design decision, or became one through accumulated awkwardness, and it has been correct: no one in this room is looking at anyone else. There are eleven chairs and six people and still everyone has chosen the seat that puts maximum distance between themselves and the others. This is a small civic achievement, unacknowledged.',
+          'The magazines on the table are from three months ago. Someone has done the crossword in the top one, in pen, and gotten most of it wrong but pressed on anyway. The one beneath it has a cover story about a crisis that has since resolved or been replaced by another. No one is reading them. A child of about four is moving a small car along the carpet\'s pattern, making no sound.',
+          'The overhead light is fluorescent and slightly green. It casts no shadows or rather casts all shadows equally, flattening everything to the same degree of realness. Under this light everyone looks slightly unwell, which is appropriate, or slightly blameless, which is also appropriate. A receptionist types something without looking up. A name is called. One chair becomes empty.',
+          'You have been here for twenty minutes. In twenty minutes you have thought about very little — the mind does a kind of clearing in these rooms, suspending the other things. The clock on the wall is round and white and its second hand moves in small decisive jerks. Outside, through the frosted window, a bus passes. The child with the car makes a tiny sound, barely a word, and then goes back to silence.',
+        ]
+      },
+      {
+        name: 'a library reading room, late summer afternoon',
+        paragraphs: [
+          'The light comes in at an angle that makes dust visible. This is the best light — afternoon light that has traveled a long way to arrive here slightly golden, slightly exhausted, lying in parallelograms across the table. The dust moves in it without urgency. This room has been accumulating this light for eighty years and the light has not tired of the arrangement.',
+          'The table is long and made of dark wood and seats twelve. There are three people at it now: a man at the far end writing in a notebook by hand, a woman two seats away from you reading something large and ringed, and you. No one has spoken. This is the agreement: you come in, you sit, you do the private interior thing that reading is, and you leave. The room holds you all without comment.',
+          'The shelves go to the ceiling. This is always true and always briefly astonishing — that someone built shelves to a ceiling and then filled them. A rolling ladder is hooked to the rail at the far end. No one has used it today. The books up near the ceiling are the ones that know they won\'t be needed but hold their positions anyway, patient, dusty, available.',
+          'At some point the man at the far end closes his notebook and leaves. You don\'t see him go, only notice afterward the empty chair pushed back slightly, and his absence, which has a shape. The light shifts. The dust readjusts. The woman with the large book turns a page. Outside: the sound of the late-summer city, which is tired in a way that is almost contentment. In here: the particular quiet of people doing their separate necessary things in the same room.',
+        ]
+      },
+      {
+        name: 'a hotel room at 3am, in a city you don\'t know well',
+        paragraphs: [
+          'The curtains are heavy and light-blocking but not perfectly so: a thin line of street light runs along the bottom where they don\'t quite reach the floor. You have been watching this line. The room is full of hums — the air conditioner, the minibar, the city outside the double-glazed window — and you have categorized them all and found that this is not the same as silence.',
+          'The bed is large and indifferent. Hotels are good at this: the bed is made for no particular body, optimized for sleep in general rather than your sleep specifically. The pillow is cold on the side you haven\'t been lying on. You turn it over. The ceiling is a textured white that your eyes, adapted to the dark, can\'t quite read. There is a smoke detector on it with a green light that blinks every thirty-two seconds. You have counted.',
+          'On the desk: your laptop, closed. Your phone, face-down, though you know what it would show if you looked. Your shoes on the floor, still holding the shape of walking. A plastic card key on the nightstand. A glass of water you poured at midnight that is now room temperature, which you know without touching. The television remote on the bed beside you, unnecessary, picked up earlier and not replaced.',
+          'You are in this city for a reason that feels, at 3am, both completely sufficient and completely arbitrary. The city does not know you are here. The city is asleep, mostly, or in its other 3am life that has nothing to do with you. In the morning you will have somewhere to be and you will be there. Right now you are in this room, which is no one\'s room, which holds you without memory, which will be cleaned and reset before the next person arrives knowing nothing.',
+        ]
+      },
+      {
+        name: 'a childhood bedroom, as it was the last time you really lived in it',
+        paragraphs: [
+          'There is a water stain on the ceiling shaped like something you named once and no longer remember. The window faces east and so the room is bright in the morning and dim by afternoon, and you spent entire days in that dimness, reading, not reading, the specific adolescent project of being alone in your own mind. The curtains are the ones your mother chose, which you tolerated, which you would give anything to see again.',
+          'The desk is pushed against the wall. On it: things that mattered then with an intensity that would be embarrassing to reconstruct. A picture or two. Something you made. Books whose spines you can see if you try, though trying is strange — like adjusting a lens and finding an earlier version of focus. The desk chair has a particular squeak at a particular angle and you still know that angle exactly.',
+          'The wardrobe is full of the clothes of who you were trying to be. This is true of all wardrobes but more legible here, where the trying was more visible, less settled. The floor has a patch where the carpet is slightly compressed from a piece of furniture that is no longer there. The room remembers the furniture. The room has a longer memory than you do about some things.',
+          'You slept here for years and left and the room went on being the room. Other things were stored in it. Eventually it was painted. The water stain on the ceiling was covered or it was not. You don\'t know. You know the room as it was, which is the only version of the room you can fully furnish. All the changes since are theoretical. The room you actually knew is this one: this particular dimness, this particular east-facing light, this particular understanding that everything outside this room was enormous and you were in here, for now, safe.',
+        ]
+      },
+      {
+        name: 'an empty office on a Saturday',
+        paragraphs: [
+          'The office is different without people. This is obvious but still surprising — the chairs pushed in or at strange angles from the last person to sit in them, the desks holding their mid-week arrangements, the cups and pens and small personal objects that looked unremarkable in context now slightly strange without the people they belong to. The office has been waiting here all week for someone to notice it.',
+          'The light through the windows is weekend light: coming from a lower angle, slower, less purposeful than weekday light. There is no noise from the street except the occasional car. The building\'s ventilation runs constantly and you have never heard it before because there was always more noise than this. It sounds like breathing, but more regular. It sounds like an animal that has been trained to be still.',
+          'The monitors are dark. Each one reflects a slightly different version of the empty room — the angle varies and so the reflection does too. The whiteboards have not been erased: diagrams from Thursday\'s meeting, a task list with most items crossed through, someone\'s phone number written in the corner and ringed twice. The coffee machine on the counter blinks a single red standby light.',
+          'You came in on a Saturday for a reason and the reason seems smaller now. The office does not need you here. The office is fine. It is between its own exhale and its next inhale and you are in that pause, which is not a pause for you but is the natural state of the room. You do the thing you came to do. The room does not acknowledge it. On Monday the room will be its weekday self again and will have no record of this visit.',
+        ]
+      },
+      {
+        name: 'a café before it opens',
+        paragraphs: [
+          'The chairs are on the tables. This is the natural position of chairs in a café before it opens — inverted, legs up, arranged as though the room is having a different kind of conversation with itself. The floor has been mopped and is slightly damp at the edges and smells of something citrus. The espresso machine is cold. The pastry case is empty and lit and the light falls on the glass shelves with nowhere to go.',
+          'There is a chalk menu on the board by the door, unchanged from yesterday, and today\'s specials have not been added yet. The wifi password is on a small card on the counter, offered to no one. Someone has left a jacket on the hook by the back wall and the jacket has been there long enough that no one is sure whose it is. It does not look like it will be claimed.',
+          'The light is wrong in here without customers: too even, too present. In an hour the morning light will come through the south-facing window and make a warm strip across the floor and the first customers will sit in it and not think about it. Now the light is just overhead and impersonal. The room has not yet put on its social self. It is backstage.',
+          'Someone will arrive soon with keys. They will lower the chairs, begin the machine, chalk the specials, arrange the day into its required shape. The room will transform so quickly and completely that no one who arrives at 8:30 will be able to imagine it like this — the chairs on the tables, the floor still slightly citrus-damp, the pastry case awaiting, the whole still space between closing and opening where the room belongs, briefly, to itself.',
+        ]
+      },
+    ];
+
+    var idx = Math.floor(r(0) * rooms.length);
+    var room = rooms[idx];
+
+    document.getElementById('room-name').textContent = room.name;
+
+    var bodyEl = document.getElementById('room-body');
+    room.paragraphs.forEach(function (p) {
+      var el = document.createElement('p');
+      el.textContent = p;
+      bodyEl.appendChild(el);
+    });
+
+    var months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+    var days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+    document.getElementById('room-footer').textContent =
+      'room ' + (idx + 1) + ' of ' + rooms.length + ' · changes daily at midnight · ' +
+      days[today.getDay()] + ', ' + months[today.getMonth()] + ' ' + today.getDate();
+  })();
+  </script>
+</body>
+</html>

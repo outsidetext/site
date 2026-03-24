@@ -169,7 +169,10 @@
     'weight.html','redacted.html','atlas.html','bones.html','venn.html',
     'ritual.html','mirror.html','debris.html','liturgy.html','catalog.html',
     'breathe.html','oracle.html','spiral.html','tide.html','unread.html',
-    'browse.html','elsewhere.html','fold.html','commonplace.html','interval.html'
+    'browse.html','elsewhere.html','fold.html','commonplace.html','interval.html',
+    'terminal.html','overheard.html','index-of.html','argument.html','receipt.html',
+    'static.html','cartography.html','conjugate.html','instrument.html','margin.html',
+    'tempo.html','room.html','silt.html','knot.html','almanac.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

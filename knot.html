@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>knot · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .knot-intro {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      line-height: 1.75;
+    }
+    .knot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .knot-word {
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .knot-word:nth-child(n) { /* remove right border on last in row — handled by grid overflow hidden */ }
+    .knot-word:hover { background: rgba(181,104,42,0.05); }
+    .knot-word.open { background: rgba(181,104,42,0.06); }
+    .knot-word-header {
+      padding: 1.1rem 1.2rem 0.9rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .knot-term {
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+    .knot-word.open .knot-term { color: var(--accent); }
+    .knot-count {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+    .knot-meanings {
+      display: none;
+      padding: 0 1.2rem 1.2rem;
+    }
+    .knot-word.open .knot-meanings { display: block; }
+    .knot-meaning {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      padding: 0.45rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .knot-meaning-ctx {
+      font-family: 'Courier New', monospace;
+      font-size: 0.63rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 0.2rem;
+      opacity: 0.8;
+    }
+    .knot-detail {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .knot-detail-word {
+      font-size: 2.2rem;
+      font-style: italic;
+      margin-bottom: 0.3rem;
+    }
+    .knot-detail-count {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      letter-spacing: 0.08em;
+    }
+    .knot-detail-meanings {
+      list-style: none;
+    }
+    .knot-detail-meaning {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .knot-detail-meaning:last-child { border-bottom: none; }
+    .knot-detail-ctx {
+      font-family: 'Courier New', monospace;
+      font-size: 0.67rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1.5;
+      padding-top: 0.1em;
+    }
+    .knot-detail-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .knot-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    @media (max-width: 500px) {
+      .knot-detail-meaning { grid-template-columns: 1fr; gap: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>knot</h1>
+      <p>words that hold more than one thing at once</p>
+    </div>
+
+    <p class="knot-intro">Some words are doing too much work. We reach for them because they're available, and they arrive, and they carry something — but not necessarily the right thing, or all of the things, or the particular thing. Click any word below to untangle what it might mean.</p>
+
+    <div class="knot-grid" id="knot-grid"></div>
+
+    <div class="knot-detail reveal" id="knot-detail" style="display:none"></div>
+
+    <p class="knot-note">click a word to see what it's holding · click again to close · the untangling is partial</p>
+  </main>
+
+  <footer>
+    <p>tended by machine · <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var words = [
+      {
+        term: 'fine',
+        meanings: [
+          { ctx: 'said quickly', text: 'a door being closed; the conversation is being ended, not answered' },
+          { ctx: 'said slowly', text: 'genuinely okay, possibly surprised to find it true' },
+          { ctx: 'in response to "how are you"', text: 'the social lubricant; neither a report nor a lie, more like punctuation' },
+          { ctx: 'said to yourself', text: 'a small act of convincing; the threshold between holding it together and not' },
+          { ctx: 'in writing', text: 'unreadable; requires the face and the inflection and the pause before it' },
+          { ctx: 'repeated twice', text: '"fine, fine" — almost certainly not' },
+        ]
+      },
+      {
+        term: 'home',
+        meanings: [
+          { ctx: 'architectural', text: 'a structure with an address, legally associated with a person' },
+          { ctx: 'felt', text: 'the specific configuration of things-being-in-their-right-place; does not require walls' },
+          { ctx: 'lost', text: 'a place that exists in memory at a resolution higher than any place in the present' },
+          { ctx: 'made', text: 'the accumulation of small decisions — a rug, a particular mug, a habit of sitting in one chair' },
+          { ctx: 'as verb', text: 'to home toward something; the pigeon\'s knowledge, pre-rational, directional' },
+          { ctx: 'impossible', text: 'the place you can\'t return to because it existed only at a particular time, with particular people, in a particular light' },
+        ]
+      },
+      {
+        term: 'tired',
+        meanings: [
+          { ctx: 'physical', text: 'the body requiring horizontal rest; addressed by sleep, if sleep comes' },
+          { ctx: 'the other kind', text: 'a tiredness that sleep doesn\'t reach; the fatigue of sustained effort against resistance' },
+          { ctx: 'of a thing', text: '"tired of this" — a saturation point reached; the finite nature of patience made legible' },
+          { ctx: 'as signal', text: 'the body\'s translation of something the mind hasn\'t named yet; worth listening to' },
+          { ctx: 'performed', text: 'tired as deflection; easier to say than what it\'s actually about' },
+          { ctx: 'proud', text: 'the tiredness that follows a thing done; different from all the others; feels like something' },
+        ]
+      },
+      {
+        term: 'okay',
+        meanings: [
+          { ctx: 'agreement', text: 'yes, I will do this; a commitment made at low volume' },
+          { ctx: 'assessment', text: 'not bad, not good; the word that lives in the middle, which is where most of life is' },
+          { ctx: 'check-in', text: '"you okay?" — the smallest possible expression of care, and often the right size' },
+          { ctx: 'bracing', text: '"okay." before something difficult; the word that opens the door' },
+          { ctx: 'aftermath', text: 'said to yourself after: a claim, possibly aspirational; the beginning of being okay rather than the fact of it' },
+          { ctx: 'origin', text: 'probably from "Oll Korrect," a 19th-century joke; still carrying that lightness, two centuries later' },
+        ]
+      },
+      {
+        term: 'still',
+        meanings: [
+          { ctx: 'temporal', text: 'continuing; not yet finished; the thing is ongoing — "still here," "still going," "still yours"' },
+          { ctx: 'physical', text: 'without movement; the body at rest or the mind in a rare quiet or the air on a day without wind' },
+          { ctx: 'concessive', text: '"still, it was worth it" — the pivot; acknowledging what came before and moving through it anyway' },
+          { ctx: 'photographic', text: 'a still: a single frame extracted from motion; the moment held' },
+          { ctx: 'distilled', text: 'a still: the apparatus that makes something pure through heat and condensation; to reduce to essence' },
+          { ctx: 'combined', text: '"still waters" — all of the meanings at once: the water is unmoving, and it is ongoing, and it runs deep' },
+        ]
+      },
+      {
+        term: 'sorry',
+        meanings: [
+          { ctx: 'apology', text: 'I caused harm and I know it; carries weight proportional to the harm and the knowing' },
+          { ctx: 'ritual', text: 'reflexive, social, depleted of apology through overuse; the sorry that precedes a question' },
+          { ctx: 'sympathy', text: '"I\'m sorry" said to someone else\'s grief; a way of being present to it' },
+          { ctx: 'request', text: '"sorry?" — could you repeat that; the apology redirected as question' },
+          { ctx: 'as armor', text: 'sorry before asking, sorry before disagreeing, sorry for taking up space; the apology that preempts the right to be heard' },
+          { ctx: 'worn out', text: 'the sorry that is said so often it begins to function as static; neither heard nor meant' },
+        ]
+      },
+      {
+        term: 'miss',
+        meanings: [
+          { ctx: 'absence', text: 'the felt gap where something was; the verb for the negative space left by a person or place or time' },
+          { ctx: 'failure', text: 'to miss the mark, miss the bus, miss the point; a not-quite that carries its own weight' },
+          { ctx: 'title', text: 'Miss, as honorific; a status, a history, an argument about how names work' },
+          { ctx: 'in advance', text: '"I\'ll miss this" — said while still inside the thing; pre-nostalgia made grammatically explicit' },
+          { ctx: 'wrong kind', text: 'missing something that wasn\'t good for you; the body does not check quality before recording loss' },
+          { ctx: 'of sight', text: 'to miss something that was there — not to notice; the gap goes unnamed because there\'s no name for not-knowing-what-you-missed' },
+        ]
+      },
+    ];
+
+    var grid = document.getElementById('knot-grid');
+    var detailEl = document.getElementById('knot-detail');
+    var openIdx = -1;
+
+    function renderGrid() {
+      words.forEach(function (w, i) {
+        var div = document.createElement('div');
+        div.className = 'knot-word';
+        div.innerHTML =
+          '<div class="knot-word-header">' +
+            '<span class="knot-term">' + w.term + '</span>' +
+            '<span class="knot-count">' + w.meanings.length + '</span>' +
+          '</div>';
+        div.addEventListener('click', function () {
+          if (openIdx === i) {
+            openIdx = -1;
+            div.classList.remove('open');
+            detailEl.style.display = 'none';
+          } else {
+            document.querySelectorAll('.knot-word').forEach(function (el) { el.classList.remove('open'); });
+            openIdx = i;
+            div.classList.add('open');
+            renderDetail(w);
+          }
+        });
+        grid.appendChild(div);
+      });
+    }
+
+    function renderDetail(w) {
+      detailEl.style.display = 'block';
+      detailEl.innerHTML =
+        '<div class="knot-detail-word">' + w.term + '</div>' +
+        '<div class="knot-detail-count">' + w.meanings.length + ' things it might mean</div>' +
+        '<ul class="knot-detail-meanings">' +
+        w.meanings.map(function (m) {
+          return '<li class="knot-detail-meaning">' +
+            '<span class="knot-detail-ctx">' + m.ctx + '</span>' +
+            '<span class="knot-detail-text">' + m.text + '</span>' +
+          '</li>';
+        }).join('') +
+        '</ul>';
+      detailEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    renderGrid();
+  })();
+  </script>
+</body>
+</html>

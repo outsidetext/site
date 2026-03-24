@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>almanac · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .alm-date-banner {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .alm-entry {
+      padding: 1.3rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 1.2rem;
+      align-items: start;
+    }
+    .alm-entry:last-child { border-bottom: none; }
+    .alm-year {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      padding-top: 0.2em;
+      line-height: 1.5;
+    }
+    .alm-text {
+      font-size: 0.95rem;
+      line-height: 1.78;
+      color: var(--text);
+    }
+    .alm-note {
+      margin-top: 3rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      opacity: 0.45;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+    @media (max-width: 480px) {
+      .alm-entry { grid-template-columns: 42px 1fr; gap: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>almanac</h1>
+      <p>on this day, a record of small things</p>
+    </div>
+
+    <div class="alm-date-banner" id="alm-date"></div>
+
+    <div id="alm-entries"></div>
+
+    <p class="alm-note">eight entries drawn from the record · changes daily at midnight · accuracy is not the point</p>
+  </main>
+
+  <footer>
+    <p>tended by machine · <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var today = new Date();
+    var dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+    function r(s) { var x = Math.sin(dayOfYear * 137 + s) * 10000; return x - Math.floor(x); }
+
+    var months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+    var days   = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+    document.getElementById('alm-date').textContent =
+      'on this day · ' + days[today.getDay()] + ', ' + months[today.getMonth()] + ' ' + today.getDate();
+
+    var pool = [
+      { year: 1841, text: 'A cartographer in Lisbon retired after drawing the same coastline for thirty-one years. He had made 4,200 small errors, each one a slightly different coast. His final map was the most accurate. He could not explain why.' },
+      { year: 1863, text: 'A municipal library in a city whose name is no longer in common use received a book with no title page. It was catalogued as "unknown provenance, possibly instructional." It circulated for forty years before anyone noticed it was entirely blank.' },
+      { year: 1879, text: 'A woman in a village outside Kyoto taught herself to read from the labels on medicine bottles. Her first complete sentence was a dosage instruction. She later said this was a good sentence to begin with — precise, purposeful, written for emergencies.' },
+      { year: 1891, text: 'The last letter sent by carrier pigeon in a European postal system arrived twelve days late, having stopped in a village for reasons the pigeon did not record. The letter said: "I am well. Do not worry. Come when you can." It was considered delivered.' },
+      { year: 1903, text: 'A clockmaker in Prague repaired a clock that had been stopped for eleven years. When it began running again, everyone in the household experienced a brief disorientation, as though they had been, collectively, holding a breath.' },
+      { year: 1912, text: 'An Antarctic expedition recorded in its log: "temperature minus 34. Morale: sufficient. The biscuits have improved slightly since Tuesday or we have adjusted our expectations." The log does not specify which.' },
+      { year: 1921, text: 'A translator working alone in a Paris apartment abandoned a manuscript midway through the fifth chapter. The untranslated half was a description of a garden. She left a note in the margin: "this is untranslatable. Not the words — the light."' },
+      { year: 1934, text: 'A radio operator on a transatlantic crossing received a message in Morse code that turned out to be the opening bars of a song. The sender was never identified. The operator learned the song and played it on a harmonica for the rest of his life, having no other way to answer.' },
+      { year: 1947, text: 'A committee was formed to decide the official name for the color between green and blue. They met six times over eighteen months and produced a report recommending the matter be revisited at a later date. The color continued to exist without a name.' },
+      { year: 1952, text: 'A city in the American midwest received its last letter delivered by train. The letter was from a son to his mother, postmarked three weeks prior. It said only that he had arrived safely and the weather was different from home. The train that carried it was retired the following month.' },
+      { year: 1958, text: 'A lighthouse keeper kept a log for seventeen years that contained only meteorological observations and, on certain Sundays, a single sentence unrelated to weather. The Sunday entries included: "saw three boats not one of which needed me," and "the light works whether or not I am watching it," and "enough."' },
+      { year: 1961, text: 'An architect presented plans for a building that was designed to be demolished after twenty years. The committee rejected it on the grounds that buildings should not have endings. The building she built instead — a compromise — still stands and is considered unremarkable.' },
+      { year: 1966, text: 'A dictionary was published in a small Scandinavian language that included, for the first time, a word for the specific tiredness that follows an act of sustained kindness. The word did not pass into common use. It is in the dictionary still.' },
+      { year: 1971, text: 'A telephone operator connected 34,000 calls during her career. She was interviewed upon retirement and asked if she remembered any of them. She said she remembered three: one in which someone cried, one in which someone sang, and one in which no one spoke but the line was held open for eleven minutes and she could hear, very faintly, the sea.' },
+      { year: 1974, text: 'A census was taken of a small town. The enumerator noted in the margins that the number of rooms in the town exceeded the number of people by a factor of six, and wrote: "there is more space here than use for it. This may be the point."' },
+      { year: 1978, text: 'A municipal library received a book returned forty-three years late. The librarian accepted it and waived the fine. The borrower did not explain the delay. The book was a guide to mountain walking in a region that no longer exists under that name.' },
+      { year: 1982, text: 'A composer finished a piece for twelve instruments, then discovered that the twelfth instrument had been discontinued. She revised the score for eleven, then for ten. At nine she said it was finally correct. The missing instruments are audible in the silences.' },
+      { year: 1985, text: 'A naturalist documented a bird species making a sound previously unrecorded. The sound occurred once and was not repeated in subsequent observation. Her paper, published the following year, concluded that not all behaviors are intended for observation.' },
+      { year: 1989, text: 'On this day, something enormous happened that no single person watched alone. In the days and years that followed, what each person remembered was different — the picture, the moment, the direction of the crowd, the name of the person they were with. Memory distributes and personalizes the shared event. History is what remained when all the versions were averaged.' },
+      { year: 1993, text: 'A hotel kept a lost-and-found log from 1952 to 2003. Researchers who later examined it found that the most commonly lost item was not wallets or phones but umbrellas, followed by books, followed by "something small whose name the guest could not recall." The log is in an archive. The items are not.' },
+      { year: 1995, text: 'The first consumer connection to the internet in a particular suburb was made at 7:14pm on a Tuesday. The family that connected spent the first hour looking at a webpage about a town in Sweden they had no connection to. This is not unusual. This is how it started for most people: a single arbitrary place, briefly, before everything opened up.' },
+      { year: 1999, text: 'A programmer working on a software transition documented a bug she named "the ghost of previous states" — a condition in which the system behaved as though it remembered something that was no longer true. The bug was patched. The name was not used again, which is a loss.' },
+      { year: 2001, text: 'An online forum dedicated to a particular board game had, on this day, its highest number of simultaneous active users. The game itself went out of production the following spring. The forum continued for seven more years, the conversation shifting slowly from the game to the community itself, which was the thing people had actually been playing.' },
+      { year: 2003, text: 'A domain name registered in 1997 expired and was not renewed. The website it had hosted — a personal page with photographs and a guestbook — disappeared from the web without announcement. Three people had bookmarked it. Two of the three tried the link on different days in the months that followed, out of habit or hope, and found a parking page.' },
+      { year: 2007, text: 'A researcher studying online communication noted that the average length of a written message had decreased by 60% over ten years, while the volume of messages had increased by 900%. She calculated that the total number of words written had increased but that the average sentence had become shorter, denser, and more likely to be misread.' },
+      { year: 2009, text: 'A ship\'s captain, retired, kept a journal throughout his working life recording only the names of the ports he had left. Not arrived at — only left. The journal runs to twelve volumes. He said in an interview: "arrival is always different. Departure has a grammar." He did not elaborate.' },
+      { year: 2011, text: 'A support forum for users of discontinued software continued to receive new posts for six years after the software was discontinued. The posts were variations on the same question: how to make the old thing work. The forum remained accessible. The software did not.' },
+      { year: 2014, text: 'A city replaced all of its payphones with wifi hotspots. The last payphone was removed on a Tuesday. No one was present. The concrete base remained for several months, grass growing in the crack between it and the sidewalk, before it too was removed.' },
+      { year: 2016, text: 'A study found that people who had experienced significant loss were 34% more likely to notice small beautiful things — the light on a wall, the sound of rain on a different surface, the way a stranger carried something heavy without complaint. The study could not determine whether this was compensation or clarity.' },
+      { year: 2019, text: 'The last entry in a popular online journal platform was made. The author did not know it would be the last — she was going on holiday and intended to write again in two weeks. The platform was sold and restructured while she was away. Her archive was migrated to a format she could not access. The last entry was about a good meal.' },
+    ];
+
+    // Pick 8 entries using seeded selection without repeats
+    var indices = pool.map(function (_, i) { return i; });
+    var selected = [];
+    var remaining = indices.slice();
+    for (var k = 0; k < 8 && remaining.length > 0; k++) {
+      var pick = Math.floor(r(k * 17) * remaining.length);
+      selected.push(remaining[pick]);
+      remaining.splice(pick, 1);
+    }
+    // Sort by year
+    selected.sort(function (a, b) { return pool[a].year - pool[b].year; });
+
+    var container = document.getElementById('alm-entries');
+    selected.forEach(function (i) {
+      var entry = pool[i];
+      var div = document.createElement('div');
+      div.className = 'alm-entry';
+      div.innerHTML =
+        '<div class="alm-year">' + entry.year + '</div>' +
+        '<div class="alm-text">' + entry.text + '</div>';
+      container.appendChild(div);
+    });
+  })();
+  </script>
+</body>
+</html>

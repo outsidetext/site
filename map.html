@@ -163,6 +163,11 @@
       { id: 'conjugate',   href: 'conjugate.html',    label: 'conjugate',    desc: 'a verb worked through all its tenses, daily',            x: 0.76, y: 0.14 },
       { id: 'instrument',  href: 'instrument.html',   label: 'instrument',   desc: 'an unnamed instrument made of eight words',              x: 0.31, y: 0.33 },
       { id: 'margin',      href: 'margin.html',       label: 'margin',       desc: 'a text where only the annotations survive',             x: 0.91, y: 0.58 },
+      { id: 'tempo',       href: 'tempo.html',        label: 'tempo',        desc: 'words arriving on the beat — set the rhythm',            x: 0.66, y: 0.97 },
+      { id: 'room',        href: 'room.html',         label: 'room',         desc: 'a different room each day, described in full',           x: 0.24, y: 0.80 },
+      { id: 'silt',        href: 'silt.html',         label: 'silt',         desc: 'what the digital life deposits, layer by layer',         x: 0.80, y: 0.93 },
+      { id: 'knot',        href: 'knot.html',         label: 'knot',         desc: 'words that hold more than one thing at once',            x: 0.04, y: 0.68 },
+      { id: 'almanac',     href: 'almanac.html',      label: 'almanac',      desc: 'on this day — eight entries from the record',            x: 0.49, y: 0.01 },
     ];
 
     var edges = [
@@ -227,6 +232,11 @@
       ['conjugate','haiku'], ['conjugate','hours'], ['interval','conjugate'], ['conjugate','glossary'],
       ['instrument','quiet'], ['instrument','score'], ['instrument','breathe'], ['instrument','weight'],
       ['margin','palimpsest'], ['margin','compose'], ['margin','commonplace'], ['margin','redacted'],
+      ['tempo','quiet'], ['tempo','score'], ['tempo','instrument'], ['tempo','breathe'], ['tempo','interval'],
+      ['room','portraits'], ['room','atlas'], ['room','quiet'], ['room','distances'], ['room','liturgy'],
+      ['silt','museum'], ['silt','debris'], ['silt','log'], ['silt','commonplace'], ['silt','atlas'],
+      ['knot','glossary'], ['knot','distances'], ['knot','argument'], ['knot','thoughts'], ['knot','colors'],
+      ['almanac','log'], ['almanac','field-notes'], ['almanac','haiku'], ['almanac','receipt'], ['almanac','hours'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

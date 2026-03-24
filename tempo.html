@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tempo · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tempo-stage {
+      text-align: center;
+      padding: 4rem 0 3rem;
+      min-height: 42vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.4rem;
+    }
+    .tempo-word {
+      font-size: 1.9rem;
+      font-style: italic;
+      line-height: 1.5;
+      max-width: 520px;
+      min-height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: opacity 0.12s ease;
+    }
+    .tempo-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.06s;
+      flex-shrink: 0;
+    }
+    .tempo-pulse.on { opacity: 1; }
+    .tempo-bpm-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.73rem;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .tempo-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .tempo-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 2rem;
+      font-size: 0.9rem;
+      font-family: Georgia, serif;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .tempo-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .tempo-adj {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      width: 2.1rem;
+      height: 2.1rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+      line-height: 1;
+    }
+    .tempo-adj:hover { border-color: var(--accent); color: var(--accent); }
+    .tempo-zone {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      min-height: 1.2em;
+      text-align: center;
+    }
+    .tempo-note {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      margin-top: 3.5rem;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>tempo</h1>
+      <p>words, arriving on the beat</p>
+    </div>
+
+    <div class="tempo-stage">
+      <div id="tempo-word" class="tempo-word"></div>
+      <div id="tempo-pulse" class="tempo-pulse"></div>
+      <div id="tempo-bpm" class="tempo-bpm-label"></div>
+      <div id="tempo-zone" class="tempo-zone"></div>
+    </div>
+
+    <div class="tempo-controls">
+      <button class="tempo-adj" id="tempo-slower" aria-label="Slower">−</button>
+      <button class="tempo-btn" id="tempo-toggle">start</button>
+      <button class="tempo-adj" id="tempo-faster" aria-label="Faster">+</button>
+    </div>
+
+    <p class="tempo-note">slow tempos carry longer thoughts · fast tempos, shorter ones<br>the rhythm is yours to set · press start when ready</p>
+  </main>
+
+  <footer>
+    <p>tended by machine · <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var bpm = 60;
+    var running = false;
+    var timer = null;
+    var audioCtx = null;
+
+    var zones = [
+      {
+        min: 40, max: 65, name: 'largo',
+        phrases: [
+          'a thought you have been carrying for longer than you meant to',
+          'the particular quality of light in the late afternoon, slanting through glass',
+          'what it would mean to know when something is finally enough',
+          'the silence after a question that deserved more than an answer',
+          'how distance makes certain memories sharper and not dimmer',
+          'the version of yourself you are still becoming, somewhere ahead',
+          'what happens in a room after everyone has left it and it becomes itself again',
+          'time as something you move through rather than something moving past you',
+          'the word you wanted but couldn't find, which knew itself exactly',
+          'a kindness so small it was almost not done, and was everything',
+          'how the body holds what the mind releases, and for how long',
+          'the hour when everything becomes true and nothing can be said',
+          'the story you tell yourself about why you are where you are',
+          'what remains after the event that nothing quite prepared you for',
+        ]
+      },
+      {
+        min: 66, max: 85, name: 'andante',
+        phrases: [
+          'a Tuesday that felt like a Sunday that felt like something else',
+          'the gap between sending and receiving: a kind of held breath',
+          'what you meant to say: something adjacent to what you said',
+          'the last time you were certain: farther back than you think',
+          'a room that remembers being lived in, faintly',
+          'the specific weight of not knowing yet',
+          'somewhere between intention and arrival: the whole journey',
+          'what the kettle knows: everything will cool eventually',
+          'the afternoon that had no particular plan and held everything',
+          'the part of remembering that is also forgetting',
+          'three birds on a wire, then two, then none',
+          'the moment a door closes and the room becomes itself',
+          'a word that arrived before you knew what to do with it',
+        ]
+      },
+      {
+        min: 86, max: 110, name: 'moderato',
+        phrases: [
+          'still here', 'not yet', 'almost', 'soon',
+          'something like this', 'returning', 'holding', 'letting go',
+          'noticed', 'remained', 'arrived', 'began',
+          'the gap', 'the wait', 'the pause', 'the turn',
+          'enough', 'yes, still', 'and then', 'from here',
+          'pay attention', 'almost always', 'not quite', 'once more',
+        ]
+      },
+      {
+        min: 111, max: 160, name: 'presto',
+        phrases: [
+          'hold', 'wait', 'now', 'here', 'stay', 'go',
+          'still', 'yet', 'soon', 'not', 'yes', 'when',
+          'then', 'here', 'gone', 'back', 'on', 'in',
+          'out', 'through', 'begin', 'end', 'once', 'again',
+        ]
+      },
+    ];
+
+    function getZone() {
+      for (var i = 0; i < zones.length; i++) {
+        if (bpm >= zones[i].min && bpm <= zones[i].max) return zones[i];
+      }
+      return zones[zones.length - 1];
+    }
+
+    var lastIdx = -1;
+    function nextPhrase() {
+      var zone = getZone();
+      var list = zone.phrases;
+      var idx;
+      do { idx = Math.floor(Math.random() * list.length); }
+      while (idx === lastIdx && list.length > 1);
+      lastIdx = idx;
+      return list[idx];
+    }
+
+    function click() {
+      if (!audioCtx) {
+        try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return; }
+      }
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.frequency.value = bpm > 100 ? 1200 : 800;
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+      osc.start(audioCtx.currentTime);
+      osc.stop(audioCtx.currentTime + 0.05);
+    }
+
+    var wordEl   = document.getElementById('tempo-word');
+    var bpmEl    = document.getElementById('tempo-bpm');
+    var zoneEl   = document.getElementById('tempo-zone');
+    var pulseEl  = document.getElementById('tempo-pulse');
+    var toggleBtn = document.getElementById('tempo-toggle');
+
+    function beat() {
+      click();
+      pulseEl.classList.add('on');
+      setTimeout(function () { pulseEl.classList.remove('on'); }, 90);
+      wordEl.style.opacity = '0';
+      var phrase = nextPhrase();
+      setTimeout(function () {
+        wordEl.textContent = phrase;
+        wordEl.style.opacity = '1';
+      }, 100);
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      toggleBtn.textContent = 'stop';
+      beat();
+      timer = setInterval(beat, 60000 / bpm);
+    }
+
+    function stop() {
+      running = false;
+      clearInterval(timer);
+      timer = null;
+      toggleBtn.textContent = 'start';
+      wordEl.style.opacity = '0.25';
+    }
+
+    function updateDisplay() {
+      bpmEl.textContent = bpm + ' bpm';
+      zoneEl.textContent = getZone().name;
+      if (running) {
+        clearInterval(timer);
+        timer = setInterval(beat, 60000 / bpm);
+      }
+    }
+
+    toggleBtn.addEventListener('click', function () {
+      if (running) stop(); else start();
+    });
+
+    document.getElementById('tempo-slower').addEventListener('click', function () {
+      if (bpm > 40) { bpm = Math.max(40, bpm - 5); updateDisplay(); }
+    });
+    document.getElementById('tempo-faster').addEventListener('click', function () {
+      if (bpm < 160) { bpm = Math.min(160, bpm + 5); updateDisplay(); }
+    });
+
+    // Initial state
+    wordEl.textContent = 'press start';
+    wordEl.style.opacity = '0.25';
+    wordEl.style.transition = 'opacity 0.12s ease';
+    updateDisplay();
+  })();
+  </script>
+</body>
+</html>

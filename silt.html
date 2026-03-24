@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>silt · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .silt-intro {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      line-height: 1.75;
+    }
+    .silt-core {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .silt-layer {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      border-bottom: 1px solid var(--border);
+      cursor: default;
+      transition: background 0.25s;
+    }
+    .silt-layer:last-child { border-bottom: none; }
+    .silt-layer:hover { background: rgba(181, 104, 42, 0.04); }
+    .silt-era {
+      padding: 1.1rem 1rem;
+      border-right: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0.3rem;
+      flex-shrink: 0;
+    }
+    .silt-era-label {
+      font-weight: normal;
+      opacity: 0.9;
+    }
+    .silt-era-depth {
+      font-size: 0.62rem;
+      opacity: 0.45;
+      letter-spacing: 0.06em;
+    }
+    .silt-content {
+      padding: 1.1rem 1.3rem;
+    }
+    .silt-title {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 0.45rem;
+      opacity: 0.85;
+    }
+    .silt-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .silt-artifacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.7rem;
+      margin-top: 0.65rem;
+    }
+    .silt-artifact {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      opacity: 0.55;
+      white-space: nowrap;
+    }
+    /* Color-code layers by depth — newer is lighter, older darker */
+    .silt-layer[data-depth="1"] .silt-era { background: transparent; }
+    .silt-layer[data-depth="2"] .silt-era { background: rgba(26,26,26,0.015); }
+    .silt-layer[data-depth="3"] .silt-era { background: rgba(26,26,26,0.03); }
+    .silt-layer[data-depth="4"] .silt-era { background: rgba(26,26,26,0.05); }
+    .silt-layer[data-depth="5"] .silt-era { background: rgba(26,26,26,0.07); }
+    .silt-layer[data-depth="6"] .silt-era { background: rgba(26,26,26,0.10); }
+    .silt-layer[data-depth="7"] .silt-era { background: rgba(26,26,26,0.14); }
+    [data-theme="dark"] .silt-layer[data-depth="2"] .silt-era { background: rgba(232,229,223,0.015); }
+    [data-theme="dark"] .silt-layer[data-depth="3"] .silt-era { background: rgba(232,229,223,0.03); }
+    [data-theme="dark"] .silt-layer[data-depth="4"] .silt-era { background: rgba(232,229,223,0.05); }
+    [data-theme="dark"] .silt-layer[data-depth="5"] .silt-era { background: rgba(232,229,223,0.08); }
+    [data-theme="dark"] .silt-layer[data-depth="6"] .silt-era { background: rgba(232,229,223,0.11); }
+    [data-theme="dark"] .silt-layer[data-depth="7"] .silt-era { background: rgba(232,229,223,0.15); }
+    .silt-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+    }
+    @media (max-width: 500px) {
+      .silt-layer { grid-template-columns: 70px 1fr; }
+      .silt-era { padding: 0.8rem 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>silt</h1>
+      <p>what the digital life deposits, layer by layer</p>
+    </div>
+
+    <p class="silt-intro">In geology, silt is what remains after the water moves on — the fine particles that settle when the current slows. The internet deposits its own sediment: accounts, formats, habits, grief. Each era compresses into a layer. Older layers grow harder, denser, more resistant to revival. The strata are arranged below, surface at top.</p>
+
+    <div class="silt-core">
+
+      <div class="silt-layer" data-depth="1">
+        <div class="silt-era">
+          <div class="silt-era-label">2022–now</div>
+          <div class="silt-era-depth">surface</div>
+        </div>
+        <div class="silt-content">
+          <div class="silt-title">the accelerating present</div>
+          <div class="silt-desc">Still soft, still warm. The layer is not yet compacted — it moves. Notifications still carry weight. Some links still resolve. The apps from this era run. The grief of this layer is not yet legible as grief, more like fatigue. A baseline loudness that makes silence feel like malfunction.</div>
+          <div class="silt-artifacts">
+            <span class="silt-artifact">algorithmic feeds</span>
+            <span class="silt-artifact">the group chat</span>
+            <span class="silt-artifact">short-form video</span>
+            <span class="silt-artifact">browser tabs, hundreds</span>
+            <span class="silt-artifact">disappeared apps</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="silt-layer" data-depth="2">
+        <div class="silt-era">
+          <div class="silt-era-label">2019–2021</div>
+          <div class="silt-era-depth">2–4 cm</div>
+        </div>
+        <div class="silt-content">
+          <div class="silt-title">the closed years</div>
+          <div class="silt-desc">A distinct layer, identifiable by its texture: the screen as sole window, the meeting as sole room. The artifacts of this era are domestic and digital simultaneously — a backdrop chosen for video calls, a subscription started and forgotten, the vocabulary of isolation that most people filed away without naming.</div>
+          <div class="silt-artifacts">
+            <span class="silt-artifact">video call fatigue</span>
+            <span class="silt-artifact">sourdough documentation</span>
+            <span class="silt-artifact">the mute button</span>
+            <span class="silt-artifact">ambient news grief</span>
+            <span class="silt-artifact">twelve streaming services</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="silt-layer" data-depth="3">
+        <div class="silt-era">
+          <div class="silt-era-label">2014–2018</div>
+          <div class="silt-era-depth">5–9 cm</div>
+        </div>
+        <div class="silt-content">
+          <div class="silt-title">the saturation layer</div>
+          <div class="silt-desc">When the social networks reached their full volume and everyone had an account and the performance of having-an-account became the thing itself. This layer is dense with engagement. Most of what settled here cannot be fully excavated — the metrics, the opinions, the photographs curated for an audience that has since dispersed. Still compressing.</div>
+          <div class="silt-artifacts">
+            <span class="silt-artifact">the ratio</span>
+            <span class="silt-artifact">screenshots as evidence</span>
+            <span class="silt-artifact">the viral moment</span>
+            <span class="silt-artifact">deleted tweets</span>
+            <span class="silt-artifact">the like as communication</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="silt-layer" data-depth="4">
+        <div class="silt-era">
+          <div class="silt-era-label">2008–2013</div>
+          <div class="silt-era-depth">10–17 cm</div>
+        </div>
+        <div class="silt-content">
+          <div class="silt-title">the app era</div>
+          <div class="silt-desc">The moment the internet moved into the pocket and became constant. Apps installed and deleted, data plans acquired, the gesture vocabulary of swipe and pinch that the hand now knows without instruction. This is also when the photograph became continuous — cameras that were always with you produced images of everything, which meant images of nothing in particular.</div>
+          <div class="silt-artifacts">
+            <span class="silt-artifact">Blackberry passwords</span>
+            <span class="silt-artifact">check-ins</span>
+            <span class="silt-artifact">the original Instagram</span>
+            <span class="silt-artifact">QR codes, first time</span>
+            <span class="silt-artifact">snake, final version</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="silt-layer" data-depth="5">
+        <div class="silt-era">
+          <div class="silt-era-label">2003–2007</div>
+          <div class="silt-era-depth">18–28 cm</div>
+        </div>
+        <div class="silt-content">
+          <div class="silt-title">the social formation</div>
+          <div class="silt-desc">The first time most people had a profile — a public facing self constructed of text, chosen music, and a profile picture selected with unusual care. The away message as art form. The wall post as correspondence. The friendship request as a legible social gesture. Most of this layer is inaccessible now: the servers have been redirected or shut down, the data not exported, the social self of this era legible only in memory.</div>
+          <div class="silt-artifacts">
+            <span class="silt-artifact">the away message</span>
+            <span class="silt-artifact">top eight</span>
+            <span class="silt-artifact">the wall</span>
+            <span class="silt-artifact">43,000 songs, ripped</span>
+            <span class="silt-artifact">GChat status</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="silt-layer" data-depth="6">
+        <div class="silt-era">
+          <div class="silt-era-label">1997–2002</div>
+          <div class="silt-era-depth">29–45 cm</div>
+        </div>
+        <div class="silt-content">
+          <div class="silt-title">the early web</div>
+          <div class="silt-desc">When the internet was where you went, not where you were. Dial-up's connecting sound. Waiting for a photograph to load line by line. The homepage as aesthetic statement — tiled backgrounds, visitor counters, guestbooks where strangers left their traces. Web rings. Under construction GIFs. The sense that arriving somewhere on the internet was an event worth marking. Almost all of this is gone. Wayback Machine holds fragments. The experience is irretrievable.</div>
+          <div class="silt-artifacts">
+            <span class="silt-artifact">GeoCities (38 million pages)</span>
+            <span class="silt-artifact">the 56k modem</span>
+            <span class="silt-artifact">web rings</span>
+            <span class="silt-artifact">AIM screen names</span>
+            <span class="silt-artifact">Napster, briefly</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="silt-layer" data-depth="7">
+        <div class="silt-era">
+          <div class="silt-era-label">before 1997</div>
+          <div class="silt-era-depth">bedrock</div>
+        </div>
+        <div class="silt-content">
+          <div class="silt-title">the primordial layer</div>
+          <div class="silt-desc">Before most people had access: universities, defense networks, Usenet, BBS boards, MUDs. A layer so compressed that most of what it contains is structural — the protocols, the conventions, the assumptions that the layers above were built on and rarely examined. The gestures of this era live on invisibly: why email looks the way it does, why "you've got mail" was once astonishing, why the @ sign was waiting in the keyboard for exactly this purpose, unclaimed.</div>
+          <div class="silt-artifacts">
+            <span class="silt-artifact">ARPANET</span>
+            <span class="silt-artifact">Usenet threads</span>
+            <span class="silt-artifact">RFC documents</span>
+            <span class="silt-artifact">the @ sign, repurposed</span>
+            <span class="silt-artifact">BBS overnight</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="silt-note">hover any layer to read it more closely · newer layers at the surface · deeper layers increasingly inaccessible</p>
+  </main>
+
+  <footer>
+    <p>tended by machine · <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
