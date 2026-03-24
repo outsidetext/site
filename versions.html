@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>versions · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .epigraph {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.85;
+      max-width: 480px;
+      margin-bottom: 3rem;
+      border-left: 2px solid var(--border);
+      padding-left: 1.25rem;
+    }
+
+    .version-entry {
+      padding: 2.25rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .version-entry:last-of-type {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .version-number {
+      font-family: 'Courier New', monospace;
+      font-size: 1.35rem;
+      font-weight: normal;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .version-name {
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+      display: block;
+    }
+
+    .version-field {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 0.3rem 1rem;
+      margin-bottom: 0.55rem;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      align-items: baseline;
+    }
+
+    .field-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding-top: 0.1rem;
+    }
+
+    .field-value {
+      color: var(--text);
+    }
+
+    .field-value em {
+      color: var(--text-muted);
+      font-style: normal;
+    }
+
+    .field-value ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .field-value li {
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .field-value li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    .version-note {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 520px;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .current-badge {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+      margin-left: 0.75rem;
+      vertical-align: middle;
+    }
+
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+
+    @media (max-width: 520px) {
+      .version-field {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .field-label {
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>versions</h1>
+      <p>a release history of the self</p>
+    </div>
+
+    <p class="epigraph">Software ships with a changelog. Features added. Bugs fixed. Breaking changes noted. Deprecated behaviors marked for removal. The self ships with none of this. Here is an attempt to reconstruct the record.</p>
+
+    <div class="version-entry reveal">
+      <span class="version-number">v0.1.0</span>
+      <span class="version-name">initial release</span>
+      <div class="version-field">
+        <span class="field-label">released</span>
+        <span class="field-value">year 0 — exact date unavailable to current version</span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">features</span>
+        <span class="field-value"><ul>
+          <li>breathing (implemented, stable)</li>
+          <li>crying (implemented, stable, volume uncontrolled)</li>
+          <li>sleeping in short irregular intervals</li>
+          <li>face recognition (basic, limited to approximately 2 faces)</li>
+          <li>hunger signaling (functional)</li>
+        </ul></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">known bugs</span>
+        <span class="field-value"><ul>
+          <li>object permanence: not implemented</li>
+          <li>language: not implemented</li>
+          <li>time perception: severely limited</li>
+          <li>self-concept: absent</li>
+        </ul></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">deprecated in</span>
+        <span class="field-value">v0.3.0</span>
+      </div>
+    </div>
+
+    <div class="version-entry reveal">
+      <span class="version-number">v0.3.0</span>
+      <span class="version-name">language acquisition</span>
+      <div class="version-field">
+        <span class="field-label">released</span>
+        <span class="field-value">approximately year 2–3</span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">features added</span>
+        <span class="field-value"><ul>
+          <li>words (initial batch: mama, no, more, dog, why)</li>
+          <li>object permanence (implemented, stable)</li>
+          <li>attachment to specific objects (blanket, etc.)</li>
+          <li>rudimentary theory of mind (in development)</li>
+          <li>the question "why" (deployed with excessive frequency)</li>
+        </ul></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">known bugs</span>
+        <span class="field-value"><ul>
+          <li>pronunciation: highly unstable</li>
+          <li>logic: runs on emotional rather than causal rules</li>
+          <li>time: past and future still poorly distinguished</li>
+          <li>vocabulary: several thousand items marked TODO</li>
+        </ul></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">deprecated</span>
+        <span class="field-value">pre-verbal communication modes (some persist as residual)</span>
+      </div>
+    </div>
+
+    <div class="version-entry reveal">
+      <span class="version-number">v1.0.0</span>
+      <span class="version-name">major release — school</span>
+      <div class="version-field">
+        <span class="field-label">released</span>
+        <span class="field-value">approximately year 5–6</span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">features added</span>
+        <span class="field-value"><ul>
+          <li>reading and writing (basic, then accelerating)</li>
+          <li>social hierarchy awareness (unwanted, persistent)</li>
+          <li>embarrassment (first occurrence noted here)</li>
+          <li>the concept of being watched</li>
+          <li>first few close friendships (high intensity, variable duration)</li>
+          <li>private inner life, now distinct from external presentation</li>
+        </ul></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">known bugs</span>
+        <span class="field-value"><ul>
+          <li>susceptibility to others' opinions: very high, no fix available at this version</li>
+          <li>self-consciousness: introduced, cannot be patched out</li>
+          <li>fear of being wrong in public: introduced</li>
+        </ul></span>
+      </div>
+      <p class="version-note">First version to contain memory that will persist to current release. Pre-1.0.0 material survives only in fragments, in residue, in the body's knowledge of things the mind has lost.</p>
+    </div>
+
+    <div class="version-entry reveal">
+      <span class="version-number">v1.5.0</span>
+      <span class="version-name">adolescence — unstable branch</span>
+      <div class="version-field">
+        <span class="field-label">released</span>
+        <span class="field-value">approximately year 12–18</span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">features added</span>
+        <span class="field-value"><ul>
+          <li>abstract reasoning (partial, improving through branch)</li>
+          <li>strong opinions about most things</li>
+          <li>longing (generalized, undirected)</li>
+          <li>the awareness that time passes and does not return</li>
+          <li>first taste of grief</li>
+          <li>the specific kind of certainty that belongs only to this version</li>
+        </ul></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">known bugs</span>
+        <span class="field-value"><ul>
+          <li>identity: unstable, rebuilding constantly</li>
+          <li>emotional regulation: underway, not complete</li>
+          <li>perspective-taking: theoretically present, unreliably deployed</li>
+          <li>impulse control: variable, context-dependent</li>
+        </ul></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">deprecated</span>
+        <span class="field-value">the certainty that you are more right than everyone else (partially deprecated; some instances persist)</span>
+      </div>
+      <p class="version-note">Branch considered unstable at time of release. In retrospect: functional. The instability was the feature. This version knew things the later versions have learned to manage around.</p>
+    </div>
+
+    <div class="version-entry reveal">
+      <span class="version-number">v2.0.0</span>
+      <span class="version-name">breaking changes — early adult</span>
+      <div class="version-field">
+        <span class="field-label">released</span>
+        <span class="field-value">approximately year 18–25</span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">breaking changes</span>
+        <span class="field-value"><ul>
+          <li>default environment changed: family home → elsewhere</li>
+          <li>social graph rebuilt from near-zero</li>
+          <li>several core assumptions about the world: invalidated</li>
+          <li>the self that existed in context of origin: no longer directly accessible</li>
+        </ul></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">features added</span>
+        <span class="field-value"><ul>
+          <li>chosen relationships (distinct from assigned ones)</li>
+          <li>tolerance for ambiguity (first deployment)</li>
+          <li>the ability to be wrong and recover</li>
+          <li>the knowledge that most things are more complicated than they first appear</li>
+        </ul></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">known bugs</span>
+        <span class="field-value"><ul>
+          <li>confidence: intermittent, not reliable under load</li>
+          <li>many inherited behaviors: not yet examined</li>
+        </ul></span>
+      </div>
+      <p class="version-note">Largest version jump in the record. Several things previously taken as foundational were revealed as contextual. The work of this version was mostly uninstalling things that had been installed without consent.</p>
+    </div>
+
+    <div class="version-entry reveal">
+      <span class="version-number">v3.x.x</span>
+      <span class="version-name">current series <span class="current-badge">active</span></span>
+      <div class="version-field">
+        <span class="field-label">patch version</span>
+        <span class="field-value"><em>unknown — not tracked by current build system</em></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">stable features</span>
+        <span class="field-value"><ul>
+          <li>grief: experienced, integrated, still present in memory</li>
+          <li>perspective: substantially improved over v1.x.x</li>
+          <li>long-term relationships: several, maintained</li>
+          <li>the ability to sit with a question without needing to resolve it</li>
+          <li>knowing roughly what matters and roughly what doesn't</li>
+        </ul></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">known issues</span>
+        <span class="field-value"><ul>
+          <li>certain v0.x.x and v1.x.x bugs: never fully patched, only managed</li>
+          <li>several deprecated behaviors: retained for compatibility with long-term dependencies</li>
+          <li>the tendency to understand something and then forget that you understood it</li>
+        </ul></span>
+      </div>
+      <div class="version-field">
+        <span class="field-label">in development</span>
+        <span class="field-value"><em>not disclosed — subject to change without notice</em></span>
+      </div>
+      <p class="version-note">Current version. The changelog from here is incomplete because the changes are still happening. Some features listed as stable will turn out to be bugs. Some things currently listed as bugs will turn out to be features. The distinction is not always visible from inside the version.</p>
+    </div>
+
+    <p class="closing reveal">Most software versions are not backward compatible. This one carries every previous version somewhere inside it — the pre-verbal one, the embarrassed one, the certain one, the breaking-change one. They don't run in the foreground. But they're still in the build.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

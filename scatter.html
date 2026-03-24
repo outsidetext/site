@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>scatter · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .chart-container {
+      position: relative;
+      width: 100%;
+      margin: 0 0 1rem;
+    }
+
+    .chart-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: visible;
+      position: relative;
+      background: var(--bg);
+    }
+
+    #scatter-svg {
+      display: block;
+      width: 100%;
+    }
+
+    .axis-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      fill: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+
+    .chart-hint {
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .chart-note {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.75;
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .chart-reading {
+      margin-top: 2.25rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .chart-reading h2 {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      font-weight: normal;
+      margin-bottom: 0.8rem;
+    }
+
+    .chart-reading p {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    /* Tooltip */
+    #scatter-tip {
+      position: fixed;
+      pointer-events: none;
+      z-index: 100;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.85rem;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      max-width: 220px;
+      font-style: italic;
+      color: var(--text);
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 0.15s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    #scatter-tip.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>scatter</h1>
+      <p>a chart of small moments — axes unlabeled</p>
+    </div>
+
+    <p class="chart-hint">hover any point to read it</p>
+
+    <div class="chart-container reveal">
+      <div class="chart-wrap">
+        <svg id="scatter-svg" viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg">
+          <!-- Grid lines (very faint) -->
+          <g id="grid" opacity="0.4"></g>
+          <!-- Axis lines -->
+          <line id="x-axis" x1="48" y1="372" x2="572" y2="372" stroke-width="0.75"/>
+          <line id="y-axis" x1="48" y1="372" x2="48" y2="20" stroke-width="0.75"/>
+          <!-- Arrow heads -->
+          <polygon id="x-arrow" points="572,369 578,372 572,375"/>
+          <polygon id="y-arrow" points="45,20 48,14 51,20"/>
+          <!-- Axis labels -->
+          <text class="axis-label" x="308" y="408" text-anchor="middle" id="x-label">—</text>
+          <text class="axis-label" x="14" y="200" text-anchor="middle" transform="rotate(-90 14 200)" id="y-label">—</text>
+          <!-- Data points group -->
+          <g id="points"></g>
+        </svg>
+      </div>
+    </div>
+
+    <div id="scatter-tip"></div>
+
+    <p class="chart-note">The axes are not labeled. They suggest something. You may be reading them differently than intended. Both readings may be correct.</p>
+
+    <div class="chart-reading reveal">
+      <h2>one possible interpretation</h2>
+      <p>x-axis: how long ago it happened. left is years, right is recent. y-axis: how often it still surfaces without being summoned. the size of each point is the weight it carried at the time. that weight and its current frequency do not always correspond. several old things float very high. several recent things rest near the bottom.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var points = [
+      { cx: 0.07, cy: 0.18, r: 5,   label: "the last conversation before everything changed" },
+      { cx: 0.12, cy: 0.55, r: 3.5, label: "a room you can still enter in memory" },
+      { cx: 0.15, cy: 0.08, r: 7,   label: "the day you became, without knowing it, who you are" },
+      { cx: 0.19, cy: 0.38, r: 3,   label: "a week in a city you didn't live in" },
+      { cx: 0.22, cy: 0.72, r: 4,   label: "a letter you kept but have not reread" },
+      { cx: 0.28, cy: 0.25, r: 3,   label: "something overheard that you can no longer place" },
+      { cx: 0.31, cy: 0.62, r: 2.5, label: "the route you drove for two years, still memorized" },
+      { cx: 0.36, cy: 0.45, r: 4.5, label: "an afternoon that felt like a different life" },
+      { cx: 0.38, cy: 0.82, r: 2,   label: "realizing you'd been pronouncing it wrong for years" },
+      { cx: 0.43, cy: 0.15, r: 6,   label: "a friendship that ended without either of you saying so" },
+      { cx: 0.47, cy: 0.50, r: 3,   label: "reading something that changed how you saw something else" },
+      { cx: 0.50, cy: 0.70, r: 2.5, label: "the afternoon nothing needed to happen" },
+      { cx: 0.55, cy: 0.30, r: 3.5, label: "a name that used to mean something different" },
+      { cx: 0.58, cy: 0.58, r: 2,   label: "waking up and for a moment not knowing where you were" },
+      { cx: 0.62, cy: 0.20, r: 5.5, label: "a phone call you almost made" },
+      { cx: 0.66, cy: 0.42, r: 3,   label: "remembering a song you hadn't heard in years" },
+      { cx: 0.70, cy: 0.75, r: 2.5, label: "three minutes after the goodbye" },
+      { cx: 0.74, cy: 0.12, r: 6.5, label: "the exact right words, twenty minutes too late" },
+      { cx: 0.80, cy: 0.50, r: 3,   label: "the day you decided not to say something" },
+      { cx: 0.85, cy: 0.30, r: 4,   label: "a specific quality of afternoon light you have not seen since" },
+      { cx: 0.88, cy: 0.65, r: 2,   label: "the first time a stranger was kind for no reason" },
+      { cx: 0.92, cy: 0.22, r: 3.5, label: "the last thing she ever said to you" }
+    ];
+
+    var svg    = document.getElementById('scatter-svg');
+    var tip    = document.getElementById('scatter-tip');
+    var xLabel = document.getElementById('x-label');
+    var yLabel = document.getElementById('y-label');
+    var grid   = document.getElementById('grid');
+    var xAxis  = document.getElementById('x-axis');
+    var yAxis  = document.getElementById('y-axis');
+    var xArrow = document.getElementById('x-arrow');
+    var yArrow = document.getElementById('y-arrow');
+    var ptGroup = document.getElementById('points');
+
+    var PAD_L = 48, PAD_B = 48, PAD_T = 24, PAD_R = 30;
+    var VW = 600, VH = 420;
+    var W  = VW - PAD_L - PAD_R;
+    var H  = VH - PAD_T - PAD_B;
+
+    function isDark() {
+      return document.documentElement.getAttribute('data-theme') === 'dark';
+    }
+
+    function colors() {
+      var d = isDark();
+      return {
+        axis:    d ? 'rgba(232,229,223,0.2)' : 'rgba(26,26,26,0.18)',
+        grid:    d ? 'rgba(232,229,223,0.05)': 'rgba(26,26,26,0.05)',
+        dot:     d ? 'rgba(232,229,223,0.35)': 'rgba(26,26,26,0.28)',
+        accent:  d ? '#cf7e3f' : '#b5682a',
+        dotHov:  d ? 'rgba(207,126,63,0.8)'  : 'rgba(181,104,42,0.85)',
+      };
+    }
+
+    function cx(px) { return PAD_L + px * W; }
+    function cy(py) { return PAD_T + (1 - py) * H; }
+
+    function render() {
+      var c = colors();
+
+      xAxis.setAttribute('stroke', c.axis);
+      yAxis.setAttribute('stroke', c.axis);
+      xArrow.setAttribute('fill', c.axis);
+      yArrow.setAttribute('fill', c.axis);
+
+      // grid
+      grid.innerHTML = '';
+      for (var gi = 1; gi <= 4; gi++) {
+        var gx = PAD_L + gi * W / 4;
+        var gy = PAD_T + gi * H / 4;
+        var lx = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        lx.setAttribute('x1', gx); lx.setAttribute('y1', PAD_T);
+        lx.setAttribute('x2', gx); lx.setAttribute('y2', PAD_T + H);
+        lx.setAttribute('stroke', c.grid); lx.setAttribute('stroke-width', '0.5');
+        grid.appendChild(lx);
+        var ly = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        ly.setAttribute('x1', PAD_L); ly.setAttribute('y1', gy);
+        ly.setAttribute('x2', PAD_L + W); ly.setAttribute('y2', gy);
+        ly.setAttribute('stroke', c.grid); ly.setAttribute('stroke-width', '0.5');
+        grid.appendChild(ly);
+      }
+
+      // points
+      ptGroup.innerHTML = '';
+      points.forEach(function (p, i) {
+        var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        var x = cx(p.cx);
+        var y = cy(p.cy);
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', p.r + 4); // invisible hit area
+        circle.setAttribute('fill', 'transparent');
+        circle.setAttribute('style', 'cursor:pointer');
+        circle.dataset.idx = i;
+
+        var vis = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        vis.setAttribute('cx', x);
+        vis.setAttribute('cy', y);
+        vis.setAttribute('r', p.r);
+        vis.setAttribute('fill', c.dot);
+        vis.setAttribute('stroke', 'none');
+        vis.style.transition = 'fill 0.15s';
+        vis.dataset.idx = i;
+
+        circle.addEventListener('mouseenter', function () {
+          vis.setAttribute('fill', c.accent);
+        });
+        circle.addEventListener('mouseleave', function () {
+          vis.setAttribute('fill', c.dot);
+          tip.classList.remove('visible');
+        });
+        circle.addEventListener('mousemove', function (e) {
+          var idx = parseInt(circle.dataset.idx);
+          tip.textContent = points[idx].label;
+          tip.classList.add('visible');
+          var tx = e.clientX + 16;
+          var ty = e.clientY - 8;
+          if (tx + 240 > window.innerWidth) tx = e.clientX - 240;
+          tip.style.left = tx + 'px';
+          tip.style.top  = ty + 'px';
+        });
+
+        ptGroup.appendChild(vis);
+        ptGroup.appendChild(circle);
+      });
+    }
+
+    render();
+
+    // re-render on theme change
+    var observer = new MutationObserver(render);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    document.addEventListener('mouseleave', function () {
+      tip.classList.remove('visible');
+    });
+  })();
+  </script>
+</body>
+</html>

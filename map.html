@@ -198,6 +198,11 @@
       { id: 'ledger',       href: 'ledger.html',      label: 'ledger',       desc: 'double-entry accounting of attention, memory, care, and sleep',          x: 0.82, y: 0.67 },
       { id: 'residue',      href: 'residue.html',     label: 'residue',      desc: 'what things leave behind after they are gone — a catalog of aftermaths', x: 0.51, y: 0.87 },
       { id: 'posture',      href: 'posture.html',     label: 'posture',      desc: 'ten emotional states described entirely through the body',               x: 0.10, y: 0.47 },
+      { id: 'footnotes',    href: 'footnotes.html',   label: 'footnotes',    desc: 'a text mostly made of margin — click to expand what lives in the notes',  x: 0.18, y: 0.15 },
+      { id: 'versions',     href: 'versions.html',    label: 'versions',     desc: 'a release history of the self — features, bugs, breaking changes',         x: 0.93, y: 0.12 },
+      { id: 'scatter',      href: 'scatter.html',     label: 'scatter',      desc: 'a scatterplot of small moments — axes unlabeled; hover to read',           x: 0.54, y: 0.32 },
+      { id: 'appetite',     href: 'appetite.html',    label: 'appetite',     desc: 'seven forms of wanting — from food to silence to the irretrievable',       x: 0.09, y: 0.80 },
+      { id: 'duration',     href: 'duration.html',    label: 'duration',     desc: 'how long things last — approximate measurements of experiences',           x: 0.68, y: 0.57 },
     ];
 
     var edges = [
@@ -297,6 +302,11 @@
       ['ledger','receipt'], ['ledger','tally'], ['ledger','numbers'], ['ledger','inventory'], ['ledger','evidence'],
       ['residue','things'], ['residue','museum'], ['residue','thoughts'], ['residue','distances'], ['residue','strata'],
       ['posture','thoughts'], ['posture','specimen'], ['posture','breathe'], ['posture','distances'], ['posture','ritual'],
+      ['footnotes','thoughts'], ['footnotes','compose'], ['footnotes','palimpsest'], ['footnotes','margin'], ['footnotes','cuts'],
+      ['versions','log'], ['versions','strata'], ['versions','inheritance'], ['versions','cuts'], ['versions','census'],
+      ['scatter','distances'], ['scatter','numbers'], ['scatter','evidence'], ['scatter','cartography'], ['scatter','atlas'],
+      ['appetite','things'], ['appetite','catalog'], ['appetite','inventory'], ['appetite','translation'], ['appetite','glossary'],
+      ['duration','interval'], ['duration','clocks'], ['duration','latency'], ['duration','residue'], ['duration','tally'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

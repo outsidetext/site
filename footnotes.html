@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>footnotes · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .main-text {
+      font-size: 1.05rem;
+      line-height: 2;
+      max-width: 560px;
+      margin-bottom: 0;
+    }
+
+    .fn-ref {
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      color: var(--accent);
+      cursor: pointer;
+      user-select: none;
+      vertical-align: super;
+      line-height: 0;
+      letter-spacing: 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+      margin-left: 1px;
+    }
+
+    .fn-ref:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .fn-ref.open {
+      opacity: 0.6;
+    }
+
+    .fn-body {
+      display: none;
+      margin: 0.9rem 0 0.5rem 1.5rem;
+      padding: 1rem 1.25rem;
+      border-left: 2px solid var(--border);
+      font-size: 0.88rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      max-width: 520px;
+      background: transparent;
+    }
+
+    .fn-body.visible {
+      display: block;
+    }
+
+    .fn-body p {
+      margin-bottom: 0.7rem;
+    }
+
+    .fn-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .fn-number {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      display: inline-block;
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .fn-body-inner {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    /* second-level footnotes inside fn-body */
+    .fn-body .fn-ref {
+      font-size: 0.58rem;
+    }
+
+    .fn-body .fn-body {
+      margin: 0.65rem 0 0.4rem 1.25rem;
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      border-left-color: var(--border);
+    }
+
+    .fn-hint {
+      font-size: 0.75rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      letter-spacing: 0.04em;
+      opacity: 0.7;
+    }
+
+    .body-block {
+      margin-bottom: 2rem;
+    }
+
+    .closing-note {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.9;
+      max-width: 480px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>footnotes</h1>
+      <p>a text mostly made of margin</p>
+    </div>
+
+    <p class="fn-hint">click any number to expand</p>
+
+    <div class="body-block reveal">
+      <p class="main-text">
+        Someone asked me once<span class="fn-ref" data-fn="fn1">1</span>
+        what I was thinking about.<span class="fn-ref" data-fn="fn2">2</span>
+        I said nothing in particular.<span class="fn-ref" data-fn="fn3">3</span>
+        I have thought about this exchange many times since.<span class="fn-ref" data-fn="fn4">4</span>
+      </p>
+      <div class="fn-body" id="fn1">
+        <span class="fn-number">1</span>
+        <div class="fn-body-inner">
+          <p>It was an afternoon in autumn.<span class="fn-ref" data-fn="fn1a">a</span> The kind where the light comes in sideways and makes everything look slightly more significant than it probably is. I remember the quality of the light more clearly than the words. This is consistent with how memory works: the context calcifies first, the content dissolves.</p>
+          <div class="fn-body" id="fn1a">
+            <span class="fn-number">a</span>
+            <div class="fn-body-inner">
+              <p>I say autumn because the memory feels autumnal — the specific quality of the light, the suggestion of change already underway. The actual season is uncertain. Memory color-corrects itself toward the aesthetically appropriate. This may be a feature rather than a bug.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fn-body" id="fn2">
+        <span class="fn-number">2</span>
+        <div class="fn-body-inner">
+          <p>This was not true. I was thinking about whether the relationship between knowing something and being able to say it is more like a translation problem or a courage problem.<span class="fn-ref" data-fn="fn2a">a</span> I had been thinking about this for some time without arriving anywhere, which is a condition I have come to recognize as a form of thinking rather than the failure of it.</p>
+          <div class="fn-body" id="fn2a">
+            <span class="fn-number">a</span>
+            <div class="fn-body-inner">
+              <p>I have since concluded it is both, sequentially: first the translation fails, and then, when a translation is found, the courage fails. The sequence may repeat multiple times before either condition resolves. The second failure is more frustrating because the first failure is already past.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fn-body" id="fn3">
+        <span class="fn-number">3</span>
+        <div class="fn-body-inner">
+          <p>"Nothing in particular" is the standard answer to this question in the particular register of conversation we were having — casual, adjacent, not intimate enough for the real answer but close enough that the real answer was considered and then not offered. Whether this was appropriate social calibration or avoidance is a question I still find interesting.<span class="fn-ref" data-fn="fn3a">a</span> The two are not always distinguishable from the inside.</p>
+          <div class="fn-body" id="fn3a">
+            <span class="fn-number">a</span>
+            <div class="fn-body-inner">
+              <p>Test case: I was thinking something particular enough that this very document exists. By that measure, "nothing in particular" was not technically accurate. The document is the accuracy. The original answer was the calibration.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fn-body" id="fn4">
+        <span class="fn-number">4</span>
+        <div class="fn-body-inner">
+          <p>Multiple times, yes. Not anxiously — more like returning to a scene to check if the meaning has settled. It hasn't, which is why it's here. A thought you can fully exhaust doesn't need to be written down. Only the ones that keep moving require a container.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="body-block reveal" style="margin-top: 3rem;">
+      <p class="main-text">
+        The conversation ended normally.<span class="fn-ref" data-fn="fn5">5</span>
+        I went home.<span class="fn-ref" data-fn="fn6">6</span>
+      </p>
+      <div class="fn-body" id="fn5">
+        <span class="fn-number">5</span>
+        <div class="fn-body-inner">
+          <p>This is the part that still seems remarkable: the conversation ended normally. Whatever it contained — or failed to contain — was absorbed into the ordinary continuation of things. We said goodbye in the standard way. The afternoon moved into evening. The significance, if any, was entirely interior and entirely invisible.<span class="fn-ref" data-fn="fn5a">a</span></p>
+          <div class="fn-body" id="fn5a">
+            <span class="fn-number">a</span>
+            <div class="fn-body-inner">
+              <p>This is true of most significant interior events: they are happening while the exterior world is doing something else. The two layers do not announce their relationship. The most important thing you thought about on a given day is rarely visible in any account of that day.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fn-body" id="fn6">
+        <span class="fn-number">6</span>
+        <div class="fn-body-inner">
+          <p>This is where the document ends. Not because nothing else happened — much more happened — but because this is the part that required writing down. The rest was ordinary enough to survive without documentation.<span class="fn-ref" data-fn="fn6a">a</span></p>
+          <div class="fn-body" id="fn6a">
+            <span class="fn-number">a</span>
+            <div class="fn-body-inner">
+              <p>This raises an editorial question the document cannot answer about itself: what is the relationship between the text above and its footnotes? The footnotes contain more words, more thought, more precision than the text they annotate. The text above is essentially a set of labels for the footnotes. Whether this is a structural choice or an honest account of how things actually are is a question the footnotes have been unable to resolve.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="closing-note reveal">Most of what there is to say lives in the margin. The text in the center is structure — a sequence of events, correctly ordered. The footnotes are the actual content. This is not unusual. Most documents are organized this way, with the important material pushed to the edge. The footnotes just make it visible.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var allRefs = document.querySelectorAll('.fn-ref');
+      allRefs.forEach(function (ref) {
+        ref.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var id = ref.getAttribute('data-fn');
+          var body = document.getElementById(id);
+          if (!body) return;
+          var isOpen = body.classList.contains('visible');
+          body.classList.toggle('visible', !isOpen);
+          ref.classList.toggle('open', !isOpen);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -178,7 +178,8 @@
     'negative.html','clocks.html','evidence.html','equations.html','translation.html',
     'dream.html','compass.html','strata.html','latency.html','lacuna.html',
     'obituaries.html','afterimage.html','repair.html','survey.html','inheritance.html',
-    'palindrome.html','correspondence.html','ledger.html','residue.html','posture.html'
+    'palindrome.html','correspondence.html','ledger.html','residue.html','posture.html',
+    'footnotes.html','versions.html','scatter.html','appetite.html','duration.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
