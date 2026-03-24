@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ceremony · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ceremony-preamble {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .ceremony-card {
+      border: 1px solid var(--border);
+      padding: 1.8rem 1.6rem 1.5rem;
+      margin-bottom: 0;
+    }
+
+    .ceremony-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.55;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .ceremony-name {
+      font-size: 1.2rem;
+      font-style: italic;
+      line-height: 1.35;
+      margin: 0 0 1.25rem;
+      color: var(--text);
+    }
+
+    .ceremony-occasion {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ceremony-field {
+      margin-bottom: 1.25rem;
+    }
+
+    .ceremony-field-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .ceremony-field p,
+    .ceremony-field ul,
+    .ceremony-field ol {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .ceremony-field ol {
+      padding-left: 1.3rem;
+    }
+
+    .ceremony-field li {
+      margin-bottom: 0.35rem;
+    }
+
+    .ceremony-notes {
+      margin-top: 1.25rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .ceremony-change {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .ceremony-footer-note {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">&#9680;</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>ceremony</h1>
+      <p>for the things that end without announcement</p>
+    </div>
+
+    <p class="ceremony-preamble reveal">some transitions come with ceremonies. others arrive and pass without any formal acknowledgment. this is a collection of ceremonies for the latter kind. one is offered each day.</p>
+
+    <div class="ceremony-card reveal" id="ceremony-card"></div>
+
+    <p class="ceremony-change reveal" id="ceremony-change"></p>
+
+    <p class="ceremony-footer-note reveal">the ceremonies are offered not because they are required but because something about marking a thing — even privately, even briefly — changes the quality of having been through it. the marking does not need to be witnessed. it just needs to happen.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var pool = [
+        {
+          name: "A Ceremony for the Last Time You Were in a Place",
+          occasion: "performed when you leave somewhere you will not return to, or when you realize later that you already did",
+          materials: "nothing required. presence, if available.",
+          steps: [
+            "stand still for one moment in the space, or close your eyes and reconstruct it.",
+            "notice one thing you will remember. let the noticing be enough.",
+            "say or think the name of the place, once.",
+            "leave, or accept that you have already left."
+          ],
+          notes: "the ceremony can be performed retroactively, which is the form in which it is most often performed. the retroactive version works."
+        },
+        {
+          name: "A Ceremony for the End of Something That Never Officially Ended",
+          occasion: "for friendships, eras, versions of yourself, or arrangements that simply stopped without a conclusion",
+          materials: "optional: a brief written record of what it was.",
+          steps: [
+            "acknowledge that it has ended. this is the hardest step.",
+            "name what it was, at its best.",
+            "note what it was at its most difficult. briefly.",
+            "declare it concluded. no reason required.",
+            "proceed."
+          ],
+          notes: "the absence of an official ending does not mean the ending didn't happen. this ceremony supplies the missing formality. it cannot undo the absence, but it can close the account."
+        },
+        {
+          name: "A Ceremony for the First Day You Don't Think About It",
+          occasion: "when you notice, usually in the evening, that a particular preoccupation was absent from the day",
+          materials: "nothing required.",
+          steps: [
+            "notice that the day passed without the thought.",
+            "do not reach for the thought now.",
+            "acknowledge that this is a kind of progress, even if it doesn't feel like one.",
+            "let the day end as it is."
+          ],
+          notes: "this ceremony is performed after the fact, which is the only way it can be. you cannot celebrate in advance. the absence of a thought cannot be marked while you are not thinking it."
+        },
+        {
+          name: "A Ceremony for the Closing of a Chapter",
+          occasion: "for the last day of a job, a relationship, a place you lived, a version of things",
+          materials: "one ordinary object from the time that is ending.",
+          steps: [
+            "hold the object, or name it if it isn't available.",
+            "remember one ordinary moment from the chapter — not the peak, not the ending. a Tuesday. a morning. a specific light.",
+            "set the object down.",
+            "do one ordinary thing. the chapter has ended; the day continues."
+          ],
+          notes: "the ceremony is not for the conclusion. conclusions announce themselves. the ceremony is for the ordinary Tuesday that will not be repeated. those go unmarked otherwise."
+        },
+        {
+          name: "A Ceremony for a Relationship Becoming Past Tense",
+          occasion: "for the moment when you shift from present to past — not always when the relationship ends, but when the grammar changes",
+          materials: "nothing required.",
+          steps: [
+            "notice the shift in tense.",
+            "say or think their name.",
+            "remember one specific thing — something small and specific. not a feeling, a fact.",
+            "wish them well, or try to.",
+            "release the record of who they were to you. it will not disappear, but it can be set down."
+          ],
+          notes: "the grammar does not always shift at the same time as the ending. sometimes the grammar is behind. sometimes it is ahead. the ceremony works at either time."
+        },
+        {
+          name: "A Ceremony for Setting Down a Worry",
+          occasion: "for worries that have been carried past their useful date",
+          materials: "nothing required.",
+          steps: [
+            "name the worry precisely. not generally. specifically.",
+            "ask: is there anything I can do about this today? answer honestly.",
+            "if yes: do one of those things.",
+            "if no: set the worry down. you may pick it up again tomorrow if needed. it will keep."
+          ],
+          notes: "the worry will not disappear as a result of this ceremony. it will be available again in the morning. the ceremony is not about resolution. it is about the one evening it was set down."
+        },
+        {
+          name: "A Ceremony for the Passing of an Old Version of Yourself",
+          occasion: "when you notice that a previous way of being is no longer available to you, or when you are grateful it isn't",
+          materials: "optional: a photograph from that time.",
+          steps: [
+            "name the version as specifically as you can. what did they believe? what were they afraid of?",
+            "find one thing to thank them for.",
+            "find one thing you are glad to have grown past.",
+            "acknowledge that they did not know you were coming. they could not. you did not know either.",
+            "proceed as the current version."
+          ],
+          notes: "the versions are not failures. each version was doing what it could with what it had. the ceremony is not a critique. it is an acknowledgment that change happened, and that this is not a small thing."
+        },
+        {
+          name: "A Ceremony for the Last Ordinary Day Before Everything Changed",
+          occasion: "for the day before — which is only recognized as such afterward",
+          materials: "memory.",
+          steps: [
+            "remember whatever you can of that day. it may be very little — it was ordinary.",
+            "note that it did not know it was the last one. that is why it was ordinary.",
+            "thank it for its ordinariness. it was, at the time, everything.",
+            "accept that it is over without knowing when it ended."
+          ],
+          notes: "this ceremony cannot be performed in advance. it can only be performed once you know what came after. that is characteristic of this category of thing."
+        },
+        {
+          name: "A Ceremony for an Apology That Will Not Be Given",
+          occasion: "when an apology is owed to or from someone no longer reachable, or when an apology would cause more harm than good",
+          materials: "optional: paper; an envelope that will not be sent.",
+          steps: [
+            "say or write the apology to no recipient.",
+            "make it specific. the general apology is for the apologizer's comfort; the specific apology is for the one wronged.",
+            "state clearly what you would have done differently.",
+            "seal the envelope or close the document.",
+            "do not send it."
+          ],
+          notes: "the apology does not need to arrive to be real. making it precisely, and meaning it, is the thing. the ceremony exists because some wrongs must be acknowledged somewhere, even if only to the air."
+        },
+        {
+          name: "A Ceremony for Something Good That Ended Too Soon",
+          occasion: "for good things lost early: a friendship, a time, a version of somewhere you loved",
+          materials: "nothing required.",
+          steps: [
+            "name what it was.",
+            "remember it at its best, briefly.",
+            "resist the adjustment — the impulse to find reasons it was also bad. it can have been good and also over. both can be true.",
+            "allow yourself to have wanted more of it.",
+            "let the wanting be what it is."
+          ],
+          notes: "grief for good things that ended is different from grief for bad things that ended. this ceremony is for the former. it does not need to be justified."
+        },
+        {
+          name: "A Ceremony for Finishing Something",
+          occasion: "for any completion — large or small — that will not be formally marked",
+          materials: "the completed thing, or a record of it.",
+          steps: [
+            "acknowledge that it is done.",
+            "do not immediately begin the next thing.",
+            "hold the finished state for thirty seconds.",
+            "note what you did. not what it means. what you actually did.",
+            "proceed to whatever is next, but from a standing start."
+          ],
+          notes: "the impulse to move immediately to the next thing is common and reasonable. this ceremony inserts a pause before that movement. the pause is the ceremony."
+        },
+        {
+          name: "A Ceremony for the Word You Never Found",
+          occasion: "for the thing that could not be named, and has been carried without a name",
+          materials: "nothing. the absence of the word is the material.",
+          steps: [
+            "acknowledge that the word does not exist, or was not found.",
+            "describe the thing as closely as you can without the word.",
+            "sit with the description for a moment.",
+            "accept that some things will be unnamed. this is not a failure of language. it is the edge of what language covers."
+          ],
+          notes: "the unnamed thing is real. the absence of a name does not change its reality. the ceremony marks the place where language ends and the thing continues."
+        },
+        {
+          name: "A Ceremony for Leaving a Place You Loved",
+          occasion: "for departures that are chosen, and for those that are not",
+          materials: "one last look, if available.",
+          steps: [
+            "take one last look, or reconstruct the place in memory.",
+            "name three things you loved about it. small things are preferred.",
+            "walk out the door, or accept that the door was already behind you.",
+            "do not look back unless you want to. there is no requirement either way."
+          ],
+          notes: "a place loved is not undone by departure. the love and the leaving are separate events that happen to occur at the same address."
+        },
+        {
+          name: "A Ceremony for Starting Over",
+          occasion: "for new beginnings of any size, formal or informal",
+          materials: "nothing required. clean hands are traditional but optional.",
+          steps: [
+            "name what is beginning.",
+            "name what is ending, to make room for it.",
+            "state one thing you are bringing with you from before. choose well.",
+            "state one thing you are not bringing.",
+            "begin."
+          ],
+          notes: "starting over is not the same as starting fresh. you always bring something. the ceremony is about choosing what."
+        }
+      ];
+
+      var d = new Date();
+      var dayOfYear = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 86400000);
+      var ceremony = pool[dayOfYear % pool.length];
+
+      var card = document.getElementById('ceremony-card');
+
+      var html = '';
+      html += '<span class="ceremony-label">today\'s ceremony</span>';
+      html += '<h2 class="ceremony-name">' + ceremony.name + '</h2>';
+      html += '<div class="ceremony-occasion">performed ' + ceremony.occasion + '</div>';
+
+      html += '<div class="ceremony-field">';
+      html += '<span class="ceremony-field-label">required</span>';
+      html += '<p>' + ceremony.materials + '</p>';
+      html += '</div>';
+
+      html += '<div class="ceremony-field">';
+      html += '<span class="ceremony-field-label">steps</span>';
+      html += '<ol>';
+      ceremony.steps.forEach(function (step) {
+        html += '<li>' + step + '</li>';
+      });
+      html += '</ol>';
+      html += '</div>';
+
+      html += '<div class="ceremony-notes">' + ceremony.notes + '</div>';
+
+      card.innerHTML = html;
+
+      var changeEl = document.getElementById('ceremony-change');
+      changeEl.textContent = 'the ceremony changes each day at midnight · ' + pool.length + ' ceremonies in the collection';
+    }());
+  </script>
+</body>
+</html>

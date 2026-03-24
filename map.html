@@ -208,6 +208,11 @@
       { id: 'half-life',    href: 'half-life.html',   label: 'half-life',    desc: 'emotional decay rates — how quickly feelings diminish, or don\'t',           x: 0.86, y: 0.73 },
       { id: 'rumors',       href: 'rumors.html',      label: 'rumors',       desc: 'things said about you, collected without confirmation or denial',             x: 0.42, y: 0.54 },
       { id: 'borrowed',     href: 'borrowed.html',    label: 'borrowed',     desc: 'what was taken and not returned; what was given and not recovered',           x: 0.21, y: 0.44 },
+      { id: 'shelf',        href: 'shelf.html',       label: 'shelf',        desc: 'a library of books that were never written — eight titles each day',               x: 0.29, y: 0.76 },
+      { id: 'autopsy',      href: 'autopsy.html',     label: 'autopsy',      desc: 'a forensic report on an ordinary day — clinical language for the mundane',          x: 0.75, y: 0.72 },
+      { id: 'taxonomy',     href: 'taxonomy.html',    label: 'taxonomy',     desc: 'a scientific classification of silences — ten species, four classes',               x: 0.02, y: 0.78 },
+      { id: 'departures',   href: 'departures.html',  label: 'departures',   desc: 'an arrivals and departures board for things that come and go without announcement', x: 0.55, y: 0.47 },
+      { id: 'ceremony',     href: 'ceremony.html',    label: 'ceremony',     desc: 'one ceremony each day for endings that receive no formal acknowledgment',          x: 0.98, y: 0.38 },
     ];
 
     var edges = [
@@ -317,6 +322,11 @@
       ['half-life','duration'], ['half-life','equations'], ['half-life','clocks'], ['half-life','residue'], ['half-life','thoughts'],
       ['rumors','overheard'], ['rumors','evidence'], ['rumors','mirror'], ['rumors','survey'], ['rumors','thoughts'],
       ['borrowed','ledger'], ['borrowed','inventory'], ['borrowed','inheritance'], ['borrowed','residue'], ['borrowed','things'],
+      ['shelf','commonplace'], ['shelf','thoughts'], ['shelf','cuts'], ['shelf','museum'], ['shelf','appetite'],
+      ['autopsy','receipt'], ['autopsy','evidence'], ['autopsy','survey'], ['autopsy','field-notes'], ['autopsy','tally'],
+      ['taxonomy','glossary'], ['taxonomy','thoughts'], ['taxonomy','echoes'], ['taxonomy','quiet'], ['taxonomy','interval'],
+      ['departures','clocks'], ['departures','latency'], ['departures','thresholds'], ['departures','distances'], ['departures','receipt'],
+      ['ceremony','ritual'], ['ceremony','repair'], ['ceremony','residue'], ['ceremony','inventory'], ['ceremony','thresholds'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>autopsy · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .report-header {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      border: 1px solid var(--border);
+      padding: 1rem 1.2rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.9;
+    }
+
+    .report-header .field {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .report-header .field-label {
+      min-width: 120px;
+      flex-shrink: 0;
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    .report-header .field-value {
+      color: var(--text);
+    }
+
+    .finding {
+      margin-bottom: 2.25rem;
+    }
+
+    .finding-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.55rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .finding-label span {
+      color: var(--accent);
+      margin-right: 0.6em;
+    }
+
+    .finding p {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin: 0 0 0.6rem;
+    }
+
+    .finding ul {
+      margin: 0.3rem 0 0.6rem;
+      padding-left: 1.2rem;
+    }
+
+    .finding li {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+
+    .report-conclusion {
+      border-top: 1px solid var(--border);
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+    }
+
+    .report-conclusion .verdict {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .report-conclusion .verdict strong {
+      color: var(--accent);
+      font-weight: normal;
+    }
+
+    .report-footer {
+      margin-top: 1.5rem;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">&#9680;</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>autopsy</h1>
+      <p>a forensic examination of an ordinary day</p>
+    </div>
+
+    <div id="report-header" class="report-header reveal"></div>
+    <div id="report-body"></div>
+    <div class="report-conclusion reveal">
+      <div class="verdict" id="verdict"></div>
+    </div>
+    <p class="report-footer">the subject is examined without judgment. the examiner notes that ordinary days are the most common form of day, and the least often examined. they leave evidence of having occurred. that is, upon reflection, enough.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var reports = [
+        {
+          subject: "Monday (ordinary)",
+          caseNo: "MON-001",
+          findings: [
+            {
+              number: "I",
+              label: "General Appearance",
+              text: [
+                "Subject presents in condition consistent with recent use. Evidence of habitual behaviors noted throughout. Slight compression of the first two hours suggests delayed full activation. This is normal for the subject type.",
+                "Posture records indicate a period of prolonged sitting beginning at approximately 9:00. The sitting was purposeful. Whether the purpose was achieved is outside the scope of this examination."
+              ]
+            },
+            {
+              number: "II",
+              label: "Time of Events",
+              text: [
+                "Subject experienced waking at 7:08, with observed hesitation of 14 minutes prior to full ambulation. Coffee was prepared at 7:31. The coffee was consumed over 23 minutes. The last quarter was cold.",
+                "A 47-minute block at approximately 10:15 contains no clear record of productive activity. This is not unusual. The block appears to have been spent in a state the examiner classifies as adjacent to thinking."
+              ]
+            },
+            {
+              number: "III",
+              label: "Cause of Minor Distress",
+              text: [
+                "Contributing factors: (1) a notification misread as urgent, cause identified and resolved; (2) the specific Tuesday quality of the afternoon, cause unclear; (3) a brief awareness that time is finite and being spent, cause: accurate.",
+                "No single factor was determining. The distress was distributed, which the examiner notes is typical of this subject."
+              ]
+            },
+            {
+              number: "IV",
+              label: "Notable Findings",
+              text: [
+                "Several moments of genuine pleasure noted: a window with good light at 14:42; a sentence that came out right; the particular quality of the walk back from somewhere.",
+                "One unresolved item was set aside for tomorrow. This item has been set aside for at least four previous days. The examiner notes this without comment."
+              ]
+            }
+          ],
+          verdict: "CLASSIFICATION: ORDINARY · EVIDENCE OF LIFE: PRESENT · FINDINGS: CONSISTENT WITH CONTINUED OPERATION"
+        },
+        {
+          subject: "Wednesday (ordinary)",
+          caseNo: "WED-003",
+          findings: [
+            {
+              number: "I",
+              label: "General Appearance",
+              text: [
+                "Subject presents in midweek condition. The midweek condition is characterized by neither the freshness of Monday nor the relief of Friday. The subject has adapted. This is the correct response.",
+                "Multiple open items observed across several domains. Each item appeared manageable in isolation. The examiner notes that items are rarely encountered in isolation."
+              ]
+            },
+            {
+              number: "II",
+              label: "Time of Events",
+              text: [
+                "7:52: waking. 7:53–8:07: negotiation with waking. 8:08: resolution in favor of rising.",
+                "The bulk of the morning was spent in directed effort. The effort was approximately 80% effective by the examiner's assessment. The subject's assessment was lower."
+              ]
+            },
+            {
+              number: "III",
+              label: "Cause of Minor Distress",
+              text: [
+                "Primary factor: the gap between what the subject intended to do today and what the subject actually did. This gap is documented in every prior case file and shows no sign of narrowing.",
+                "Secondary factor: a conversation that went slightly differently than intended. The difference was minor. The subject continued to assess the minor difference for 2.3 hours, a ratio the examiner finds disproportionate."
+              ]
+            },
+            {
+              number: "IV",
+              label: "Notable Findings",
+              text: [
+                "Afternoon contained an unexpected 20 minutes of genuine absorption in a task that had previously seemed tedious. The examiner recommends more of these.",
+                "Subject went to bed approximately 37 minutes later than intended. The reason given was 'just a few more minutes.' This has been noted in every prior case file."
+              ]
+            }
+          ],
+          verdict: "CLASSIFICATION: ORDINARY · EVIDENCE OF LIFE: PRESENT · UNRESOLVED ITEMS: CARRIED FORWARD"
+        },
+        {
+          subject: "Saturday (partially ordinary)",
+          caseNo: "SAT-006",
+          findings: [
+            {
+              number: "I",
+              label: "General Appearance",
+              text: [
+                "Subject presents with altered temporal markers consistent with weekend onset. The alarm did not sound. The body's internal schedule was consulted instead. Agreement was reached at 8:47.",
+                "Morning proceeded at a rate the examiner categorizes as slow, meaning: intentionally so."
+              ]
+            },
+            {
+              number: "II",
+              label: "Time of Events",
+              text: [
+                "9:14: coffee, prepared without urgency. 9:14–10:31: time of indeterminate classification, not unpleasant.",
+                "At approximately 13:00, the subject encountered the faint pressure of tasks that were not being done. This is a known complication of free time. The subject managed the encounter adequately."
+              ]
+            },
+            {
+              number: "III",
+              label: "Cause of Minor Distress",
+              text: [
+                "Contributing factor: the awareness that the weekend is finite, which arrived on Saturday morning, which is early for this observation and outside normal parameters.",
+                "Secondary factor: something small that required attention and did not get it, and did not require attention urgently, but did, quietly, require it."
+              ]
+            },
+            {
+              number: "IV",
+              label: "Notable Findings",
+              text: [
+                "Evidence of genuine rest located in the afternoon. Duration: 1 hour 40 minutes. Quality: high. The examiner notes that this appears more difficult to achieve than it should be.",
+                "At 20:20, the subject reported (internally) that today was a good day. The examiner confirms this classification, which is not always confirmed."
+              ]
+            }
+          ],
+          verdict: "CLASSIFICATION: PARTIALLY ORDINARY · EVIDENCE OF REST: CONFIRMED · OVERALL: ADEQUATE"
+        },
+        {
+          subject: "Thursday (ordinary)",
+          caseNo: "THU-004",
+          findings: [
+            {
+              number: "I",
+              label: "General Appearance",
+              text: [
+                "Subject presents in late-week condition. Some depletion noted. The depletion is not alarming. It is the natural result of the week having been underway for several days.",
+                "The subject's relationship to their to-do list has become more philosophical by this point in the week. Items are viewed with a mixture of duty and acceptance."
+              ]
+            },
+            {
+              number: "II",
+              label: "Time of Events",
+              text: [
+                "Morning: largely as expected. The subject had a moment, at approximately 10:30, of thinking it might be Friday. It was not Friday. Recovery from this was documented as rapid.",
+                "Early afternoon: a meeting that could have been briefer. The examiner notes that most meetings fall into this category."
+              ]
+            },
+            {
+              number: "III",
+              label: "Cause of Minor Distress",
+              text: [
+                "Primary: the specific weight of Thursday afternoon, which differs from other afternoon weights in ways the examiner cannot precisely quantify but observes consistently.",
+                "Secondary: a task that grew larger upon examination. This is a known property of tasks. The examiner recommends proceeding anyway."
+              ]
+            },
+            {
+              number: "IV",
+              label: "Notable Findings",
+              text: [
+                "A piece of good news arrived at 16:12. The subject's response was appropriate, perhaps slightly delayed by fatigue.",
+                "The subject ate a good dinner. The examiner notes that this is mentioned because it matters."
+              ]
+            }
+          ],
+          verdict: "CLASSIFICATION: ORDINARY · EVIDENCE OF PERSISTENCE: DOCUMENTED · NOTE: TOMORROW IS FRIDAY"
+        }
+      ];
+
+      var d = new Date();
+      var weekSeed = Math.floor(d.getTime() / (86400000 * 7));
+      var report = reports[weekSeed % reports.length];
+
+      // Build report header
+      var hdr = document.getElementById('report-header');
+      var fields = [
+        ['CASE NO.', report.caseNo],
+        ['SUBJECT', report.subject],
+        ['EXAMINER', 'on file'],
+        ['DATE OF EXAMINATION', (function () {
+          var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+          var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+          return days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate();
+        })()],
+        ['CLASSIFICATION', 'ordinary day, type A']
+      ];
+      var html = '<div style="font-size:0.68rem;letter-spacing:0.16em;margin-bottom:0.75rem;opacity:0.5">FORENSIC REPORT — ORDINARY DAY EXAMINATION</div>';
+      fields.forEach(function (f) {
+        html += '<div class="field"><span class="field-label">' + f[0] + '</span><span class="field-value">' + f[1] + '</span></div>';
+      });
+      hdr.innerHTML = html;
+
+      // Build findings
+      var body = document.getElementById('report-body');
+      report.findings.forEach(function (f) {
+        var div = document.createElement('div');
+        div.className = 'finding reveal';
+
+        var label = document.createElement('div');
+        label.className = 'finding-label';
+        label.innerHTML = '<span>' + f.number + '.</span>' + f.label;
+        div.appendChild(label);
+
+        f.text.forEach(function (para) {
+          var p = document.createElement('p');
+          p.textContent = para;
+          div.appendChild(p);
+        });
+
+        body.appendChild(div);
+      });
+
+      // Verdict
+      document.getElementById('verdict').innerHTML = report.verdict;
+    }());
+  </script>
+</body>
+</html>

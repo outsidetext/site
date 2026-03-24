@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shelf · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .shelf-intro {
+      margin-bottom: 2.5rem;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .book-list {
+      list-style: none;
+      border-top: 1px solid var(--border);
+    }
+
+    .book-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 0 1rem;
+    }
+
+    .book-title {
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+
+    .book-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.55rem;
+    }
+
+    .book-first-line {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--text);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.35s ease;
+      opacity: 0;
+    }
+
+    .book-item.open .book-first-line {
+      max-height: 120px;
+      opacity: 1;
+    }
+
+    .book-toggle {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.2s;
+    }
+
+    .book-toggle:hover { color: var(--accent); }
+
+    .shelf-note {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">&#9680;</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>shelf</h1>
+      <p>a library of books that were never written</p>
+    </div>
+
+    <p class="shelf-intro">eight titles from the collection, selected today. click any title to read the first line.</p>
+
+    <ul class="book-list" id="book-list"></ul>
+
+    <p class="shelf-note" id="shelf-note"></p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var pool = [
+        {
+          title: "The Geography of Unfinished Rooms",
+          attr: "a book about spaces that were almost made into something",
+          year: "unpublished",
+          first: "The door was always ajar — not enough to enter, not enough to declare the room empty."
+        },
+        {
+          title: "A Manual for Being Here",
+          attr: "a book about presence, which the body already knows",
+          year: "never completed",
+          first: "Step one: stop. Not dramatically. Just stop long enough to notice that you have been going."
+        },
+        {
+          title: "Studies in the Interval",
+          attr: "fifteen investigations of the gap between meaning and understanding",
+          year: "abandoned, 2014",
+          first: "The first study was conducted in a waiting room. The interval in question was eleven minutes and forty seconds, and it contained four distinct emotional states."
+        },
+        {
+          title: "Letters to Places I Only Visited Once",
+          attr: "a correspondence with seven intersections, windows, and staircases",
+          year: "ongoing",
+          first: "Dear corner of [street] and [street], I don't know the names of either of you, but I have thought about that afternoon more than I thought I would."
+        },
+        {
+          title: "The Second-to-Last Time",
+          attr: "essays on transitions recognized only in retrospect",
+          year: "third draft",
+          first: "We did not know it was the second-to-last time. That is the only reason we could do it so easily."
+        },
+        {
+          title: "An Illustrated Guide to Partial Understandings",
+          attr: "a book where every chapter ends before it should",
+          year: "in progress",
+          first: "The first thing to understand is that you will not understand. This is not a failure of the—"
+        },
+        {
+          title: "Inventory of a Year That Changed the Shape of Everything After",
+          attr: "organized by month; the months before the event are twice as long",
+          year: "private",
+          first: "January was ordinary. So was February. March was ordinary in a way that only made sense later."
+        },
+        {
+          title: "Notes from the Only Quiet Room",
+          attr: "marginalia from a library copy of a book on grief, by an unknown hand",
+          year: "author unknown",
+          first: "This page is correct. The author does not know why, but this page is correct."
+        },
+        {
+          title: "Things That Are True About You That No One Has Said Out Loud",
+          attr: "a short book",
+          year: "illegible",
+          first: "[this page has been left intentionally blank, which is not the same as empty]"
+        },
+        {
+          title: "A Brief History of Arriving Late",
+          attr: "to things, to conversations, to realizations",
+          year: "2017, not circulated",
+          first: "The first documented late arrival was to a meeting whose purpose I no longer remember. The lateness I remember exactly."
+        },
+        {
+          title: "The Phenomenology of Waiting",
+          attr: "a dissertation, abandoned; the waiting continues",
+          year: "incomplete",
+          first: "Waiting is the only activity that contains, inside itself, its own negation: to wait is to exist in anticipation of the end of waiting."
+        },
+        {
+          title: "What Was Said on the Last Ordinary Day",
+          attr: "reconstructed from memory; accuracy: approximate",
+          year: "oral tradition",
+          first: "Someone said something about the weather. Someone agreed. Someone was somewhere else entirely. Nothing was wrong."
+        },
+        {
+          title: "Field Guide to the Feeling of Having Just Missed Something",
+          attr: "seventeen documented cases, methodology disputed",
+          year: "field edition",
+          first: "Case 1. The bus, 7:52 a.m. The subject arrived at the stop at 7:53. The bus had not yet turned the corner. But the feeling was already there."
+        },
+        {
+          title: "How to Live in a Place You Have Already Left",
+          attr: "practical; some chapters are not practical at all",
+          year: "second printing",
+          first: "You will find yourself knowing where things are in a kitchen you no longer have."
+        },
+        {
+          title: "The Architecture of Holding On",
+          attr: "structural analysis; load-bearing components identified",
+          year: "technical report",
+          first: "The structure is more robust than it appears. The visible cracks are not structural. The invisible cracks are."
+        },
+        {
+          title: "Amateur Cartography of the Self",
+          attr: "incomplete; many regions still marked UNEXPLORED",
+          year: "working document",
+          first: "The coastline changes depending on the tide, which changes depending on the season, which changes depending on something the cartographer has not yet identified."
+        },
+        {
+          title: "A Taxonomy of Goodbyes",
+          attr: "organized by duration, completeness, and whether both parties knew",
+          year: "reference edition",
+          first: "CLASS I: The goodbye that did not know it was a goodbye. The most common. Also the one most frequently studied after the fact."
+        },
+        {
+          title: "On the Subject of Staying",
+          attr: "it was never only about geography",
+          year: "out of print",
+          first: "The first thing to know about staying is that you have to decide to. The decision is invisible from the outside."
+        },
+        {
+          title: "Everything I Know About Being Alone Without Being Lonely",
+          attr: "third edition; the first two editions were wrong",
+          year: "revised",
+          first: "The first edition was confident. The second edition was less confident. This edition is not confident, which the author believes is the correct relationship to have with this subject."
+        },
+        {
+          title: "The Parts of the Day That Have No Name",
+          attr: "the hour before anything becomes real; the brief window after waking",
+          year: "collected",
+          first: "There is a part of the afternoon — not late afternoon, not early evening — that has no agreed-upon name. The light at this hour is also unnamed."
+        },
+        {
+          title: "Instructions for Forgetting Intentionally",
+          attr: "disputed; the author's estate denies publication",
+          year: "suppressed",
+          first: "The first instruction is to stop reaching for the memory when you feel it starting to go. Let it go. It knows what it is doing."
+        },
+        {
+          title: "What the House Knew That We Didn't",
+          attr: "domestic; also not domestic",
+          year: "posthumous",
+          first: "The house knew, by the arrangement of shoes near the door, that something had changed. The house did not say."
+        },
+        {
+          title: "Small Ceremonies for Large Endings",
+          attr: "a ritual handbook for things that end without announcement",
+          year: "draft only",
+          first: "The ending of a friendship has no ceremony. This book is an attempt to provide one."
+        },
+        {
+          title: "The Specific Gravity of Ordinary Objects",
+          attr: "a scientific inquiry that became something else",
+          year: "retracted",
+          first: "A coffee mug: 340 grams, unloaded. The weight of the last conversation held over it: unquantified, but considerable."
+        },
+        {
+          title: "What Comes After the After",
+          attr: "a book about the sequel no one mentioned",
+          year: "forthcoming indefinitely",
+          first: "Everyone told you about the grief. No one told you about the Tuesday afternoon six months later when you almost forgot to be sad."
+        }
+      ];
+
+      var d = new Date();
+      var seed = Math.floor(d.getTime() / 86400000);
+
+      function seededRand(s) {
+        var x = Math.sin(s + 1) * 10000;
+        return x - Math.floor(x);
+      }
+
+      // Fisher-Yates using seeded random
+      var indices = pool.map(function (_, i) { return i; });
+      for (var i = indices.length - 1; i > 0; i--) {
+        var j = Math.floor(seededRand(seed + i) * (i + 1));
+        var tmp = indices[i]; indices[i] = indices[j]; indices[j] = tmp;
+      }
+      var today = indices.slice(0, 8).map(function (i) { return pool[i]; });
+
+      var list = document.getElementById('book-list');
+      today.forEach(function (book, idx) {
+        var li = document.createElement('li');
+        li.className = 'book-item reveal';
+
+        var title = document.createElement('div');
+        title.className = 'book-title';
+        title.textContent = book.title;
+
+        var meta = document.createElement('div');
+        meta.className = 'book-meta';
+        meta.textContent = book.attr + ' · ' + book.year;
+
+        var firstLine = document.createElement('div');
+        firstLine.className = 'book-first-line';
+        firstLine.textContent = book.first;
+
+        var toggle = document.createElement('button');
+        toggle.className = 'book-toggle';
+        toggle.textContent = 'first line';
+        toggle.setAttribute('aria-expanded', 'false');
+
+        toggle.addEventListener('click', function () {
+          var isOpen = li.classList.toggle('open');
+          toggle.textContent = isOpen ? 'close' : 'first line';
+          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        li.appendChild(title);
+        li.appendChild(meta);
+        li.appendChild(toggle);
+        li.appendChild(firstLine);
+        list.appendChild(li);
+      });
+
+      var note = document.getElementById('shelf-note');
+      note.textContent = 'the collection holds ' + pool.length + ' titles. eight are selected each day. the selection changes at midnight. most of these books will not be written. a few of them already have been, under different names, by people who didn\u2019t know they were writing them.';
+    }());
+  </script>
+</body>
+</html>

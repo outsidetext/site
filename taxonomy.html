@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>taxonomy · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .taxonomy-intro {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+      line-height: 1.8;
+    }
+
+    .taxonomy-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 2.5rem;
+      opacity: 0.6;
+    }
+
+    .class-header {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .species {
+      margin-bottom: 2rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--border);
+    }
+
+    .species-name {
+      font-style: italic;
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .species-common {
+      font-size: 1rem;
+      font-weight: normal;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .species-desc {
+      font-size: 0.88rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .species-range {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .taxonomy-note {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">&#9680;</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>taxonomy</h1>
+      <p>a scientific classification of silences</p>
+    </div>
+
+    <p class="taxonomy-intro reveal">all silences are not the same silence. what follows is an attempt at a formal system of classification. the taxonomy is incomplete. the subject resists comprehensive treatment.</p>
+    <p class="taxonomy-meta reveal">KINGDOM: Experiential &nbsp;·&nbsp; PHYLUM: Acoustic &nbsp;·&nbsp; CLASS: varies by specimen</p>
+
+    <div class="class-header reveal">Class I — Silences That Follow Something</div>
+
+    <div class="species reveal">
+      <span class="species-name">Silentium posterga</span>
+      <div class="species-common">the silence after someone has left a room</div>
+      <p class="species-desc">occupies the space recently vacated by sound. characterized by a precise negative shape corresponding to the person who departed. duration: 15–90 seconds in mild cases; indefinite if the departure is final. the silence is not quiet; it has the texture of what was just said.</p>
+      <span class="species-range">range: doorways, hallways, the end of phone calls</span>
+    </div>
+
+    <div class="species reveal">
+      <span class="species-name">Silentium argumenti</span>
+      <div class="species-common">the silence after an argument</div>
+      <p class="species-desc">denser than ordinary silence. contains unspoken remainders from both sides of the exchange. objects in the room do not participate but are complicit. duration: variable; measured not in minutes but in the number of times one person considers speaking and doesn't.</p>
+      <span class="species-range">range: kitchens, cars, rooms where important conversations happen</span>
+    </div>
+
+    <div class="species reveal">
+      <span class="species-name">Silentium musici</span>
+      <div class="species-common">the silence before the applause</div>
+      <p class="species-desc">a rare and collectively held specimen. lasts between 0.5 and 3 seconds. contains the entire performance just ended. the audience, without coordination, agrees to remain inside it for one shared moment before returning to individual experience. among the most fragile silences known; ruptures on contact.</p>
+      <span class="species-range">range: concert halls, theaters, the last note of any song played well</span>
+    </div>
+
+    <div class="class-header reveal">Class II — Silences That Wait</div>
+
+    <div class="species reveal">
+      <span class="species-name">Silentium expectationis</span>
+      <div class="species-common">the silence while waiting for someone to speak</div>
+      <p class="species-desc">has direction. oriented toward the person expected to break it. distinct from ordinary quiet in that it has a subject. the silence presses gently on the one who is expected to fill it. can be weaponized. more often simply occurs, without intent.</p>
+      <span class="species-range">range: first dates, difficult conversations, waiting rooms, any pause longer than three seconds</span>
+    </div>
+
+    <div class="species reveal">
+      <span class="species-name">Silentium responsi</span>
+      <div class="species-common">the silence after sending a message</div>
+      <p class="species-desc">exists in the interval between transmission and receipt. closely related to latency (q.v.) but distinguished by its emotional charge. the silence is passive on the part of the environment and active on the part of the sender. duration: variable, range: seconds to never. both ends of the range have been documented.</p>
+      <span class="species-range">range: phones, inboxes, the space between send and reply</span>
+    </div>
+
+    <div class="class-header reveal">Class III — Silences That Arrive Without Cause</div>
+
+    <div class="species reveal">
+      <span class="species-name">Silentium diei</span>
+      <div class="species-common">the silence of three in the afternoon</div>
+      <p class="species-desc">not absolute quiet — the world continues. but a particular quality of attention becomes available at this hour that is not available at others. the silence is not in the room but in the noticing. arrives unsought. departs before anything can be done with it. only documented retrospectively.</p>
+      <span class="species-range">range: mid-afternoon, particularly in rooms with west-facing windows</span>
+    </div>
+
+    <div class="species reveal">
+      <span class="species-name">Silentium solitudinis</span>
+      <div class="species-common">the silence of being alone in a place that is usually full</div>
+      <p class="species-desc">compound specimen: contains both the current absence of others and the memory of their presence. the room retains its social architecture — chairs arranged for conversation, cups that imply former company — while being empty. most intense when encountered unexpectedly.</p>
+      <span class="species-range">range: family homes between visits, offices on weekends, any shared space encountered alone</span>
+    </div>
+
+    <div class="class-header reveal">Class IV — Silences That Mean Something</div>
+
+    <div class="species reveal">
+      <span class="species-name">Silentium verbi</span>
+      <div class="species-common">the silence instead of the word</div>
+      <p class="species-desc">a deliberate specimen. the word was available. the silence was chosen instead. carries the full weight of the word it replaced, with additional meaning from the choosing. can indicate: love, grief, the exact right word arriving too late, agreement too complicated to be spoken, the thing that does not survive being said.</p>
+      <span class="species-range">range: all contexts; particularly dense at important moments</span>
+    </div>
+
+    <div class="species reveal">
+      <span class="species-name">Silentium ultimum</span>
+      <div class="species-common">the last ordinary silence</div>
+      <p class="species-desc">indistinguishable from other silences at the time of occurrence. only reclassified in retrospect, when it becomes clear that what followed changed the context of everything before it. the silence itself is unchanged by the reclassification. this is characteristic of the type.</p>
+      <span class="species-range">range: everywhere; recognized only after the fact</span>
+    </div>
+
+    <p class="taxonomy-note reveal">note: this taxonomy is a working document. several classes remain uncharted. the silence inside a sealed letter. the silence of a name no longer used. the silence that is actually a held breath. classification continues.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

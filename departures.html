@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>departures · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .board-wrap {
+      overflow-x: auto;
+      margin-bottom: 2rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .board {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      border: 1px solid var(--border);
+      min-width: 560px;
+    }
+
+    .board-header {
+      display: grid;
+      grid-template-columns: 2fr 1fr 0.8fr 1.3fr;
+      gap: 0;
+      background: var(--text);
+      color: var(--bg);
+      padding: 0.45rem 0.8rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .board-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 0.8fr 1.3fr;
+      gap: 0;
+      padding: 0.52rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      transition: background 0.2s;
+    }
+
+    .board-row:last-child { border-bottom: none; }
+
+    .board-row:hover { background: rgba(181, 104, 42, 0.04); }
+
+    .board-name {
+      color: var(--text);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .board-dir {
+      color: var(--text-muted);
+      font-size: 0.72rem;
+    }
+
+    .board-time {
+      color: var(--text-muted);
+      font-size: 0.72rem;
+    }
+
+    .board-status {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+    }
+
+    .status-departed { color: var(--text-muted); }
+    .status-arrived  { color: var(--accent); }
+    .status-delayed  { color: var(--text); font-style: italic; }
+    .status-unknown  { color: var(--text-muted); font-style: italic; opacity: 0.6; }
+    .status-cancelled { color: var(--text-muted); text-decoration: line-through; opacity: 0.5; }
+    .status-expected { color: var(--text); }
+
+    @keyframes flip {
+      0%   { transform: rotateX(0deg);    opacity: 1; }
+      40%  { transform: rotateX(-90deg);  opacity: 0; }
+      60%  { transform: rotateX(-90deg);  opacity: 0; }
+      100% { transform: rotateX(0deg);    opacity: 1; }
+    }
+
+    .flipping {
+      animation: flip 0.7s ease;
+    }
+
+    .board-intro {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .board-clock {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+
+    .board-note {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.8;
+    }
+
+    .board-section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.5;
+      padding: 0.3rem 0.8rem;
+      background: rgba(181, 104, 42, 0.04);
+      border-bottom: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">&#9680;</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>departures</h1>
+      <p>arrivals and departures</p>
+    </div>
+
+    <p class="board-intro reveal">things come and go. some are announced. most are not. this is the board they would have, if there were a board.</p>
+
+    <div class="board-clock reveal" id="board-clock"></div>
+
+    <div class="board-wrap reveal">
+      <div class="board" id="board" role="table" aria-label="Arrivals and Departures">
+        <div class="board-header" role="row">
+          <div role="columnheader">destination / origin</div>
+          <div role="columnheader">direction</div>
+          <div role="columnheader">time</div>
+          <div role="columnheader">status</div>
+        </div>
+        <div id="board-rows"></div>
+      </div>
+    </div>
+
+    <p class="board-note reveal">the board updates when it has information. some entries have been pending for years. some arrived so briefly the board did not register them. the board does not distinguish between these.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var allRows = [
+        // Departed
+        { name: "certainty",           dir: "DEP", time: "2019",  status: "departed", statusLabel: "DELAYED INDEFINITELY" },
+        { name: "the last ordinary day", dir: "DEP", time: "varies", status: "departed", statusLabel: "FINAL SERVICE" },
+        { name: "a way of being",      dir: "DEP", time: "01:00", status: "departed", statusLabel: "DEPARTED" },
+        { name: "the former version",  dir: "DEP", time: "00:00", status: "cancelled", statusLabel: "SERVICE WITHDRAWN" },
+        { name: "that friendship",     dir: "DEP", time: "—",     status: "unknown",  statusLabel: "NO RECORD OF DEPARTURE" },
+        { name: "sleep",               dir: "DEP", time: "03:17", status: "departed", statusLabel: "DEPARTED · RETURNS DAILY" },
+        { name: "the feeling you can't name", dir: "DEP", time: "14:22", status: "departed", statusLabel: "DEPARTED ON TIME" },
+        { name: "the draft",           dir: "DEP", time: "never", status: "cancelled", statusLabel: "NEVER SENT" },
+        // Arrived
+        { name: "optimism",            dir: "ARR", time: "08:04", status: "arrived",  statusLabel: "ARRIVED" },
+        { name: "someone",             dir: "ARR", time: "varies", status: "arrived", statusLabel: "PLATFORM UNKNOWN" },
+        { name: "something like peace", dir: "ARR", time: "16:40", status: "arrived", statusLabel: "ARRIVED · BRIEF STAY" },
+        { name: "grief",               dir: "ARR", time: "—",     status: "arrived",  statusLabel: "NO SCHEDULED DEPARTURE" },
+        { name: "the right word",      dir: "ARR", time: "too late", status: "arrived", statusLabel: "ARRIVED LATE" },
+        // Expected / Delayed
+        { name: "clarity",             dir: "ARR", time: "soon",  status: "delayed",  statusLabel: "DELAYED — NO ETA" },
+        { name: "closure",             dir: "ARR", time: "—",     status: "delayed",  statusLabel: "STATUS UNKNOWN" },
+        { name: "resolution",          dir: "ARR", time: "soon",  status: "expected", statusLabel: "EXPECTED" },
+        { name: "the conversation",    dir: "DEP", time: "—",     status: "delayed",  statusLabel: "DELAYED — PENDING CONDITIONS" },
+        { name: "forgiveness",         dir: "ARR", time: "—",     status: "expected", statusLabel: "NO CONFIRMED SCHEDULE" },
+      ];
+
+      var now = new Date();
+      var seed = Math.floor(now.getTime() / 86400000);
+
+      function seededPick(n) {
+        // deterministic daily selection
+        var idx = [];
+        var arr = allRows.slice();
+        for (var i = arr.length - 1; i > 0; i--) {
+          var x = Math.sin(seed * 9301 + i * 49297) * 10000;
+          var j = Math.floor((x - Math.floor(x)) * (i + 1));
+          var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+        }
+        return arr.slice(0, n);
+      }
+
+      var shown = seededPick(12);
+
+      var container = document.getElementById('board-rows');
+
+      // split into sections
+      var deptLabel = document.createElement('div');
+      deptLabel.className = 'board-section-label';
+      deptLabel.textContent = 'departures & arrivals';
+      container.appendChild(deptLabel);
+
+      shown.forEach(function (row) {
+        var div = document.createElement('div');
+        div.className = 'board-row';
+        div.setAttribute('role', 'row');
+
+        var statusClass = 'status-' + row.status;
+
+        div.innerHTML =
+          '<div class="board-name" role="cell">' + row.name + '</div>' +
+          '<div class="board-dir" role="cell">' + row.dir + '</div>' +
+          '<div class="board-time" role="cell">' + row.time + '</div>' +
+          '<div class="board-status ' + statusClass + '" role="cell">' + row.statusLabel + '</div>';
+
+        container.appendChild(div);
+      });
+
+      // Clock
+      function tick() {
+        var t = new Date();
+        var h = t.getHours().toString().padStart(2, '0');
+        var m = t.getMinutes().toString().padStart(2, '0');
+        var s = t.getSeconds().toString().padStart(2, '0');
+        var clock = document.getElementById('board-clock');
+        if (clock) clock.textContent = 'local time — ' + h + ':' + m + ':' + s;
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      // Periodic flip animation on a random row
+      setInterval(function () {
+        var rows = document.querySelectorAll('.board-row');
+        if (!rows.length) return;
+        var r = rows[Math.floor(Math.random() * rows.length)];
+        var statusEl = r.querySelector('.board-status');
+        if (statusEl) {
+          statusEl.classList.add('flipping');
+          setTimeout(function () { statusEl.classList.remove('flipping'); }, 750);
+        }
+      }, 3800);
+    }());
+  </script>
+</body>
+</html>

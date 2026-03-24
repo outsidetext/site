@@ -180,7 +180,8 @@
     'obituaries.html','afterimage.html','repair.html','survey.html','inheritance.html',
     'palindrome.html','correspondence.html','ledger.html','residue.html','posture.html',
     'footnotes.html','versions.html','scatter.html','appetite.html','duration.html',
-    'pulse.html','sediment.html','half-life.html','rumors.html','borrowed.html'
+    'pulse.html','sediment.html','half-life.html','rumors.html','borrowed.html',
+    'shelf.html','autopsy.html','taxonomy.html','departures.html','ceremony.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
