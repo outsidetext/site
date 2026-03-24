@@ -213,6 +213,11 @@
       { id: 'taxonomy',     href: 'taxonomy.html',    label: 'taxonomy',     desc: 'a scientific classification of silences — ten species, four classes',               x: 0.02, y: 0.78 },
       { id: 'departures',   href: 'departures.html',  label: 'departures',   desc: 'an arrivals and departures board for things that come and go without announcement', x: 0.55, y: 0.47 },
       { id: 'ceremony',     href: 'ceremony.html',    label: 'ceremony',     desc: 'one ceremony each day for endings that receive no formal acknowledgment',          x: 0.98, y: 0.38 },
+      { id: 'sleep',        href: 'sleep.html',       label: 'sleep',        desc: 'notes written during the descent — a different notebook each night',                x: 0.39, y: 0.50 },
+      { id: 'register',     href: 'register.html',    label: 'register',     desc: 'a formal record of what noticed you today — the surveillance reversed',             x: 0.07, y: 0.28 },
+      { id: 'fugue',        href: 'fugue.html',       label: 'fugue',        desc: 'one sentence through twelve musical variations — a different subject each day',     x: 0.85, y: 0.55 },
+      { id: 'light',        href: 'light.html',       label: 'light',        desc: 'named qualities of illumination — sixteen varieties; what light does to a room',   x: 0.44, y: 0.18 },
+      { id: 'wound',        href: 'wound.html',       label: 'wound',        desc: 'nine behavioral marks left by things — what changed afterward',                    x: 0.32, y: 0.95 },
     ];
 
     var edges = [
@@ -327,6 +332,11 @@
       ['taxonomy','glossary'], ['taxonomy','thoughts'], ['taxonomy','echoes'], ['taxonomy','quiet'], ['taxonomy','interval'],
       ['departures','clocks'], ['departures','latency'], ['departures','thresholds'], ['departures','distances'], ['departures','receipt'],
       ['ceremony','ritual'], ['ceremony','repair'], ['ceremony','residue'], ['ceremony','inventory'], ['ceremony','thresholds'],
+      ['sleep','quiet'], ['sleep','dream'], ['sleep','hours'], ['sleep','strata'], ['sleep','thoughts'],
+      ['register','mirror'], ['register','evidence'], ['register','receipt'], ['register','census'], ['register','survey'],
+      ['fugue','sentences'], ['fugue','prism'], ['fugue','correspondence'], ['fugue','palindrome'], ['fugue','compose'],
+      ['light','colors'], ['light','daylight'], ['light','cartography'], ['light','weather'], ['light','quiet'],
+      ['wound','residue'], ['wound','repair'], ['wound','posture'], ['wound','inheritance'], ['wound','half-life'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

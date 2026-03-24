@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sleep · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .sleep-intro {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+    .sleep-entry {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      transition: opacity 0.3s;
+    }
+    .sleep-time {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .sleep-text {
+      line-height: 1.8;
+    }
+
+    /* Each stage gets progressively more dreamlike */
+    .stage-1 .sleep-text {
+      font-style: normal;
+      opacity: 1;
+      letter-spacing: 0;
+    }
+    .stage-2 .sleep-text {
+      font-style: italic;
+      opacity: 0.88;
+      letter-spacing: 0.01em;
+    }
+    .stage-3 .sleep-text {
+      font-style: italic;
+      opacity: 0.72;
+      letter-spacing: 0.03em;
+      line-height: 1.95;
+    }
+    .stage-4 .sleep-text {
+      font-style: italic;
+      opacity: 0.48;
+      letter-spacing: 0.06em;
+      line-height: 2.2;
+      font-size: 0.96em;
+    }
+
+    .stage-1 .sleep-time { opacity: 1; }
+    .stage-2 .sleep-time { opacity: 0.75; }
+    .stage-3 .sleep-time { opacity: 0.5; }
+    .stage-4 .sleep-time { opacity: 0.3; font-style: italic; }
+
+    .sleep-entry:last-child {
+      border-bottom: none;
+    }
+    .sleep-note {
+      margin-top: 3rem;
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>sleep</h1>
+      <p>notes written during the descent — a different notebook each night</p>
+    </div>
+
+    <p class="sleep-intro">These were found in the margin of other documents. The handwriting changes.</p>
+
+    <div id="sleep-entries"></div>
+
+    <p class="sleep-note">the notebook changes at midnight</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var notebooks = [
+      {
+        entries: [
+          { stage: 1, time: '10:52pm', text: 'The meeting today was exactly as long as it needed to be, which was too long. Someone used the phrase "going forward" eleven times. I counted because I needed something to count. The trains were delayed coming home. I had a good dinner anyway — the kind that makes you feel that the body is basically fine.' },
+          { stage: 2, time: '11:24pm', text: 'Left the window open and the room is cooler than I expected. Tomorrow I was going to — there was something. A form, or a call. The form. The window is making a small sound that might be the wind or might be the building. Not worrying about it. Just noting.' },
+          { stage: 3, time: 'later', text: 'The face of someone from school, very specific, who I have not thought about in years. The particular green of a door. Not my door. Someone\'s door. The sound of a drawer being closed in another room of a house that is not this house. The list can wait until morning. The list.' },
+          { stage: 4, time: '—', text: 'the hall which goes further than it should and the figure is fine it is not worrying and my hands are different sizes now which seems right and she is saying something important and then the word for the thing and then—' }
+        ]
+      },
+      {
+        entries: [
+          { stage: 1, time: '11:08pm', text: 'Rain from about six until nine. Not heavy. I watched it for a while from the kitchen. There is a kind of tiredness that feels earned and I have it tonight. Read some of the article I have been meaning to read. Finished it. It was good. Did not change my life but was worth reading.' },
+          { stage: 2, time: '11:41pm', text: 'The rain has stopped. I think I checked the stove. I did check it. The article was about — something being documented, somewhere, that has been going on for a long time. The tiredness is really quite good. The window is fogged slightly on the inside.' },
+          { stage: 3, time: 'not sure', text: 'Through the frosted glass the street has colors it doesn\'t normally have. A sentence that begins with my name, which is strange because no one is here to say it. Numbers I don\'t recognize but they\'re not alarming, they\'re just numbers, and one of them is the answer to something I asked before I knew what the question was.' },
+          { stage: 4, time: '—', text: 'the room which is blue and also the corridor and she is explaining the most important thing and I know it matters and I know I am about to understand it and then—' }
+        ]
+      },
+      {
+        entries: [
+          { stage: 1, time: '10:37pm', text: 'Stayed later than I meant to. The light was different on the way home — the particular amber that means autumn is actually arriving. Ran into someone I know slightly, had a brief pleasant conversation, both of us clearly relieved when it was over in the friendly way. Ate standing up. Good enough.' },
+          { stage: 2, time: '11:19pm', text: 'The book is right there and I am not going to pick it up. Tomorrow: the appointment at — what time. I set a reminder. The amber light was very specific, like something had been spilled across the sky and was drying. Should sleep. Noting that I should sleep.' },
+          { stage: 3, time: 'late', text: 'A library but the books are filed by texture. The small stone I picked up once from somewhere and kept and then lost — there it is, on the shelf that is also a window. A voice I recognize but cannot assign to a face. The appointment is fine. I know where it is. The stone.' },
+          { stage: 4, time: '—', text: 'the texture of the light which is the texture of the sound and the stone is in my pocket and the pocket is also something I have been trying to explain and I almost have it and then—' }
+        ]
+      },
+      {
+        entries: [
+          { stage: 1, time: '11:30pm', text: 'Productive day by most measures. Finished the thing I had been putting off. The relief of finishing it is already becoming the knowledge that there is more of the same thing. Still. Finished. Called someone I had been meaning to call. It was good. The sky tonight is very clear.' },
+          { stage: 2, time: '11:58pm', text: 'Clear sky means cold. Not worrying about the cold. The call was — good, like I said. There was a part where we both laughed at the same moment, which is the thing about talking to someone you have known for a long time. The thing I finished is finished. I am going to remember that tomorrow.' },
+          { stage: 3, time: 'around midnight', text: 'The map of somewhere I have never been but I know it perfectly, every road, the particular smell of the third intersection from the water. An animal — a heron, I think — standing very still in a room that is also an airport. The laughter again, from the call, but earlier and different, from before I knew the person.' },
+          { stage: 4, time: '—', text: 'the road keeps arriving from the left and the heron is fine and the cold clear thing is also a feeling I had once at about three in the afternoon and then—' }
+        ]
+      },
+      {
+        entries: [
+          { stage: 1, time: '10:44pm', text: 'Did not sleep enough last night so tonight should be easier. The new month has started and I am still thinking of it as the old month. Someone at work asked me something I did not know the answer to and I said I would find out and I should find out tomorrow. Made a note. Lost the note. Will make another.' },
+          { stage: 2, time: '11:21pm', text: 'The note is in one of several places. I am not worried about the note. The month is the month it is. It is always a little strange when months change, like a small administrative adjustment to the world. The question I did not know the answer to — I think I do know, actually. I will say it tomorrow.' },
+          { stage: 3, time: 'later, I think', text: 'The administrative office which is also the room I grew up in, and this is fine, this is just how rooms work. The answer to the question is a number, or possibly a name, or possibly the smell of bread. Someone is filing something carefully. The cabinet goes down further than it should and that\'s where the note is.' },
+          { stage: 4, time: '—', text: 'the note is in the place that is also the answer and the month is a color I know and the filing continues below and further and the smell of bread and then—' }
+        ]
+      },
+      {
+        entries: [
+          { stage: 1, time: '11:17pm', text: 'Walked further than I planned today because the weather was doing something interesting. A kind of light before rain that is almost violet at the edges. The city was loud and then suddenly quiet in that way it gets on certain afternoons. I thought about someone I have not thought about in a long time. Just a passing thought. Just passing.' },
+          { stage: 2, time: '11:49pm', text: 'The violet was very specific. I wish I knew more color names. The thought about the person was — fine. Just a thought. Not weighted. The quiet in the city had a texture to it, like something was about to be said and then wasn\'t. I walked all the way to the water before I turned back.' },
+          { stage: 3, time: 'not sure anymore', text: 'The water which is also a street which is also a ceiling and I am looking up at the water. The person from the passing thought is there but I cannot see their face, only the specific way they moved, the particular speed. The violet light is a sound here. Very clear. Very specific.' },
+          { stage: 4, time: '—', text: 'the water above and the sound which is violet and the way the person moved which I know perfectly and then—' }
+        ]
+      },
+      {
+        entries: [
+          { stage: 1, time: '10:28pm', text: 'Early night by choice. Everything was generally fine today, which is not nothing. The kind of day that won\'t be remembered but that nevertheless happened, with its own specific light and its own small accumulations. I ate well. I was kind, mostly. I did not break anything.' },
+          { stage: 2, time: '10:59pm', text: 'The specific light today had a lot of silver in it, like winter thinking about arriving. The accumulations: a small kindness, a task completed, a conversation that didn\'t go wrong. The window tonight is dark and I can see my reflection very faintly and it is moving in a way that seems reasonable.' },
+          { stage: 3, time: 'early for me', text: 'The reflection which is also a door which is also a photograph of a version of this room from a different time. The winter-light is here too. Someone is describing the accumulations in a voice I can almost hear. The task was — the task was a good task. I know I finished it.' },
+          { stage: 4, time: '—', text: 'the silver which accumulates and the door which is the photograph of the reflection and the good task which I did and the voice describing it and then—' }
+        ]
+      }
+    ];
+
+    var d = new Date();
+    var dayIndex = Math.floor(d.getTime() / 86400000) % notebooks.length;
+    var notebook = notebooks[dayIndex];
+
+    var container = document.getElementById('sleep-entries');
+    notebook.entries.forEach(function (entry) {
+      var div = document.createElement('div');
+      div.className = 'sleep-entry stage-' + entry.stage + ' reveal';
+      div.innerHTML =
+        '<span class="sleep-time">' + entry.time + '</span>' +
+        '<p class="sleep-text">' + entry.text + '</p>';
+      container.appendChild(div);
+    });
+  })();
+  </script>
+</body>
+</html>

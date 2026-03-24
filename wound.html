@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wound · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .wound-intro {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+    .wound-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .wound-entry:last-child {
+      border-bottom: none;
+    }
+    .wound-number {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .wound-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .wound-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .wound-field {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 0.4em;
+    }
+    .wound-field-label {
+      opacity: 0.55;
+    }
+    .wound-class {
+      color: var(--accent);
+      opacity: 0.8;
+    }
+    .wound-note {
+      margin-top: 3rem;
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      font-style: italic;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>wound</h1>
+      <p>nine marks left by things — not injuries, but the behavioral changes that remain</p>
+    </div>
+
+    <p class="wound-intro">Not what happened. Only what it changed. The cause is not listed. The mark is.</p>
+
+    <div class="wound-entry reveal">
+      <span class="wound-number">I.</span>
+      <p class="wound-text">A particular meal is no longer ordered. Not because it is disliked, exactly, but because of the specific context in which it was last eaten, which became attached to the meal itself, irrevocably, in the way that certain foods absorb their circumstances. The meal is otherwise fine. It is simply no longer available.</p>
+      <div class="wound-meta">
+        <div class="wound-field"><span class="wound-field-label">duration:</span> persistent, years</div>
+        <div class="wound-field"><span class="wound-field-label">classification:</span> <span class="wound-class">permanent</span></div>
+      </div>
+    </div>
+
+    <div class="wound-entry reveal">
+      <span class="wound-number">II.</span>
+      <p class="wound-text">A particular word has become unusable. Not because the word is bad, but because of who used it and how they used it, and what was happening when they used it. The word is common. It appears in ordinary conversation. Each appearance requires a small internal adjustment, an almost imperceptible flinch, which passes quickly enough.</p>
+      <div class="wound-meta">
+        <div class="wound-field"><span class="wound-field-label">duration:</span> approximately four years</div>
+        <div class="wound-field"><span class="wound-field-label">classification:</span> <span class="wound-class">fading</span></div>
+      </div>
+    </div>
+
+    <div class="wound-entry reveal">
+      <span class="wound-number">III.</span>
+      <p class="wound-text">A gesture that was once made without thinking — a way of holding one's arm, a habitual touch — is no longer made. Not prohibited, not suppressed by effort, but simply no longer available as a gesture. The body removed it quietly, without announcement, and the space it occupied has been smoothed over.</p>
+      <div class="wound-meta">
+        <div class="wound-field"><span class="wound-field-label">duration:</span> since roughly that year</div>
+        <div class="wound-field"><span class="wound-field-label">classification:</span> <span class="wound-class">permanent</span></div>
+      </div>
+    </div>
+
+    <div class="wound-entry reveal">
+      <span class="wound-number">IV.</span>
+      <p class="wound-text">A particular route through the city is no longer taken. Other routes serve the same functional purpose. The change is not acknowledged — there is no moment of decision to avoid the street — but whenever navigation is considered, the route simply does not appear as an option. The city has reorganized itself slightly, quietly, around a point that is no longer neutral.</p>
+      <div class="wound-meta">
+        <div class="wound-field"><span class="wound-field-label">duration:</span> ongoing, two years</div>
+        <div class="wound-field"><span class="wound-field-label">classification:</span> <span class="wound-class">stable</span></div>
+      </div>
+    </div>
+
+    <div class="wound-entry reveal">
+      <span class="wound-number">V.</span>
+      <p class="wound-text">The ability to fall asleep quickly — a capacity once taken entirely for granted — is no longer reliably present. The change was gradual enough that there was no moment of noticing it go. What is left is a new relationship to the twenty minutes before sleep: a duration that now has texture, that requires management, that was not there before.</p>
+      <div class="wound-meta">
+        <div class="wound-field"><span class="wound-field-label">duration:</span> several years</div>
+        <div class="wound-field"><span class="wound-field-label">classification:</span> <span class="wound-class">transformed</span></div>
+      </div>
+    </div>
+
+    <div class="wound-entry reveal">
+      <span class="wound-number">VI.</span>
+      <p class="wound-text">A certain song cannot be listened to alone. In company it is fine, or nearly fine — the social context provides enough insulation. Alone it produces something that is not quite sadness, not quite the original feeling, but something that occupies the same space: a condensed version, a residue. It is not avoided. It is simply scheduled.</p>
+      <div class="wound-meta">
+        <div class="wound-field"><span class="wound-field-label">duration:</span> persistent</div>
+        <div class="wound-field"><span class="wound-field-label">classification:</span> <span class="wound-class">managed</span></div>
+      </div>
+    </div>
+
+    <div class="wound-entry reveal">
+      <span class="wound-number">VII.</span>
+      <p class="wound-text">A certain kind of confidence — specifically, the confidence involved in beginning something large without knowing how it ends — was diminished by an event that could not be reversed. The full capacity has not returned. What has replaced it is more careful, which is not the same as worse, but is different, and the difference is felt in particular moments, when the original version would have simply proceeded.</p>
+      <div class="wound-meta">
+        <div class="wound-field"><span class="wound-field-label">duration:</span> ongoing</div>
+        <div class="wound-field"><span class="wound-field-label">classification:</span> <span class="wound-class">partially restored</span></div>
+      </div>
+    </div>
+
+    <div class="wound-entry reveal">
+      <span class="wound-number">VIII.</span>
+      <p class="wound-text">The ease with which a particular person's name was once said — a certain unconscious fluency — no longer exists. The name now requires a fraction of a second of consideration before it can be spoken. Not reluctance. Not aversion. Something more like a small load-bearing structure added between the impulse and the word, which was not there before.</p>
+      <div class="wound-meta">
+        <div class="wound-field"><span class="wound-field-label">duration:</span> diminishing, slowly</div>
+        <div class="wound-field"><span class="wound-field-label">classification:</span> <span class="wound-class">fading</span></div>
+      </div>
+    </div>
+
+    <div class="wound-entry reveal">
+      <span class="wound-number">IX.</span>
+      <p class="wound-text">A kind of carefulness, not present before, arrived at some point after, and has not left. It is not fear, precisely. It is the knowledge that certain things are possible, held in the body as a kind of low-level readiness, which is also a kind of distance from the state of not yet knowing that they are possible. The carefulness is not a wound. It is what the wound made, out of what was left.</p>
+      <div class="wound-meta">
+        <div class="wound-field"><span class="wound-field-label">duration:</span> permanent</div>
+        <div class="wound-field"><span class="wound-field-label">classification:</span> <span class="wound-class">integrated</span></div>
+      </div>
+    </div>
+
+    <div class="wound-note">
+      these nine are representative, not exhaustive · the causes are intentionally omitted — the shape of the change is more durable than the event · see also: <a href="residue.html" style="color:var(--accent);text-decoration:none">residue</a> · <a href="repair.html" style="color:var(--accent);text-decoration:none">repair</a> · <a href="half-life.html" style="color:var(--accent);text-decoration:none">half-life</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

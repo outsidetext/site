@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>light · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .light-intro {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 3rem;
+    }
+    .light-entry {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .light-entry:last-child {
+      border-bottom: none;
+    }
+    .light-swatch {
+      width: 100px;
+      height: 100px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+    .light-name {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+    .light-body {
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+    }
+    .light-effects {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .light-effect {
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      display: flex;
+      gap: 0.5em;
+    }
+    .light-effect-label {
+      opacity: 0.55;
+      flex-shrink: 0;
+    }
+    .light-note {
+      margin-top: 3rem;
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+    }
+    @media (max-width: 580px) {
+      .light-entry {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .light-swatch {
+        height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>light</h1>
+      <p>named qualities of illumination — sixteen varieties, twelve shown each day</p>
+    </div>
+
+    <p class="light-intro">Not colors, exactly. The quality of light itself — what it does to a room, and to a person in that room. These are distinct things.</p>
+
+    <div id="light-entries" class="reveal"></div>
+
+    <p class="light-note">the selection changes daily · see <a href="colors.html" style="color:var(--accent);text-decoration:none">colors</a> for named feelings by pigment</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var lights = [
+      {
+        name: 'the blue before snow',
+        swatch: 'linear-gradient(160deg, #b8c8d8 0%, #9aadbe 50%, #7d99ad 100%)',
+        body: 'The particular blue-grey that settles over the world in the hour before snow — not cloud cover, not twilight, but its own distinct quality. The sky is neither dark nor bright. The air seems to have density, a substance to it. Objects lose some of their shadow.',
+        onRoom: 'makes the room feel held — enclosed by something larger that is making a decision',
+        onPerson: 'produces a specific stillness; an expectation; the suspension of ordinary thinking'
+      },
+      {
+        name: 'hospital light',
+        swatch: 'linear-gradient(160deg, #e8eef2 0%, #d8e4ea 50%, #c5d6de 100%)',
+        body: 'The fluorescent white of clinical spaces — slightly too bright, slightly too blue, with no warmth and no shadow. It makes everything equally visible, which is not the same as making anything clear. It exists in a category beyond preference.',
+        onRoom: 'flattens all surfaces; removes the variations that make a space feel inhabited',
+        onPerson: 'produces a specific vulnerability; all pretense becomes expensive to maintain'
+      },
+      {
+        name: 'lamp in fog',
+        swatch: 'linear-gradient(160deg, #d4c89a 0%, #c4b580 50%, #b8a86e 100%)',
+        body: 'The particular yellow of a lamp seen through fog — diffused, haloed, warming the moisture in the air rather than the objects beyond it. The light does not travel far. It offers what it has and is absorbed. It has an old quality, as if from a painting.',
+        onRoom: 'makes the interior feel complete; sufficient; the room becomes everything there is',
+        onPerson: 'something like comfort, though with a melancholic edge; reminiscent of something not quite accessible'
+      },
+      {
+        name: 'direct noon',
+        swatch: 'linear-gradient(160deg, #f5f0e0 0%, #ede6ca 50%, #e8e0be 100%)',
+        body: 'The light of direct midday sun — clear, warm, without angle, making shadows small and vertical. It is honest light. It has no agenda. It illuminates the dust on surfaces and the disorder of unmade things. Nothing is hidden.',
+        onRoom: 'reveals the room as it actually is; removes atmosphere; requires the room to be sufficient without it',
+        onPerson: 'produces clarity that can be uncomfortable; the productive version of being seen'
+      },
+      {
+        name: 'window light in winter',
+        swatch: 'linear-gradient(160deg, #c8d4dc 0%, #b2c2cc 50%, #9eaeb8 100%)',
+        body: 'The cold, precise light of winter sun through glass — bright but not warm, revealing the grain of wood and the texture of fabric in a way summer light does not. It enters at an angle and moves slowly across the floor. It does not stay.',
+        onRoom: 'creates distinct areas of light and shadow; makes the room feel structured, divided',
+        onPerson: 'sharpens attention; the quality associated with solitude that is chosen rather than imposed'
+      },
+      {
+        name: 'the orange before dusk',
+        swatch: 'linear-gradient(160deg, #d4834a 0%, #c4703a 50%, #b86030 100%)',
+        body: 'The orange that arrives in the last hour of direct light — raking, warm, making long shadows, turning ordinary things gold. This is the light that makes people stop walking and look. It lasts approximately twelve minutes before becoming something else.',
+        onRoom: 'transforms the room dramatically; makes it feel significant, specific, chosen',
+        onPerson: 'produces something close to gratitude; the awareness of the present as a thing worth noticing'
+      },
+      {
+        name: 'streetlight on wet pavement',
+        swatch: 'linear-gradient(160deg, #3a4a5a 0%, #2e3d4d 50%, #263542 100%)',
+        body: 'The amber-orange reflections on wet asphalt at night — not the light itself, but what it makes of the surface it lands on. The road becomes something alive, with depth and shimmer, suggesting another city below this one. The effect lasts as long as the wet does.',
+        onRoom: 'does not appear in rooms, only in what can be seen through windows; makes exterior space theatrical',
+        onPerson: 'produces a willingness to be out in weather; the romance of the inconvenient'
+      },
+      {
+        name: 'a single lamp in a dark room',
+        swatch: 'linear-gradient(160deg, #7a5c30 0%, #6a4c20 50%, #5a3c14 100%)',
+        body: 'The contained warmth of a single source in an otherwise dark room — everything beyond its radius becoming the color of rest. The lamp makes a world of its own. There is a specific quality to reading by one lamp in a dark room.',
+        onRoom: 'creates an island; divides the room into the lit and the unlit, each with its own nature',
+        onPerson: 'produces focus; the sensation of being exactly where one has chosen to be; a manageable world'
+      },
+      {
+        name: 'light through curtains',
+        swatch: 'linear-gradient(160deg, #e8dcc8 0%, #d8c8b0 50%, #caba9c 100%)',
+        body: 'Daylight that has passed through cloth — diffused, even, without directionality or shadow. This is the light of slow mornings, of the hour before getting up. It is not the light of the sun, exactly, but a memory of it, made gentle.',
+        onRoom: 'makes the room feel private; the outside world present but held at a comfortable distance',
+        onPerson: 'the quality associated with gradual waking; with not yet having to decide anything'
+      },
+      {
+        name: 'candlelight',
+        swatch: 'linear-gradient(160deg, #c8843a 0%, #b8702a 50%, #a85e1e 100%)',
+        body: 'Firelight, technically, of the smallest variety — warm, flickering, incapable of illuminating a room but capable of illuminating a face. The light moves constantly, which makes everything it touches appear to move also. It is very old.',
+        onRoom: 'makes the room feel temporary; a choice; a small event occurring within the larger dark',
+        onPerson: 'reduces the social distance between people; the face by candlelight shows its structure clearly; good for honesty'
+      },
+      {
+        name: 'overcast daylight',
+        swatch: 'linear-gradient(160deg, #b8bec4 0%, #a8b0b6 50%, #9aa2a8 100%)',
+        body: 'The flat, directionless light of a fully overcast sky — equal illumination from no particular angle, no shadow, no warmth. This is perhaps the most common light, the one most people spend most of their time in. It asks nothing.',
+        onRoom: 'reveals the room in its most honest state; no drama; no enhancement',
+        onPerson: 'neutral, functional; sometimes described as melancholic, though it may simply be accurate'
+      },
+      {
+        name: 'the light at 4am',
+        swatch: 'linear-gradient(160deg, #1a2030 0%, #141828 50%, #101420 100%)',
+        body: 'The quality of dark in the deepest part of the night — not black, but a particular blue-dark that contains the knowledge of eventual morning. It is the light of insomnia and late work and the city\'s quietest hour. Everything outdoors is visible but not quite real.',
+        onRoom: 'makes the room feel like the only room; the rest of the world in suspension',
+        onPerson: 'removes social performance entirely; produces either dread or a specific clarity'
+      },
+      {
+        name: 'forest light, midday',
+        swatch: 'linear-gradient(160deg, #6a8c5a 0%, #5a7a4a 50%, #4e6c3e 100%)',
+        body: 'Sunlight filtered through a canopy of leaves — fractured into patches, green-tinted, moving with the wind. The effect is dappled, complex, suggesting a kind of privacy. It is light that has been transformed by passing through something living.',
+        onRoom: 'cannot occur in rooms, only remembered; the quality associated with specific outdoor places',
+        onPerson: 'produces a physiological calm; the sense of being safely contained within a larger system'
+      },
+      {
+        name: 'screen glow',
+        swatch: 'linear-gradient(160deg, #3a4a6a 0%, #2e3c5c 50%, #263250 100%)',
+        body: 'The blue-white light of a screen in a dark room — cold, consistent, emanating from the thing itself rather than reflecting from it. It lights the face from below, from the front, from angles that daylight never produces. It is a recent kind of light, geologically speaking.',
+        onRoom: 'makes the rest of the room disappear; the room becomes a surround for the screen',
+        onPerson: 'makes the face look slightly wrong to others; to oneself it is simply the condition of being attended to something'
+      },
+      {
+        name: 'the light just after rain',
+        swatch: 'linear-gradient(160deg, #9ab8a8 0%, #88a896 50%, #789a88 100%)',
+        body: 'The particular quality of light immediately after rainfall — the sky still bright but everything washed, the air carrying a silvery clarity, surfaces reflecting more than usual. Colors are more saturated, somehow, despite the grey.',
+        onRoom: 'not a room light, but the quality of looking out through a window at it; the outside world refreshed',
+        onPerson: 'produces a reset quality; a sense of mild beginning; something cleared'
+      },
+      {
+        name: 'afternoon light in a familiar room',
+        swatch: 'linear-gradient(160deg, #d4b87a 0%, #c4a464 50%, #b89050 100%)',
+        body: 'The warm angle of late-afternoon sun in a room that you know well — striking the same patch of floor it has always struck at this hour, turning that corner golden, lasting until it doesn\'t. This light is not special except that you have seen it many times.',
+        onRoom: 'makes the room feel known; continuous; the same room that has been this room for a long time',
+        onPerson: 'the quality most associated with home, regardless of where home is or was'
+      }
+    ];
+
+    function seededShuffle(arr, seed) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+        var j = Math.abs(seed) % (i + 1);
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    }
+
+    var d = new Date();
+    var daySeed = Math.floor(d.getTime() / 86400000);
+    var shuffled = seededShuffle(lights, daySeed);
+    var shown = shuffled.slice(0, 12);
+
+    var container = document.getElementById('light-entries');
+    shown.forEach(function (light) {
+      var div = document.createElement('div');
+      div.className = 'light-entry';
+      div.innerHTML =
+        '<div class="light-swatch" style="background:' + light.swatch + ';"></div>' +
+        '<div class="light-body-wrap">' +
+          '<div class="light-name">' + light.name + '</div>' +
+          '<div class="light-body">' + light.body + '</div>' +
+          '<div class="light-effects">' +
+            '<div class="light-effect"><span class="light-effect-label">on a room:</span>' + light.onRoom + '</div>' +
+            '<div class="light-effect"><span class="light-effect-label">on a person:</span>' + light.onPerson + '</div>' +
+          '</div>' +
+        '</div>';
+      container.appendChild(div);
+    });
+  })();
+  </script>
+</body>
+</html>

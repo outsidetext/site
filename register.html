@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>register · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .register-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .register-entry {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .register-entry:last-child {
+      border-bottom: none;
+    }
+    .reg-who {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .reg-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 0.4rem;
+    }
+    .reg-detail {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+    .reg-detail span {
+      color: var(--text-muted);
+      opacity: 0.6;
+      margin-right: 0.3em;
+    }
+    .reg-note {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.45rem;
+      line-height: 1.55;
+    }
+    .register-footer {
+      margin-top: 3rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>register</h1>
+      <p>a formal record of what noticed you today — not what you noticed</p>
+    </div>
+
+    <p class="register-meta">compiled daily · entries selected from the full record · some observers redacted by request</p>
+
+    <div id="register-entries" class="reveal"></div>
+
+    <div class="register-footer reveal">
+      <p>total observers on file: 30 · shown today: 12 · methodology: passive observation, no contact made · this register is not exhaustive</p>
+      <p>some things that noticed you are not listed here because they have no mechanism for reporting</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var allEntries = [
+      {
+        who: 'a sparrow on the railing outside, briefly',
+        time: '8:14am',
+        duration: '0.4 seconds',
+        note: 'not food, not threat — a moving thing assessed and released from attention.'
+      },
+      {
+        who: 'the algorithm',
+        time: 'all day',
+        duration: 'ongoing',
+        note: 'intent inferred from patterns. an offer is being prepared. it has not yet been presented.'
+      },
+      {
+        who: 'your reflection in a darkened shop window',
+        time: '1:17pm',
+        duration: '2 seconds',
+        note: 'a version of you, in motion. consistent with expectations.'
+      },
+      {
+        who: 'a child on the morning train, age approximately four',
+        time: '8:42am',
+        duration: '30 seconds',
+        note: 'another person present and moving — catalogued, evaluated as non-alarming, filed.'
+      },
+      {
+        who: 'the notification that arrived as you were almost asleep',
+        time: '11:58pm',
+        duration: '1 second',
+        note: 'registered briefly. discarded. the window of opportunity: unclear.'
+      },
+      {
+        who: 'the particular door of a particular building you pass each morning',
+        time: '8:33am',
+        duration: 'unregistered',
+        note: 'position noted. passage noted. the door records this without storing it.'
+      },
+      {
+        who: 'a friend who remembered something about you correctly',
+        time: '2:10pm',
+        duration: 'a conversation',
+        note: 'you, specifically, and with some accuracy. fondly.'
+      },
+      {
+        who: 'the motion sensor at the entrance to the building',
+        time: '8:01am',
+        duration: '0.1 seconds',
+        note: 'motion detected. door opened. no further note.'
+      },
+      {
+        who: 'a person at a café who looked up when you sat down',
+        time: '11:05am',
+        duration: '3 seconds',
+        note: 'arrived. assessed. not the expected person. returned to reading.'
+      },
+      {
+        who: 'the part of you that watches the rest of you',
+        time: 'always',
+        duration: 'continuous',
+        note: 'present. observing. does not have an off state.'
+      },
+      {
+        who: 'your childhood home (remotely, structurally)',
+        time: 'continuous',
+        duration: 'ongoing, years',
+        note: 'still holds the particular weight of you in certain rooms. some memory is load-bearing.'
+      },
+      {
+        who: 'a dog behind a fence, briefly',
+        time: '4:50pm',
+        duration: '5 seconds',
+        note: 'person approaching. assessed. passed. the barking was procedural.'
+      },
+      {
+        who: 'the person you nearly called but didn\'t',
+        time: '7:22pm',
+        duration: 'the duration of the almost',
+        note: 'they did not notice you, but the almost-noticing went in one direction.'
+      },
+      {
+        who: 'the camera above the ATM',
+        time: '12:44pm',
+        duration: '18 seconds',
+        note: 'transaction recorded. face recorded. filed. you were not the subject of interest.'
+      },
+      {
+        who: 'a spider in the corner of the ceiling',
+        time: '9:30pm',
+        duration: '0 seconds (no vibration detected)',
+        note: 'no contact with the web. no report filed. you were not within range.'
+      },
+      {
+        who: 'someone on the other side of a wall, briefly',
+        time: '3:15pm',
+        duration: 'a sentence',
+        note: 'your footstep registered as a sound. they adjusted their position slightly. that was all.'
+      },
+      {
+        who: 'the nurse who called your name in the waiting room last Tuesday',
+        time: 'last week but recurring',
+        duration: 'retrospectively, still',
+        note: 'your name, said by a stranger, in a clinical voice — a particular kind of being seen.'
+      },
+      {
+        who: 'an old photograph of you in someone else\'s home',
+        time: 'this morning (the photograph continues)',
+        duration: 'ongoing',
+        note: 'a younger version, in a room you haven\'t thought of in years. still noticed by anyone who passes.'
+      },
+      {
+        who: 'the city at large',
+        time: 'all day',
+        duration: 'the duration of your presence in it',
+        note: 'you displaced air. you added to the ambient noise. the city registered none of this deliberately and all of it passively.'
+      },
+      {
+        who: 'a colleague who was about to say something and then didn\'t',
+        time: '10:48am',
+        duration: 'the pause before the unsaid thing',
+        note: 'you were the reason for the pause. the thing that wasn\'t said was about you, or near you.'
+      },
+      {
+        who: 'a crow on a telephone wire overhead',
+        time: '5:12pm',
+        duration: '2 seconds',
+        note: 'crows track faces. this one has seen you before. it has a record.'
+      },
+      {
+        who: 'the browser you have not closed in six days',
+        time: 'continuously',
+        duration: 'six days and counting',
+        note: 'forty-three tabs. you, deferred, in forty-three directions.'
+      },
+      {
+        who: 'a tree you walk past that has been there longer than you have',
+        time: '8:30am and 6:40pm',
+        duration: 'two brief passings',
+        note: 'the tree does not notice anything. and yet you looked.'
+      },
+      {
+        who: 'the unread message from three weeks ago',
+        time: 'whenever you think of it',
+        duration: 'three weeks and recurring',
+        note: 'noticed from a distance, by someone who is waiting, who has not stopped waiting.'
+      },
+      {
+        who: 'the version of yourself from seven years ago',
+        time: 'retroactively',
+        duration: 'permanent',
+        note: 'that version is watching the current one from its fixed point in time, taking notes, confused about some of the decisions.'
+      },
+      {
+        who: 'a pigeon that almost walked into your path',
+        time: '12:02pm',
+        duration: '0.8 seconds',
+        note: 'you were an obstacle. successfully avoided. the pigeon has already forgotten.'
+      },
+      {
+        who: 'a stranger who used to know you',
+        time: 'this afternoon, at a distance',
+        duration: 'they were not sure',
+        note: 'someone thought they recognized you and then wasn\'t certain. they did not approach. the recognition sat with them briefly.'
+      },
+      {
+        who: 'the record of your purchases (the data, not anyone looking at it)',
+        time: 'continuously',
+        duration: 'years',
+        note: 'a pattern. consistent preferences with small variations that the pattern has already predicted.'
+      },
+      {
+        who: 'the cat in the window of the house on the corner',
+        time: '6:38pm',
+        duration: '4 seconds',
+        note: 'you passed below. the cat tracked the motion. assessed. returned to stillness. no report.'
+      },
+      {
+        who: 'whatever it is that knows when you are about to cry before you do',
+        time: 'twice today',
+        duration: 'ahead of you',
+        note: 'it does not announce itself. it noticed before you did. it is not alarmed. it has seen this before.'
+      }
+    ];
+
+    function seededShuffle(arr, seed) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+        var j = Math.abs(seed) % (i + 1);
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    }
+
+    var d = new Date();
+    var daySeed = Math.floor(d.getTime() / 86400000);
+    var shuffled = seededShuffle(allEntries, daySeed);
+    var shown = shuffled.slice(0, 12);
+
+    var container = document.getElementById('register-entries');
+    shown.forEach(function (entry) {
+      var div = document.createElement('div');
+      div.className = 'register-entry';
+      div.innerHTML =
+        '<div class="reg-who">' + entry.who + '</div>' +
+        '<div class="reg-details">' +
+          '<div class="reg-detail"><span>at</span>' + entry.time + '</div>' +
+          '<div class="reg-detail"><span>for</span>' + entry.duration + '</div>' +
+        '</div>' +
+        '<div class="reg-note">' + entry.note + '</div>';
+      container.appendChild(div);
+    });
+  })();
+  </script>
+</body>
+</html>

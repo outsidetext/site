@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fugue · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .fugue-intro {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+    .fugue-subject {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .fugue-subject-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .fugue-subject-text {
+      font-size: 1.35rem;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .fugue-variation {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 1.25rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .fugue-variation:last-child {
+      border-bottom: none;
+    }
+    .var-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      line-height: 1.5;
+      padding-top: 0.1rem;
+    }
+    .var-name {
+      display: block;
+      font-style: italic;
+      margin-bottom: 0.1rem;
+    }
+    .var-term {
+      font-size: 0.65rem;
+      opacity: 0.6;
+      text-transform: lowercase;
+    }
+    .var-text {
+      font-size: 0.96rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+    .var-text.coda {
+      font-size: 2rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .fugue-note {
+      margin-top: 3rem;
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    @media (max-width: 580px) {
+      .fugue-variation {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>fugue</h1>
+      <p>one sentence worked through twelve variations — a different subject each day</p>
+    </div>
+
+    <p class="fugue-intro">In a fugue, a theme is stated and then transformed: inverted, compressed, stretched, reversed, returned to. The subject does not change. Only the relation to it.</p>
+
+    <div id="fugue-subject" class="fugue-subject"></div>
+    <div id="fugue-variations" class="reveal"></div>
+
+    <p class="fugue-note">the subject changes at midnight · seven sentences in the series</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var pieces = [
+      {
+        subject: "Something is already different from what it was yesterday.",
+        variations: [
+          { name: "Dux", term: "subject", text: "Something is already different from what it was yesterday." },
+          { name: "Comes", term: "answer", text: "Yesterday, something was exactly the same as the day before — and still it changed." },
+          { name: "Inversio", term: "inversion", text: "Everything remains precisely as it was. Nothing has shifted. This is not entirely true." },
+          { name: "Augmentatio", term: "augmentation", text: "Something — though we could not name it, could not locate it in the usual places — was already, by the time we noticed, already different. Different from what it had been, distinctly, the day we still called yesterday, which was not so long ago, only a day." },
+          { name: "Diminutio", term: "diminution", text: "Already changed." },
+          { name: "Retrogradus", term: "retrograde", text: "Yesterday, something was what it is no longer — already, now." },
+          { name: "Stretta", term: "stretto", text: "Something is already different — something was already different — the something of yesterday is not the something of now, already, and now again." },
+          { name: "Pedale", term: "pedal point", text: "Already, already, already — already it is different, the already-changed thing, from the already-gone yesterday, and the already is always and the different is still." },
+          { name: "Sequentia", term: "sequence", text: "Something is different from yesterday. Something will be different from today. Something is always in the act of becoming different." },
+          { name: "Episode", term: "episode", text: "The word 'already' is doing most of the work here. Consider what it implies: that the change preceded the noticing, which is almost always true." },
+          { name: "Ricapitolazione", term: "recapitulation", text: "Something is still different from what it was yesterday. Has been since then. Will continue." },
+          { name: "Coda", term: "coda", text: "—", coda: true }
+        ]
+      },
+      {
+        subject: "The light in this room has not changed, but I have.",
+        variations: [
+          { name: "Dux", term: "subject", text: "The light in this room has not changed, but I have." },
+          { name: "Comes", term: "answer", text: "I have not changed. The light in this room has. One of us is mistaken." },
+          { name: "Inversio", term: "inversion", text: "Both the light and I remain unchanged. We look at each other across the room. This cannot both be true." },
+          { name: "Augmentatio", term: "augmentation", text: "The light falls on this room as it has always fallen on this room — through the same window, at the same angle permitted by geometry and season and hour. Nothing in the light has shifted. I have been standing in it long enough to understand that what has shifted is me, not the light, and that the light knows this even if it says nothing." },
+          { name: "Diminutio", term: "diminution", text: "Same light. Not the same person in it." },
+          { name: "Retrogradus", term: "retrograde", text: "I have changed — the room's light has not. Or so I report. The light may offer a different account." },
+          { name: "Stretta", term: "stretto", text: "The light unchanged — I changed — the room the same — a different person standing in the same light — the same light falling on a changed person — both of these, simultaneously." },
+          { name: "Pedale", term: "pedal point", text: "The light, the light, the light — unchanged — everything around it has changed, within the unchanged light, within the room that holds us both, the light unchanged throughout, while I have not." },
+          { name: "Sequentia", term: "sequence", text: "The light has not changed but I have. The room has not changed but the light will. I have not changed but I will. The sequence continues." },
+          { name: "Episode", term: "episode", text: "There is a word for this condition — returning to a place that has not changed and finding it unrecognizable because you have changed. The word is also the condition." },
+          { name: "Ricapitolazione", term: "recapitulation", text: "The light in this room still has not changed. I am still changed from when this began." },
+          { name: "Coda", term: "coda", text: "—", coda: true }
+        ]
+      },
+      {
+        subject: "Some things end without announcing themselves.",
+        variations: [
+          { name: "Dux", term: "subject", text: "Some things end without announcing themselves." },
+          { name: "Comes", term: "answer", text: "Some endings leave a note. Others simply stop, and the stopping is only recognized later, in its absence." },
+          { name: "Inversio", term: "inversion", text: "Every ending makes itself known. Every door announces its closing. You were simply not in the room when it happened." },
+          { name: "Augmentatio", term: "augmentation", text: "Some things — a habit, a friendship in its warmest form, the particular way someone laughed at a specific kind of joke — end without producing any announcement, without a ceremony or a conversation or a night you could point to. They simply finish, quietly, in the spaces between other things, and are only understood to have ended when you go looking for them and find only the shape they left." },
+          { name: "Diminutio", term: "diminution", text: "Endings, unannounced." },
+          { name: "Retrogradus", term: "retrograde", text: "Without announcing themselves, some things end — the not-announcing is part of how they end." },
+          { name: "Stretta", term: "stretto", text: "Some things end — some things end without — some things end without announcing — without announcing themselves — the ending and the silence about the ending arriving together, already over." },
+          { name: "Pedale", term: "pedal point", text: "End, end, end — without announcement, the ending, the quiet ending, the unannounced thing still ending, still without a word, the end ongoing in its quiet way, never announcing." },
+          { name: "Sequentia", term: "sequence", text: "Some things end without announcing. Some announcements arrive without endings. Some endings are announced and still impossible to believe." },
+          { name: "Episode", term: "episode", text: "The last time something happened is almost never known to be the last time while it's happening. This is probably a mercy." },
+          { name: "Ricapitolazione", term: "recapitulation", text: "Some things end without announcing themselves. This sentence, for instance." },
+          { name: "Coda", term: "coda", text: "—", coda: true }
+        ]
+      },
+      {
+        subject: "There is a word for this. I just haven't found it.",
+        variations: [
+          { name: "Dux", term: "subject", text: "There is a word for this. I just haven't found it." },
+          { name: "Comes", term: "answer", text: "The word exists. In another language, perhaps, or in the margin of something I have not yet read." },
+          { name: "Inversio", term: "inversion", text: "There is no word for this. That is why it has persisted so long — unnamed things have a different kind of permanence." },
+          { name: "Augmentatio", term: "augmentation", text: "There is a word — there must be a word, in some language that takes these things seriously, that has had long enough to name them — for this exact condition: the feeling of standing precisely here, in this light, with this particular weight of accumulated time, having done and not done the things that have been done and not done. The word exists. I have been moving toward it for some time." },
+          { name: "Diminutio", term: "diminution", text: "The word is somewhere." },
+          { name: "Retrogradus", term: "retrograde", text: "I haven't found it yet, the word for this — though it exists, the word, waiting." },
+          { name: "Stretta", term: "stretto", text: "There is a word — I haven't found the word — the word exists for this — this thing without its word — the word and the thing both here, both present, not yet in contact." },
+          { name: "Pedale", term: "pedal point", text: "Word, word, word — there is a word — for this — the word is there — not here — not yet — the word for the thing that needs the word — still a word somewhere — for this." },
+          { name: "Sequentia", term: "sequence", text: "There is a word for this. There is a word for what came before. There is a word for what comes after. Between the words, the things the words haven't reached yet." },
+          { name: "Episode", term: "episode", text: "Untranslatability is not a flaw in the language. It is evidence of an experience that preceded the vocabulary." },
+          { name: "Ricapitolazione", term: "recapitulation", text: "There is still a word for this. Still not found. Still there." },
+          { name: "Coda", term: "coda", text: "—", coda: true }
+        ]
+      },
+      {
+        subject: "I have been trying to say this for some time.",
+        variations: [
+          { name: "Dux", term: "subject", text: "I have been trying to say this for some time." },
+          { name: "Comes", term: "answer", text: "The thing has been waiting to be said. It has been patient. It does not require acknowledgment of how long it has waited." },
+          { name: "Inversio", term: "inversion", text: "The thing said itself, long ago. I have been catching up to it ever since." },
+          { name: "Augmentatio", term: "augmentation", text: "For some time — a duration I could not precisely measure, somewhere between months and a kind of geological accumulation — I have been in the act of trying to say this thing, which has been fully formed and waiting, at some level just below articulation, requiring only the right arrangement of circumstances and courage and vocabulary to finally arrive at the surface and be said." },
+          { name: "Diminutio", term: "diminution", text: "Trying. Still trying." },
+          { name: "Retrogradus", term: "retrograde", text: "For some time I have been trying to say this — the saying, still in progress, still trying, since some time." },
+          { name: "Stretta", term: "stretto", text: "Trying to say this — have been trying — for some time — this thing I am trying to say — still trying — still for some time — still." },
+          { name: "Pedale", term: "pedal point", text: "Some time, some time, some time — trying all this time — saying and not saying — the trying continuous — the time ongoing — some time still remaining — for saying this." },
+          { name: "Sequentia", term: "sequence", text: "I have been trying to say this. I have been trying to mean this. I have been trying to know this. Each precedes the next." },
+          { name: "Episode", term: "episode", text: "The gap between knowing a thing and being able to say it — this gap is not empty. It is where the preparation happens." },
+          { name: "Ricapitolazione", term: "recapitulation", text: "I have been trying to say this for some time. I am still trying. The time continues." },
+          { name: "Coda", term: "coda", text: "—", coda: true }
+        ]
+      },
+      {
+        subject: "The door was left open, and then it wasn't.",
+        variations: [
+          { name: "Dux", term: "subject", text: "The door was left open, and then it wasn't." },
+          { name: "Comes", term: "answer", text: "Someone closed the door. Or the wind did. Or it closed itself, as doors do eventually, given time." },
+          { name: "Inversio", term: "inversion", text: "The door was left closed, and then it wasn't. Both versions have happened. Both were deliberate, in their way." },
+          { name: "Augmentatio", term: "augmentation", text: "The door was left open — deliberately, or carelessly, or hopefully, or simply because no one had yet thought to close it — and then, at some point after that, perhaps while attention was elsewhere, perhaps not, the door was closed, and was no longer open, and the situation that the openness had made possible was concluded without ceremony." },
+          { name: "Diminutio", term: "diminution", text: "Open. Then not." },
+          { name: "Retrogradus", term: "retrograde", text: "Then it wasn't — and before that, left open, the door — and before that, someone leaving." },
+          { name: "Stretta", term: "stretto", text: "The door open — then not open — the leaving of it open — the closing — the open door — the closed door — the door that was both, in sequence, briefly." },
+          { name: "Pedale", term: "pedal point", text: "Door, door, door — open door — left open — not now open — the door remains — closed now, the door — still a door — the door was open and the door was closed, the door is still the door." },
+          { name: "Sequentia", term: "sequence", text: "The door was open, then closed. The conversation was open, then closed. The option was open, then not. Doors everywhere, in sequence, opening and closing." },
+          { name: "Episode", term: "episode", text: "There is a category of regret associated specifically with the moment of closing — not with the closed state itself, but with the act, the finality of it, which was also a choice." },
+          { name: "Ricapitolazione", term: "recapitulation", text: "The door was left open. And then it wasn't. And this is still true, and will be." },
+          { name: "Coda", term: "coda", text: "—", coda: true }
+        ]
+      },
+      {
+        subject: "All the ordinary things were exactly where they'd been.",
+        variations: [
+          { name: "Dux", term: "subject", text: "All the ordinary things were exactly where they'd been." },
+          { name: "Comes", term: "answer", text: "The ordinary things had not moved. The person who noticed this had." },
+          { name: "Inversio", term: "inversion", text: "Nothing was where it had been. Everything had shifted slightly. This was not possible, and yet." },
+          { name: "Augmentatio", term: "augmentation", text: "All of the ordinary things — the cup, the particular pile, the thing that has been on the table for three weeks, the window and what it shows — were exactly where they had been, in their ordinary positions, in the ordinary arrangement that constitutes what we mean by home, or familiarity, or the world continuing to exist in the expected configuration. And yet." },
+          { name: "Diminutio", term: "diminution", text: "Everything in its place. Somehow." },
+          { name: "Retrogradus", term: "retrograde", text: "Where they'd been, exactly — the ordinary things, all of them, in the places of their having been." },
+          { name: "Stretta", term: "stretto", text: "Ordinary things, where they'd been — exactly where — all the things — ordinary and in their places — exactly, still, where they always were — still ordinary — still there." },
+          { name: "Pedale", term: "pedal point", text: "Ordinary, ordinary, ordinary — all ordinary things — exactly ordinary — in their ordinary places — the ordinary continuing — ordinary things in ordinary positions — ordinary, still." },
+          { name: "Sequentia", term: "sequence", text: "All the ordinary things were where they'd been. All the extraordinary things were where they'd been. Both were surprising, for different reasons." },
+          { name: "Episode", term: "episode", text: "Ordinary is not a neutral word. It takes sustained effort, on the part of the world, to keep ordinary things in their ordinary places. We rarely thank it for this." },
+          { name: "Ricapitolazione", term: "recapitulation", text: "All the ordinary things were still exactly where they'd been. Still ordinary. Still there." },
+          { name: "Coda", term: "coda", text: "—", coda: true }
+        ]
+      }
+    ];
+
+    var d = new Date();
+    var dayIndex = Math.floor(d.getTime() / 86400000) % pieces.length;
+    var piece = pieces[dayIndex];
+
+    var subjectEl = document.getElementById('fugue-subject');
+    subjectEl.innerHTML =
+      '<span class="fugue-subject-label">I. Subject (dux)</span>' +
+      '<div class="fugue-subject-text">' + piece.subject + '</div>';
+
+    var varContainer = document.getElementById('fugue-variations');
+    piece.variations.slice(1).forEach(function (v, i) {
+      var div = document.createElement('div');
+      div.className = 'fugue-variation';
+      var textClass = 'var-text' + (v.coda ? ' coda' : '');
+      div.innerHTML =
+        '<div class="var-label">' +
+          '<span class="var-name">' + (i + 2) + '. ' + v.name + '</span>' +
+          '<span class="var-term">' + v.term + '</span>' +
+        '</div>' +
+        '<div class="' + textClass + '">' + v.text + '</div>';
+      varContainer.appendChild(div);
+    });
+  })();
+  </script>
+</body>
+</html>
