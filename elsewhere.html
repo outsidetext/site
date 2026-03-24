@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>elsewhere · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .elsewhere-stamp {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 2rem;
+    }
+    .moment-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+    }
+    .moment-item {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 1rem;
+      line-height: 1.65;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .moment-item.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .moment-item::before {
+      content: 'right now, ';
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.88em;
+    }
+    .elsewhere-footer {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+      line-height: 1.6;
+    }
+    .elsewhere-controls {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .elsewhere-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      padding: 0.4rem 0.9rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      letter-spacing: 0.06em;
+    }
+    .elsewhere-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .elsewhere-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>elsewhere</h1>
+      <p>what is happening right now, simultaneously, in other places</p>
+    </div>
+
+    <p class="elsewhere-stamp" id="elsewhere-stamp"></p>
+
+    <ul class="moment-list" id="moment-list"></ul>
+
+    <p class="elsewhere-footer">all of these are happening at exactly this moment. the world does not pause when you are not looking at it.</p>
+
+    <div class="elsewhere-controls">
+      <button class="elsewhere-btn" id="elsewhere-next">next moment →</button>
+      <span class="elsewhere-note" id="elsewhere-note"></span>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var all = [
+      "a dog is sleeping in a patch of afternoon light that will move in eleven minutes",
+      "someone is rereading a text message they have already reread forty times",
+      "a window left open by accident is letting in more than air",
+      "a grocery list is being written that includes something already at home",
+      "a voicemail is being left that will be heard too late to matter",
+      "two people are having the same argument for the third time this week without knowing it is the third time",
+      "a library book is overdue and no one has noticed yet",
+      "someone just remembered something they had completely forgotten for six years",
+      "a plant is being watered slightly too much or slightly too little — the plant knows which",
+      "someone is arriving forty-five minutes early and trying to decide what to do about it",
+      "a conversation is ending that neither person wanted to end first",
+      "someone is pretending to be asleep",
+      "a song is playing in an empty room",
+      "two strangers are having the same thought at the same moment on different continents",
+      "someone just decided not to say something they had been about to say for three days",
+      "a birthday is being forgotten by someone who normally never forgets",
+      "someone is trying to remember a word they know perfectly well — it will arrive in twelve minutes",
+      "a child is learning that something they believed is not true, and adjusting",
+      "a train is arriving at a station where no one is waiting for anyone",
+      "someone is eating leftovers and thinking about something they cannot name",
+      "a notebook is being opened that hasn't been opened in two years",
+      "someone just noticed a crack that wasn't there before, or wasn't noticed before",
+      "a flight is landing in a city the passenger has never been to",
+      "someone is standing at a window watching rain, feeling nothing in particular, which is something",
+      "a first and last name are being said together for the very last time",
+      "someone is watching a tutorial for something they will never actually do",
+      "a friendship is slowly ending without either person naming it",
+      "someone is three pages from the end of a book and slowing down without knowing why",
+      "two people are waving at each other across a distance, uncertain if they've been recognized",
+      "a clock is running seven minutes fast and no one has corrected it in four years",
+      "someone is ordering the exact same thing they always order",
+      "a hospital waiting room is briefly, almost completely, empty",
+      "someone is finally throwing something away they've been keeping for the wrong reasons",
+      "a joke is being told that is funnier to the person telling it",
+      "someone is taking a different route and noticing things they've never seen before",
+      "a cat is staring at something invisible with complete certainty",
+      "someone just realized they've been mispronouncing a word for most of their life",
+      "two people who haven't spoken in years are thinking about each other simultaneously without knowing it",
+      "someone is waiting for news that has not arrived yet and may not",
+      "a decision that felt enormous yesterday feels smaller today, for reasons unclear",
+      "someone is photographing something ordinary because they are afraid of forgetting it",
+      "a light in a window has been on all night and the person inside doesn't know why they left it on",
+      "someone is hearing a song from childhood in a grocery store and has stopped mid-aisle",
+      "a letter is being written that won't be sent for two months",
+      "someone is laughing at something and no one else in the room understands why"
+    ];
+
+    var PER_PAGE = 9;
+    var offset = 0;
+
+    function seed() {
+      var d = new Date();
+      // seed by day + hour + which page we're on
+      return Math.floor(d.getTime() / 86400000) * 24 * 100 +
+             d.getHours() * 100 +
+             offset;
+    }
+
+    function seededShuffle(arr, s) {
+      var a = arr.slice();
+      var x = s;
+      for (var i = a.length - 1; i > 0; i--) {
+        x = (x * 1664525 + 1013904223) & 0xffffffff;
+        var j = Math.abs(x) % (i + 1);
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    }
+
+    var listEl  = document.getElementById('moment-list');
+    var noteEl  = document.getElementById('elsewhere-note');
+    var stampEl = document.getElementById('elsewhere-stamp');
+    var btn     = document.getElementById('elsewhere-next');
+
+    function render() {
+      var d = new Date();
+      var shuffled = seededShuffle(all, seed());
+      var shown = shuffled.slice(0, PER_PAGE);
+
+      // stamp
+      var h = d.getHours(), m = d.getMinutes();
+      var hh = h < 10 ? '0' + h : '' + h;
+      var mm = m < 10 ? '0' + m : '' + m;
+      var months = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+      stampEl.textContent = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear() + ' · ' + hh + ':' + mm + ' local';
+
+      noteEl.textContent = 'showing ' + PER_PAGE + ' of ' + all.length + ' concurrent moments';
+
+      listEl.innerHTML = '';
+      shown.forEach(function (text, i) {
+        var li = document.createElement('li');
+        li.className = 'moment-item';
+        li.textContent = text;
+        listEl.appendChild(li);
+        setTimeout(function () { li.classList.add('visible'); }, i * 60);
+      });
+    }
+
+    render();
+
+    btn.addEventListener('click', function () {
+      offset = (offset + 1) % Math.ceil(all.length / PER_PAGE);
+      // fade out
+      var items = listEl.querySelectorAll('.moment-item');
+      items.forEach(function (el) { el.classList.remove('visible'); });
+      setTimeout(render, 380);
+    });
+  })();
+  </script>
+</body>
+</html>

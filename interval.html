@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>interval · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .interval-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .interval-entry:first-of-type { border-top: 1px solid var(--border); }
+    .interval-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .interval-duration {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+    .interval-desc {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      max-width: 520px;
+    }
+
+    /* Measurement zone */
+    .measure-zone {
+      margin: 3rem 0 2rem;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      max-width: 520px;
+    }
+    .measure-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .measure-instructions {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+    .measure-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      padding: 0.5rem 1.1rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      letter-spacing: 0.06em;
+    }
+    .measure-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .measure-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .measure-running {
+      font-family: 'Courier New', monospace;
+      font-size: 2rem;
+      color: var(--text);
+      margin: 1.25rem 0;
+      letter-spacing: 0.08em;
+      min-height: 2.5rem;
+      display: none;
+    }
+    .measure-running.visible { display: block; }
+    .measure-result {
+      margin-top: 1rem;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      display: none;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+    .measure-result.visible { display: block; }
+    .measure-result-line {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .measure-result-name {
+      color: var(--accent);
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>interval</h1>
+      <p>the space between — what happens in the gaps</p>
+    </div>
+
+    <div class="interval-entry reveal">
+      <div class="interval-name">the threshold pause</div>
+      <div class="interval-duration">duration: 1–4 seconds, usually</div>
+      <p class="interval-desc">The interval between knocking on a door and it opening. Usually under three seconds. Occasionally much longer. Sometimes the door doesn't open at all. The pause doesn't know this yet — it is still just a pause, full of possibility, before possibility collapses into whatever comes next.</p>
+    </div>
+
+    <div class="interval-entry reveal">
+      <div class="interval-name">the keystroke gap</div>
+      <div class="interval-duration">duration: 10–100 milliseconds</div>
+      <p class="interval-desc">The interval between pressing a key and seeing the character appear. Too small to be perceived consciously. And yet: all of what we call "now" lives somewhere in here — in the gap between action and response, between the finger and the word.</p>
+    </div>
+
+    <div class="interval-entry reveal">
+      <div class="interval-name">the read receipt interval</div>
+      <div class="interval-duration">duration: seconds to never</div>
+      <p class="interval-desc">The interval between a message being delivered and being acknowledged. The technology named it: seen. Before that naming, the interval was invisible. Naming it created a new form of anxiety that had never previously been possible. The interval itself didn't change. Only the knowledge of it changed.</p>
+    </div>
+
+    <div class="interval-entry reveal">
+      <div class="interval-name">the sleep interval</div>
+      <div class="interval-duration">duration: 3 minutes to 3 hours</div>
+      <p class="interval-desc">The interval between deciding to sleep and sleeping. Some nights this is three minutes. Some nights, hours. What happens in it: everything you forgot to think about during the day arrives for its appointment. The body is ready to rest; the mind has a different schedule.</p>
+    </div>
+
+    <div class="interval-entry reveal">
+      <div class="interval-name">the held breath</div>
+      <div class="interval-duration">duration: variable; feels longer than it is</div>
+      <p class="interval-desc">The interval between sending something important and receiving a response. Not the read receipt interval — this one starts before anyone has even seen it. The held breath begins at the moment of send. Physical symptoms: common. Duration: subjective. Everything that happens in the world during this interval feels slightly unreal.</p>
+    </div>
+
+    <div class="interval-entry reveal">
+      <div class="interval-name">the between-song moment</div>
+      <div class="interval-duration">duration: 0.5–2 seconds</div>
+      <p class="interval-desc">The silence between tracks on an album. Usually a second or less. When headphones are shared, this interval belongs equally to both listeners — a small shared space carved out of the music. Composers consider it carefully. Most listeners barely notice it. It determines everything about what comes next.</p>
+    </div>
+
+    <div class="interval-entry reveal">
+      <div class="interval-name">the farewell gap</div>
+      <div class="interval-duration">duration: sometimes years</div>
+      <p class="interval-desc">The interval between the last time two people see each other and the moment they know it was the last time. It can take years. Recognition is always retrospective. The last time is only named after the fact — which means every goodbye contains this uncertainty, and every goodbye might be the one you'll name later.</p>
+    </div>
+
+    <div class="interval-entry reveal">
+      <div class="interval-name">the page interval</div>
+      <div class="interval-duration">duration: under a second</div>
+      <p class="interval-desc">The gap between finishing a page and turning it. Usually less than a second. Books are remembered as continuous experience — a narrative with no interruptions. But they're made entirely of these tiny gaps: 300 of them in a 300-page book. The story happens in the intervals between pages as much as on the pages themselves.</p>
+    </div>
+
+    <div class="interval-entry reveal">
+      <div class="interval-name">the sidereal day</div>
+      <div class="interval-duration">duration: 23 hours, 56 minutes, 4 seconds</div>
+      <p class="interval-desc">The interval between two successive culminations of the same star — as opposed to the solar day, which is 24 hours. The difference is about four minutes: the earth completes one rotation and then has to travel a little further to face the sun again. Two different intervals, both called "a day." Which one is the real one is a matter of what you're trying to measure.</p>
+    </div>
+
+    <div class="interval-entry reveal">
+      <div class="interval-name">the mourning interval</div>
+      <div class="interval-duration">duration: no standard; no established end</div>
+      <p class="interval-desc">There is no agreed duration. There is a beginning — usually a specific moment. Researchers disagree about the end, and most definitions of "end" are contested by the people inside the interval. Most people stop calling it mourning before it ends. The interval continues regardless of what it is called.</p>
+    </div>
+
+    <div class="measure-zone reveal">
+      <div class="measure-label">measure your own interval</div>
+      <p class="measure-instructions">Press start. Wait for whatever amount of time feels right. Press stop. The page will tell you what happened in that interval.</p>
+      <button class="measure-btn" id="measure-btn">start interval</button>
+      <div class="measure-running" id="measure-display">0.0s</div>
+      <div class="measure-result" id="measure-result"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var btn        = document.getElementById('measure-btn');
+    var display    = document.getElementById('measure-display');
+    var result     = document.getElementById('measure-result');
+    var startTime  = null;
+    var running    = false;
+    var raf        = null;
+
+    var names = [
+      [0,    1,    'a blink (literally)'],
+      [1,    3,    'a breath, almost'],
+      [3,    7,    'a held breath'],
+      [7,    15,   'the threshold pause'],
+      [15,   30,   'a considered pause'],
+      [30,   60,   'a long pause'],
+      [60,   120,  'a minute'],
+      [120,  300,  'a few minutes'],
+      [300,  600,  'five minutes or more'],
+      [600,  Infinity, 'a significant interval']
+    ];
+
+    function nameFor(s) {
+      for (var i = 0; i < names.length; i++) {
+        if (s >= names[i][0] && s < names[i][1]) return names[i][2];
+      }
+      return 'an interval';
+    }
+
+    function fmt(s) {
+      if (s < 60) return s.toFixed(1) + 's';
+      var m = Math.floor(s / 60);
+      var r = (s % 60).toFixed(0);
+      return m + 'm ' + (r < 10 ? '0' : '') + r + 's';
+    }
+
+    function tick() {
+      var elapsed = (Date.now() - startTime) / 1000;
+      display.textContent = fmt(elapsed);
+      raf = requestAnimationFrame(tick);
+    }
+
+    function buildResult(seconds) {
+      var s = seconds;
+      var lines = [];
+
+      // heartbeats (~1/s)
+      lines.push(Math.round(s) + ' heartbeats, approximately');
+
+      // breaths (~1 per 4s)
+      var breaths = (s / 4).toFixed(1);
+      lines.push(breaths + ' breaths (at a resting rate)');
+
+      // earth rotation (360° per 86400s)
+      var deg = (s * 360 / 86400).toFixed(4);
+      lines.push('earth rotated ' + deg + '\u00b0');
+
+      // ISS travel (~7.7 km/s)
+      var iss = (s * 7.7).toFixed(0);
+      lines.push('ISS moved approximately ' + Number(iss).toLocaleString() + ' km');
+
+      // light distance
+      var lightKm = (s * 299792).toFixed(0);
+      if (s < 1) {
+        lightKm = (s * 299792).toFixed(0);
+        lines.push('light traveled ' + Number(lightKm).toLocaleString() + ' km');
+      } else if (s < 8) {
+        lines.push('light traveled ' + Number(lightKm).toLocaleString() + ' km');
+      } else {
+        // convert to AU (1 AU = 149,597,870 km)
+        var au = (s * 299792 / 149597870).toFixed(4);
+        lines.push('light traveled ' + au + ' AU (' + Number(lightKm).toLocaleString() + ' km)');
+      }
+
+      // sound (343 m/s)
+      var soundM = (s * 343).toFixed(0);
+      lines.push('sound (in air) traveled ' + Number(soundM).toLocaleString() + ' m');
+
+      var iname = nameFor(s);
+      var html = '<div class="measure-result-name">' + iname + ' · ' + fmt(s) + '</div>';
+      lines.forEach(function (l) {
+        html += '<div class="measure-result-line">' + l + '</div>';
+      });
+      return html;
+    }
+
+    btn.addEventListener('click', function () {
+      if (!running) {
+        // start
+        startTime = Date.now();
+        running = true;
+        btn.textContent = 'stop interval';
+        btn.classList.add('active');
+        display.classList.add('visible');
+        result.classList.remove('visible');
+        result.innerHTML = '';
+        raf = requestAnimationFrame(tick);
+      } else {
+        // stop
+        cancelAnimationFrame(raf);
+        var seconds = (Date.now() - startTime) / 1000;
+        running = false;
+        btn.textContent = 'start again';
+        btn.classList.remove('active');
+        result.innerHTML = buildResult(seconds);
+        result.classList.add('visible');
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

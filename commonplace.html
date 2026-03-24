@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>commonplace · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cp-intro {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      line-height: 1.65;
+      max-width: 480px;
+    }
+    .cp-entry {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cp-entry:first-of-type { border-top: 1px solid var(--border); }
+    .cp-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 0.6rem;
+    }
+    .cp-text::before { content: '\201C'; }
+    .cp-text::after  { content: '\201D'; }
+    .cp-source {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .cp-source::before { content: '— '; }
+    .cp-count {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>commonplace</h1>
+      <p>a notebook of collected things</p>
+    </div>
+
+    <p class="cp-intro">A commonplace book collects what is worth keeping from places you've been. These passages are gathered from elsewhere and held here. They are attributed as accurately as memory allows — which is to say, approximately.</p>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">The longest distance between two places is time.</p>
+      <span class="cp-source">from a letter, not delivered</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">You will not remember this moment. That's not a warning — just a fact about how memory works. The ones you remember are almost never the ones you thought you would.</p>
+      <span class="cp-source">from a margin, penciled</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">Start by sitting very still and letting everything you think you should be doing pile up around you. Then ignore it. Just for a minute. Then see.</p>
+      <span class="cp-source">from an instruction manual that was never printed</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">Be suspicious of anyone who never changes their mind. The world is complicated enough to change anyone's mind at least once about something that matters.</p>
+      <span class="cp-source">from a pamphlet, found folded in a coat pocket</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">The things we carry are almost never the things we think we carry.</p>
+      <span class="cp-source">from a note taped to a door, faded</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">There is a kind of tiredness that sleep doesn't touch. You probably know it.</p>
+      <span class="cp-source">found written on a bus receipt</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">Everything important arrives slowly. This is the thing everyone knows and no one manages to believe when it's happening to them.</p>
+      <span class="cp-source">from a letter, probably not sent</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">The version of you from five years ago would recognize you. That's something.</p>
+      <span class="cp-source">from a notebook, last entry</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">You are allowed to find it hard. That's different from failing.</p>
+      <span class="cp-source">from an email, drafted and deleted twice before being sent</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">Not all silences mean the same thing. Some are peace. Some are everything unsaid. They look identical from the outside.</p>
+      <span class="cp-source">from somewhere, sometime</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">The map is never the territory. But sometimes the map is the only thing you have, and you have to navigate anyway. This is true of most plans.</p>
+      <span class="cp-source">from a foreword to something else</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">You've been here before. Not this room — this situation. You've been in rooms like this before. You know what to do.</p>
+      <span class="cp-source">from a card, handwritten</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">The second time is always different. The first time you're arriving. The second time you already know the place, and knowing changes everything about what you see.</p>
+      <span class="cp-source">from a travel journal with almost nothing else written in it</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">There will be a last time you visit somewhere you love. You won't know it's the last time. This is, in some way, a mercy.</p>
+      <span class="cp-source">attributed to no one, from everywhere</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">Asking for help is not an admission that something is wrong. It's an admission that some things are easier with two people, which is just true.</p>
+      <span class="cp-source">from a talk, transcribed approximately</span>
+    </div>
+
+    <div class="cp-entry reveal">
+      <p class="cp-text">The draft is where the honest version lives. The sent version is the version you could defend. These are rarely the same version.</p>
+      <span class="cp-source">from a workshop, the part that wasn't written down</span>
+    </div>
+
+    <p class="cp-count">16 entries · the book is not full · more will arrive</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

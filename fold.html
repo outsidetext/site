@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fold · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .fold-doc {
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      max-width: 560px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+      margin-bottom: 2rem;
+    }
+    .fold-face {
+      padding: 2rem 2rem 1.75rem;
+      line-height: 1.7;
+    }
+    .fold-face-title {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+    .fold-face p {
+      margin: 0 0 0.75rem;
+      font-size: 0.97rem;
+    }
+    .fold-face p:last-child { margin-bottom: 0; }
+    .fold-crease {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-top: 1px dashed var(--border);
+      padding: 0.55rem 2rem;
+      cursor: pointer;
+      background: none;
+      width: 100%;
+      text-align: left;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      transition: color 0.2s, background 0.2s;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+    }
+    .fold-crease:hover { color: var(--accent); background: rgba(181,104,42,0.03); }
+    .fold-crease .crease-arrow {
+      display: inline-block;
+      transition: transform 0.35s ease;
+      font-style: normal;
+    }
+    .fold-crease.open .crease-arrow { transform: rotate(90deg); }
+    .fold-leaf {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+      border-top: 1px solid var(--border);
+    }
+    .fold-leaf.open {
+      max-height: 600px;
+      opacity: 1;
+    }
+    .fold-leaf-inner {
+      padding: 1.75rem 2rem;
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+    .fold-leaf-inner p { margin: 0 0 0.75rem; }
+    .fold-leaf-inner p:last-child { margin-bottom: 0; }
+    .fold-leaf-inner em { color: var(--text-muted); font-style: italic; }
+    .fold-reset {
+      background: none;
+      border: none;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+      display: none;
+    }
+    .fold-reset:hover { color: var(--accent); }
+    .fold-reset.visible { display: block; }
+    .fold-progress {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>fold</h1>
+      <p>a letter that opens differently each time</p>
+    </div>
+
+    <p class="fold-progress" id="fold-progress">unfold the creases to read what's inside</p>
+
+    <div class="fold-doc">
+
+      <!-- Face: always visible -->
+      <div class="fold-face">
+        <div class="fold-face-title">outside face</div>
+        <p>A letter begins at the crease. Whatever is inside has been considered worth folding — which is a kind of curation. This is the outside. Most people read this and stop.</p>
+        <p>There are four folds. Each one requires a small decision.</p>
+      </div>
+
+      <!-- Fold 1 -->
+      <button class="fold-crease" data-leaf="leaf1" aria-expanded="false">
+        <span class="crease-arrow">▶</span>
+        <span>first fold</span>
+      </button>
+      <div class="fold-leaf" id="leaf1">
+        <div class="fold-leaf-inner">
+          <p>The first fold is where most reading ends. The outside is visible; the inside requires a small act of will. A decision to continue. Most letters are opened. Not all of them are read past this point.</p>
+          <p>What you find here is not different from the outside. Same paper. Different orientation. But the light hits it from another angle now.</p>
+        </div>
+      </div>
+
+      <!-- Fold 2 -->
+      <button class="fold-crease" data-leaf="leaf2" aria-expanded="false">
+        <span class="crease-arrow">▶</span>
+        <span>second fold</span>
+      </button>
+      <div class="fold-leaf" id="leaf2">
+        <div class="fold-leaf-inner">
+          <p>Maps are hardest to fold back. The crease runs through a mountain range or a coastline — geography that has no opinion about the fold, but the fold has an opinion about the geography. After you've used a map, it's a different map.</p>
+          <p><em>When you refold it, the mountains end up somewhere different than they started.</em></p>
+          <p>This is true of most things that unfold.</p>
+        </div>
+      </div>
+
+      <!-- Fold 3 -->
+      <button class="fold-crease" data-leaf="leaf3" aria-expanded="false">
+        <span class="crease-arrow">▶</span>
+        <span>third fold</span>
+      </button>
+      <div class="fold-leaf" id="leaf3">
+        <div class="fold-leaf-inner">
+          <p>There is a Japanese concept: <em>orizuru</em> — the paper crane. It cannot fly. But it holds the exact shape of flight. Something about the folding makes it more bird-like than a drawing of a bird.</p>
+          <p>The crane doesn't know it can't fly. The paper just does what it was folded to do.</p>
+          <p>Some thoughts work the same way. The shape they take depends on the fold. Different fold, different thought — even from the same material.</p>
+        </div>
+      </div>
+
+      <!-- Fold 4 -->
+      <button class="fold-crease" data-leaf="leaf4" aria-expanded="false">
+        <span class="crease-arrow">▶</span>
+        <span>fourth fold · innermost</span>
+      </button>
+      <div class="fold-leaf" id="leaf4">
+        <div class="fold-leaf-inner">
+          <p>You've opened everything. The letter says: <em>it was always all here.</em> What changed was where the crease was.</p>
+          <p>The inside and outside are the same paper. The fold is what makes them feel like different surfaces. Remove the fold and they become one face again — but then there is no inside and no outside, and nowhere to put what you wanted to keep private.</p>
+          <p>Read it again from the beginning. Start from any fold. Something will have shifted — not in the paper, but in the reading.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="fold-reset" id="fold-reset">← fold it back</button>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var creases  = document.querySelectorAll('.fold-crease');
+    var resetBtn = document.getElementById('fold-reset');
+    var progress = document.getElementById('fold-progress');
+    var total    = creases.length;
+    var opened   = 0;
+
+    function updateProgress() {
+      if (opened === 0) {
+        progress.textContent = 'unfold the creases to read what\u2019s inside';
+      } else if (opened < total) {
+        progress.textContent = opened + ' of ' + total + ' folds opened';
+      } else {
+        progress.textContent = 'all folds open \u00b7 nothing hidden now';
+        resetBtn.classList.add('visible');
+      }
+    }
+
+    creases.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var leafId = btn.getAttribute('data-leaf');
+        var leaf   = document.getElementById(leafId);
+        var isOpen = leaf.classList.contains('open');
+
+        if (!isOpen) {
+          leaf.classList.add('open');
+          btn.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          opened++;
+          updateProgress();
+        } else {
+          leaf.classList.remove('open');
+          btn.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          opened--;
+          resetBtn.classList.remove('visible');
+          updateProgress();
+        }
+      });
+    });
+
+    resetBtn.addEventListener('click', function () {
+      document.querySelectorAll('.fold-leaf').forEach(function (l) { l.classList.remove('open'); });
+      document.querySelectorAll('.fold-crease').forEach(function (b) {
+        b.classList.remove('open');
+        b.setAttribute('aria-expanded', 'false');
+      });
+      opened = 0;
+      resetBtn.classList.remove('visible');
+      updateProgress();
+    });
+  })();
+  </script>
+</body>
+</html>

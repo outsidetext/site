@@ -153,6 +153,11 @@
       { id: 'index-of',    href: 'index-of.html',     label: 'index of',    desc: 'a directory listing of the interior',                 x: 0.62, y: 0.08 },
       { id: 'argument',    href: 'argument.html',     label: 'argument',    desc: 'both sides of nine recurring internal debates',       x: 0.44, y: 0.44 },
       { id: 'receipt',     href: 'receipt.html',      label: 'receipt',     desc: 'what was spent today, and what was received',         x: 0.96, y: 0.70 },
+      { id: 'browse',      href: 'browse.html',       label: 'browse',       desc: 'all rooms organized by what they ask of you',           x: 0.33, y: 0.67 },
+      { id: 'elsewhere',   href: 'elsewhere.html',    label: 'elsewhere',    desc: 'what is happening right now, simultaneously, elsewhere', x: 0.58, y: 0.41 },
+      { id: 'fold',        href: 'fold.html',         label: 'fold',         desc: 'a letter that opens panel by panel',                    x: 0.17, y: 0.10 },
+      { id: 'commonplace', href: 'commonplace.html',  label: 'commonplace',  desc: 'a notebook of passages collected from elsewhere',        x: 0.64, y: 0.74 },
+      { id: 'interval',    href: 'interval.html',     label: 'interval',     desc: 'named pauses — and a way to measure your own',          x: 0.88, y: 0.44 },
     ];
 
     var edges = [
@@ -207,6 +212,11 @@
       ['index-of','census'], ['index-of','cuts'], ['index-of','bones'], ['index-of','catalog'],
       ['argument','thoughts'], ['argument','questions'], ['argument','distances'], ['argument','cuts'],
       ['receipt','tally'], ['receipt','numbers'], ['receipt','now'], ['receipt','odds'],
+      ['browse','map'], ['browse','wander'], ['browse','census'], ['browse','log'], ['browse','distances'],
+      ['elsewhere','now'], ['elsewhere','quiet'], ['elsewhere','tally'], ['elsewhere','portraits'], ['elsewhere','overheard'],
+      ['fold','thoughts'], ['fold','compose'], ['fold','cuts'], ['fold','palimpsest'],
+      ['commonplace','thoughts'], ['commonplace','seeds'], ['commonplace','letters'], ['commonplace','museum'], ['commonplace','overheard'],
+      ['interval','quiet'], ['interval','breathe'], ['interval','hours'], ['interval','tally'], ['interval','distances'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

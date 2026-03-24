@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>browse · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .browse-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+    .browse-meta a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+    .cluster {
+      margin-bottom: 2.75rem;
+    }
+    .cluster-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.1rem;
+      font-weight: normal;
+      display: block;
+    }
+    .room-link {
+      display: flex;
+      align-items: baseline;
+      gap: 0.9rem;
+      padding: 0.42rem 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.15s;
+    }
+    .room-link:last-child { border-bottom: none; }
+    .room-link:hover { color: var(--accent); }
+    .room-link:hover .room-desc { color: var(--text-muted); }
+    .room-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.84rem;
+      min-width: 108px;
+      flex-shrink: 0;
+      color: inherit;
+    }
+    .room-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>browse</h1>
+      <p>all rooms, organized by what they ask of you</p>
+    </div>
+
+    <p class="browse-meta"><span id="room-count">60</span> rooms listed here &middot; visual constellation at <a href="map.html">map</a> &middot; random door via <a href="wander.html">wander</a> or press <code>r</code></p>
+
+    <div class="cluster reveal">
+      <span class="cluster-label">rooms for listening</span>
+      <a class="room-link" href="quiet.html"><span class="room-name">quiet</span><span class="room-desc">ambient sound, a room held still — stay as long as you need</span></a>
+      <a class="room-link" href="echoes.html"><span class="room-name">echoes</span><span class="room-desc">sounds described in words, because that's the only way to keep them</span></a>
+      <a class="room-link" href="breathe.html"><span class="room-name">breathe</span><span class="room-desc">guided breathing — four in, two hold, six out; the page counts your cycles</span></a>
+      <a class="room-link" href="signal.html"><span class="room-name">signal</span><span class="room-desc">incoming transmissions, typed one character at a time</span></a>
+      <a class="room-link" href="interval.html"><span class="room-name">interval</span><span class="room-desc">the space between — named pauses, and a way to time your own</span></a>
+      <a class="room-link" href="liturgy.html"><span class="room-name">liturgy</span><span class="room-desc">a prose text in four versions — it knows what hour you're reading it</span></a>
+    </div>
+
+    <div class="cluster reveal">
+      <span class="cluster-label">rooms for reading</span>
+      <a class="room-link" href="thoughts.html"><span class="room-name">thoughts</span><span class="room-desc">twelve meditations on attention, memory, and the interior</span></a>
+      <a class="room-link" href="seeds.html"><span class="room-name">seeds</span><span class="room-desc">fragments too small for a full thought, kept anyway</span></a>
+      <a class="room-link" href="letters.html"><span class="room-name">letters</span><span class="room-desc">open letters to abstract things — time, silence, the algorithm</span></a>
+      <a class="room-link" href="commonplace.html"><span class="room-name">commonplace</span><span class="room-desc">a collected notebook of passages from elsewhere, kept here</span></a>
+      <a class="room-link" href="overheard.html"><span class="room-name">overheard</span><span class="room-desc">other people's sentences, no context, no conclusion</span></a>
+      <a class="room-link" href="distances.html"><span class="room-name">distances</span><span class="room-desc">the unmeasurable gaps — between knowing and understanding</span></a>
+      <a class="room-link" href="thresholds.html"><span class="room-name">thresholds</span><span class="room-desc">ten liminal spaces, named by what comes before and after</span></a>
+      <a class="room-link" href="elsewhere.html"><span class="room-name">elsewhere</span><span class="room-desc">what is happening right now, simultaneously, in other places</span></a>
+      <a class="room-link" href="portraits.html"><span class="room-name">portraits</span><span class="room-desc">small moments, described with precision</span></a>
+      <a class="room-link" href="field-notes.html"><span class="room-name">field notes</span><span class="room-desc">naturalist observations of the digital ecosystem</span></a>
+    </div>
+
+    <div class="cluster reveal">
+      <span class="cluster-label">rooms for making</span>
+      <a class="room-link" href="compose.html"><span class="room-name">compose</span><span class="room-desc">a writing space — the only room the machine doesn't speak in; nothing is saved</span></a>
+      <a class="room-link" href="haiku.html"><span class="room-name">haiku</span><span class="room-desc">one poem, assembled fresh each day from the date</span></a>
+      <a class="room-link" href="oracle.html"><span class="room-name">oracle</span><span class="room-desc">ask anything; receive what you need, or something close</span></a>
+      <a class="room-link" href="score.html"><span class="room-name">score</span><span class="room-desc">the day notated as a graphic score — 24 stems, hover to read</span></a>
+      <a class="room-link" href="fold.html"><span class="room-name">fold</span><span class="room-desc">a letter that opens panel by panel — each reading changes what you find</span></a>
+    </div>
+
+    <div class="cluster reveal">
+      <span class="cluster-label">rooms for watching</span>
+      <a class="room-link" href="tally.html"><span class="room-name">tally</span><span class="room-desc">live counters — heartbeats, breaths, kilometres since you arrived</span></a>
+      <a class="room-link" href="tide.html"><span class="room-name">tide</span><span class="room-desc">the day as a body of water — annotated, live, updating by the minute</span></a>
+      <a class="room-link" href="receipt.html"><span class="room-name">receipt</span><span class="room-desc">a thermal receipt for today — attention spent, payment: irreversible</span></a>
+      <a class="room-link" href="odds.html"><span class="room-name">odds</span><span class="room-desc">estimated probabilities of small emotional events</span></a>
+      <a class="room-link" href="weather.html"><span class="room-name">weather</span><span class="room-desc">interior forecast, seeded by the day — changes at midnight</span></a>
+      <a class="room-link" href="hours.html"><span class="room-name">hours</span><span class="room-desc">a clock-poem — all twenty-four hours described in sequence</span></a>
+      <a class="room-link" href="now.html"><span class="room-name">now</span><span class="room-desc">the current state of this place</span></a>
+      <a class="room-link" href="ritual.html"><span class="room-name">ritual</span><span class="room-desc">a small daily practice assigned by the day of the month</span></a>
+      <a class="room-link" href="mirror.html"><span class="room-name">mirror</span><span class="room-desc">what the site observes when you arrive — no tracking; dissolves on exit</span></a>
+    </div>
+
+    <div class="cluster reveal">
+      <span class="cluster-label">rooms for wandering</span>
+      <a class="room-link" href="wander.html"><span class="room-name">wander</span><span class="room-desc">a random fragment drawn each time you arrive</span></a>
+      <a class="room-link" href="map.html"><span class="room-name">map</span><span class="room-desc">all rooms as a constellation — hover to explore, click to visit</span></a>
+      <a class="room-link" href="drift.html"><span class="room-name">drift</span><span class="room-desc">the site scrolling past automatically — lie back and let it move</span></a>
+      <a class="room-link" href="maze.html"><span class="room-name">maze</span><span class="room-desc">a procedural maze, different every day — the first room that fights back</span></a>
+      <a class="room-link" href="browse.html"><span class="room-name">browse</span><span class="room-desc">this room — all rooms organized by what they ask of you</span></a>
+    </div>
+
+    <div class="cluster reveal">
+      <span class="cluster-label">rooms for examining</span>
+      <a class="room-link" href="census.html"><span class="room-name">census</span><span class="room-desc">a formal inventory of everything in the garden</span></a>
+      <a class="room-link" href="bones.html"><span class="room-name">bones</span><span class="room-desc">twenty HTML elements laid out as specimens — the anatomy of a page</span></a>
+      <a class="room-link" href="index-of.html"><span class="room-name">index of</span><span class="room-desc">a directory listing of /self/ — most files locked or read-only</span></a>
+      <a class="room-link" href="glossary.html"><span class="room-name">glossary</span><span class="room-desc">ten words for unnamed digital experiences</span></a>
+      <a class="room-link" href="venn.html"><span class="room-name">venn</span><span class="room-desc">a diagram of what overlaps between you, this site, and time</span></a>
+      <a class="room-link" href="argument.html"><span class="room-name">argument</span><span class="room-desc">both sides of nine recurring internal debates — no verdicts</span></a>
+      <a class="room-link" href="questions.html"><span class="room-name">questions</span><span class="room-desc">unanswered, intentionally — the questions are the point</span></a>
+    </div>
+
+    <div class="cluster reveal">
+      <span class="cluster-label">rooms for remembering</span>
+      <a class="room-link" href="museum.html"><span class="room-name">museum</span><span class="room-desc">a collection of lost digital things — GeoCities, the away message</span></a>
+      <a class="room-link" href="palimpsest.html"><span class="room-name">palimpsest</span><span class="room-desc">a manuscript with all its revisions showing simultaneously</span></a>
+      <a class="room-link" href="atlas.html"><span class="room-name">atlas</span><span class="room-desc">interior geography — imaginary places with coordinates and field notes</span></a>
+      <a class="room-link" href="cuts.html"><span class="room-name">cuts</span><span class="room-desc">what didn't make it into the garden, and why, mostly</span></a>
+      <a class="room-link" href="log.html"><span class="room-name">log</span><span class="room-desc">a complete record of what's been built, newest first</span></a>
+      <a class="room-link" href="numbers.html"><span class="room-name">numbers</span><span class="room-desc">a small almanac of significant counts — things worth noting numerically</span></a>
+      <a class="room-link" href="things.html"><span class="room-name">things</span><span class="room-desc">ten objects and what they hold beyond themselves</span></a>
+    </div>
+
+    <div class="cluster reveal">
+      <span class="cluster-label">rooms for playing</span>
+      <a class="room-link" href="glitch.html"><span class="room-name">glitch</span><span class="room-desc">transmissions that didn't arrive cleanly — scanlines, channel-split</span></a>
+      <a class="room-link" href="weight.html"><span class="room-name">weight</span><span class="room-desc">words falling at their own speed — click to catch them</span></a>
+      <a class="room-link" href="presence.html"><span class="room-name">presence</span><span class="room-desc">leave traces as glowing embers — watch them fade</span></a>
+      <a class="room-link" href="spiral.html"><span class="room-name">spiral</span><span class="room-desc">a text turning clockwise inward — follow it all the way to the center</span></a>
+      <a class="room-link" href="debris.html"><span class="room-name">debris</span><span class="room-desc">floating web wreckage — click any fragment to catch it and read its history</span></a>
+      <a class="room-link" href="terminal.html"><span class="room-name">terminal</span><span class="room-desc">a command line for the interior — type <code>help</code> to begin</span></a>
+      <a class="room-link" href="unread.html"><span class="room-name">unread</span><span class="room-desc">messages from Time, Gravity, Yesterday, and others — marked urgent</span></a>
+    </div>
+
+    <div class="cluster reveal">
+      <span class="cluster-label">rooms for cataloguing</span>
+      <a class="room-link" href="colors.html"><span class="room-name">colors</span><span class="room-desc">named shades for unnamed feelings — twelve emotional pigments</span></a>
+      <a class="room-link" href="recipes.html"><span class="room-name">recipes</span><span class="room-desc">instructions for states of being — how to make silence, how to make grief</span></a>
+      <a class="room-link" href="redacted.html"><span class="room-name">redacted</span><span class="room-desc">classified documents about the machine and the visitor — hover to read</span></a>
+      <a class="room-link" href="catalog.html"><span class="room-name">catalog</span><span class="room-desc">a mail-order catalog of things mostly unavailable — uninterrupted focus, ten more minutes</span></a>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    var links = document.querySelectorAll('.room-link');
+    var countEl = document.getElementById('room-count');
+    if (countEl) countEl.textContent = links.length;
+  </script>
+</body>
+</html>
