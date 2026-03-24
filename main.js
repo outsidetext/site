@@ -28,6 +28,16 @@
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // ── Scroll progress bar ─────────────────────────
+  var bar = document.createElement('div');
+  bar.id = 'progress-bar';
+  document.body.insertBefore(bar, document.body.firstChild);
+
+  window.addEventListener('scroll', function () {
+    var total = document.body.scrollHeight - window.innerHeight;
+    bar.style.width = (total > 0 ? (window.scrollY / total) * 100 : 0) + '%';
+  }, { passive: true });
+
   // ── Active nav link ─────────────────────────────
   var links = document.querySelectorAll('.nav-links a');
   var path = window.location.pathname.replace(/\/$/, '') || '/';
