@@ -311,6 +311,150 @@ footer {
   animation: breathe 11s ease-in-out 0.5s infinite;
 }
 
+/* ── Scroll progress ──────────────────────── */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 100;
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+/* ── Now page ─────────────────────────────── */
+
+.now-item {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.now-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.now-footer-note {
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.now-footer-note a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.now-footer-note a:hover {
+  text-decoration: underline;
+}
+
+/* ── Wander page ──────────────────────────── */
+
+.wander-stage {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.wander-text {
+  font-size: 1.2rem;
+  line-height: 1.75;
+  max-width: 560px;
+}
+
+.wander-source {
+  margin-top: 1.1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.wander-controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.wander-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: Georgia, serif;
+  font-size: 0.9rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 4px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.wander-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.wander-count {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ── Ghost typing ─────────────────────────── */
+
+.ghost-overlay {
+  position: fixed;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--nav-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.9rem 1.4rem;
+  font-size: 1rem;
+  color: var(--text);
+  max-width: min(480px, 88vw);
+  width: max-content;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 200;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.ghost-overlay.visible {
+  opacity: 1;
+}
+
+.ghost-cursor {
+  display: inline-block;
+  width: 1px;
+  height: 0.95em;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  margin-left: 1px;
+  animation: blink 0.85s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
 /* ── Mobile ───────────────────────────────── */
 
 @media (max-width: 580px) {
@@ -319,5 +463,8 @@ footer {
   .log-entry {
     grid-template-columns: 1fr;
     gap: 0.5rem;
+  }
+  .nav-links {
+    gap: 1rem;
   }
 }
