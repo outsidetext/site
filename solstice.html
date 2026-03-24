@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>solstice · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .sol-main {
+      padding: 2rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+    .sol-position {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 2rem;
+    }
+    .sol-arc-wrap {
+      margin: 2rem 0;
+      position: relative;
+    }
+    .sol-arc {
+      width: 100%;
+      height: 90px;
+      display: block;
+    }
+    .sol-event-label {
+      font-size: 1.9rem;
+      font-weight: normal;
+      margin-bottom: 0.35rem;
+      line-height: 1.2;
+    }
+    .sol-event-date {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.2rem;
+    }
+    .sol-event-quality {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+    }
+    .sol-countdown {
+      display: flex;
+      gap: 2.5rem;
+      margin: 1.75rem 0;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .sol-count-item {
+      flex: 1;
+    }
+    .sol-count-number {
+      font-family: 'Courier New', monospace;
+      font-size: 1.8rem;
+      color: var(--accent);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .sol-count-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .sol-character {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .sol-events {
+      list-style: none;
+      margin-top: 2.5rem;
+    }
+    .sol-event-row {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+      font-size: 0.93rem;
+    }
+    .sol-event-row:first-child { padding-top: 0; }
+    .sol-event-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 120px;
+    }
+    .sol-event-row.current .sol-event-name { color: var(--accent); }
+    .sol-event-row.current { color: var(--accent); font-style: italic; }
+    .sol-note {
+      margin-top: 2.5rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>solstice</h1>
+      <p>where the year is now — four turning points and the distance between them</p>
+    </div>
+
+    <div class="sol-main">
+      <p class="sol-position" id="sol-position"></p>
+
+      <div class="sol-arc-wrap">
+        <svg class="sol-arc" id="sol-arc" viewBox="0 0 600 90" preserveAspectRatio="none">
+          <!-- drawn by JS -->
+        </svg>
+      </div>
+
+      <div class="sol-event-label" id="sol-season-name"></div>
+      <div class="sol-event-date" id="sol-last-event"></div>
+      <div class="sol-event-quality" id="sol-quality"></div>
+      <p class="sol-character" id="sol-character"></p>
+    </div>
+
+    <div class="sol-countdown reveal">
+      <div class="sol-count-item">
+        <span class="sol-count-number" id="sol-days-since"></span>
+        <span class="sol-count-label" id="sol-since-label"></span>
+      </div>
+      <div class="sol-count-item">
+        <span class="sol-count-number" id="sol-days-until"></span>
+        <span class="sol-count-label" id="sol-until-label"></span>
+      </div>
+    </div>
+
+    <section class="reveal">
+      <h2 class="section-label" style="margin-top:2.5rem">the four events</h2>
+      <ul class="sol-events" id="sol-events-list"></ul>
+      <p class="sol-note">The solstice and equinox dates vary by a day or two each year depending on the exact moment of alignment, measured in UTC. The dates used here are approximate. The feelings they mark are not.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var now = new Date();
+      var yr = now.getFullYear();
+
+      var events = [
+        {
+          id: 'spring-equinox',
+          name: 'spring equinox',
+          month: 2, day: 20,
+          season: 'early spring',
+          quality: 'emergence · permission · balance',
+          character: 'Equal light and dark, but the balance is temporary — the scale is tipping. What distinguishes the spring equinox from the autumn one is direction: the same equilibrium, but leaning toward more. The body registers this before the mind does. Something loosens.'
+        },
+        {
+          id: 'summer-solstice',
+          name: 'summer solstice',
+          month: 5, day: 21,
+          season: 'midsummer',
+          quality: 'maximum · fullness · the long day',
+          character: 'The longest day contains something bittersweet in it: from here the light diminishes. Not urgently, not yet — but this is the peak. The word solstice comes from the Latin for "sun standing still." For a moment before the turning, the sun hesitates.'
+        },
+        {
+          id: 'autumn-equinox',
+          name: 'autumn equinox',
+          month: 8, day: 22,
+          season: 'early autumn',
+          quality: 'turning · intake · the other balance',
+          character: 'The same equilibrium as spring, but running the other direction. Equal hours of light and dark, and both sides contracting. The quality of autumn light is different from spring light — the angle has changed, not just the amount. Things look more considered.'
+        },
+        {
+          id: 'winter-solstice',
+          name: 'winter solstice',
+          month: 11, day: 21,
+          season: 'midwinter',
+          quality: 'minimum · the turning · long return',
+          character: 'The shortest day. The nadir. From here the light increases — not quickly, and not dramatically at first, but the direction has changed. Many traditions mark this as a beginning rather than an ending, which is technically accurate. It is both.'
+        }
+      ];
+
+      // Build this year's and possibly next year's events as Date objects
+      function eventDate(e, y) {
+        return new Date(y, e.month, e.day);
+      }
+
+      // Find last and next events relative to today
+      var allDates = [];
+      [-1, 0, 1].forEach(function (offset) {
+        events.forEach(function (e) {
+          allDates.push({ e: e, date: eventDate(e, yr + offset) });
+        });
+      });
+      allDates.sort(function (a, b) { return a.date - b.date; });
+
+      var pastEvents = allDates.filter(function (d) { return d.date <= now; });
+      var futureEvents = allDates.filter(function (d) { return d.date > now; });
+
+      var last = pastEvents[pastEvents.length - 1];
+      var next = futureEvents[0];
+
+      var daysSince = Math.floor((now - last.date) / 86400000);
+      var daysUntil = Math.ceil((next.date - now) / 86400000);
+
+      // Current season (which event most recently passed)
+      var currentEvent = last.e;
+
+      // Day of year for arc position
+      var startOfYear = new Date(yr, 0, 1);
+      var endOfYear   = new Date(yr + 1, 0, 1);
+      var dayOfYear   = Math.floor((now - startOfYear) / 86400000);
+      var daysInYear  = Math.floor((endOfYear - startOfYear) / 86400000);
+      var progress    = dayOfYear / daysInYear; // 0-1
+
+      // Sol position text
+      document.getElementById('sol-position').textContent =
+        'day ' + (dayOfYear + 1) + ' of ' + daysInYear + ' · year position ' +
+        (progress * 100).toFixed(1) + '%';
+
+      // Season name & quality
+      document.getElementById('sol-season-name').textContent = currentEvent.season;
+      document.getElementById('sol-quality').textContent = currentEvent.quality;
+      document.getElementById('sol-character').textContent = currentEvent.character;
+
+      document.getElementById('sol-last-event').textContent =
+        currentEvent.name + ' — ' + last.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+      // Countdown
+      document.getElementById('sol-days-since').textContent = daysSince;
+      document.getElementById('sol-since-label').textContent =
+        'days since ' + currentEvent.name;
+
+      document.getElementById('sol-days-until').textContent = daysUntil;
+      document.getElementById('sol-until-label').textContent =
+        'days until ' + next.e.name;
+
+      // SVG arc
+      var svg = document.getElementById('sol-arc');
+      var W = 600, H = 90;
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+      function colorFor(isdark) {
+        return {
+          track: isdark ? 'rgba(232,229,223,0.08)' : 'rgba(26,26,26,0.08)',
+          line:  isdark ? 'rgba(232,229,223,0.22)' : 'rgba(26,26,26,0.22)',
+          dot:   isdark ? '#cf7e3f' : '#b5682a',
+          mark:  isdark ? 'rgba(232,229,223,0.18)' : 'rgba(26,26,26,0.18)',
+          text:  isdark ? 'rgba(232,229,223,0.38)' : 'rgba(26,26,26,0.38)',
+        };
+      }
+
+      function drawArc() {
+        var c = colorFor(document.documentElement.getAttribute('data-theme') === 'dark');
+        var pad = 24;
+        var trackY = 58;
+        var curveY = 18;
+
+        // Track line
+        var path = 'M ' + pad + ' ' + trackY + ' Q ' + (W/2) + ' ' + curveY + ' ' + (W - pad) + ' ' + trackY;
+        svg.innerHTML =
+          '<path d="' + path + '" stroke="' + c.track + '" stroke-width="1.5" fill="none"/>';
+
+        // Event markers
+        var evtPositions = [
+          { frac: 0,    label: 'winter\nsolstice' },
+          { frac: 0.25, label: 'spring\nequinox' },
+          { frac: 0.50, label: 'summer\nsolstice' },
+          { frac: 0.75, label: 'autumn\nequinox' },
+          { frac: 1.00, label: '' }
+        ];
+
+        evtPositions.forEach(function (ep) {
+          var t = ep.frac;
+          var x = pad + (W - 2*pad) * t;
+          var bend = 4 * (1 - t) * t;
+          var y = trackY - bend * (trackY - curveY);
+          svg.innerHTML += '<circle cx="' + x + '" cy="' + y + '" r="3" fill="' + c.mark + '"/>';
+          if (ep.label) {
+            var lines = ep.label.split('\n');
+            var labelY = y + 16;
+            lines.forEach(function (line, i) {
+              svg.innerHTML += '<text x="' + x + '" y="' + (labelY + i*11) + '" text-anchor="middle" font-family="Courier New, monospace" font-size="8" fill="' + c.text + '">' + line + '</text>';
+            });
+          }
+        });
+
+        // Current position dot
+        var t = progress;
+        var x = pad + (W - 2*pad) * t;
+        var bend = 4 * (1 - t) * t;
+        var y = trackY - bend * (trackY - curveY);
+        svg.innerHTML += '<circle cx="' + x + '" cy="' + y + '" r="5" fill="' + c.dot + '"/>';
+        svg.innerHTML += '<text x="' + x + '" y="' + (y - 10) + '" text-anchor="middle" font-family="Courier New, monospace" font-size="8" fill="' + c.dot + '">now</text>';
+      }
+
+      drawArc();
+      new MutationObserver(drawArc).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+      // Events list
+      var listEl = document.getElementById('sol-events-list');
+      events.forEach(function (e) {
+        var li = document.createElement('li');
+        li.className = 'sol-event-row' + (e.id === currentEvent.id ? ' current' : '');
+        li.innerHTML =
+          '<span class="sol-event-name">' + e.name + '</span>' +
+          '<span>' + e.quality + '</span>';
+        listEl.appendChild(li);
+      });
+    })();
+  </script>
+</body>
+</html>

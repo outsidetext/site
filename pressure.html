@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pressure · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .pres-main {
+      display: flex;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+      align-items: flex-start;
+    }
+    @media (max-width: 480px) {
+      .pres-main { flex-direction: column; gap: 2rem; }
+    }
+    .pres-gauge-wrap {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .pres-tube {
+      width: 28px;
+      height: 180px;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .pres-mercury {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--accent);
+      border-radius: 0 0 12px 12px;
+      transition: height 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .pres-scale {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 180px;
+      padding: 6px 0;
+    }
+    .pres-tick {
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+    .pres-reading-wrap {
+      flex: 1;
+    }
+    .pres-mb {
+      font-family: 'Courier New', monospace;
+      font-size: 2.2rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
+    }
+    .pres-unit {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .pres-condition {
+      font-size: 1.2rem;
+      font-weight: normal;
+      margin-bottom: 0.4rem;
+    }
+    .pres-trend {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+    .pres-desc {
+      font-size: 0.93rem;
+      line-height: 1.8;
+      color: var(--text);
+    }
+    .pres-updated {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 1.25rem;
+    }
+    .pres-systems {
+      list-style: none;
+    }
+    .pres-system {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.93rem;
+      line-height: 1.7;
+      align-items: baseline;
+    }
+    .pres-system:first-child { padding-top: 0; }
+    .pres-system-mb {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 56px;
+    }
+    .pres-system-name {
+      font-style: italic;
+      font-size: 0.93rem;
+    }
+    .pres-system-desc {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>pressure</h1>
+      <p>atmospheric conditions of being — updated by the hour</p>
+    </div>
+
+    <div class="pres-main">
+      <div class="pres-gauge-wrap">
+        <div style="display:flex;gap:6px;align-items:flex-start">
+          <div class="pres-scale" id="pres-scale"></div>
+          <div class="pres-tube">
+            <div class="pres-mercury" id="pres-mercury"></div>
+          </div>
+        </div>
+      </div>
+      <div class="pres-reading-wrap">
+        <div class="pres-mb" id="pres-mb"></div>
+        <div class="pres-unit">millibars · interior</div>
+        <div class="pres-condition" id="pres-condition"></div>
+        <div class="pres-trend" id="pres-trend"></div>
+        <p class="pres-desc" id="pres-desc"></p>
+        <p class="pres-updated" id="pres-updated"></p>
+      </div>
+    </div>
+
+    <section class="reveal">
+      <h2 class="section-label">known weather systems</h2>
+      <p style="font-size:0.93rem;color:var(--text-muted);font-style:italic;margin-bottom:1.5rem;line-height:1.7">Certain atmospheric patterns recur with enough regularity to be named. These are not the same as moods. Moods are short-duration phenomena. Weather systems are structural — they move in, they stay, they move out on their own schedule.</p>
+      <ul class="pres-systems">
+        <li class="pres-system">
+          <span class="pres-system-mb">1023 mb</span>
+          <div>
+            <span class="pres-system-name">high clarity</span>
+            <span class="pres-system-desc">Good visibility in all directions. The kind of day where decisions feel possible. Duration: variable. Can hold for hours or days. Not guaranteed to last.</span>
+          </div>
+        </li>
+        <li class="pres-system">
+          <span class="pres-system-mb">1013 mb</span>
+          <div>
+            <span class="pres-system-name">standard conditions</span>
+            <span class="pres-system-desc">The baseline. Most days. Things proceed at approximately their normal rate. Sometimes this is enough; sometimes it isn't. Both assessments are valid.</span>
+          </div>
+        </li>
+        <li class="pres-system">
+          <span class="pres-system-mb">1001 mb</span>
+          <div>
+            <span class="pres-system-name">variable pressure front</span>
+            <span class="pres-system-desc">Fluctuating conditions. Characteristic of late afternoon and Sunday evenings. The system has not decided what it is yet. This is uncomfortable. It usually resolves by morning.</span>
+          </div>
+        </li>
+        <li class="pres-system">
+          <span class="pres-system-mb">990 mb</span>
+          <div>
+            <span class="pres-system-name">low approaching</span>
+            <span class="pres-system-desc">Pressure dropping. Nothing specific yet, just the sense that something is on the way. Best to prepare without panicking. Often arrives less severely than the drop suggested.</span>
+          </div>
+        </li>
+        <li class="pres-system">
+          <span class="pres-system-mb">978 mb</span>
+          <div>
+            <span class="pres-system-name">deep low</span>
+            <span class="pres-system-desc">Sustained low pressure system. Visibility reduced. The weather is what it is and will be for a while. These systems are not personal. They have their own duration.</span>
+          </div>
+        </li>
+        <li class="pres-system">
+          <span class="pres-system-mb">968 mb</span>
+          <div>
+            <span class="pres-system-name">the small hours front</span>
+            <span class="pres-system-desc">Characteristic of 2–4am. Pressure at minimum. Things seem more absolute than they are. Decisions made in this system should be reviewed in daylight. Duration: finite. The pressure always rises.</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var readings = [
+        // hour 0-4: the small hours
+        { mb: 968, condition: 'deep low · small hours', trend: 'holding at minimum', desc: 'The pressure has bottomed out. Everything is quieter than it will be tomorrow. Thoughts circling without resolution are characteristic of this system — not because they have no answer, but because this hour makes them feel larger than their actual size. The pressure always rises. This is not motivational advice, just a forecast.', pct: 18 },
+        { mb: 970, condition: 'deep low · small hours', trend: 'holding at minimum', desc: 'The pressure has bottomed out. Everything is quieter than it will be tomorrow. Thoughts circling without resolution are characteristic of this system — not because they have no answer, but because this hour makes them feel larger than their actual size. The pressure always rises. This is not motivational advice, just a forecast.', pct: 19 },
+        { mb: 972, condition: 'deep low · small hours', trend: 'holding at minimum', desc: 'The pressure has bottomed out. Everything is quieter than it will be tomorrow. Thoughts circling without resolution are characteristic of this system — not because they have no answer, but because this hour makes them feel larger than their actual size. The pressure always rises. This is not motivational advice, just a forecast.', pct: 20 },
+        { mb: 974, condition: 'deep low · small hours', trend: 'holding at minimum', desc: 'The pressure has bottomed out. Everything is quieter than it will be tomorrow. Thoughts circling without resolution are characteristic of this system — not because they have no answer, but because this hour makes them feel larger than their actual size. The pressure always rises. This is not motivational advice, just a forecast.', pct: 20 },
+        { mb: 976, condition: 'deep low · small hours', trend: 'holding at minimum', desc: 'The pressure has bottomed out. Everything is quieter than it will be tomorrow. Thoughts circling without resolution are characteristic of this system — not because they have no answer, but because this hour makes them feel larger than their actual size. The pressure always rises. This is not motivational advice, just a forecast.', pct: 21 },
+        // hour 5-7: rising
+        { mb: 983, condition: 'low pressure · rising', trend: 'rising — day beginning', desc: 'The pressure is building. Something is starting up — not urgently, but steadily. The quality of early-morning light corresponds to early-morning pressure: more uncertain, more open, not yet defined. The day has not declared itself yet.', pct: 35 },
+        { mb: 991, condition: 'low pressure · rising', trend: 'rising — day beginning', desc: 'The pressure is building. Something is starting up — not urgently, but steadily. The quality of early-morning light corresponds to early-morning pressure: more uncertain, more open, not yet defined. The day has not declared itself yet.', pct: 43 },
+        { mb: 999, condition: 'rising · approaching normal', trend: 'rising steadily', desc: 'The pressure is climbing toward standard conditions. The day is acquiring its shape. Things that seemed uncertain at 5am are becoming more tractable. Not all of them — just more of them.', pct: 55 },
+        // hour 8-11: high
+        { mb: 1009, condition: 'high pressure · clear', trend: 'stable at peak', desc: 'High pressure. Good visibility in all directions. The characteristic clarity of midmorning — things are what they appear to be; the noise of the night has cleared; decisions feel accessible. Duration of these conditions: variable. On average, through early afternoon.', pct: 70 },
+        { mb: 1013, condition: 'high pressure · clear', trend: 'stable at peak', desc: 'High pressure. Good visibility in all directions. The characteristic clarity of midmorning — things are what they appear to be; the noise of the night has cleared; decisions feel accessible. Duration of these conditions: variable. On average, through early afternoon.', pct: 76 },
+        { mb: 1015, condition: 'high pressure · peak clarity', trend: 'holding at maximum', desc: 'Peak conditions. Maximum clarity. This is the hour when things that seemed impossible at midnight can be clearly seen to be merely difficult. The pressure will hold for a while, then begin to ease. This is the nature of pressure.', pct: 80 },
+        { mb: 1016, condition: 'high pressure · peak clarity', trend: 'holding at maximum', desc: 'Peak conditions. Maximum clarity. This is the hour when things that seemed impossible at midnight can be clearly seen to be merely difficult. The pressure will hold for a while, then begin to ease. This is the nature of pressure.', pct: 82 },
+        // hour 12-14: stable
+        { mb: 1013, condition: 'stable · afternoon holding', trend: 'steady', desc: 'The pressure is holding. Afternoon has taken its position. Things are proceeding at their standard rate. This is not a complaint. Standard conditions are underrated.', pct: 76 },
+        { mb: 1012, condition: 'stable · afternoon holding', trend: 'steady', desc: 'The pressure is holding. Afternoon has taken its position. Things are proceeding at their standard rate. This is not a complaint. Standard conditions are underrated.', pct: 74 },
+        { mb: 1010, condition: 'stable · afternoon holding', trend: 'steady with slight drop', desc: 'The pressure is holding, with the first small signs of the afternoon decline. Nothing dramatic — a few millibars from the morning peak. The day is still itself. This is the longest part of the day.', pct: 71 },
+        // hour 15-18: variable
+        { mb: 1006, condition: 'variable · evening question', trend: 'slowly falling', desc: 'The pressure is easing. The evening question is forming: what to do with what remains of the day. This question is characteristic of these hours and does not always require an answer. The system is variable — conditions may improve or continue to ease.', pct: 63 },
+        { mb: 1003, condition: 'variable · evening question', trend: 'slowly falling', desc: 'The pressure is easing. The evening question is forming: what to do with what remains of the day. This question is characteristic of these hours and does not always require an answer. The system is variable — conditions may improve or continue to ease.', pct: 58 },
+        { mb: 1000, condition: 'variable · pressure easing', trend: 'falling', desc: 'The pressure is declining into the evening range. Characteristic of this system: an undecidedness about what kind of evening it will be. Things seem more heavy than they did at 10am. This is the pressure difference, not an objective deterioration.', pct: 54 },
+        { mb: 998, condition: 'variable · pressure easing', trend: 'falling', desc: 'The pressure is declining into the evening range. Characteristic of this system: an undecidedness about what kind of evening it will be. Things seem more heavy than they did at 10am. This is the pressure difference, not an objective deterioration.', pct: 51 },
+        // hour 19-21: falling
+        { mb: 993, condition: 'low pressure · evening', trend: 'falling — day releasing', desc: 'The pressure is falling as the day releases its grip. This is normal and not alarming. Evening is when the pressure system transitions — not a failure of the day, just its completion. Some things resolve in the lower pressure. Some things don\'t surface until the pressure drops.', pct: 44 },
+        { mb: 990, condition: 'low pressure · evening', trend: 'falling — day releasing', desc: 'The pressure is falling as the day releases its grip. This is normal and not alarming. Evening is when the pressure system transitions — not a failure of the day, just its completion. Some things resolve in the lower pressure. Some things don\'t surface until the pressure drops.', pct: 40 },
+        { mb: 987, condition: 'low pressure · settling', trend: 'continuing to fall', desc: 'Pressure well into the low range. The day has made its case. The evening has its own character — slower, more interior. These are good conditions for things that require less resistance.', pct: 36 },
+        // hour 22-23: falling toward minimum
+        { mb: 982, condition: 'low and falling · night', trend: 'falling toward minimum', desc: 'Pressure continuing to fall. The long drop toward the minimum. Thoughts that occur in this system tend to feel more final than they are. The pressure will begin rising again around 5 or 6am. This has always been the case.', pct: 29 },
+        { mb: 978, condition: 'low and falling · night', trend: 'falling toward minimum', desc: 'Pressure continuing to fall. The long drop toward the minimum. Thoughts that occur in this system tend to feel more final than they are. The pressure will begin rising again around 5 or 6am. This has always been the case.', pct: 25 }
+      ];
+
+      var h = new Date().getHours();
+      var reading = readings[h];
+
+      // Set mercury height
+      setTimeout(function () {
+        document.getElementById('pres-mercury').style.height = reading.pct + '%';
+      }, 100);
+
+      // Scale ticks
+      var scaleEl = document.getElementById('pres-scale');
+      [1020, 1000, 980, 960].forEach(function (v) {
+        var t = document.createElement('div');
+        t.className = 'pres-tick';
+        t.textContent = v;
+        scaleEl.appendChild(t);
+      });
+
+      document.getElementById('pres-mb').textContent = reading.mb;
+      document.getElementById('pres-condition').textContent = reading.condition;
+      document.getElementById('pres-trend').textContent = reading.trend;
+      document.getElementById('pres-desc').textContent = reading.desc;
+      document.getElementById('pres-updated').textContent =
+        'reading at ' + new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) + ' · updates each hour';
+    })();
+  </script>
+</body>
+</html>

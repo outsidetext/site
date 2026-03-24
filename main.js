@@ -182,7 +182,8 @@
     'footnotes.html','versions.html','scatter.html','appetite.html','duration.html',
     'pulse.html','sediment.html','half-life.html','rumors.html','borrowed.html',
     'shelf.html','autopsy.html','taxonomy.html','departures.html','ceremony.html',
-    'sleep.html','register.html','fugue.html','light.html','wound.html'
+    'sleep.html','register.html','fugue.html','light.html','wound.html',
+    'chord.html','molt.html','solstice.html','pressure.html','vessel.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>chord · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .chord-display {
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+    .chord-name {
+      font-size: 2.6rem;
+      font-weight: normal;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .chord-quality {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .chord-dots {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    .chord-dot {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .chord-dot.root {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .chord-connector {
+      height: 1px;
+      width: 16px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    .chord-note-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+    .chord-character {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .chord-heard {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+    .chord-heard strong {
+      font-weight: normal;
+      color: var(--text-muted);
+    }
+    .chord-section {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .chord-section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .chord-pool {
+      list-style: none;
+    }
+    .chord-pool li {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.93rem;
+      align-items: baseline;
+    }
+    .chord-pool li:last-child {
+      border-bottom: none;
+    }
+    .chord-pool-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 90px;
+    }
+    .chord-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>chord</h1>
+      <p>what is sounding today — changes with the month</p>
+    </div>
+
+    <div class="chord-display">
+      <div class="chord-name" id="chord-name"></div>
+      <div class="chord-quality" id="chord-quality"></div>
+      <div class="chord-dots" id="chord-dots"></div>
+      <div class="chord-note-label" id="chord-note-label"></div>
+    </div>
+
+    <div class="chord-section">
+      <span class="chord-section-label">character</span>
+      <p class="chord-character" id="chord-character"></p>
+      <p class="chord-heard" id="chord-heard"></p>
+    </div>
+
+    <div class="chord-section reveal">
+      <span class="chord-section-label">all twelve — the complete cycle</span>
+      <ul class="chord-pool" id="chord-pool"></ul>
+    </div>
+
+    <div class="chord-section reveal">
+      <span class="chord-section-label">a note on notes</span>
+      <p style="font-size:0.93rem;line-height:1.8;color:var(--text-muted)">A chord is three or more notes sounding at once. Most emotional vocabulary has a harmonic equivalent — a cluster of things that happen simultaneously and cannot be reduced to any single element. The word for a chord's emotional character is its <em>affect</em>. This page has one affect per month. Whether it matches the month is a matter of interpretation.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var chords = [
+        {
+          name: 'C major', quality: 'open · uncomplicated · the default',
+          notes: ['C', 'E', 'G'],
+          character: 'The white-key chord. Not simple — uncluttered. It carries no memory of a prior key. Most hands find it first, before they know what they are doing. Some composers avoid it for that reason: it sounds too much like the beginning of something.',
+          heard: 'heard in: more beginnings than can be counted; the opening of Beethoven\'s First; the resolution most songs return to'
+        },
+        {
+          name: 'A minor', quality: 'introspective · nocturnal · patient',
+          notes: ['A', 'C', 'E'],
+          character: 'C major\'s relative — the same three notes, centered differently. The shift from C major to A minor is the shift from a statement to a question, or from noon to 10pm. It does not resolve. It waits.',
+          heard: 'heard in: Für Elise; House of the Rising Sun; most of what is written at 2am'
+        },
+        {
+          name: 'G major', quality: 'expansive · arriving · hopeful',
+          notes: ['G', 'B', 'D'],
+          character: 'The chord of coming home, or of cresting a hill to find the view you expected. It has a brightness that does not tip into shallowness. Often used to resolve questions that were asked in D minor.',
+          heard: 'heard in: the chorus of most songs that want you to feel something large; the end of things that ended well'
+        },
+        {
+          name: 'E minor', quality: 'searching · restless · incomplete',
+          notes: ['E', 'G', 'B'],
+          character: 'A chord that asks. It has been described as brooding but that word is too heavy — it is more like the feeling of being almost there, of a thought that hasn\'t quite arrived. It lives in the dark part of a song\'s range without being sad exactly.',
+          heard: 'heard in: the intro of Stairway to Heaven; most songs written in bedrooms; the middle of a journey'
+        },
+        {
+          name: 'F major', quality: 'warm · pastoral · domestic',
+          notes: ['F', 'A', 'C'],
+          character: 'Afternoon in a familiar room. A chord associated with warmth in a way that is structural, not coincidental — its overtone series clusters in a way that sounds rounded, enclosed. Songs that use it often take place indoors.',
+          heard: 'heard in: Let It Be; the warm parts of things; kitchens'
+        },
+        {
+          name: 'D major', quality: 'bright · assured · slightly triumphal',
+          notes: ['D', 'F♯', 'A'],
+          character: 'A confident chord, sometimes accused of overconfidence. It has a clarity that carries across distance — orchestras tune to A, but D major is what they play when they want to fill a hall. Used in hymns because of this. Also in country music, for the same reason.',
+          heard: 'heard in: most violin concertos; the key of many fanfares; the moment something is confirmed'
+        },
+        {
+          name: 'B♭ major', quality: 'full · rounded · ceremonial',
+          notes: ['B♭', 'D', 'F'],
+          character: 'A chord that requires something to be pressed down. Its fullness comes partly from this — the slight effort of the flatted note gives it weight. Brass instruments favor it. It sounds like an occasion, even when the occasion is ordinary.',
+          heard: 'heard in: most brass band music; Beethoven\'s Eroica; the moments that feel more significant in retrospect'
+        },
+        {
+          name: 'C minor', quality: 'determined · interior · serious',
+          notes: ['C', 'E♭', 'G'],
+          character: 'Beethoven\'s key. The chord of deciding something. Not sad — purposeful. The lowered third tilts the whole structure inward, toward effort rather than display. It asks more of the person playing it than C major does. That is part of the point.',
+          heard: 'heard in: Beethoven\'s Fifth; most things written in earnest; moments of resolve'
+        },
+        {
+          name: 'D minor', quality: 'somber · formal · unhurried',
+          notes: ['D', 'F', 'A'],
+          character: 'Called "the saddest of all keys" by Nigel Tufnel, who was joking, but was not entirely wrong. It has a gravity that major D does not — the same root, but the third flattens everything. Baroque composers used it for lamentations. It sounds like it knows something.',
+          heard: 'heard in: Dido\'s Lament; Toccata and Fugue in D minor; things that have been decided'
+        },
+        {
+          name: 'A major', quality: 'clear · direct · recognized',
+          notes: ['A', 'C♯', 'E'],
+          character: 'A chord of recognition — the feeling of something clicking into place. It has a brightness that A minor lacks and a directness that G major does not quite have. Violins resonate at A; it is the note they tune to. There is something of being tuned in this chord.',
+          heard: 'heard in: many Spanish guitar pieces; the moment something is understood; the second movement of things'
+        },
+        {
+          name: 'E major', quality: 'luminous · resolved · open-stringed',
+          notes: ['E', 'G♯', 'B'],
+          character: 'On a guitar, E major is all open strings — the instrument rings at its fullest without any hand on the neck. This is what it sounds like: unencumbered. Not light-as-in-easy, but light-as-in-lit. Used at the end of long pieces when everything finally opens.',
+          heard: 'heard in: guitar music at its most resonant; the end of winter; arriving somewhere with clear air'
+        },
+        {
+          name: 'B minor', quality: 'unresolved · melancholy · in transit',
+          notes: ['B', 'D', 'F♯'],
+          character: 'The chord of being between things. Not quite at home in any key, it functions in multiple contexts without fully belonging to any of them. Bach called it a "key representing quiet resignation." This is accurate. It is the chord of patience without certainty.',
+          heard: 'heard in: Bach\'s Mass in B minor; the space between knowing and deciding; most of the way through long journeys'
+        }
+      ];
+
+      var d = new Date();
+      var idx = d.getMonth(); // 0-11 by month of year
+      var chord = chords[idx];
+
+      // Populate chord display
+      document.getElementById('chord-name').textContent = chord.name;
+      document.getElementById('chord-quality').textContent = chord.quality;
+
+      // Build dots
+      var dotsEl = document.getElementById('chord-dots');
+      chord.notes.forEach(function (note, i) {
+        if (i > 0) {
+          var conn = document.createElement('div');
+          conn.className = 'chord-connector';
+          dotsEl.appendChild(conn);
+        }
+        var dot = document.createElement('div');
+        dot.className = 'chord-dot' + (i === 0 ? ' root' : '');
+        dot.textContent = note;
+        dotsEl.appendChild(dot);
+      });
+
+      document.getElementById('chord-note-label').textContent =
+        chord.notes.join('  ·  ') + '  —  root · third · fifth';
+
+      document.getElementById('chord-character').textContent = chord.character;
+      document.getElementById('chord-heard').textContent = chord.heard;
+
+      // Build pool list
+      var poolEl = document.getElementById('chord-pool');
+      chords.forEach(function (c, i) {
+        var li = document.createElement('li');
+        var months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+        li.innerHTML =
+          '<span class="chord-pool-name">' + c.name + '</span>' +
+          '<span>' + c.quality + '</span>';
+        if (i === idx) {
+          li.style.color = 'var(--accent)';
+          li.style.fontStyle = 'italic';
+        }
+        poolEl.appendChild(li);
+      });
+    })();
+  </script>
+</body>
+</html>
