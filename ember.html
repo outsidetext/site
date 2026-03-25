@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ember · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ember-wrap {
+      position: relative;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    #ember-canvas {
+      display: block;
+      width: 100%;
+      height: 110px;
+      cursor: crosshair;
+    }
+    .ember-label {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.75rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      pointer-events: none;
+      letter-spacing: 0.04em;
+    }
+    .ember-hint {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      opacity: 0.5;
+      margin-top: -2rem;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.04em;
+    }
+    .ember-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ember-entry:last-child { border-bottom: none; }
+    .ember-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .ember-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .ember-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .ember-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>ember</h1>
+      <p>the long cooling; what remains after heat</p>
+    </div>
+
+    <div class="ember-wrap">
+      <canvas id="ember-canvas"></canvas>
+      <div class="ember-label" id="ember-label">cooling</div>
+    </div>
+
+    <p class="ember-hint">move the cursor across the canvas to breathe warmth back in</p>
+
+    <div class="ember-entry reveal">
+      <span class="ember-tag">physics</span>
+      <h3>the rate of cooling</h3>
+      <p>Newton's Law of Cooling states that the rate of heat loss is proportional to the difference between the object's temperature and the ambient temperature. This means that the cooling slows as the object approaches room temperature — the largest drop happens quickly, at the start, when the difference is greatest. The last few degrees take disproportionately long. The ember cools fast from red to black, then barely moves from black to room temperature. The most visible part of the cooling is not the longest part.</p>
+      <p>The same curve appears in other forms of cooling: the intensity of grief in the first weeks versus the slow tail that follows for years; the rapid loss of enthusiasm after a new beginning; the way a strong feeling subsides quickly and then plateaus, present but below the threshold of daily notice. Exponential decay is a common shape for things that have been heated past their ordinary state.</p>
+    </div>
+
+    <div class="ember-entry reveal">
+      <span class="ember-tag">pyrology</span>
+      <h3>what embers do</h3>
+      <p>An ember is combustion's afterstate — the fuel spent, the flame gone, the carbon still holding heat from a process that has completed. Embers are patient. They require almost no oxygen to sustain themselves. They resist extinction through a quality not quite passive: a readiness to continue if given the right conditions. You dampen them and not just leave them because the right conditions might still arrive. The ember is not merely cooling. It is potentially still capable of the whole thing again.</p>
+      <p>The practical recommendation is therefore to treat an ember as if it might reignite. The potential is present until the temperature drops below ignition threshold, which takes longer than the visible heat suggests. This is also useful information about other slowly cooling things.</p>
+    </div>
+
+    <div class="ember-entry reveal">
+      <span class="ember-tag">language</span>
+      <h3>the ember word</h3>
+      <p>Some words still carry heat from when they were said. An endearment from a relationship that has ended, encountered in an old letter. An insult absorbed in childhood, occasionally still warm when disturbed. A name spoken in a specific tone by a specific person, years ago, that the body recognizes before the mind does. These are ember words: no longer on fire, not fully cold. They have been cooling for some time and are still not at ambient temperature.</p>
+      <p>The strange thing about ember words is that they are reversible. Given the right conditions — the right context, the right silence around them — they can heat back up to something close to their original temperature. This does not make them dangerous, exactly. It makes them worth handling with some awareness of what they still contain.</p>
+    </div>
+
+    <div class="ember-entry reveal">
+      <span class="ember-tag">aftermath</span>
+      <h3>after the argument</h3>
+      <p>The next day. The heat has left — or most of it. What remains is the shape the heat made: scorched places where the fuel was concentrated, the geography of what was combustible and what was not. The argument was about something specific and also about older things, which is why it burned hotter than its stated subject could account for. The older things are still in the ash, unchanged by the fire because they were what was actually burning.</p>
+      <p>Embers are not neutral. They hold information about the fire: what burned and what didn't, what was consumed and what was merely heated, where the fuel was dense and where the fire ran quickly across the surface without catching. An ember examination is a forensics of what was there before the ignition. This is available if you want it. Most people find it easier to simply wait for the ash to cool all the way.</p>
+    </div>
+
+    <div class="ember-entry reveal">
+      <span class="ember-tag">respite</span>
+      <h3>the day after the good news</h3>
+      <p>The elation has cooled. Not gone — present, but at a temperature you can sit near without protecting yourself from it. Something is genuinely to be said for the ember stage of good fortune: the fire is more intense, but this is the state you can spend time in. The warmth is continuous rather than episodic. You can think clearly again. You can notice that you are glad rather than just being glad.</p>
+      <p>The ember of good news is often more useful than the fire of it. The fire disrupts ordinary function. The ember sustains. Most long periods of happiness are ember states rather than flame states — not the peak, but the reliable warmth maintained at a temperature that ordinary life can absorb and continue in.</p>
+    </div>
+
+    <div class="ember-entry reveal">
+      <span class="ember-tag">practice</span>
+      <h3>tending</h3>
+      <p>There is a culture around the ember: the art of keeping something going through careful minimal maintenance. Not the drama of lighting a fire — the patient practice of not letting the existing heat fully dissipate. Adding small amounts of fuel before it gets too cold. Protecting the heat from extinguishing conditions. Checking on it without disturbing it excessively. These are old domestic skills, no longer necessary for most, still present in the older parts of the memory.</p>
+      <p>What can be maintained this way, if the maintenance is consistent, is different in kind from what can be rebuilt from nothing. The ember state and the cold state both require effort to change, but in different directions. An ember can become a fire again with relatively little intervention. A cold hearth requires everything to start again. Tending is the practice of staying on the warm side of that threshold without quite knowing how close you are to it.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas  = document.getElementById('ember-canvas');
+    var label   = document.getElementById('ember-label');
+    var ctx     = canvas.getContext('2d');
+    var dpr     = window.devicePixelRatio || 1;
+    var W, H, cx, cy;
+    var intensity = 1.0;
+    var lastTime  = null;
+    var DURATION  = 300; // seconds to dim from 1.0 to 0.05
+    var FLOOR     = 0.05;
+    var mouseX = -1, mouseY = -1;
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = Math.round(rect.width * dpr);
+      H = canvas.height = Math.round(110 * dpr);
+      canvas.style.height = '110px';
+      cx = W / 2;
+      cy = H / 2;
+    }
+
+    canvas.addEventListener('mousemove', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      mouseX = (e.clientX - rect.left) / rect.width;
+      mouseY = (e.clientY - rect.top)  / rect.height;
+      intensity = Math.min(1.0, intensity + 0.04);
+    });
+
+    canvas.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      var t = e.touches[0];
+      var rect = canvas.getBoundingClientRect();
+      mouseX = (t.clientX - rect.left) / rect.width;
+      mouseY = (t.clientY - rect.top)  / rect.height;
+      intensity = Math.min(1.0, intensity + 0.04);
+    }, { passive: false });
+
+    function draw(ts) {
+      requestAnimationFrame(draw);
+
+      if (lastTime === null) lastTime = ts;
+      var dt = (ts - lastTime) / 1000;
+      lastTime = ts;
+
+      // Decay intensity
+      intensity = Math.max(FLOOR, intensity - ((1.0 - FLOOR) / DURATION) * dt);
+
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      ctx.clearRect(0, 0, W, H);
+
+      // Main glow — centered, warm orange
+      var r = Math.min(W, H) * 0.55;
+      var grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+      var alpha1 = intensity * 0.55;
+      var alpha2 = intensity * 0.22;
+      if (dark) {
+        grad.addColorStop(0,   'rgba(207, 118, 40, ' + alpha1.toFixed(3) + ')');
+        grad.addColorStop(0.5, 'rgba(181,  90, 20, ' + alpha2.toFixed(3) + ')');
+        grad.addColorStop(1,   'rgba(181,  70,  0, 0)');
+      } else {
+        grad.addColorStop(0,   'rgba(220, 140, 60, ' + alpha1.toFixed(3) + ')');
+        grad.addColorStop(0.5, 'rgba(200, 110, 30, ' + alpha2.toFixed(3) + ')');
+        grad.addColorStop(1,   'rgba(181,  80,  0, 0)');
+      }
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+
+      // Subtle breath around mouse cursor when hovering
+      if (mouseX >= 0 && intensity > FLOOR + 0.1) {
+        var mx = mouseX * W;
+        var my = mouseY * H;
+        var br = 50 * dpr;
+        var bgrad = ctx.createRadialGradient(mx, my, 0, mx, my, br);
+        var ba = Math.max(0, (intensity - FLOOR) * 0.3);
+        bgrad.addColorStop(0, 'rgba(255,180,80,' + ba.toFixed(3) + ')');
+        bgrad.addColorStop(1, 'rgba(255,140,40,0)');
+        ctx.fillStyle = bgrad;
+        ctx.fillRect(0, 0, W, H);
+      }
+
+      // Label
+      var pct = Math.round(((intensity - FLOOR) / (1.0 - FLOOR)) * 100);
+      if (intensity <= FLOOR + 0.02) {
+        label.textContent = 'cold · move to restore heat';
+      } else {
+        label.textContent = pct + '% heat remaining';
+      }
+    }
+
+    resize();
+    requestAnimationFrame(draw);
+    window.addEventListener('resize', resize);
+  }());
+  </script>
+</body>
+</html>

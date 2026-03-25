@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>almost · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .almost-wrap {
+      position: relative;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    #almost-canvas {
+      display: block;
+      width: 100%;
+      height: 130px;
+    }
+    .almost-label {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.75rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      pointer-events: none;
+      letter-spacing: 0.04em;
+    }
+    .almost-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .almost-entry:last-child { border-bottom: none; }
+    .almost-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .almost-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .almost-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .almost-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>almost</h1>
+      <p>the near-thing; what didn't quite arrive</p>
+    </div>
+
+    <div class="almost-wrap">
+      <canvas id="almost-canvas"></canvas>
+      <div class="almost-label" id="almost-label">approaching</div>
+    </div>
+
+    <div class="almost-entry reveal">
+      <span class="almost-tag">geography</span>
+      <h3>almost there</h3>
+      <p>The phrase appears on every long journey, usually announced by the passenger who has been tracking the distance in their head. It means: the destination, which has been abstract for hours, has become measurable enough to feel real. You are almost there. This is, depending on the journey and the passenger, either reassuring or unbearable — the end visible enough to want, the want sharp enough to make the remaining distance feel longer than everything that preceded it.</p>
+      <p>The last fifteen minutes of a long journey are among the slowest. The destination has been named. The countdown has begun. The remaining-ness, which was invisible when there was so much of it, is now the only thing. Almost there is not a comfort. It is the announcement of a specific and particularly intense form of waiting.</p>
+    </div>
+
+    <div class="almost-entry reveal">
+      <span class="almost-tag">speech</span>
+      <h3>almost said it</h3>
+      <p>There are things that reach the threshold of speech and don't cross. You can feel where they are — at the edge, organized into language, ready to be sent — and then something calculates the cost or the timing or the right configuration of the room and the words retreat. Not gone: held. The mouth opened slightly and closed. Nobody noticed, or if they did they said nothing about it.</p>
+      <p>The unsaid thing that reached the threshold is different from the thing that never formed. It got close enough to be felt as an absence. The silence after a threshold-but-not-crossed has a different quality from silence that never held anything at all. You can sometimes feel the shape of what stayed in it.</p>
+    </div>
+
+    <div class="almost-entry reveal">
+      <span class="almost-tag">perception</span>
+      <h3>almost recognized</h3>
+      <p>A face at the far end of a platform that could be someone you know. For a half-second — longer than it takes to describe — the face holds two possibilities simultaneously: the probability of recognition high enough to orient your body toward it, low enough to prevent you from calling out. Then the face turns and resolves, unambiguously, to a stranger. The recognition that almost happened leaves a residue: you reached for something and found the precise fact of its absence.</p>
+      <p>The almost-recognition is its own experience, distinct from both recognition and its absence. It has a specific register — a brief activation of warmth, then a small cancellation. The brain had organized itself to be glad. It does not apologize for this. It prepared correctly; the world did not cooperate.</p>
+    </div>
+
+    <div class="almost-entry reveal">
+      <span class="almost-tag">language</span>
+      <h3>the near-miss</h3>
+      <p>A near-miss, in ordinary English, means a collision that nearly happened. The logic would suggest that a near-miss is a near-hit: the miss was the outcome, and it was near. But the phrase inverts itself in common use — a near-miss is not a narrow escape from missing, it is a narrow escape from collision. The near describes proximity to disaster, not proximity to the miss itself.</p>
+      <p>The language chose to name the experience from the side of danger, not from the side of survival. <em>Almost</em> does the same work: it tells you how close the thing came without specifying which side of the line the outcome landed on. It measures only the distance from the deciding edge. That the distance was small tells you nothing about where you ended up, only about how close the ending was.</p>
+    </div>
+
+    <div class="almost-entry reveal">
+      <span class="almost-tag">mathematics</span>
+      <h3>Zeno's arrow</h3>
+      <p>The arrow is in flight. To reach the target, it must cross half the distance. To cross half the distance, it must first cross half of that. There are infinitely many halvings between any position and any destination. Since infinitely many steps require infinite time, the arrow cannot reach the target. The argument is correct. The target is struck. The resolution — that an infinite series can have a finite sum — took two thousand years to arrive and does not undo the strangeness of the original paradox, which is that infinitely many steps do not automatically require infinite time.</p>
+      <p>The dot in the canvas above describes this. It has been approaching since you arrived. The distance halves with each revolution, which means it never reaches zero, which means the approach is permanent and the arrival is not coming. The canvas holds one of Zeno's arguments made visible. It will be approaching when you leave.</p>
+    </div>
+
+    <div class="almost-entry reveal">
+      <span class="almost-tag">measure</span>
+      <h3>almost enough</h3>
+      <p>Almost enough is not a midpoint. It is a position very close to the threshold of enough — within the margin of normal error, perhaps, within what one would have expected to suffice — but on the wrong side of the line. The distinction between almost enough and enough is not the magnitude of the gap. It is which side of the threshold the gap left you on. A small shortfall and a large shortfall produce the same structural outcome. The almost is not diminished by being close. Closeness is not credit.</p>
+      <p>This is one of the harder things about thresholds: they are binary even when the approach to them is continuous. You were this close, which does not help. The door required a key that was not there. How near you came to having a key is information, but it is not the key.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('almost-canvas');
+    var label  = document.getElementById('almost-label');
+    var ctx    = canvas.getContext('2d');
+    var dpr    = window.devicePixelRatio || 1;
+    var W, H, cx, cy, maxDist, t = 0;
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = Math.round(rect.width * dpr);
+      H = canvas.height = Math.round(130 * dpr);
+      canvas.style.height = '130px';
+      cx = W / 2;
+      cy = H / 2;
+      maxDist = Math.min(W, H) * 0.41;
+      t = 0;
+    }
+
+    function draw() {
+      requestAnimationFrame(draw);
+      t += 0.013;
+
+      // Spiral: angle increases linearly, distance decays exponentially but never reaches 0
+      var angle = t * 2.1;
+      var dist  = maxDist * Math.exp(-t * 0.038);
+
+      var x = cx + Math.cos(angle) * dist;
+      var y = cy + Math.sin(angle) * dist;
+
+      var dark   = document.documentElement.getAttribute('data-theme') === 'dark';
+      var accent = dark ? '#cf7e3f' : '#b5682a';
+      var centerC = dark ? 'rgba(232,229,223,0.18)' : 'rgba(26,26,26,0.13)';
+
+      ctx.clearRect(0, 0, W, H);
+
+      // Center target mark
+      ctx.beginPath();
+      ctx.arc(cx, cy, 3 * dpr, 0, Math.PI * 2);
+      ctx.fillStyle = centerC;
+      ctx.fill();
+
+      // Crosshair
+      var cs = 9 * dpr;
+      ctx.strokeStyle = centerC;
+      ctx.lineWidth   = 1 * dpr;
+      ctx.beginPath();
+      ctx.moveTo(cx - cs, cy); ctx.lineTo(cx + cs, cy);
+      ctx.moveTo(cx, cy - cs); ctx.lineTo(cx, cy + cs);
+      ctx.stroke();
+
+      // Trail: compute previous positions
+      var ta, a2, d2, x2, y2, alpha;
+      var trailLen = 24;
+      for (var i = trailLen; i > 0; i--) {
+        ta = t - i * 0.013;
+        if (ta < 0) continue;
+        a2 = ta * 2.1;
+        d2 = maxDist * Math.exp(-ta * 0.038);
+        x2 = cx + Math.cos(a2) * d2;
+        y2 = cy + Math.sin(a2) * d2;
+        alpha = ((trailLen - i) / trailLen) * 0.18;
+        ctx.beginPath();
+        ctx.arc(x2, y2, 2 * dpr, 0, Math.PI * 2);
+        ctx.fillStyle = dark
+          ? 'rgba(207,126,63,' + alpha.toFixed(3) + ')'
+          : 'rgba(181,104,42,' + alpha.toFixed(3) + ')';
+        ctx.fill();
+      }
+
+      // Main dot
+      ctx.beginPath();
+      ctx.arc(x, y, 4.5 * dpr, 0, Math.PI * 2);
+      ctx.fillStyle = accent;
+      ctx.fill();
+
+      var px = Math.round(dist / dpr);
+      label.textContent = px + 'px from center';
+    }
+
+    resize();
+    requestAnimationFrame(draw);
+    window.addEventListener('resize', resize);
+  }());
+  </script>
+</body>
+</html>

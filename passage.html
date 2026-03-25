@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>passage · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .passage-ribbon {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+      padding: 1.1rem 0;
+      white-space: nowrap;
+      cursor: default;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+    }
+    .passage-ribbon-inner {
+      display: inline-block;
+      animation: passage-scroll 90s linear infinite;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.05em;
+      will-change: transform;
+    }
+    .passage-ribbon:hover .passage-ribbon-inner {
+      animation-play-state: paused;
+    }
+    @keyframes passage-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .passage-hint {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      opacity: 0.45;
+      margin-bottom: 3rem;
+      letter-spacing: 0.04em;
+    }
+    .passage-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .passage-entry:last-child { border-bottom: none; }
+    .passage-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .passage-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .passage-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .passage-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>passage</h1>
+      <p>what moves through; the corridor between states</p>
+    </div>
+
+    <div class="passage-ribbon">
+      <div class="passage-ribbon-inner" id="passage-ribbon">a feeling without a name &middot; cold air from an open window &middot; the thirty seconds before sleep &middot; a phrase understood years after it was heard &middot; grief delayed by six months &middot; a stranger's laugh &middot; light through cloud &middot; the moment before the answer &middot; sudden clarity at the wrong time &middot; a memory you didn't know you still had &middot; the particular weight of a Sunday afternoon &middot; warmth from a cup not yet drunk &middot; the sense of having been somewhere important &middot; a word in a language you once knew &middot; three birds on a wire, then two &middot;&nbsp;&nbsp;&nbsp;&nbsp;a feeling without a name &middot; cold air from an open window &middot; the thirty seconds before sleep &middot; a phrase understood years after it was heard &middot; grief delayed by six months &middot; a stranger's laugh &middot; light through cloud &middot; the moment before the answer &middot; sudden clarity at the wrong time &middot; a memory you didn't know you still had &middot; the particular weight of a Sunday afternoon &middot; warmth from a cup not yet drunk &middot; the sense of having been somewhere important &middot; a word in a language you once knew &middot; three birds on a wire, then two &middot;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    </div>
+    <p class="passage-hint">hover to pause</p>
+
+    <div class="passage-entry reveal">
+      <span class="passage-tag">architecture</span>
+      <h3>the corridor</h3>
+      <p>The corridor is a space whose entire purpose is to be left. You pass through it to get to the room that is the destination. In passing through, you are in neither the room you left nor the one you are going to — in a threshold space with no function except transition. The corridor is the infrastructure of the house, visible only when you are moving between things.</p>
+      <p>This is why corridors are rarely remembered. Memory consolidates around places where things happened, and corridors are places where nothing is supposed to happen — only the movement between happenings. The thought you had in the corridor is the thought you couldn't retrieve once you reached the room. The corridor is where thoughts that belong to neither place live briefly, and are often lost.</p>
+    </div>
+
+    <div class="passage-entry reveal">
+      <span class="passage-tag">ecology</span>
+      <h3>migration</h3>
+      <p>The word comes from the Latin for going, moving, wandering. It describes the seasonal movement of animals along established routes — the same paths taken each year, maintained by generations, adjusted only slowly as conditions change. The route is not incidental. The route is the passage: the known corridor through an otherwise undifferentiated geography, worn into the landscape by repetition until it becomes a feature of the place rather than a behavior of the animal.</p>
+      <p>Human migrations work similarly. Routes that begin as choices become roads, then highways, then the natural geography of how people move through a region. The passage is first a behavior and then a place. The corridor between two points is carved by everything that moves through it. Passage is not a neutral category. It is a claim, made by movement, that this direction is the direction.</p>
+    </div>
+
+    <div class="passage-entry reveal">
+      <span class="passage-tag">anthropology</span>
+      <h3>the rite of passage</h3>
+      <p>The anthropologist Arnold van Gennep described a three-stage structure underlying all major life transitions: separation (leaving the previous state), liminality (the threshold state, belonging to neither), and incorporation (entering the new state). The rite of passage is the formal apparatus for managing this structure — ceremony as infrastructure for transitions that the self cannot accomplish alone.</p>
+      <p>What the ceremony provides is not the change itself — the change happens whether or not there is ceremony — but the acknowledgment that a change has occurred, and the community witness that ratifies it. You were this; now you are that. The passage is the interval between the two, the liminal corridor before the new room. The rite is what ensures the corridor does not become permanent — what prevents a passage from becoming a residence.</p>
+    </div>
+
+    <div class="passage-entry reveal">
+      <span class="passage-tag">meteorology</span>
+      <h3>what passes through</h3>
+      <p>A cold front passes through a region. A mood passes through a room. An era passes through a generation. The phrase "passes through" implies that the thing moves, not the region or room or generation — that we are stationary observers and the phenomenon is the traveler. Whether this is the more accurate description depends on the scale at which you're looking. From the front's perspective, the land is what moves. From the land's perspective, the front does.</p>
+      <p>The things that pass through rather than staying are different in kind from things that remain. A feeling that passes through is not less real for passing. The weather system that moves through still wet the ground. The era that has passed through still shaped what came after. What passes through is not less significant than what stays. It is differently significant — significant in the moment of passing, and in what it left behind when it went.</p>
+    </div>
+
+    <div class="passage-entry reveal">
+      <span class="passage-tag">literary</span>
+      <h3>the passage of time</h3>
+      <p>The phrase implies that time moves and we stand still, watching it pass us the way water passes a stone. The physicist's description is different: time may be a dimension we move through, not a flow we receive. Neither image is fully accurate. Neither is wrong in any way that matters for navigating a day. What the phrase captures is the experiential truth of temporal change — that things keep becoming the past, that the present keeps being handed off to the future, that you are always on the later side of things than you just were.</p>
+      <p>The passage of time is also a genre: prose that moves from earlier to later, that covers ground, that changes the characters or the circumstances through the accumulation of pages. A passage of writing and a passage of time share the same word because they share the same basic structure — a movement through something, arriving on the other side at a different place than where you entered, having been changed by the traveling.</p>
+    </div>
+
+    <div class="passage-entry reveal">
+      <span class="passage-tag">constraint</span>
+      <h3>the narrow passage</h3>
+      <p>The thing that fits through just barely. The door you have to turn sideways for. The argument that requires you to drop two of your usual defenses before it can proceed. The narrow passage is not arbitrary — it is a diagnostic. What the constraint discovers is what you were actually carrying, because the passage asks you to put things down in order to get through. You find out what you're holding by discovering what won't fit with you.</p>
+      <p>Some passages are narrow by design. The bottleneck in a supply chain, the single road into a valley, the exam that filters before the credential — these use narrowness as a function, not a flaw. Others are narrow by circumstance: grief, illness, a particular year. The narrow passage does not become easier by knowing why it is narrow. But knowing can sometimes tell you what you need to set down in order to fit through, and that is at least useful information, even if using it is still difficult.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

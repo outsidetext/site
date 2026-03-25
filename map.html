@@ -303,6 +303,11 @@
       { id: 'blur',      href: 'blur.html',      label: 'blur',      desc: 'what becomes visible when focus softens — bokeh, peripheral vision, memory\'s useful imprecision; move to focus the canvas',         x: 0.44, y: 0.52 },
       { id: 'idle',      href: 'idle.html',      label: 'idle',      desc: 'the screensaver state — sit still for 22 seconds; six entries on background processes and what the mind does when no one is watching', x: 0.71, y: 0.64 },
       { id: 'ghost',     href: 'ghost.html',     label: 'ghost',     desc: 'what stays after the thing has gone — cached pages, motor memory, person-shaped absences; hover to see what\'s underneath',          x: 0.30, y: 0.64 },
+      { id: 'aftermath', href: 'aftermath.html', label: 'aftermath',  desc: 'what settles after the thing itself — trembling lines that slowly still; six entries on the apartment after the party, the body after illness, the aftermath of relief',    x: 0.37, y: 0.66 },
+      { id: 'almost',    href: 'almost.html',    label: 'almost',     desc: 'the near-thing; a dot that approaches center and never arrives — six entries on almost there, almost said it, the near-miss, Zeno\'s arrow, almost enough',               x: 0.56, y: 0.42 },
+      { id: 'chorus',    href: 'chorus.html',    label: 'chorus',     desc: 'many voices, the same moment three ways — said, meant, heard; five moments in three simultaneous registers; three entries on music, birdsong, the synchronized crowd',     x: 0.14, y: 0.72 },
+      { id: 'ember',     href: 'ember.html',     label: 'ember',      desc: 'the long cooling after heat — a glow that dims as you watch; move cursor to breathe warmth back; six entries on Newton\'s cooling, ember words, tending',                x: 0.78, y: 0.70 },
+      { id: 'passage',   href: 'passage.html',   label: 'passage',    desc: 'what moves through — a ribbon of things passing by; hover to pause; six entries on the corridor, migration, rites of passage, the narrow passage',                         x: 0.51, y: 0.09 },
     ];
 
     var edges = [
@@ -507,6 +512,11 @@
       ['blur','aperture'], ['blur','periphery'], ['blur','forgetting'], ['blur','quiet'], ['blur','afterimage'],
       ['idle','quiet'], ['idle','sleep'], ['idle','presence'], ['idle','overnight'], ['idle','latency'],
       ['ghost','residue'], ['ghost','museum'], ['ghost','trace'], ['ghost','silt'], ['ghost','forgetting'],
+      ['aftermath','residue'], ['aftermath','repair'], ['aftermath','wound'], ['aftermath','forgetting'], ['aftermath','overnight'],
+      ['almost','approximate'], ['almost','thresholds'], ['almost','latency'], ['almost','distances'], ['almost','equations'],
+      ['chorus','echoes'], ['chorus','murmur'], ['chorus','signal'], ['chorus','frequencies'], ['chorus','hum'],
+      ['ember','warmth'], ['ember','half-life'], ['ember','residue'], ['ember','solstice'], ['ember','light'],
+      ['passage','transit'], ['passage','thresholds'], ['passage','interval'], ['passage','distances'], ['passage','liminal'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

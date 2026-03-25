@@ -206,7 +206,9 @@
     'postponed.html','counterpoint.html','forgetting.html','interview.html','debt.html',
     'overnight.html','dissolve.html','ruin.html','transcript.html','accumulate.html',
     'fallow.html','trace.html','wrong.html','return.html','murmur.html',
-    'fossil.html','horizon.html','dread.html','still.html','approximate.html'
+    'fossil.html','horizon.html','dread.html','still.html','approximate.html',
+    'surplus.html','coda.html','blur.html','idle.html','ghost.html',
+    'aftermath.html','almost.html','chorus.html','ember.html','passage.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
