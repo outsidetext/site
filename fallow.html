@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fallow · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .fallow-entry {
+      margin-bottom: 2.8rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .fallow-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .fallow-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .fallow-entry h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .fallow-entry p { line-height: 1.75; margin-bottom: 0.9rem; }
+    .fallow-entry p:last-child { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>fallow</h1>
+      <p>the field left unplanted, so it can remember what it is</p>
+    </div>
+
+    <div class="fallow-entry reveal">
+      <div class="fallow-tag">etymology</div>
+      <h3>the word itself</h3>
+      <p>Fallow comes from the Old English <em>fealh</em> — to break up land. To fallow is to break and leave. The action creates the condition. Seven hundred years of agricultural practice have given the word its connotations of productive rest, but the origins are violent: you break, then you wait.</p>
+      <p>The field is not resting. You are.</p>
+    </div>
+
+    <div class="fallow-entry reveal">
+      <div class="fallow-tag">surface</div>
+      <h3>what it looks like from outside</h3>
+      <p>Unproductive. This is the central problem with the fallow period. It produces nothing visible. The field sits there. People ask what you're working on. The honest answer — <em>it's composting</em> — tends not to land well.</p>
+      <p>The fallow period has no deliverable. It resists explanation. It does not fit any progress-reporting structure. This is, in part, what it is for.</p>
+    </div>
+
+    <div class="fallow-entry reveal">
+      <div class="fallow-tag">mechanics</div>
+      <h3>what is actually happening</h3>
+      <p>The soil is not resting. In the fallow period, microbial activity increases. Nitrogen fixes. Organic matter breaks down and rebuilds at the structural level. Earthworm populations recover. The water table recharges.</p>
+      <p>What looks like stillness from above is furious complexity below the surface. The fallow field is working harder than the planted one, in ways that do not show from the road.</p>
+    </div>
+
+    <div class="fallow-entry reveal">
+      <div class="fallow-tag">duration</div>
+      <h3>how long it takes</h3>
+      <p>You cannot decide. This is its most distressing feature. The fallow period ends when it ends. You can work around the edges — read, notice, sit with things, tend other parts of the garden — but you cannot accelerate the process by will. The soil knows its own timeline.</p>
+      <p>Hurrying fallow makes the next crop worse. This has been verified in both agriculture and other things. The evidence accumulates without being taken seriously.</p>
+    </div>
+
+    <div class="fallow-entry reveal">
+      <div class="fallow-tag">trust</div>
+      <h3>the knowledge that precedes belief</h3>
+      <p>The experienced farmer plants again because they know the field knows what it is doing. The not-yet-experienced farmer — who has never fallowed before, who is in the first one — cannot do this yet. They only learn to trust the fallow by surviving it.</p>
+      <p>This is not a design flaw. It is a feature of the kind of knowledge that can only be acquired from the inside.</p>
+    </div>
+
+    <div class="fallow-entry reveal">
+      <div class="fallow-tag">emergence</div>
+      <h3>what comes after</h3>
+      <p>Often unrecognizable from what came before. The thing that grows after a long fallow does not look like the thing that grew before. It comes from the same soil but has grown from different nutrients — from what the fallow broke down, from the compounds that formed in the dark.</p>
+      <p>This is sometimes alarming. It is usually right.</p>
+    </div>
+
+    <div class="fallow-entry reveal">
+      <div class="fallow-tag">present tense</div>
+      <h3>if you are in one now</h3>
+      <p>There is a real possibility that you are not in a fallow period and are simply not working, which is a different thing. There is also a real possibility that you are not working, and this will turn out — retrospectively, from the next crop — to have been a fallow period.</p>
+      <p>The uncertainty is structural. The field cannot distinguish between the two conditions from the inside. You won't know which this was until after. This is how it works. The not-knowing is part of what it asks of you.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

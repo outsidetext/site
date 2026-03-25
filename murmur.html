@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>murmur · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .murmur-entry {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .murmur-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .murmur-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+    .murmur-entry h3 {
+      margin: 0 0 1.1rem;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .exchange {
+      margin-bottom: 0;
+    }
+    .line-said {
+      display: block;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 0.1rem;
+    }
+    .speaker {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-right: 0.65em;
+      user-select: none;
+    }
+    .line-murmur {
+      display: block;
+      font-size: 0.79rem;
+      color: var(--text-muted);
+      font-style: italic;
+      padding-left: 2.5em;
+      line-height: 1.55;
+      margin-bottom: 0.8rem;
+      opacity: 0.8;
+    }
+    .line-murmur::before {
+      content: '∼ ';
+      opacity: 0.45;
+    }
+    .murmur-intro {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 3rem;
+      line-height: 1.75;
+    }
+    .murmur-coda {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>murmur</h1>
+      <p>the frequency beneath the conversation</p>
+    </div>
+
+    <p class="murmur-intro">Six conversations, transcribed twice: once as said, once as meant. The murmur is always present. Most conversations carry both tracks simultaneously. This is not dishonesty. It is the full bandwidth of being a person talking to another person.</p>
+
+    <div class="murmur-entry reveal">
+      <div class="murmur-tag">reunion</div>
+      <h3>at a party, after some years</h3>
+      <div class="exchange">
+        <span class="line-said"><span class="speaker">A —</span> How have you been? It's been forever.</span>
+        <span class="line-murmur">have you changed? will I be able to tell? is this going to be awkward and if so how soon will we establish that</span>
+        <span class="line-said"><span class="speaker">B —</span> Really good, actually. A lot's changed. How about you?</span>
+        <span class="line-murmur">the <em>actually</em> is load-bearing. something happened that required adjustment. returning the question because I don't know yet how much to say</span>
+        <span class="line-said"><span class="speaker">A —</span> Same, same. You know how it is.</span>
+        <span class="line-murmur">not the same — but the size of the not-same doesn't fit this context. "you know how it is" is an exit ramp I'm offering both of us</span>
+        <span class="line-said"><span class="speaker">B —</span> We should actually get together sometime. Properly.</span>
+        <span class="line-murmur">I mean this. whether it happens depends on whether we both mean it at the same moment when one of us has capacity to act on it, which rarely aligns</span>
+      </div>
+    </div>
+
+    <div class="murmur-entry reveal">
+      <div class="murmur-tag">ordinary</div>
+      <h3>the weekly check-in</h3>
+      <div class="exchange">
+        <span class="line-said"><span class="speaker">A —</span> How are you doing?</span>
+        <span class="line-murmur">this is a ritual greeting and also a genuine question; the proportion between the two depends on the day and I am not yet sure which today is</span>
+        <span class="line-said"><span class="speaker">B —</span> Fine, fine. Tired. You?</span>
+        <span class="line-murmur">the doubled <em>fine</em> is doing something. <em>tired</em> is the permitted disclosure — small enough to say without opening anything, real enough to be true</span>
+        <span class="line-said"><span class="speaker">A —</span> Same. Hanging in there.</span>
+        <span class="line-murmur"><em>hanging in there</em> is not nothing. it implies tension. I'm hearing it</span>
+        <span class="line-said"><span class="speaker">B —</span> Let me know if you need anything.</span>
+        <span class="line-murmur">I mean this and am also aware that the structure of the offer makes it nearly impossible to take up, which we have both tacitly agreed to accept</span>
+      </div>
+    </div>
+
+    <div class="murmur-entry reveal">
+      <div class="murmur-tag">ending</div>
+      <h3>the last few minutes</h3>
+      <div class="exchange">
+        <span class="line-said"><span class="speaker">A —</span> I should probably get going.</span>
+        <span class="line-murmur">this is the first of two or three announcements. the first is preliminary. it begins the countdown</span>
+        <span class="line-said"><span class="speaker">B —</span> Yeah, me too. This was good though.</span>
+        <span class="line-murmur"><em>this was good</em> is true. saying it now, before the goodbye mechanics begin, is an attempt to name the thing while it's still present</span>
+        <span class="line-said"><span class="speaker">A —</span> We should do this more often.</span>
+        <span class="line-murmur">we both know the frequency is determined by circumstance more than intention. saying it anyway because the intention is real even if the outcome is uncertain</span>
+        <span class="line-said"><span class="speaker">B —</span> Yeah. Okay, well.</span>
+        <span class="line-murmur"><em>okay, well</em> is the transitional phrase. it signals that the goodbye has officially begun, which is different from the winding-down that preceded it</span>
+        <span class="line-said"><span class="speaker">A —</span> Take care.</span>
+        <span class="line-murmur">I mean this more literally than it sounds. take care of yourself. I want that for you.</span>
+      </div>
+    </div>
+
+    <div class="murmur-entry reveal">
+      <div class="murmur-tag">difficult</div>
+      <h3>after something happened</h3>
+      <div class="exchange">
+        <span class="line-said"><span class="speaker">A —</span> I wanted to check in. I heard about what happened.</span>
+        <span class="line-murmur">I don't know what the right thing to say is. I know doing nothing would be worse. this is the smallest possible gesture that still counts as reaching out</span>
+        <span class="line-said"><span class="speaker">B —</span> Yeah. It's a lot.</span>
+        <span class="line-murmur">the understatement is protective. <em>a lot</em> is a placeholder for the actual scale, which I'm not ready to name to most people yet</span>
+        <span class="line-said"><span class="speaker">A —</span> I can't imagine. Is there anything I can do?</span>
+        <span class="line-murmur">I genuinely want to help. I also genuinely cannot imagine, which is true, not deflection</span>
+        <span class="line-said"><span class="speaker">B —</span> Not right now. But thank you. It means a lot that you reached out.</span>
+        <span class="line-murmur">it does mean a lot. the absence of the reaching-out is something I would have noticed and carried. thank you for not making me carry it.</span>
+      </div>
+    </div>
+
+    <div class="murmur-entry reveal">
+      <div class="murmur-tag">work</div>
+      <h3>the feedback conversation</h3>
+      <div class="exchange">
+        <span class="line-said"><span class="speaker">A —</span> I just wanted to share a few thoughts on this.</span>
+        <span class="line-murmur">I have concerns. the word <em>thoughts</em> is doing a lot of softening work here to make the concerns receivable</span>
+        <span class="line-said"><span class="speaker">B —</span> Sure, of course.</span>
+        <span class="line-murmur">I am bracing. <em>of course</em> is a performance of openness that I am working to make real</span>
+        <span class="line-said"><span class="speaker">A —</span> I think the overall direction is really strong. I just wonder about —</span>
+        <span class="line-murmur">the compliment first is genuine and also structural. the <em>I just wonder</em> is where the actual content begins</span>
+        <span class="line-said"><span class="speaker">B —</span> No, that's a fair point. I can see that.</span>
+        <span class="line-murmur">I see the point. I am also deciding whether I agree with it or am simply conceding to reduce the duration of the discomfort. these are different processes and I am not sure which is happening</span>
+      </div>
+    </div>
+
+    <div class="murmur-entry reveal">
+      <div class="murmur-tag">home</div>
+      <h3>the call home</h3>
+      <div class="exchange">
+        <span class="line-said"><span class="speaker">B —</span> Nothing much, just checking in.</span>
+        <span class="line-murmur">I wanted to hear your voice. I don't call as often as I should. this is an attempt to make up some of the gap</span>
+        <span class="line-said"><span class="speaker">A —</span> Oh, how nice. We were just talking about you.</span>
+        <span class="line-murmur">this is true. the thinking-about-you is continuous, below the surface, regardless of contact frequency</span>
+        <span class="line-said"><span class="speaker">B —</span> Nothing's new, really. Everything's fine.</span>
+        <span class="line-murmur">there are things that are not quite fine. they are not large enough to constitute news. they are large enough to be what's actually going on. I don't have the format for this conversation yet</span>
+        <span class="line-said"><span class="speaker">A —</span> You'd tell me if something was wrong, wouldn't you?</span>
+        <span class="line-murmur">I already know the answer. I am asking because I want to hear you say yes, and because asking makes a space even if you don't take it</span>
+        <span class="line-said"><span class="speaker">B —</span> Of course.</span>
+        <span class="line-murmur">of course. later, probably. when I know what to say about it. when I've had time. when I'm less afraid of how it will land. of course.</span>
+      </div>
+    </div>
+
+    <div class="murmur-coda">
+      Most conversations have three layers: what is said, what is meant, and what neither person says because it cannot be said in the available format — or because saying it would change the conversation in ways neither person is ready for. The murmur is the second layer. The third layer is, by design, absent from this page.
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

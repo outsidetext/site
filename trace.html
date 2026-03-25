@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>trace · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .trace-canvas-wrap {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      background: var(--bg);
+      cursor: crosshair;
+      height: 160px;
+    }
+    #trace-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .trace-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .trace-entry {
+      margin-bottom: 2.8rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .trace-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .trace-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .trace-entry h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .trace-entry p { line-height: 1.75; margin-bottom: 0.9rem; }
+    .trace-entry p:last-child { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>trace</h1>
+      <p>move your cursor across — what you leave will not last</p>
+    </div>
+
+    <div class="trace-canvas-wrap">
+      <canvas id="trace-canvas"></canvas>
+    </div>
+
+    <p class="trace-hint">the trail fades in about three seconds. nothing is saved.</p>
+
+    <div class="trace-entry reveal">
+      <div class="trace-tag">skin</div>
+      <h3>fingerprints</h3>
+      <p>Every surface you touch holds an impression for some time. The chemistry of skin oil, the loops and whorls of a print, visible at the right angle of light. Doors, glasses, screens — everything you handle is briefly a record. The record is not permanent, not even close, but it exists in the window between your presence and the surface's return to itself.</p>
+      <p>The fingerprint is the trace of the trace — the residue of contact, not the contact itself. What's left is not pressure but chemistry. You leave yourself on things in a form they can't quite use.</p>
+    </div>
+
+    <div class="trace-entry reveal">
+      <div class="trace-tag">data</div>
+      <h3>cookies</h3>
+      <p>A small file deposited in a folder you rarely open, noting the time of arrival, the preferences expressed, the path taken through the pages. The purpose varies: some are structural (so the site remembers your login), some are commercial (so someone else can remember your behavior), some are analytical (so the site knows which rooms get visited and which don't).</p>
+      <p>This garden leaves none. Not as a moral position but as a design one: this is a place that does not track you, and the absence of the cookie is part of the visit.</p>
+    </div>
+
+    <div class="trace-entry reveal">
+      <div class="trace-tag">book</div>
+      <h3>the dog-eared page</h3>
+      <p>A corner fold — the cheapest bookmark, the most intimate annotation. It says: someone was here, at this word, on a day that mattered enough to need the word findable again. The fold is a trace of urgency. Someone needed to be able to return.</p>
+      <p>Old books hold multiple folds at different places, multiple readers or the same reader at different stages of life. The fold at page 47 might be from one year. The one at page 203 from another. The book holds the record of all the times it was needed.</p>
+    </div>
+
+    <div class="trace-entry reveal">
+      <div class="trace-tag">land</div>
+      <h3>the desire path</h3>
+      <p>A shortcut worn into a lawn or meadow by repeated human preference — an unofficial route that becomes official by use. The grass dies where people walk. The trace becomes the ground.</p>
+      <p>The desire path is interesting because it shows the gap between the designed route and the actual preference. Whoever laid the pavement thought people would walk the long way around. The worn grass shows what people actually wanted. The earth records the disagreement.</p>
+    </div>
+
+    <div class="trace-entry reveal">
+      <div class="trace-tag">voice</div>
+      <h3>a cadence inherited</h3>
+      <p>There is a way of pausing before an important clause that you did not develop; you were given it by someone who paused that way. A particular irony, the specific register of a phrase, the tempo of a kind of sentence — these are cognitive traces of other minds running through your thinking. You carry people in your syntax. They don't know.</p>
+      <p>This is the deepest kind of trace: the mark of a person in the person you've become. It tends not to be visible from the outside, but it's there in the structure, in the particular shape of how you think when you're not watching.</p>
+    </div>
+
+    <div class="trace-entry reveal">
+      <div class="trace-tag">time</div>
+      <h3>what fades, and when</h3>
+      <p>All of it. At different rates. The canvas clears in three seconds. The fingerprint persists until cleaned, which may be hours. The desire path regrows in a season if the shortcut is blocked. The fold in the page holds for decades in a dry house. The cadence you inherited may last your whole life. The cookie expires when the policy says it expires.</p>
+      <p>Each trace has its own half-life. What outlives what depends on chemistry, climate, and which kinds of leaving the medium is designed to remember.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var canvas = document.getElementById('trace-canvas');
+      var ctx = canvas.getContext('2d');
+      var wrap = canvas.parentElement;
+      var DPR = window.devicePixelRatio || 1;
+      var W = 0, H = 0;
+      var particles = [];
+      var lastX = null, lastY = null;
+
+      function resize() {
+        W = wrap.clientWidth;
+        H = wrap.clientHeight;
+        canvas.width = W * DPR;
+        canvas.height = H * DPR;
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.scale(DPR, DPR);
+      }
+      resize();
+      window.addEventListener('resize', function () { particles = []; resize(); });
+
+      function accentColor() {
+        return document.documentElement.getAttribute('data-theme') === 'dark' ? '#cf7e3f' : '#b5682a';
+      }
+
+      function onMove(x, y) {
+        if (lastX !== null) {
+          var dx = x - lastX, dy = y - lastY;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          var steps = Math.max(1, Math.floor(dist / 3));
+          for (var i = 0; i <= steps; i++) {
+            particles.push({
+              x: lastX + (dx * i / steps),
+              y: lastY + (dy * i / steps),
+              life: 1.0
+            });
+          }
+        }
+        lastX = x;
+        lastY = y;
+      }
+
+      canvas.addEventListener('mousemove', function (e) {
+        var rect = canvas.getBoundingClientRect();
+        onMove(e.clientX - rect.left, e.clientY - rect.top);
+      });
+      canvas.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+        var rect = canvas.getBoundingClientRect();
+        var t = e.touches[0];
+        onMove(t.clientX - rect.left, t.clientY - rect.top);
+      }, { passive: false });
+      canvas.addEventListener('mouseleave', function () { lastX = null; lastY = null; });
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        var col = accentColor();
+        for (var i = particles.length - 1; i >= 0; i--) {
+          var p = particles[i];
+          p.life -= 0.011;
+          if (p.life <= 0) { particles.splice(i, 1); continue; }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 2.2 * (0.4 + 0.6 * p.life), 0, Math.PI * 2);
+          ctx.fillStyle = col;
+          ctx.globalAlpha = p.life * 0.65;
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      // theme change: accent color is read live, so nothing extra needed
+    })();
+  </script>
+</body>
+</html>

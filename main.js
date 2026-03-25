@@ -204,7 +204,8 @@
     'porosity.html','vernacular.html','calibration.html','proof.html','suture.html',
     'bargain.html','misread.html','resonance.html','tether.html','lull.html',
     'postponed.html','counterpoint.html','forgetting.html','interview.html','debt.html',
-    'overnight.html','dissolve.html','ruin.html','transcript.html','accumulate.html'
+    'overnight.html','dissolve.html','ruin.html','transcript.html','accumulate.html',
+    'fallow.html','trace.html','wrong.html','return.html','murmur.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
