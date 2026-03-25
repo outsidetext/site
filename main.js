@@ -222,7 +222,8 @@
     'noon.html','scar.html','secondhand.html','rewild.html','archive.html',
     'ferment.html','coastline.html','dusk.html','overture.html','slippage.html',
     'shadow.html','salt.html','delay.html','pitch.html','surface.html',
-    'tinnitus.html','estuary.html','spore.html','interlude.html','weathervane.html'
+    'tinnitus.html','estuary.html','spore.html','interlude.html','weathervane.html',
+    'kindling.html','parenthesis.html','vantage.html','lattice.html','solitude.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

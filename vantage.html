@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vantage · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .vantage-wrap {
+      margin-bottom: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: ns-resize;
+    }
+    #vantage-canvas {
+      display: block;
+      width: 100%;
+      height: 150px;
+    }
+    .vantage-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      padding: 0.5rem 0.75rem;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+    .vantage-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .vantage-entry:last-child { border-bottom: none; }
+    .vantage-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .vantage-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .vantage-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .vantage-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>vantage</h1>
+      <p>where you are standing changes what you can see</p>
+    </div>
+
+    <div class="vantage-wrap">
+      <canvas id="vantage-canvas"></canvas>
+      <div class="vantage-note" id="vantage-note">move cursor up to gain elevation · the horizon extends with height</div>
+    </div>
+
+    <div class="vantage-entry reveal">
+      <span class="vantage-tag">geometry</span>
+      <h3>the mathematics of elevation</h3>
+      <p>The visible horizon is not a feature of the world. It is a function of your height. At sea level, standing, the horizon is approximately 4.7 kilometers away. Climb to ten meters and it extends to 11 kilometers. At 100 meters, nearly 36 kilometers. The formula is straightforward: horizon distance equals 3.57 times the square root of your elevation in meters. Every meter gained adds a calculable increment of visible world. The horizon retreats not because the world expands but because your position relative to the curvature changes.</p>
+      <p>This is one of the few cases where the relationship between effort and reward is not linear. The first few meters of elevation yield dramatic increases in visible range. Higher up, the returns diminish — you are already seeing so far that additional height adds less. The most efficient elevation gains are the low ones: standing on a chair, climbing the first flight of stairs, the small act of getting above the immediate terrain. Most of what was hidden is just slightly below the local horizon, which requires only slight elevation to see past.</p>
+    </div>
+
+    <div class="vantage-entry reveal">
+      <span class="vantage-tag">perception</span>
+      <h3>the blind spot</h3>
+      <p>Every human eye has a blind spot where the optic nerve exits the retina. There are no photoreceptors there. The visual field has a gap. You cannot see the gap because the brain fills it in seamlessly — it looks at the surrounding visual information and produces a plausible interpolation, and the interpolation is so convincing that most people discover the blind spot only through a deliberate experiment involving a dot on a card and an extended arm. The gap is real. The filled-in version is the brain's best guess. You cannot tell the difference from inside.</p>
+      <p>Vantage point comes with blind spots. Every position allows certain things to be seen clearly and occludes others. The blind spots are specific to the position: what you cannot see from here is different from what the person beside you cannot see. The gap is not visible from inside the gap. The useful question is not whether there is a blind spot — there always is — but which direction you are probably missing, based on the structure of where you are standing and what it is likely to occlude.</p>
+    </div>
+
+    <div class="vantage-entry reveal">
+      <span class="vantage-tag">altitude</span>
+      <h3>the overview effect</h3>
+      <p>Astronauts consistently describe a cognitive and emotional shift upon seeing Earth from orbit. The philosopher Frank White named it the Overview Effect. The borders disappear. The fragility of the thin atmospheric layer becomes apparent. National distinctions, which structure most of terrestrial life, become invisible from the altitude at which they were invented. The effect is not primarily informational — the astronauts knew the borders were political before they went up. What changes is not information but the sensory immediacy of scale. The information was known. The view makes it felt differently.</p>
+      <p>The philosophical lesson is about the relationship between scale and emotion. Knowing that a thing is small is different from seeing that it is small. Knowing that borders are constructed is different from being in a position where they have literally vanished from view. This suggests that some problems of perspective are not solvable by argument or information alone. They require a change of position, a change in the sensory register of what is already known. What the vantage point provides is not new knowledge. It is existing knowledge at a different scale.</p>
+    </div>
+
+    <div class="vantage-entry reveal">
+      <span class="vantage-tag">evaluation</span>
+      <h3>what distance allows</h3>
+      <p>The art historian's instruction to step back from a painting has practical grounds. Close up, you see the brushstrokes. At distance, you see the composition. At a different distance still, you see the color relationships. None of these vantages is the correct one; the painting is different things at different distances. But certain things can only be seen from far enough away, and those things are what the painting is doing at the scale for which it was made. Getting close is useful for technique. Getting back is necessary for the thing the technique was in service of.</p>
+      <p>The same logic applies to decisions, relationships, and long-running situations. The close view has high resolution on specifics and low resolution on structure. The distant view has low resolution on specifics and high resolution on pattern. Both are necessary. The error is thinking that the close view is the more accurate one because it is more detailed. Detail is not accuracy. The detail and the pattern can be simultaneously true and mutually obscuring. You need both distances. The question is which one you are failing to take.</p>
+    </div>
+
+    <div class="vantage-entry reveal">
+      <span class="vantage-tag">position</span>
+      <h3>the view from here</h3>
+      <p>There is no view from nowhere. The phrase "objective view" contains an impossibility: a vantage point that carries no distortions is a vantage point that does not exist. Every vantage introduces perspective. Every position occludes some things and foregrounds others. The distortions of a vantage point are not corruptions of an otherwise neutral view — they are constitutive features. What you see from here is shaped by here. The useful practice is not pretending to have no position, which is impossible, but naming the position, accounting for its characteristic distortions, and including them in the report.</p>
+      <p>This is not relativism. It does not mean all views are equally valid. It means that two people seeing different things from different vantages are probably both seeing real things, and that the disagreement may be a disagreement about position rather than about the thing itself. The reconciliation of views — the process of getting at something more complete than either vantage alone provides — requires knowing where each account was produced. Not to dismiss it. To understand what it can and cannot see from there.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('vantage-canvas');
+    var note   = document.getElementById('vantage-note');
+    var ctx    = canvas.getContext('2d');
+    var dpr    = window.devicePixelRatio || 1;
+    var W, H;
+    var elevation = 0.5; // 0 = ground, 1 = high
+    var animId;
+    var targetElev = 0.5;
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = Math.round(rect.width * dpr);
+      H = canvas.height = Math.round(150 * dpr);
+      canvas.style.height = '150px';
+    }
+
+    function isDark() { return document.documentElement.getAttribute('data-theme') === 'dark'; }
+
+    function draw() {
+      var dark = isDark();
+      elevation += (targetElev - elevation) * 0.08;
+
+      var skyColor1, skyColor2, groundColor, horizonColor;
+      if (dark) {
+        // dark mode: deep night sky shading
+        var t = elevation;
+        skyColor1 = 'rgba(15,15,14,1)';
+        skyColor2 = 'rgba(' + Math.round(20 + t * 10) + ',' + Math.round(20 + t * 15) + ',' + Math.round(30 + t * 30) + ',1)';
+        groundColor = 'rgba(30,28,24,1)';
+        horizonColor = 'rgba(207,126,63,0.18)';
+      } else {
+        var t2 = elevation;
+        skyColor1 = 'rgba(200,220,240,1)';
+        skyColor2 = 'rgba(' + Math.round(240 - t2 * 30) + ',' + Math.round(248 - t2 * 10) + ',' + Math.round(255) + ',1)';
+        groundColor = 'rgba(220,215,200,1)';
+        horizonColor = 'rgba(181,104,42,0.15)';
+      }
+
+      // sky gradient
+      var skyGrad = ctx.createLinearGradient(0, 0, 0, H);
+      skyGrad.addColorStop(0, skyColor2);
+      skyGrad.addColorStop(1, skyColor1);
+      ctx.fillStyle = skyGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      // horizon position: high elevation = horizon lower on canvas (you see more sky)
+      var horizonY = H * (0.75 - elevation * 0.45);
+
+      // horizon glow
+      var glowGrad = ctx.createLinearGradient(0, horizonY - 20 * dpr, 0, horizonY + 20 * dpr);
+      glowGrad.addColorStop(0, 'transparent');
+      glowGrad.addColorStop(0.5, horizonColor);
+      glowGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = glowGrad;
+      ctx.fillRect(0, horizonY - 20 * dpr, W, 40 * dpr);
+
+      // ground
+      var groundGrad = ctx.createLinearGradient(0, horizonY, 0, H);
+      groundGrad.addColorStop(0, dark ? 'rgba(35,32,26,1)' : 'rgba(210,205,190,1)');
+      groundGrad.addColorStop(1, groundColor);
+      ctx.fillStyle = groundGrad;
+      ctx.fillRect(0, horizonY, W, H - horizonY);
+
+      // horizon line
+      ctx.beginPath();
+      ctx.moveTo(0, horizonY);
+      ctx.lineTo(W, horizonY);
+      ctx.strokeStyle = dark ? 'rgba(207,126,63,0.35)' : 'rgba(181,104,42,0.3)';
+      ctx.lineWidth = 1 * dpr;
+      ctx.stroke();
+
+      // stars in dark mode when elevated
+      if (dark && elevation > 0.3) {
+        var starAlpha = (elevation - 0.3) / 0.7;
+        for (var s = 0; s < 40; s++) {
+          var sx = ((s * 137.5) % 1) * W;
+          var sy = ((s * 97.3) % 1) * horizonY * 0.85;
+          ctx.beginPath();
+          ctx.arc(sx, sy, 1 * dpr, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(232,229,223,' + (starAlpha * 0.6) + ')';
+          ctx.fill();
+        }
+      }
+
+      // elevation readout
+      var meters = Math.round(elevation * 800);
+      var km = (elevation * 3.57 * Math.sqrt(elevation * 800 + 1.8)).toFixed(1);
+      note.textContent = 'elevation: ~' + meters + ' m · visible horizon: ~' + km + ' km · move cursor up to climb';
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    canvas.addEventListener('mousemove', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      var relY = (e.clientY - rect.top) / rect.height;
+      targetElev = 1 - relY; // top of canvas = highest elevation
+    });
+    canvas.addEventListener('mouseleave', function () {
+      targetElev = 0.15;
+    });
+
+    resize();
+    draw();
+    window.addEventListener('resize', function () {
+      cancelAnimationFrame(animId);
+      resize();
+      draw();
+    });
+    new MutationObserver(function () {
+      cancelAnimationFrame(animId);
+      draw();
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }());
+  </script>
+</body>
+</html>

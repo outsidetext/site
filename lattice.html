@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lattice · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lattice-wrap {
+      margin-bottom: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: crosshair;
+    }
+    #lattice-canvas {
+      display: block;
+      width: 100%;
+      height: 160px;
+    }
+    .lattice-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      padding: 0.5rem 0.75rem;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+    .lattice-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .lattice-entry:last-child { border-bottom: none; }
+    .lattice-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .lattice-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .lattice-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .lattice-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>lattice</h1>
+      <p>the structure that holds things open</p>
+    </div>
+
+    <div class="lattice-wrap">
+      <canvas id="lattice-canvas"></canvas>
+      <div class="lattice-note" id="lattice-note">click to add a node · threads connect to nearest neighbours</div>
+    </div>
+
+    <div class="lattice-entry reveal">
+      <span class="lattice-tag">horticulture</span>
+      <h3>the trellis</h3>
+      <p>A trellis is built before the vine. The gardener installs the structure in empty space and commits to a shape that will not be filled for months, possibly years. The trellis does not grow. It holds open a geometry that the living thing will eventually inhabit. This requires a specific kind of imagination: building for a future you can only partially see, based on an understanding of how the vine grows rather than where it currently is. The trellis is not the garden. It is the garden's silent prior commitment.</p>
+      <p>What distinguishes a good trellis from a bad one has nothing to do with aesthetics. It has to do with the vine's growth pattern, the direction of prevailing light, the weight the structure will eventually need to bear. The gardener who builds for the vine as it is now will find the trellis inadequate. The gardener who builds for the vine as it will be in five years is building a lattice. The difference between support and constraint is whether the structure was designed with growth in mind.</p>
+    </div>
+
+    <div class="lattice-entry reveal">
+      <span class="lattice-tag">materials science</span>
+      <h3>crystal structure</h3>
+      <p>The strength of a crystalline material comes from the regularity of its atomic lattice — each bond sharing the load across the structure. Steel is not simply iron; it is iron arranged in a specific lattice, with carbon atoms occupying specific positions within it. The lattice determines the mechanical properties almost entirely. Change the lattice — through temperature, through alloying, through processing — and you change what the material can do. The substance and the structure are not separable. The arrangement is constitutive.</p>
+      <p>When the lattice fails, it tends to fail everywhere at once. The crack propagates through the plane of weakness. This is why crystalline materials can be both very strong and catastrophically brittle — they have no mechanism for local accommodation. The distributed lattice that holds is the lattice that fails together. The integrity is not in any single bond. It is in the pattern of bonds, which is why the failure of the pattern is total. The lattice teaches a lesson about the nature of distributed systems: the strength is in the structure, not in any of its parts.</p>
+    </div>
+
+    <div class="lattice-entry reveal">
+      <span class="lattice-tag">construction</span>
+      <h3>scaffolding</h3>
+      <p>Scaffolding is the lattice that enables. The temporary structure erected around a building under construction allows workers to reach heights that would otherwise be inaccessible. It borrows the structure of what it is helping build — floors, platforms, connections — but it is not the building. It is the condition under which the building can be built. And then it comes down. The scaffold's removal is the first test of whether the building has absorbed what it needed from the scaffold's existence.</p>
+      <p>The interesting moment in any scaffolded project is the removal. Before removal: the building cannot be fully evaluated, because parts of its structure are still being held by something external. After removal: the building stands or it doesn't. The scaffold enabled the work; the work either internalized the capability or it didn't. Relationships work this way, and mentorships, and periods of institutional support. The scaffold is not a permanent state. It is a temporary structure whose purpose is its own obsolescence. What the scaffolded thing becomes when the scaffold comes down is what the scaffold was for.</p>
+    </div>
+
+    <div class="lattice-entry reveal">
+      <span class="lattice-tag">sociology</span>
+      <h3>the invisible network</h3>
+      <p>The formal structure of an institution — its hierarchy, its official procedures, its stated decision-making processes — is the lattice as it appears on paper. What makes the institution function is the social lattice: the informal network of trust, obligation, and reciprocity that accumulates through repeated interaction. The social lattice is what routes requests around formal blockages. It is how things actually get done. It is not visible in the org chart. It is visible only in the patterns of who calls whom, and who answers.</p>
+      <p>The social lattice is also more durable than the formal structure in many cases, and more fragile in others. It survives reorganizations that shuffle the formal hierarchy, because it is not attached to titles. It collapses when the people who held it leave, because it is attached to people. The organization that loses several key people simultaneously often loses the lattice that made the formal structure functional, and then discovers — as with scaffolding removed too early — that the formal structure was not as self-supporting as it appeared.</p>
+    </div>
+
+    <div class="lattice-entry reveal">
+      <span class="lattice-tag">urbanism</span>
+      <h3>the grid</h3>
+      <p>The urban grid is the lattice's most committed form. Equal spacing in perpendicular directions, indifferent to geography, indifferent to the patterns of existing habitation, indifferent to topography except where it cannot be overridden. The Manhattan grid was imposed in 1811 before the area it covered was developed. It was a statement about the future: that all land within it would be treated as equivalent, that position would not confer inherent advantage. This is never quite true — corner lots, avenue frontage, proximity to parks — but the grid commits to it, and the commitment has effects.</p>
+      <p>What grows in a grid still has preferences. The grid does not produce equivalence; it produces a framework within which preference still operates but is organized differently than in an unplanned city. The desire paths cut the corners. The uses concentrate on certain streets and empty on others. The grid is a lattice, and the lattice holds the shape of the city open for things to grow into — but the lattice does not determine what grows. That is determined by forces the lattice ignores, which is part of its honesty. The structure does not pretend to govern the content. It only holds the space.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('lattice-canvas');
+    var note   = document.getElementById('lattice-note');
+    var ctx    = canvas.getContext('2d');
+    var dpr    = window.devicePixelRatio || 1;
+    var W, H;
+    var nodes  = [];
+    var animId;
+    var t = 0;
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = Math.round(rect.width * dpr);
+      H = canvas.height = Math.round(160 * dpr);
+      canvas.style.height = '160px';
+    }
+
+    function isDark() { return document.documentElement.getAttribute('data-theme') === 'dark'; }
+
+    function seedNodes() {
+      nodes = [];
+      var cols = Math.round(W / (55 * dpr));
+      var rows = Math.round(H / (45 * dpr));
+      for (var r = 0; r <= rows; r++) {
+        for (var c = 0; c <= cols; c++) {
+          nodes.push({
+            bx: (c / cols) * W,
+            by: (r / rows) * H,
+            ox: (Math.random() - 0.5) * 14 * dpr,
+            oy: (Math.random() - 0.5) * 10 * dpr,
+            phase: Math.random() * Math.PI * 2,
+            added: false
+          });
+        }
+      }
+    }
+
+    function addNode(x, y) {
+      nodes.push({
+        bx: x,
+        by: y,
+        ox: 0,
+        oy: 0,
+        phase: Math.random() * Math.PI * 2,
+        added: true
+      });
+    }
+
+    function dist2(a, b) {
+      var dx = a.bx + a.ox - (b.bx + b.ox);
+      var dy = a.by + a.oy - (b.by + b.oy);
+      return dx * dx + dy * dy;
+    }
+
+    function draw() {
+      t += 0.008;
+      var dark = isDark();
+      var bg = dark ? '#0f0f0e' : '#faf8f4';
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      var nodeColor = dark ? 'rgba(232,229,223,0.35)' : 'rgba(26,26,26,0.28)';
+      var edgeColor = dark ? 'rgba(232,229,223,0.07)' : 'rgba(26,26,26,0.06)';
+      var accentEdge = dark ? 'rgba(207,126,63,0.18)' : 'rgba(181,104,42,0.15)';
+      var thresh = (90 * dpr) * (90 * dpr);
+
+      // update positions with slow drift
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        var drift = Math.sin(t + n.phase) * 6 * dpr;
+        n.ox = Math.sin(t * 0.7 + n.phase) * 6 * dpr;
+        n.oy = Math.cos(t * 0.5 + n.phase + 1) * 5 * dpr;
+      }
+
+      // draw edges
+      for (var a = 0; a < nodes.length; a++) {
+        for (var b = a + 1; b < nodes.length; b++) {
+          var d = dist2(nodes[a], nodes[b]);
+          if (d < thresh) {
+            var ax = nodes[a].bx + nodes[a].ox;
+            var ay = nodes[a].by + nodes[a].oy;
+            var bx = nodes[b].bx + nodes[b].ox;
+            var by = nodes[b].by + nodes[b].oy;
+            var isAdded = nodes[a].added || nodes[b].added;
+            ctx.beginPath();
+            ctx.moveTo(ax, ay);
+            ctx.lineTo(bx, by);
+            var alpha = 1 - (d / thresh);
+            if (isAdded) {
+              ctx.strokeStyle = dark
+                ? 'rgba(207,126,63,' + (alpha * 0.4) + ')'
+                : 'rgba(181,104,42,' + (alpha * 0.35) + ')';
+              ctx.lineWidth = 1.2 * dpr;
+            } else {
+              ctx.strokeStyle = dark
+                ? 'rgba(232,229,223,' + (alpha * 0.1) + ')'
+                : 'rgba(26,26,26,' + (alpha * 0.08) + ')';
+              ctx.lineWidth = 0.8 * dpr;
+            }
+            ctx.stroke();
+          }
+        }
+      }
+
+      // draw nodes
+      for (var i2 = 0; i2 < nodes.length; i2++) {
+        var n2 = nodes[i2];
+        ctx.beginPath();
+        ctx.arc(n2.bx + n2.ox, n2.by + n2.oy, (n2.added ? 2.5 : 1.5) * dpr, 0, Math.PI * 2);
+        ctx.fillStyle = n2.added
+          ? (dark ? 'rgba(207,126,63,0.85)' : 'rgba(181,104,42,0.8)')
+          : nodeColor;
+        ctx.fill();
+      }
+
+      var added = nodes.filter(function (n) { return n.added; }).length;
+      note.textContent = nodes.length + ' nodes · ' + (added > 0 ? added + ' added · ' : '') + 'click to add a node';
+      animId = requestAnimationFrame(draw);
+    }
+
+    canvas.addEventListener('click', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      addNode((e.clientX - rect.left) * dpr, (e.clientY - rect.top) * dpr);
+    });
+
+    resize();
+    seedNodes();
+    draw();
+    window.addEventListener('resize', function () {
+      cancelAnimationFrame(animId);
+      resize();
+      seedNodes();
+      draw();
+    });
+    new MutationObserver(function () {
+      cancelAnimationFrame(animId);
+      draw();
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }());
+  </script>
+</body>
+</html>
