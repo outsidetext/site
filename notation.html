@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>notation · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .preface {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      max-width: 520px;
+      margin-bottom: 3.5rem;
+    }
+
+    .terms {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .term {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0 2.5rem;
+      padding: 2.25rem 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .term:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .term-left {
+      padding-top: 0.1rem;
+    }
+
+    .term-name {
+      font-size: 1.02rem;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .term-abbr {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .term-musical {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .term-interior {
+      font-size: 0.96rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+
+    .term-interior p {
+      margin-bottom: 0.7rem;
+    }
+
+    .term-interior p:last-child {
+      margin-bottom: 0;
+    }
+
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+
+    @media (max-width: 560px) {
+      .term {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>notation</h1>
+      <p>a vocabulary borrowed from music</p>
+    </div>
+
+    <p class="preface">Music developed a precise language for qualities that are otherwise hard to name: the speed of a deceleration, the sudden weight of an accent, the instruction to be silent for the entire piece. These terms have uses outside of music. Here are twelve of them.</p>
+
+    <div class="terms">
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">fermata</div>
+          <span class="term-abbr">𝄐</span>
+          <div class="term-musical">hold a note or rest beyond its written value, at the performer's discretion</div>
+        </div>
+        <div class="term-interior">
+          <p>The pause that doesn't end when it should. The conversation that everyone has stopped expecting to continue but which is still, technically, open. The task that has been on the list long enough that it has become part of the list's furniture.</p>
+          <p>A fermata is not a mistake. It is a deliberate extension, a place where the usual measure of time is suspended by intention rather than forgotten. The question is whether the extension is serving the music or simply avoiding what comes next.</p>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">ritardando</div>
+          <span class="term-abbr">rit.</span>
+          <div class="term-musical">gradually slower; indicates a slowing of tempo leading into a cadence or ending</div>
+        </div>
+        <div class="term-interior">
+          <p>The deceleration that signals an ending is near. You notice it in conversations winding down, in days when something is about to change, in the last weeks of something that lasted years. The ritardando arrives before the ending is named.</p>
+          <p>The body knows before the mind does. The pace slows; the attention sharpens in a particular way; the small urgencies stop mattering. This is usually a mercy, if recognized. The danger is mistaking it for tiredness rather than transition.</p>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">pianissimo</div>
+          <span class="term-abbr">pp</span>
+          <div class="term-musical">very soft; the softest standard dynamic marking</div>
+        </div>
+        <div class="term-interior">
+          <p>The volume of private things. The voice used in the small hours when nothing has to perform. The size of the thought that arrives just before sleep and is gone by morning.</p>
+          <p>Pianissimo is not whispering. It is not the sound made to avoid being heard. It is a genuine softness — the natural volume of things that have no reason to be louder. Some of the most precise things ever said were said very quietly, to almost no one.</p>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">fortissimo</div>
+          <span class="term-abbr">ff</span>
+          <div class="term-musical">very loud; the loudest standard dynamic marking</div>
+        </div>
+        <div class="term-interior">
+          <p>The three-am brain. The sudden clarity of something you've been avoiding. The news arriving faster than the body can arrange itself for it. Everything at once, and nowhere to put it.</p>
+          <p>Some fortissimos are emergencies. Some are revelations. The body doesn't distinguish; the response is the same. The instrument can be damaged by sustained fortissimo. This is also true.</p>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">sforzando</div>
+          <span class="term-abbr">sfz</span>
+          <div class="term-musical">a sudden strong accent on a single note or chord, regardless of surrounding dynamic</div>
+        </div>
+        <div class="term-interior">
+          <p>The memory that arrives without warning. The specific one that inserts itself mid-conversation, mid-sentence, mid-reaching for a glass. Not a memory you summoned. Not one you were building toward. Just: there, suddenly, with its full weight.</p>
+          <p>The sforzando has no relationship to what surrounds it. It doesn't care about the dynamic level you were at. It lands at full volume and then it's over, and the surrounding music continues as though nothing happened. The listener notices. The musician keeps playing.</p>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">tacet</div>
+          <span class="term-abbr">tacet</span>
+          <div class="term-musical">be silent for the entire movement or piece; derived from the Latin for "it is silent"</div>
+        </div>
+        <div class="term-interior">
+          <p>A relationship that has gone quiet for long enough that the silence is the relationship now. Not ended — the music is still going. Just: not playing. The other instruments continue. The part exists, written out, on the stand. It is simply not being performed.</p>
+          <p>The difference between a rest and a tacet is duration, and whether you expect the voice to return. A rest is a pause with a defined length. A tacet is for the whole movement. Whether it applies to all of what comes after is left unstated in the score.</p>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">legato</div>
+          <span class="term-abbr">legato</span>
+          <div class="term-musical">smooth and connected; notes flow into each other without perceptible break</div>
+        </div>
+        <div class="term-interior">
+          <p>A rare quality in days, in conversations, in selves. When things join without a seam. When the transitions are unnoticeable, which means they are doing their work precisely as intended. Legato is not the absence of transitions; it is the presence of skill in making them invisible.</p>
+          <p>Most days are staccato — separate events, gaps between them. The legato days are the ones that feel, looking back, like they were always heading somewhere, each moment linked to the next by something you couldn't have named but recognized as continuity.</p>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">da capo</div>
+          <span class="term-abbr">D.C.</span>
+          <div class="term-musical">return to the beginning and repeat from the start</div>
+        </div>
+        <div class="term-interior">
+          <p>Finding yourself in a place you've been before, at the beginning of a pattern you recognized too late to avoid. The da capo is not a failure. It is an instruction in the score: repeat from the start. The piece is designed to go here again.</p>
+          <p>The point is not that you're here again. The point is that you will eventually play through to the coda. The repetition is part of the structure. You know this part. You know what comes after it, which is more than you knew the first time through.</p>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">coda</div>
+          <span class="term-abbr">𝄌</span>
+          <div class="term-musical">a concluding passage, distinct in character from the main body of the piece</div>
+        </div>
+        <div class="term-interior">
+          <p>The part that comes after the piece should have ended. The last thing said, which is different in character from everything that preceded it. A coda is not a continuation. It is an acknowledgment. It arrives after the main argument has been made and brings the piece to a place that earns the silence after it.</p>
+          <p>Some codas are very short. Some are as long as the rest of the movement. The length is not the point. What matters is that the piece arrives somewhere rather than simply stopping, and that the somewhere feels like it was always where this was going.</p>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">con brio</div>
+          <span class="term-abbr">con brio</span>
+          <div class="term-musical">with vigor; with spirit; lively</div>
+        </div>
+        <div class="term-interior">
+          <p>The quality of energy that comes after a long period of not having it. Recognizable by the surprise of those around you, and by the surprise of yourself. The difference between this energy and what was there before is that this version is not performing anything. It is simply present.</p>
+          <p>Con brio is not effort. It is the absence of the friction that was previously making everything effort. The instrument is playing the way it was built to play. This may not last. It is worth noting when it's here.</p>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">dolce</div>
+          <span class="term-abbr">dolce</span>
+          <div class="term-musical">sweetly; with a gentle, singing quality</div>
+        </div>
+        <div class="term-interior">
+          <p>The way some things are only known in retrospect. The conversation that was ordinary while it was happening and remarkable only after. The days that were fine and later become something more than fine in the memory, their value having compounded at a rate invisible at the time.</p>
+          <p>Dolce is an instruction about quality rather than volume or speed. It is about how the note is produced, not how loud or fast. Sweetness that requires time to develop its full flavor is still sweetness. You simply had to wait for it to become legible.</p>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="term-left">
+          <div class="term-name">attacca</div>
+          <span class="term-abbr">attacca</span>
+          <div class="term-musical">attack immediately; proceed to the next movement without pause</div>
+        </div>
+        <div class="term-interior">
+          <p>The instruction not to pause. Not because the ending doesn't deserve acknowledgment, but because the next thing has already begun and the gap between them would be false. Some things follow directly. The attacca is the recognition that a breath here would misrepresent the relationship between what just ended and what is beginning.</p>
+          <p>This is the rarest marking in a life. Most transitions benefit from a pause. But occasionally — rarely, and recognizably — the next movement begins the moment the last note ends, and the absence of silence between them is the truest way of saying what they are to each other.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="closing reveal">Music developed this vocabulary over centuries because the things it was trying to describe kept resisting ordinary language. The loan is mutual. These words go both ways.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

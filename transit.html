@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>transit · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .preface {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      max-width: 520px;
+      margin-bottom: 3.5rem;
+    }
+
+    .transit-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stop {
+      padding: 2.25rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .stop:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stop-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0 1.5rem;
+      align-items: baseline;
+      margin-bottom: 1.1rem;
+    }
+
+    .stop-name {
+      font-size: 1.05rem;
+      font-weight: normal;
+      color: var(--text);
+    }
+
+    .stop-duration {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .stop-body {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+
+    .stop-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 2rem;
+      margin-top: 1rem;
+    }
+
+    .meta-item {
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .meta-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .meta-text {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .stop-note {
+      margin-top: 0.9rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+
+    @media (max-width: 560px) {
+      .stop-meta {
+        grid-template-columns: 1fr;
+      }
+      .stop-header {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>transit</h1>
+      <p>what the in-between spaces hold</p>
+    </div>
+
+    <p class="preface">Between departure and arrival, something happens. The in-between has its own weather, its own rules about what is possible and what is not. These are some of those spaces, and what they permit.</p>
+
+    <div class="transit-list">
+
+      <div class="stop reveal">
+        <div class="stop-header">
+          <div class="stop-name">the airport gate before boarding</div>
+          <div class="stop-duration">avg. 45–90 min</div>
+        </div>
+        <p class="stop-body">You have left one place and have not arrived at another. The ordinary concerns of wherever you came from cannot follow you here, and the obligations of wherever you're going haven't found you yet. This window is real. Most people spend it on their phones.</p>
+        <div class="stop-meta">
+          <div class="meta-item">
+            <span class="meta-label">possible</span>
+            <span class="meta-text">unusual conversation with strangers, reading in full, the particular peace of unlocatability, finishing a thought</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">not possible</span>
+            <span class="meta-text">being reached by the ordinary, pretending nothing is changing, returning to before you left</span>
+          </div>
+        </div>
+        <p class="stop-note">note: this is one of the few remaining spaces where ordinary life reliably doesn't reach. the window is finite.</p>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-header">
+          <div class="stop-name">the walk from the car to the door, in rain</div>
+          <div class="stop-duration">30 sec – 2 min</div>
+        </div>
+        <p class="stop-body">Very short. The decision made here — run or walk, resist or accept — tells you something about where you are that day. Some days the wetness doesn't matter. Some days it matters more than it should.</p>
+        <div class="stop-meta">
+          <div class="meta-item">
+            <span class="meta-label">possible</span>
+            <span class="meta-text">arriving wet and not minding, the specific pleasure of deciding it doesn't matter, full sensory presence</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">not possible</span>
+            <span class="meta-text">keeping your phone out, overthinking, arriving without getting wet</span>
+          </div>
+        </div>
+        <p class="stop-note">note: the length of the transit is fixed. only the quality of presence is adjustable.</p>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-header">
+          <div class="stop-name">the minute after a difficult conversation ends</div>
+          <div class="stop-duration">60–120 sec</div>
+        </div>
+        <p class="stop-body">The air pressure changes. You are still in the reverb of it, but the conversation itself is over. The first thought that arrives in this space is often the most honest one, and then the more familiar thoughts come in and reassemble the usual arrangement.</p>
+        <div class="stop-meta">
+          <div class="meta-item">
+            <span class="meta-label">possible</span>
+            <span class="meta-text">a clear first thought, a decision about what to carry forward, noticing how the body is holding it</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">not possible</span>
+            <span class="meta-text">the conversation you wished you'd had, returning to before, pretending it went differently</span>
+          </div>
+        </div>
+        <p class="stop-note">note: this is the first moment that belongs only to you. it closes quickly.</p>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-header">
+          <div class="stop-name">the stairwell between floors</div>
+          <div class="stop-duration">10–30 sec</div>
+        </div>
+        <p class="stop-body">A brief privacy inside a shared building. You are neither here nor there. The thought that arrives on a stairwell is the one that didn't have room at the last place you were and hasn't been assigned to where you're going yet.</p>
+        <div class="stop-meta">
+          <div class="meta-item">
+            <span class="meta-label">possible</span>
+            <span class="meta-text">the thought that completes itself, a brief private moment, deciding before you arrive</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">not possible</span>
+            <span class="meta-text">distraction, indefinite pause, being seen as you think</span>
+          </div>
+        </div>
+        <p class="stop-note">note: too short to call a pause. but something happens here.</p>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-header">
+          <div class="stop-name">the week between giving notice and leaving</div>
+          <div class="stop-duration">5–7 days</div>
+        </div>
+        <p class="stop-body">You are still inside the thing but have already released your claim on it. This produces an unusual clarity — an observer's view from inside, the ability to see it as it is rather than as what you needed it to be. The clarity doesn't last past departure.</p>
+        <div class="stop-meta">
+          <div class="meta-item">
+            <span class="meta-label">possible</span>
+            <span class="meta-text">seeing clearly, gratitude uncontaminated by grievance, saying things you couldn't before, the observer's view</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">not possible</span>
+            <span class="meta-text">pretending it's not ending, being fully inside the thing, returning to before the notice</span>
+          </div>
+        </div>
+        <p class="stop-note">note: this window closes at departure. most people don't use it.</p>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-header">
+          <div class="stop-name">the first morning after something ends</div>
+          <div class="stop-duration">3–8 hours</div>
+        </div>
+        <p class="stop-body">The familiar absence. The day exists without the thing in it. Something that was structural is no longer there, and the structure holds anyway, which is both a relief and a strangeness. This is a particular kind of transit: between who you were inside it and whoever comes after.</p>
+        <div class="stop-meta">
+          <div class="meta-item">
+            <span class="meta-label">possible</span>
+            <span class="meta-text">unusual clarity, the spaciousness of absence, coffee that is entirely yours, the first unscheduled hour in a long time</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">not possible</span>
+            <span class="meta-text">returning to before, skipping the transition, being unaffected</span>
+          </div>
+        </div>
+        <p class="stop-note">note: the most distinctive quality is that the day is entirely yours again. this is both simpler and harder than it sounds.</p>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-header">
+          <div class="stop-name">being between sleep and waking</div>
+          <div class="stop-duration">variable, unmeasurable from inside</div>
+        </div>
+        <p class="stop-body">The most complete transit. Consciousness moves from one state to another through a region where neither state applies. The thoughts that arrive here follow a different grammar. Solutions appear that don't survive the crossing back.</p>
+        <div class="stop-meta">
+          <div class="meta-item">
+            <span class="meta-label">possible</span>
+            <span class="meta-text">the thought that is only visible here, a looser sense of sequence and cause, the problem that resolves without effort</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">not possible</span>
+            <span class="meta-text">writing it down in time, staying here indefinitely, bringing it back intact</span>
+          </div>
+        </div>
+        <p class="stop-note">note: you cannot know how long you were here. the transit is its own destination.</p>
+      </div>
+
+      <div class="stop reveal">
+        <div class="stop-header">
+          <div class="stop-name">the commute before an important day</div>
+          <div class="stop-duration">15–90 min</div>
+        </div>
+        <p class="stop-body">The last private moment before the event. The rehearsal happens here, or the deliberate refusal of rehearsal. The self that arrives is already different from the one that boarded, because transit changes people slightly, and this one has stakes.</p>
+        <div class="stop-meta">
+          <div class="meta-item">
+            <span class="meta-label">possible</span>
+            <span class="meta-text">quiet preparation, the decision about how to arrive, a last private thought, revising what you intended to say</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">not possible</span>
+            <span class="meta-text">the event itself, arriving without having been in transit, knowing how it goes</span>
+          </div>
+        </div>
+        <p class="stop-note">note: the commute is part of the event. it has always been part of the event.</p>
+      </div>
+
+    </div>
+
+    <p class="closing reveal">The in-between is not the gap between important things. It is its own thing. Most of it passes unobserved. Noticing it is one of the few moves that doesn't require arriving anywhere.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

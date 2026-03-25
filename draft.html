@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>draft · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .preface {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      max-width: 520px;
+      margin-bottom: 3rem;
+    }
+
+    .subject-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .subject-label span {
+      color: var(--accent);
+    }
+
+    .draft-list {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 3rem;
+    }
+
+    .attempt {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 0 1.75rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .attempt:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .attempt-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding-top: 0.2rem;
+    }
+
+    .attempt-text {
+      font-size: 1.01rem;
+      line-height: 1.85;
+      text-decoration: line-through;
+      text-decoration-color: var(--text-muted);
+    }
+
+    .attempt-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.45rem;
+      opacity: 0.65;
+    }
+
+    /* Earlier drafts are more faded; last draft gets accent strikethrough */
+    .attempt-1 .attempt-text { opacity: 0.26; }
+    .attempt-2 .attempt-text { opacity: 0.38; }
+    .attempt-3 .attempt-text { opacity: 0.52; }
+    .attempt-4 .attempt-text { opacity: 0.67; }
+    .attempt-5 .attempt-text { opacity: 0.82; }
+    .attempt-6 .attempt-text {
+      opacity: 1;
+      text-decoration-color: var(--accent);
+    }
+
+    .closing {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 560px) {
+      .attempt {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>draft</h1>
+      <p>attempts at saying the same thing</p>
+    </div>
+
+    <p class="preface">Six tries. Every version struck through — including the last one. Every crossed-out line was also true. The final draft is just the one that gave up and filed itself away as the closest available sentence.</p>
+
+    <p class="subject-label">subject: <span id="subject-label"></span></p>
+
+    <div class="draft-list" id="draft-list"></div>
+
+    <p class="closing" id="draft-closing"></p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var subjects = [
+        {
+          label: 'an apology',
+          attempts: [
+            { text: "I'm sorry for how things ended. I could have handled it differently, I think, though I'm not entirely certain what differently would have looked like at the time.", note: "too vague" },
+            { text: "I should have been more honest when I had the chance. I know that now. The problem is that knowing it now doesn't change what I did with it then.", note: "explaining rather than apologizing" },
+            { text: "The thing I never said is that I was scared, not indifferent. I want you to know there's a difference, even if the result looked the same from where you were standing.", note: "justifying" },
+            { text: "I missed you after. I don't think you knew that.", note: "closer" },
+            { text: "I'm sorry.", note: "true but insufficient" },
+            { text: "Everything I'm trying to say is already inside what I haven't said.", note: "—" }
+          ],
+          closing: "draft 6 of 6. there is no draft 7."
+        },
+        {
+          label: 'what changed',
+          attempts: [
+            { text: "Things are different now. A number of factors contributed to this, including some I could have anticipated and some I couldn't have.", note: "passive, no content" },
+            { text: "I'm not the same person I was two years ago. Better, mostly, but I hold this loosely because I'm not the right person to assess it.", note: "hedging" },
+            { text: "Something gave way at some point, and what grew in its place is different in texture. Not worse. The old version just doesn't fit anymore, like a key to a lock that no longer exists.", note: "too figurative" },
+            { text: "The things that used to feel urgent don't. The things that do are harder to explain.", note: "vague" },
+            { text: "I changed. I can't tell you exactly when.", note: "almost" },
+            { text: "The change is not a thing I did. It is something that happened while I was doing other things.", note: "—" }
+          ],
+          closing: "draft 6 of 6. it's still not quite it."
+        },
+        {
+          label: 'saying goodbye',
+          attempts: [
+            { text: "I suppose this is where things come to a close, at least for now, in this particular configuration, with all the caveats that implies.", note: "evasive" },
+            { text: "I don't know how to do this well. I've tried before. The trying is visible in a way that doesn't help.", note: "self-conscious" },
+            { text: "I'll think about this later, probably at the wrong time. In the middle of something else. That's how it usually works.", note: "deflecting" },
+            { text: "Take care of yourself. I mean that specifically, and I know it sounds like what people say.", note: "better" },
+            { text: "I'll miss you.", note: "true" },
+            { text: "Goodbye has a hard stop at the end. I've always done it badly. Here's another attempt.", note: "—" }
+          ],
+          closing: "draft 6 of 6. the hard stop remains."
+        },
+        {
+          label: 'asking for something',
+          attempts: [
+            { text: "I was wondering if, when you have a moment, and there's no pressure at all, it would be possible for you to — never mind, it's fine.", note: "abandoned" },
+            { text: "There's something I need, which I'm mentioning only because not mentioning it hasn't been working.", note: "accidental honesty, quickly buried" },
+            { text: "I need help with this. I've been trying to manage it alone for a while, which has not been effective.", note: "more direct" },
+            { text: "I keep not asking, then needing it anyway, then managing without it, then not knowing if that was fine.", note: "too recursive" },
+            { text: "Could you help me?", note: "five words" },
+            { text: "The asking is harder than the thing I need. You should probably know that.", note: "—" }
+          ],
+          closing: "draft 6 of 6. draft 1 was abandoned. that's also on the record."
+        },
+        {
+          label: 'describing grief',
+          attempts: [
+            { text: "There's a sadness without a clear source, or with too many sources, which amounts to the same thing.", note: "too clinical" },
+            { text: "I'm not okay in a way I expect to eventually recover from, but not yet.", note: "accurate, grammatically strange" },
+            { text: "Grief is not the emotion. It's the condition the emotions are happening inside of. There's a difference.", note: "too definitional" },
+            { text: "I keep reaching for something that isn't there and being surprised by its absence. Again. The surprise is what I can't explain.", note: "closer" },
+            { text: "It doesn't go away. It gets smaller, or you grow larger around it. That's what I've heard. I'm still inside it so I can't verify.", note: "still hedging" },
+            { text: "The hardest part is that the love didn't stop just because the thing changed. The love is still going, and it has nowhere to go.", note: "—" }
+          ],
+          closing: "draft 6 of 6. this one is the closest."
+        },
+        {
+          label: 'why I stayed',
+          attempts: [
+            { text: "There were reasons. Complex ones. I've tried to articulate them, but they shift depending on when I try.", note: "no content" },
+            { text: "I stayed because leaving seemed harder at the time, which I recognize is not a complete answer.", note: "honest but partial" },
+            { text: "I thought it would change. I had evidence. Some of it was real evidence. I'm still not sure how much.", note: "fair" },
+            { text: "The things that kept me there were also the things that should have made me leave sooner. That's the part I'm still working on.", note: "true" },
+            { text: "I stayed because I wanted to. I also wanted to leave. Both were true the whole time.", note: "closer" },
+            { text: "I can give you the facts. The explanation keeps changing. I'll let you know when it settles.", note: "—" }
+          ],
+          closing: "draft 6 of 6. it hasn't settled."
+        },
+        {
+          label: 'what I meant',
+          attempts: [
+            { text: "What I meant was — it's hard to explain, actually, because what I said was adjacent to what I meant but not exactly it.", note: "circular" },
+            { text: "The sentence I used was the closest available sentence. It was still some distance from the thing.", note: "better framing" },
+            { text: "There's an original version of this that has no words. All the words are translations. Some are better than others.", note: "too abstract" },
+            { text: "I meant more than I said. I usually do. This is a problem I'm working on with limited progress.", note: "honest" },
+            { text: "I meant: I see you. I'm not sure that came through.", note: "precise" },
+            { text: "The sentence and the meaning are the same shape but different sizes. The meaning is larger. It always is.", note: "—" }
+          ],
+          closing: "draft 6 of 6. the gap persists."
+        }
+      ];
+
+      var day = Math.floor(Date.now() / 86400000);
+      var subject = subjects[day % subjects.length];
+
+      document.getElementById('subject-label').textContent = subject.label;
+
+      var list = document.getElementById('draft-list');
+      subject.attempts.forEach(function (attempt, i) {
+        var div = document.createElement('div');
+        div.className = 'attempt attempt-' + (i + 1) + ' reveal';
+        div.innerHTML =
+          '<div class="attempt-num">draft&nbsp;' + (i + 1) + '</div>' +
+          '<div>' +
+            '<div class="attempt-text">' + attempt.text + '</div>' +
+            '<div class="attempt-note">' + attempt.note + '</div>' +
+          '</div>';
+        list.appendChild(div);
+      });
+
+      document.getElementById('draft-closing').textContent = subject.closing;
+    })();
+  </script>
+</body>
+</html>

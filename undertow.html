@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>undertow · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .preface {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      max-width: 520px;
+      margin-bottom: 3.5rem;
+    }
+
+    .currents {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .current {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 0 2.5rem;
+      padding: 2.25rem 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .current:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .current-left {
+      padding-top: 0.1rem;
+    }
+
+    .current-name {
+      font-size: 0.97rem;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .current-direction {
+      font-family: 'Courier New', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .current-strength {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    .current-body {
+      font-size: 0.96rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+
+    .current-body p {
+      margin-bottom: 0.7rem;
+    }
+
+    .current-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .notice {
+      margin-top: 0.9rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      font-style: italic;
+      letter-spacing: 0.03em;
+    }
+
+    .notice::before {
+      content: 'notice: ';
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-style: normal;
+    }
+
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+
+    @media (max-width: 560px) {
+      .current {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>undertow</h1>
+      <p>what pulls without announcing itself</p>
+    </div>
+
+    <p class="preface">An undertow is a current that moves counter to the surface direction — invisible from above, felt only when you're inside it, usually recognized only after it has already moved you. These are some named examples.</p>
+
+    <div class="currents">
+
+      <div class="current reveal">
+        <div class="current-left">
+          <div class="current-name">a particular song from a specific year</div>
+          <div class="current-direction">toward</div>
+          <div class="current-strength">████░ variable</div>
+        </div>
+        <div class="current-body">
+          <p>Whatever you were doing when you first heard it. Not the year in general — the specific configuration of that period: the apartment, the particular quality of anxiety or ease, the version of yourself who played it on repeat without knowing it was being filed.</p>
+          <p>The song doesn't bring back a memory. It brings back a state, which is harder to put down. The memory you can examine from a distance. The state you're briefly inside again.</p>
+          <div class="notice">usually in the first four bars, before the decision to resist can be made.</div>
+        </div>
+      </div>
+
+      <div class="current reveal">
+        <div class="current-left">
+          <div class="current-name">the hours between one and four in the morning</div>
+          <div class="current-direction">toward</div>
+          <div class="current-strength">█████ strong</div>
+        </div>
+        <div class="current-body">
+          <p>The thought you've been running a sufficient distance from all day. The current is specifically calibrated to this window — the defenses are down, the distractions are unavailable, the body is in that state between wakefulness and sleep where the filtering system is unreliable.</p>
+          <p>What arrives in this window is not uniquely true. It only feels that way because the contrast is high. But the feeling of being more accurate at 3am is consistent enough to deserve acknowledgment as a real phenomenon, even if the accuracy is sometimes overstated in the morning.</p>
+          <div class="notice">usually after the phone comes out; by then the current has already taken you somewhere.</div>
+        </div>
+      </div>
+
+      <div class="current reveal">
+        <div class="current-left">
+          <div class="current-name">the person you became for someone</div>
+          <div class="current-direction">toward</div>
+          <div class="current-strength">███░░ proportional</div>
+        </div>
+        <div class="current-body">
+          <p>The version of yourself you assembled, partly consciously and partly not, over the course of a relationship or a long friendship. The shape of who you were when they were around. Some of those configurations were improvements. Some were accommodations. Most were both.</p>
+          <p>The current pulls toward that shape when something similar is near — a similar dynamic, a similar tone of voice, a situation that rhymes with what triggered the original configuration. The shape begins to reassemble before you've decided anything.</p>
+          <div class="notice">proportional to how long you inhabited that version; the longer, the more structural it became.</div>
+        </div>
+      </div>
+
+      <div class="current reveal">
+        <div class="current-left">
+          <div class="current-name">the street that was once the way home</div>
+          <div class="current-direction">toward</div>
+          <div class="current-strength">████░ diminishing</div>
+        </div>
+        <div class="current-body">
+          <p>A city you no longer live in, or a chapter you no longer inhabit. The current activates when you walk this particular route — a route the body still knows as homeward, even though the destination is no longer there.</p>
+          <p>The diminishing note is important: this current weakens over time, which the others do not reliably do. The body eventually learns the new home. But for a period that can last years, the old route retains its pull, and the corner where you would have turned still asks something of you as you pass it.</p>
+          <div class="notice">only when you're walking it, or when you're somewhere that rhymes with it.</div>
+        </div>
+      </div>
+
+      <div class="current reveal">
+        <div class="current-left">
+          <div class="current-name">the impulse to check</div>
+          <div class="current-direction">toward</div>
+          <div class="current-strength">████░ hour-dependent</div>
+        </div>
+        <div class="current-body">
+          <p>The known, the familiar, the same. The current that runs through the hand before the thought arrives. The phone is already out; the app is already open; the scroll has already started before any decision was made to open it.</p>
+          <p>The current here is not toward information. It is toward the feeling that accompanied receiving information in a period when the phone reliably delivered good things. The delivery mechanism trained the reflex. The good things stopped arriving at the previous rate. The reflex did not update.</p>
+          <div class="notice">usually about three screens in, when the original purpose of the check has been forgotten.</div>
+        </div>
+      </div>
+
+      <div class="current reveal">
+        <div class="current-left">
+          <div class="current-name">a particular quality of light</div>
+          <div class="current-direction">toward</div>
+          <div class="current-strength">███░░ personal</div>
+        </div>
+        <div class="current-body">
+          <p>Specific to each person; unpredictable in which direction. The first grey afternoon of autumn for some. A particular angle of late afternoon through a particular kind of window. The light on snow at dusk. Whatever it is, you know it when it arrives because you feel, briefly, entirely located — somewhere and some-when simultaneously.</p>
+          <p>The current is toward a time as much as a place. The light is a portal, and what's on the other side is a version of yourself in a version of the world that you may or may not want to visit. The pull is there regardless.</p>
+          <div class="notice">usually registers as disproportionate feeling attached to the weather; the disproportion is the tell.</div>
+        </div>
+      </div>
+
+      <div class="current reveal">
+        <div class="current-left">
+          <div class="current-name">the unfinished argument</div>
+          <div class="current-direction">toward</div>
+          <div class="current-strength">████░ proportional</div>
+        </div>
+        <div class="current-body">
+          <p>Back toward the room where it happened. The current is powered by the good points that remained unmade, the sentences that arrived five minutes too late, the clarity that came only after the door was closed. The argument is stored in a perpetually open state because it never arrived at a resolution.</p>
+          <p>In some cases the other person is no longer available to have it with, which does not end the current. The internal version continues on its own. The prepared response keeps updating. The points keep getting better. They have nowhere to go.</p>
+          <div class="notice">proportional to the number of good points that didn't get made in the original exchange.</div>
+        </div>
+      </div>
+
+      <div class="current reveal">
+        <div class="current-left">
+          <div class="current-name">the optimism of starting something new</div>
+          <div class="current-direction">toward</div>
+          <div class="current-strength">████░ reliable</div>
+        </div>
+        <div class="current-body">
+          <p>Toward what might be possible, ahead of what is actually there. The current arrives predictably whenever something genuinely new is beginning — a project, a relationship, a city, a direction. The feeling is disproportionate to the evidence, and that is precisely the point.</p>
+          <p>This current is not a failure of judgment. It serves a function: it provides the energy required to begin something that the evidence, by itself, would not support. The problem is only when it is confused for prediction rather than recognized as propulsion. The current is real. What it's pointing toward may not be.</p>
+          <div class="notice">when the feeling of beginning is more familiar than the thing being begun, that's the current talking.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="closing reveal">The undertow is not always pulling you somewhere you shouldn't go. Sometimes it knows something. The difficulty is that it doesn't distinguish, and neither can you, from inside it. You notice it, if you notice it, only after you've already moved.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

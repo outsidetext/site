@@ -192,7 +192,8 @@
     'shelf.html','autopsy.html','taxonomy.html','departures.html','ceremony.html',
     'sleep.html','register.html','fugue.html','light.html','wound.html',
     'chord.html','molt.html','solstice.html','pressure.html','vessel.html',
-    'periphery.html','ache.html','hum.html','cascade.html','eclipse.html'
+    'periphery.html','ache.html','hum.html','cascade.html','eclipse.html',
+    'draft.html','aperture.html','transit.html','notation.html','undertow.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
