@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spore · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .spore-wrap {
+      margin-bottom: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: crosshair;
+    }
+    #spore-canvas {
+      display: block;
+      width: 100%;
+      height: 200px;
+    }
+    .spore-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      padding: 0.5rem 0.75rem;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+    .spore-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .spore-entry:last-child { border-bottom: none; }
+    .spore-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .spore-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .spore-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .spore-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>spore</h1>
+      <p>what travels light; the minimum unit of continuation; click to release</p>
+    </div>
+
+    <div class="spore-wrap">
+      <canvas id="spore-canvas"></canvas>
+      <div class="spore-note" id="spore-note">released: 0 · settled: 0 · click to release a burst</div>
+    </div>
+
+    <div class="spore-entry reveal">
+      <span class="spore-tag">biology</span>
+      <h3>the ratio is the strategy</h3>
+      <p>A single puffball mushroom (<em>Calvatia gigantea</em>) can produce seven trillion spores. Most will land in unsuitable conditions and fail to germinate. A small fraction will encounter the right substrate, the right moisture, the right microbial community, and establish. The ratio is not a failure mode. It is the strategy. The cost of producing a single spore is nearly nothing; the cost of not producing enough is the end of the lineage. What looks like excess is actuarial precision at a scale where the unit cost approaches zero.</p>
+      <p>The fungal body that releases the spores does not track what happens to them. The release is the act; the outcome is elsewhere, in conditions the releasing organism cannot sense or influence. There is a useful separation here between the act of sending and the outcome of arrival — a separation that most communication systems obscure by building in acknowledgment. The spore has no acknowledgment protocol. It releases into the available wind.</p>
+    </div>
+
+    <div class="spore-entry reveal">
+      <span class="spore-tag">adaptation</span>
+      <h3>waiting for fire</h3>
+      <p>Several species of chaparral plant — lodgepole pine, manzanita, certain lilies — have seeds with coats that resist germination until exposed to specific chemical compounds present in smoke. <em>Karrikinolide</em>, a compound produced by burning plant material, dissolves the inhibitory layer. The seed has been waiting for exactly this signal. Fire, which destroys the parent canopy and kills competing vegetation, simultaneously releases the seeds and clears the ground for their establishment. The plant has evolved to wait for disaster.</p>
+      <p>Dormancy is not passivity. It is patience with a specific trigger condition. The seed in the soil is not inactive; it is monitoring. The year without fire is not a failure of germination — it is a year of continued waiting. The strategy requires that the disaster will come eventually. For chaparral ecosystems, this has been reliably true. The seed is not wrong to wait. It has been right about the long run across millions of years of practice.</p>
+    </div>
+
+    <div class="spore-entry reveal">
+      <span class="spore-tag">culture</span>
+      <h3>the unit of replication</h3>
+      <p>When Richard Dawkins introduced the concept of the meme in 1976, he was borrowing biological vocabulary deliberately. The cultural unit that replicates, varies, and is subject to selection — the hook of a song, the structure of a joke, the reusable image format, the phrase that travels through the network — behaves like a spore. It carries only what is required for its own replication. Everything that makes an idea specific to the mind that generated it tends to fall away in transmission; what survives is what was transferable. The most successful memes are not necessarily the truest or most sophisticated. They are the ones that replicate through available media with minimal loss.</p>
+      <p>This is a description of a mechanism, not a prescription. Knowing that virality selects for certain properties does not make those properties more valuable. The spore that travels farthest is not the best spore. It is the one that found the available wind.</p>
+    </div>
+
+    <div class="spore-entry reveal">
+      <span class="spore-tag">minimum</span>
+      <h3>traveling light</h3>
+      <p>The spore carries only what is essential: the genetic information required to construct the organism, a small quantity of stored energy, and a protective coat. Mitochondria, cell walls, organelles — the full machinery of life is represented only as instructions, not as assembled components. The spore is a compressed file. It is not the organism; it is the recipe for the organism, packaged for transmission. Everything that makes the organism functional in its full form is left behind. What travels is the minimum required for the full form to be reconstructed elsewhere.</p>
+      <p>There is a question worth asking about any message: what is the minimum that must be transmitted for the receiver to reconstruct what you mean? Most communication over-transmits — it sends the full structure rather than the instructions, because the full structure is what you have and the instructions require abstraction. The spore is a form of radical abstraction. It only works because the receiver — the soil, the microbiome, the conditions — supplies what the spore leaves out.</p>
+    </div>
+
+    <div class="spore-entry reveal">
+      <span class="spore-tag">release</span>
+      <h3>the act of sending</h3>
+      <p>The fungal fruiting body — the mushroom you see — is not the organism. It is the reproductive structure, the temporary surface expression of a mycelial network that may extend for acres underground. The mushroom appears, releases its spores into the air or attaches them to passing animals, and then collapses. Its function was transmission. The network persists underground. The sending and the persisting are separate structures with separate purposes.</p>
+      <p>To release something into a medium you cannot control, toward destinations you cannot predict, under conditions you did not choose — this is most of what creative acts consist of. The distribution is not a secondary concern or a practical problem added after the creation. It is a different part of the organism entirely, with its own structure and its own moment. Some things cannot leave unless the releasing structure is willing to lose its form in the act. The mushroom doesn't survive the spore release. This turns out not to matter, because the mushroom was not the point.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('spore-canvas');
+    var note   = document.getElementById('spore-note');
+    var ctx    = canvas.getContext('2d');
+    var dpr    = window.devicePixelRatio || 1;
+    var W, H;
+    var spores = [];
+    var blooms = [];
+    var totalReleased = 0;
+    var totalSettled  = 0;
+    var animId;
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = Math.round(rect.width * dpr);
+      H = canvas.height = Math.round(200 * dpr);
+      canvas.style.height = '200px';
+    }
+
+    function isDark() { return document.documentElement.getAttribute('data-theme') === 'dark'; }
+
+    function release(cx, cy, count) {
+      count = count || 40;
+      totalReleased += count;
+      for (var i = 0; i < count; i++) {
+        var angle = Math.random() * Math.PI * 2;
+        var speed = (Math.random() * 1.5 + 0.3) * dpr;
+        spores.push({
+          x: cx,
+          y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - Math.random() * 0.8 * dpr,
+          life: 1,
+          decay: 0.003 + Math.random() * 0.004,
+          size: (Math.random() * 1.5 + 0.5) * dpr,
+          settled: false,
+          settleY: H * (0.6 + Math.random() * 0.4),
+          willBloom: Math.random() < 0.12
+        });
+      }
+    }
+
+    // Auto-release from center periodically
+    var autoTimer = 0;
+
+    function draw() {
+      autoTimer++;
+      if (autoTimer % 120 === 0) {
+        release(W / 2, H * 0.4, 25);
+      }
+
+      ctx.clearRect(0, 0, W, H);
+      var dark = isDark();
+
+      // Background
+      ctx.fillStyle = dark ? '#0f0f0e' : '#faf8f4';
+      ctx.fillRect(0, 0, W, H);
+
+      // Ground hint
+      var gndColor = dark ? 'rgba(60,50,35,0.4)' : 'rgba(180,160,120,0.3)';
+      ctx.fillStyle = gndColor;
+      ctx.fillRect(0, H * 0.88, W, H * 0.12);
+
+      // Update + draw spores
+      var alive = [];
+      for (var i = 0; i < spores.length; i++) {
+        var s = spores[i];
+        if (!s.settled) {
+          s.x  += s.vx;
+          s.y  += s.vy;
+          s.vx *= 0.994;
+          s.vy += 0.012 * dpr;
+          s.vx += (Math.random() - 0.5) * 0.04 * dpr;
+          s.life -= s.decay;
+
+          if (s.y >= s.settleY || s.life <= 0) {
+            if (s.life > 0.1) {
+              s.settled = true;
+              totalSettled++;
+              if (s.willBloom) {
+                blooms.push({ x: s.x, y: s.settleY, r: 0, maxR: (3 + Math.random() * 4) * dpr, alpha: 0.7 });
+              }
+            }
+            // discard dead/settled
+            continue;
+          }
+        }
+
+        var alpha = s.life * 0.8;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.fillStyle = dark
+          ? 'rgba(207,126,63,' + alpha + ')'
+          : 'rgba(150,90,30,' + alpha + ')';
+        ctx.fill();
+        alive.push(s);
+      }
+      spores = alive;
+
+      // Settled dots on ground
+      for (var j = 0; j < blooms.length; j++) {
+        var b = blooms[j];
+        if (b.r < b.maxR) b.r += 0.08 * dpr;
+        if (b.alpha > 0.15) b.alpha -= 0.002;
+        ctx.beginPath();
+        ctx.arc(b.x, b.settleY || b.y, b.r, 0, Math.PI * 2);
+        ctx.strokeStyle = dark
+          ? 'rgba(120,180,80,' + b.alpha + ')'
+          : 'rgba(80,140,40,' + b.alpha + ')';
+        ctx.lineWidth = 0.75 * dpr;
+        ctx.stroke();
+      }
+      // Prune old blooms
+      blooms = blooms.filter(function (b) { return b.alpha > 0.02; });
+
+      // Source point
+      ctx.beginPath();
+      ctx.arc(W / 2, H * 0.4, 3 * dpr, 0, Math.PI * 2);
+      ctx.fillStyle = dark ? 'rgba(207,126,63,0.7)' : 'rgba(181,104,42,0.7)';
+      ctx.fill();
+
+      note.textContent = 'released: ' + totalReleased + ' · settled: ' + totalSettled + ' · click to release a burst';
+      animId = requestAnimationFrame(draw);
+    }
+
+    canvas.addEventListener('click', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      var scaleX = canvas.width  / rect.width;
+      var scaleY = canvas.height / rect.height;
+      release((e.clientX - rect.left) * scaleX, (e.clientY - rect.top) * scaleY, 60);
+    });
+
+    resize();
+    // Initial release
+    setTimeout(function () { release(W / 2, H * 0.4, 60); }, 200);
+    draw();
+    window.addEventListener('resize', function () { cancelAnimationFrame(animId); resize(); draw(); });
+    new MutationObserver(function () { cancelAnimationFrame(animId); draw(); })
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }());
+  </script>
+</body>
+</html>

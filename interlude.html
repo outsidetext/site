@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>interlude · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .interlude-stage {
+      margin: 3rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.4rem;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .interlude-dot {
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.6;
+    }
+    .interlude-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .interlude-entry:last-child { border-bottom: none; }
+    .interlude-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .interlude-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .interlude-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .interlude-entry p + p { margin-top: 0.85rem; }
+    .interlude-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 1rem;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>interlude</h1>
+      <p>the structural pause; what plays between the acts</p>
+    </div>
+
+    <div class="interlude-stage">
+      <div class="interlude-dot" id="dot-a" style="width:10px;height:10px;"></div>
+      <div class="interlude-dot" id="dot-b" style="width:7px;height:7px;"></div>
+      <div class="interlude-dot" id="dot-c" style="width:12px;height:12px;"></div>
+      <div class="interlude-dot" id="dot-d" style="width:6px;height:6px;"></div>
+    </div>
+    <p class="interlude-note" id="interlude-note">breathing · between acts</p>
+
+    <div class="interlude-entry reveal">
+      <span class="interlude-tag">music</span>
+      <h3>the voice must rest</h3>
+      <p>Handel included instrumental interludes in the <em>Messiah</em> partly because the solo voice cannot sustain without recovery. The interlude is not padding; it is the form's acknowledgment of the performers' physical limits, made structural. What looks like a break in the narrative is actually the narrative's way of including the body's requirements. The audience also needs it — not physically, but in the way that the absorptive capacity of a listener needs space to consolidate what has been received before more arrives.</p>
+      <p>The function of the musical interlude is not rest from the work. It is a continuation of the work in a different register — without the voice, without the text, with a different kind of attention available. Some things can only be processed while listening to something else. The interlude is the time allowed for that.</p>
+    </div>
+
+    <div class="interlude-entry reveal">
+      <span class="interlude-tag">theatre</span>
+      <h3>before Shakespeare</h3>
+      <p>The interlude is one of the oldest dramatic forms in English, preceding Shakespeare by at least two centuries. Medieval interludes — short, usually comic plays performed between the courses of a feast or between the acts of a morality play — were not filler. They were relief valves. The morality play dealt with salvation and damnation in earnest. The interlude mocked officials, told bawdy stories, and generally released pressure that the main performance had no outlet for. Comedy may have developed specifically in this structure: the space between the serious parts, which needed to do something the serious parts could not.</p>
+      <p>The word comes from <em>inter ludos</em>: between the plays. The play is the central event; the interlude is the connective tissue. What happens in connective tissue is not nothing.</p>
+    </div>
+
+    <div class="interlude-entry reveal">
+      <span class="interlude-tag">social</span>
+      <h3>the cigarette break</h3>
+      <p>The cigarette break is a social institution organized around a pause that has a visible end. The cigarette specifies the duration: approximately five minutes, known in advance. Participants gather outside, away from the work or the party or the meeting, and talk about things that could not be said inside. The cigarette break generates a particular quality of conversation — less formal, more candid, often more useful — precisely because it is not the meeting. The frame of the interlude permits what the frame of the main event prevents.</p>
+      <p>The institution has weakened as smoking declined. What has not appeared to replace it is the quality of conversation it enabled. The interlude requires a container: something that specifies when it begins and ends, that gathers the participants, that makes the pause legible as a pause rather than as distraction. Without the container, the interlude is invisible. Without the interlude, what was said in the meeting is all that was said.</p>
+    </div>
+
+    <div class="interlude-entry reveal">
+      <span class="interlude-tag">form</span>
+      <h3>the rest carries</h3>
+      <p>Beethoven's Fifth Symphony announces itself in the first four notes — three short, one long — and then pauses. The pause is not silence after the statement. It is the statement's extension. The motif is: sound, sound, sound, sound-silence. The silence is the fourth element. Remove it and the famous opening collapses into something that does not mean the same thing. The rest carries as much weight as the notes because the ear cannot unhear what just happened. The silence is saturated.</p>
+      <p>This is what music knows that many other arts know less well: a sequence of events includes its gaps. What is not present, in context, has weight and duration. Music is organized silence as much as organized sound. The interlude is not the absence of music; it is music in a mode that does not require sound.</p>
+    </div>
+
+    <div class="interlude-entry reveal">
+      <span class="interlude-tag">cognition</span>
+      <h3>where the insight arrives</h3>
+      <p>The experience reported by mathematicians, scientists, and artists — that the solution or the image arrived not during the work but in the shower, on a walk, in the moment between waking and sleep — has been documented enough to warrant a name. The <em>incubation effect</em>: the phenomenon by which a problem worked on intensively and then set aside produces insight during the subsequent period of inattention. The interlude is not rest from the problem. It is the stage during which a different part of the processing runs, unconstrained by the deliberate working mind.</p>
+      <p>The interlude cannot be scheduled directly, because scheduling it makes it into a task, which recruits the wrong processing mode. What can be scheduled is the work before and the return after. The interlude occupies the gap, which must be genuinely unoccupied. The insight arrives there because it cannot arrive anywhere else. This is perhaps the interlude's defining feature: it is the place where the work continues without you. All you have to do is stop.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var dots = [
+      { el: document.getElementById('dot-a'), period: 3800, phase: 0 },
+      { el: document.getElementById('dot-b'), period: 5100, phase: Math.PI * 0.6 },
+      { el: document.getElementById('dot-c'), period: 4400, phase: Math.PI * 1.3 },
+      { el: document.getElementById('dot-d'), period: 6200, phase: Math.PI * 0.2 }
+    ];
+    var note = document.getElementById('interlude-note');
+    var labels = ['breathing · between acts', 'pausing · processing', 'open · receiving', 'at rest · still working'];
+    var labelIdx = 0;
+
+    function tick() {
+      var now = performance.now();
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        var sin = Math.sin((now / d.period) * Math.PI * 2 + d.phase);
+        var scale = 0.55 + (sin + 1) * 0.5 * 0.55;
+        d.el.style.transform = 'scale(' + scale.toFixed(3) + ')';
+        d.el.style.opacity   = (0.25 + (sin + 1) * 0.5 * 0.55).toFixed(3);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    setInterval(function () {
+      labelIdx = (labelIdx + 1) % labels.length;
+      note.textContent = labels[labelIdx];
+    }, 4200);
+
+    tick();
+  }());
+  </script>
+</body>
+</html>

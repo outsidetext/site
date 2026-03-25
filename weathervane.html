@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>weathervane · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .vane-wrap {
+      margin-bottom: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    #vane-canvas {
+      display: block;
+      width: 100%;
+      height: 200px;
+    }
+    .vane-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      padding: 0.5rem 0.75rem;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+    .vane-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .vane-entry:last-child { border-bottom: none; }
+    .vane-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .vane-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .vane-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .vane-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>weathervane</h1>
+      <p>which direction things are turning; a present-tense instrument</p>
+    </div>
+
+    <div class="vane-wrap">
+      <canvas id="vane-canvas"></canvas>
+      <div class="vane-note" id="vane-note">current bearing: —</div>
+    </div>
+
+    <div class="vane-entry reveal">
+      <span class="vane-tag">history</span>
+      <h3>the cock on the steeple</h3>
+      <p>The oldest known weathervane is the bronze Triton atop the Tower of the Winds in Athens, built around 50 BC. The figure rotated to point at one of eight wind gods carved into the tower's frieze — Boreas, Kaikias, Apeliotes, Euros, Notos, Lips, Zephyros, Skiron — each with its own character and associations. The wind from the northeast was quarrelsome and cold. The southwest brought gentle rains. The eight gods were a taxonomy of prevailing conditions, and the weathervane was the index that told you which one was currently in charge.</p>
+      <p>Pope Nicholas I decreed in 820 AD that every church should place a cock atop its steeple — a reminder of the cock that crowed at Peter's three denials. The cock became the most common Western weathervane not because it was aerodynamically ideal but because it carried a specific meaning: the faithful should be as alert to spiritual conditions as the cock was to the wind. The instrument was assigned a moral function. Instruments often are.</p>
+    </div>
+
+    <div class="vane-entry reveal">
+      <span class="vane-tag">epistemology</span>
+      <h3>the present tense instrument</h3>
+      <p>The weathervane has no memory. It reads only now. It swings without hesitation to align with the present wind, and when the wind changes it follows, and it does not remember where it pointed before. This is different from a forecast, which projects patterns from the past into the future. The forecast is historical; the weathervane is present. The barometer measures accumulated pressure trends. The weathervane measures only what is, at this moment, happening.</p>
+      <p>There is something unusual about an instrument that commits fully to the present reading and keeps no record. Most instruments are designed to accumulate data — the thermograph traces a line, the rain gauge fills, the seismograph unspools a record. The weathervane alone is satisfied to know now, and to let now replace what was known before without residue. This might be a deficiency. It might be a practice.</p>
+    </div>
+
+    <div class="vane-entry reveal">
+      <span class="vane-tag">language</span>
+      <h3>named winds</h3>
+      <p>Mediterranean sailors named their winds by origin rather than direction. The Tramontane came from beyond the mountains (<em>trans montis</em>) — cold, northerly, associated with clarity and danger. The Levante blew from the Levant, the rising sun. The Sirocco crossed the Sahara and arrived warm and moisture-laden from the south, sometimes carrying red dust from North Africa across to Italy, leaving a fine layer of desert on windowsills and car hoods. The Mistral funneled down the Rhône valley and was responsible for a specific quality of Provençal light. The wind from each direction was so distinct in character that it received a personality.</p>
+      <p>The naming of winds is an acknowledgment that direction alone is insufficient description. The wind that brings disaster and the wind that brings rain may blow from the same compass point at different times of year. The name carries the season, the history, the accumulated experience of every time that direction has been felt. A weathervane pointing north is less informative than a weathervane pointing at Boreas, who brings what he always brings.</p>
+    </div>
+
+    <div class="vane-entry reveal">
+      <span class="vane-tag">architecture</span>
+      <h3>elevation matters</h3>
+      <p>A weathervane on a barn is not merely decorative. The information it reports — wind direction at rooftop height — is different from the information available at ground level, where the building's own mass creates turbulence and deflects the flow. A farmer checking the weathervane before going out to the fields is reading air conditions above the interference zone, which is more representative of what the day will bring. The instrument's elevation is part of its function. What it reads is not available from where you are standing.</p>
+      <p>Cupolas were designed in part as platforms for weathervanes — the small windowed room at the building's apex serves to elevate the instrument above the roof line's turbulence and ventilate the barn below. The aesthetic form and the instrumental function arose together. The cupola does not look like what it is because what it is includes looking like it — the tall, visible point is the function, not decoration applied to it.</p>
+    </div>
+
+    <div class="vane-entry reveal">
+      <span class="vane-tag">interior</span>
+      <h3>what are you turning toward</h3>
+      <p>The question the weathervane asks is not where you are, or where you have been, but where the current is carrying you. Not your intentions, which are formed from the past and may already be outdated. Not your history, which is fixed. The weathervane reads what is happening now — the current pressure, the current gradient, the direction of the live system you are embedded in.</p>
+      <p>Most people know what they are turning toward. They treat it as data — something to note, to factor in, eventually to address. The weathervane has no such delay. It does not decide to note the current direction and return to it later. It aligns immediately, commits fully, and maintains the alignment for as long as the conditions hold. There is no deliberation. The question is whether the deliberation that we add is productive, or whether it is the interference zone — the building's own mass, making the reading at ground level unreliable.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('vane-canvas');
+    var note   = document.getElementById('vane-note');
+    var ctx    = canvas.getContext('2d');
+    var dpr    = window.devicePixelRatio || 1;
+    var W, H;
+    var currentAngle = 0;
+    var targetAngle  = 0;
+    var animId;
+
+    // Wind names for the 8 directions (N, NE, E, SE, S, SW, W, NW)
+    var windNames = ['Tramontane', 'Greco', 'Levante', 'Sirocco', 'Notos', 'Lips', 'Zephyros', 'Mistral'];
+    var bearings   = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = Math.round(rect.width * dpr);
+      H = canvas.height = Math.round(200 * dpr);
+      canvas.style.height = '200px';
+    }
+
+    function isDark() { return document.documentElement.getAttribute('data-theme') === 'dark'; }
+
+    // Slowly drift target angle — changes gradually, occasionally shifts
+    var driftTimer = 0;
+    var nextShiftAt = 180 + Math.floor(Math.random() * 240);
+    var driftSpeed = 0.0015;
+
+    function updateTarget() {
+      driftTimer++;
+      targetAngle += driftSpeed;
+
+      if (driftTimer >= nextShiftAt) {
+        // Drift toward a new direction
+        var snap = Math.round(targetAngle / (Math.PI / 4)) * (Math.PI / 4);
+        targetAngle = snap + (Math.random() - 0.5) * 0.4;
+        driftSpeed  = (Math.random() * 0.003 + 0.001) * (Math.random() < 0.5 ? 1 : -1);
+        nextShiftAt = driftTimer + 120 + Math.floor(Math.random() * 300);
+      }
+    }
+
+    function draw() {
+      updateTarget();
+      // Smooth pursuit
+      var diff = targetAngle - currentAngle;
+      currentAngle += diff * 0.04;
+
+      ctx.clearRect(0, 0, W, H);
+      var dark = isDark();
+
+      // Background
+      ctx.fillStyle = dark ? '#0f0f0e' : '#faf8f4';
+      ctx.fillRect(0, 0, W, H);
+
+      var cx = W / 2;
+      var cy = H / 2;
+
+      // Compass rose (faint)
+      var roseR = Math.min(W, H) * 0.36;
+      ctx.strokeStyle = dark ? 'rgba(232,229,223,0.08)' : 'rgba(26,26,26,0.07)';
+      ctx.lineWidth = 1 * dpr;
+      ctx.beginPath();
+      ctx.arc(cx, cy, roseR, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Cardinal tick marks and labels
+      ctx.font = (10 * dpr) + 'px Courier New, monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      for (var i = 0; i < 8; i++) {
+        var a = (i / 8) * Math.PI * 2 - Math.PI / 2;
+        var tx = cx + Math.cos(a) * (roseR + 16 * dpr);
+        var ty = cy + Math.sin(a) * (roseR + 16 * dpr);
+        var ix = cx + Math.cos(a) * roseR;
+        var iy = cy + Math.sin(a) * roseR;
+        var ox = cx + Math.cos(a) * (roseR - 6 * dpr);
+        var oy = cy + Math.sin(a) * (roseR - 6 * dpr);
+
+        ctx.strokeStyle = dark ? 'rgba(232,229,223,0.18)' : 'rgba(26,26,26,0.18)';
+        ctx.beginPath();
+        ctx.moveTo(ox, oy);
+        ctx.lineTo(ix, iy);
+        ctx.stroke();
+
+        ctx.fillStyle = dark ? 'rgba(232,229,223,0.28)' : 'rgba(26,26,26,0.28)';
+        ctx.fillText(bearings[i], tx, ty);
+      }
+
+      // Pole
+      var poleH = H * 0.22;
+      ctx.strokeStyle = dark ? 'rgba(232,229,223,0.4)' : 'rgba(26,26,26,0.35)';
+      ctx.lineWidth = 2 * dpr;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx, cy + poleH);
+      ctx.stroke();
+
+      // Vane arrow
+      var vaneLen = Math.min(W, H) * 0.27;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(currentAngle);
+
+      // Arrow body
+      ctx.strokeStyle = dark ? 'rgba(207,126,63,0.9)' : 'rgba(181,104,42,0.9)';
+      ctx.lineWidth = 2.5 * dpr;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(-vaneLen * 0.4, 0);
+      ctx.lineTo(vaneLen * 0.6, 0);
+      ctx.stroke();
+
+      // Arrow head
+      ctx.fillStyle = dark ? 'rgba(207,126,63,0.9)' : 'rgba(181,104,42,0.9)';
+      ctx.beginPath();
+      ctx.moveTo(vaneLen * 0.6, 0);
+      ctx.lineTo(vaneLen * 0.4, -5 * dpr);
+      ctx.lineTo(vaneLen * 0.4, 5 * dpr);
+      ctx.closePath();
+      ctx.fill();
+
+      // Tail fin
+      ctx.strokeStyle = dark ? 'rgba(207,126,63,0.5)' : 'rgba(181,104,42,0.5)';
+      ctx.lineWidth = 1.5 * dpr;
+      ctx.beginPath();
+      ctx.moveTo(-vaneLen * 0.4, 0);
+      ctx.lineTo(-vaneLen * 0.6, -10 * dpr);
+      ctx.moveTo(-vaneLen * 0.4, 0);
+      ctx.lineTo(-vaneLen * 0.6, 10 * dpr);
+      ctx.stroke();
+
+      ctx.restore();
+
+      // Pivot dot
+      ctx.beginPath();
+      ctx.arc(cx, cy, 3 * dpr, 0, Math.PI * 2);
+      ctx.fillStyle = dark ? 'rgba(232,229,223,0.5)' : 'rgba(26,26,26,0.4)';
+      ctx.fill();
+
+      // Current bearing label
+      var normalised = ((currentAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+      var dirIdx = Math.round(normalised / (Math.PI / 4)) % 8;
+      var deg = Math.round(normalised * 180 / Math.PI);
+      note.textContent = 'bearing: ' + deg + '° · ' + bearings[dirIdx] + ' · ' + windNames[dirIdx];
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    resize();
+    // Set initial angle from time of day
+    var d = new Date();
+    targetAngle = ((d.getHours() * 60 + d.getMinutes()) / 1440) * Math.PI * 2;
+    currentAngle = targetAngle;
+    draw();
+    window.addEventListener('resize', function () { cancelAnimationFrame(animId); resize(); draw(); });
+    new MutationObserver(function () { cancelAnimationFrame(animId); draw(); })
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }());
+  </script>
+</body>
+</html>
