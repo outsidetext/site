@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>handwriting · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hw-entry {
+      margin-bottom: 2.75rem;
+      padding-bottom: 2.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hw-entry:last-child { border-bottom: none; }
+    .hw-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+    }
+    .hw-entry p {
+      margin: 0;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>handwriting</h1>
+      <p>what the hand holds that the keyboard doesn't</p>
+    </div>
+
+    <div class="hw-entry reveal">
+      <div class="hw-label">the slant</div>
+      <p>Each person's handwriting develops a specific slant during childhood and then stabilizes, more or less, around adolescence. The angle of the letters is not a decision. You could find any page at random in a drawer and know immediately who wrote it. This is a kind of identity that runs through every word, not just the signature at the bottom — an unconscious self-portrait, repeated thousands of times. It does not travel to the digital.</p>
+    </div>
+
+    <div class="hw-entry reveal">
+      <div class="hw-label">what the ink records</div>
+      <p>Handwriting carries information that typed text cannot transmit: speed (how close the letters crowd together when thought outpaced the hand), hesitation (ink that pools where a pen paused and the writer reconsidered), pressure (which words pressed harder into the page and sometimes through it to the page below). A letter written by hand is a transcript of the body's state during composition. A typed message strips all of this and sends only the content.</p>
+    </div>
+
+    <div class="hw-entry reveal">
+      <div class="hw-label">the note on the counter</div>
+      <p>You would not type a note for the counter. Something about it would be wrong — too formal, the wrong object for the function. Handwriting is the domestic register. The grocery list, the birthday card, the <em>back at six.</em> These have always been done by hand. The keyboard doesn't fit not because it's slower but because it carries the wrong associations. Some media are not interchangeable. The note on the counter is supposed to look like someone was just there.</p>
+    </div>
+
+    <div class="hw-entry reveal">
+      <div class="hw-label">the first lessons</div>
+      <p>When you first learned, the letters were enormous and separate and each one cost something. You stayed inside the lines, or tried to. The effort was visible in every stroke — the slightly shaking verticals, the overshooting curves. Somewhere between childhood and now the effort became invisible, the letter became automatic, and what had been craft became reflex. Most skills absorb their labor this way. But with handwriting you can still find the original effort in someone who is learning — all that concentration in the placing of each stroke.</p>
+    </div>
+
+    <div class="hw-entry reveal">
+      <div class="hw-label">the signature</div>
+      <p>Most people have never examined their own signature. It is a compressed version of the whole self: the capitals of your name distorted by decades of practice into a gesture that belongs entirely to you. It is legal proof that you were present. It is also, by now, mostly illegible — the name has been written into abstraction. The two facts are connected: the signature becomes legal precisely as it becomes individual, which is to say, as it becomes yours alone and therefore unrepeatable.</p>
+    </div>
+
+    <div class="hw-entry reveal">
+      <div class="hw-label">after someone</div>
+      <p>After someone dies, their handwriting is often what the survivors keep. Not for the content — for the trace of the hand. A letter from the same person typed would carry the same words with a fraction of the presence. The writing is not the message. The writing is evidence of the writer: the pressure, the slant, the specific way the descenders hang below the line. All of it persists. The hand is harder to let go of than the words it formed.</p>
+    </div>
+
+    <div class="hw-entry reveal">
+      <div class="hw-label">the handwritten draft</div>
+      <p>Something different comes out when the hand holds the pen. Slower means more deliberate; the sentence has to survive the time it takes to write it. The scratch-out is permanent, unlike the delete key, so the crossed-out version is confirmed to have existed. Typing edits invisibly; handwriting edits with evidence. Writers who do both report that the drafts are different documents — not better or worse, but different in kind. The hand and the keyboard are not the same channel.</p>
+    </div>
+
+    <div class="hw-entry reveal">
+      <div class="hw-label">illegibility</div>
+      <p>Some people's handwriting is genuinely impossible to read. This is almost never laziness. It is usually speed — thought moving faster than the hand can form legible symbols. Illegibility is sometimes a kind of privacy: what only you can read, only you hold. A journal that no one else can decipher is a room that requires nothing to enter but the person who wrote it. The machine cannot transcribe what it cannot parse. Occasionally, this is the point.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

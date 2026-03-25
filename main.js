@@ -197,7 +197,8 @@
     'interference.html','ordinary.html','smoke.html','convergence.html','likeness.html',
     'liminal.html','tender.html','warmth.html','permission.html','grain.html',
     'friction.html','hollow.html','hinge.html','thaw.html','flicker.html',
-    'gravity.html','silence.html','hunger.html','anchor.html','witness.html'
+    'gravity.html','silence.html','hunger.html','anchor.html','witness.html',
+    'handwriting.html','laughter.html','etymology.html','ground.html','error.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
