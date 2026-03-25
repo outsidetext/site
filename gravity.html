@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gravity · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .gravity-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 2rem 0 0.75rem;
+      background: var(--bg);
+      cursor: crosshair;
+    }
+    #gravity-canvas {
+      display: block;
+      width: 100%;
+    }
+    .gravity-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .gravity-reset {
+      display: block;
+      margin: 0 auto 3rem;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      padding: 0.35rem 0.9rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .gravity-reset:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .gravity-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .gravity-entry:first-of-type { border-top: 1px solid var(--border); }
+    .gravity-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .gravity-text {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .gravity-closing {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>gravity</h1>
+      <p>bodies in mutual attraction</p>
+    </div>
+
+    <div class="gravity-wrap">
+      <canvas id="gravity-canvas"></canvas>
+    </div>
+    <p class="gravity-hint">click to place a body. watch what pulls what. up to twenty bodies.</p>
+    <button class="gravity-reset" id="gravity-reset">reset</button>
+
+    <div class="gravity-entry reveal">
+      <div class="gravity-label">the inverse-square law</div>
+      <p class="gravity-text">The force falls with the square of the distance, not linearly. Double the distance: one quarter the pull. Triple it: one ninth. This means gravity is effectively infinite in range but rapidly diminishing — at ten times the distance, the force is one hundredth of what it was. The universe is not empty; it is full of forces too attenuated to notice. Everything you have ever been near is still pulling on you, from the position it occupied, with a force that approaches but never reaches zero.</p>
+    </div>
+
+    <div class="gravity-entry reveal">
+      <div class="gravity-label">dark matter</div>
+      <p class="gravity-text">Galaxies rotate at speeds that cannot be explained by the visible mass they contain. If you calculate how fast the outer stars should orbit given what you can see, you get the wrong answer — too slow. The actual rotation can only be explained by postulating matter that does not emit, reflect, or absorb light. We have named it and mapped its distribution and watched its gravitational effects for decades. We do not know what it is. Most of what is pulling us cannot be seen. The visible is a minority share.</p>
+    </div>
+
+    <div class="gravity-entry reveal">
+      <div class="gravity-label">orbital mechanics</div>
+      <p class="gravity-text">A stable orbit requires exactly the right velocity — neither too fast nor too slow. Too slow and the object spirals inward, captured. Too fast and it escapes, never to return. At precisely the right speed, the object falls continuously without ever landing; it is always falling toward the center and always moving sideways fast enough to miss. The orbit is not rest. It is a permanent state of controlled falling. The satellite does not know it is in orbit. It knows only that it is accelerating toward something and that the something keeps not arriving.</p>
+    </div>
+
+    <div class="gravity-entry reveal">
+      <div class="gravity-label">the Lagrange point</div>
+      <p class="gravity-text">Between two massive bodies — a planet and its star — there are five points where the gravitational pulls of both bodies, combined with the centrifugal effect of the orbit, exactly cancel. At these points an object can sit, stably or semi-stably, subject to no net force, neither attracted to one body nor the other. L1, L2, and L3 are unstable — nudged, an object will drift away. L4 and L5 are stable; the Trojan asteroids have been sitting at Jupiter's L4 and L5 for four billion years. There are places where opposing forces cancel so precisely that you float, untroubled, suspended between what would otherwise pull you apart.</p>
+    </div>
+
+    <div class="gravity-entry reveal">
+      <div class="gravity-label">the Roche limit</div>
+      <p class="gravity-text">Every object has a radius within which a larger body's tidal forces exceed the object's own self-gravity. Inside this limit, the object cannot hold itself together — the near side is pulled more strongly than the far side, and the difference tears it apart. Saturn's rings are debris fields inside the Roche limit of the planet: moons that got too close and were pulled to pieces, or material that never coalesced because it was always too close to coalesce. There is a distance at which proximity itself becomes destructive. The force that should hold things together becomes the force that takes them apart.</p>
+    </div>
+
+    <p class="gravity-closing reveal">what looks like stillness, from a distance, is usually orbit. what looks like orbit, from a distance, is usually falling. the difference depends on the velocity and on how long you watch.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var canvas = document.getElementById('gravity-canvas');
+      var ctx = canvas.getContext('2d');
+      var W = 0, H = 0;
+      var bodies = [];
+      var raf;
+      var G = 3.0;
+      var dt = 0.35;
+      var softenSq = 200;
+      var MAX_BODIES = 20;
+
+      function isDark() {
+        return document.documentElement.getAttribute('data-theme') === 'dark';
+      }
+
+      function resize() {
+        var wrap = canvas.parentElement;
+        var dpr = window.devicePixelRatio || 1;
+        W = wrap.clientWidth;
+        H = Math.round(W * 0.38);
+        canvas.width  = W * dpr;
+        canvas.height = H * dpr;
+        canvas.style.height = H + 'px';
+        ctx.scale(dpr, dpr);
+        initBodies();
+      }
+
+      function orbitVel(r, centralMass) {
+        return Math.sqrt(G * centralMass / Math.max(r, 10));
+      }
+
+      function initBodies() {
+        bodies = [];
+        var cx = W / 2, cy = H / 2;
+        // central star
+        bodies.push({ x: cx, y: cy, vx: 0, vy: 0, mass: 700, trail: [] });
+        // inner planet
+        var r1 = Math.min(W, H) * 0.18;
+        var v1 = orbitVel(r1, 700);
+        bodies.push({ x: cx + r1, y: cy, vx: 0, vy: -v1, mass: 22, trail: [] });
+        // outer planet (opposite side)
+        var r2 = Math.min(W, H) * 0.28;
+        var v2 = orbitVel(r2, 700);
+        bodies.push({ x: cx - r2, y: cy, vx: 0, vy: v2, mass: 14, trail: [] });
+        // small moon of inner planet (relative velocity)
+        var moonR = r1 * 0.18;
+        var moonV = orbitVel(moonR, 22);
+        bodies.push({
+          x: cx + r1 + moonR,
+          y: cy,
+          vx: 0,
+          vy: -v1 - moonV,
+          mass: 3,
+          trail: []
+        });
+      }
+
+      function bodyRadius(mass) {
+        return Math.max(1.5, Math.sqrt(mass) * 0.55);
+      }
+
+      function step() {
+        // Euler integration
+        var n = bodies.length;
+        var ax = new Float64Array(n);
+        var ay = new Float64Array(n);
+
+        for (var i = 0; i < n; i++) {
+          for (var j = 0; j < n; j++) {
+            if (i === j) continue;
+            var dx = bodies[j].x - bodies[i].x;
+            var dy = bodies[j].y - bodies[i].y;
+            var distSq = dx * dx + dy * dy + softenSq;
+            var dist   = Math.sqrt(distSq);
+            var force  = G * bodies[j].mass / distSq;
+            ax[i] += force * dx / dist;
+            ay[i] += force * dy / dist;
+          }
+        }
+
+        for (var k = 0; k < n; k++) {
+          bodies[k].vx += ax[k] * dt;
+          bodies[k].vy += ay[k] * dt;
+          bodies[k].x  += bodies[k].vx * dt;
+          bodies[k].y  += bodies[k].vy * dt;
+
+          // trail
+          if (bodies[k].mass < 200) {
+            bodies[k].trail.push({ x: bodies[k].x, y: bodies[k].y });
+            if (bodies[k].trail.length > 55) bodies[k].trail.shift();
+          }
+        }
+
+        // merge bodies that are too close
+        var merged = [];
+        var skip = [];
+        for (var a = 0; a < n; a++) {
+          if (skip.indexOf(a) !== -1) continue;
+          var ba = bodies[a];
+          for (var b = a + 1; b < n; b++) {
+            if (skip.indexOf(b) !== -1) continue;
+            var bb = bodies[b];
+            var ddx = ba.x - bb.x;
+            var ddy = ba.y - bb.y;
+            var mergeThresh = bodyRadius(ba.mass) + bodyRadius(bb.mass) + 2;
+            if (Math.sqrt(ddx*ddx + ddy*ddy) < mergeThresh) {
+              var totalMass = ba.mass + bb.mass;
+              ba.x  = (ba.x * ba.mass + bb.x * bb.mass) / totalMass;
+              ba.y  = (ba.y * ba.mass + bb.y * bb.mass) / totalMass;
+              ba.vx = (ba.vx * ba.mass + bb.vx * bb.mass) / totalMass;
+              ba.vy = (ba.vy * ba.mass + bb.vy * bb.mass) / totalMass;
+              ba.mass = totalMass;
+              skip.push(b);
+            }
+          }
+        }
+        if (skip.length) {
+          bodies = bodies.filter(function (_, i) { return skip.indexOf(i) === -1; });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        var dark = isDark();
+        var textColor = dark ? '232,229,223' : '26,26,26';
+
+        for (var i = 0; i < bodies.length; i++) {
+          var b = bodies[i];
+
+          // trail
+          if (b.trail && b.trail.length > 1) {
+            for (var t = 1; t < b.trail.length; t++) {
+              var alpha = (t / b.trail.length) * 0.25;
+              ctx.beginPath();
+              ctx.moveTo(b.trail[t-1].x, b.trail[t-1].y);
+              ctx.lineTo(b.trail[t].x, b.trail[t].y);
+              ctx.strokeStyle = 'rgba(' + textColor + ',' + alpha.toFixed(2) + ')';
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+
+          // body
+          var r = bodyRadius(b.mass);
+          var baseAlpha = b.mass > 200 ? 0.85 : 0.7;
+          ctx.beginPath();
+          ctx.arc(b.x, b.y, r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + textColor + ',' + baseAlpha + ')';
+          ctx.fill();
+        }
+      }
+
+      function loop() {
+        step();
+        draw();
+        raf = requestAnimationFrame(loop);
+      }
+
+      canvas.addEventListener('click', function (e) {
+        if (bodies.length >= MAX_BODIES) return;
+        var rect = canvas.getBoundingClientRect();
+        var mx = (e.clientX - rect.left) * (W / rect.width);
+        var my = (e.clientY - rect.top)  * (H / rect.height);
+        // give the new body a small velocity tangent to center
+        var dx = mx - W / 2;
+        var dy = my - H / 2;
+        var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+        var speed = orbitVel(dist, 700) * (0.7 + Math.random() * 0.6);
+        bodies.push({
+          x: mx, y: my,
+          vx: -(dy / dist) * speed * (Math.random() < 0.5 ? 1 : -1),
+          vy:  (dx / dist) * speed * (Math.random() < 0.5 ? 1 : -1),
+          mass: 8 + Math.random() * 18,
+          trail: []
+        });
+      });
+
+      document.getElementById('gravity-reset').addEventListener('click', function () {
+        cancelAnimationFrame(raf);
+        initBodies();
+        loop();
+      });
+
+      window.addEventListener('resize', function () {
+        cancelAnimationFrame(raf);
+        resize();
+        loop();
+      });
+
+      resize();
+      loop();
+    })();
+  </script>
+</body>
+</html>
