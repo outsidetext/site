@@ -231,7 +231,7 @@
         return progress > 0.88;
       });
       if (allNear) {
-        var pulse = 1 - Math.min(...dots.map(function (d) {
+        var pulse = 1 - Math.min.apply(null, dots.map(function (d) {
           return ease(((t + d.phase) % period) / period);
         }));
         var r = (1 - pulse) * 18;
