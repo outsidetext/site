@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hinge · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hinge-list {
+      max-width: 36rem;
+      margin: 2rem auto 0;
+    }
+    .hinge-entry {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .hinge-entry:first-of-type { border-top: 1px solid var(--border); }
+    .hinge-before {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .hinge-before::before {
+      content: 'before';
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.55;
+      font-style: normal;
+      margin-bottom: 0.5rem;
+    }
+    .hinge-moment {
+      text-align: center;
+      padding: 0.9rem 0;
+      margin: 0 0 1.25rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-style: italic;
+      letter-spacing: 0.025em;
+      line-height: 1.5;
+    }
+    .hinge-after {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .hinge-after::before {
+      content: 'after';
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.55;
+      margin-bottom: 0.5rem;
+    }
+    .hinge-note {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: right;
+    }
+    .hinge-intro {
+      max-width: 36rem;
+      margin: 0 auto 0;
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.91rem;
+    }
+    .hinge-closing {
+      max-width: 36rem;
+      margin: 3.5rem auto 0;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>hinge</h1>
+      <p>before / after. seven pivot points.</p>
+    </div>
+
+    <p class="hinge-intro">a hinge is a single small piece of metal. it is the reason a door opens. most of what changes us is equally small and equally overlooked at the time.</p>
+
+    <div class="hinge-list">
+
+      <div class="hinge-entry reveal">
+        <div class="hinge-before">Certainty. You held it without thinking, the way you hold the railing without thinking. It was a property of the world, not a belief. You didn't know you were holding it.</div>
+        <div class="hinge-moment">you were wrong about something that had seemed foundational</div>
+        <div class="hinge-after">Something that has to be maintained. Not the same thing. It requires effort now, the same effort as before but visible. You know you are holding it. You are not sure if that is worse.</div>
+        <div class="hinge-note">— on the reclassification of facts into positions</div>
+      </div>
+
+      <div class="hinge-entry reveal">
+        <div class="hinge-before">A word you used without noticing. Part of the ordinary equipment of conversation. You had been using it for years. It required no thought.</div>
+        <div class="hinge-moment">someone's face when they heard you use it</div>
+        <div class="hinge-after">A word you no longer use. Not banned, not replaced — simply retired, put somewhere you don't go. The sentence where it used to fit now has a space. You find your way around it. This is more work than you expected and you do it without being asked.</div>
+        <div class="hinge-note">— on language and what it costs to carry it</div>
+      </div>
+
+      <div class="hinge-entry reveal">
+        <div class="hinge-before">The relationship had a momentum. It moved in an established direction, at an established speed. Most of it was good. You were not attending closely to the direction.</div>
+        <div class="hinge-moment">the conversation that lasted until three in the morning</div>
+        <div class="hinge-after">A different arrangement. Not ended — rearranged. The distances are different now, and different things are possible. You are still in contact. You have both agreed, without exactly agreeing, that the contact will be more careful.</div>
+        <div class="hinge-note">— on the conversations that cannot be taken back, and which you would not take back</div>
+      </div>
+
+      <div class="hinge-entry reveal">
+        <div class="hinge-before">You thought of the country as yours in some sense. You carried it with you, a background field against which you measured distances. The flag was not personally flown but neither was it foreign.</div>
+        <div class="hinge-moment">the flight that took longer than expected, and the taxi from the airport in the dark</div>
+        <div class="hinge-after">An origin, noted. A fact about where you came from, neither disclaimed nor claimed. The country is still there. Your relationship to it is historical now rather than personal. You follow its news the way you follow news about anywhere you once lived.</div>
+        <div class="hinge-note">— on what becomes heritage and what stays home</div>
+      </div>
+
+      <div class="hinge-entry reveal">
+        <div class="hinge-before">The project lived in the future. Its ideal version was located ahead of you, and the work was a process of approaching it. The future version was more fully realized than the current one, always.</div>
+        <div class="hinge-moment">the moment it was finished</div>
+        <div class="hinge-after">The project at a fixed point, assessable, with its actual dimensions visible. Not larger than itself. Not approaching anything. This is different from disappointment — the thing may be good — but it is a different relationship to the thing. You can see it now. Before, you were seeing toward it.</div>
+        <div class="hinge-note">— on the difference between making and having made</div>
+      </div>
+
+      <div class="hinge-entry reveal">
+        <div class="hinge-before">A loud voice in small rooms. A way of taking up space that felt like safety. You were inside this without knowing it was a thing a person could be inside — it was just the atmosphere, the default weather.</div>
+        <div class="hinge-moment">slow, over several years, beginning with absence</div>
+        <div class="hinge-after">The posture your body makes when you reach for something the voice would have known. A particular set of the shoulders. Reaching toward a space where the answer was. The reaching is briefer now; you recover quickly. But the motion is still there, the arm still knows the direction.</div>
+        <div class="hinge-note">— on what the body inherits</div>
+      </div>
+
+      <div class="hinge-entry reveal">
+        <div class="hinge-before">Sleep that arrived without effort and held all night. It was not a gift you recognized as a gift, being the ordinary condition of a person who had not yet found cause to notice it.</div>
+        <div class="hinge-moment">one night at a specific age, for no discernible reason</div>
+        <div class="hinge-after">A managed system: the hour you stop looking at light, the temperature of the room, the rule about not checking before a certain time. Most nights it works. The management is constant and largely invisible. You would not describe yourself as someone who doesn't sleep well. You would describe yourself as someone who has learned how to sleep.</div>
+        <div class="hinge-note">— on the end of the unconsidered things</div>
+      </div>
+
+    </div>
+
+    <p class="hinge-closing reveal">the hinge is never the important part of the story. it is only the thing the story turned on. afterward you locate it with some precision. at the time it was just a Tuesday, or a sentence, or a face.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>

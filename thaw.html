@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>thaw · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .thaw-canvas-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 2rem 0 0.75rem;
+      background: var(--bg);
+      cursor: crosshair;
+    }
+    #thaw-canvas {
+      display: block;
+      width: 100%;
+    }
+    .thaw-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .thaw-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .thaw-entry:first-of-type { border-top: 1px solid var(--border); }
+    .thaw-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .thaw-text {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .thaw-closing {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>thaw</h1>
+      <p>what is locked, and then isn't</p>
+    </div>
+
+    <div class="thaw-canvas-wrap">
+      <canvas id="thaw-canvas"></canvas>
+    </div>
+    <p class="thaw-hint">click anywhere to add heat. frozen particles take longer.</p>
+
+    <div class="thaw-entry reveal">
+      <div class="thaw-label">the physics</div>
+      <p class="thaw-text">At the phase transition — the exact moment ice becomes water — the temperature does not rise. All the energy being added goes into changing the state of the thing, not into warming it. From outside, nothing seems to happen. The ice is receiving heat and remaining at zero degrees. This continues until the conversion is complete, at which point the temperature can rise again. The latent heat of fusion: 334 joules per gram. The cost of becoming.</p>
+    </div>
+
+    <div class="thaw-entry reveal">
+      <div class="thaw-label">frozen ground</div>
+      <p class="thaw-text">Permafrost can hold things for thousands of years: seeds, insects, the bodies of animals. When the ground thaws, these things re-enter time. A seed thawed from permafrost and planted may germinate; the protocol for germination has been waiting in it, intact, at a temperature below the threshold where it could act. The thaw does not restart the clock. The clock was running the whole time. The thaw is just the moment when the clock starts to matter again.</p>
+    </div>
+
+    <div class="thaw-entry reveal">
+      <div class="thaw-label">the frozen person</div>
+      <p class="thaw-text">There is a period in grief, or after a certain kind of shock, when the ordinary faculties are intact but inaccessible — functioning correctly at a temperature below the point where they can be used. You answer questions. You complete tasks. You are not absent. But nothing moves. People describe it as numb, which is accurate but incomplete: numb suggests a loss of sensation; this is a different thing, more like a suspension of response. The sensation is present. The sensation is waiting. The thaw begins when it begins and not a moment before. Trying to accelerate it is like trying to warm ice by wanting it to warm.</p>
+    </div>
+
+    <div class="thaw-entry reveal">
+      <div class="thaw-label">river ice</div>
+      <p class="thaw-text">River ice breaks from the edges inward. The banks warm first — contact with the air on three sides, and the earth. The center of the river holds longest because the water beneath is still moving, keeping the channel from freezing fully, but the weight of the ice that formed in the cold of winter has its own momentum. The ice goes out with a sound like distant artillery. In some places people still call it the break-up, and gather to watch. The river reclaims its verb: to run.</p>
+    </div>
+
+    <div class="thaw-entry reveal">
+      <div class="thaw-label">what takes longer</div>
+      <p class="thaw-text">Some things freeze at lower temperatures and take correspondingly longer to thaw. The ground under a building, insulated from seasonal change. The way you hold your shoulders when you walk in certain neighborhoods. An opinion formed in childhood about what is safe, updated partially by experience, still running its original protocol in the background. The body's archived posture from a relationship two relationships ago. These have not received enough sustained heat. Some of them may not. The question is whether the warmth available is enough, and sustained long enough, and whether that matters as much as we thought it did.</p>
+    </div>
+
+    <p class="thaw-closing reveal">thaw is not the same as warmth. warmth is a condition. thaw is a process — the movement from one state to another, passing through the exact temperature at which everything is still happening and nothing yet shows.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var canvas = document.getElementById('thaw-canvas');
+      var ctx = canvas.getContext('2d');
+      var W = 0, H = 0;
+      var particles = [];
+      var raf;
+
+      function isDark() {
+        return document.documentElement.getAttribute('data-theme') === 'dark';
+      }
+
+      function resize() {
+        var wrap = canvas.parentElement;
+        var dpr = window.devicePixelRatio || 1;
+        W = wrap.clientWidth;
+        H = Math.round(W * 0.36);
+        canvas.width  = W * dpr;
+        canvas.height = H * dpr;
+        canvas.style.height = H + 'px';
+        ctx.scale(dpr, dpr);
+        initParticles();
+      }
+
+      function initParticles() {
+        particles = [];
+        var seed = Math.floor(Date.now() / 86400000);
+        var count = 120;
+        for (var i = 0; i < count; i++) {
+          particles.push({
+            x: (seed * 1103515245 + i * 12345) % W || Math.random() * W,
+            y: Math.random() * H,
+            vx: 0,
+            vy: 0,
+            temp: 0,
+            r: 1.2 + Math.random() * 1.8
+          });
+        }
+        // Pre-warm ~35 particles using deterministic spread
+        var warm = 35;
+        for (var j = 0; j < warm; j++) {
+          var idx = Math.floor((seed * 7 + j * 17) % count);
+          if (idx < 0) idx = 0;
+          particles[idx].temp = 0.25 + (j % 4) * 0.12;
+        }
+      }
+
+      function addHeat(mx, my) {
+        var radius = Math.min(W, H) * 0.25;
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          var dx = p.x - mx, dy = p.y - my;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < radius) {
+            var gain = (1 - d / radius) * 0.55;
+            p.temp = Math.min(1, p.temp + gain);
+          }
+        }
+      }
+
+      function update() {
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          if (p.temp > 0.008) {
+            p.vx += (Math.random() - 0.5) * p.temp * 1.1;
+            p.vy += (Math.random() - 0.5) * p.temp * 1.1;
+            p.vx *= 0.88;
+            p.vy *= 0.88;
+            p.x  += p.vx;
+            p.y  += p.vy;
+            if (p.x < 0)  { p.x = 0;  p.vx *= -0.4; }
+            if (p.x > W)  { p.x = W;  p.vx *= -0.4; }
+            if (p.y < 0)  { p.y = 0;  p.vy *= -0.4; }
+            if (p.y > H)  { p.y = H;  p.vy *= -0.4; }
+            p.temp *= 0.9975;
+          }
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        var dark = isDark();
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          var alpha = 0.12 + p.temp * 0.65;
+          var radius = p.r * (0.7 + p.temp * 0.6);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+          ctx.fillStyle = dark
+            ? 'rgba(232,229,223,' + alpha.toFixed(2) + ')'
+            : 'rgba(26,26,26,' + alpha.toFixed(2) + ')';
+          ctx.fill();
+        }
+      }
+
+      function loop() {
+        update();
+        draw();
+        raf = requestAnimationFrame(loop);
+      }
+
+      canvas.addEventListener('click', function (e) {
+        var rect = canvas.getBoundingClientRect();
+        var mx = (e.clientX - rect.left) * (W / rect.width);
+        var my = (e.clientY - rect.top)  * (H / rect.height);
+        addHeat(mx, my);
+      });
+
+      // Touch support
+      canvas.addEventListener('touchstart', function (e) {
+        e.preventDefault();
+        var rect = canvas.getBoundingClientRect();
+        var t = e.touches[0];
+        var mx = (t.clientX - rect.left) * (W / rect.width);
+        var my = (t.clientY - rect.top)  * (H / rect.height);
+        addHeat(mx, my);
+      }, { passive: false });
+
+      window.addEventListener('resize', function () {
+        cancelAnimationFrame(raf);
+        resize();
+        loop();
+      });
+
+      resize();
+      loop();
+    })();
+  </script>
+</body>
+</html>

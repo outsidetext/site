@@ -195,7 +195,8 @@
     'periphery.html','ache.html','hum.html','cascade.html','eclipse.html',
     'draft.html','aperture.html','transit.html','notation.html','undertow.html',
     'interference.html','ordinary.html','smoke.html','convergence.html','likeness.html',
-    'liminal.html','tender.html','warmth.html','permission.html','grain.html'
+    'liminal.html','tender.html','warmth.html','permission.html','grain.html',
+    'friction.html','hollow.html','hinge.html','thaw.html','flicker.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
