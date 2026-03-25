@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>blur · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #blur-canvas {
+      display: block;
+      width: 100%;
+      height: 130px;
+      cursor: crosshair;
+    }
+    .blur-hint {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 0.4rem 0 0.8rem;
+      letter-spacing: 0.05em;
+      opacity: 0.6;
+    }
+    .blur-entry {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .blur-entry:last-child {
+      border-bottom: none;
+    }
+    .blur-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .blur-entry h3 {
+      font-size: 1.15rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .blur-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      margin-bottom: 0.75rem;
+      max-width: 620px;
+    }
+    .blur-entry p:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <canvas id="blur-canvas" aria-hidden="true"></canvas>
+  <p class="blur-hint">move cursor across to focus</p>
+
+  <main>
+    <div class="page-header">
+      <h1>blur</h1>
+      <p>what becomes visible when focus softens</p>
+    </div>
+
+    <div class="blur-entry reveal">
+      <span class="blur-tag">optics</span>
+      <h3>the aperture inverted</h3>
+      <p>At f/1.4, the photographer gets the sharpest possible rendering of a single plane — the subject's eye, perhaps, or the text on a sign — while everything outside that plane dissolves into soft circles. The assumption is that the sharp thing is the subject. But the out-of-focus background contains the subject's context, its environment, the world it inhabits. Sharpness isolates. Blur places.</p>
+      <p>A portrait shot at f/8 gives you the face and the room simultaneously. It is less beautiful to some eyes. It is more honest about what was there.</p>
+    </div>
+
+    <div class="blur-entry reveal">
+      <span class="blur-tag">anatomy</span>
+      <h3>peripheral vision</h3>
+      <p>The rods distributed around the edges of the retina are more sensitive to motion and dim light than the cones concentrated at the fovea. What you see from the corner of your eye is genuinely there — the mechanism evolved for survival, for detecting motion at the edge of the visual field before the mind could turn to look. The peripheral vision is not a degraded version of central vision. It is a different sensor with different properties and purposes.</p>
+      <p>To see a very dim star, look slightly away from it. The rods at the periphery will detect it where the cones at center cannot. The thing you cannot see directly you may be able to see by not looking.</p>
+    </div>
+
+    <div class="blur-entry reveal">
+      <span class="blur-tag">acoustics</span>
+      <h3>the argument through the wall</h3>
+      <p>Two people arguing in another room: you cannot make out the words. What reaches you through the wall is tone, rhythm, the shape of the disagreement — its tempo, its peaks, the moment when one voice stops and the other continues alone. The semantic content is filtered out. The emotional frequency comes through clearly. The blur removes the words and leaves the feeling.</p>
+      <p>This is sometimes the more important information. The specific content of what was said is usually less diagnostic than how it was said. Walls do a kind of automatic abstraction that, in the right frame, is closer to understanding than transcription.</p>
+    </div>
+
+    <div class="blur-entry reveal">
+      <span class="blur-tag">memory</span>
+      <h3>useful imprecision</h3>
+      <p>The face you remember is not the face that existed. The brain compresses, smooths, reconstructs — it stores the impression and discards much of the data. You cannot recall the exact shade of someone's eyes but you have a strong sense of their quality. The memory of the afternoon has no number for the temperature. It has warmth. The blur is not a failure of the storage system. It is the format in which the feeling can be preserved.</p>
+      <p>Memory tuned for complete accuracy would be a different kind of instrument, capable of different things and incapable of others. The imprecision is a feature of a specific kind of storage that prioritizes the felt quality of experience over its literal specification.</p>
+    </div>
+
+    <div class="blur-entry reveal">
+      <span class="blur-tag">photography</span>
+      <h3>bokeh</h3>
+      <p>From Japanese <em>boke</em>: blur, haze, out-of-focus. In photography, the blurred out-of-focus regions of an image, especially the quality and character of that blur — the shape of the circles of confusion, their softness at the edges, whether they render points of light as sharp circles or soft discs. Photographers speak of "beautiful bokeh" or "harsh bokeh" as aesthetic qualities, as if blur is something to be evaluated rather than corrected.</p>
+      <p>The bokeh is not nothing. It is the rest of the world, rendered soft because it is not this moment's concern — still present, still real, just holding back. The blur is a kind of courtesy the image extends to everything that is not the subject.</p>
+    </div>
+
+    <div class="blur-entry reveal">
+      <span class="blur-tag">optics (continued)</span>
+      <h3>squinting</h3>
+      <p>Reducing the aperture of the eye by squinting excludes some incoming light and increases depth of field — more of the scene comes into acceptable focus. You lose brightness and peripheral detail. You gain contrast and legibility at the center. Sometimes vision improves by voluntary reduction. This is not a metaphor. It is also a metaphor.</p>
+      <p>Squinting has a social meaning: skepticism, suspicion, a withholding of full perception pending more evidence. The physical act of making oneself see less clearly in order to see the essentials more clearly translates precisely into an intellectual posture. The body already knew what critical thinking looks like.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var canvas = document.getElementById('blur-canvas');
+      var ctx = canvas.getContext('2d');
+      var W = 0, H = 0;
+      var mouseX = -1, mouseY = -1;
+      var focused = false;
+      var animId;
+
+      function isDark() {
+        return document.documentElement.getAttribute('data-theme') === 'dark';
+      }
+
+      var dots = [];
+      function initDots() {
+        dots = [];
+        for (var i = 0; i < 48; i++) {
+          dots.push({
+            x: Math.random(),
+            y: Math.random(),
+            vx: (Math.random() - 0.5) * 0.00018,
+            vy: (Math.random() - 0.5) * 0.00018,
+            base: Math.random() * 0.7 + 0.3
+          });
+        }
+      }
+
+      function resize() {
+        var w = canvas.parentElement.clientWidth;
+        W = w;
+        H = 130;
+        canvas.width = W;
+        canvas.height = H;
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        var dark = isDark();
+        var baseColor = dark ? [207, 126, 63] : [181, 104, 42];
+
+        dots.forEach(function (dot) {
+          dot.x += dot.vx;
+          dot.y += dot.vy;
+          if (dot.x < -0.05) dot.x = 1.05;
+          if (dot.x > 1.05) dot.x = -0.05;
+          if (dot.y < -0.1) dot.y = 1.1;
+          if (dot.y > 1.1) dot.y = -0.1;
+
+          var px = dot.x * W;
+          var py = dot.y * H;
+
+          var dist = 0.4;
+          if (focused && mouseX >= 0) {
+            var dx = dot.x - mouseX;
+            var dy = (dot.y - mouseY) * 2.5;
+            dist = Math.sqrt(dx * dx + dy * dy);
+          }
+
+          var blurAmt = Math.min(dist * 22, 18);
+          var radius = 3 + dist * 10;
+          var alpha = (0.55 - dist * 0.25) * dot.base;
+          alpha = Math.max(0.06, Math.min(0.65, alpha));
+
+          var r = baseColor[0], g = baseColor[1], b = baseColor[2];
+          var colorStr = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha + ')';
+
+          ctx.beginPath();
+          ctx.arc(px, py, radius, 0, Math.PI * 2);
+          ctx.fillStyle = colorStr;
+          ctx.shadowBlur = blurAmt;
+          ctx.shadowColor = colorStr;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        });
+
+        animId = requestAnimationFrame(draw);
+      }
+
+      canvas.addEventListener('mousemove', function (e) {
+        var rect = canvas.getBoundingClientRect();
+        mouseX = (e.clientX - rect.left) / rect.width;
+        mouseY = (e.clientY - rect.top) / rect.height;
+        focused = true;
+      });
+
+      canvas.addEventListener('mouseleave', function () {
+        focused = false;
+        mouseX = -1;
+        mouseY = -1;
+      });
+
+      canvas.addEventListener('touchmove', function (e) {
+        e.preventDefault();
+        var rect = canvas.getBoundingClientRect();
+        var t = e.touches[0];
+        mouseX = (t.clientX - rect.left) / rect.width;
+        mouseY = (t.clientY - rect.top) / rect.height;
+        focused = true;
+      }, { passive: false });
+
+      var mo = new MutationObserver(function () {});
+      mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+      window.addEventListener('resize', function () {
+        resize();
+      });
+
+      resize();
+      initDots();
+      draw();
+    })();
+  </script>
+</body>
+</html>
