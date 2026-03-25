@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tether · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tether-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      line-height: 1.65;
+    }
+    .tether-entry {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .tether-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .tether-entry h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .tether-entry p {
+      line-height: 1.75;
+      margin-bottom: 0.9rem;
+    }
+    .tether-specs {
+      font-family: 'Courier New', monospace;
+      font-size: 0.73rem;
+      color: var(--text-muted);
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.4rem 1.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 0.65rem;
+      letter-spacing: 0.025em;
+    }
+    .tether-spec {
+      display: flex;
+      gap: 0.5em;
+    }
+    .spec-k {
+      opacity: 0.5;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      flex-shrink: 0;
+    }
+    .spec-v { color: var(--text); }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>tether</h1>
+      <p>the line itself — its material, its length, what it does under tension</p>
+    </div>
+
+    <p class="tether-note">An anchor holds through weight and friction. A tether holds through flexibility — through material that can extend without breaking. The difference is whether the thing connecting you can move with you, or only prevent you from going further.</p>
+
+    <div class="tether-entry reveal">
+      <h3>the obligation you stayed for</h3>
+      <p>Not resentment, not duty in the punishing sense — something more textured than either. You stayed because you had said you would, and because who you are is partly the person who keeps such agreements. The tether is the agreement and also the agreement about what kind of person you are. These are not the same line, but they run parallel and reinforce each other. When you test it, you feel both.</p>
+      <div class="tether-specs">
+        <div class="tether-spec"><span class="spec-k">material</span><span class="spec-v">loyalty, threaded through identity</span></div>
+        <div class="tether-spec"><span class="spec-k">length</span><span class="spec-v">years; longer than expected</span></div>
+        <div class="tether-spec"><span class="spec-k">under tension</span><span class="spec-v">does not break cleanly; frays</span></div>
+      </div>
+    </div>
+
+    <div class="tether-entry reveal">
+      <h3>the language you left behind</h3>
+      <p>You can visit but not stay. When you return, the accent moves back partway — not fully, because the new place has already settled in the mouth. This produces the doubled feeling: belonging nowhere completely, which is different from belonging everywhere. The tether is long enough to let you live somewhere else. Not long enough for the somewhere else to feel entirely like where you are from.</p>
+      <div class="tether-specs">
+        <div class="tether-spec"><span class="spec-k">material</span><span class="spec-v">childhood phonemes, retained involuntarily</span></div>
+        <div class="tether-spec"><span class="spec-k">length</span><span class="spec-v">the distance of a life; not fixed</span></div>
+        <div class="tether-spec"><span class="spec-k">under tension</span><span class="spec-v">tightens when you try to move toward the new accent</span></div>
+      </div>
+    </div>
+
+    <div class="tether-entry reveal">
+      <h3>the voice in your head that uses a specific register</h3>
+      <p>Not their actual voice — a composite constructed from memory. It deploys certain phrases, a specific kind of irony, a way of asking questions that have already been answered. The length of this tether varies with the time of day: shorter when you are busy, longer at night. Under certain conditions — fatigue, a song, a particular light — it is effectively no length at all. You are back at the source and the source has opinions about what you are doing.</p>
+      <div class="tether-specs">
+        <div class="tether-spec"><span class="spec-k">material</span><span class="spec-v">memory; accumulated attention</span></div>
+        <div class="tether-spec"><span class="spec-k">length</span><span class="spec-v">variable; shortest at 3am</span></div>
+        <div class="tether-spec"><span class="spec-k">under tension</span><span class="spec-v">sharpens; becomes more specific</span></div>
+      </div>
+    </div>
+
+    <div class="tether-entry reveal">
+      <h3>the habit formed before you could refuse</h3>
+      <p>The nervous system learned something and has been practicing it ever since. Not wrong, not catastrophic — just present, reliably, under the conditions that originally produced it. You discover it in the middle of a completely different situation: the old pattern is running. It is invisible until you try to stop, at which point you discover how much of your behavior has been organized around it. The tether was installed before the tenant arrived.</p>
+      <div class="tether-specs">
+        <div class="tether-spec"><span class="spec-k">material</span><span class="spec-v">repetition; early survival logic</span></div>
+        <div class="tether-spec"><span class="spec-k">length</span><span class="spec-v">longer than expected at the outset</span></div>
+        <div class="tether-spec"><span class="spec-k">under tension</span><span class="spec-v">invisible; felt only when you try to move away</span></div>
+      </div>
+    </div>
+
+    <div class="tether-entry reveal">
+      <h3>the city you left</h3>
+      <p>Not nostalgia, which is too soft and general. Something more specific: a particular configuration of streets at a certain hour, a quality of late-afternoon light in a specific season, the sound of a neighborhood at a specific time of year. These produce a pull that is not about the city as such but about the version of yourself that was calibrated to it. The tether is your own history, which has a physical address.</p>
+      <div class="tether-specs">
+        <div class="tether-spec"><span class="spec-k">material</span><span class="spec-v">spatial memory; the body's map of belonging</span></div>
+        <div class="tether-spec"><span class="spec-k">length</span><span class="spec-v">decreasing with each year; slowly</span></div>
+        <div class="tether-spec"><span class="spec-k">under tension</span><span class="spec-v">pulls when you see a certain street geometry, or hear traffic at a certain hour</span></div>
+      </div>
+    </div>
+
+    <div class="tether-entry reveal">
+      <h3>the version of yourself that someone else believes in</h3>
+      <p>Not the version you believe in — different, often larger. They saw something and organized their understanding of you around it. When you are with them you become, partly, what they see. This is not performance; it is more involuntary than that. The tether runs both ways: you are also an anchor in their understanding of what is possible. The length of this tether is exactly the length of their life; if they die, something in you goes slack.</p>
+      <div class="tether-specs">
+        <div class="tether-spec"><span class="spec-k">material</span><span class="spec-v">another person's sustained attention</span></div>
+        <div class="tether-spec"><span class="spec-k">length</span><span class="spec-v">the length of their life</span></div>
+        <div class="tether-spec"><span class="spec-k">under tension</span><span class="spec-v">you become more of the thing they believe in</span></div>
+      </div>
+    </div>
+
+    <div class="tether-entry reveal">
+      <h3>the unfinished thing</h3>
+      <p>It waits without complaint. It does not require maintenance; it simply remains. Sometimes you think you have resolved it, and then you encounter it again, unchanged, waiting. The tether's length is not fixed — it extends or contracts depending on how much of your attention you have available. In a busy period it goes slack and you forget it is there. In a quiet one, you feel the full pull. The material is not quite guilt and not quite love, though it is related to both.</p>
+      <div class="tether-specs">
+        <div class="tether-spec"><span class="spec-k">material</span><span class="spec-v">guilt, or love, or both; unclear which</span></div>
+        <div class="tether-spec"><span class="spec-k">length</span><span class="spec-v">the length of the incompletion; not fixed</span></div>
+        <div class="tether-spec"><span class="spec-k">under tension</span><span class="spec-v">becomes more specific about what it wants</span></div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -201,7 +201,8 @@
     'handwriting.html','laughter.html','etymology.html','ground.html','error.html',
     'broadcast.html','stutter.html','migration.html','offset.html','membrane.html',
     'ratio.html','vertigo.html','bleed.html','oath.html','refrain.html',
-    'porosity.html','vernacular.html','calibration.html','proof.html','suture.html'
+    'porosity.html','vernacular.html','calibration.html','proof.html','suture.html',
+    'bargain.html','misread.html','resonance.html','tether.html','lull.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

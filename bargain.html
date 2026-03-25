@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bargain · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .bargain-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-left: 2px solid var(--border);
+      padding-left: 1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+    .bargain-entry {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .bargain-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .bargain-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.45rem;
+    }
+    .bargain-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 0.9rem;
+    }
+    .bargain-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.73rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      letter-spacing: 0.025em;
+      border-top: 1px solid var(--border);
+      padding-top: 0.65rem;
+    }
+    .meta-k {
+      opacity: 0.55;
+      margin-right: 0.3em;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .meta-active { color: var(--accent); }
+    .meta-lapsed { text-decoration: line-through; opacity: 0.5; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>bargain</h1>
+      <p>the implicit negotiations — made explicit here, possibly for the first time</p>
+    </div>
+
+    <p class="bargain-note">None of these were consciously proposed. They were simply understood. Some were broken before they were noticed. Some have been running for years.</p>
+
+    <div class="bargain-entry reveal">
+      <div class="bargain-num">01</div>
+      <p class="bargain-text">I will perform enthusiasm at the gathering if you do not ask me to arrive early, or to explain myself afterward. I will say the right things, ask the questions that are expected, hold the drink at the right height. In exchange, the event will end on time, and I will be allowed to return to the quiet that makes all of this possible.</p>
+      <div class="bargain-meta">
+        <span><span class="meta-k">parties</span>the self / social occasion</span>
+        <span><span class="meta-k">duration</span>for the duration of the event</span>
+        <span><span class="meta-k">status</span><span class="meta-active">active, recurring</span></span>
+      </div>
+    </div>
+
+    <div class="bargain-entry reveal">
+      <div class="bargain-num">02</div>
+      <p class="bargain-text">I will not say what I actually think about this decision if you will stop describing the alternatives. You have already decided. The deliberation is retrospective. I will provide the consideration it requires. In exchange, the conversation will end, and neither of us will have said something we'd need to account for.</p>
+      <div class="bargain-meta">
+        <span><span class="meta-k">parties</span>two people, one of whom has already decided</span>
+        <span><span class="meta-k">duration</span>this conversation</span>
+        <span><span class="meta-k">status</span><span class="meta-active">active</span></span>
+      </div>
+    </div>
+
+    <div class="bargain-entry reveal">
+      <div class="bargain-num">03</div>
+      <p class="bargain-text">I will be fine — and mean it, mostly — if the world will provide at least one reliable small thing per day. Not a large thing. A good cup of coffee, or twenty minutes in a good chair, or a sentence on a page that seems to have been written for exactly this moment. The world is not a reliable bargaining partner, but the deal persists regardless.</p>
+      <div class="bargain-meta">
+        <span><span class="meta-k">parties</span>the self / the world</span>
+        <span><span class="meta-k">duration</span>indefinitely</span>
+        <span><span class="meta-k">status</span><span class="meta-active">holding</span></span>
+      </div>
+    </div>
+
+    <div class="bargain-entry reveal">
+      <div class="bargain-num">04</div>
+      <p class="bargain-text">I will carry more than my share of this silence if you will let me leave first. The silence is already underway; neither of us started it. It arrived with the situation and expanded. I have been attending to it for some time. What I need is the option of first exit, which confers the right to close the door quietly and without a final word.</p>
+      <div class="bargain-meta">
+        <span><span class="meta-k">parties</span>two people at the end of something</span>
+        <span><span class="meta-k">duration</span>the last hour</span>
+        <span><span class="meta-k">status</span>honored; unacknowledged</span>
+      </div>
+    </div>
+
+    <div class="bargain-entry reveal">
+      <div class="bargain-num">05</div>
+      <p class="bargain-text">I will not think about this until I have to. The thought is aware of the arrangement; it has agreed to wait in the outer room. Sometimes it gets impatient and lets itself in at four in the morning, when the agreement's enforcement mechanism — sleep — has temporarily failed. We renegotiate. The thought retreats. I make a concession I can't specify.</p>
+      <div class="bargain-meta">
+        <span><span class="meta-k">parties</span>the self / an unfinished thing</span>
+        <span><span class="meta-k">duration</span>as long as possible</span>
+        <span><span class="meta-k">status</span><span class="meta-active">being renegotiated</span></span>
+      </div>
+    </div>
+
+    <div class="bargain-entry reveal">
+      <div class="bargain-num">06</div>
+      <p class="bargain-text">I will ask how you are if you will not require me to mean it fully. This is not cruelty; it is the economy of daily life. Occasionally I will mean it. Occasionally you will answer it. The gap between the question as asked and the question as it might actually be asked is where most of a life is conducted.</p>
+      <div class="bargain-meta">
+        <span><span class="meta-k">parties</span>social convention / interior honesty</span>
+        <span><span class="meta-k">duration</span>most encounters</span>
+        <span><span class="meta-k">status</span><span class="meta-active">active, with exceptions</span></span>
+      </div>
+    </div>
+
+    <div class="bargain-entry reveal">
+      <div class="bargain-num">07</div>
+      <p class="bargain-text">I will read to the end of this chapter if you will let me be done afterward. I know this is not how books work. The book does not enforce; I enforce on its behalf. The chapter always ends in a place slightly wrong — not a resting place, not a true stopping point. So I read one more. This is a renegotiation I have been losing for years, to my benefit.</p>
+      <div class="bargain-meta">
+        <span><span class="meta-k">parties</span>the reader / the book</span>
+        <span><span class="meta-k">duration</span>unknown at the outset</span>
+        <span><span class="meta-k">status</span>frequently broken; frequently renewed</span>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

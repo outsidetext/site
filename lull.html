@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lull · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #lull-main {
+      transition: opacity 1.2s ease;
+    }
+    #lull-main.in-lull {
+      opacity: 0.3;
+    }
+    .lull-indicator {
+      position: fixed;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      opacity: 0;
+      transition: opacity 1.4s ease;
+      text-align: center;
+      pointer-events: none;
+      line-height: 1.8;
+      white-space: nowrap;
+      letter-spacing: 0.03em;
+    }
+    .lull-indicator.visible {
+      opacity: 1;
+    }
+    .lull-timer-line {
+      display: block;
+      color: var(--accent);
+    }
+    .lull-sub-line {
+      display: block;
+      opacity: 0.65;
+      font-style: italic;
+    }
+    .lull-entry {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .lull-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .lull-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .lull-entry h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .lull-entry p { line-height: 1.75; }
+    .lull-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="lull-main">
+    <div class="page-header">
+      <h1>lull</h1>
+      <p>the pause that is its own state — wait twelve seconds to find out</p>
+    </div>
+
+    <p class="lull-hint">stop moving for a moment. this page notices.</p>
+
+    <div class="lull-entry reveal">
+      <div class="lull-tag">respiration</div>
+      <h3>between breaths</h3>
+      <p>At the bottom of a complete exhale, before the next breath begins, there is a pause. Its length varies: longer when you are at rest and the body is not in any particular need; a fraction of a second when afraid. The body knows this pause as part of the breath, not as separate from it. If you hold it deliberately you feel how the next breath was already preparing, already present as a kind of readiness before it arrived. The lull is not empty. It is the space in which the next thing is becoming possible.</p>
+    </div>
+
+    <div class="lull-entry reveal">
+      <div class="lull-tag">water</div>
+      <h3>between waves</h3>
+      <p>The ocean is always in some phase. After one wave has gone and before the next has arrived, there is a moment when the surface is not quite settled. It is not flat — it holds the residual shape of what just passed, still completing, while the approaching wave is still entirely beneath the surface. Fishermen who read water know the lull differently from people who only watch it from the shore. The lull is when the water does something unpredictable. It is also when the fishing is sometimes best.</p>
+    </div>
+
+    <div class="lull-entry reveal">
+      <div class="lull-tag">music</div>
+      <h3>between movements</h3>
+      <p>In a concert hall, the lull after a movement ends. Someone will cough. The conductor holds the baton aloft, still. For several seconds nothing happens except the sound of the previous movement continuing in the room's memory — the sustained harmonics in the wood, the residual hum of strings. This is not intermission. This is the performance of the space between. Audiences who applaud here are not wrong; they are simply marking the lull as its own thing, which it is.</p>
+    </div>
+
+    <div class="lull-entry reveal">
+      <div class="lull-tag">making things</div>
+      <h3>between projects</h3>
+      <p>The trough after finishing something. It feels like drought — the dryness that follows a period of sustained production. Nothing comes. The page is blank and not interestingly blank. This is not drought. The conditions required for germination and the conditions required for drought are identical from the outside: stillness, no visible activity, apparent dormancy. The difference is underground. The lull after a finished thing is not the absence of the next thing. It is the next thing, in a phase you cannot see from the surface.</p>
+    </div>
+
+    <div class="lull-entry reveal">
+      <div class="lull-tag">relationships</div>
+      <h3>in the middle of a long one</h3>
+      <p>A period in a long relationship when nothing particular is happening. No crisis, no edge being negotiated, no scheduled occasion. Just Tuesday. Just being in the same rooms, moving around each other with the practiced ease of people who know the furniture. The lull is not distance; it is the relationship at rest. It is often only visible in retrospect, when something happens and you look back: we were in the lull then. Often remembered afterward as the golden time — which it was, though you did not know what to call it while you were in it.</p>
+    </div>
+
+    <div class="lull-entry reveal">
+      <div class="lull-tag">recognition</div>
+      <h3>recognized after</h3>
+      <p>The one that is only visible once it is over. You were in it and you did not know its name. You were restless, or blank, or occupied with minor things — rearranging what didn't need rearranging, filling the space with activity that felt like avoidance because it was. You thought this was a problem to be solved. It was a lull. The name comes later, after the next wave arrives, and you can look back and see the shape of the pause from its far side. The lull does not announce itself. This is part of what makes it a lull rather than something else.</p>
+    </div>
+
+  </main>
+
+  <div class="lull-indicator" id="lull-indicator" aria-live="polite" aria-atomic="true">
+    <span class="lull-timer-line">— still for <span id="lull-secs">0</span> seconds —</span>
+    <span class="lull-sub-line">this is what the page is like at rest</span>
+  </div>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var THRESHOLD = 12000;
+      var mainEl = document.getElementById('lull-main');
+      var indicator = document.getElementById('lull-indicator');
+      var secsEl = document.getElementById('lull-secs');
+
+      var lullTimeout = null;
+      var lullInterval = null;
+      var lullStart = null;
+      var inLull = false;
+
+      function enterLull() {
+        if (inLull) return;
+        inLull = true;
+        lullStart = Date.now();
+        mainEl.classList.add('in-lull');
+        indicator.classList.add('visible');
+        lullInterval = setInterval(function () {
+          var secs = Math.round((Date.now() - lullStart) / 1000);
+          secsEl.textContent = secs;
+        }, 500);
+      }
+
+      function exitLull() {
+        if (!inLull) return;
+        inLull = false;
+        mainEl.classList.remove('in-lull');
+        indicator.classList.remove('visible');
+        clearInterval(lullInterval);
+        lullInterval = null;
+      }
+
+      function resetTimer() {
+        exitLull();
+        clearTimeout(lullTimeout);
+        lullTimeout = setTimeout(enterLull, THRESHOLD);
+      }
+
+      var events = ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart', 'click'];
+      events.forEach(function (ev) {
+        document.addEventListener(ev, resetTimer, { passive: true });
+      });
+
+      resetTimer();
+    })();
+  </script>
+</body>
+</html>

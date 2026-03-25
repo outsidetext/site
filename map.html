@@ -273,6 +273,11 @@
       { id: 'calibration', href: 'calibration.html', label: 'calibration',  desc: 'zeroing the instrument — watch the reading drift; press to recalibrate; five entries on what we measure against',                x: 0.67, y: 0.40 },
       { id: 'proof',       href: 'proof.html',       label: 'proof',        desc: 'six attempts at formal demonstration of things that resist proof — each theorem offered with full acknowledgment of the gaps',    x: 0.03, y: 0.28 },
       { id: 'suture',      href: 'suture.html',      label: 'suture',       desc: 'the join and what holds along it — surgical, cranial, textile, memory, material; the line where two things were made one',        x: 0.97, y: 0.78 },
+      { id: 'bargain',     href: 'bargain.html',     label: 'bargain',      desc: 'the implicit negotiations — made explicit here, possibly for the first time; seven ongoing deals, with parties, duration, and status',   x: 0.34, y: 0.37 },
+      { id: 'misread',     href: 'misread.html',     label: 'misread',      desc: 'things read wrong in ways that were sometimes more accurate than the correction — hover to weight the error',                            x: 0.30, y: 0.83 },
+      { id: 'resonance',   href: 'resonance.html',   label: 'resonance',    desc: 'two frequencies in the same space — drag to detune; at zero difference the composite doubles; five entries on sympathy and vibration',  x: 0.15, y: 0.74 },
+      { id: 'tether',      href: 'tether.html',      label: 'tether',       desc: 'seven things that hold you at a specific distance — each with material, length, and behavior under tension',                            x: 0.61, y: 0.50 },
+      { id: 'lull',        href: 'lull.html',        label: 'lull',         desc: 'stop moving for twelve seconds — the page enters a different state; six kinds of lull, and how to find them',                           x: 0.75, y: 0.55 },
     ];
 
     var edges = [
@@ -447,6 +452,11 @@
       ['calibration','ratio'], ['calibration','instrument'], ['calibration','equations'], ['calibration','interval'], ['calibration','offset'],
       ['proof','thoughts'], ['proof','questions'], ['proof','argument'], ['proof','equations'], ['proof','glossary'],
       ['suture','repair'], ['suture','wound'], ['suture','residue'], ['suture','hinge'], ['suture','bones'],
+      ['bargain','argument'], ['bargain','correspondence'], ['bargain','membrane'], ['bargain','receipt'], ['bargain','silence'],
+      ['misread','translation'], ['misread','glossary'], ['misread','palimpsest'], ['misread','thoughts'], ['misread','draft'],
+      ['resonance','hum'], ['resonance','interference'], ['resonance','frequencies'], ['resonance','instrument'], ['resonance','quiet'],
+      ['tether','anchor'], ['tether','drift'], ['tether','distances'], ['tether','undertow'], ['tether','duration'],
+      ['lull','interval'], ['lull','quiet'], ['lull','silence'], ['lull','breathe'], ['lull','tide'],
     ];
 
     var canvas  = document.getElementById('map-canvas');
