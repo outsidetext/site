@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tender · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .preface {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      max-width: 520px;
+      margin-bottom: 3.5rem;
+    }
+    .entries {
+      display: flex;
+      flex-direction: column;
+    }
+    .tender-entry {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 0 1.4rem;
+      padding: 1.8rem 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+    .tender-entry:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+    .entry-mark {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      padding-top: 0.25rem;
+      letter-spacing: 0.03em;
+    }
+    .entry-text {
+      font-size: 0.97rem;
+      line-height: 1.88;
+      color: var(--text);
+    }
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>tender</h1>
+      <p>small instances of the most precise care</p>
+    </div>
+
+    <p class="preface">These are observations only. The word for what they share is not used. You will recognize it anyway. The catalog rotates by date; twelve entries, drawn from the pool.</p>
+
+    <div class="entries" id="entries"></div>
+
+    <p class="closing reveal">Tenderness is not softness. It requires more precision than hardness does. To be careful with something fragile is a form of attention that costs more than ignoring it. The cost is invisible. That is part of what makes it what it is.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var all = [
+      "The way some people hold a coffee cup — not by the handle but with both palms around the body, as if warming the hands was the purpose, as if the warmth was the drink.",
+      "The impulse, when showing someone something beautiful, to look at their face rather than the thing — measuring it in their eyes, finding it again through their surprise.",
+      "A long explanation given slowly when a shorter one would have technically worked. The extra time, taken on your behalf, without naming itself as care.",
+      "The habit some people have of saving the last good thing — the last piece of bread, the last of the wine, the last of the quiet — in case someone else would prefer it. A chronic deference that is not diminishment but its opposite.",
+      "Asking how something went and meaning it. The follow-up question that proves the meaning. The follow-up to the follow-up, which proves it further.",
+      "A plant in someone's window, well-watered. Thriving. The plant as evidence of reliable care: small amounts, consistently, over a long time. The plant does not know it is evidence of anything.",
+      "The handwriting on an envelope — addressed to someone, by hand, in ink. The time it took relative to a text message. The selection of a stamp. Each decision small; in aggregate, a statement.",
+      "A word corrected gently. Not the embarrassment version — the one said quietly, once, that you can accept or not, with no performance of having corrected you.",
+      "The specific care used when handling something fragile — the two hands, the slower movement, the breath withheld slightly. The body becoming more precise in the presence of delicacy.",
+      "A window left cracked because you knew someone preferred it. A preference stored without being asked to store it.",
+      "The person who remembers what you ordered last time. Not because it was their job to record it. Because they were paying attention.",
+      "Finding the right word for what someone meant — the one they were circling — and offering it quietly, without claiming the thought.",
+      "The pause before answering a question that deserved one. Not hesitation — the pause that means the question was heard and is being treated as real.",
+      "A door held open for the person far enough away that it becomes an inconvenience to hold it. The decision to hold it anyway. The small acceleration the other person breaks into to make it less of one.",
+      "Lowering your voice in a room where someone is sleeping, even when they are not someone you know well. The adjustment is automatic. The quiet is a kind of cover.",
+      "The note left somewhere it will be found. Not sent — left. The difference is the time delay, which is a form of faith that the finding will happen.",
+    ];
+
+    var today = new Date();
+    var seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+    function seededRandom(s) {
+      var x = Math.sin(s) * 10000;
+      return x - Math.floor(x);
+    }
+
+    var indices = [];
+    for (var i = 0; i < all.length; i++) indices.push(i);
+    for (var j = indices.length - 1; j > 0; j--) {
+      var k = Math.floor(seededRandom(seed + j) * (j + 1));
+      var tmp = indices[j]; indices[j] = indices[k]; indices[k] = tmp;
+    }
+    var selected = indices.slice(0, 12);
+
+    var container = document.getElementById('entries');
+    selected.forEach(function (idx, n) {
+      var div = document.createElement('div');
+      div.className = 'tender-entry reveal';
+      div.innerHTML =
+        '<div class="entry-mark">·</div>' +
+        '<div class="entry-text">' + all[idx] + '</div>';
+      container.appendChild(div);
+    });
+  })();
+  </script>
+</body>
+</html>

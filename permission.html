@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>permission · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .doc-header {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 3rem;
+      line-height: 2;
+    }
+    .section-head {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin: 3rem 0 1.25rem;
+    }
+    .permission-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .permission-list li {
+      display: grid;
+      grid-template-columns: 1.4rem 1fr;
+      gap: 0 1rem;
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--border);
+      font-size: 0.95rem;
+      line-height: 1.82;
+      color: var(--text);
+      align-items: start;
+    }
+    .permission-list li:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+    .permission-list li .mark {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      padding-top: 0.25rem;
+    }
+    .seal {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      line-height: 2;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>permission</h1>
+      <p>a formal grant of what has always been allowable</p>
+    </div>
+
+    <div class="doc-header">
+      ISSUED TO: the reader<br>
+      DATE: effective immediately and retroactively<br>
+      AUTHORITY: none required<br>
+      STATUS: unconditional
+    </div>
+
+    <div class="section-head">GRANTED</div>
+    <p style="font-style:italic;color:var(--text-muted);font-size:0.9rem;margin-bottom:1.5rem;">Things you are now permitted to do.</p>
+
+    <ul class="permission-list">
+      <li class="reveal"><span class="mark">✓</span><span>To not know yet. The timeline for knowing is not fixed and has never been announced. There is no deadline you have missed.</span></li>
+      <li class="reveal"><span class="mark">✓</span><span>To change your mind. Including about things you stated confidently. Including about things you were right about. The change of mind is not a retraction of the original position; it is evidence that the process is working.</span></li>
+      <li class="reveal"><span class="mark">✓</span><span>To leave early. The requirement to stay until the end was never formally established. The party continues without you. You may go.</span></li>
+      <li class="reveal"><span class="mark">✓</span><span>To ask again. Once was not enough. This is permitted. Asking twice is not an error or an imposition; it is a request that the first answer be examined more carefully, which is a reasonable thing to want.</span></li>
+      <li class="reveal"><span class="mark">✓</span><span>To feel two things at once. This is not contradiction or confusion. This is the ordinary experience of having a complex interior life. Both are real. Neither cancels the other.</span></li>
+      <li class="reveal"><span class="mark">✓</span><span>To take the longer way. The efficient route is not the only route. The longer way has views the direct way does not, and arrives at the same destination.</span></li>
+      <li class="reveal"><span class="mark">✓</span><span>To not explain. An explanation is not owed for preferences, choices, needs, or the way you have decided to spend a given afternoon.</span></li>
+      <li class="reveal"><span class="mark">✓</span><span>To be in the middle of something. Most things are not finished. This is not a problem to be solved but a condition to be inhabited. The middle is where most of life occurs.</span></li>
+    </ul>
+
+    <div class="section-head">RELEASED</div>
+    <p style="font-style:italic;color:var(--text-muted);font-size:0.9rem;margin-bottom:1.5rem;">Things no longer required of you.</p>
+
+    <ul class="permission-list">
+      <li class="reveal"><span class="mark">—</span><span>To have a reason. Preferences and inclinations may exist without stated justification. A reason may be offered if desired. It is not owed.</span></li>
+      <li class="reveal"><span class="mark">—</span><span>To know the ending before beginning. The ending reveals itself at the end. Proceeding without this information is not recklessness; it is how almost everything is done.</span></li>
+      <li class="reveal"><span class="mark">—</span><span>To appear fine when you are not. The performance of fine serves a social function but is not mandatory. Alternative responses exist and are permitted.</span></li>
+      <li class="reveal"><span class="mark">—</span><span>To return every message on the same day. Same-day response is a preference, not a contract. The message will be there tomorrow. So will you.</span></li>
+      <li class="reveal"><span class="mark">—</span><span>To justify your time. How you spend an hour is not subject to audit. The accounting of time belongs to no one but the person spending it.</span></li>
+      <li class="reveal"><span class="mark">—</span><span>To remember everything equally. Memory is selective by design. What it keeps is not a judgment on what it releases. Some things compress more than others. This has been studied. It is not your fault.</span></li>
+      <li class="reveal"><span class="mark">—</span><span>To be consistent. Moods, energy, appetite, and capacity vary. The variation does not require explanation or apology. The self on Tuesday and the self on Saturday are the same self at different angles.</span></li>
+      <li class="reveal"><span class="mark">—</span><span>To have resolved it. Resolution is not the same as completion. Many things do not resolve. They become part of the interior furniture. They are still there. This is permitted.</span></li>
+    </ul>
+
+    <div class="seal reveal">
+      SIGNED: the part of you that knew this already<br>
+      WITNESSED: no one — this does not require a witness<br>
+      FILED: 2026-03-25 · effective immediately
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

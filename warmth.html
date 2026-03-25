@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>warmth · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .warmth-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .warmth-entry {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 2rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      align-items: start;
+    }
+    .warmth-entry:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+    .warmth-swatch {
+      width: 80px;
+      height: 80px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .warmth-body dt {
+      font-size: 1rem;
+      font-weight: normal;
+      margin: 0 0 0.15rem;
+      color: var(--text);
+    }
+    .warmth-hex {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin: 0 0 0.75rem;
+    }
+    .warmth-body dd:last-child {
+      font-size: 0.93rem;
+      line-height: 1.82;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>warmth</h1>
+      <p>named varieties — what they feel like, and where they live</p>
+    </div>
+
+    <dl class="warmth-list">
+
+      <div class="warmth-entry reveal">
+        <div class="warmth-swatch" style="background:#d4956a"></div>
+        <div class="warmth-body">
+          <dt>radiator warmth</dt>
+          <dd class="warmth-hex">#d4956a</dd>
+          <dd>The warmth of old cast iron that has been building heat all morning. Dry. Arrives before you are close enough to touch it. Strongest near the floor. The sound it makes — ticking — is not the warmth itself but is associated with it so strongly that, on cold days, one serves as the other.</dd>
+        </div>
+      </div>
+
+      <div class="warmth-entry reveal">
+        <div class="warmth-swatch" style="background:#e8b870"></div>
+        <div class="warmth-body">
+          <dt>borrowed seat</dt>
+          <dd class="warmth-hex">#e8b870</dd>
+          <dd>The warmth left in a chair by the person who just vacated it. The person has gone. This is what remains. It persists approximately three to five minutes depending on the material and the season. To sit down in it is to briefly inhabit the thermal residue of someone else. Most people do not remark on this. They notice it anyway.</dd>
+        </div>
+      </div>
+
+      <div class="warmth-entry reveal">
+        <div class="warmth-swatch" style="background:#f0c87c"></div>
+        <div class="warmth-body">
+          <dt>winter window</dt>
+          <dd class="warmth-hex">#f0c87c</dd>
+          <dd>Afternoon sun through glass in January. It does not warm the room. It warms the square it falls on, specifically, while the rest of the room continues to be cold. The square moves as the earth turns. You could track the hours by it. It is the warmest place in a cold room and requires nothing from you except to be in it.</dd>
+        </div>
+      </div>
+
+      <div class="warmth-entry reveal">
+        <div class="warmth-swatch" style="background:#c4956a"></div>
+        <div class="warmth-body">
+          <dt>wool</dt>
+          <dd class="warmth-hex">#c4956a</dd>
+          <dd>Not warmth from a source but warmth retained. The fibers trap air and the air holds what the body put there. Pick up a sweater that has been worn and it is warm in the shape of the person who wore it. This is the oldest warming technology. It remembers exactly as long as you need it to, and no longer.</dd>
+        </div>
+      </div>
+
+      <div class="warmth-entry reveal">
+        <div class="warmth-swatch" style="background:#c8826a"></div>
+        <div class="warmth-body">
+          <dt>sleeping animal</dt>
+          <dd class="warmth-hex">#c8826a</dd>
+          <dd>The concentrated warmth of an animal resting against you. They run warmer than you do — dogs at 38–39°C, cats higher. The warmth is also weight and also the specific texture of fur or the sound of breathing. It arrives without being asked for. The withdrawal of it when they move is noticed in proportion to how thoroughly you had forgotten it was there.</dd>
+        </div>
+      </div>
+
+      <div class="warmth-entry reveal">
+        <div class="warmth-swatch" style="background:#e09050"></div>
+        <div class="warmth-body">
+          <dt>kitchen morning</dt>
+          <dd class="warmth-hex">#e09050</dd>
+          <dd>The warmth that accumulates from the oven, the toaster, the kettle, all at once. Also the smell of bread and coffee, which occupy the same sensory register as warmth and so feel warm even when they are not hot. The kitchen in winter before anyone else is up is a different room than the kitchen at noon. The warmth is part of why.</dd>
+        </div>
+      </div>
+
+      <div class="warmth-entry reveal">
+        <div class="warmth-swatch" style="background:#e8b888"></div>
+        <div class="warmth-body">
+          <dt>hand-held cup</dt>
+          <dd class="warmth-hex">#e8b888</dd>
+          <dd>Bilateral warmth transferred into both palms simultaneously. The drink is secondary. The warmth works up through the hands toward the wrists. There is a reason people hold cups with both hands when cold or uncertain — the hands return to this shape looking for what they already know is there. The cup as small reliable source.</dd>
+        </div>
+      </div>
+
+      <div class="warmth-entry reveal">
+        <div class="warmth-swatch" style="background:#d4a882"></div>
+        <div class="warmth-body">
+          <dt>recognition</dt>
+          <dd class="warmth-hex">#d4a882</dd>
+          <dd>The warmth of being seen accurately by someone who chose to look. Requires no touching. Arrives through the eyes, through a question asked in the right register, through a name used at the right moment. Not the same as being liked — something more specific. More like: the warmth of a room that was made with you in mind before you arrived.</dd>
+        </div>
+      </div>
+
+      <div class="warmth-entry reveal">
+        <div class="warmth-swatch" style="background:#c87858"></div>
+        <div class="warmth-body">
+          <dt>fever edge</dt>
+          <dd class="warmth-hex">#c87858</dd>
+          <dd>The warmth before illness declares itself fully — the body running a degree or two above its usual temperature, producing a quality of heat that is almost pleasant before it tips into uncomfortable. The world is slightly softened. The edges of things are less sharp than usual. This is the body preparing. It is doing the right thing. The warmth is a symptom of competence.</dd>
+        </div>
+      </div>
+
+      <div class="warmth-entry reveal">
+        <div class="warmth-swatch" style="background:#d4906a"></div>
+        <div class="warmth-body">
+          <dt>return</dt>
+          <dd class="warmth-hex">#d4906a</dd>
+          <dd>The warmth of coming back somewhere. Not the place as it is now but the place as it was when you left, meeting the place as it is now, which produces a third thing that is neither. Familiar buildings hold a warmth that has nothing to do with temperature. The body registers the return before the mind has finished catching up. The house recognizes you before you recognize yourself inside it.</dd>
+        </div>
+      </div>
+
+    </dl>
+
+    <p class="closing reveal">Warmth is not the opposite of cold. It is a presence rather than an absence — something added, something generated, something that stays after its source has moved. Companion to <a href="colors.html" style="color:var(--accent);text-decoration:none">colors</a>, which names feelings by pigment. This names what warmth does to a body in the space it occupies.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

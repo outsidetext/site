@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>grain · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .preface {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      max-width: 520px;
+      margin-bottom: 3.5rem;
+    }
+    .grain-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .grain-entry {
+      padding: 1.8rem 0;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 0 1.5rem;
+      align-items: start;
+    }
+    .grain-entry:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+    .grain-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      padding-top: 0.25rem;
+      letter-spacing: 0.04em;
+    }
+    .grain-subject {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+    .grain-body {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text);
+    }
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>grain</h1>
+      <p>the texture of things, examined closely</p>
+    </div>
+
+    <p class="preface">Grain is what you find when you look past the surface. In wood it is the record of time — each ring a year, compressed. In film it is the visible randomness that makes an image feel true. In a voice it is the roughness that carries feeling below the words. Everything has grain. Most of it goes unexamined. These are close readings.</p>
+
+    <div class="grain-list" id="grain-list">
+
+      <div class="grain-entry reveal">
+        <div class="grain-num">I</div>
+        <div>
+          <div class="grain-subject">film grain</div>
+          <div class="grain-body">The visible randomness in a photographic image — silver halide crystals that did not align perfectly, that never could. Digital images can reproduce this imperfection intentionally because without it they look wrong. Smoothness reads as false. The grain is evidence that light actually touched the surface, that the image was made in a real place at a real time and not assembled afterward. Grain is proof of contact.</div>
+        </div>
+      </div>
+
+      <div class="grain-entry reveal">
+        <div class="grain-num">II</div>
+        <div>
+          <div class="grain-subject">wood grain</div>
+          <div class="grain-body">Each ring a year. Each year a record of conditions: drought pulls the rings closer; good years push them apart. The grain is legible to those who learned to read it. A cross-section of an old tree is a timeline with the years compressed into bands, the difficult ones tight and the easy ones broad, no year indistinguishable from any other, all of them laid down without comment. The tree kept a record it did not mean to keep.</div>
+        </div>
+      </div>
+
+      <div class="grain-entry reveal">
+        <div class="grain-num">III</div>
+        <div>
+          <div class="grain-subject">a voice</div>
+          <div class="grain-body">The roughness that carries the feeling below the words. The technical term is harmonic complexity — the overtones that pile on top of the fundamental frequency, some of them suppressed by training, some not. A voice without grain is technically correct and emotionally unavailable. Singers spend years working to find the roughness that reads as real. What they are trying to recover is the sound of the voice under conditions it was not designed to control.</div>
+        </div>
+      </div>
+
+      <div class="grain-entry reveal">
+        <div class="grain-num">IV</div>
+        <div>
+          <div class="grain-subject">an ordinary Tuesday</div>
+          <div class="grain-body">Up close, the grain of an unremarkable weekday afternoon resolves into: the specific quality of light at 3pm in this season, a sound from the floor above that you cannot identify, the particular texture of being neither rested nor exhausted, the ambient awareness that there is something you are supposed to be doing. At any distance these merge into background. It takes deliberate attention to hold the grain visible. It is worth it about once a month.</div>
+        </div>
+      </div>
+
+      <div class="grain-entry reveal">
+        <div class="grain-num">V</div>
+        <div>
+          <div class="grain-subject">salt</div>
+          <div class="grain-body">Individual grains, each one a small crystal with flat faces and right angles. You can see this with a magnifying glass. Without one, salt is a white powder — undifferentiated, invisible as itself. Most of what we taste is the aggregate, not the grain. To hold one grain in the palm and examine it is to temporarily suspend the agreed-upon reading in favor of the thing itself, which turns out to be geometric and precise and completely unlike the taste.</div>
+        </div>
+      </div>
+
+      <div class="grain-entry reveal">
+        <div class="grain-num">VI</div>
+        <div>
+          <div class="grain-subject">an argument</div>
+          <div class="grain-body">Most arguments are experienced as shape — beginning, middle, end, resolution or no resolution. Up close, the grain is finer: the specific word that tipped the tone, the pause that was read as withdrawal, the moment when both people realized they were no longer talking about the thing they started with. Most arguments are about something else. The something else is the grain. You can find it by asking: at what moment did the temperature change, and what was said in that moment, specifically.</div>
+        </div>
+      </div>
+
+      <div class="grain-entry reveal">
+        <div class="grain-num">VII</div>
+        <div>
+          <div class="grain-subject">memory</div>
+          <div class="grain-body">Memory is not a recording. It is a reconstruction, and every reconstruction introduces variation. The grain of a memory is the seam where the reconstruction meets the original — the places where it is slightly wrong in ways you cannot verify. Memories of the same event taken at different times will differ. The grain accumulates. What is remembered thirty years later is the memory of the memory of the memory — not the event, but its echo in all its subsequent iterations.</div>
+        </div>
+      </div>
+
+      <div class="grain-entry reveal">
+        <div class="grain-num">VIII</div>
+        <div>
+          <div class="grain-subject">a city</div>
+          <div class="grain-body">From a distance, a skyline. From the middle distance, blocks. On the street, the grain appears: the repair to the pavement from 1987, the particular smell of one specific block, the way a building's shadow falls at this hour and not any other, the population of small decisions that together constitute a neighborhood. Tourist photographs are almost always taken from the distance where the grain disappears. The grain is where the city actually is. It takes years to learn to read it.</div>
+        </div>
+      </div>
+
+      <div class="grain-entry reveal">
+        <div class="grain-num">IX</div>
+        <div>
+          <div class="grain-subject">light at dusk</div>
+          <div class="grain-body">The grain of late-day light is its directionality — the long shadows that reveal texture invisible at noon when the light falls straight down. At dusk the light comes sideways. Every imperfection in every surface becomes visible: the roughness of a painted wall, the age in a face, the accumulated irregularity in a lawn or a road or a body of water. Photographers call it golden hour for the color. It might equally be called the hour of grain.</div>
+        </div>
+      </div>
+
+      <div class="grain-entry reveal">
+        <div class="grain-num">X</div>
+        <div>
+          <div class="grain-subject">silence</div>
+          <div class="grain-body">Silence has grain too. Acoustic engineers call it the noise floor — the ambient hiss that exists in every space, the sum of HVAC systems and the electrical hum of wiring and the distant traffic and the body's own sounds amplified by the removal of other sounds. True silence does not exist in inhabited spaces. What we call silence is a texture, with its own character that varies by room, by hour, by the material composition of the walls. You can learn the grain of a familiar silence the way you learn a voice.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="closing reveal">Grain is what close attention finds. The smooth version is the agreed-upon reading. The grain is what was always there, waiting for the light to change angle, for the lens to come closer, for the moment when you stop receiving information and start looking at it.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
