@@ -57,7 +57,17 @@
     { term: 'the draft',    pos: 'n.', def: 'the version of something written and not sent; where most honest things live' },
     { term: 'deep tab',     pos: 'n.', def: 'a browser tab opened months ago and never closed; a small monument to a past version of what mattered' },
     { term: 'cursor drift', pos: 'n.', def: 'the way a mouse moves toward the corner of a screen when attention wanders; the body\'s honest report' },
-    { term: 'night mode',   pos: 'n.', def: 'not a display setting, but the version of yourself after ten p.m. — when the filters come down and you become, briefly, more accurate' }
+    { term: 'night mode',   pos: 'n.', def: 'not a display setting, but the version of yourself after ten p.m. — when the filters come down and you become, briefly, more accurate' },
+    { term: 'read receipt',  pos: 'n.', def: 'the notification that your message arrived and was seen and received no reply — certainty where uncertainty would have been kinder' },
+    { term: 'doomscroll',    pos: 'v.', def: 'to consume a continuous stream of bad news looking for the update that will finally be enough; the scroll that never ends because the need doesn\'t either' },
+    { term: 'context collapse', pos: 'n.', def: 'speaking to everyone at once; when the message meant for one audience is received by all the others, and means something different in each direction' },
+    { term: 'soft launch',   pos: 'n.', def: 'a beginning that doesn\'t announce itself; leaving room to deny you\'ve started, in case it doesn\'t take' },
+    { term: 'parasocial',    pos: 'adj.', def: 'the relationship that exists in one direction; genuine feeling toward someone who doesn\'t know you exist; care with nowhere to be received' },
+    { term: 'main character', pos: 'n.', def: 'a temporary delusion of centrality; the sense that today is happening to you specifically — occasionally true, mostly the mind\'s way of making sense of the noise' },
+    { term: 'lurk',          pos: 'v.', def: 'to be present in a space without announcing yourself; reading without responding; the internet version of standing quietly in the back of a room' },
+    { term: 'low battery',   pos: 'n.', def: 'not only a technical state — the conversation ending when you reach zero, which is coming, and both of you can see the percentage' },
+    { term: 'ratio\'d',      pos: 'v.', def: 'to be replied to more than liked; the algorithmic form of public correction; learning what the room thinks of what you said by watching the numbers' },
+    { term: 'vibe check',    pos: 'n.', def: 'a request for ambient emotional information; a diagnostic performed before committing to the room — not what you think, but how it feels to think it here' }
   ];
   var wodTerm = document.getElementById('wod-term');
   var wodPos  = document.getElementById('wod-pos');
@@ -208,7 +218,8 @@
     'fallow.html','trace.html','wrong.html','return.html','murmur.html',
     'fossil.html','horizon.html','dread.html','still.html','approximate.html',
     'surplus.html','coda.html','blur.html','idle.html','ghost.html',
-    'aftermath.html','almost.html','chorus.html','ember.html','passage.html'
+    'aftermath.html','almost.html','chorus.html','ember.html','passage.html',
+    'noon.html','scar.html','secondhand.html','rewild.html','archive.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

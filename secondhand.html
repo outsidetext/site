@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>secondhand · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .sh-intro {
+      font-size: 0.93rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      font-style: italic;
+    }
+    .sh-list {
+      list-style: none;
+      margin-bottom: 3rem;
+    }
+    .sh-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sh-item:last-child { border-bottom: none; }
+    .sh-thing {
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.5;
+    }
+    .sh-chain {
+      font-family: 'Courier New', monospace;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+      line-height: 1.9;
+    }
+    .sh-chain del {
+      text-decoration: line-through;
+      opacity: 0.45;
+    }
+    .sh-chain .sh-now {
+      color: var(--accent);
+    }
+    .sh-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0 2rem;
+    }
+    .sh-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sh-entry:last-child { border-bottom: none; }
+    .sh-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .sh-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .sh-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .sh-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>secondhand</h1>
+      <p>things received pre-used; the provenance of what you carry</p>
+    </div>
+
+    <p class="sh-intro">most of what we are arrived already shaped. words, fears, postures, preferences — received from people who received them from people. the chain of custody is long and mostly undocumented.</p>
+
+    <ul class="sh-list">
+      <li class="sh-item">
+        <div class="sh-thing">a specific fear of silence in a car</div>
+        <div class="sh-chain">received from: <del>a parent who filled it</del> → <del>their parent who couldn't stand it</del> → a silence that happened once that no one named → <span class="sh-now">you, filling it</span></div>
+      </li>
+      <li class="sh-item">
+        <div class="sh-thing">the word <em>melancholy</em></div>
+        <div class="sh-chain">received from: <del>Greek: melan (black) + kholē (bile)</del> → <del>a medieval theory of humors since disproved</del> → <del>a poet who used it beautifully anyway</del> → <del>a teacher who assigned the poem</del> → <span class="sh-now">you, using it precisely</span></div>
+      </li>
+      <li class="sh-item">
+        <div class="sh-thing">the way you hold your shoulders when you're concentrating</div>
+        <div class="sh-chain">received from: <del>someone you spent a lot of time near</del> → <del>their own habit, origin untraced</del> → <span class="sh-now">your shoulders, now</span></div>
+      </li>
+      <li class="sh-item">
+        <div class="sh-thing">the opinion that mornings are better than evenings</div>
+        <div class="sh-chain">received from: <del>someone who said so with authority</del> → <del>a culture that rewards early productivity</del> → <del>an agricultural economy where light was scarce</del> → <span class="sh-now">you, waking early, calling it preference</span></div>
+      </li>
+      <li class="sh-item">
+        <div class="sh-thing">a sense of humor about a specific kind of thing</div>
+        <div class="sh-chain">received from: <del>a person whose laughter was worth chasing</del> → <del>possibly their own secondhand version</del> → <span class="sh-now">you, laughing at the same things, not knowing why</span></div>
+      </li>
+      <li class="sh-item">
+        <div class="sh-thing">the belief that showing effort is slightly embarrassing</div>
+        <div class="sh-chain">received from: <del>a cultural preference for apparent ease</del> → <del>an aristocratic ideal of sprezzatura, 16th century</del> → <del>several generations of people who admired it</del> → <span class="sh-now">you, hiding how hard you worked</span></div>
+      </li>
+      <li class="sh-item">
+        <div class="sh-thing">a specific route through a city you grew up near</div>
+        <div class="sh-chain">received from: <del>a parent who always took it</del> → <del>their own habit formed by an event now forgotten</del> → <span class="sh-now">you, surprised when a faster way exists</span></div>
+      </li>
+    </ul>
+
+    <hr class="sh-divider">
+
+    <div class="sh-entry reveal">
+      <span class="sh-tag">books</span>
+      <h3>the annotation in the margin</h3>
+      <p>The secondhand book arrives with a previous reader's marks already in it. An underlined sentence, a question mark, an exclamation in pencil at an insight you would have passed over. The notation is evidence of another mind moving through the same text and finding different things worth stopping at. You read the book twice simultaneously: once the author's text, once this stranger's record of their encounter with it.</p>
+      <p>Sometimes the annotation is more interesting than the passage it marks. A word circled ten times in different hands across a hundred years means something about that word. The book becomes a document of reading — the text plus the traces of every reading it's survived. What you're holding isn't only the author's work but a kind of unintentional collaboration between everyone who carried it home. You add your marks, release it back, and it continues accumulating evidence of how it was received.</p>
+    </div>
+
+    <div class="sh-entry reveal">
+      <span class="sh-tag">language</span>
+      <h3>the worn phrase</h3>
+      <p>Every idiom is secondhand. "Bite the bullet" comes from a time when patients held a bullet between their teeth during surgery without anesthetic. "Turn a blind eye" comes from a specific moment when Admiral Nelson held his telescope to his blind eye to avoid seeing the signal to retreat. These origins are mostly lost — the phrases arrived worn smooth, their particular histories erased, their meaning stable but their etymology a guess. You use them without knowing what you're carrying.</p>
+      <p>This is true of most language. The word "disaster" comes from "bad star" — from a time when celestial events were held responsible for earthly ones. The word "consider" comes from "with the stars" — from a time when studying the stars was the method of deliberate thought. Language is secondhand all the way down: every word is a fossil of a metaphor that has mostly died, leaving only its shape. You think in inherited containers. The containers were made for purposes that no longer apply. They still mostly hold.</p>
+    </div>
+
+    <div class="sh-entry reveal">
+      <span class="sh-tag">knowing</span>
+      <h3>the opinion you didn't form</h3>
+      <p>Most of what you believe arrived pre-formed. A stance on a political question, a preference in aesthetic, a conviction about how people should behave: you encounter them first in others, and the first version has an advantage. It arrived before you had a competing framework. It explained a phenomenon you'd noticed but hadn't named. It came from someone whose approval you wanted, which is not an argument for the position but is a powerful force in its adoption.</p>
+      <p>This is not a criticism. You could not have formed all your beliefs from scratch; there isn't time. Inheriting most of your views is efficient and mostly accurate — you're building on accumulated knowledge rather than starting over. The question is which inherited beliefs have been examined and which are still running on the original transfer, unchecked, doing work in your life without having passed through scrutiny. The secondhand coat fits well enough that you forget it was tailored for someone else. It fits differently, in ways you don't quite notice, until someone points at a seam.</p>
+    </div>
+
+    <div class="sh-entry reveal">
+      <span class="sh-tag">grief</span>
+      <h3>what you received that wasn't meant for you</h3>
+      <p>Some things that were passed to you were never intended to be passed. The anxiety that lived in a parent's body and transferred to yours before either of you understood what it was. The unresolved argument that became a family pattern that became how you argue, still, in the shape of people you've never met. The specific silence around a specific subject that has been maintained for so long that no one alive knows what it was originally protecting.</p>
+      <p>These are the most secondhand things. They arrived without context, without the narrative that would make them legible, without the choice that originally generated them. You carry them as if they're yours because they are yours now, fully installed, integrated into how you move. Tracing them back is possible, sometimes — the therapist's work, the family historian's work — but it requires finding the original purchase receipt for something you've been wearing so long it feels like skin. The received wound is the hardest to return, even when you know it wasn't meant for you and doesn't fit.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

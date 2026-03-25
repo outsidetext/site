@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>noon · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .noon-wrap {
+      position: relative;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    #noon-canvas {
+      display: block;
+      width: 100%;
+      height: 120px;
+    }
+    .noon-label {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.75rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      pointer-events: none;
+      letter-spacing: 0.04em;
+    }
+    .noon-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .noon-entry:last-child { border-bottom: none; }
+    .noon-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .noon-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .noon-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .noon-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>noon</h1>
+      <p>the shadowless hour; maximum light; nowhere to hide</p>
+    </div>
+
+    <div class="noon-wrap">
+      <canvas id="noon-canvas"></canvas>
+      <div class="noon-label" id="noon-label">12:00:00</div>
+    </div>
+
+    <div class="noon-entry reveal">
+      <span class="noon-tag">physics</span>
+      <h3>the shadow underfoot</h3>
+      <p>At solar noon, the sun reaches its highest point in the sky. The angle of incidence approaches vertical — the sun is not closer, just more directly above. Shadows don't disappear at noon; they retreat to your feet. The shadow is still there. It has simply become a ring around your shoes, a dark halo compressed by the angle into something you stand in rather than cast.</p>
+      <p>This is precise physics: the length of a shadow is the tangent of the sun's elevation angle multiplied by the object's height. As elevation approaches 90°, the tangent approaches zero. At noon, you are approximately your own width in shadow. The shadow hasn't gone. It has contracted to the smallest version of itself. Which is not the same as nothing.</p>
+    </div>
+
+    <div class="noon-entry reveal">
+      <span class="noon-tag">light</span>
+      <h3>the worst light for portraits</h3>
+      <p>Photographers call noon the dead zone. The light is direct, flat in the wrong way, casting harsh shadows downward into eye sockets and under noses. There's no directionality — no angle of incidence to sculpt a face, no side-light to give dimension. Everything is equally illuminated, which paradoxically reduces apparent depth. Noon light bleaches rather than reveals. It shows everything and makes it harder to see.</p>
+      <p>The golden hour is golden because the sun is low and light travels through more atmosphere, scattering the short wavelengths and warming what arrives. At noon, the path through atmosphere is shortest. The light is as raw as light gets. Portrait photographers wait for the ends of the day because low light is more honest about what it doesn't illuminate — and the shadows are where the face becomes three-dimensional, where it has mass and depth. Noon removes all of that. Noon is truthful in the way that floodlights are truthful: you see everything, and it is less than you needed.</p>
+    </div>
+
+    <div class="noon-entry reveal">
+      <span class="noon-tag">old fear</span>
+      <h3>the noonday demon</h3>
+      <p>Medieval monks named a specific danger that arrived at noon: acedia. Not sloth exactly — something more precise. A listlessness that made the cell feel small and the work feel pointless and the day feel as though it would never end. The monk would look at the clock and it would be barely past the sixth hour and the heat would be absolute and nothing would seem worth beginning. The Church called it one of the eight deadly sins, later collapsed into sloth, but originally a distinct condition: the noon torpor, the failure of significance.</p>
+      <p>Pan, the Greek god of the wild, was said to sleep at noon. You were not supposed to disturb him. Waking Pan at noon caused panic — the word comes from his name. The Romanians had the Amiaza, a spirit that appeared as a beautiful woman at midday and confused travelers into walking in circles. The Japanese had a tradition of silence at noon, because noon was when ghosts were most visible. Across cultures, noon has been understood as a threshold, not a midpoint. The moment when the world turns from morning to afternoon and neither is in charge. A liminal hour, suspended at the top of the arc. The shadow compressed underfoot, waiting.</p>
+    </div>
+
+    <div class="noon-entry reveal">
+      <span class="noon-tag">diagnostic</span>
+      <h3>what you are at noon</h3>
+      <p>The performance sustains through the morning. By noon it has been running long enough to show its seams. The energy that made the early hours possible has metabolized. What's left is the unaugmented version — the person without the coffee's first lift, without the optimism of a fresh start, without the relief of the day being nearly over. Noon is the middle of the middle. Nothing to build toward yet and nothing to look back from.</p>
+      <p>Therapists sometimes note that sessions in the morning and sessions in the late afternoon have different qualities. Morning clients arrive with the shield still on. Late clients are tired and unguarded. Noon clients are sometimes the most accurate — past the morning self-curation, not yet into the evening softening. There is a version of you at noon that has no particular agenda. The light is direct. The shadow is underfoot. You are approximately what you are.</p>
+    </div>
+
+    <div class="noon-entry reveal">
+      <span class="noon-tag">timekeeping</span>
+      <h3>the fixed point</h3>
+      <p>Before standardized time, noon was the anchor. Everything else drifted — sunrise and sunset shift with the seasons, midnight is a calculated midpoint — but noon is when the sun is directly south (in the northern hemisphere), and a skilled observer with a gnomon can establish it to within minutes without any other equipment. Every town kept its own noon. The church bell rang when the vicar's sundial showed the sun highest. Different towns had different clocks, because noon is local.</p>
+      <p>The railroads ended this. A train couldn't run on a timetable if every town kept different time. Standard time zones were invented in 1883 by the American railroads, not governments. Legal noon was moved off solar noon — your clock says 12:00 when the sun may be at 11:47 or 12:13 depending on where in the time zone you stand. We gave up local noon for coordination. The fixed point became approximate. The shadow no longer falls directly down when the clock strikes twelve. The noon bell rings, and the sun continues its arc, slightly off from where the bells insist it is.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('noon-canvas');
+    var label  = document.getElementById('noon-label');
+    var ctx    = canvas.getContext('2d');
+    var dpr    = window.devicePixelRatio || 1;
+    var W, H;
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = Math.round(rect.width * dpr);
+      H = canvas.height = Math.round(120 * dpr);
+      canvas.style.height = '120px';
+    }
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function draw() {
+      requestAnimationFrame(draw);
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      ctx.clearRect(0, 0, W, H);
+
+      var now  = new Date();
+      var h    = now.getHours();
+      var m    = now.getMinutes();
+      var s    = now.getSeconds();
+
+      // Sun elevation: treat the day as 0-1, noon = 0.5
+      var totalMins = h * 60 + m + s / 60;
+      var t = totalMins / (24 * 60); // 0-1 over 24 hours
+      // angle: 0 at midnight, π at midnight again; sin is 1 at noon
+      var elev = Math.sin(Math.PI * (t * 2)); // peaks at t=0.5 (noon)
+      elev = Math.max(0, elev); // clamp to daytime
+
+      // Sun x position: rises left, sets right
+      var sunX = t * W;
+      // Sun y: high at noon, low at horizons; arc
+      var arcT = (t - 0.25) / 0.5; // 0 at sunrise (t=0.25), 1 at sunset (t=0.75)
+      arcT = Math.max(0, Math.min(1, arcT));
+      var sunY = H * 0.15 + (1 - Math.sin(Math.PI * arcT)) * (H * 0.7);
+
+      var isDaytime = h >= 6 && h < 18;
+
+      // Background gradient: sky
+      var skyGrad = ctx.createLinearGradient(0, 0, 0, H);
+      if (dark) {
+        if (isDaytime) {
+          var intensity = elev;
+          skyGrad.addColorStop(0, 'rgba(30,35,60,' + (0.9 - intensity * 0.5).toFixed(2) + ')');
+          skyGrad.addColorStop(1, 'rgba(10,10,15,0.95)');
+        } else {
+          skyGrad.addColorStop(0, 'rgba(5,5,15,0.97)');
+          skyGrad.addColorStop(1, 'rgba(10,10,20,0.98)');
+        }
+      } else {
+        if (isDaytime) {
+          var intensity = elev;
+          var r1 = Math.round(200 + intensity * 55);
+          var g1 = Math.round(210 + intensity * 40);
+          var b1 = Math.round(240 - intensity * 30);
+          skyGrad.addColorStop(0, 'rgba(' + r1 + ',' + g1 + ',' + b1 + ',1)');
+          skyGrad.addColorStop(1, 'rgba(245,240,225,1)');
+        } else {
+          skyGrad.addColorStop(0, 'rgba(20,20,40,0.95)');
+          skyGrad.addColorStop(1, 'rgba(30,25,50,0.95)');
+        }
+      }
+      ctx.fillStyle = skyGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      if (isDaytime) {
+        // Sun glow
+        var glowR = Math.round(30 * dpr + elev * 20 * dpr);
+        var glow = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, glowR * 2.5);
+        var sunAlpha = 0.3 + elev * 0.5;
+        if (dark) {
+          glow.addColorStop(0, 'rgba(255,245,180,' + sunAlpha.toFixed(2) + ')');
+          glow.addColorStop(0.4, 'rgba(255,210,100,' + (sunAlpha * 0.4).toFixed(2) + ')');
+          glow.addColorStop(1, 'rgba(220,170,60,0)');
+        } else {
+          glow.addColorStop(0, 'rgba(255,255,220,' + sunAlpha.toFixed(2) + ')');
+          glow.addColorStop(0.4, 'rgba(255,240,150,' + (sunAlpha * 0.4).toFixed(2) + ')');
+          glow.addColorStop(1, 'rgba(255,220,100,0)');
+        }
+        ctx.fillStyle = glow;
+        ctx.fillRect(0, 0, W, H);
+
+        // Sun disc
+        ctx.beginPath();
+        ctx.arc(sunX, sunY, glowR * 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = dark ? 'rgba(255,250,200,0.85)' : 'rgba(255,255,240,0.9)';
+        ctx.fill();
+
+        // Shadow line below sun
+        var shadowLen = Math.max(2, (1 - elev) * 80) * dpr;
+        var footX = W / 2;
+        var footY = H * 0.88;
+        ctx.save();
+        ctx.globalAlpha = 0.18 + elev * 0.08;
+        ctx.strokeStyle = dark ? '#888' : '#555';
+        ctx.lineWidth = Math.max(1, 2 * dpr);
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(footX, footY);
+        ctx.lineTo(footX, footY - shadowLen);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // Label: show current time
+      label.textContent = pad(h) + ':' + pad(m) + ':' + pad(s) + (isDaytime ? (elev > 0.95 ? ' · shadowless' : '') : ' · night');
+    }
+
+    resize();
+    draw();
+    window.addEventListener('resize', resize);
+  }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>archive · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .archive-input-wrap {
+      margin-bottom: 0.6rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: stretch;
+    }
+    #archive-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.6rem 0.8rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.83rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    #archive-input:focus { border-color: var(--accent); }
+    #archive-input::placeholder { color: var(--text-muted); opacity: 0.5; }
+    .archive-submit {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.6rem 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .archive-submit:hover { color: var(--accent); border-color: var(--accent); }
+    .archive-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      opacity: 0.5;
+      letter-spacing: 0.04em;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .archive-clear {
+      background: none;
+      border: none;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      opacity: 0.4;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      padding: 0;
+    }
+    .archive-clear:hover { opacity: 0.8; }
+    .archive-list {
+      list-style: none;
+      margin-bottom: 3rem;
+      min-height: 2rem;
+    }
+    .archive-list-item {
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 1.2rem;
+      align-items: baseline;
+    }
+    .archive-list-item:last-child { border-bottom: none; }
+    .archive-ts {
+      font-family: 'Courier New', monospace;
+      font-size: 0.66rem;
+      color: var(--text-muted);
+      opacity: 0.45;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .archive-text {
+      font-size: 0.91rem;
+      line-height: 1.65;
+      color: var(--text);
+    }
+    .archive-empty {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      opacity: 0.4;
+      letter-spacing: 0.04em;
+      padding: 1rem 0;
+    }
+    .archive-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0 2rem;
+    }
+    .archive-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .archive-entry:last-child { border-bottom: none; }
+    .archive-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .archive-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .archive-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .archive-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>archive</h1>
+      <p>what you decide to keep; the act of designation</p>
+    </div>
+
+    <div class="archive-input-wrap">
+      <input type="text" id="archive-input" placeholder="something worth keeping…" maxlength="200" autocomplete="off">
+      <button class="archive-submit" id="archive-submit">archive it</button>
+    </div>
+    <div class="archive-meta">
+      <span id="archive-count">nothing archived yet</span>
+      <button class="archive-clear" id="archive-clear">clear archive</button>
+    </div>
+
+    <ul class="archive-list" id="archive-list">
+      <li class="archive-empty" id="archive-placeholder">the archive is empty · type something above to begin</li>
+    </ul>
+
+    <hr class="archive-divider">
+
+    <div class="archive-entry reveal">
+      <span class="archive-tag">decision</span>
+      <h3>what archiving means</h3>
+      <p>To archive is not to preserve — it is to decide to preserve. Everything not archived is also a decision, usually made by omission: left out, let go, allowed to decay. The archive is always partial. The archivist is always choosing, and the choice always reflects something about what the archivist considers important, which is a thing about the archivist rather than about the material. Future historians know this. They read an archive as a document of what the people who made it thought mattered, which is not the same as what mattered.</p>
+      <p>The word comes from the Greek arkheion, the residence of the archon — the chief magistrate — where official documents were kept. The archive began as a place of power, not preservation. What was kept there was kept because the state required it, and what the state required was what the state needed to function: records of ownership, taxation, judgment. The personal archive is newer. The idea that the individual life is worth archiving is a modern invention, and an incomplete one — the vast majority of lived human experience has never been archived by anyone, and is gone.</p>
+    </div>
+
+    <div class="archive-entry reveal">
+      <span class="archive-tag">fever</span>
+      <h3>the compulsion</h3>
+      <p>The philosopher Jacques Derrida wrote about archive fever — the <em>mal d'archive</em> — the anxiety that drives archiving. The archivist's compulsion is not purely preservative; it is also a response to the threat of loss, which means that the archive is built by fear as much as care. The more complete the archive, the more aware the archivist becomes of what isn't in it, which drives further archiving. The archive is never finished. It is always failing to be complete. The fever is the gap between what has happened and what has been kept.</p>
+      <p>This applies to personal archiving: the photograph taken to hold the moment, the journal entry written to fix the feeling. The act of archiving the experience intervenes in the experience. You are partly somewhere else when you're archiving — attending to the document rather than the thing itself. And the archive, once made, becomes a new object that replaces the experience in memory. You remember the photograph more clearly than you remember the event. The archive succeeded. The original is gone. This is not a failure of archiving. It is what archiving does.</p>
+    </div>
+
+    <div class="archive-entry reveal">
+      <span class="archive-tag">formats</span>
+      <h3>what you can no longer open</h3>
+      <p>The digital archive has a particular vulnerability: format obsolescence. Files saved in WordStar in 1983 are technically preserved on a disk somewhere and functionally lost — the software to open them is gone, the hardware to run the software is gone, the documentation to reconstruct either is incomplete. The Library of Congress has estimated that digital preservation requires active maintenance: migration to new formats, periodic verification, ongoing effort. The physical archive decays slowly and predictably. The digital archive can become unreadable in a decade.</p>
+      <p>This is not only a problem of old files. You have things in formats that will be obsolete. The service that hosts them will close. The company that made the software will be acquired. The hardware will fail. What feels permanent is dependent on infrastructure that is temporary. The physical letter in a box in a closet has a longer expected lifespan than the email in a cloud service. This doesn't mean don't archive digitally. It means the archive requires tending — revisiting, migrating, maintaining. Preservation is not a state but a practice. The archive needs care to remain an archive and not just a graveyard of inaccessible intentions.</p>
+    </div>
+
+    <div class="archive-entry reveal">
+      <span class="archive-tag">silence</span>
+      <h3>what isn't there</h3>
+      <p>The archive's most important content is its gaps. A census that lists only heads of households tells you about heads of households and suppresses everyone else. A company's archive of internal memos tells you what was committed to writing by people who had offices; it tells you nothing about the conversations in hallways, the decisions made informally, the knowledge that was tacit and never documented. Oral cultures, working-class lives, domestic work, the experience of people who had no reason to believe their records would be kept — these are mostly absent from archives, not because nothing happened but because no one designated it worth keeping.</p>
+      <p>Historians call this the archive's silence. It is not empty space; it is evidence of the archive-making process: who had access to materials, who had the time and resources to keep them, whose experience was considered archivable. Reading an archive requires reading its absences as carefully as its contents. What is missing tells you as much as what is present, sometimes more. Your personal archive has the same structure: what you chose to keep and what you let go and what you never thought to record at all — all of this is a portrait of what you believed was worth keeping, which is a portrait of you.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var KEY      = 'archive-items';
+    var input    = document.getElementById('archive-input');
+    var submitBtn= document.getElementById('archive-submit');
+    var clearBtn = document.getElementById('archive-clear');
+    var list     = document.getElementById('archive-list');
+    var countEl  = document.getElementById('archive-count');
+    var placeholder = document.getElementById('archive-placeholder');
+
+    function load() {
+      try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+      catch (e) { return []; }
+    }
+
+    function save(items) {
+      try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (e) {}
+    }
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function stamp() {
+      var d = new Date();
+      return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate())
+        + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+    }
+
+    function render(items) {
+      // remove existing items (keep placeholder)
+      var existing = list.querySelectorAll('.archive-list-item');
+      existing.forEach(function (el) { el.remove(); });
+
+      if (items.length === 0) {
+        placeholder.style.display = '';
+        countEl.textContent = 'nothing archived yet';
+      } else {
+        placeholder.style.display = 'none';
+        countEl.textContent = items.length + (items.length === 1 ? ' item archived' : ' items archived');
+        // Render newest first
+        for (var i = items.length - 1; i >= 0; i--) {
+          var li = document.createElement('li');
+          li.className = 'archive-list-item';
+          li.innerHTML =
+            '<span class="archive-ts">' + items[i].ts + '</span>' +
+            '<span class="archive-text">' + items[i].text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
+          list.insertBefore(li, placeholder);
+        }
+      }
+    }
+
+    function addItem(text) {
+      text = text.trim();
+      if (!text) return;
+      var items = load();
+      items.push({ ts: stamp(), text: text });
+      if (items.length > 200) items = items.slice(items.length - 200);
+      save(items);
+      render(items);
+      input.value = '';
+    }
+
+    submitBtn.addEventListener('click', function () { addItem(input.value); });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { addItem(input.value); }
+    });
+
+    clearBtn.addEventListener('click', function () {
+      if (!confirm('Clear the entire archive? This cannot be undone.')) return;
+      save([]);
+      render([]);
+    });
+
+    render(load());
+  }());
+  </script>
+</body>
+</html>
