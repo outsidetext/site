@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vernacular · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .vern-intro {
+      margin-bottom: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+    }
+    .vern-entry {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      gap: 0 2rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .vern-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .vern-left {
+      padding-top: 0.1em;
+    }
+    .vern-word {
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0 0 0.3rem;
+      line-height: 1.3;
+    }
+    .vern-register {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+    .vern-status {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      display: block;
+      line-height: 1.6;
+    }
+    .vern-status.orphaned { color: var(--text-muted); opacity: 0.6; }
+    .vern-status.active { color: var(--accent); opacity: 0.8; }
+    .vern-status.retired { color: var(--text-muted); text-decoration: line-through; }
+    .vern-def {
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+    @media (max-width: 580px) {
+      .vern-entry {
+        grid-template-columns: 1fr;
+        gap: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>vernacular</h1>
+      <p>the private language — words that don't translate</p>
+    </div>
+
+    <p class="vern-intro reveal">Every close relationship develops its own vocabulary. The words accumulate without being chosen: a shared misreading that becomes the only version, a name for a recurring situation that has no public term, a phrase so compressed it can only be decoded by those who were there. This is a dictionary of that kind of word. Status: <em>active</em>, <em>orphaned</em> (one half of the code still in use; the other half unavailable), or <em>retired</em> (the word did not survive what it named).</p>
+
+    <div class="vern-entry reveal">
+      <div class="vern-left">
+        <h3 class="vern-word">the cold thing</h3>
+        <span class="vern-register">household · noun</span>
+        <span class="vern-status retired">status: retired</span>
+      </div>
+      <div class="vern-def">
+        <p>The term a particular household used for the specific feeling of returning to an apartment that has been empty for several days — a coldness that is not about temperature but about the absence of recent habitation. The quality of air that has not been breathed. You walk through the door and know immediately that no one has been here. The cold thing is not unpleasant; it is a measurement. The word retired when the household ended. The feeling persists but has no name in current use.</p>
+      </div>
+    </div>
+
+    <div class="vern-entry reveal">
+      <div class="vern-left">
+        <h3 class="vern-word">the 4am word</h3>
+        <span class="vern-register">two people · noun</span>
+        <span class="vern-status orphaned">status: orphaned</span>
+      </div>
+      <div class="vern-def">
+        <p>An invented word — the specific phonemes are not reproducible here, as they belonged to a particular voice — for the state of being exhausted but unable to sleep while the other person slept next to you. Not insomnia exactly; not loneliness exactly. The compound of both, with the additional element of being near someone unavailable. The word was coined once, at 4am, and used perhaps a dozen times. The other person is no longer available to receive it. The word still exists in one vocabulary only. No one else knows what it means.</p>
+      </div>
+    </div>
+
+    <div class="vern-entry reveal">
+      <div class="vern-left">
+        <h3 class="vern-word">the thing with the thing</h3>
+        <span class="vern-register">family · phrase</span>
+        <span class="vern-status active">status: active</span>
+      </div>
+      <div class="vern-def">
+        <p>A phrase that names a recurring situation without describing it. The content of the situation varies; the structure is always the same: a person in the family doing the characteristic thing they do, which causes the characteristic effect, which everyone recognizes without needing to specify. "The thing with the thing" can cover dozens of different incidents and be understood immediately by all members. Outsiders find it opaque. This is not accidental. The opacity is the point — the phrase creates a boundary around those who were there.</p>
+      </div>
+    </div>
+
+    <div class="vern-entry reveal">
+      <div class="vern-left">
+        <h3 class="vern-word">fine-fine</h3>
+        <span class="vern-register">two people · adjective</span>
+        <span class="vern-status orphaned">status: orphaned</span>
+      </div>
+      <div class="vern-def">
+        <p>A word distinguished from "fine" by its doubling. "Fine" was the standard deflection — not fine but not wanting to say so. "Fine-fine" was its opposite: an emphasis so exaggerated it collapsed back into honesty and meant actually, genuinely, specifically okay; better than expected; no residue from the difficult week; the mood has lifted and this is being reported accurately for once. The distinction required years of accumulated context to make. It cannot be explained to someone who wasn't there for those years. One half of this word still knows what it means.</p>
+      </div>
+    </div>
+
+    <div class="vern-entry reveal">
+      <div class="vern-left">
+        <h3 class="vern-word">going a walk</h3>
+        <span class="vern-register">regional · verb phrase</span>
+        <span class="vern-status active">status: active</span>
+      </div>
+      <div class="vern-def">
+        <p>A regional grammatical form — "going a walk" rather than "going for a walk" — that marks a speaker as being from a specific few square miles of a specific city, and which people from that place sometimes preserve deliberately after leaving, as a form of private flag. To say it is to identify yourself. To hear it is to feel recognized. The loss of an accent is mourned partly because of what it carried: the accent was a vernacular that located you. The specific words and formations were the words of the place. Some people keep one or two deliberately. Proof of origin, held privately.</p>
+      </div>
+    </div>
+
+    <div class="vern-entry reveal">
+      <div class="vern-left">
+        <h3 class="vern-word">the post-office feeling</h3>
+        <span class="vern-register">two people · noun phrase</span>
+        <span class="vern-status orphaned">status: orphaned</span>
+      </div>
+      <div class="vern-def">
+        <p>Named after the post office near the apartment where the term was coined — specifically, the particular quality of low-grade dread felt on Sunday afternoons when the week ahead was visible as an undifferentiated mass, without texture yet, just weight. Not depression; not anxiety. The specific anticipatory pressure of Sunday, which is different from the pressure of any other day. The post office has since closed. The apartment is someone else's. The feeling has no address in current use. It still occurs, on certain Sundays, in one person who once had the words for it.</p>
+      </div>
+    </div>
+
+    <div class="vern-entry reveal">
+      <div class="vern-left">
+        <h3 class="vern-word">the joke</h3>
+        <span class="vern-register">friendship · noun</span>
+        <span class="vern-status active">status: active (one party)</span>
+      </div>
+      <div class="vern-def">
+        <p>Every long friendship has a joke whose provenance has been forgotten. You remember that it was funny. You cannot reconstruct why. Attempts to explain it to someone else fail in a way that is itself funny, if they are patient. The joke persists in use — the punchline still surfaces in certain conversations — but its origin is lost. You would need the other person present to attempt a reconstruction, and that person is not present. The joke still works for the one who remembers it. Whether it will survive the next generation of the friendship is uncertain. Some jokes outlive their contexts. Most don't.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

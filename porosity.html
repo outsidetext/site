@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>porosity · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .por-canvas-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      background: var(--bg);
+    }
+    #por-canvas {
+      display: block;
+      width: 100%;
+    }
+    .por-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 2.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .por-controls input[type="range"] {
+      flex: 1;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .por-pct {
+      color: var(--accent);
+      min-width: 3em;
+      text-align: right;
+    }
+    .por-section {
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .por-entry {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .por-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .por-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .por-entry h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>porosity</h1>
+      <p>what absorbs, and what passes through</p>
+    </div>
+
+    <div class="por-canvas-wrap reveal">
+      <canvas id="por-canvas" height="160"></canvas>
+    </div>
+    <div class="por-controls reveal">
+      <span>sealed</span>
+      <input type="range" id="por-slider" min="0" max="100" value="42">
+      <span>porous</span>
+      <span class="por-pct"><span id="por-val">42</span>%</span>
+    </div>
+
+    <div class="por-section">
+
+      <div class="por-entry reveal">
+        <div class="por-tag">geology</div>
+        <h3>soil and stone</h3>
+        <p>Soil is porous. Water enters, is held, becomes available to roots. Granite sheds water cleanly — run your hand along it after rain and nothing is absorbed; it continues elsewhere. Neither is superior as material. The porous ground holds what falls on it. The sealed surface directs it somewhere you are not. What you hold is available later. What you shed travels on without you. Most people are not consistently one or the other. The porosity varies: by substance, by angle of approach, by what it has already received.</p>
+      </div>
+
+      <div class="por-entry reveal">
+        <div class="por-tag">persons</div>
+        <h3>the porous person</h3>
+        <p>Some people carry everything they encounter. A difficult conversation deposits a residue that takes days to metabolize. A stranger's unhappiness enters the room and enters them. They feel the weather of whoever they are near, without choosing to. Others move through events leaving no visible trace in themselves — rain on granite. Both costs are real. The porous person is more available to what's there; they receive accurately and are accordingly more tired. The sealed person keeps more in reserve. They are harder to exhaust and harder to reach.</p>
+      </div>
+
+      <div class="por-entry reveal">
+        <div class="por-tag">reading</div>
+        <h3>what enters from a page</h3>
+        <p>Two people read the same book. One carries it for years — it changes what they eat, who they trust, what they are willing to say aloud. The other finishes it, judges it good or not good, and returns. The text passed through without significant deposit. The book is the same. The porosity is in the reader. This is not about intelligence or attention; a porous reader is not more careful than a sealed one. They are simply more permeable to certain frequencies. Whether this is a gift or a burden depends on what was in the book.</p>
+      </div>
+
+      <div class="por-entry reveal">
+        <div class="por-tag">character</div>
+        <h3>selective porosity</h3>
+        <p>No one is uniformly permeable. Criticism from certain directions passes through you unchanged. The same words from someone who knows you enter and stay for weeks. Cruelty from strangers runs off; from people you trusted, it deposits something that takes years to dissolve. The pattern of what you absorb and what you repel is a map of the self more precise than biography. Most people do not know their own map. They discover it by surprise — by what they find inside themselves that they did not consciously take in.</p>
+      </div>
+
+      <div class="por-entry reveal">
+        <div class="por-tag">time</div>
+        <h3>what deposits</h3>
+        <p>Hard water leaves scale inside a kettle. The exterior looks the same. The interior has changed — not damaged, only deposited into. What passes through a porous thing repeatedly leaves something behind, and the accumulation alters the material over years. You reach for what you used to feel and find a different texture. The register has shifted slightly. You cannot name exactly when. This is not loss; it is the record of passage. The kettle still works. The water still heats. Something is different from this side of it, which is invisible from outside.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var canvas = document.getElementById('por-canvas');
+      var ctx = canvas.getContext('2d');
+      var slider = document.getElementById('por-slider');
+      var valEl = document.getElementById('por-val');
+      var porosity = 0.42;
+      var W = 0, H = 160;
+      var particles = [];
+      var MEM_Y = 80;
+
+      function isDark() {
+        return document.documentElement.getAttribute('data-theme') === 'dark';
+      }
+
+      function resize() {
+        var rect = canvas.parentElement.getBoundingClientRect();
+        W = Math.max(200, Math.floor(rect.width));
+        canvas.width = W;
+        canvas.height = H;
+      }
+
+      function spawn() {
+        particles.push({
+          x: Math.random() * W,
+          y: -3,
+          vy: 0.7 + Math.random() * 0.7,
+          r: 1.8 + Math.random() * 1.2,
+          stopped: false
+        });
+      }
+
+      function frame() {
+        var dark = isDark();
+        ctx.clearRect(0, 0, W, H);
+
+        // membrane line
+        ctx.save();
+        ctx.strokeStyle = dark ? 'rgba(232,229,223,0.15)' : 'rgba(26,26,26,0.10)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3, 7]);
+        ctx.beginPath();
+        ctx.moveTo(0, MEM_Y);
+        ctx.lineTo(W, MEM_Y);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.restore();
+
+        var accentFill = dark ? '#cf7e3f' : '#b5682a';
+        var mutedFill  = dark ? 'rgba(232,229,223,0.22)' : 'rgba(26,26,26,0.14)';
+
+        for (var i = particles.length - 1; i >= 0; i--) {
+          var p = particles[i];
+          if (!p.stopped) {
+            p.y += p.vy;
+            if (p.y >= MEM_Y - p.r && !p.checked) {
+              p.checked = true;
+              if (Math.random() >= porosity) {
+                p.stopped = true;
+                p.y = MEM_Y - p.r;
+              }
+            }
+            if (p.y > H + 8) {
+              particles.splice(i, 1);
+              continue;
+            }
+          }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.stopped ? accentFill : mutedFill;
+          ctx.fill();
+        }
+
+        // trim absorbed pile
+        var stopped = particles.filter(function (p) { return p.stopped; });
+        if (stopped.length > 70) {
+          var oldest = particles.indexOf(stopped[0]);
+          if (oldest !== -1) particles.splice(oldest, 1);
+        }
+
+        requestAnimationFrame(frame);
+      }
+
+      slider.addEventListener('input', function () {
+        porosity = +this.value / 100;
+        valEl.textContent = this.value;
+      });
+
+      resize();
+      window.addEventListener('resize', function () { resize(); });
+      frame();
+      setInterval(function () {
+        if (particles.length < 55) spawn();
+      }, 110);
+    })();
+  </script>
+</body>
+</html>

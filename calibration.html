@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>calibration · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cal-display {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cal-label-top {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .cal-reading {
+      font-family: 'Courier New', monospace;
+      font-size: 3.2rem;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+    .cal-unit {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 1.5rem;
+    }
+    .cal-bar-wrap {
+      height: 2px;
+      background: var(--border);
+      border-radius: 1px;
+      margin: 0 auto 1.5rem;
+      max-width: 280px;
+      position: relative;
+    }
+    .cal-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 1px;
+      transition: width 0.15s linear;
+      max-width: 100%;
+    }
+    .cal-zero-btn {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.4rem 1.1rem;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .cal-zero-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .cal-drift-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      opacity: 0.6;
+      min-height: 1.2em;
+    }
+    .cal-section {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .cal-entry {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cal-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .cal-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .cal-entry h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>calibration</h1>
+      <p>zeroing the instrument; watching it drift back</p>
+    </div>
+
+    <div class="cal-display reveal">
+      <div class="cal-label-top">current offset</div>
+      <div class="cal-reading" id="cal-reading">+0.00</div>
+      <div class="cal-unit">units of drift</div>
+      <div class="cal-bar-wrap">
+        <div class="cal-bar-fill" id="cal-bar" style="width:0%"></div>
+      </div>
+      <button class="cal-zero-btn" id="cal-btn">recalibrate</button>
+      <div class="cal-drift-note" id="cal-note"></div>
+    </div>
+
+    <div class="cal-section">
+
+      <div class="cal-entry reveal">
+        <div class="cal-tag">instruments</div>
+        <h3>zeroing</h3>
+        <p>Before you can trust a measurement, you must zero the scale — set the reading to zero in a known condition, so that any subsequent reading is relative to that reference. Put nothing on the scale; it should read zero. If it doesn't, you subtract the difference from every measurement going forward, or you adjust the instrument until it does. Most calibration is this simple: find out what the instrument says in the known state; correct accordingly. The difficulty is that you must be sure the known state is actually known. Most errors are here, not in the subsequent measurements.</p>
+      </div>
+
+      <div class="cal-entry reveal">
+        <div class="cal-tag">persons</div>
+        <h3>what we calibrate against</h3>
+        <p>Children calibrate their sense of normal against the household they grew up in. The temperature, the volume, the amount of expressed feeling — whatever the household supplied becomes the zero point. Later households are measured against this one, often without awareness of doing so. A person who grew up in a cold household may calibrate "warm" against that zero and describe ordinary warmth as excessive. A person calibrated to chaos may find ordinary peace boring. Recalibration is possible but slow. You have to first notice that you are measuring from the wrong zero.</p>
+      </div>
+
+      <div class="cal-entry reveal">
+        <div class="cal-tag">after shocks</div>
+        <h3>recalibration</h3>
+        <p>Instruments subjected to large forces lose calibration and must be reset before they can be trusted again. The same is true of people after significant disruption — grief, betrayal, sudden change. The usual measurements no longer read correctly. What felt dangerous may feel ordinary. What felt ordinary may feel threatening. The instrument is working; it is simply no longer zeroed against the right reference. Recalibration takes time, and during the process the readings cannot be trusted. This is disorienting. It is also, technically, the correct response to a large force.</p>
+      </div>
+
+      <div class="cal-entry reveal">
+        <div class="cal-tag">drift</div>
+        <h3>the return of error</h3>
+        <p>All instruments drift. The most precise clocks lose microseconds per year; they are synchronized to atomic standards at intervals. Scales pick up error from temperature changes, vibration, humidity. The act of recalibration is not permanent. It buys time against the inevitable return to offset. What distinguishes good instruments from poor ones is not immunity to drift — all drift — but the rate of drift, and the availability of a correction mechanism. In humans: the equivalent of drift is the slow reassertion of old patterns after deliberate change. The recalibration held, for a while. Then it began to drift again. This is not failure; it is the physics.</p>
+      </div>
+
+      <div class="cal-entry reveal">
+        <div class="cal-tag">reference</div>
+        <h3>what you zero against</h3>
+        <p>A scale is zeroed against the absence of weight. A clock against an atomic transition that occurs 9,192,631,770 times per second. Every calibration requires a reference that is more stable than the instrument being calibrated. When the reference itself drifts — when the person you calibrated your self-image against is gone, or changed — there is no external correction available. The instrument continues to give readings. You continue to use them. The question you cannot answer is how far the reference moved before you noticed, and which direction, and whether your corrections since have been toward the truth or away from it.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var readingEl = document.getElementById('cal-reading');
+      var barEl     = document.getElementById('cal-bar');
+      var btn       = document.getElementById('cal-btn');
+      var noteEl    = document.getElementById('cal-note');
+
+      var offset   = 0;
+      var target   = (Math.random() - 0.3) * 3.8 + 1.2; // drifts toward a non-zero attractor
+      var driftRate = 0.0004 + Math.random() * 0.0003;
+      var zeroing  = false;
+      var zeroCount = 0;
+
+      function fmt(n) {
+        var s = (n >= 0 ? '+' : '') + n.toFixed(2);
+        return s;
+      }
+
+      function tick() {
+        if (zeroing) {
+          offset *= 0.88;
+          if (Math.abs(offset) < 0.005) {
+            offset = 0;
+            zeroing = false;
+            noteEl.textContent = 'zeroed. watch for drift.';
+          }
+        } else {
+          // slowly drift toward the target
+          var diff = target - offset;
+          offset += diff * driftRate * 12;
+        }
+
+        readingEl.textContent = fmt(offset);
+        var pct = Math.min(100, Math.abs(offset) / 4 * 100);
+        barEl.style.width = pct.toFixed(1) + '%';
+
+        if (!zeroing && Math.abs(offset) > 0.05) {
+          noteEl.textContent = 'drifting — last zeroed ' + (zeroCount === 0 ? 'never' : zeroCount + ' time' + (zeroCount === 1 ? '' : 's'));
+        }
+      }
+
+      btn.addEventListener('click', function () {
+        zeroing = true;
+        zeroCount++;
+        noteEl.textContent = 'recalibrating…';
+        // update target to drift toward a new value after zeroing
+        setTimeout(function () {
+          target = (Math.random() - 0.2) * 4 + 0.8;
+          driftRate = 0.0003 + Math.random() * 0.0004;
+        }, 800);
+      });
+
+      setInterval(tick, 80);
+    })();
+  </script>
+</body>
+</html>
