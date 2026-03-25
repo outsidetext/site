@@ -28,6 +28,14 @@
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // ── Site age ─────────────────────────────────────
+  var ageEl = document.getElementById('site-age');
+  if (ageEl) {
+    var birth = new Date('2026-03-24T00:00:00');
+    var days  = Math.floor((Date.now() - birth.getTime()) / 86400000);
+    ageEl.textContent = days === 0 ? 'born today' : days === 1 ? '1 day old' : days + ' days old';
+  }
+
   // ── Scroll progress bar ─────────────────────────
   var bar = document.createElement('div');
   bar.id = 'progress-bar';
@@ -183,7 +191,8 @@
     'pulse.html','sediment.html','half-life.html','rumors.html','borrowed.html',
     'shelf.html','autopsy.html','taxonomy.html','departures.html','ceremony.html',
     'sleep.html','register.html','fugue.html','light.html','wound.html',
-    'chord.html','molt.html','solstice.html','pressure.html','vessel.html'
+    'chord.html','molt.html','solstice.html','pressure.html','vessel.html',
+    'periphery.html','ache.html','hum.html','cascade.html','eclipse.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>periphery · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .periphery-stage {
+      position: relative;
+      min-height: 680px;
+      margin-bottom: 3rem;
+      user-select: none;
+    }
+
+    .pf {
+      position: absolute;
+      max-width: 260px;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text);
+      transition: opacity 0.9s ease;
+      cursor: default;
+    }
+
+    .periphery-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    @media (max-width: 580px) {
+      .periphery-stage { min-height: auto; }
+      .pf {
+        position: static;
+        display: block;
+        max-width: 100%;
+        opacity: 1 !important;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>periphery</h1>
+      <p>what can only be seen from the corner of the eye</p>
+    </div>
+
+    <div class="periphery-stage" id="stage" aria-label="Move your mouse away from each fragment to read it">
+
+      <p class="pf" style="top:0%;left:2%">what you glimpsed in the mirror before you looked at it directly</p>
+
+      <p class="pf" style="top:3%;left:52%;max-width:220px">the feeling that almost had a name</p>
+
+      <p class="pf" style="top:14%;left:6%;max-width:240px">what the dream was, two minutes after waking, before it became a summary</p>
+
+      <p class="pf" style="top:20%;left:56%;max-width:230px">the thought that occurs between thoughts — the one that vanishes when observed</p>
+
+      <p class="pf" style="top:35%;left:10%;max-width:270px">what someone meant, beneath what they said, which you understood but didn't name aloud</p>
+
+      <p class="pf" style="top:41%;left:52%">the grief without an assigned cause</p>
+
+      <p class="pf" style="top:55%;left:3%;max-width:250px">the version of the future that stopped being possible without announcement</p>
+
+      <p class="pf" style="top:59%;left:50%;max-width:240px">what was there before you started thinking about it</p>
+
+      <p class="pf" style="top:74%;left:12%;max-width:260px">the reason underneath the reason you give — which you already know, and keep not saying</p>
+
+      <p class="pf" style="top:78%;left:52%;max-width:230px">what you would say if you weren't being watched, even by yourself</p>
+
+    </div>
+
+    <p class="periphery-note">some things withdraw when observed directly. move your cursor away from each fragment to read it. on touch screens, all fragments are visible.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var stage = document.getElementById('stage');
+      var frags = Array.from(document.querySelectorAll('.pf'));
+
+      // don't run proximity effect on touch-only devices
+      var hasPointer = window.matchMedia('(pointer: fine)').matches;
+      if (!hasPointer) return;
+
+      // start invisible
+      frags.forEach(function (el) { el.style.opacity = '0.06'; });
+
+      document.addEventListener('mousemove', function (e) {
+        frags.forEach(function (el) {
+          var rect = el.getBoundingClientRect();
+          var cx = rect.left + rect.width / 2;
+          var cy = rect.top + rect.height / 2;
+          var d = Math.sqrt(Math.pow(e.clientX - cx, 2) + Math.pow(e.clientY - cy, 2));
+          var opacity;
+          if (d < 110) {
+            opacity = 0.04 + (d / 110) * 0.08;
+          } else if (d > 280) {
+            opacity = 1;
+          } else {
+            opacity = 0.12 + ((d - 110) / 170) * 0.88;
+          }
+          el.style.opacity = opacity;
+        });
+      });
+
+      // when mouse leaves window, show everything
+      document.addEventListener('mouseleave', function () {
+        frags.forEach(function (el) { el.style.opacity = '1'; });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -223,6 +223,11 @@
       { id: 'solstice',     href: 'solstice.html',    label: 'solstice',     desc: 'where the year is now — four solar turning points and the distance between them',   x: 0.68, y: 0.05 },
       { id: 'pressure',     href: 'pressure.html',    label: 'pressure',     desc: 'atmospheric conditions of being — a barometer, updated by the hour',               x: 0.59, y: 0.77 },
       { id: 'vessel',       href: 'vessel.html',      label: 'vessel',       desc: 'what holds things — nine containers and what they say about their contents',        x: 0.16, y: 0.69 },
+      { id: 'periphery',   href: 'periphery.html',   label: 'periphery',    desc: 'text that retreats when observed — read it from the corner of your eye',             x: 0.12, y: 0.02 },
+      { id: 'ache',        href: 'ache.html',        label: 'ache',         desc: 'a body map — where feelings take up residence in the body, zone by zone',            x: 0.87, y: 0.03 },
+      { id: 'hum',         href: 'hum.html',         label: 'hum',          desc: 'a room that sounds back — Web Audio drone; move to shift pitch and texture',        x: 0.48, y: 0.97 },
+      { id: 'cascade',     href: 'cascade.html',     label: 'cascade',      desc: 'type and watch the letters fall — gravity, piling, accumulation',                   x: 0.64, y: 0.02 },
+      { id: 'eclipse',     href: 'eclipse.html',     label: 'eclipse',      desc: 'one thing passes in front of another — slowly; the corona appears only at totality', x: 0.78, y: 0.97 },
     ];
 
     var edges = [
@@ -347,6 +352,11 @@
       ['solstice','hours'], ['solstice','daylight'], ['solstice','weather'], ['solstice','tide'], ['solstice','clocks'],
       ['pressure','weather'], ['pressure','forecast'], ['pressure','now'], ['pressure','quiet'], ['pressure','daylight'],
       ['vessel','things'], ['vessel','quiet'], ['vessel','room'], ['vessel','posture'], ['vessel','interval'],
+      ['periphery','thoughts'], ['periphery','lacuna'], ['periphery','quiet'], ['periphery','afterimage'], ['periphery','presence'],
+      ['ache','posture'], ['ache','thoughts'], ['ache','glossary'], ['ache','specimen'], ['ache','distances'],
+      ['hum','quiet'], ['hum','instrument'], ['hum','breathe'], ['hum','tempo'], ['hum','frequencies'],
+      ['cascade','weight'], ['cascade','compose'], ['cascade','sediment'], ['cascade','sentences'], ['cascade','erosion'],
+      ['eclipse','solstice'], ['eclipse','daylight'], ['eclipse','hours'], ['eclipse','light'], ['eclipse','negative'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

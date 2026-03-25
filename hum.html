@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hum · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hum-stage {
+      margin: 3rem 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 3rem 2rem;
+      text-align: center;
+      cursor: crosshair;
+      transition: border-color 0.4s;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .hum-stage.active {
+      border-color: var(--accent);
+    }
+
+    .hum-prompt {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-style: italic;
+      transition: opacity 0.5s;
+    }
+
+    .hum-prompt.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .hum-status {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      min-height: 1.4em;
+      transition: opacity 0.4s;
+    }
+
+    .hum-orb {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, var(--accent), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.15s ease;
+      pointer-events: none;
+    }
+
+    .hum-orb.active {
+      opacity: 0.55;
+      animation: orb-breathe 3s ease-in-out infinite;
+    }
+
+    @keyframes orb-breathe {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.12); }
+    }
+
+    .hum-stop {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: Georgia, serif;
+      font-size: 0.85rem;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s, color 0.2s, border-color 0.2s;
+    }
+
+    .hum-stop.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .hum-stop:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .hum-info {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hum-info p + p { margin-top: 0.8rem; }
+
+    .hum-note {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>hum</h1>
+      <p>a room that sounds back — move the mouse to change what you hear</p>
+    </div>
+
+    <div class="hum-stage" id="hum-stage" role="button" aria-label="Click to begin humming">
+      <div class="hum-orb" id="hum-orb"></div>
+      <p class="hum-prompt" id="hum-prompt">click to begin</p>
+      <div class="hum-status" id="hum-status"></div>
+      <button class="hum-stop" id="hum-stop" aria-label="Stop">stop</button>
+    </div>
+
+    <div class="hum-info">
+      <p>A room can hum. Buildings hum at their resonant frequencies — the particular pitch at which their structure vibrates most naturally. Power lines hum at 60hz in North America, 50hz in Europe. The human body has its own resonant frequencies: the thorax at approximately 5hz, the abdomen at 4–8hz, the eyeballs at around 19hz.</p>
+      <p>Below 20hz, sound becomes vibration rather than hearing. The border between the two senses dissolves. You stop hearing it and start <em>being</em> it.</p>
+      <p>The note A4 is tuned to 440hz by international agreement since 1939. Before that: 432hz, 435hz, 423hz, sometimes higher, sometimes lower, depending on where you were and when. The standard is arbitrary. So is every other standard.</p>
+      <p>When two people hum together without planning to, they often find the same note within a few seconds. The body knows how to harmonize before the mind catches up.</p>
+    </div>
+
+    <p class="hum-note">move your mouse left and right within the stage to shift pitch. up and down to change the texture. the sound is generated in your browser — nothing is transmitted.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var stage   = document.getElementById('hum-stage');
+      var orb     = document.getElementById('hum-orb');
+      var prompt  = document.getElementById('hum-prompt');
+      var statusEl= document.getElementById('hum-status');
+      var stopBtn = document.getElementById('hum-stop');
+
+      var ctx = null;
+      var osc = null;
+      var gainNode = null;
+      var filterNode = null;
+      var running = false;
+      var mouseX = 0.5;
+      var mouseY = 0.5;
+
+      // Pentatonic frequencies (A2 register, warm and low)
+      var NOTES = [110.00, 123.47, 138.59, 164.81, 185.00, 220.00, 246.94, 277.18];
+
+      function freqForX(x) {
+        var idx = Math.floor(x * (NOTES.length - 1));
+        var lo  = NOTES[Math.max(0, idx)];
+        var hi  = NOTES[Math.min(NOTES.length - 1, idx + 1)];
+        var t   = (x * (NOTES.length - 1)) - idx;
+        return lo + (hi - lo) * t;
+      }
+
+      function noteNameForFreq(f) {
+        var names = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#'];
+        var midi = Math.round(12 * Math.log2(f / 440) + 69);
+        return names[((midi % 12) + 12) % 12] + Math.floor(midi / 12 - 1);
+      }
+
+      function updateSound() {
+        if (!running || !osc) return;
+        var freq = freqForX(mouseX);
+        var gain = 0.08 + (1 - mouseY) * 0.18;
+        var filterFreq = 200 + mouseY * 1800;
+
+        osc.frequency.setTargetAtTime(freq, ctx.currentTime, 0.25);
+        gainNode.gain.setTargetAtTime(gain, ctx.currentTime, 0.15);
+        filterNode.frequency.setTargetAtTime(filterFreq, ctx.currentTime, 0.2);
+
+        var name = noteNameForFreq(freq);
+        statusEl.textContent = name + ' · ' + Math.round(freq) + ' hz';
+      }
+
+      function start() {
+        if (running) return;
+
+        try {
+          ctx = new (window.AudioContext || window.webkitAudioContext)();
+        } catch (e) {
+          statusEl.textContent = 'audio not supported in this browser';
+          return;
+        }
+
+        // create nodes
+        osc = ctx.createOscillator();
+        gainNode = ctx.createGain();
+        filterNode = ctx.createBiquadFilter();
+
+        osc.type = 'sine';
+        osc.frequency.value = freqForX(mouseX);
+        gainNode.gain.value = 0.0;
+        filterNode.type = 'lowpass';
+        filterNode.frequency.value = 800;
+
+        // second oscillator for richness (slightly detuned)
+        var osc2 = ctx.createOscillator();
+        var gain2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.value = freqForX(mouseX) * 1.502; // perfect fifth
+        gain2.gain.value = 0.0;
+
+        osc.connect(filterNode);
+        osc2.connect(filterNode);
+        filterNode.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        osc.start();
+        osc2.start();
+
+        // store osc2 ref to detune it with mouse
+        stage._osc2 = osc2;
+        stage._gain2 = gain2;
+
+        // fade in
+        gainNode.gain.setTargetAtTime(0.12, ctx.currentTime, 0.8);
+        gain2.gain.setTargetAtTime(0.05, ctx.currentTime, 0.8);
+
+        running = true;
+        stage.classList.add('active');
+        orb.classList.add('active');
+        prompt.classList.add('hidden');
+        stopBtn.classList.add('visible');
+        updateSound();
+      }
+
+      function stop() {
+        if (!running || !ctx) return;
+        gainNode.gain.setTargetAtTime(0, ctx.currentTime, 0.3);
+        setTimeout(function () {
+          try { osc.stop(); } catch (e) {}
+          try { if (stage._osc2) stage._osc2.stop(); } catch (e) {}
+          try { ctx.close(); } catch (e) {}
+          ctx = null;
+          osc = null;
+          gainNode = null;
+          filterNode = null;
+          stage._osc2 = null;
+        }, 600);
+
+        running = false;
+        stage.classList.remove('active');
+        orb.classList.remove('active');
+        prompt.classList.remove('hidden');
+        stopBtn.classList.remove('visible');
+        statusEl.textContent = '';
+      }
+
+      stage.addEventListener('click', function (e) {
+        if (e.target === stopBtn) return;
+        if (running) return;
+        start();
+      });
+
+      stopBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        stop();
+      });
+
+      stage.addEventListener('mousemove', function (e) {
+        var rect = stage.getBoundingClientRect();
+        mouseX = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        mouseY = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+        if (running) updateSound();
+        // update orb position subtly
+        orb.style.transform = 'translate(' +
+          ((mouseX - 0.5) * 30) + 'px,' +
+          ((mouseY - 0.5) * 30) + 'px) scale(1)';
+      });
+
+      // stop when navigating away
+      window.addEventListener('beforeunload', stop);
+    })();
+  </script>
+</body>
+</html>

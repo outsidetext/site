@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ache · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ache-layout {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 3.5rem;
+      align-items: start;
+      margin-top: 0.5rem;
+    }
+
+    /* --- The body figure --- */
+    .ache-figure {
+      position: sticky;
+      top: 6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .ache-zone {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 0.5rem 0.85rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: background 0.2s, color 0.15s, border-color 0.15s;
+      letter-spacing: 0.04em;
+      text-align: center;
+      user-select: none;
+    }
+
+    .ache-zone:first-child {
+      border-top: 1px solid var(--border);
+      border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+      padding-top: 0.75rem;
+    }
+
+    .ache-zone:nth-child(2) { /* jaw - narrower */
+      width: 75%;
+    }
+
+    .ache-zone:nth-child(3) { /* throat - narrow */
+      width: 55%;
+    }
+
+    .ache-zone:nth-child(4) { /* chest */
+      width: 90%;
+    }
+
+    .ache-zone:nth-child(5) { /* shoulders */
+      width: 100%;
+    }
+
+    .ache-zone:nth-child(6) { /* stomach */
+      width: 82%;
+    }
+
+    .ache-zone:nth-child(7) { /* hands - wide, for arms */
+      width: 100%;
+    }
+
+    .ache-zone:nth-child(8) { /* back */
+      width: 88%;
+    }
+
+    .ache-zone:nth-child(9) { /* legs */
+      width: 72%;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .ache-zone:hover,
+    .ache-zone.active {
+      background: var(--border);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .ache-zone.active {
+      font-weight: bold;
+    }
+
+    /* --- Description panel --- */
+    .ache-desc {
+      min-height: 300px;
+    }
+
+    .ache-desc-zone {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.85rem;
+    }
+
+    .ache-desc-text {
+      font-size: 1rem;
+      line-height: 1.85;
+      transition: opacity 0.3s ease;
+    }
+
+    .ache-desc-text.fading {
+      opacity: 0;
+    }
+
+    .ache-note {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    @media (max-width: 580px) {
+      .ache-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .ache-figure {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.4rem;
+      }
+
+      .ache-zone,
+      .ache-zone:nth-child(n) {
+        width: auto;
+        border: 1px solid var(--border) !important;
+        border-radius: 4px !important;
+        padding: 0.4rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>ache</h1>
+      <p>where feelings live in the body — a map</p>
+    </div>
+
+    <div class="ache-layout">
+
+      <div class="ache-figure" role="listbox" aria-label="Body zones">
+        <div class="ache-zone active" data-zone="0" role="option" tabindex="0">behind the eyes</div>
+        <div class="ache-zone" data-zone="1" role="option" tabindex="0">jaw</div>
+        <div class="ache-zone" data-zone="2" role="option" tabindex="0">throat</div>
+        <div class="ache-zone" data-zone="3" role="option" tabindex="0">chest</div>
+        <div class="ache-zone" data-zone="4" role="option" tabindex="0">shoulders</div>
+        <div class="ache-zone" data-zone="5" role="option" tabindex="0">stomach</div>
+        <div class="ache-zone" data-zone="6" role="option" tabindex="0">hands</div>
+        <div class="ache-zone" data-zone="7" role="option" tabindex="0">back</div>
+        <div class="ache-zone" data-zone="8" role="option" tabindex="0">legs</div>
+      </div>
+
+      <div class="ache-desc">
+        <span class="ache-desc-zone" id="ache-zone-label">behind the eyes</span>
+        <div class="ache-desc-text" id="ache-desc-text"></div>
+      </div>
+
+    </div>
+
+    <p class="ache-note">the body keeps records the mind doesn't file. this is a partial inventory. the locations are approximate.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var entries = [
+        {
+          zone: 'behind the eyes',
+          text: 'Exhaustion accumulates at depth here — not the kind that sleep fully resolves, but the kind that has been building longer than one night. There\'s a specific pressure behind the eyes that arrives when you\'ve been looking at screens, yes, but more when you\'ve been looking too closely at anything for too long. The body registers attention as effort. It keeps the tab open.'
+        },
+        {
+          zone: 'jaw',
+          text: 'The jaw is where sentences go when you don\'t say them. Held long enough, they settle into the muscle as tension — the body practicing them anyway, rehearsing the delivery of things that will never be delivered. Dentists notice. The jaw does not distinguish between the unsaid and the unsayable.'
+        },
+        {
+          zone: 'throat',
+          text: 'Unlike feelings that pass, what goes unsaid here tends not to dissolve — it deposits. The layers accumulate. You can feel them at 2am, or during silences that were supposed to be comfortable, or when someone asks how you really are and the throat does something complicated before the mouth answers.'
+        },
+        {
+          zone: 'chest',
+          text: 'Where grief takes up residence, and also where music enters. The same chamber handles both. This is not a coincidence — or if it is, it\'s the most important one. The chest tightens for beauty and for loss by the same mechanism, which explains why they are sometimes confused, and why certain songs are dangerous.'
+        },
+        {
+          zone: 'shoulders',
+          text: 'The body\'s ledger for things not yet resolved. The taller the pile of unfinished business, deferred decisions, and slow-burning anxieties, the more the shoulders know about it. Massage therapists find things stored here that the person has forgotten about. The shoulders haven\'t.'
+        },
+        {
+          zone: 'stomach',
+          text: 'Anticipation lives here, and so does dread. The body uses the same sensation for both — a clenching, a hollowing, a readiness for something that hasn\'t arrived. It does not consider this a design flaw. The stomach simply prepares. What it is preparing for is not its department.'
+        },
+        {
+          zone: 'hands',
+          text: 'The memory of reaching. Long after the mind has moved on, the hands retain the gesture — the particular distance of a specific reach, the angle of arrival, the texture of what was or wasn\'t there. They move toward things that are no longer present. The hands are loyal to an earlier version of the world.'
+        },
+        {
+          zone: 'back',
+          text: 'What\'s being carried. Not weight exactly — more like the posture that weight creates over time, the way the spine adapts to accommodate what the mind won\'t put down. The back is not asked; it simply adjusts. And then, sometimes, in a moment of stillness or in a stranger\'s waiting room, it gives its honest report.'
+        },
+        {
+          zone: 'legs',
+          text: 'The instinct to leave, and the instinct to stay. The legs hold both simultaneously, vibrating slightly with the tension between them. They contain every time you didn\'t run, and every time you stayed longer than was good for you, and every time walking somewhere solved something that sitting had not.'
+        }
+      ];
+
+      var zones = document.querySelectorAll('.ache-zone');
+      var labelEl = document.getElementById('ache-zone-label');
+      var textEl  = document.getElementById('ache-desc-text');
+      var current = 0;
+
+      function show(idx, isInitial) {
+        if (!isInitial) {
+          textEl.classList.add('fading');
+        }
+        setTimeout(function () {
+          labelEl.textContent = entries[idx].zone;
+          textEl.textContent  = entries[idx].text;
+          textEl.classList.remove('fading');
+        }, isInitial ? 0 : 200);
+
+        zones.forEach(function (z, i) {
+          z.classList.toggle('active', i === idx);
+        });
+        current = idx;
+      }
+
+      show(0, true);
+
+      zones.forEach(function (z, i) {
+        z.addEventListener('mouseenter', function () { show(i); });
+        z.addEventListener('click',      function () { show(i); });
+        z.addEventListener('keydown',    function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            show(i);
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

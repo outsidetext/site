@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eclipse · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .eclipse-scene {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin: 3rem auto;
+    }
+
+    .eclipse-sun {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--border);
+      border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 1s ease;
+    }
+
+    .eclipse-sun.glowing {
+      box-shadow: 0 0 40px 14px color-mix(in srgb, var(--accent) 30%, transparent);
+    }
+
+    .eclipse-sun-text {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      text-align: center;
+      padding: 2rem;
+      color: var(--text);
+      transition: opacity 0.8s ease;
+      max-width: 200px;
+    }
+
+    .eclipse-moon {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      transform: translateX(340px);
+      /* animation set by JS */
+    }
+
+    .eclipse-corona {
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      pointer-events: none;
+      /* corona glow */
+      box-shadow:
+        0 0 0 2px color-mix(in srgb, var(--accent) 60%, transparent),
+        0 0 20px 8px color-mix(in srgb, var(--accent) 35%, transparent),
+        0 0 50px 20px color-mix(in srgb, var(--accent) 15%, transparent);
+    }
+
+    .eclipse-corona.visible {
+      opacity: 1;
+    }
+
+    .eclipse-phase {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 2.5rem;
+    }
+
+    .eclipse-phase-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+      min-height: 1.2em;
+    }
+
+    .eclipse-phase-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--text);
+      min-height: 5em;
+      transition: opacity 0.6s ease;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .eclipse-phase-text.fading {
+      opacity: 0;
+    }
+
+    .eclipse-progress {
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-bottom: 3rem;
+    }
+
+    .eclipse-info {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+    }
+
+    .eclipse-info p + p { margin-top: 0.8rem; }
+
+    .eclipse-note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>eclipse</h1>
+      <p>one thing passes in front of another — slowly, without asking</p>
+    </div>
+
+    <div class="eclipse-phase">
+      <span class="eclipse-phase-label" id="eclipse-label"></span>
+      <div class="eclipse-phase-text" id="eclipse-text"></div>
+    </div>
+
+    <div class="eclipse-scene" aria-hidden="true">
+      <div class="eclipse-sun" id="eclipse-sun">
+        <div class="eclipse-sun-text" id="eclipse-sun-text"></div>
+      </div>
+      <div class="eclipse-corona" id="eclipse-corona"></div>
+      <div class="eclipse-moon" id="eclipse-moon"></div>
+    </div>
+
+    <div class="eclipse-progress" id="eclipse-progress"></div>
+
+    <div class="eclipse-info">
+      <p>A total solar eclipse occurs when the moon passes directly between the earth and the sun, and the moon's apparent size exactly matches the sun's. This is a coincidence: the sun is 400 times larger than the moon, but also 400 times farther away. The match is not guaranteed by physics. It is an accident of distance.</p>
+      <p>During totality, the sun's corona — its outermost atmosphere, which extends millions of kilometers into space — becomes visible. The corona is always there. It cannot normally be seen because the sun's surface is so much brighter. The eclipse, by hiding the sun, reveals something the sun was hiding all along.</p>
+      <p>Totality lasts at most seven minutes and thirty-two seconds. Most eclipses produce less. The moon continues its orbit and the sun returns, and the corona vanishes back into the glare. Some people travel thousands of kilometers to stand in the path of the shadow for two minutes. They say afterward that no description prepares you.</p>
+    </div>
+
+    <p class="eclipse-note">the cycle repeats every eight minutes. the animation is not a simulation of any particular eclipse — it is a general case.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var CYCLE = 480000; // 8 minutes in ms
+      var start = Date.now();
+
+      var moonEl   = document.getElementById('eclipse-moon');
+      var sunEl    = document.getElementById('eclipse-sun');
+      var sunText  = document.getElementById('eclipse-sun-text');
+      var corona   = document.getElementById('eclipse-corona');
+      var labelEl  = document.getElementById('eclipse-label');
+      var textEl   = document.getElementById('eclipse-text');
+      var progEl   = document.getElementById('eclipse-progress');
+
+      // Moon moves from +340px (right) to -340px (left) over one cycle
+      // First contact (overlap starts) at progress ~0.25
+      // Totality center at progress 0.5
+      // Last contact (overlap ends) at progress ~0.75
+
+      var phases = [
+        {
+          key: 'before',
+          range: [0, 0.25],
+          label: 'before',
+          text: 'Everything as usual. The light is ordinary. Something is moving through the sky but you haven\'t noticed yet — it is still too distant, still on the approach, still preparing to become significant.',
+          sun: 'ordinary light'
+        },
+        {
+          key: 'first-contact',
+          range: [0.25, 0.40],
+          label: 'first contact',
+          text: 'One thing has begun to cover another. The light changes subtly — a quality rather than a quantity. Most things don\'t notice. The birds notice. They become quiet, briefly confused about the time.',
+          sun: 'something beginning'
+        },
+        {
+          key: 'partial',
+          range: [0.40, 0.47],
+          label: 'deepening',
+          text: 'The partial eclipse deepens. The covered portion grows. You are watching one thing become less visible because something else has moved in front of it. The obscured part is still there — you simply can\'t see it.',
+          sun: 'what remains visible'
+        },
+        {
+          key: 'totality',
+          range: [0.47, 0.53],
+          label: 'totality',
+          text: 'The corona is visible now. It was always there — the sun\'s outermost atmosphere, millions of kilometers wide, extending silently into space. The eclipse, by hiding the sun, has revealed what the sun\'s own brightness was concealing. There is a lesson here. It may not be comfortable.',
+          sun: '·'
+        },
+        {
+          key: 'emerging',
+          range: [0.53, 0.60],
+          label: 'emerging',
+          text: 'The shadow lifts from the left side first. Light returns to the newly uncovered crescent. The corona is already gone — the sun\'s surface is bright enough again to drown it. What was visible only during the eclipse has returned to invisibility.',
+          sun: 'what returns'
+        },
+        {
+          key: 'last-contact',
+          range: [0.60, 0.75],
+          label: 'last contact',
+          text: 'The overlap is ending. The moon continues its orbit without consulting you about the schedule. The sun is mostly itself again. The moment of total coverage lasted at most seven minutes. It will not happen again at this location for years, perhaps decades.',
+          sun: 'nearly over'
+        },
+        {
+          key: 'after',
+          range: [0.75, 1.0],
+          label: 'after',
+          text: 'Everything as usual, and different. The light is ordinary again. The birds have resumed their normal interpretations of time. You carry the memory of the two minutes of totality, and the corona you saw, which no photograph quite captures — the sense that something was briefly revealed that is otherwise permanently hidden.',
+          sun: 'ordinary light, again'
+        }
+      ];
+
+      var currentPhaseKey = null;
+
+      function getProgress() {
+        return ((Date.now() - start) % CYCLE) / CYCLE;
+      }
+
+      function getPhase(p) {
+        for (var i = 0; i < phases.length; i++) {
+          if (p >= phases[i].range[0] && p < phases[i].range[1]) return phases[i];
+        }
+        return phases[phases.length - 1];
+      }
+
+      function moonX(p) {
+        // from +340px at p=0 to -340px at p=1
+        return 340 - p * 680;
+      }
+
+      function setPhase(phase) {
+        if (phase.key === currentPhaseKey) return;
+        currentPhaseKey = phase.key;
+
+        textEl.classList.add('fading');
+        setTimeout(function () {
+          labelEl.textContent = phase.label;
+          textEl.textContent  = phase.text;
+          sunText.textContent = phase.sun;
+          textEl.classList.remove('fading');
+        }, 400);
+      }
+
+      function tick() {
+        var p = getProgress();
+        var phase = getPhase(p);
+
+        // position moon
+        moonEl.style.transform = 'translateX(' + moonX(p) + 'px)';
+
+        // corona: show during totality
+        var isTotality = (p >= 0.47 && p < 0.53);
+        corona.classList.toggle('visible', isTotality);
+        sunEl.classList.toggle('glowing', p >= 0.25 && p < 0.75);
+
+        setPhase(phase);
+
+        // progress bar
+        var minLeft = Math.floor((CYCLE * (1 - p)) / 60000);
+        var secLeft = Math.floor((CYCLE * (1 - p)) / 1000) % 60;
+        progEl.textContent = 'cycle: ' + Math.round(p * 100) + '% · next repetition in ' +
+          minLeft + 'm ' + (secLeft < 10 ? '0' : '') + secLeft + 's';
+      }
+
+      // set animation on moon (CSS does the smooth movement)
+      // but we update via JS each frame for phase detection
+      var raf;
+      function loop() {
+        tick();
+        raf = requestAnimationFrame(loop);
+      }
+      loop();
+
+      // cleanup
+      window.addEventListener('beforeunload', function () {
+        if (raf) cancelAnimationFrame(raf);
+      });
+    })();
+  </script>
+</body>
+</html>
