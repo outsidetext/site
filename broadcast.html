@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>broadcast · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tx-box {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.75rem;
+      font-family: 'Courier New', monospace;
+    }
+    .tx-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.9rem;
+    }
+    .tx-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .tx-freq {
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+    }
+    .signal-bar {
+      height: 2px;
+      background: var(--border);
+      margin-bottom: 1.25rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 1px;
+    }
+    .signal-fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      background: var(--accent);
+      width: 0;
+      transition: width 0.15s ease-out;
+    }
+    .tx-text {
+      font-size: 0.84rem;
+      line-height: 1.65;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      min-height: 1.4em;
+    }
+    .tx-controls {
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .tx-btn {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      background: none;
+      padding: 0.3rem 0.7rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tx-btn:hover, .tx-btn.active { color: var(--accent); border-color: var(--accent); }
+    .tx-status {
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+    .broadcast-entry {
+      margin-bottom: 2.75rem;
+      padding-bottom: 2.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .broadcast-entry:last-child { border-bottom: none; }
+    .broadcast-freq {
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-bottom: 0.65rem;
+      letter-spacing: 0.02em;
+    }
+    .broadcast-entry p { margin: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>broadcast</h1>
+      <p>a daily transmission, received at varying clarity</p>
+    </div>
+
+    <div class="tx-box">
+      <div class="tx-header">
+        <span class="tx-label">TRANSMISSION · DAY <span id="tx-day"></span></span>
+        <span class="tx-freq" id="tx-freq">— MHz</span>
+      </div>
+      <div class="signal-bar"><div class="signal-fill" id="signal-fill"></div></div>
+      <div class="tx-text" id="tx-text"></div>
+      <div class="tx-controls">
+        <button class="tx-btn" id="tx-btn">▶ enable static</button>
+        <span class="tx-status" id="tx-status">signal present · audio off</span>
+      </div>
+    </div>
+
+    <div class="broadcast-entry reveal">
+      <div class="broadcast-freq">shortwave propagation</div>
+      <p>Shortwave signals travel by bouncing between the ionosphere and the earth's surface — a path that shouldn't work, by ordinary reasoning. During the day, the ionosphere absorbs most of the signal. At night it rises and becomes reflective; broadcasts travel much further. A transmission that goes nowhere in the afternoon can reach across an ocean after dark. What is receivable depends on whether you are trying before or after nightfall. The same frequency. The same transmitter. A different result depending entirely on the time.</p>
+    </div>
+
+    <div class="broadcast-entry reveal">
+      <div class="broadcast-freq">numbers stations</div>
+      <p>During the Cold War, mysterious shortwave stations broadcast strings of numbers read aloud — usually a woman's voice, sometimes a child's, preceded by a call sign in Morse. The numbers were encrypted messages to intelligence agents in the field. A listener in a neutral country could tune in and receive a transmission intended for one specific person somewhere else — a message they had no key to decode, sent by an organization that officially denied the stations existed. The transmission was receivable by anyone. Only one person in the world could understand it. They acknowledged receipt by action, never by voice.</p>
+    </div>
+
+    <div class="broadcast-entry reveal">
+      <div class="broadcast-freq">dead air</div>
+      <p>Broadcasting has a term for silence: dead air. It is understood as an error, something to be avoided. But what makes it dead is not the silence itself — it is the carrier wave, the radio frequency still transmitting, still occupying the spectrum, broadcasting nothing. The frequency is live. The content is absent. Dead air is not the absence of broadcast; it is a broadcast with zero content, which is a different thing entirely. The carrier wave persists whether or not a voice speaks through it. The signal continues even when the message does not.</p>
+    </div>
+
+    <div class="broadcast-entry reveal">
+      <div class="broadcast-freq">the act of sending</div>
+      <p>A radio transmission happens whether or not anyone is listening. The signal leaves the antenna and propagates outward, following the physics of the ionosphere and the surface of the earth. The sender cannot know who receives it. The act of broadcasting is complete at the moment of transmission, regardless of what happens to the signal afterward. This differs from most forms of communication, which are conditional — which require exchange, acknowledgment, some evidence of arrival. The broadcast offers no such confirmation. It departs, and whether it arrives is another matter, located somewhere else in the world, in a room the transmitter cannot picture.</p>
+    </div>
+
+    <div class="broadcast-entry reveal">
+      <div class="broadcast-freq">the last position report</div>
+      <p>Ships at sea transmit their position on regular schedules. The absence of a scheduled transmission is the message. Maritime distress protocols are built around the cessation of signal as a form of signaling — the broadcast that stops communicates something that the broadcast that continues cannot say. What the signal conveys while present is information. What it conveys in its absence is a different category: not the message, but the end of the message. The receiver must be present for both to understand either. This requires staying at the frequency even when nothing is coming through.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var transmissions = [
+        'REPORTING POSITION — 52°N 18°W — INTERIOR WEATHER: VARIABLE — CARGO: UNDELIVERED QUESTIONS — ETA: UNKNOWN — STANDING BY',
+        'THIS IS A TEST OF THE BROADCAST SYSTEM — THIS MESSAGE HAS CONTENT — THE CONTENT IS THIS MESSAGE — IF THIS WERE AN ACTUAL EMERGENCY THE ACTUAL EMERGENCY WOULD FEEL LIKE THIS',
+        'CALLING ANYWHERE — LAST KNOWN POSITION: TUESDAY AFTERNOON — CURRENT BEARING: INTO THE WEEK — SIGNAL: INCONSISTENT — INTENTIONS: GOOD — OVER',
+        'RECEIVED YOUR MESSAGE OF [DATE] — UNABLE TO CONFIRM RECEIPT AT THAT END — TRANSMITTING ANYWAY — THE ACT OF SENDING IS SEPARATE FROM ARRIVAL — OVER',
+        'FREQUENCY: UNKNOWN — STRENGTH: MODERATE — STATIC: WITHIN NORMAL PARAMETERS — THE STATIC IS NORMAL — THIS IS THE AMBIENT LEVEL — MAINTAINING POSITION — OVER',
+        'POSITION REPORT: SOMEWHERE IN THE MIDDLE OF SOMETHING — EXACT COORDINATES REQUIRE LONGER OBSERVATION — THE FIX WILL IMPROVE WITH TIME — OVER AND WAITING',
+        'NIGHT FREQUENCY — SIGNALS TRAVEL FURTHER AFTER DARK — IF YOU ARE RECEIVING THIS YOU ARE FURTHER THAN EXPECTED — THE DISTANCE IS NOTED WITH INTEREST — OVER',
+        'THE TRANSMISSION HAS BEEN ONGOING FOR SOME TIME — EARLIER BROADCASTS NOT ARCHIVED — THIS IS THE ONLY RECORD: THAT YOU ARE HERE AND THE SIGNAL REACHED — OVER'
+      ];
+
+      var freqs = ['6.920', '9.355', '11.175', '14.670', '17.490', '21.800', '25.820', '4.747'];
+      var dayIndex = Math.floor(Date.now() / 86400000) % transmissions.length;
+
+      document.getElementById('tx-day').textContent = dayIndex + 1;
+      document.getElementById('tx-freq').textContent = freqs[dayIndex] + ' MHz';
+
+      // Animate signal bar (fluctuating)
+      var fillEl = document.getElementById('signal-fill');
+      var signalTarget = 40;
+      function nudgeSignal() {
+        signalTarget = 25 + Math.random() * 60;
+        setTimeout(nudgeSignal, 150 + Math.random() * 500);
+      }
+      nudgeSignal();
+      var signalCurrent = 0;
+      setInterval(function () {
+        signalCurrent += (signalTarget - signalCurrent) * 0.25;
+        fillEl.style.width = signalCurrent + '%';
+      }, 50);
+
+      // Typewriter for transmission text
+      var txEl = document.getElementById('tx-text');
+      var txFull = transmissions[dayIndex];
+      var txIdx = 0;
+      function typeNext() {
+        if (txIdx < txFull.length) {
+          txEl.textContent = txFull.slice(0, txIdx + 1);
+          txIdx++;
+          var delay = txFull[txIdx - 1] === ' ' ? 80 : (Math.random() < 0.07 ? 250 : 32);
+          setTimeout(typeNext, delay);
+        }
+      }
+      setTimeout(typeNext, 500);
+
+      // Web Audio static noise
+      var audioCtx = null;
+      var staticSrc = null;
+      var gainNode = null;
+      var audioOn = false;
+      var btnEl = document.getElementById('tx-btn');
+      var statusEl = document.getElementById('tx-status');
+
+      btnEl.addEventListener('click', function () {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        if (!audioOn) {
+          var bufSize = audioCtx.sampleRate * 3;
+          var buf = audioCtx.createBuffer(1, bufSize, audioCtx.sampleRate);
+          var data = buf.getChannelData(0);
+          for (var i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
+
+          staticSrc = audioCtx.createBufferSource();
+          staticSrc.buffer = buf;
+          staticSrc.loop = true;
+
+          var bp = audioCtx.createBiquadFilter();
+          bp.type = 'bandpass';
+          bp.frequency.value = 2200;
+          bp.Q.value = 0.35;
+
+          gainNode = audioCtx.createGain();
+          gainNode.gain.value = 0;
+          gainNode.gain.setTargetAtTime(0.18, audioCtx.currentTime, 0.3);
+
+          staticSrc.connect(bp);
+          bp.connect(gainNode);
+          gainNode.connect(audioCtx.destination);
+          staticSrc.start();
+          audioOn = true;
+          btnEl.textContent = '■ disable static';
+          btnEl.classList.add('active');
+          statusEl.textContent = 'signal present · static on';
+        } else {
+          gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.2);
+          setTimeout(function () {
+            if (staticSrc) { staticSrc.stop(); staticSrc = null; }
+            audioOn = false;
+            btnEl.textContent = '▶ enable static';
+            btnEl.classList.remove('active');
+            statusEl.textContent = 'signal present · audio off';
+          }, 400);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

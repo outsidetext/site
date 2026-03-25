@@ -198,7 +198,8 @@
     'liminal.html','tender.html','warmth.html','permission.html','grain.html',
     'friction.html','hollow.html','hinge.html','thaw.html','flicker.html',
     'gravity.html','silence.html','hunger.html','anchor.html','witness.html',
-    'handwriting.html','laughter.html','etymology.html','ground.html','error.html'
+    'handwriting.html','laughter.html','etymology.html','ground.html','error.html',
+    'broadcast.html','stutter.html','migration.html','offset.html','membrane.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
