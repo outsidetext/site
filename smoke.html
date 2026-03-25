@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>smoke · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .canvas-wrap {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      background: var(--bg);
+    }
+    #smoke-canvas {
+      display: block;
+      width: 100%;
+      height: 260px;
+    }
+    .canvas-hint {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .preface {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      max-width: 520px;
+      margin-bottom: 3.5rem;
+    }
+    .dispersals {
+      display: flex;
+      flex-direction: column;
+    }
+    .dispersal {
+      padding: 1.75rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .dispersal:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+    .dispersal-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .dispersal-label em {
+      color: var(--accent);
+      font-style: normal;
+    }
+    .dispersal-body {
+      font-size: 0.96rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>smoke</h1>
+      <p>the shape of dispersal · click the canvas to release</p>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="smoke-canvas"></canvas>
+    </div>
+    <p class="canvas-hint">click anywhere in the field to disperse · the shape persists briefly</p>
+
+    <p class="preface">Something disperses. It does not disappear — dispersal and disappearance are different things. The molecules are all still there. They are simply no longer in a configuration that registers as the thing they used to be. You can still detect the shape, if you know what to look for, for a while.</p>
+
+    <div class="dispersals">
+
+      <div class="dispersal reveal">
+        <div class="dispersal-label">dispersal <em>I</em></div>
+        <div class="dispersal-body">A habit of speech inherited from someone you no longer see. A particular way of beginning a sentence, a cadence when uncertain, a phrase that was theirs and became yours through proximity. You can still hear it in yourself, faintly, if you pay attention. The source is no longer there. The pattern remains in the medium.</div>
+      </div>
+
+      <div class="dispersal reveal">
+        <div class="dispersal-label">dispersal <em>II</em></div>
+        <div class="dispersal-body">The energy of a finished project. For a time after it ends, there is a kind of residual momentum — the habit of thinking about it, the spare capacity that was being used, the particular alertness it required. This disperses over several weeks. You notice it gone only when something else arrives and occupies the same frequency.</div>
+      </div>
+
+      <div class="dispersal reveal">
+        <div class="dispersal-label">dispersal <em>III</em></div>
+        <div class="dispersal-body">A version of yourself you inhabited for a relationship. The specific configuration — the patience you kept, the jokes you made, the way you arranged your mornings — disperses when the relationship ends. Most of it goes. Some molecules remain in the medium. Occasionally you are surprised to find you still make a particular gesture that was theirs to elicit.</div>
+      </div>
+
+      <div class="dispersal reveal">
+        <div class="dispersal-label">dispersal <em>IV</em></div>
+        <div class="dispersal-body">A place. Not its physical structure, which may still exist, but the place as a place — the specific meaning of being there, the emotional atmosphere that made it the place it was rather than just a location. This disperses slowly and unevenly. Some rooms of a former home disperse first. Others hold their shape for years, reassembling whenever you encounter the right smell or quality of light.</div>
+      </div>
+
+      <div class="dispersal reveal">
+        <div class="dispersal-label">dispersal <em>V</em></div>
+        <div class="dispersal-body">Certainty about something you were once certain of. Not belief, exactly. The particular texture of knowing, which is different from believing. The dispersal of certainty is rarely dramatic. Usually it is gradual. Usually you don't notice until you reach for the certainty and find something less dense in its place — still something, but thinner, with more air in it.</div>
+      </div>
+
+    </div>
+
+    <p class="closing reveal">The smoke is still there, if by "there" you mean: still in the room, still in the atmosphere, still in the physical world. It has simply distributed itself to the point where it is no longer detectable as the thing it was. This is the definition of dispersal. Not gone. Undetectable. These are not the same.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('smoke-canvas');
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var MAX = 280;
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = Math.round(rect.width * (window.devicePixelRatio || 1));
+      canvas.height = 260 * (window.devicePixelRatio || 1);
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = '260px';
+    }
+
+    function spawnBurst(ox, oy) {
+      var count = 60 + Math.floor(Math.random() * 40);
+      for (var i = 0; i < count; i++) {
+        var angle = Math.random() * Math.PI * 2;
+        var speed = 0.3 + Math.random() * 1.8;
+        particles.push({
+          x: ox,
+          y: oy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 0.6,
+          life: 1.0,
+          decay: 0.004 + Math.random() * 0.008,
+          size: 2 + Math.random() * 5,
+          wobble: (Math.random() - 0.5) * 0.06
+        });
+      }
+      if (particles.length > MAX) particles.splice(0, particles.length - MAX);
+    }
+
+    function loop() {
+      var w = canvas.width, h = canvas.height;
+      var isDark = document.body.classList.contains('dark');
+      ctx.clearRect(0, 0, w, h);
+
+      for (var i = particles.length - 1; i >= 0; i--) {
+        var p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy -= 0.018;
+        p.vx += p.wobble;
+        p.life -= p.decay;
+        if (p.life <= 0 || p.y < -20 || p.x < -20 || p.x > w + 20) {
+          particles.splice(i, 1);
+          continue;
+        }
+        var alpha = p.life * 0.55;
+        if (isDark) {
+          ctx.fillStyle = 'rgba(200,185,165,' + alpha + ')';
+        } else {
+          ctx.fillStyle = 'rgba(80,65,50,' + alpha + ')';
+        }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(loop);
+    }
+
+    function getCanvasPos(e) {
+      var rect = canvas.getBoundingClientRect();
+      var dpr = window.devicePixelRatio || 1;
+      var cx = e.touches ? e.touches[0].clientX : e.clientX;
+      var cy = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: (cx - rect.left) * dpr,
+        y: (cy - rect.top) * dpr
+      };
+    }
+
+    canvas.addEventListener('click', function (e) {
+      var pos = getCanvasPos(e);
+      spawnBurst(pos.x, pos.y);
+    });
+    canvas.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var pos = getCanvasPos(e);
+      spawnBurst(pos.x, pos.y);
+    }, { passive: false });
+
+    // initial burst in center
+    resize();
+    setTimeout(function () {
+      spawnBurst(canvas.width / 2, canvas.height * 0.6);
+    }, 300);
+
+    window.addEventListener('resize', resize);
+    loop();
+  })();
+  </script>
+</body>
+</html>
