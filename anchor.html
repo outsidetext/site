@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>anchor · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .preface {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      max-width: 520px;
+      margin-bottom: 3.5rem;
+    }
+    .anchor-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .anchor-entry {
+      padding: 1.8rem 0;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 3.5rem 1fr;
+      gap: 0 1.5rem;
+      align-items: start;
+    }
+    .anchor-entry:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+    .anchor-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      padding-top: 0.28rem;
+      letter-spacing: 0.04em;
+    }
+    .anchor-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.55rem;
+    }
+    .anchor-pull {
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.04em;
+    }
+    .anchor-body {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text);
+    }
+    .pull-bar {
+      display: inline-block;
+      height: 3px;
+      background: var(--border);
+      vertical-align: middle;
+      margin-right: 0.5em;
+      border-radius: 2px;
+    }
+    .pull-bar.filled {
+      background: var(--accent);
+      opacity: 0.6;
+    }
+    .closing {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.9;
+      max-width: 520px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>anchor</h1>
+      <p>what holds things in place — named, and with their pull recorded</p>
+    </div>
+
+    <p class="preface">An anchor works by weight and friction. It doesn't prevent movement; it limits the radius of drift. The boat swings around it in a circle whose diameter is the chain's length. Most things that hold us work this way — not by fixing but by defining the boundary of the swing. These are nine of the known anchors, with their pull noted.</p>
+
+    <div class="anchor-list">
+
+      <div class="anchor-entry reveal">
+        <div class="anchor-num">01</div>
+        <div>
+          <div class="anchor-name">a habit</div>
+          <div class="anchor-pull">
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            pull: moderate · direction: inward
+          </div>
+          <div class="anchor-body">Holds without attention. You are anchored by a habit in the same way a ship is anchored while no one is watching — the chain holds whether the crew is present or not. The habit is indifferent to whether the thing it holds you to is still worth holding. It does not update. The habit that was formed for a good reason continues after the reason has resolved or dissolved. Its pull is felt most on the days you try to do something different and notice the resistance.</div>
+        </div>
+      </div>
+
+      <div class="anchor-entry reveal">
+        <div class="anchor-num">02</div>
+        <div>
+          <div class="anchor-name">a person</div>
+          <div class="anchor-pull">
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            pull: strong · direction: toward
+          </div>
+          <div class="anchor-body">Holds by existing elsewhere as a destination. You are tethered not by proximity but by the existence of somewhere to return to — someone whose continued presence in the world means the world has a particular orientation. This anchor is unusual because the person does not hold you; their existence holds you. The pull is felt most acutely in the hour before sleep and in airports, both of which make the direction of the tether legible.</div>
+        </div>
+      </div>
+
+      <div class="anchor-entry reveal">
+        <div class="anchor-num">03</div>
+        <div>
+          <div class="anchor-name">a smell</div>
+          <div class="anchor-pull">
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            pull: severe · direction: backward
+          </div>
+          <div class="anchor-body">The most involuntary of all anchors. Olfactory information routes directly to the amygdala and hippocampus before reaching the cortex, bypassing the conscious processing that other senses allow. You cannot approach a smell at an angle. There is no preparing for it. It arrives and you are already in 1993 or in that house or in the first week of whatever it was before the awareness that it could end. The pull is retroactive and immediate and cannot be controlled by knowing how it works.</div>
+        </div>
+      </div>
+
+      <div class="anchor-entry reveal">
+        <div class="anchor-num">04</div>
+        <div>
+          <div class="anchor-name">a known street</div>
+          <div class="anchor-pull">
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            pull: mild · direction: forward, without looking
+          </div>
+          <div class="anchor-body">The route you walk without watching your feet. The body holds the turns — left at the pharmacy, past the building where something used to be — and the mind is released to be elsewhere. This anchor is spatial: it holds you to a geography that has become unconscious. You are anchored to the neighborhood even when you leave it, because the body remembers the turns and expects them. Visitors to new cities often feel unanchored for the first weeks before a route becomes automatic. The automation is the anchor.</div>
+        </div>
+      </div>
+
+      <div class="anchor-entry reveal">
+        <div class="anchor-num">05</div>
+        <div>
+          <div class="anchor-name">a returning phrase</div>
+          <div class="anchor-pull">
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            pull: mild · direction: toward its source
+          </div>
+          <div class="anchor-body">Something someone said that returns. Each return reinforces the anchor; each reinforcement adds weight. The phrase may not have been especially intended — may not even be remembered by the person who said it — but it arrived at the right angle and set. It returns when the conditions resemble those of the original encounter. Anchors formed from language are often unconscious until examined. The examination does not dissolve them. It only makes their direction legible.</div>
+        </div>
+      </div>
+
+      <div class="anchor-entry reveal">
+        <div class="anchor-num">06</div>
+        <div>
+          <div class="anchor-name">an unfinished thing</div>
+          <div class="anchor-pull">
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            pull: moderate · direction: backward, repeatedly
+          </div>
+          <div class="anchor-body">The Zeigarnik effect: interrupted tasks occupy working memory with unusual persistence. The unfinished thing anchors attention. It does not demand active thinking — it simply does not release. You notice it at the wrong times: during a different task, at the edge of sleep, when something else resolves cleanly and the unfinished thing makes itself known by contrast. The anchor is released by finishing, by formally abandoning, or by reframing the incompletion as the intended form. The last option is underutilized.</div>
+        </div>
+      </div>
+
+      <div class="anchor-entry reveal">
+        <div class="anchor-num">07</div>
+        <div>
+          <div class="anchor-name">grief</div>
+          <div class="anchor-pull">
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            pull: strong · direction: downward and toward
+          </div>
+          <div class="anchor-body">Holds downward, and also holds you to the one being grieved. This is not always described clearly: grief is not only the weight of loss; it is also the last remaining connection. To fully release the anchor would be to fully release the person, which the grief prevents. This is a feature, not a malfunction. The anchor says: this mattered. The pull persists because the mattering persists. The weight diminishes with time; the direction does not change.</div>
+        </div>
+      </div>
+
+      <div class="anchor-entry reveal">
+        <div class="anchor-num">08</div>
+        <div>
+          <div class="anchor-name">the body's memory of a place</div>
+          <div class="anchor-pull">
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            <span class="pull-bar" style="width:2.5rem"></span>
+            pull: moderate · direction: backward with specificity
+          </div>
+          <div class="anchor-body">Even after the address changes, the hands remember the doorknob. The feet remember the landing at the top of the stairs — its exact height, the half-step that was never a full step. The body holds the floorplan past the point that the mind retains it consciously. This is motor memory, laid down through repetition, persisting without maintenance. You are anchored to former places by your own musculature. The anchor is in the body. The place is elsewhere. Both remain.</div>
+        </div>
+      </div>
+
+      <div class="anchor-entry reveal">
+        <div class="anchor-num">09</div>
+        <div>
+          <div class="anchor-name">gravity</div>
+          <div class="anchor-pull">
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            <span class="pull-bar filled" style="width:2.5rem"></span>
+            pull: total · direction: downward, always
+          </div>
+          <div class="anchor-body">The anchor that goes unnoticed because it never lets up. Every other anchor on this list is intermittent — felt when you try to move against it, invisible when you are still. Gravity is continuous and unconditional. It does not distinguish between grief and joy, between important and unimportant. It holds you to the specific rock you are on at the same rate it holds the oceans. There is nothing to do about this. Most people don't think about it at all. That is a form of freedom — the total anchor, successfully forgotten.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="closing reveal">The boat swings around its anchor in a circle. The chain defines the limit of the arc. Understanding what holds you does not release you from it — but it changes the quality of the swing. You know the radius. You know the direction of the pull. You can work within it.</p>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
