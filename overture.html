@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>overture · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .overture-stage {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+      margin-bottom: 1.25rem;
+      background: var(--bg);
+    }
+    .overture-today-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .overture-today-text {
+      font-size: 1.25rem;
+      line-height: 1.65;
+      font-weight: normal;
+      color: var(--text);
+      max-width: 560px;
+    }
+    .overture-recent {
+      margin-bottom: 3.5rem;
+    }
+    .overture-recent-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    .overture-past-list {
+      list-style: none;
+      border-top: 1px solid var(--border);
+    }
+    .overture-past-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .overture-past-date {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 5rem;
+    }
+    .overture-past-text {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .overture-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .overture-entry:last-child { border-bottom: none; }
+    .overture-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .overture-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .overture-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .overture-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>overture</h1>
+      <p>one opening statement, assembled each day; the theme before the theme</p>
+    </div>
+
+    <div class="overture-stage">
+      <div class="overture-today-label">today's overture</div>
+      <div class="overture-today-text" id="overture-today"></div>
+    </div>
+
+    <div class="overture-recent">
+      <div class="overture-recent-label">recent overtures</div>
+      <ul class="overture-past-list" id="overture-past"></ul>
+    </div>
+
+    <div class="overture-entry reveal">
+      <span class="overture-tag">architecture</span>
+      <h3>the function of the opening</h3>
+      <p>An overture is not the piece. It introduces themes that will be developed, characters who will return, motifs that will arrive in fuller form later. It creates expectation and then defers it. The purpose is not to summarize but to prime: to arrange the listener's attention in the posture required to receive what follows. The overture ends, and then the actual thing begins. What the overture has done is make you ready for it in a way you weren't before the first notes.</p>
+      <p>Not every piece of music has a formal overture. But every piece of music has something that does overture's work: the silence before the first note, the quality of the opening, the establishing of key and tempo and mode. Even a song that starts on the first beat without introduction is making a choice about what kind of beginning this is. The overture can be very short. Its absence is also a statement.</p>
+    </div>
+
+    <div class="overture-entry reveal">
+      <span class="overture-tag">music</span>
+      <h3>leitmotif</h3>
+      <p>Wagner developed the technique of associating a brief musical theme with a character, place, object, or idea — and then repeating, transforming, and combining these themes throughout a work. The Ring Cycle has over a hundred leitmotifs, which the attentive listener unconsciously learns to recognize over the course of sixteen hours of music spread across four operas. The overture introduces them before you know what they mean. Later, when the sword theme returns in a minor key, you feel its weight through the accumulated memory of having heard it before under different circumstances.</p>
+      <p>This is what the overture teaches: the themes are planted before you know they are seeds. The repeated motif accumulates meaning with each recurrence. By the end of the work, a phrase that was weightless in the overture is carrying everything the work has built. You can't know this on first hearing. You only understand the beginning fully after you've reached the end — which is one reason the overture is the last thing some composers wrote.</p>
+    </div>
+
+    <div class="overture-entry reveal">
+      <span class="overture-tag">writing</span>
+      <h3>the first sentence as contract</h3>
+      <p>A first sentence is a promise about what kind of reading experience this will be. It establishes register, pace, the relationship between the reader and the material. "Call me Ishmael" says: this will be direct, and strange, and will ask you to hold both lightness and enormity simultaneously. "It is a truth universally acknowledged" says: this will be precise, ironic, and will expect you to follow the gap between what is asserted and what is meant. The reader has been told what to prepare for, in a language that only becomes legible in retrospect.</p>
+      <p>The first sentence cannot be half-right. It can only be right for this work or wrong. Everything that follows must be consistent with what the opening promised — not in content but in kind, in the quality of attention it asks for. A first sentence that promises careful observation cannot be followed by pages of carelessness. A first sentence that is funny cannot precede a book that doesn't know what to do with humor. The overture commits you. The rest of the work must make good on it.</p>
+    </div>
+
+    <div class="overture-entry reveal">
+      <span class="overture-tag">composition</span>
+      <h3>written last</h3>
+      <p>The overture is often written last. Composers knew they needed to begin the performance with something, so they returned once the main work was finished and wrote an introduction to what they had made. The overture looks forward — it previews what is to come — but it was written looking backward, from the vantage of a completed work. This is not deceptive. It is honest about how creation actually works: you often don't know what you were doing until you're done. The introduction is where you say, for the first time, what you meant all along.</p>
+      <p>The same is often true of prefaces, introductions, opening paragraphs. Writers report returning to the beginning after finishing and finding that it is wrong — not factually but tonally, in what it promises, in the posture it assumes. The opening that seemed right before the work was written is frequently replaced by one that reflects the work as it actually turned out. The beginning is written in the past tense, pretending to be in the future. It is the one part of a work written with full knowledge of where it goes.</p>
+    </div>
+
+    <div class="overture-entry reveal">
+      <span class="overture-tag">performance</span>
+      <h3>the silence before the first note</h3>
+      <p>In orchestral performance, there is a specific silence before the overture begins: the conductor steps to the podium, raises the baton, the players lift their instruments, the hall stills. This silence is not absence. It is the moment when the audience shifts from distracted to prepared, from scattered to listening. It is the last moment in which the piece has not yet started, and there is something in this moment that cannot be recovered once it passes. The first note arrives into silence that has been prepared for it.</p>
+      <p>Some composers have exploited the charged quality of this silence deliberately: a note so quiet it might be the continuation of the silence, so the piece seems to have been underway for some time before you realize it has started. Others begin with a sharp, loud chord that uses the prepared silence as kinetic energy, the contrast between the held breath and the sudden sound doing more work than the note alone could manage. The overture begins before the overture begins. The preparation is part of the content.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var lines = [
+      "Something is gathering at the edge of the field.",
+      "Before we begin, a note: the following may apply.",
+      "This is the part where everything is still possible.",
+      "There is a sound at the threshold. It has been there some time.",
+      "What arrives first is not the thing itself but the air that precedes it.",
+      "Consider the door before you open it.",
+      "One voice, before the others join it.",
+      "A figure stands at the far end of the room. They have been there since before you arrived.",
+      "The instrument is being tuned. This is not nothing.",
+      "Here is what was true before anything else happened.",
+      "Note: this is not the beginning. The beginning was earlier, and quieter.",
+      "A small window. Through it, something you almost recognize.",
+      "Before the argument, there was a moment of agreement.",
+      "The stage is empty. This is the last time the stage will be empty.",
+      "What you're about to encounter has been here before, differently.",
+      "The light is changing. It has already changed.",
+      "Someone is arriving. You don't know them yet.",
+      "Everything that follows begins here.",
+      "A silence that knows what comes next.",
+      "Hold this feeling for one moment before the moment passes.",
+      "Two voices approaching from different directions.",
+      "The first note of something that hasn't been named yet.",
+      "Here is what the room felt like before anyone spoke.",
+      "Something is about to be said that cannot be unsaid.",
+      "Pay attention now. This is the part that will matter later.",
+      "What the musicians do before the piece begins is also music.",
+      "The story starts before the story starts.",
+      "An introduction to what was already there.",
+      "The door is closed. Behind it: the first scene.",
+      "What you don't yet know, you are already learning.",
+      "A single note, sustained: this is where we are.",
+      "Before the revelation, the room where revelations are prepared.",
+      "Whatever follows, this was the beginning.",
+      "Something is being handed across a distance.",
+      "In a moment, something will change. Right now, it hasn't.",
+      "The first word in a language you almost already know.",
+      "Notice the quality of the light before it shifts.",
+      "We begin where all things begin: in the middle of something already underway.",
+      "There are footsteps approaching. They are almost here.",
+      "Before the question: this long, considered pause.",
+      "An opening is also a closing — of what it opens into.",
+      "The first morning of the thing you're not yet sure about.",
+      "Something left at the threshold, to be retrieved on the way out.",
+      "This is the before. You are still in it.",
+      "What the room held before it held you.",
+      "A promise of something — not its contents, just its arrival.",
+      "Stand here for a moment before moving forward.",
+      "The echo of the note that hasn't been struck yet.",
+      "Before you know what it is, you will feel its weight.",
+      "Here, briefly: the world before the first word changed it.",
+      "A long pause before someone speaks, and what lives in it.",
+      "This is where it starts. Notice that you're noticing.",
+      "The breath before the sentence. The sentence is coming.",
+      "Still gathering. Almost ready.",
+      "The curtain hasn't moved yet. The musicians are in place.",
+      "What you came for is not here yet. That is part of it."
+    ];
+
+    var todayEl = document.getElementById('overture-today');
+    var pastEl  = document.getElementById('overture-past');
+
+    var dayIndex = Math.floor(Date.now() / 86400000);
+    var n = lines.length;
+
+    // Today's overture
+    todayEl.textContent = lines[dayIndex % n];
+
+    // Past 5 days
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    for (var i = 1; i <= 5; i++) {
+      var d = new Date((dayIndex - i) * 86400000);
+      var label = d.getDate() + ' ' + months[d.getMonth()];
+      var li   = document.createElement('li');
+      li.className = 'overture-past-item';
+      li.innerHTML =
+        '<span class="overture-past-date">' + label + '</span>' +
+        '<span class="overture-past-text">' + lines[(dayIndex - i) % n] + '</span>';
+      pastEl.appendChild(li);
+    }
+  }());
+  </script>
+</body>
+</html>

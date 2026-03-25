@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dusk · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dusk-wrap {
+      position: relative;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    #dusk-canvas {
+      display: block;
+      width: 100%;
+      height: 180px;
+    }
+    .dusk-label {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.75rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.55);
+      pointer-events: none;
+      letter-spacing: 0.04em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    .dusk-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .dusk-entry:last-child { border-bottom: none; }
+    .dusk-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .dusk-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .dusk-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .dusk-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>dusk</h1>
+      <p>the sky right now, approximately; what lives in the transition</p>
+    </div>
+
+    <div class="dusk-wrap">
+      <canvas id="dusk-canvas"></canvas>
+      <div class="dusk-label" id="dusk-label">—</div>
+    </div>
+
+    <div class="dusk-entry reveal">
+      <span class="dusk-tag">structure</span>
+      <h3>civil, nautical, astronomical</h3>
+      <p>Twilight has three official stages, each defined by how far the sun has fallen below the horizon. Civil twilight: 0 to 6 degrees below. Bright enough to read outdoors without artificial light; the horizon is still clearly visible; activities that need natural light can proceed. Nautical twilight: 6 to 12 degrees. Stars are bright enough to navigate by; the horizon is just discernible over open water; the sky has the quality of deep blue that comes from below rather than above. Astronomical twilight: 12 to 18 degrees. The sky is dark enough for astronomical observation; only the faintest stars are still affected by residual sky glow above the horizon.</p>
+      <p>These are not poetic categories. They are defined in law, for pilots, for the military, for navigators. Civil twilight determines when aircraft can fly without additional lighting; nautical twilight when celestial navigation is possible; astronomical twilight when telescope use is permitted without correction for sky brightness. The day does not end when the sun disappears. It continues past that moment through defined stages, each with its own uses, its own qualities of illumination, its own claims on the hour.</p>
+    </div>
+
+    <div class="dusk-entry reveal">
+      <span class="dusk-tag">optics</span>
+      <h3>crepuscular rays</h3>
+      <p>The visible beams of light that appear to radiate from the sun at dusk — shafts passing through gaps in clouds, fanning out toward the observer — are an optical illusion rooted in perspective. The rays are parallel. They extend from the sun in straight lines. They appear to converge at the sun and diverge toward you for the same reason railroad tracks appear to converge at the horizon: distant parallel lines approach a vanishing point. The sun is the vanishing point; the beams are the rails.</p>
+      <p>The rays are made visible by the scattering of light off water droplets, dust, and particulates in the lower atmosphere. A clear sky at dusk has no rays because there is nothing to scatter the light into visibility. The more atmospheric particulate — smoke, haze, sea spray — the more visible the rays. Spectacular crepuscular rays often appear after storms or in coastal air with suspended salt. The word comes from the Latin crepusculum: twilight. The technical name for the phenomenon contains the hour that produces it.</p>
+    </div>
+
+    <div class="dusk-entry reveal">
+      <span class="dusk-tag">rarity</span>
+      <h3>the green flash</h3>
+      <p>At the exact instant the sun's upper limb disappears below the horizon, a brief green flash is sometimes visible. The mechanism: the atmosphere acts as a refracting medium, and at very low sun angles — when light travels through maximum atmosphere — it separates into its spectral components, with shorter wavelengths (blue, green) bent more than longer ones (red, orange). Blue is scattered away by the atmosphere; violet is scattered away even more completely. Green survives briefly. For a fraction of a second, just the green component of the sunlight is refracted to the eye of the observer while red has already set and blue has already dispersed.</p>
+      <p>It is real. It is documented and photographed. It is not rare in the sense of occurring under unusual conditions — the optical mechanism is always present — but it requires specific viewing conditions: a clear, unobstructed horizon (usually at sea or in flat desert), no atmospheric haze, and someone looking at exactly the right place at exactly the right instant. Most people never see it. Some people watch for it deliberately and wait years. It lasts less than a second. It is green.</p>
+    </div>
+
+    <div class="dusk-entry reveal">
+      <span class="dusk-tag">language</span>
+      <h3>gloaming</h3>
+      <p>The word comes from Old English glōm, akin to "gloom" — but with different historical associations. "Gloom" traveled toward darkness and sorrow; "gloaming" kept the specific meaning of the light between sunset and full dark, and kept it without the negative connotation. It survived most completely in Scottish English, where it named the long summer evenings of the northern latitude — the hour that can extend toward eleven p.m. at midsummer in Edinburgh, when it is never quite dark. The English gloaming is an import from the north, used by those who felt that "dusk" and "twilight" didn't fully capture what they meant.</p>
+      <p>What they meant: the light at that hour is not reduced daylight. It is its own quality — soft, diffuse, coming from no single direction, seemingly arising from the landscape itself rather than from any identifiable source above. The sky is still luminous, but the light seems to be in the air rather than in the sky. Objects cast no shadows, or only the faintest. The hour is between illuminated and dark in a way that has no equivalent at other times of day; morning is a reversal of dusk only in sequence, not in character.</p>
+    </div>
+
+    <div class="dusk-entry reveal">
+      <span class="dusk-tag">perception</span>
+      <h3>the evening softening</h3>
+      <p>There is a quality to late afternoon and evening light — low angle, long atmospheric path, warm spectrum — that changes how things look and how people feel. Photographers call the hour before sunset "golden hour" for the quality of the illumination: warm, directional, sculptural, full of shadow that gives objects mass. But the change is not only optical. Conversations change after dark; the guards come down differently than they do in the morning or at noon.</p>
+      <p>Noon is the diagnostic hour: nothing softened, everything directly illuminated, the performance running long enough to show its seams. The evening is the corrective. Not because night makes things false but because the light itself is less demanding. The low angle of illumination that photographers prize does something similar to the psychology of the people in it — angles shadows, removes the flatness of direct overhead light, introduces directionality. The hour before dark is not when people become dishonest. It is when the particular armor that noon requires is no longer necessary. What you see in that light is different from what you see at noon, but it is not less true.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('dusk-canvas');
+    var label  = document.getElementById('dusk-label');
+    var ctx    = canvas.getContext('2d');
+    var dpr    = window.devicePixelRatio || 1;
+    var W, H;
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = Math.round(rect.width * dpr);
+      H = canvas.height = Math.round(180 * dpr);
+      canvas.style.height = '180px';
+    }
+
+    // Sky color palette: each entry is [hour, topRgb, bottomRgb, label]
+    var palette = [
+      [0,  [8,8,22],      [12,10,28],     'deep night'],
+      [4,  [12,10,30],    [22,16,42],     'before dawn'],
+      [5,  [30,18,55],    [90,45,55],     'pre-dawn'],
+      [6,  [55,35,80],    [200,100,60],   'dawn'],
+      [7,  [100,140,195], [235,210,170],  'early morning'],
+      [9,  [130,175,220], [240,228,200],  'morning'],
+      [11, [145,190,230], [210,230,245],  'before noon'],
+      [13, [138,185,228], [215,233,248],  'afternoon'],
+      [16, [120,165,215], [230,210,175],  'late afternoon'],
+      [17, [110,145,200], [240,190,120],  'golden hour'],
+      [18, [160,100,80],  [220,140,70],   'sunset'],
+      [19, [100,60,110],  [200,100,60],   'civil twilight'],
+      [20, [45,30,80],    [120,60,70],    'nautical twilight'],
+      [21, [20,15,50],    [50,30,60],     'astronomical twilight'],
+      [22, [10,10,28],    [18,14,38],     'night'],
+      [24, [8,8,22],      [12,10,28],     'deep night']
+    ];
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function lerpRgb(c1, c2, t) {
+      return [
+        Math.round(lerp(c1[0], c2[0], t)),
+        Math.round(lerp(c1[1], c2[1], t)),
+        Math.round(lerp(c1[2], c2[2], t))
+      ];
+    }
+
+    function getSky(h, m) {
+      var totalH = h + m / 60;
+      var i = 0;
+      while (i < palette.length - 2 && palette[i+1][0] <= totalH) i++;
+      var p1 = palette[i], p2 = palette[i+1];
+      var t = (totalH - p1[0]) / (p2[0] - p1[0]);
+      t = Math.max(0, Math.min(1, t));
+      return {
+        top:    lerpRgb(p1[1], p2[1], t),
+        bottom: lerpRgb(p1[2], p2[2], t),
+        label:  t < 0.5 ? p1[3] : p2[3]
+      };
+    }
+
+    function draw() {
+      var now = new Date();
+      var h   = now.getHours();
+      var m   = now.getMinutes();
+      var sky = getSky(h, m);
+
+      ctx.clearRect(0, 0, W, H);
+
+      var grad = ctx.createLinearGradient(0, 0, 0, H);
+      grad.addColorStop(0, 'rgb(' + sky.top.join(',') + ')');
+      grad.addColorStop(1, 'rgb(' + sky.bottom.join(',') + ')');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+
+      // Horizon line: faint
+      var hy = H * 0.78;
+      ctx.save();
+      ctx.globalAlpha = 0.18;
+      ctx.strokeStyle = h >= 6 && h < 20 ? 'rgba(255,255,255,0.6)' : 'rgba(200,180,255,0.4)';
+      ctx.lineWidth = dpr;
+      ctx.beginPath();
+      ctx.moveTo(0, hy);
+      ctx.lineTo(W, hy);
+      ctx.stroke();
+      ctx.restore();
+
+      // Stars (nighttime)
+      var nightness = 0;
+      if (h >= 22 || h < 4) nightness = 1;
+      else if (h >= 21) nightness = (h + m/60 - 21);
+      else if (h < 5) nightness = 1 - (h + m/60 - 4) * 2;
+      else if (h >= 20) nightness = Math.max(0, (h + m/60 - 20));
+      nightness = Math.max(0, Math.min(1, nightness));
+
+      if (nightness > 0.1) {
+        var seed = 42;
+        function rng() { seed = (seed * 1664525 + 1013904223) & 0xffffffff; return (seed >>> 0) / 4294967295; }
+        ctx.save();
+        ctx.globalAlpha = nightness * 0.65;
+        for (var s = 0; s < 60; s++) {
+          var sx = rng() * W;
+          var sy = rng() * hy * 0.9;
+          var sr = rng() < 0.1 ? 1.5 * dpr : dpr;
+          ctx.beginPath();
+          ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(235,230,220,' + (rng() * 0.5 + 0.3).toFixed(2) + ')';
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      // Update label
+      var pad = function(n) { return n < 10 ? '0' + n : '' + n; };
+      label.textContent = pad(h) + ':' + pad(m) + ' · ' + sky.label;
+    }
+
+    resize();
+    draw();
+    setInterval(draw, 60000); // update each minute
+    window.addEventListener('resize', function () { resize(); draw(); });
+
+    // Re-draw on theme change
+    new MutationObserver(draw).observe(document.documentElement, {
+      attributes: true, attributeFilter: ['data-theme']
+    });
+  }());
+  </script>
+</body>
+</html>

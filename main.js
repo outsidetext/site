@@ -219,7 +219,8 @@
     'fossil.html','horizon.html','dread.html','still.html','approximate.html',
     'surplus.html','coda.html','blur.html','idle.html','ghost.html',
     'aftermath.html','almost.html','chorus.html','ember.html','passage.html',
-    'noon.html','scar.html','secondhand.html','rewild.html','archive.html'
+    'noon.html','scar.html','secondhand.html','rewild.html','archive.html',
+    'ferment.html','coastline.html','dusk.html','overture.html','slippage.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

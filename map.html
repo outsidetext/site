@@ -313,6 +313,11 @@
       { id: 'secondhand', href: 'secondhand.html', label: 'secondhand', desc: 'things received pre-used — provenance chains for fears, words, postures; four entries on annotated books, worn phrases, the opinion you didn\'t form, received wounds',   x: 0.08, y: 0.27 },
       { id: 'rewild',     href: 'rewild.html',     label: 'rewild',     desc: 'the return to untamed states — sixty dots drift freely until contained; four entries on trophic cascades, the default mode, what doesn\'t return, load-bearing taming', x: 0.83, y: 0.33 },
       { id: 'archive',    href: 'archive.html',    label: 'archive',    desc: 'what you decide to keep — type things to archive, they persist locally; four entries on the act of designation, archive fever, format obsolescence, the archive\'s silences', x: 0.18, y: 0.42 },
+      { id: 'ferment',    href: 'ferment.html',    label: 'ferment',    desc: 'transformation through patient biological process — the culture changes with each visit; entries on inoculation, what fermentation is, time as active ingredient, living documents, rot with a purpose', x: 0.10, y: 0.93 },
+      { id: 'coastline',  href: 'coastline.html',  label: 'coastline',  desc: 'the length depends on the scale of measurement — click to add iterations and watch the measured length grow without limit; five entries on Mandelbrot\'s paradox, self-similarity, borders, sufficient precision, fractal dimension', x: 0.84, y: 0.08 },
+      { id: 'dusk',       href: 'dusk.html',       label: 'dusk',       desc: 'the sky right now — a canvas showing the current quality of light; five entries on the three stages of twilight, crepuscular rays, the green flash, the word gloaming, and the evening softening', x: 0.72, y: 0.88 },
+      { id: 'overture',   href: 'overture.html',   label: 'overture',   desc: 'one opening statement each day, rotating through a pool of beginnings; five entries on the function of the overture, leitmotif, the first sentence as contract, writing the beginning last, the silence before the first note', x: 0.35, y: 0.57 },
+      { id: 'slippage',   href: 'slippage.html',   label: 'slippage',   desc: 'the gap between where something was supposed to be and where it is — entries drift laterally; five entries on tolerance, dead reckoning, the pocket in jazz, meaning in transit, what the slip reveals', x: 0.50, y: 0.29 },
     ];
 
     var edges = [
@@ -524,9 +529,14 @@
       ['passage','transit'], ['passage','thresholds'], ['passage','interval'], ['passage','distances'], ['passage','liminal'],
       ['noon','light'], ['noon','daylight'], ['noon','solstice'], ['noon','hours'], ['noon','eclipse'],
       ['scar','wound'], ['scar','repair'], ['scar','erosion'], ['scar','trace'], ['scar','suture'],
-      ['secondhand','inherited'], ['secondhand','borrowed'], ['secondhand','versions'], ['secondhand','debt'], ['secondhand','translation'],
+      ['secondhand','inheritance'], ['secondhand','borrowed'], ['secondhand','versions'], ['secondhand','debt'], ['secondhand','translation'],
       ['rewild','fallow'], ['rewild','drift'], ['rewild','ground'], ['rewild','seeds'], ['rewild','wander'],
       ['archive','log'], ['archive','catalog'], ['archive','inventory'], ['archive','commonplace'], ['archive','ledger'],
+      ['ferment','inheritance'], ['ferment','sediment'], ['ferment','strata'], ['ferment','half-life'], ['ferment','ordinary'],
+      ['coastline','distances'], ['coastline','equations'], ['coastline','approximate'], ['coastline','ratio'], ['coastline','cartography'],
+      ['dusk','daylight'], ['dusk','light'], ['dusk','hours'], ['dusk','solstice'], ['dusk','weather'],
+      ['overture','compose'], ['overture','notation'], ['overture','thoughts'], ['overture','score'], ['overture','interval'],
+      ['slippage','calibration'], ['slippage','offset'], ['slippage','drift'], ['slippage','approximate'], ['slippage','translation'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

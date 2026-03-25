@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>coastline · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .coast-wrap {
+      position: relative;
+      margin-bottom: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    #coast-canvas {
+      display: block;
+      width: 100%;
+      height: 160px;
+    }
+    .coast-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 3rem;
+      padding: 0.35rem 0;
+    }
+    .coast-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+    }
+    .coast-length { color: var(--accent); }
+    .coast-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .coast-entry:last-child { border-bottom: none; }
+    .coast-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .coast-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .coast-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .coast-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>coastline</h1>
+      <p>the length depends on the scale of measurement; click to add precision</p>
+    </div>
+
+    <div class="coast-wrap" id="coast-wrap" title="click to add one iteration">
+      <canvas id="coast-canvas"></canvas>
+    </div>
+    <div class="coast-meta">
+      <span>iteration <span id="coast-iter">0</span> of 6</span>
+      <span>measured length: <span class="coast-length" id="coast-len">1.000</span> units</span>
+      <span id="coast-hint-inline">click canvas to refine</span>
+    </div>
+
+    <div class="coast-entry reveal">
+      <span class="coast-tag">paradox</span>
+      <h3>the longer you look, the longer it gets</h3>
+      <p>Lewis Fry Richardson noticed in the 1950s that estimates of the length of national borders varied dramatically depending on which atlas you used. The Spanish and Portuguese disagreed significantly on the length of their shared border — not because either was wrong, but because they had used different scales of measurement. A shorter measuring rod catches more fine detail: each small inlet and headland that a larger rod bridges over is counted. Richardson's observation: the measured length of a coastline increases without limit as the measuring unit decreases.</p>
+      <p>Benoit Mandelbrot formalized this in 1967 in a paper titled "How Long Is the Coast of Britain?" His answer: it depends. At the scale of kilometers, you get one number. At the scale of meters, a larger one. At the scale of centimeters, larger still. There is no objectively correct length for a coastline. The question is incomplete without specifying the scale. This was disorienting. People expected questions about length to have answers.</p>
+    </div>
+
+    <div class="coast-entry reveal">
+      <span class="coast-tag">structure</span>
+      <h3>the same shape at every scale</h3>
+      <p>A coastline is statistically self-similar: zoom in on any section and it looks structurally like the whole. The same pattern of bays and headlands, inlets and promontories, appears at every scale you care to examine. This is not a property of maps — it is a property of the actual rock. Geological processes operate simultaneously at every scale: plate tectonics shaping continents, erosion carving cliffs, waves rounding individual stones. The same forces appear at different magnitudes, producing the same characteristic irregularity.</p>
+      <p>Mandelbrot called shapes with this property "fractals," from the Latin fractus: broken, irregular. The Koch snowflake — a mathematical construction that begins with a triangle and adds smaller triangles to each side, repeatedly — is a precise version of this idea. Each iteration adds detail. The curve approaches something, but its length does not. The shape is tending toward something while its measured length tends toward infinity.</p>
+    </div>
+
+    <div class="coast-entry reveal">
+      <span class="coast-tag">politics</span>
+      <h3>borders as coastlines</h3>
+      <p>All borders are coastlines in the relevant sense: their measured length depends on scale, and their precise location depends on who is doing the measuring and for what purpose. The Irish border had approximately 200–300 official crossing points in 2016 — the range existed because "official" and "crossing point" were both contestable, and the answer grew with the precision of the question. On a map, the border is a line. In a village, it runs through fields, between farms, sometimes between parts of the same farm.</p>
+      <p>The coastline paradox is a political and legal problem before it is a mathematical one. Property lines, territorial waters, electoral districts: all of these share the same structure. The line that looks clean from a distance becomes complex at the scale of human life. The disagreement is usually not about where the line is but about what scale of inquiry is the right one.</p>
+    </div>
+
+    <div class="coast-entry reveal">
+      <span class="coast-tag">pragmatics</span>
+      <h3>enough precision</h3>
+      <p>For navigation, you need to know if there is a reef. The exact length of the coastline is not needed, and could not be supplied. For estimating how long a coastal walk will take, a rough approximation — one that rounds inlets and ignores small rocks — is not only sufficient but more useful than a "precise" answer that has been measured at a scale smaller than a human stride. The paradox stops being a problem when you ask what the measurement is for.</p>
+      <p>Most decisions do not require infinite precision. They require precision appropriate to the decision at hand. The question "how long is this coastline?" does not become a better question by being made more precise in the abstract. It becomes a better question when it is asked in a context that specifies what the answer will be used for. The appropriate scale of measurement is determined by the purpose of the measurement. The paradox dissolves into a question about what you're actually trying to do.</p>
+    </div>
+
+    <div class="coast-entry reveal">
+      <span class="coast-tag">mathematics</span>
+      <h3>a dimension between one and two</h3>
+      <p>A straight line has one dimension. A plane has two. A coastline is somewhere in between: more complex than a line, less complete than a surface. Mandelbrot developed a way to assign a non-integer dimension to irregular shapes — the Hausdorff dimension. The coastline of Britain has a fractal dimension of approximately 1.25. The coastline of Norway, with its fjords — more irregular, more recursive — is approximately 1.52. A perfectly smooth curve would be exactly 1. The dimension is a precise measure of complexity that doesn't require anyone to agree on an impossible length.</p>
+      <p>This is the resolution, of a kind. The coastline paradox is a paradox only if you insist that length is the right way to characterize a coastline. Fractal dimension characterizes it differently — and in this case, more accurately. Some questions don't have the form of answers we first assume they do. The correction is not to answer the original question better but to notice that a different question is more useful.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas  = document.getElementById('coast-canvas');
+    var ctx     = canvas.getContext('2d');
+    var iterEl  = document.getElementById('coast-iter');
+    var lenEl   = document.getElementById('coast-len');
+    var dpr     = window.devicePixelRatio || 1;
+    var W, H;
+    var iteration = 0;
+    var MAX_ITER  = 6;
+
+    // Points array: normalized [0,1] x, y
+    var points = [{x:0.04, y:0.62}, {x:0.96, y:0.62}];
+
+    function kochStep(pts) {
+      var out = [pts[0]];
+      var s3 = Math.sqrt(3) / 2;
+      for (var i = 0; i < pts.length - 1; i++) {
+        var p1 = pts[i], p2 = pts[i+1];
+        var dx = (p2.x - p1.x) / 3;
+        var dy = (p2.y - p1.y) / 3;
+        var a  = { x: p1.x + dx, y: p1.y + dy };
+        var b  = { x: p2.x - dx, y: p2.y - dy };
+        // apex: rotate AB vector by -60° from A
+        var apex = {
+          x: a.x + dx * 0.5 + dy * s3,
+          y: a.y + dy * 0.5 - dx * s3
+        };
+        out.push(a, apex, b);
+      }
+      out.push(pts[pts.length - 1]);
+      return out;
+    }
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = Math.round(rect.width * dpr);
+      H = canvas.height = Math.round(160 * dpr);
+      canvas.style.height = '160px';
+      render();
+    }
+
+    function render() {
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      ctx.clearRect(0, 0, W, H);
+
+      // Background
+      ctx.fillStyle = dark ? 'rgba(10,12,18,0.7)' : 'rgba(240,242,245,0.7)';
+      ctx.fillRect(0, 0, W, H);
+
+      // Sea fill below the curve
+      if (points.length > 1) {
+        ctx.beginPath();
+        ctx.moveTo(points[0].x * W, points[0].y * H);
+        for (var i = 1; i < points.length; i++) {
+          ctx.lineTo(points[i].x * W, points[i].y * H);
+        }
+        ctx.lineTo(points[points.length-1].x * W, H);
+        ctx.lineTo(points[0].x * W, H);
+        ctx.closePath();
+        ctx.fillStyle = dark
+          ? 'rgba(30, 50, 80, 0.35)'
+          : 'rgba(160,200,230, 0.22)';
+        ctx.fill();
+
+        // Draw the coastline
+        ctx.beginPath();
+        ctx.moveTo(points[0].x * W, points[0].y * H);
+        for (var j = 1; j < points.length; j++) {
+          ctx.lineTo(points[j].x * W, points[j].y * H);
+        }
+        ctx.strokeStyle = dark ? 'rgba(180,200,220,0.7)' : 'rgba(80,120,160,0.75)';
+        ctx.lineWidth   = dpr * (iteration === 0 ? 1.5 : 1.2);
+        ctx.lineJoin    = 'round';
+        ctx.stroke();
+      }
+
+      // Iteration label
+      var ratio = Math.pow(4/3, iteration).toFixed(3);
+      lenEl.textContent = ratio;
+      iterEl.textContent = iteration;
+    }
+
+    function addIteration() {
+      if (iteration >= MAX_ITER) return;
+      points = kochStep(points);
+      iteration++;
+      render();
+    }
+
+    document.getElementById('coast-wrap').addEventListener('click', addIteration);
+
+    // Re-render on theme change
+    var observer = new MutationObserver(render);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    resize();
+    window.addEventListener('resize', resize);
+  }());
+  </script>
+</body>
+</html>

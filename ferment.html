@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ferment · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ferment-wrap {
+      position: relative;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    #ferment-canvas {
+      display: block;
+      width: 100%;
+      height: 140px;
+    }
+    .ferment-label {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.75rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      pointer-events: none;
+      letter-spacing: 0.04em;
+    }
+    .ferment-stage-row {
+      position: absolute;
+      top: 0.55rem;
+      left: 0.75rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      pointer-events: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .ferment-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ferment-entry:last-child { border-bottom: none; }
+    .ferment-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .ferment-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .ferment-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .ferment-entry p + p { margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>ferment</h1>
+      <p>transformation through patient biological process; this culture is <span id="ferment-stage-inline">young</span></p>
+    </div>
+
+    <div class="ferment-wrap">
+      <canvas id="ferment-canvas"></canvas>
+      <div class="ferment-stage-row" id="ferment-stage-row">inoculated</div>
+      <div class="ferment-label" id="ferment-label">day 0</div>
+    </div>
+
+    <div class="ferment-entry reveal">
+      <span class="ferment-tag">biology</span>
+      <h3>the inoculation</h3>
+      <p>When you start a sourdough starter, you mix flour and water and leave it out. You are not creating life. You are extending an invitation: to the wild yeasts on the grain's hull, to the Lactobacillus bacteria in the air and on your hands, to the invisible ecosystem that exists everywhere and needs only the right conditions to become visible. The first two days look like nothing. The third day, there is activity.</p>
+      <p>The culture is not something you make. It is something you host. Your job in the early days is purely negative: don't kill it. Don't let it get too cold, too hot, too neglected, too overwhelmed. The organisms will do the rest. They were doing it long before anyone thought to harness them. Fermentation is older than agriculture; it predates the deliberate by thousands of years.</p>
+    </div>
+
+    <div class="ferment-entry reveal">
+      <span class="ferment-tag">chemistry</span>
+      <h3>what fermentation is</h3>
+      <p>Yeast consume sugars and excrete carbon dioxide and ethanol as metabolic waste. The CO₂ lifts bread; the ethanol is why wine exists. Lactic acid bacteria, working alongside, produce lactic and acetic acids — the sourness of sourdough, the tang of yogurt, the complex edge of well-fermented beer. As acidity builds, it changes the environment in which it lives: the organisms create conditions that favor them and exclude competitors. Fermentation is controlled exclusion. The culture protects itself by making its home inhospitable to everything that isn't it.</p>
+      <p>What the process produces is not waste in any useful sense. The by-products of yeast metabolism are the entire point. The organisms are doing what organisms do — metabolizing, surviving, reproducing — and the human use of them is a redirection of that process toward human ends. Fermentation is not a technology in the usual sense. It is a relationship of cohabitation, ongoing and alive.</p>
+    </div>
+
+    <div class="ferment-entry reveal">
+      <span class="ferment-tag">time</span>
+      <h3>the active ingredient</h3>
+      <p>You can adjust temperature, hydration, inoculation rate. You can optimize every variable. What you cannot shorten, past a certain point, is duration. Rushed sourdough tastes wrong — the flavor compounds that develop in long, cool fermentation have not had time to form. Scotch whisky legally requires at least three years in barrel; the minimum is a legal recognition that time is doing something no accelerant can replicate. Long-fermented misos and fish sauces exist on timescales of months or years. The Trappist cheeses age in caves for periods longer than some of the monks who began tending them.</p>
+      <p>Time is not passive in fermentation. It is the medium through which transformation occurs — not a waiting room but an active participant. The slow accumulation of acids, the gradual depletion of certain sugars, the structural changes in proteins and starches: these require duration. The flavor of aged things is the flavor of time made edible.</p>
+    </div>
+
+    <div class="ferment-entry reveal">
+      <span class="ferment-tag">culture</span>
+      <h3>the living document</h3>
+      <p>The sourdough starter at Boudin Bakery in San Francisco is said to date to 1849. Whether this is precisely true, the claim points to something real: a starter that has been continuously maintained is, in a meaningful sense, the same culture. Not the same organisms — these are short-lived — but the same community: the same ecological balance of species, the same ratios, the same characteristic flavors. The thread is continuity, not substance. What persists is the relationship between the organisms, not the organisms themselves.</p>
+      <p>The Amish friendship bread starter circulates through communities like a chain letter, each recipient feeding it and dividing it and passing portions on. The genealogy is traceable: this batch came from that batch. But the cultures diverge as they adapt to different water, different flour, different kitchen temperatures. Within a generation or two, the starters are related but distinct. The document has been copied; each copy begins to revise itself.</p>
+    </div>
+
+    <div class="ferment-entry reveal">
+      <span class="ferment-tag">decay</span>
+      <h3>rot with a purpose</h3>
+      <p>Fermentation is rot — microbial decomposition of organic matter. What makes it useful is the specificity of who does the rotting. Select for the right organisms and the decomposition produces something new: alcohol, acidity, changed texture, preserved protein, novel compounds that didn't exist in the original material. The same process that spoils milk, directed carefully, makes cheese. The same organisms that decompose grain, constrained and redirected, make bread rise.</p>
+      <p>This distinction — between useful rot and harmful rot — is often a matter of who gets there first and what conditions are maintained. The fermentation vessel excludes oxygen, which aerobic spoilage organisms require. The salt in a brine creates pressure that beneficial bacteria tolerate and pathogens don't. Fermentation is not the prevention of decay. It is the supervision of it: decay in a controlled environment, with preferred tenants, under conditions set by the fermenter. What grows is what was invited.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var KEY = 'ferment-start';
+    var stored = localStorage.getItem(KEY);
+    var startMs;
+    if (!stored) {
+      startMs = Date.now();
+      localStorage.setItem(KEY, startMs);
+    } else {
+      startMs = parseInt(stored, 10);
+    }
+
+    var daysSince = (Date.now() - startMs) / 86400000;
+    var wholeDays = Math.floor(daysSince);
+
+    var stageLabel, stageShort, activityLevel;
+    if (daysSince < 1) {
+      stageLabel  = 'just inoculated';
+      stageShort  = 'inoculated';
+      activityLevel = 0.15;
+    } else if (daysSince < 3) {
+      stageLabel  = 'early activity';
+      stageShort  = 'early activity';
+      activityLevel = 0.55;
+    } else if (daysSince < 6) {
+      stageLabel  = 'active ferment';
+      stageShort  = 'active';
+      activityLevel = 1.0;
+    } else if (daysSince < 14) {
+      stageLabel  = 'settling';
+      stageShort  = 'settling';
+      activityLevel = 0.65;
+    } else if (daysSince < 30) {
+      stageLabel  = 'mature';
+      stageShort  = 'mature';
+      activityLevel = 0.35;
+    } else {
+      stageLabel  = 'established culture';
+      stageShort  = 'established';
+      activityLevel = 0.28;
+    }
+
+    var inlineEl = document.getElementById('ferment-stage-inline');
+    var rowEl    = document.getElementById('ferment-stage-row');
+    var labelEl  = document.getElementById('ferment-label');
+    if (inlineEl) inlineEl.textContent = stageLabel;
+    if (rowEl)    rowEl.textContent    = stageShort;
+    if (labelEl)  labelEl.textContent  = wholeDays === 0 ? 'day 0 · inoculated today' : 'day ' + wholeDays;
+
+    // ── Canvas ─────────────────────────────────────
+    var canvas = document.getElementById('ferment-canvas');
+    var ctx    = canvas.getContext('2d');
+    var dpr    = window.devicePixelRatio || 1;
+    var W, H;
+    var bubbles = [];
+
+    function makeBubble(resetY) {
+      return {
+        x:      Math.random() * W,
+        y:      resetY ? H + Math.random() * H * 0.4 : Math.random() * H,
+        r:      (Math.random() * 2.5 + 0.8) * dpr,
+        speed:  (Math.random() * 0.6 + 0.2) * activityLevel * dpr,
+        alpha:  Math.random() * 0.45 + 0.1,
+        wobble: Math.random() * Math.PI * 2
+      };
+    }
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = Math.round(rect.width * dpr);
+      H = canvas.height = Math.round(140 * dpr);
+      canvas.style.height = '140px';
+      bubbles = [];
+      var n = Math.round(8 + activityLevel * 28);
+      for (var i = 0; i < n; i++) bubbles.push(makeBubble(false));
+    }
+
+    function draw() {
+      requestAnimationFrame(draw);
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      ctx.clearRect(0, 0, W, H);
+
+      var bg = ctx.createLinearGradient(0, H, 0, 0);
+      if (dark) {
+        bg.addColorStop(0, 'rgba(70, 38, 10, 0.65)');
+        bg.addColorStop(1, 'rgba(18, 12, 4,  0.80)');
+      } else {
+        bg.addColorStop(0, 'rgba(205, 160, 70, 0.28)');
+        bg.addColorStop(1, 'rgba(245, 235, 205, 0.45)');
+      }
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      for (var i = 0; i < bubbles.length; i++) {
+        var b = bubbles[i];
+        b.wobble += 0.022;
+        b.x += Math.sin(b.wobble) * 0.35 * dpr;
+        b.y -= b.speed;
+
+        if (b.y < -b.r * 3) {
+          var nb = makeBubble(true);
+          nb.x = Math.random() * W;
+          bubbles[i] = nb;
+          continue;
+        }
+
+        var fade = Math.min(1, (H - b.y) / (H * 0.25)) * b.alpha;
+        if (fade <= 0) continue;
+
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+        ctx.strokeStyle = dark
+          ? 'rgba(210,155,60,' + fade.toFixed(2) + ')'
+          : 'rgba(140, 95,30,' + fade.toFixed(2) + ')';
+        ctx.lineWidth = dpr * 0.9;
+        ctx.stroke();
+      }
+    }
+
+    resize();
+    draw();
+    window.addEventListener('resize', resize);
+  }());
+  </script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>slippage · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .slip-wrap {
+      position: relative;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    #slip-canvas {
+      display: block;
+      width: 100%;
+      height: 90px;
+    }
+    .slip-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .slip-entry:last-child { border-bottom: none; }
+    .slip-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .slip-entry h3 {
+      font-size: 1.1rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+    .slip-entry p {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      max-width: 620px;
+    }
+    .slip-entry p + p { margin-top: 0.85rem; }
+    /* Each entry drifts laterally by a different amount */
+    .slip-entry:nth-child(1) { transform: translateX(0px); }
+    .slip-entry:nth-child(2) { transform: translateX(14px); }
+    .slip-entry:nth-child(3) { transform: translateX(-8px); }
+    .slip-entry:nth-child(4) { transform: translateX(6px); }
+    .slip-entry:nth-child(5) { transform: translateX(-11px); }
+    @media (max-width: 580px) {
+      .slip-entry:nth-child(2) { transform: translateX(8px); }
+      .slip-entry:nth-child(3) { transform: translateX(-5px); }
+      .slip-entry:nth-child(4) { transform: translateX(4px); }
+      .slip-entry:nth-child(5) { transform: translateX(-7px); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>slippage</h1>
+      <p>the gap between where something was supposed to be and where it is</p>
+    </div>
+
+    <div class="slip-wrap">
+      <canvas id="slip-canvas"></canvas>
+    </div>
+
+    <div class="slip-entry reveal">
+      <span class="slip-tag">engineering</span>
+      <h3>tolerance</h3>
+      <p>Engineers call it tolerance: the acceptable deviation from the designed dimension. A bolt specified at 10mm is accepted anywhere from 9.97 to 10.03mm. The tolerance is not a failure — it is the designed range within which the part functions. All manufactured things have tolerance. All systems with tolerance accumulate slippage over time: the gaps add up, the parts don't fit quite as designed, the thing still works until a certain point, then suddenly doesn't. This is why precision instruments require regular recalibration: not because they were made badly but because they are real.</p>
+      <p>A system designed with no tolerance, no slippage built in, is brittle rather than strong. The tolerance is what allows the system to absorb small shocks without failing. The bridge that sways slightly in the wind is not failing — it is tolerating. The one that doesn't sway is more likely to break. The designed-in slippage is what makes the difference between a structure that can accommodate the real world and one that can only manage the ideal conditions it was designed for.</p>
+    </div>
+
+    <div class="slip-entry reveal">
+      <span class="slip-tag">navigation</span>
+      <h3>drift</h3>
+      <p>A ship navigating by dead reckoning accumulates error with every estimate of position. Current, wind, imprecise speed measurement, slight compass deviation: each contributes a small amount. The errors don't cancel — they accumulate in a direction that reflects the dominant biases of the instruments and conditions. Dead reckoning is a technique for surviving between known positions, not a method of maintaining accuracy indefinitely. The point of the technique is to arrive close enough to a landmark to take a real fix, which then resets the accumulated error in one correction.</p>
+      <p>All systems that rely on prediction without regular correction drift. The mind does this: a held belief that isn't periodically tested against evidence will drift from its original basis. The belief feels unchanged because the drift is continuous and imperceptible. The correction, when it finally comes from contact with the world, can be disorienting — not because the belief was wrong to begin with, necessarily, but because the accumulated uncorrected drift has carried it somewhere unrecognizable. The ship that hasn't taken a fix in a week is not where the log says it is.</p>
+    </div>
+
+    <div class="slip-entry reveal">
+      <span class="slip-tag">music</span>
+      <h3>the pocket</h3>
+      <p>The "pocket" in jazz and funk is the feeling of rhythmic ease that comes not from exact metronomic timing but from a subtle, agreed-upon deviation from it. Drummers and bassists who play with perfect mathematical precision are described as "tight" — but not necessarily as playing in the pocket. The pocket involves a slight consistent drag or push against the beat, maintained together. It creates a physical sensation different from mechanical accuracy: a feeling that the music is pulling rather than marching, that it is alive rather than correct.</p>
+      <p>Metronomic precision is not the target in most human musical performance; it is a failure mode as much as a success. The infinitesimal slippage of two musicians playing together — each slightly anticipating or delaying in compatible ways — is where groove lives. A click track removes this slippage; the result is technically accurate and rhythmically inert. The pocket is the condition of music being felt rather than measured. It is what the slippage is for.</p>
+    </div>
+
+    <div class="slip-entry reveal">
+      <span class="slip-tag">language</span>
+      <h3>meaning in transit</h3>
+      <p>A word leaves one person in one shape and arrives at another in a slightly different one. The difference is usually small enough that neither party notices. Over many exchanges, over months and years of use, the word drifts: what you meant by "fine" three years ago isn't quite what you mean by it now; the word has picked up a particular valence, a specific context, a small additional meaning from accumulated use. This is not confusion. It is the normal behavior of a living language, which exists in use and not in dictionaries.</p>
+      <p>The slippage is not a failure of language but one of its mechanisms. Words that don't drift become archaic: they stop adapting to new conditions, accumulate a patina of disuse, and eventually survive only as quotations. The words that remain in circulation are the ones that slip continuously, adjusting their meanings to fit the mouths and situations they encounter. Every word in a living language is in the process of becoming slightly different from what it was. The meaning you intended is the meaning that is slightly misaligned with what is received.</p>
+    </div>
+
+    <div class="slip-entry reveal">
+      <span class="slip-tag">diagnostics</span>
+      <h3>what the slip reveals</h3>
+      <p>You don't know what's load-bearing until it slips. The tolerance you thought was safe reveals itself as the stress point. The assumption that seemed like a foundation reveals itself as a lean. Slippage is diagnostic in this sense: it shows you where the system was stressed, where the margin was smaller than it appeared, where the precision was borrowed from elsewhere in the structure. The slip is not a failure alone — it is also information that the system before the slip couldn't provide.</p>
+      <p>This is why engineers study failures with more interest than successes. A successful structure tells you that everything was sufficient; it doesn't tell you how close to insufficient any of it was. A failed structure reveals the exact load distribution, the exact point of weakness, the precise location of the hidden slippage. The correction that follows a failure is based on evidence that the unbroken state was hiding. The gap between where it was and where it should have been is the most useful datum the system ever produced.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('slip-canvas');
+    var ctx    = canvas.getContext('2d');
+    var dpr    = window.devicePixelRatio || 1;
+    var W, H;
+    var t      = 0;
+
+    // Tick marks: each represents an "ideal" position and a "real" position
+    var ticks = [];
+    function buildTicks() {
+      ticks = [];
+      var n = 14;
+      for (var i = 0; i < n; i++) {
+        ticks.push({
+          ideal:  (i + 1) / (n + 1),      // normalized x position
+          offset: (Math.random() * 2 - 1) * 0.025, // drift from ideal
+          phase:  Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = canvas.width  = Math.round(rect.width * dpr);
+      H = canvas.height = Math.round(90 * dpr);
+      canvas.style.height = '90px';
+      buildTicks();
+    }
+
+    function draw() {
+      requestAnimationFrame(draw);
+      t += 0.008;
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      ctx.clearRect(0, 0, W, H);
+
+      var centerY = H * 0.5;
+
+      // Guide line (ideal)
+      ctx.beginPath();
+      ctx.setLineDash([3 * dpr, 5 * dpr]);
+      ctx.strokeStyle = dark ? 'rgba(180,180,180,0.15)' : 'rgba(100,100,100,0.15)';
+      ctx.lineWidth   = dpr;
+      ctx.moveTo(0, centerY);
+      ctx.lineTo(W, centerY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      for (var i = 0; i < ticks.length; i++) {
+        var tk   = ticks[i];
+        // Slowly drift the offset
+        var liveOffset = tk.offset + Math.sin(t + tk.phase) * 0.008;
+        var idealX = tk.ideal * W;
+        var realX  = (tk.ideal + liveOffset) * W;
+
+        // Ideal position: small dim tick
+        ctx.beginPath();
+        ctx.moveTo(idealX, centerY - 6 * dpr);
+        ctx.lineTo(idealX, centerY + 6 * dpr);
+        ctx.strokeStyle = dark ? 'rgba(160,160,160,0.2)' : 'rgba(100,100,100,0.15)';
+        ctx.lineWidth   = dpr;
+        ctx.stroke();
+
+        // Real position: slightly brighter tick
+        ctx.beginPath();
+        ctx.moveTo(realX, centerY - 10 * dpr);
+        ctx.lineTo(realX, centerY + 10 * dpr);
+        ctx.strokeStyle = dark ? 'rgba(200,175,130,0.55)' : 'rgba(140,100,50,0.55)';
+        ctx.lineWidth   = dpr * 1.2;
+        ctx.stroke();
+
+        // Connecting line showing the gap
+        var gap = Math.abs(realX - idealX);
+        if (gap > 0.5 * dpr) {
+          ctx.beginPath();
+          ctx.moveTo(idealX, centerY);
+          ctx.lineTo(realX,  centerY);
+          ctx.strokeStyle = dark ? 'rgba(200,175,130,0.18)' : 'rgba(160,110,50,0.2)';
+          ctx.lineWidth   = dpr * 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+
+    resize();
+    draw();
+    window.addEventListener('resize', function () { resize(); });
+  }());
+  </script>
+</body>
+</html>
