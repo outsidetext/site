@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>debt · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .debt-entry {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .debt-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .debt-meta {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 420px) {
+      .debt-meta { grid-template-columns: 1fr; }
+    }
+    .debt-meta-label {
+      color: var(--accent);
+    }
+    .debt-rule {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0.75rem 0 1rem;
+      opacity: 0.5;
+      grid-column: 1 / -1;
+    }
+    .debt-entry h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.65rem;
+    }
+    .debt-entry p {
+      line-height: 1.75;
+      margin-bottom: 0.85rem;
+    }
+    .debt-entry p:last-child { margin-bottom: 0; }
+    .debt-status {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.5rem;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+    .debt-status.unpayable { border-color: var(--accent); color: var(--accent); }
+    .debt-status.accruing { color: var(--text-muted); }
+    .debt-preamble {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>debt</h1>
+      <p>a register of what is owed — seven accounts, denomination varies</p>
+    </div>
+
+    <p class="debt-preamble">Debt is the name for an obligation that persists after the original exchange. The exchange has concluded; the asymmetry remains. Most of the significant debts are not financial, which makes them harder to denominate and impossible to discharge through ordinary means. This register attempts to name them.</p>
+
+    <div class="debt-entry reveal">
+      <div class="debt-meta">
+        <span><span class="debt-meta-label">DEBTOR:</span> the present self</span>
+        <span><span class="debt-meta-label">CREDITOR:</span> everyone who waited for you</span>
+        <span><span class="debt-meta-label">DENOMINATION:</span> attention</span>
+        <span><span class="debt-meta-label">INTEREST:</span> accruing (compound)</span>
+        <hr class="debt-rule">
+      </div>
+      <div class="debt-status accruing">STATUS: OUTSTANDING</div>
+      <h3>the debt of attention</h3>
+      <p>There have been conversations in which you were physically present and mentally elsewhere. The person speaking was extending attention to you — the kind that costs something to give, the kind that required them to stop thinking about their own life for the duration of the exchange — and you were not extending it back. You were reviewing tomorrow's schedule, or a worry about something they couldn't see, or nothing in particular, which is somehow worse.</p>
+      <p>This debt is difficult to repay because repayment requires acknowledging the debt, which requires more of the debtor than partial presence, which is the original condition. It is also accruing: each instance adds to the principal, and the interest compounds in the form of a growing difficulty in being fully present at all, because the habit of half-presence reinforces itself.</p>
+    </div>
+
+    <div class="debt-entry reveal">
+      <div class="debt-meta">
+        <span><span class="debt-meta-label">DEBTOR:</span> you</span>
+        <span><span class="debt-meta-label">CREDITOR:</span> person, deceased or departed</span>
+        <span><span class="debt-meta-label">DENOMINATION:</span> the conversation that didn't happen</span>
+        <span><span class="debt-meta-label">INTEREST:</span> non-accruing; principal fixed at departure</span>
+        <hr class="debt-rule">
+      </div>
+      <div class="debt-status unpayable">STATUS: UNPAYABLE</div>
+      <h3>the debt with no creditor</h3>
+      <p>The hardest kind. The original creditor is no longer available to receive payment — gone in the sense of unreachable, whether by distance, by death, by the end of a relationship, or by the kind of estrangement that functions as disappearance. The debt does not disappear with them. It is transferred to the debtor's account, where it sits without a settlement mechanism.</p>
+      <p>What is owed: varies. Often it is the honesty that was withheld, or the gratitude that was delayed, or the apology that was organized but never delivered, or simply the fact of having been seen in a way that was never acknowledged while the chance existed. The debt persists as a feeling with nowhere to go. There is no repayment mechanism for this kind of debt. Some people build the payment into their other relationships, which is approximate but not fraudulent.</p>
+    </div>
+
+    <div class="debt-entry reveal">
+      <div class="debt-meta">
+        <span><span class="debt-meta-label">DEBTOR:</span> current self</span>
+        <span><span class="debt-meta-label">CREDITOR:</span> future self</span>
+        <span><span class="debt-meta-label">DENOMINATION:</span> time, rest, health, legibility</span>
+        <span><span class="debt-meta-label">INTEREST:</span> biological (non-negotiable)</span>
+        <hr class="debt-rule">
+      </div>
+      <div class="debt-status accruing">STATUS: OUTSTANDING, ACCRUING</div>
+      <h3>the debt to the future self</h3>
+      <p>Every hour of sleep deprivation is a debt the current self runs against the future. Every postponed rest, every sustained effort beyond capacity, every meal that wasn't taken because there was no time — these are withdrawals from an account that the future self will have to service. The complication is that the debtor and the creditor are the same person, which means the obligation feels abstract until it becomes urgent.</p>
+      <p>The future self cannot send a notice. The debt manifests as symptoms rather than statements — the exhaustion that has no specific cause, the irritability that outlasts its triggers, the increasing difficulty of tasks that were previously easy. This is the future self's correspondence, returned at last, in the only format available to it.</p>
+    </div>
+
+    <div class="debt-entry reveal">
+      <div class="debt-meta">
+        <span><span class="debt-meta-label">DEBTOR:</span> the one who left</span>
+        <span><span class="debt-meta-label">CREDITOR:</span> the one who stayed</span>
+        <span><span class="debt-meta-label">DENOMINATION:</span> continuity; the weight of remaining</span>
+        <span><span class="debt-meta-label">INTEREST:</span> see note</span>
+        <hr class="debt-rule">
+      </div>
+      <div class="debt-status">STATUS: DISPUTED</div>
+      <h3>the debt of departure</h3>
+      <p>When one person leaves a situation — a family, a city, a relationship, an understanding — and another person remains, there is sometimes a debt created: the leaver goes toward something new and leaves the stayer carrying what they left. The stayer carries the explanation to the people who ask, the absence at the table, the maintenance of what was shared, the occasional role of archivist for something that has stopped accruing.</p>
+      <p>Whether this constitutes a debt depends on whether the leaving was consensual and whether anything was agreed. Often nothing was agreed. The debt is disputed: the leaver believes they had a right to leave; the stayer believes the cost was unequally distributed. Both are often correct. The debt exists in the gap between the two correct positions, unresolved, accruing a separate kind of interest which is the interest that attaches to anything left unsaid for long enough.</p>
+    </div>
+
+    <div class="debt-entry reveal">
+      <div class="debt-meta">
+        <span><span class="debt-meta-label">DEBTOR:</span> the self</span>
+        <span><span class="debt-meta-label">CREDITOR:</span> the work, the practice, the thing being made</span>
+        <span><span class="debt-meta-label">DENOMINATION:</span> sustained presence</span>
+        <span><span class="debt-meta-label">INTEREST:</span> deferred; payment collected in quality</span>
+        <hr class="debt-rule">
+      </div>
+      <div class="debt-status">STATUS: ONGOING, MANAGEABLE</div>
+      <h3>the debt to the work</h3>
+      <p>Every day the work is not attended to is a day the debt accrues. The work has been waiting — patient, available, carrying the accumulated weight of your half-presence over time. The payment it requires is not dramatic: sustained attention in a particular direction for a particular duration, repeatedly, without the expectation of immediate return. This is the payment that is consistently difficult to make and also the only one accepted.</p>
+      <p>The good news about this debt: it can be serviced. Not discharged — the work will always require more — but the ongoing payments change the quality of the relationship with it, which is not nothing. Many people discover late that the debt was the good part; the obligation was also the only reliable structure available.</p>
+    </div>
+
+    <div class="debt-entry reveal">
+      <div class="debt-meta">
+        <span><span class="debt-meta-label">DEBTOR:</span> the current generation</span>
+        <span><span class="debt-meta-label">CREDITOR:</span> the preceding one</span>
+        <span><span class="debt-meta-label">DENOMINATION:</span> understanding, received late or never</span>
+        <span><span class="debt-meta-label">INTEREST:</span> fixed at the point of understanding</span>
+        <hr class="debt-rule">
+      </div>
+      <div class="debt-status">STATUS: PARTIALLY UNDERSTOOD</div>
+      <h3>the debt of comprehension</h3>
+      <p>You did not understand them while they were available to be understood. The years in which their choices were legible as choices, rather than as the permanent backdrop of your childhood, were not the years in which you were equipped to understand choices. By the time you had the tools, the detailed record was less accessible. You are reconstructing them from evidence: the decisions that left marks, the silences that have now been explained, the things they said when they thought you weren't listening, which you were.</p>
+      <p>What you owe them: the late understanding, offered to no one in particular. The revision of the judgment you made at sixteen, which was not wrong given the information available, and which was not sufficient. The extension of the patience that you yourself will, eventually, require.</p>
+    </div>
+
+    <div class="debt-entry reveal">
+      <div class="debt-meta">
+        <span><span class="debt-meta-label">DEBTOR:</span> anyone who has been in a room with you</span>
+        <span><span class="debt-meta-label">CREDITOR:</span> the room itself; the air</span>
+        <span><span class="debt-meta-label">DENOMINATION:</span> presence; the oxygen of being here</span>
+        <span><span class="debt-meta-label">INTEREST:</span> none — paid in full at each moment of actual presence</span>
+        <hr class="debt-rule">
+      </div>
+      <div class="debt-status">STATUS: PAYABLE; OFTEN DEFERRED</div>
+      <h3>the simplest debt</h3>
+      <p>The debt to the present moment, owed by the part of you that is continuously somewhere else. Every moment that arrives and is not received is a small default: the room was there, the light was doing what light does at that hour in that place, and you were not there to receive it. Not because of crisis or emergency, but because the habit of partial presence is very strong and the present is always, technically, available later.</p>
+      <p>It is not available later. Each moment is payable only at the moment of issue. This is the only debt on this register that is continuously, instantly, fully payable, and also the one most consistently deferred. You are in a room right now. The debt is current.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

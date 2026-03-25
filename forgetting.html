@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>forgetting · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .forget-entry {
+      margin-bottom: 2.8rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .forget-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .forget-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .forget-entry h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .forget-entry p { line-height: 1.75; margin-bottom: 0.9rem; }
+    .forget-entry p:last-child { margin-bottom: 0; }
+
+    /* Fading classes — applied by JS based on visit count */
+    .fade-light { opacity: 0.55; transition: opacity 0.6s; }
+    .fade-medium { opacity: 0.35; transition: opacity 0.6s; }
+    .fade-heavy { opacity: 0.18; transition: opacity 0.6s; }
+
+    /* Structural fades: always present, different degrees */
+    .always-faint { opacity: 0.48; }
+    .already-gone {
+      opacity: 0.2;
+      font-style: italic;
+    }
+    .gone-note {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      opacity: 0.6;
+      letter-spacing: 0.04em;
+      display: inline;
+    }
+    .visit-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>forgetting</h1>
+      <p>what goes first — the mechanics and mercy of not remembering</p>
+    </div>
+
+    <p class="visit-note" id="visit-note">some of this has already started to go</p>
+
+    <div class="forget-entry reveal">
+      <div class="forget-tag">sequence</div>
+      <h3>what goes first</h3>
+      <p>The name, usually. Then the face loses its precision and becomes a general type — <span class="fade-variable">dark-haired, or quiet, or someone who laughed in a specific register you no longer hear clearly</span>. The feeling goes last. You will forget the name and the face and still feel, for years, the particular quality of being in that person's presence — the texture of what it was like to be seen by them, or avoided by them, or anticipated by them. The body stores what the mind releases.</p>
+      <p>The order of forgetting is not arbitrary. It follows a logic the brain does not announce. Peripheral details first. <span class="fade-variable">Context next. Then the specific words, replaced by their approximate meaning.</span> The emotional core last, and sometimes never.</p>
+    </div>
+
+    <div class="forget-entry reveal">
+      <div class="forget-tag">mercy</div>
+      <h3>the benevolent kind</h3>
+      <p>There is a version of forgetting that is not failure. The exact content of most arguments is gone within a week; what remains is the emotional residue, minus the specific provocation — which is the useful part, the part you might actually learn from. The pain of early grief diminishes in ways the early grief could not imagine; this is not betrayal of the grief's object, it is the body being merciful to the self that must continue.</p>
+      <p>Forgetting is the mechanism by which the past does not simply accumulate until it fills all available space. <span class="fade-variable">Some of this is selection. Some of it happens without your participation. Both are necessary.</span> You cannot keep everything and also keep going.</p>
+    </div>
+
+    <div class="forget-entry reveal">
+      <div class="forget-tag">the opposite</div>
+      <h3>what won't leave</h3>
+      <p>There are things the forgetting cannot reach. Not because they are important — importance and persistence are different variables — but because of the conditions under which they were encoded. High arousal. Surprise. The particular vulnerability of certain hours. <span class="fade-variable">The moment carries an intensity that the brain logs as requiring permanent retention, which the brain sometimes misapplies.</span></p>
+      <p>The scene replays with the vividness of the day it happened, years later, while more significant events have blurred to outlines. The intrusive memory is not proof of importance. It is proof of the conditions that were present when it formed. The brain is a good recorder. It is a poor editor.</p>
+    </div>
+
+    <div class="forget-entry reveal">
+      <div class="forget-tag">language</div>
+      <h3>the word that went</h3>
+      <p>You had a word for it. <span class="always-faint">The exact word. It was precisely right, it arrived once, and you used it, and then it was gone — not gradually, not retrievable with effort, but gone in the way of a name on the tip of the tongue that then slips back and cannot be found, except this is worse because you do not remember that you had it, only that the exact thing you meant to say is not available in any translation you have found since.</span></p>
+      <p>The word may come back at 3am. It may arrive in a different language where you cannot use it. <span class="already-gone">It may</span> <span class="gone-note">[the rest of this has gone]</span></p>
+    </div>
+
+    <div class="forget-entry reveal">
+      <div class="forget-tag">selective</div>
+      <h3>the pattern of what stays</h3>
+      <p>What you remember is not a sample. It is a selection made by processes you did not supervise. The selection reveals something — what you attended to, what you feared, what you wanted, what surprised you. <span class="fade-variable">The gap between what happened and what you remember is a map of your inner weather at the time of the happening.</span></p>
+      <p>Two people present at the same event remember different events. Neither is wrong. Both are accurate records of a partial perception filtered through a particular self. <span class="fade-variable">Memory is autobiography, not transcription.</span> The difference is everything.</p>
+    </div>
+
+    <div class="forget-entry reveal">
+      <div class="forget-tag">self</div>
+      <h3>the version of you that was forgotten</h3>
+      <p>There is a self from nine years ago that you cannot fully access. You remember facts about them — what they were doing, what they were worried about. But you cannot get back inside their experience. The fear that felt total feels, at this distance, <span class="fade-variable">smaller than it was, or larger, but not right</span>. The joy that was ordinary is now visible as extraordinary and is therefore falsified by the distance that makes it visible.</p>
+      <p>You are forgetting this version of yourself continuously. The person you are now will, eventually, be as inaccessible as the person from nine years ago. <span class="always-faint">This is not frightening. It is how you are able to change.</span></p>
+    </div>
+
+    <div class="forget-entry reveal">
+      <div class="forget-tag">technology</div>
+      <h3>what the photograph remembers instead</h3>
+      <p>The photograph is a record of surfaces at a moment. It does not record what you were thinking, or the smell of the room, or what had been said an hour before that had changed the quality of everything. It records the light. It records that everyone was present and appeared to be in certain configurations. Over time, the photograph displaces the memory — its clean surfaces replacing the blurred and feeling-laden record the mind was keeping.</p>
+      <p><span class="fade-variable">You remember the photograph now more than you remember the event.</span> The photograph has excellent recall. It remembers nothing that matters.</p>
+    </div>
+
+    <div class="forget-entry reveal">
+      <div class="forget-tag">gift</div>
+      <h3>what forgetting makes possible</h3>
+      <p>If you remembered everything, you would be unable to read a book twice, hear a piece of music fresh, be surprised by someone you know. The first time anything happens is only the first time because the subsequent times have not yet made it familiar. <span class="fade-variable">Forgetting restores the possibility of the first time.</span></p>
+      <p>There is a name for the state in which every previous experience is fully present and inaccessible to being forgotten. <span class="always-faint">It does not sound like a gift. It is described, by those who have it, as a curse.</span> The mercy of forgetting is not a consolation for a limitation. It is its own kind of grace.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      // Track visits with sessionStorage to progressively fade variable elements
+      var visitKey = 'forgetting-visits';
+      var visits = parseInt(sessionStorage.getItem(visitKey) || '0', 10);
+      visits = Math.min(visits + 1, 3);
+      sessionStorage.setItem(visitKey, visits);
+
+      var vars = document.querySelectorAll('.fade-variable');
+      var note = document.getElementById('visit-note');
+
+      if (visits === 1) {
+        vars.forEach(function (el) { el.classList.add('fade-light'); });
+        note.textContent = 'first visit — some things are already dimmer than others';
+      } else if (visits === 2) {
+        vars.forEach(function (el) { el.classList.add('fade-medium'); });
+        note.textContent = 'second visit — it is a little harder to read than last time';
+      } else {
+        vars.forEach(function (el) { el.classList.add('fade-heavy'); });
+        note.textContent = 'you have been here before — some of this is getting difficult to see';
+      }
+    })();
+  </script>
+</body>
+</html>
