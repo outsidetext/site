@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dissolve · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dissolve-entry {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.85;
+    }
+    .dissolve-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .dissolve-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+    .dissolve-entry h3 {
+      margin: 0 0 0.7rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .d-word {
+      display: inline;
+      transition: opacity 1.8s ease;
+      cursor: default;
+    }
+    .d-word.gone {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .d-word:hover:not(.gone) {
+      opacity: 0;
+    }
+    .dissolve-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+    .restore-link {
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--border);
+      cursor: pointer;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      padding: 0;
+    }
+    .restore-link:hover { color: var(--accent); }
+    .dissolve-footer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #dissolve-counter { font-family: 'Courier New', monospace; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>dissolve</h1>
+      <p>hover any word to let it go — reading consumes what it touches</p>
+    </div>
+
+    <p class="dissolve-hint">move your cursor across the text. words do not return until the page is reloaded.</p>
+
+    <div class="dissolve-entry reveal" id="dissolve-content">
+
+      <div class="dissolve-tag">tide</div>
+      <h3>writing in sand</h3>
+      <p></p>
+
+      <div class="dissolve-tag" style="margin-top:2.5rem">memory</div>
+      <h3>the tip-of-the-tongue word</h3>
+      <p></p>
+
+      <div class="dissolve-tag" style="margin-top:2.5rem">photograph</div>
+      <h3>what the image doesn't hold</h3>
+      <p></p>
+
+      <div class="dissolve-tag" style="margin-top:2.5rem">speech</div>
+      <h3>trying to transcribe while it happens</h3>
+      <p></p>
+
+      <div class="dissolve-tag" style="margin-top:2.5rem">winter</div>
+      <h3>snow writing</h3>
+      <p></p>
+
+      <div class="dissolve-tag" style="margin-top:2.5rem">attention</div>
+      <h3>the dissolve of digital presence</h3>
+      <p></p>
+
+      <div class="dissolve-tag" style="margin-top:2.5rem">this text</div>
+      <h3>what you are doing right now</h3>
+      <p></p>
+
+    </div>
+
+    <div class="dissolve-footer">
+      <span id="dissolve-counter"></span>
+      <button class="restore-link" id="restore-btn">restore (reload)</button>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var paragraphs = [
+        "The tradition of writing in sand at the water's edge is as old as having something to say and no better medium. The meaning of this practice is ambiguous. It could be grief — making something you know will be lost. It could be lightness — leaving something without the burden of its permanence. It could simply be: available surface, available tool, available feeling, no better option. The tide does not come as punishment. It comes because it always comes. The writing was never asking to be kept.",
+
+        "The word is there. You can feel its shape without being able to see it — the number of syllables, the general direction, the sound it begins with. It is like looking at something peripheral; when you focus directly it moves away. The phenomenon has a name: lethologica, from Lethe, the river of forgetting, and logos, word. The Greeks named it after a mythological river because they recognized it as a genuine force — not failure, but a specific kind of loss that was recurrent and old. The word comes back, usually when you stop reaching. By then you've often found another way to say it, and the original word arrives as a footnote to a sentence that no longer needs it.",
+
+        "The photograph keeps the surfaces: the arrangement of light, the particular distribution of color, the spatial relationships between things that were present. It does not keep what the room smelled like. It does not keep what had just been said before someone thought to take it. It does not keep the quality of attention in the room, the specific weight of the afternoon, the fact that someone was about to cry and didn't. The photograph looks like the moment and is not the moment. This is not the photograph's failure. It is the photograph's honest description of what a photograph can hold, which is more than nothing and less than presence.",
+
+        "The conversation is happening and you are trying to hold it at the same time. Attention split between being in it and recording it, which means you are fully in neither. The best parts dissolve fastest — the precise phrase, the unexpected admission, the moment where something shifted. By the time you could write it down it's already a description of itself, not the thing. Later you have notes that say, approximately, what happened. The notes are a container with the thing already gone from it. The conversation continues in you somewhere, below the level of the notes, unchanged and unrecoverable.",
+
+        "There is a specific kind of writing done in snow — a word pressed into fresh surface with a finger, a boot, a stick. It is different from sand writing because of the texture of the medium and because snow gives itself willingly, holds the impression cleanly, and then, when the temperature changes, does not so much erase as transform. The mark becomes part of the water that was always inside the snow. The snow does not disappear; it changes state. The writing doesn't disappear. It continues as something else. Whether this is consolation depends on how attached you are to the particular form it had.",
+
+        "Presence online dissolves faster than most things. Not the archive — the archive is nearly permanent, which is its own problem — but presence, the sense of being attended to, diminishes in the same way sound diminishes with distance. Someone reads a thing you made and it registers and fades and they continue. The half-life of digital attention is very short. This is not criticism; it is description. What it means is that making something for attention is a perpetual motion problem. Making something for the thing itself is a different problem, which does not require permanent attention to stay solved.",
+
+        "You are reading this sentence. While you read it, it is partly gone — gone from itself into you, changed from arrangement of letters to something your brain is doing. Nothing leaves without changing the place it left. You are reading this sentence and it is disappearing into meaning, which is the best disappearance available to a sentence. When you have finished this page, some of the words will have dissolved. They were dissolving the whole time. Reading is a way of consuming — careful, attentive, and quietly destructive. You were always part of how this ends."
+      ];
+
+      // Inject text as span-wrapped words
+      var container = document.getElementById('dissolve-content');
+      var pEls = container.querySelectorAll('p');
+      var wordCount = 0;
+      var gonCount = 0;
+
+      paragraphs.forEach(function (text, i) {
+        var p = pEls[i];
+        if (!p) return;
+        var words = text.split(/(\s+)/);
+        words.forEach(function (chunk) {
+          if (/^\s+$/.test(chunk)) {
+            p.appendChild(document.createTextNode(chunk));
+          } else {
+            var span = document.createElement('span');
+            span.className = 'd-word';
+            span.textContent = chunk;
+            wordCount++;
+            span.addEventListener('mouseenter', function () {
+              if (!span.classList.contains('gone')) {
+                span.classList.add('gone');
+                gonCount++;
+                updateCounter();
+              }
+            });
+            p.appendChild(span);
+          }
+        });
+      });
+
+      var counterEl = document.getElementById('dissolve-counter');
+      function updateCounter() {
+        counterEl.textContent = gonCount + ' of ' + wordCount + ' words dissolved';
+      }
+      updateCounter();
+
+      document.getElementById('restore-btn').addEventListener('click', function () {
+        window.location.reload();
+      });
+    })();
+  </script>
+</body>
+</html>

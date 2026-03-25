@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ruin · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ruin-entry {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .ruin-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .ruin-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .ruin-entry h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .ruin-entry p { line-height: 1.75; }
+
+    /* Decay effects — applied deliberately, not by error */
+    .decay-light { opacity: 0.55; }
+    .decay-medium { opacity: 0.35; }
+    .decay-trail::after { content: ' . . .'; opacity: 0.25; }
+    .decay-strike {
+      text-decoration: line-through;
+      text-decoration-color: var(--text-muted);
+      opacity: 0.5;
+    }
+    .decay-gap {
+      display: inline-block;
+      width: 4em;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      margin: 0 0.2em;
+      opacity: 0.4;
+    }
+    .ruin-entry.damaged {
+      border-bottom-style: dashed;
+      border-bottom-color: var(--border);
+    }
+    .ruin-entry.damaged h3 {
+      opacity: 0.8;
+    }
+
+    /* Structural crack — a decorative divider */
+    .crack {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--border);
+      letter-spacing: 0.12em;
+      margin: 3rem 0;
+      text-align: center;
+      user-select: none;
+    }
+
+    .ruin-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>ruin</h1>
+      <p>what remains when maintenance stops — and what that reveals</p>
+    </div>
+
+    <p class="ruin-hint">this page is displaying correctly. the decay is intentional.</p>
+
+    <div class="ruin-entry reveal">
+      <div class="ruin-tag">digital</div>
+      <h3>the abandoned website</h3>
+      <p>The geology of digital abandonment has a specific sequence. First the links go. They point to addresses that no longer resolve, or that resolve to something unrelated, the way a street name survives after the building it referred to has been replaced. Then the images fail — the hosting expires or the image service closes and the pages become skeletons, their frames intact and their content replaced by a broken rectangle. Then the domain lapses and the whole structure vanishes or, sometimes worse, gets replaced by a parking page that wears the old address like a suit of clothes. What survives is the cached version somewhere, the Wayback Machine capture, a screenshot someone took. The building is gone. The photograph remains.</p>
+    </div>
+
+    <div class="ruin-entry damaged reveal">
+      <div class="ruin-tag">sequence</div>
+      <h3 class="decay-light">what decays first</h3>
+      <p>In a physical building the order of decay follows the materials. Glass <span class="decay-strike">lasts longer than wood</span>. Metal corrodes before stone. The organic components — the furniture, the curtains, the insulation, the bodies if any — go first. The structural members last longest. What you find in a ruin is bones: the load-bearing elements that held everything up. Sometimes <span class="decay-gap"></span> is beautiful. The structure revealed when the surfaces fall away. Architecture made honest. The building was always the bones; the rest was decoration. The ruin is just the building being more direct about what it was.</p>
+    </div>
+
+    <div class="crack">· · · · · · · · · · · · · ·</div>
+
+    <div class="ruin-entry reveal">
+      <div class="ruin-tag">aesthetics</div>
+      <h3>what makes ruins beautiful</h3>
+      <p>The question is genuinely interesting and the answers are several. There is the obvious answer: the contrast between the former grandeur and the present state, the pathos of visible ambition in decline. There is the more interesting answer: the ruin is honest in a way the intact building is not. The intact building presents itself as permanent, as intended, as finished. The ruin shows the construction — shows that it was made, shows what made it fail, shows the gap between the aspiration of the design and the material reality of what was used. A ruin has stopped performing. It is just doing what matter does, which is falling toward its simplest possible state. There is relief in watching something stop pretending.</p>
+    </div>
+
+    <div class="ruin-entry damaged reveal">
+      <div class="ruin-tag">honesty</div>
+      <h3>the ruin shows its <span class="decay-light">construction</span></h3>
+      <p class="decay-light">We build things to last and they do not last and when they stop lasting they become more interesting. Not always. Not inevitably. But there is a consistent pattern of things being more revealing in failure than in success. <span class="decay-medium">The machine that breaks down shows its mechanisms. The institution that collapses reveals its assumptions. The person who stops performing shows who they actually are.</span> The intact surface conceals its own process. The damaged surface does not have the <span class="decay-trail">resources to maintain the concealment</span></p>
+    </div>
+
+    <div class="crack">· · · · · · · · · · · · · ·</div>
+
+    <div class="ruin-entry reveal">
+      <div class="ruin-tag">archaeology</div>
+      <h3>what you come looking for</h3>
+      <p>People who visit ruins are not only looking at the ruin. They are looking for something the ruin has that intact things don't — a quality of time made visible, a sense of other lives deposited in the place, evidence that things were and then were not, and the implication that the current arrangement is also temporary. You come to a ruin to be reminded that your own structures are not permanent, which is either comforting or unsettling depending on the day. The ruin says: nothing lasts, including the things that seemed designed to last, including the things that were definitively finished. This is either the problem or the point, and often both.</p>
+    </div>
+
+    <div class="ruin-entry damaged reveal">
+      <div class="ruin-tag">maintenance</div>
+      <h3>the constant work of not becoming a ruin</h3>
+      <p>Every structure is in a constant negotiation with entropy. Maintenance is the ongoing decision to keep having that negotiation. The building maintenance crews, the bit rot patches, the relationship check-ins, the returning to the place that would otherwise become what it is becoming — these are not <span class="decay-strike">optional enhancements</span> but ongoing acts of will against the direction everything is already moving. The ruin is what you get when you stop. <span class="decay-light">The ruin is not a different state from the intact thing. It is the same state, only more advanced. The distance between the two is maintenance. Which is another way of saying: attention, sustained, over time</span>.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

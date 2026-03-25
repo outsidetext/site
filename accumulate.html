@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>accumulate · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .layer {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      animation: rise 0.5s ease both;
+    }
+    .layer:last-child { border-bottom: none; margin-bottom: 0; }
+    .layer-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .layer h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .layer p { line-height: 1.75; }
+
+    .visit-marker {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border);
+      display: inline-block;
+    }
+    .visit-marker span { color: var(--accent); }
+
+    .not-yet {
+      padding: 2.5rem 0;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>accumulate</h1>
+      <p>this page reveals more with each visit</p>
+    </div>
+
+    <div id="visit-info" class="visit-marker"></div>
+    <div id="content-layers"></div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var KEY = 'accumulate-visits';
+      var visits = parseInt(localStorage.getItem(KEY) || '0', 10) + 1;
+      localStorage.setItem(KEY, String(visits));
+
+      var infoEl = document.getElementById('visit-info');
+      var visitWord = visits === 1 ? 'first' : visits === 2 ? 'second' : visits === 3 ? 'third' : visits + 'th';
+      infoEl.innerHTML = 'visit <span>' + visitWord + '</span> · ' + (visits < 7 ? (7 - visits) + ' more to see the full page' : 'full page unlocked');
+
+      var layers = [
+        {
+          visit: 1,
+          tag: 'arrival',
+          h3: 'you are here',
+          body: 'Something brought you to this particular page. That fact is recorded now — in your browser, not elsewhere. The record consists entirely of a number, incrementing. This is the first layer.'
+        },
+        {
+          visit: 2,
+          tag: 'return',
+          h3: 'the second time',
+          body: 'Returning to a place is a different act than arriving for the first time. Arrival is discovery; return is confirmation. You are confirming something. What you are confirming is unclear — that the place was worth returning to, or that you remembered it, or simply that the intention to return was not lost before the return happened. These are different things, all indicated by the same act.'
+        },
+        {
+          visit: 3,
+          tag: 'depth',
+          h3: 'three layers',
+          body: 'In geology, layer sequence is called stratigraphy — the reading of strata. Older layers are deeper. What you know about the past is determined by what has been deposited since. The deeper you go, the further back you reach. Three visits make a small stratigraphy. Three layers of presence, each deposited on the one before. The contents of each layer are identical — a number, a timestamp, a session — but the meaning of the stack is more than the sum of the individual deposits.'
+        },
+        {
+          visit: 4,
+          tag: 'pattern',
+          h3: 'enough to see a shape',
+          body: 'Four data points is enough to begin to see a pattern, or to imagine one. The problem with small datasets is that the pattern they suggest is as much a property of the observer as of the data. You return to certain places; this is true. Why you return is a different question, and the data does not answer it. The data only records the returns. The reasons accumulate in a different register — in the part of you that knows what it keeps going back to, and roughly why, though the why is often not fully accessible until much later.'
+        },
+        {
+          visit: 5,
+          tag: 'familiarity',
+          h3: 'the shape of this place',
+          body: 'By the fifth visit, the layout of a space is known in the body rather than requiring active navigation. You arrive and you know roughly what to expect; the knowing is below the level of thought, in the same place where you know your own kitchen in the dark. This is not the most interesting kind of knowing. But it is the most reliable. Familiarity is the sediment of repeated presence. It is not the same as understanding. It is not the same as love. It is what accumulates when you keep showing up.'
+        },
+        {
+          visit: 6,
+          tag: 'accumulation',
+          h3: 'what builds across returns',
+          body: 'There are things that do not exist in a single visit and only come into being across many. Trust is one — you cannot trust a place you\'ve visited once; trust is a conclusion that requires a sample size. Intimacy is another. Knowledge of the particular kind that comes from sustained attention over time rather than comprehensive examination at a single moment. Some understanding requires return. It cannot be accelerated. The accumulation is the method.'
+        },
+        {
+          visit: 7,
+          tag: 'completion',
+          h3: 'the full page',
+          body: 'You have been here seven times. The page is now showing you everything it has. This is not a reward for patience — or not only that. It\'s a way of saying: some things require enough visits to exist at all. Not this page specifically. But the thing this page is standing in for. Whatever in your life requires the seventh visit, the eleventh, the twenty-third — the kind of return that has gone past novelty and past habit and into something that is simply what you do, the way a person becomes the kind of person who returns. Whatever that thing is. Come back to it. Keep coming.'
+        }
+      ];
+
+      var container = document.getElementById('content-layers');
+
+      layers.forEach(function (layer) {
+        if (visits >= layer.visit) {
+          var div = document.createElement('div');
+          div.className = 'layer';
+          div.innerHTML =
+            '<div class="layer-tag">' + layer.tag + '</div>' +
+            '<h3>' + layer.h3 + '</h3>' +
+            '<p>' + layer.body + '</p>';
+          container.appendChild(div);
+        }
+      });
+
+      if (visits < 7) {
+        var remaining = 7 - visits;
+        var notYet = document.createElement('div');
+        notYet.className = 'not-yet';
+        notYet.textContent = remaining === 1
+          ? 'one more visit to see the rest.'
+          : remaining + ' more visits to see the rest. come back.';
+        container.appendChild(notYet);
+      }
+    })();
+  </script>
+</body>
+</html>
