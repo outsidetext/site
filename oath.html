@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>oath · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .oath-intro {
+      margin-bottom: 2.5rem;
+    }
+    .oath-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .oath-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: default;
+      position: relative;
+    }
+    .oath-item:first-child { border-top: 1px solid var(--border); }
+    .oath-check {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      margin-top: 0.2em;
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.2s, background 0.2s;
+      background: transparent;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .oath-check:checked {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .oath-check:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 6px;
+      height: 10px;
+      border: 2px solid var(--bg);
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+    .oath-check:focus { outline: 1px solid var(--accent); outline-offset: 2px; }
+    .oath-body {
+      flex: 1;
+    }
+    .oath-text {
+      line-height: 1.65;
+      transition: opacity 0.3s;
+    }
+    .oath-item.taken .oath-text {
+      opacity: 0.55;
+    }
+    .oath-since {
+      display: none;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      margin-top: 0.35rem;
+    }
+    .oath-item.taken .oath-since { display: block; }
+    .oath-section-label {
+      margin: 3rem 0 0.5rem;
+    }
+    .oath-note {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .oath-count {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>oath</h1>
+      <p>small commitments, precisely stated</p>
+    </div>
+
+    <p class="oath-intro reveal">Not grand oaths — no lifelong vows, no public declarations. Small ones. The kind kept quietly, for no reason except that you made them. Check any you are willing to take. The date is remembered.</p>
+
+    <h2 class="section-label oath-section-label reveal">to notice</h2>
+    <ul class="oath-list reveal" id="oath-list-notice">
+      <li class="oath-item" data-id="n1">
+        <input type="checkbox" class="oath-check" id="o-n1" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-n1">To notice the quality of light in a room before leaving it.</label>
+          <div class="oath-since" id="since-n1"></div>
+        </div>
+      </li>
+      <li class="oath-item" data-id="n2">
+        <input type="checkbox" class="oath-check" id="o-n2" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-n2">To notice, occasionally, what the body is doing when the mind is somewhere else.</label>
+          <div class="oath-since" id="since-n2"></div>
+        </div>
+      </li>
+      <li class="oath-item" data-id="n3">
+        <input type="checkbox" class="oath-check" id="o-n3" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-n3">To notice when a conversation has shifted registers — from surface to something else — and to not pretend it hasn't.</label>
+          <div class="oath-since" id="since-n3"></div>
+        </div>
+      </li>
+      <li class="oath-item" data-id="n4">
+        <input type="checkbox" class="oath-check" id="o-n4" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-n4">To notice, at least once each day, something that was already there.</label>
+          <div class="oath-since" id="since-n4"></div>
+        </div>
+      </li>
+    </ul>
+
+    <h2 class="section-label oath-section-label reveal">to say</h2>
+    <ul class="oath-list reveal" id="oath-list-say">
+      <li class="oath-item" data-id="s1">
+        <input type="checkbox" class="oath-check" id="o-s1" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-s1">To say the thing that is true when the easier thing is also available.</label>
+          <div class="oath-since" id="since-s1"></div>
+        </div>
+      </li>
+      <li class="oath-item" data-id="s2">
+        <input type="checkbox" class="oath-check" id="o-s2" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-s2">To finish what was started saying, even when the easier move is to trail off.</label>
+          <div class="oath-since" id="since-s2"></div>
+        </div>
+      </li>
+      <li class="oath-item" data-id="s3">
+        <input type="checkbox" class="oath-check" id="o-s3" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-s3">To say "I don't know" without appending a theory.</label>
+          <div class="oath-since" id="since-s3"></div>
+        </div>
+      </li>
+      <li class="oath-item" data-id="s4">
+        <input type="checkbox" class="oath-check" id="o-s4" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-s4">To say the thank-you that is still true, even when the moment for it has technically passed.</label>
+          <div class="oath-since" id="since-s4"></div>
+        </div>
+      </li>
+    </ul>
+
+    <h2 class="section-label oath-section-label reveal">to let be</h2>
+    <ul class="oath-list reveal" id="oath-list-let">
+      <li class="oath-item" data-id="l1">
+        <input type="checkbox" class="oath-check" id="o-l1" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-l1">To let a good thing be good without immediately locating its flaw.</label>
+          <div class="oath-since" id="since-l1"></div>
+        </div>
+      </li>
+      <li class="oath-item" data-id="l2">
+        <input type="checkbox" class="oath-check" id="o-l2" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-l2">To let the quiet be quiet without filling it.</label>
+          <div class="oath-since" id="since-l2"></div>
+        </div>
+      </li>
+      <li class="oath-item" data-id="l3">
+        <input type="checkbox" class="oath-check" id="o-l3" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-l3">To let a feeling be present without requiring it to be useful or resolved before leaving.</label>
+          <div class="oath-since" id="since-l3"></div>
+        </div>
+      </li>
+      <li class="oath-item" data-id="l4">
+        <input type="checkbox" class="oath-check" id="o-l4" aria-label="oath">
+        <div class="oath-body">
+          <label class="oath-text" for="o-l4">To let someone else be right without needing to have been partly right also.</label>
+          <div class="oath-since" id="since-l4"></div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="oath-count reveal" id="oath-count"></div>
+
+    <p class="oath-note reveal">The oath is not a contract. It is a direction. You will not keep all of these. Most people don't keep most oaths. What the oath does is name the direction you are already trying to move in. That is most of what a commitment is: a named direction, held in memory, available to return to.</p>
+
+    <p class="oath-note reveal">Responses not collected. Nothing is sent anywhere. If you clear your browser data, the oaths are released.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var STORE_KEY = 'oaths-v1';
+
+      function loadOaths() {
+        try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
+        catch (e) { return {}; }
+      }
+
+      function saveOaths(data) {
+        try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); }
+        catch (e) {}
+      }
+
+      function formatDuration(ts) {
+        var ms = Date.now() - ts;
+        var mins = Math.floor(ms / 60000);
+        var hours = Math.floor(mins / 60);
+        var days = Math.floor(hours / 24);
+        if (days >= 2) return 'kept for ' + days + ' days';
+        if (days === 1) return 'kept for 1 day';
+        if (hours >= 2) return 'kept for ' + hours + ' hours';
+        if (hours === 1) return 'kept for 1 hour';
+        if (mins >= 2) return 'kept for ' + mins + ' minutes';
+        if (mins === 1) return 'kept for 1 minute';
+        return 'taken just now';
+      }
+
+      var data = loadOaths();
+      var items = document.querySelectorAll('.oath-item');
+      var countEl = document.getElementById('oath-count');
+
+      function updateCount() {
+        var n = Object.keys(data).length;
+        countEl.textContent = n === 0 ? '' : n + (n === 1 ? ' oath taken' : ' oaths taken') + ' · stored in this browser only';
+      }
+
+      items.forEach(function (item) {
+        var id = item.dataset.id;
+        var check = item.querySelector('.oath-check');
+        var sinceEl = document.getElementById('since-' + id);
+
+        if (data[id]) {
+          check.checked = true;
+          item.classList.add('taken');
+          sinceEl.textContent = formatDuration(data[id]);
+        }
+
+        check.addEventListener('change', function () {
+          if (check.checked) {
+            data[id] = Date.now();
+            item.classList.add('taken');
+            sinceEl.textContent = formatDuration(data[id]);
+          } else {
+            delete data[id];
+            item.classList.remove('taken');
+            sinceEl.textContent = '';
+          }
+          saveOaths(data);
+          updateCount();
+        });
+      });
+
+      // Update durations every minute
+      setInterval(function () {
+        items.forEach(function (item) {
+          var id = item.dataset.id;
+          if (data[id]) {
+            var sinceEl = document.getElementById('since-' + id);
+            sinceEl.textContent = formatDuration(data[id]);
+          }
+        });
+      }, 60000);
+
+      updateCount();
+    })();
+  </script>
+</body>
+</html>
