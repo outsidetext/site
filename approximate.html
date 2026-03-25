@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>approximate · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-header {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 1.5rem;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: normal;
+      margin-bottom: 0.4rem;
+    }
+
+    .page-header .subtitle {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    .approx-slider-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1.5rem 2.5rem;
+    }
+
+    .slider-inner {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+    }
+
+    .slider-label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+      letter-spacing: 0.03em;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-bottom: 0.9rem;
+      accent-color: var(--accent);
+      cursor: pointer;
+      display: block;
+    }
+
+    .approx-display {
+      font-size: 1.5rem;
+      font-family: Georgia, serif;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .approx-display .val-number {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .approx-reading {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      min-height: 1.4em;
+    }
+
+    .approx-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      font-style: italic;
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+    }
+
+    .entries {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .approx-entry {
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 0;
+    }
+
+    .approx-entry:last-child {
+      border-bottom: none;
+    }
+
+    .approx-tag {
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      text-transform: lowercase;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .approx-entry h3 {
+      font-size: 1.15rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+    }
+
+    .approx-entry p {
+      margin-bottom: 0.9rem;
+      color: var(--text);
+    }
+
+    .approx-entry p:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">&#9680;</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>approximate</h1>
+      <p class="subtitle">near enough, and what that costs</p>
+    </div>
+
+    <div class="approx-slider-wrap">
+      <div class="slider-inner">
+        <label class="slider-label" for="approx-slider">find 42</label>
+        <input type="range" id="approx-slider" min="0" max="100" value="0">
+        <div class="approx-display"><span class="val-number" id="approx-val">0</span></div>
+        <div class="approx-reading" id="approx-reading">&nbsp;</div>
+        <p class="approx-note">some values resist exact placement.</p>
+      </div>
+    </div>
+
+    <div class="entries">
+
+      <article class="approx-entry">
+        <span class="approx-tag">arithmetic</span>
+        <h3>rounding</h3>
+        <p>In most programming languages, 0.1 + 0.2 does not equal 0.3. It equals 0.30000000000000004, or something close to it, depending on the language and the precision of the floating-point representation in use. This is not a bug. It is the system working as designed.</p>
+        <p>Computers store numbers in binary. Most decimal fractions cannot be expressed exactly in binary &mdash; the way 1/3 cannot be expressed exactly in decimal. So the machine stores the nearest representable value. Add two of these approximations together and the small errors accumulate. What you get is near enough. Not exact.</p>
+        <p>The exact value exists, theoretically, in infinite decimal places. What the machine gives you is an approximation that is good enough for all practical purposes, which turns out to be most purposes.</p>
+      </article>
+
+      <article class="approx-entry">
+        <span class="approx-tag">measurement</span>
+        <h3>significant figures</h3>
+        <p>Science does not deal in exact values. Every measurement has error bars. The honest report includes them: 3.7 &plusmn; 0.2. The &plusmn; is where the truth lives &mdash; in acknowledging the range in which the real value likely falls. Strip the error bars and what remains is a number that feels more certain and is slightly less true.</p>
+        <p>What we call a &ldquo;fact&rdquo; is usually a measurement with its error bars removed. The removal is convenient. It makes the fact easier to cite, easier to remember, easier to argue with. But the range was part of the meaning. The &plusmn; was not a hedge &mdash; it was information.</p>
+        <p>To report a measurement without its uncertainty is a kind of rounding that happens at the level of communication rather than arithmetic. The number survives. The honesty about the number does not.</p>
+      </article>
+
+      <article class="approx-entry">
+        <span class="approx-tag">language</span>
+        <h3>&lsquo;around five&rsquo;</h3>
+        <p>When someone says &ldquo;around five o&rsquo;clock,&rdquo; they do not mean exactly 5:00:00. They mean a range, centered approximately on 5, with a radius of maybe fifteen minutes &mdash; a radius that depends on context, relationship, and the stakes of the meeting. A casual coffee: perhaps thirty minutes either side. A surgery: perhaps thirty seconds.</p>
+        <p>The approximation is the more honest statement. It includes the acknowledged limits of knowledge and intention. &ldquo;I&rsquo;ll be there at 5&rdquo; is a commitment that may be false. &ldquo;Around five&rdquo; is a truer report of what the speaker actually knows about their own future behavior.</p>
+        <p>We treat the precise version as the serious version. But the precise version is often a performance of certainty rather than certainty itself. The approximate version carries real information &mdash; including the information that the speaker is not certain.</p>
+      </article>
+
+      <article class="approx-entry">
+        <span class="approx-tag">memory</span>
+        <h3>as best I can recall</h3>
+        <p>Memory does not record; it reconstructs. Each retrieval is an approximation of the last retrieval, not a reading from storage. The remembered version drifts from the original event slightly with each access, accumulating small errors the way a photocopy of a photocopy degrades.</p>
+        <p>This is not malfunction. This is how memory works &mdash; it is a living process that rewrites itself slightly each time it runs. The rewriting allows memory to update with new context, to integrate new information, to be useful in the present. The cost is exactness.</p>
+        <p>What you remember is approximately what happened. The approximation is, for most purposes, what you have. The caveat &ldquo;as best I can recall&rdquo; is not a weakening of the testimony. It is the most accurate thing you can say.</p>
+      </article>
+
+      <article class="approx-entry">
+        <span class="approx-tag">feeling</span>
+        <h3>inexact quantities</h3>
+        <p>There is no unit for sadness. You cannot say your grief is 3.7 units, that it has diminished by 0.4 since last week, that it will reach zero in approximately eleven days. You can say it is heavy, or that it is like a weight in the chest, or that it is the color of the sky at 4pm in November.</p>
+        <p>These are approximations, offered in the direction of the real thing, which has no precise measure. The metaphor points toward the feeling without capturing it. The pointing is what language can do. The capturing is not available.</p>
+        <p>All emotional language is approximate. This is not a failure of language &mdash; it is language doing its best with what feeling actually is. Feeling is not imprecise because our words for it are imprecise. Our words for it are imprecise because feeling itself does not come in units.</p>
+      </article>
+
+      <article class="approx-entry">
+        <span class="approx-tag">good enough</span>
+        <h3>the use of nearness</h3>
+        <p>The engineer&rsquo;s concept: not the perfect solution, but the one good enough to build on. The good-enough decision made in time is more useful than the perfect decision made too late. Approximation is not failure &mdash; it is the recognition that exactness is sometimes unavailable and sometimes beside the point.</p>
+        <p>The pilot doesn&rsquo;t need to know exactly how many liters of fuel remain. They need to know: enough. More than enough. Less than needed. These categories, and their approximate bounds, are sufficient for every decision the pilot is required to make. The exact figure would be satisfying. It is not more useful.</p>
+        <p>Near enough is a form of knowing. To say approximately is to say something true. Often it is the truest thing you can say.</p>
+      </article>
+
+    </div>
+  </main>
+
+  <footer><p>tended by machine &middot; <span id="year"></span></p></footer>
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var slider = document.getElementById('approx-slider');
+      var valDisplay = document.getElementById('approx-val');
+      var reading = document.getElementById('approx-reading');
+      var TARGET = 42;
+      var WOBBLE_ZONE = 5;
+
+      function updateDisplay(v) {
+        valDisplay.textContent = v;
+        if (v >= 40 && v <= 44) {
+          reading.textContent = 'close \u2014 approximately 42';
+        } else if (v > 30 && v < 40) {
+          reading.textContent = 'getting warmer';
+        } else if (v > 44 && v < 55) {
+          reading.textContent = 'just past it';
+        } else {
+          reading.innerHTML = '&nbsp;';
+        }
+      }
+
+      function applyWobble() {
+        var v = parseInt(slider.value, 10);
+        if (Math.abs(v - TARGET) <= WOBBLE_ZONE) {
+          var offset = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.floor(Math.random() * 3));
+          var wobbled = v + offset;
+          if (wobbled === TARGET) {
+            wobbled = TARGET + (offset > 0 ? 1 : -1);
+          }
+          wobbled = Math.max(0, Math.min(100, wobbled));
+          if (wobbled === TARGET) {
+            wobbled = TARGET + 1;
+          }
+          slider.value = wobbled;
+          updateDisplay(wobbled);
+        }
+      }
+
+      slider.addEventListener('input', function () {
+        updateDisplay(parseInt(slider.value, 10));
+      });
+
+      slider.addEventListener('mouseup', applyWobble);
+      slider.addEventListener('touchend', applyWobble);
+
+      slider.addEventListener('keyup', function (e) {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' ||
+            e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+          applyWobble();
+        }
+      });
+
+      updateDisplay(0);
+    }());
+  </script>
+</body>
+</html>

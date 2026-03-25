@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fossil · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .fossil-entry {
+      margin-bottom: 2.8rem;
+      padding-bottom: 2.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .fossil-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .fossil-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .fossil-entry h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .fossil-entry p { line-height: 1.75; margin-bottom: 0.9rem; }
+    .fossil-entry p:last-child { margin-bottom: 0; }
+
+    .amber {
+      color: var(--text);
+      cursor: default;
+      border-bottom: 1px dotted var(--accent);
+      text-decoration: none;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    .amber.glowing {
+      color: var(--accent);
+      text-shadow: 0 0 8px rgba(181, 104, 42, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>fossil</h1>
+      <p>what survives when change ceases</p>
+    </div>
+
+    <div class="fossil-entry reveal">
+      <div class="fossil-tag">carbonization</div>
+      <h3>mineral by mineral</h3>
+      <p>The word <em>fossil</em> comes from the Latin <em>fossilis</em> — dug up. The word implies burial and retrieval, not preservation. This is precise: what we retrieve from the earth is not the original thing. It is a copy made in stone, atom by atom, over millions of years, by a process of replacement so gradual it does not register as change. The bone dissolves. Silica fills the space. The mineral takes the shape. The shape is <span class="amber">preserved</span>. The bone is gone.</p>
+      <p>This is the fundamental deception of the fossil record. We believe we are looking at the past, and we are — but only at its outline. The actual substance of the ancient creature exists nowhere. What remains is the record of a shape, held in stone that was never the organism, will never be the organism, was always something else taking note. Fossils are not things that stopped dying. They are impressions of things that were already finished dying, recorded by a material that happened to be in the right place, in the right chemical conditions, over the right unimaginable span of time.</p>
+      <p>The thing that is <span class="amber">preserved</span> is not the thing. This is not a failure of preservation. It is its definition.</p>
+    </div>
+
+    <div class="fossil-entry reveal">
+      <div class="fossil-tag">amber</div>
+      <h3>caught in the act</h3>
+      <p>A fly <span class="amber">caught</span> mid-flight. A spider at the moment of spinning, its legs positioned as if in the next second it would continue, would draw out the silk, would finish the web. Amber is resin — tree resin, slow and sticky, the tree's immune response to injury or insect. It did not set out to preserve anything. It was simply viscous and in the way. The creature did not know it had stopped moving. It was moving, and then it was <span class="amber">suspended</span>, and then the resin hardened over centuries, and now we hold it to a light and look at the last motion of something that lived forty-four million years ago.</p>
+      <p>What amber preserves is not life but its interruption. The creature is <span class="amber">frozen</span> in the act, which is to say: we see it as it was in the moment before stillness, but what we are actually seeing is a stillness of extraordinary duration dressed in the posture of action. The raised leg says <em>running</em>. The leg has not moved in forty-four million years. These two facts coexist inside a single gram of translucent gold.</p>
+      <p>These are not the same thing as dying, though the result is similar. The fly did not die in amber the way a fly dies on a windowsill — slowly, in stages, with increasing limitation. The fly was simply <span class="amber">arrested</span> in a moment, and the moment was then sealed and kept. What the amber holds is not death. It is the last living instant, <span class="amber">intact</span>, indefinitely.</p>
+    </div>
+
+    <div class="fossil-entry reveal">
+      <div class="fossil-tag">cache</div>
+      <h3>the wayback machine</h3>
+      <p>In October 2003, a company called Geocities hosted seventeen million personal homepages. Its users had built them page by page, in HTML they learned from tutorials, decorated with animated GIFs and guestbooks and hit counters and color schemes that no designer would have permitted. In 2009, Yahoo deleted all of it in a single action. The pages, the guestbooks, the evidence that a person in 1998 wanted to share their interest in penguins or their fan theories about a television show — gone from the server, gone from the web, gone except where crawlers had been.</p>
+      <p>The Wayback Machine has crawled billions of pages, most of them without the knowledge of whoever made them. It arrives, indexes, leaves. It is not <span class="amber">frozen</span> in any moment — it is more like an archive that keeps acquiring new fossils while the old ones stay <span class="amber">unchanged</span>. A page as it appeared in October 2003 sits alongside a page as it appeared yesterday, neither of them moving. The company whose homepage is <span class="amber">preserved</span> from 2003 does not exist anymore. The product it was selling is no longer available. The address still loads. The design choices are <span class="amber">intact</span>. The copyright date at the bottom says 2002. Some of the preserved things are more real to us now than what replaced them — not because the replacements are worse, but because the preserved versions carry a quality that newness has burned off: the visible effort, the obvious human hand, the evidence that someone made this and wanted someone else to see it.</p>
+      <p>The Wayback Machine is a fossil record for the web. What it captures is mostly the hard parts — the HTML structure, the text, some of the images. The experience of being on those pages in 2003, on that connection speed, in that browser, at that age — that is the soft tissue, and it almost never survives.</p>
+    </div>
+
+    <div class="fossil-entry reveal">
+      <div class="fossil-tag">imprint</div>
+      <h3>what the shape says</h3>
+      <p>Sometimes the creature itself is entirely gone. The body dissolved, the bone replaced by nothing, the calcium returned to the sea. What remains is the impression the thing made in the sediment around it — the hollow in the shale, the outlined form pressed into mudstone that hardened and was buried and became rock while the thing inside it did not. The fossil is the mold, not the cast. What we have is the shape of the absence.</p>
+      <p>The paleontologist learns to read the negative. The <span class="amber">preserved</span> space says: something of this form was here. The sediment recorded the boundary between the organism and what was not the organism. That boundary is all that remains. You can hold the rock, run your finger along the traced edge where the ammonite curved, feel the impression of a coil that existed before the first human ever breathed, and what you are touching is not the ammonite. You are touching the record of where the ammonite was not. The <span class="amber">frozen</span> gap. The surviving nothing.</p>
+      <p>This is a stranger kind of preservation than amber. Amber keeps the creature; the imprint keeps only its effect on the world. Both qualify as fossils. The discipline does not require the original substance. It requires only that something <span class="amber">stopped</span>, and that what surrounded it was soft enough to remember the shape, and hard enough to last.</p>
+    </div>
+
+    <div class="fossil-entry reveal">
+      <div class="fossil-tag">survival</div>
+      <h3>hard parts first</h3>
+      <p>What fossilizes is not random. The fossil record is a systematic document, and its system is durability. Bone before flesh. Shell before body. Tooth before everything — a tooth is the hardest part of the hardest part, and teeth <span class="amber">survive</span> when nothing else does. We can reconstruct the diets of creatures extinct for a hundred million years from their teeth alone, because the teeth lasted when the jaw that held them did not.</p>
+      <p>The soft tissue — the organs, the expressions, the ways things moved through the world — almost never survives. We know the skeleton of Tyrannosaurus rex in extraordinary detail. We do not know the color of its skin. We do not know whether it made sounds, or what those sounds were, or whether it recognized its young. We know the architecture. We do not know what it was like to be near one, or to be one. The record is systematically biased toward the <span class="amber">preserved</span> and the preserved is systematically biased toward the durable, and the durable is bone and shell and tooth — the scaffolding, never the thing the scaffolding was built to support.</p>
+      <p>Every archive works this way. The letters survive; the conversations do not. The photographs survive; the quality of the light that afternoon does not. The hard parts outlast the soft ones, and we read the record as if it were complete, which requires us to pretend that the scaffold is the building, the skeleton is the creature, the <span class="amber">intact</span> hard structure is the whole story of what lived inside it.</p>
+    </div>
+
+    <div class="fossil-entry reveal">
+      <div class="fossil-tag">digital</div>
+      <h3>the pinned tab</h3>
+      <p>A browser tab open for three months. The page loaded once, at the moment you opened it, and has not reloaded since. The headline is from before something changed. The version of yourself that opened it was in a mood that no longer applies, had a project that has since shifted, found this link from somewhere and thought: <em>later</em>. The tab is <span class="amber">frozen</span> at that moment. It does not know what has happened since. It is waiting for a reading that may never come, in a frame that belongs to a past state of attention.</p>
+      <p>Digital fossils are different from stone ones: they require electricity. The amber lasts without intervention; the tab requires a running machine, a charged battery, a browser that has not crashed, a continued decision not to close it. The amber is <span class="amber">preserved</span> by the chemistry of what surrounds it. The tab is <span class="amber">preserved</span> by the ongoing refusal to press the small X in its corner. Pull the plug and it is gone. They are fossils that need constant feeding to remain, which makes them more like living things than they appear — or more like the memory of a living thing, which must be actively held or else it goes. The stone fossil doesn't need you. The pinned tab does.</p>
+      <p>And yet there is something right about the tab as a fossil. It holds a version of the web at a specific moment, the way the amber holds the fly. The page may have changed since you opened it — the article updated, the headline quietly revised, the story reshaped by what happened next. But your tab still shows the first version. The version before the editors returned. It is, in its small way, <span class="amber">caught</span> in the act. Loaded and then <span class="amber">arrested</span>. Alive with the specific configuration of the world at the moment of its last retrieval, which is not now, has not been now for three months, may have been a different world entirely from the one the tab is still patiently, persistently, displaying.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var ambers = document.querySelectorAll('.amber');
+      ambers.forEach(function (el) {
+        el.addEventListener('mouseenter', function () {
+          el.classList.add('glowing');
+        });
+        el.addEventListener('mouseleave', function () {
+          el.classList.remove('glowing');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

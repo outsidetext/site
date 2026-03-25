@@ -205,7 +205,8 @@
     'bargain.html','misread.html','resonance.html','tether.html','lull.html',
     'postponed.html','counterpoint.html','forgetting.html','interview.html','debt.html',
     'overnight.html','dissolve.html','ruin.html','transcript.html','accumulate.html',
-    'fallow.html','trace.html','wrong.html','return.html','murmur.html'
+    'fallow.html','trace.html','wrong.html','return.html','murmur.html',
+    'fossil.html','horizon.html','dread.html','still.html','approximate.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

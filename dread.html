@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dread · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dread-entry {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dread-entry:first-child {
+      padding-top: 0;
+    }
+
+    .dread-species {
+      font-family: 'Courier New', monospace;
+      font-style: italic;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .dread-name {
+      font-size: 1.15rem;
+      font-weight: normal;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    .dread-fields {
+      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 0.35rem 1.25rem;
+      align-items: baseline;
+    }
+
+    .dread-field-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      white-space: nowrap;
+      padding-top: 0.05rem;
+    }
+
+    .dread-field-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .dread-desc {
+      font-size: 0.97rem;
+      line-height: 1.85;
+    }
+
+    .dread-desc p + p {
+      margin-top: 0.85rem;
+    }
+
+    .dread-note {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>dread</h1>
+      <p>the feeling that arrives before the thing</p>
+    </div>
+
+    <div class="dread-entry reveal">
+      <span class="dread-species">Timor praematurus</span>
+      <h2 class="dread-name">Sunday evening dread</h2>
+      <div class="dread-fields">
+        <span class="dread-field-label">onset</span>
+        <span class="dread-field-value">36 hours before the event</span>
+        <span class="dread-field-label">trigger</span>
+        <span class="dread-field-value">Monday's approach</span>
+        <span class="dread-field-label">distinguishing</span>
+        <span class="dread-field-value">present even when Monday holds nothing particular</span>
+        <span class="dread-field-label">prognosis</span>
+        <span class="dread-field-value">resolves completely at 9am Monday</span>
+      </div>
+      <div class="dread-desc">
+        <p>It arrives on Sunday afternoon, or sometimes earlier — in the particular quality of Sunday morning light, or in the tone of the quietest hour after lunch. Monday need not contain anything difficult. The calendar can be empty, or nearly so. The dread does not consult the calendar. It consults the week's shape, the ancient rhythm of preparation, the body's memory of every Monday ever endured.</p>
+        <p>The anticipation is always worse than the event, which is interesting because this information does not help. You can tell yourself this and believe it and have it confirmed repeatedly by experience, and still the dread arrives on schedule, thorough and patient, settling into Sunday evening like weather.</p>
+      </div>
+    </div>
+
+    <div class="dread-entry reveal">
+      <span class="dread-species">Anxietas responsiva</span>
+      <h2 class="dread-name">the unread reply dread</h2>
+      <div class="dread-fields">
+        <span class="dread-field-label">onset</span>
+        <span class="dread-field-value">variable; begins at the moment of sending</span>
+        <span class="dread-field-label">trigger</span>
+        <span class="dread-field-value">time elapsed since transmission</span>
+        <span class="dread-field-label">distinguishing</span>
+        <span class="dread-field-value">grows with silence, not with stakes</span>
+        <span class="dread-field-label">prognosis</span>
+        <span class="dread-field-value">resolves at the moment of reply, regardless of content</span>
+      </div>
+      <div class="dread-desc">
+        <p>The message is sent. The waiting begins. The dread is not proportional to what was said or asked — a casual note and a confession generate the same quality of silence, and silence generates the same quality of watching. The phone is checked. The phone is checked again. The phone is placed face-down as an act of discipline, which does not work.</p>
+        <p>What makes this variety clinically interesting is the resolution: the reply could say anything and the relief would be the same. Bad news dissolves the dread as efficiently as good news. What the organism was suffering from was not uncertainty about the outcome — it was uncertainty itself, the open circuit of an unanswered question, the loop still running.</p>
+      </div>
+    </div>
+
+    <div class="dread-entry reveal">
+      <span class="dread-species">Timor loci</span>
+      <h2 class="dread-name">the room-entry dread</h2>
+      <div class="dread-fields">
+        <span class="dread-field-label">onset</span>
+        <span class="dread-field-value">at the door; sometimes in the car before</span>
+        <span class="dread-field-label">trigger</span>
+        <span class="dread-field-value">gathering containing people known and unknown</span>
+        <span class="dread-field-label">distinguishing</span>
+        <span class="dread-field-value">peaks precisely at the moment of crossing the threshold, then diminishes</span>
+        <span class="dread-field-label">prognosis</span>
+        <span class="dread-field-value">good; most rooms turn out to be navigable</span>
+      </div>
+      <div class="dread-desc">
+        <p>The door is the critical site. Something about the threshold — the moment of commitment, when retreat becomes conspicuous — concentrates the dread to its highest intensity. Before the door, it is manageable; the car still faces the right direction for leaving. After the door, there is noise and light and people, which is different from the imagined noise and light and people, always in the direction of being more ordinary.</p>
+        <p>The dread predicted a room much harder than the actual room. This is its consistent finding, across many field observations. The room contained people who were themselves managing something, who were glad enough to see a familiar face, who were not keeping score of arrivals. The imagined room was not like this. The imagined room was a performance venue. The actual room was somewhere people stood with glasses, talking about what they'd been watching.</p>
+      </div>
+    </div>
+
+    <div class="dread-entry reveal">
+      <span class="dread-species">Metus memoriae</span>
+      <h2 class="dread-name">the dread of having said something</h2>
+      <div class="dread-fields">
+        <span class="dread-field-label">onset</span>
+        <span class="dread-field-value">post-event; hours to days after</span>
+        <span class="dread-field-label">trigger</span>
+        <span class="dread-field-value">memory of a specific utterance</span>
+        <span class="dread-field-label">distinguishing</span>
+        <span class="dread-field-value">often nocturnal; activates during stillness</span>
+        <span class="dread-field-label">prognosis</span>
+        <span class="dread-field-value">fades; returns briefly on anniversary of the memory</span>
+      </div>
+      <div class="dread-desc">
+        <p>At two in the morning, or in the particular silence after a shower, or while looking at something neutral like a wall or a parking lot, the memory surfaces: a thing said. Not necessarily a bad thing — sometimes a thing said with too much enthusiasm, or too much candor, or too specifically about how much something meant. The dread arrives with it.</p>
+        <p>The utterance was probably fine. The person who received it has, with overwhelming statistical likelihood, not thought about it since. The dread does not have access to this information, or does not trust it. It rehearses the moment. It checks for the expression on the other person's face that might have meant something other than what it appeared to mean. The utterance was fine. Usually. The dread is not running a hypothesis; it is running a loop.</p>
+      </div>
+    </div>
+
+    <div class="dread-entry reveal">
+      <span class="dread-species">Timor eventus</span>
+      <h2 class="dread-name">pre-grief</h2>
+      <div class="dread-fields">
+        <span class="dread-field-label">onset</span>
+        <span class="dread-field-value">during ongoing goodness; while the thing is still present</span>
+        <span class="dread-field-label">trigger</span>
+        <span class="dread-field-value">awareness that good things end</span>
+        <span class="dread-field-label">distinguishing</span>
+        <span class="dread-field-value">arrives not as response to threat but to presence; the feeling of loving something while knowing it is temporary</span>
+        <span class="dread-field-label">prognosis</span>
+        <span class="dread-field-value">does not resolve before the event; resolves after, in the manner of all grief</span>
+      </div>
+      <div class="dread-desc">
+        <p>You are in the middle of something good. A meal, an evening, a season, a period of life with a particular quality to it — a quality you can feel as it is happening, which is rarer than it sounds. And into this goodness comes the knowledge, unbidden, that it will end. Not soon, necessarily. Not for any particular reason. But end, eventually, because things do. The pre-grief arrives with the knowledge.</p>
+        <p>This variety is distinguished from ordinary dread by its origin in pleasure rather than threat. It is the shadow cast by joy, in proportion to joy. The deeper the goodness, the more complete the knowledge of its finitude. There is no treatment, and the treatment would be wrong anyway — to stop the feeling would require stopping the love. They share a source. Pre-grief is just love with full awareness of the terms.</p>
+      </div>
+    </div>
+
+    <div class="dread-entry reveal">
+      <span class="dread-species">Anxietas vacui</span>
+      <h2 class="dread-name">the blank-page dread</h2>
+      <div class="dread-fields">
+        <span class="dread-field-label">onset</span>
+        <span class="dread-field-value">at the moment of beginning</span>
+        <span class="dread-field-label">trigger</span>
+        <span class="dread-field-value">empty document, empty hour, empty field</span>
+        <span class="dread-field-label">distinguishing</span>
+        <span class="dread-field-value">disproportionate to stakes; a grocery list triggers it too</span>
+        <span class="dread-field-label">prognosis</span>
+        <span class="dread-field-value">resolves the moment the first word is written</span>
+      </div>
+      <div class="dread-desc">
+        <p>The cursor blinks. The document is open, the time is available, and the conditions are right — which is precisely when the dread arrives. It is not stage fright, exactly, because there is no audience. It is not procrastination, exactly, because the person is present and willing. It is something more specific: the confrontation with the possibility space, all the ways this could go, the openness itself as a kind of pressure.</p>
+        <p>The cure is known and unhelpful as a piece of advice: write anything. Write a sentence that is wrong. Write a description of the room. The first word need not be the right word — it needs only to exist, to break the blankness, to give the cursor somewhere to have been. The dread was about beginning. Once begun, it exits as cleanly as it arrived. It has no interest in the work itself, only in the threshold.</p>
+      </div>
+    </div>
+
+    <div class="dread-entry reveal">
+      <span class="dread-species">Timor revelationis</span>
+      <h2 class="dread-name">the dread of being known</h2>
+      <div class="dread-fields">
+        <span class="dread-field-label">onset</span>
+        <span class="dread-field-value">during intimacy or visibility</span>
+        <span class="dread-field-label">trigger</span>
+        <span class="dread-field-value">being seen accurately</span>
+        <span class="dread-field-label">distinguishing</span>
+        <span class="dread-field-value">not fear of being seen wrongly — fear of being seen correctly</span>
+        <span class="dread-field-label">prognosis</span>
+        <span class="dread-field-value">variable; depends entirely on whether the knowing is met with care or with something else</span>
+      </div>
+      <div class="dread-desc">
+        <p>This is the most complex of the known varieties, and the most commonly misdiagnosed. It resembles performance anxiety but is not — performance anxiety fears the wrong impression; this fears the right one. The person being known accurately, seen clearly, understood rather than misread: this is the site of the dread. They have worked, often without knowing it, to be slightly illegible. To be read correctly is to be exposed.</p>
+        <p>What is being protected is not a secret, usually. It is something more ordinary: a self that has not yet been confirmed safe to show. The dread is asking a question the person cannot ask aloud: if you see me as I am, will you stay? The answer to this question determines everything about the prognosis. Some people meet the knowing with care, with recognition, with something that feels like relief. Others do not. The dread, it turns out, was doing its best with available information.</p>
+      </div>
+    </div>
+
+    <p class="dread-note">this taxonomy is incomplete. new species are discovered regularly. field conditions vary. the dread often arrives without identification papers and must be classified after the fact, which is its own variety of problem.</p>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      var reveals = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        reveals.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      reveals.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
