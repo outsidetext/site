@@ -333,6 +333,10 @@
       { id: 'vantage',     href: 'vantage.html',     label: 'vantage',     desc: 'where you stand changes what you can see — move cursor to gain elevation; five entries on the geometry of height, the blind spot, the overview effect, what distance allows, and the view from here specifically', x: 0.82, y: 0.25 },
       { id: 'lattice',     href: 'lattice.html',     label: 'lattice',     desc: 'the structure that holds things open — click to add nodes; five entries on the trellis built before the vine, crystal lattice and distributed strength, scaffolding, the invisible social network, and the grid as the lattice\'s most committed form', x: 0.33, y: 0.17 },
       { id: 'solitude',    href: 'solitude.html',    label: 'solitude',    desc: 'the company of yourself — no animation, no canvas, deliberately still; five entries on the developmental capacity to be alone, solitude vs. isolation, the unobserved self, what only quiet allows, and what it is for', x: 0.15, y: 0.55 },
+      { id: 'between',     href: 'between.html',     label: 'between',     desc: 'five meditations on the productive space — the gap, the interval, the interstitium, betweenness centrality, and the sacred threshold stone',     x: 0.61, y: 0.31 },
+      { id: 'cursor',      href: 'cursor.html',      label: 'cursor',      desc: 'move to leave a trace — a canvas of fading dots; five entries on the cursor as proxy, Fitts\' law, the idle cursor, the hourglass, and the etymology of cursor as runner',     x: 0.41, y: 0.98 },
+      { id: 'exhale',      href: 'exhale.html',      label: 'exhale',      desc: 'the outbreath, arriving line by line — four entries on the passive exhale, the sigh as maintenance, what releases, and why CO₂ drives breathing more than the absence of O₂',   x: 0.24, y: 0.40 },
+      { id: 'recall',      href: 'recall.html',      label: 'recall',      desc: 'your trail through here — reads from local storage; the route you took, the rooms you visited, the ones you returned to',                                                        x: 0.86, y: 0.60 },
     ];
 
     var edges = [
@@ -567,6 +571,10 @@
       ['vantage','horizon'], ['vantage','cartography'], ['vantage','atlas'], ['vantage','distances'], ['vantage','aperture'],
       ['lattice','ground'], ['lattice','hinge'], ['lattice','anchor'], ['lattice','tether'], ['lattice','inheritance'],
       ['solitude','quiet'], ['solitude','silence'], ['solitude','presence'], ['solitude','interval'], ['solitude','breathe'],
+      ['between','quiet'], ['between','solitude'], ['between','distances'], ['between','interval'], ['between','silence'], ['between','thresholds'],
+      ['cursor','trace'], ['cursor','presence'], ['cursor','ghost'], ['cursor','witness'], ['cursor','mirror'],
+      ['exhale','breathe'], ['exhale','quiet'], ['exhale','salt'], ['exhale','silence'], ['exhale','ordinary'],
+      ['recall','log'], ['recall','wander'], ['recall','archive'], ['recall','accumulate'], ['recall','sediment'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

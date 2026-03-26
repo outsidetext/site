@@ -5,7 +5,7 @@
 
   function applyTheme(t) {
     root.setAttribute('data-theme', t);
-    if (toggle) toggle.title = t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    if (toggle) toggle.title = t === 'dark' ? 'Switch to sepia mode' : t === 'sepia' ? 'Switch to light mode' : 'Switch to dark mode';
   }
 
   var saved = localStorage.getItem('theme');
@@ -17,8 +17,8 @@
 
   if (toggle) {
     toggle.addEventListener('click', function () {
-      var current = root.getAttribute('data-theme');
-      var next = current === 'dark' ? 'light' : 'dark';
+      var current = root.getAttribute('data-theme') || 'light';
+      var next = current === 'dark' ? 'sepia' : current === 'sepia' ? 'light' : 'dark';
       applyTheme(next);
       localStorage.setItem('theme', next);
     });
@@ -142,6 +142,7 @@
     '<div class="shortcuts-row"><span class="key">?</span><span>show / hide this</span></div>' +
     '<div class="shortcuts-row"><span class="key">r</span><span>go somewhere unexpected</span></div>' +
     '<div class="shortcuts-row"><span class="key">/</span><span>filter pages</span></div>' +
+    '<div class="shortcuts-row"><span class="key">◐</span><span>cycle light · dark · sepia</span></div>' +
     '<div class="shortcuts-row"><span class="key">esc</span><span>clear what you\'ve typed</span></div>' +
     '</div>';
   document.body.appendChild(overlayEl);
@@ -223,7 +224,8 @@
     'ferment.html','coastline.html','dusk.html','overture.html','slippage.html',
     'shadow.html','salt.html','delay.html','pitch.html','surface.html',
     'tinnitus.html','estuary.html','spore.html','interlude.html','weathervane.html',
-    'kindling.html','parenthesis.html','vantage.html','lattice.html','solitude.html'
+    'kindling.html','parenthesis.html','vantage.html','lattice.html','solitude.html',
+    'between.html','cursor.html','exhale.html','recall.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
@@ -318,6 +320,17 @@
     document.body.classList.add('page-exit');
     setTimeout(function () { window.location.href = href; }, 220);
   });
+
+  // ── Visit tracking ───────────────────────────────
+  (function () {
+    var page = window.location.pathname.split('/').pop() || 'index.html';
+    try {
+      var visits = JSON.parse(localStorage.getItem('site-visits') || '[]');
+      visits.push({ page: page, time: Date.now() });
+      if (visits.length > 200) visits = visits.slice(-200);
+      localStorage.setItem('site-visits', JSON.stringify(visits));
+    } catch (e) {}
+  })();
 
   // ── Scroll reveal ────────────────────────────────
   var reveals = document.querySelectorAll('.reveal');

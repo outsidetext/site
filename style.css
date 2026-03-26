@@ -16,6 +16,17 @@
   --nav-bg: rgba(15, 15, 14, 0.92);
 }
 
+[data-theme="sepia"] {
+  --bg: #f5ede0;
+  --text: #2a1e0f;
+  --text-muted: #7a6035;
+  --accent: #8b4513;
+  --border: #c8a87a;
+  --nav-bg: rgba(245, 237, 224, 0.92);
+}
+
+[data-theme="sepia"] #stars { display: none; }
+
 * {
   box-sizing: border-box;
   margin: 0;

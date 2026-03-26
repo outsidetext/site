@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>recall · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .recall-empty {
+      padding: 3rem 0;
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.97rem;
+      line-height: 1.9;
+    }
+    .recall-stats {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .recall-stat span {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--accent);
+      font-family: Georgia, serif;
+      margin-top: 0.2rem;
+    }
+    .recall-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .recall-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: baseline;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .recall-item:last-child { border-bottom: none; }
+    .recall-page {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.97rem;
+      transition: color 0.2s;
+    }
+    .recall-page:hover { color: var(--accent); }
+    .recall-time {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .recall-revisit {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-left: 0.5rem;
+      font-style: italic;
+    }
+    .recall-clear {
+      margin-top: 2.5rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .recall-clear button {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.82rem;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+    .recall-clear button:hover { color: var(--text); }
+    .recall-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    .recall-section {
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>recall</h1>
+      <p>the trail you left through here</p>
+    </div>
+
+    <p class="recall-note">This page reads from your browser's local storage. It knows only what you did in this browser, on this device. Nothing is sent anywhere.</p>
+
+    <div class="recall-section" id="recall-content">
+      <!-- populated by script -->
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var container = document.getElementById('recall-content');
+    var raw = localStorage.getItem('site-visits');
+    var visits = raw ? JSON.parse(raw) : [];
+
+    // filter out the current page load (which was just tracked by main.js)
+    // and show up to 60 entries in reverse chronological order
+    if (!visits || visits.length === 0) {
+      container.innerHTML =
+        '<p class="recall-empty">You haven\'t left a trail yet — or this is a fresh browser. ' +
+        'Wander anywhere, and the route will appear here when you return.</p>' +
+        '<p class="recall-empty" style="margin-top:0.5rem">' +
+        'Start with <a href="wander.html" style="color:var(--accent)">wander</a>, ' +
+        'or press <code style="font-size:0.82em">r</code> to go somewhere unexpected.</p>';
+      return;
+    }
+
+    // compute stats
+    var recent = visits.slice(-60).reverse();
+    var uniquePages = new Set(visits.map(function (v) { return v.page; })).size;
+    var totalVisits = visits.length;
+
+    // page visit counts for showing revisit badge
+    var counts = {};
+    visits.forEach(function (v) {
+      counts[v.page] = (counts[v.page] || 0) + 1;
+    });
+
+    function formatTime(ts) {
+      var d = new Date(ts);
+      var now = Date.now();
+      var diff = now - ts;
+      if (diff < 60000) return 'just now';
+      if (diff < 3600000) return Math.floor(diff / 60000) + 'm ago';
+      if (diff < 86400000) return Math.floor(diff / 3600000) + 'h ago';
+      return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    }
+
+    function pageName(page) {
+      return page.replace(/\.html$/, '').replace(/-/g, '\u2011') || 'home';
+    }
+
+    function pageHref(page) {
+      return page || './';
+    }
+
+    // build stats bar
+    var statsHtml =
+      '<div class="recall-stats">' +
+      '<div class="recall-stat">visits<span>' + totalVisits + '</span></div>' +
+      '<div class="recall-stat">unique rooms<span>' + uniquePages + '</span></div>' +
+      '</div>';
+
+    // build trail list
+    var listHtml = '<ul class="recall-list">';
+    var seenInRecent = {};
+    recent.forEach(function (v) {
+      var revisit = seenInRecent[v.page] || counts[v.page] > 1;
+      seenInRecent[v.page] = true;
+      var badge = (counts[v.page] > 1 && revisit)
+        ? '<span class="recall-revisit">×' + counts[v.page] + '</span>'
+        : '';
+      listHtml +=
+        '<li class="recall-item">' +
+        '<div><a href="' + pageHref(v.page) + '" class="recall-page">' + pageName(v.page) + '</a>' + badge + '</div>' +
+        '<span class="recall-time">' + formatTime(v.time) + '</span>' +
+        '</li>';
+    });
+    listHtml += '</ul>';
+
+    var clearHtml =
+      '<p class="recall-clear">trail stored locally only &middot; ' +
+      '<button id="recall-clear-btn">clear history</button></p>';
+
+    container.innerHTML = statsHtml + listHtml + clearHtml;
+
+    document.getElementById('recall-clear-btn').addEventListener('click', function () {
+      if (confirm('Clear your visit history? This cannot be undone.')) {
+        localStorage.removeItem('site-visits');
+        container.innerHTML = '<p class="recall-empty">History cleared. Go somewhere.</p>';
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

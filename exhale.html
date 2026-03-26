@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>exhale · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .exhale-stage {
+      min-height: 18rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    .exhale-line {
+      font-size: 1.05rem;
+      line-height: 2.4;
+      color: var(--text);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .exhale-line.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .exhale-line.dim {
+      opacity: 0.38;
+    }
+    .exhale-note {
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      position: absolute;
+      bottom: 0.9rem;
+      right: 1.1rem;
+    }
+    .exhale-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .exhale-entry:last-child { border-bottom: none; }
+    .exhale-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .exhale-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .exhale-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .exhale-entry p + p { margin-top: 1rem; }
+    .exhale-section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>exhale</h1>
+      <p>the outbreath — this page will take its time</p>
+    </div>
+
+    <div class="exhale-stage" id="exhale-stage">
+      <p class="exhale-line" id="el-0">breathe in.</p>
+      <p class="exhale-line" id="el-1">hold it.</p>
+      <p class="exhale-line" id="el-2">now let go.</p>
+      <p class="exhale-line" id="el-3">the outbreath is not the end of the breath.</p>
+      <p class="exhale-line" id="el-4">it is the beginning of the next one.</p>
+      <p class="exhale-line" id="el-5">and also what makes room.</p>
+      <p class="exhale-line" id="el-6">without the exhale, there is nowhere for the air to go.</p>
+      <p class="exhale-line" id="el-7">this page waited for you. it will keep waiting.</p>
+      <span class="exhale-note" id="exhale-note"></span>
+    </div>
+
+    <h2 class="exhale-section-label">on the outbreath</h2>
+
+    <div class="exhale-entry reveal">
+      <span class="exhale-tag">physiology</span>
+      <h3>active and passive</h3>
+      <p>The exhale is active in distress and passive in rest. Under normal conditions — relaxed breathing, low demand — the diaphragm simply releases after its contraction. The lungs recoil. The air leaves without effort, pushed by the elastic pressure the inhale created. The inhale is the work; the exhale is the recovery. Under stress, you exhale actively: the abdominal muscles contract, the internal intercostals engage, more air leaves faster. The transition between these two modes — from controlled to spontaneous exhalation — is a measurable indicator of autonomic state.</p>
+      <p>A slow, deliberate, complete exhale activates the parasympathetic nervous system — not the inhale, specifically the exhale. The vagal brake engages on the out-breath. This is why breathing techniques that lengthen the exhale relative to the inhale have a calming effect. The body reads the long exhale as safety signal. Not because of anything symbolic about release. Because of what the outbreath does to vagal tone, which is immediate, involuntary, and not subject to interpretation.</p>
+    </div>
+
+    <div class="exhale-entry reveal">
+      <span class="exhale-tag">reflex</span>
+      <h3>the sigh</h3>
+      <p>The sigh is a double exhale: a normal breath followed immediately by a second, smaller inhale, and then a long exhale. It occurs spontaneously about every five minutes in healthy humans and in most mammals. Its mechanical purpose is to re-inflate alveoli — the small air sacs in the lungs — that have partially collapsed during regular tidal breathing. Without spontaneous sighing, alveolar collapse accumulates until breathing becomes effortful. The sigh is maintenance.</p>
+      <p>The same mechanism produces the sigh of relief, the sigh of overwhelm, the sigh that escapes when something long-held finally resolves. These are not metaphorically sighs — they are mechanically identical to the maintenance sighs the body produces throughout the day without your input or awareness. The body found a way to make routine maintenance feel like catharsis. Or, more precisely: the mechanism that clears collapsed alveoli was already in place, and the body co-opted it for emotional processing. Either account is interesting. The sigh serves both.</p>
+    </div>
+
+    <div class="exhale-entry reveal">
+      <span class="exhale-tag">release</span>
+      <h3>what lets go</h3>
+      <p>In grief, in relief, in great beauty — in the presence of something the body cannot hold in the normal way — something releases that had been held. The catch in the throat is the attempt to hold it; the exhale is what happens when holding becomes impossible. What you experience as "letting go" is not metaphor. It is the literal release of breath the body was holding, often without having been consciously aware that it was holding anything.</p>
+      <p>This is why the moments of release — crying, laughing hard, the sound made when very good news arrives — all involve the breath. Not because breath is symbolic of inner states, though we've made it so. Because the breath is where the holding and the releasing happen physically. The body does the emotion in the chest and the throat and the diaphragm. The outbreath is how the body reports the release. It was always happening there. Language just followed the body's lead.</p>
+    </div>
+
+    <div class="exhale-entry reveal">
+      <span class="exhale-tag">chemistry</span>
+      <h3>what drives it</h3>
+      <p>The urge to breathe is not caused by the absence of oxygen. It is caused by the accumulation of carbon dioxide. Chemoreceptors in the brainstem and carotid bodies detect rising CO2 levels in the blood and trigger the breathing reflex — the feeling of urgency, of needing to inhale, of not being able to hold any longer. Oxygen deprivation alone, without CO2 accumulation, produces no sense of breathlessness. Free divers know this; they hyperventilate before a dive to lower CO2, which extends the time before the urge becomes unbearable, which is also why hyperventilation before a dive can be lethal.</p>
+      <p>The logic runs backwards from how it feels. You breathe out because you need to breathe in. You need to breathe in because CO2 has accumulated. CO2 has accumulated because the exhale removes it, and exhaling is what creates the need to inhale. The outbreath is structurally prior. The body's driver is the need to release, and the release is what creates the space the inhale fills. We experience breathing as beginning with the inhale. It begins with the need to exhale.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var lines = [
+      { id: 'el-0', delay: 400 },
+      { id: 'el-1', delay: 2000 },
+      { id: 'el-2', delay: 3600 },
+      { id: 'el-3', delay: 5800 },
+      { id: 'el-4', delay: 8000 },
+      { id: 'el-5', delay: 10000 },
+      { id: 'el-6', delay: 12200 },
+      { id: 'el-7', delay: 15000 }
+    ];
+
+    var noteEl = document.getElementById('exhale-note');
+    var shown = 0;
+
+    lines.forEach(function (l) {
+      setTimeout(function () {
+        var el = document.getElementById(l.id);
+        if (!el) return;
+        el.classList.add('visible');
+        shown++;
+        if (noteEl) noteEl.textContent = shown + ' of ' + lines.length;
+        // dim all previous lines a little after the later ones appear
+        if (shown > 3) {
+          for (var i = 0; i < shown - 2; i++) {
+            var prev = document.getElementById(lines[i].id);
+            if (prev) prev.classList.add('dim');
+          }
+        }
+      }, l.delay);
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cursor · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cursor-canvas-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      background: var(--bg);
+      cursor: none;
+    }
+    #cursor-canvas {
+      display: block;
+      width: 100%;
+    }
+    .cursor-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .cursor-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .cursor-entry:last-child { border-bottom: none; }
+    .cursor-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .cursor-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .cursor-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .cursor-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>cursor</h1>
+      <p>move to leave a trace</p>
+    </div>
+
+    <div class="cursor-canvas-wrap">
+      <canvas id="cursor-canvas"></canvas>
+    </div>
+    <p class="cursor-hint">your cursor leaves dots that fade — a record of where attention has been</p>
+
+    <div class="cursor-entry reveal">
+      <span class="cursor-tag">presence</span>
+      <h3>proxy</h3>
+      <p>You have never touched a hyperlink. You have never touched an icon, a button, a photograph on a screen. You have directed a cursor at these things and pressed a button on a device held in your hand — and this is so familiar that the gap between the action and its effect feels immediate, natural, direct. But the cursor is always a proxy: the body's representative in a space the body cannot enter. Every interaction you have had with digital content has been mediated by this stand-in.</p>
+      <p>The cursor is not you. It is the thing you send ahead. In older mythology this would be a herald, a messenger, a scout. The cursor moves into the digital territory and reports back through feedback: the color change on hover, the pointer shift when something is clickable. The interface is a conversation between your proxy and the system's responses. You are not there. You are reading the transcript.</p>
+    </div>
+
+    <div class="cursor-entry reveal">
+      <span class="cursor-tag">ergonomics</span>
+      <h3>Fitts' law</h3>
+      <p>In 1954, the psychologist Paul Fitts formulated a predictive model of human movement. The time to move to a target is a function of two variables: the distance to the target, and the size of the target. The relationship is logarithmic — doubling the distance requires far less than double the time, and making a target smaller has diminishing costs until it becomes very small indeed, at which point the cost rises sharply. The law predicts aiming time with remarkable accuracy across tasks ranging from industrial assembly to cursor movement to eye saccades.</p>
+      <p>Every design decision that makes a button smaller, or places it far from where the cursor is likely to rest, adds a measurable and predictable cost — not large, not conscious, but real and cumulative. Fitts measured this with physical targets in 1954, before personal computers existed. The law simply transferred. The cursor operates under the same physics as the hand, because the cursor <em>is</em> the hand, transposed.</p>
+    </div>
+
+    <div class="cursor-entry reveal">
+      <span class="cursor-tag">abandonment</span>
+      <h3>idle</h3>
+      <p>When you walk away from a computer, the cursor does not follow. It remains where you left it — pointing at something, or nothing in particular, holding its position in a room the person has departed. If you return, it will still be there. If the screen saver activates, it will be hidden by the animation. If someone else sits down and moves the mouse, it will have moved without you. But in the moment of departure, the cursor holds its bearing as if intention persists in the absence of the intender.</p>
+      <p>There is something in this worth noting: the cursor has no idle state distinct from its active state. It waits by pointing. It cannot put itself away, cannot signal uncertainty about whether anyone is coming back. The cursor is always aimed at something, always at attention, always reporting a position that may no longer be meaningful. It has commitment but no expectation. It stays because it does not know how to do anything else.</p>
+    </div>
+
+    <div class="cursor-entry reveal">
+      <span class="cursor-tag">waiting</span>
+      <h3>the hourglass</h3>
+      <p>When the computer is busy and cannot yet respond, the cursor changes shape. The arrow becomes an hourglass, or a spinning circle, or a watch face. Different operating systems have developed different vocabularies for this state, but they agree on the essential message: I received your input. I am processing it. Do not send again. The cursor becomes the system's acknowledgment — a form that says something without words about the current condition of the machine and what the human should expect.</p>
+      <p>Without the wait-state cursor, the user would not know if the click registered — would click again, and again, stacking requests that the system would eventually have to process. The spinner is a receipt. It is the interface's way of saying: you were heard, even if I cannot yet answer. This is a small, underappreciated act of communication. The cursor has become a messenger in both directions — carrying your actions into the machine, and carrying the machine's status back to you.</p>
+    </div>
+
+    <div class="cursor-entry reveal">
+      <span class="cursor-tag">etymology</span>
+      <h3>the runner</h3>
+      <p>The word <em>cursor</em> comes from the Latin <em>cursor</em>, meaning runner — from <em>currere</em>, to run. In Roman usage it referred to a courier, a messenger sent ahead, someone who moved faster than the information he carried so that the information would be ready when the people arrived. It entered computing as the name for the blinking line that marked where the next character would appear in a text field — the position indicator, the placeholder for what was about to be typed. The pointer retained the name when it arrived, though its behavior is different.</p>
+      <p>The metaphor holds better than it might seem. The cursor runs ahead of the hand into digital space, touching things, marking positions, preparing the ground. It is etymologically a messenger. It carries the intention forward. When you hover over a link and see the URL in the status bar, the cursor has already done the investigative work — has already been to the destination and reported back — before you have decided whether to click. The runner arrived first. It usually does.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('cursor-canvas');
+    var wrap = canvas.parentElement;
+    var ctx = canvas.getContext('2d');
+    var dots = [];
+    var FADE_MS = 1800;
+    var DPR = window.devicePixelRatio || 1;
+
+    function resize() {
+      var w = wrap.clientWidth;
+      var h = Math.round(w * 0.38);
+      canvas.width = w * DPR;
+      canvas.height = h * DPR;
+      canvas.style.height = h + 'px';
+      ctx.scale(DPR, DPR);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function getStyle(prop) {
+      return getComputedStyle(document.documentElement).getPropertyValue(prop).trim();
+    }
+
+    function drawFrame(now) {
+      var w = canvas.width / DPR;
+      var h = canvas.height / DPR;
+      ctx.clearRect(0, 0, w, h);
+
+      dots = dots.filter(function (d) { return now - d.born < FADE_MS; });
+
+      dots.forEach(function (d) {
+        var age = now - d.born;
+        var alpha = 1 - age / FADE_MS;
+        var accent = getStyle('--accent') || '#b5682a';
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = accent;
+        ctx.globalAlpha = alpha * 0.65;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+
+      requestAnimationFrame(drawFrame);
+    }
+    requestAnimationFrame(drawFrame);
+
+    var lastX = -999, lastY = -999;
+
+    wrap.addEventListener('mousemove', function (e) {
+      var rect = wrap.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+      var dist = Math.hypot(x - lastX, y - lastY);
+      if (dist < 4) return;
+      lastX = x; lastY = y;
+      dots.push({ x: x, y: y, r: Math.random() * 2 + 1.5, born: performance.now() });
+    });
+
+    wrap.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      var rect = wrap.getBoundingClientRect();
+      Array.from(e.touches).forEach(function (t) {
+        dots.push({
+          x: t.clientX - rect.left,
+          y: t.clientY - rect.top,
+          r: Math.random() * 2.5 + 1.5,
+          born: performance.now()
+        });
+      });
+    }, { passive: false });
+  })();
+  </script>
+</body>
+</html>
