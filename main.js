@@ -242,7 +242,8 @@
     'orbit.html','void.html','mesh.html','current.html','wire.html',
     'ink.html','tangle.html','flare.html','smear.html','sieve.html',
     'filament.html','depth.html','canopy.html','crease.html','graft.html',
-    'mote.html','compress.html','plumb.html','iridescence.html','stitch.html'
+    'mote.html','compress.html','plumb.html','iridescence.html','stitch.html',
+    'wake.html','marrow.html','loop.html','shard.html','dim.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

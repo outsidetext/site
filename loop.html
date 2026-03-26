@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>loop · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .loop-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: #070709;
+      cursor: crosshair;
+    }
+    #loop-canvas { display: block; width: 100%; }
+    .loop-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .loop-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .loop-entry:last-child { border-bottom: none; }
+    .loop-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .loop-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .loop-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .loop-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>loop</h1>
+      <p>the structure that returns to itself</p>
+    </div>
+
+    <div class="loop-wrap">
+      <canvas id="loop-canvas"></canvas>
+    </div>
+    <p class="loop-hint">a path that has no beginning — and no end</p>
+
+    <div class="loop-entry reveal">
+      <span class="loop-tag">mathematics</span>
+      <h3>the strange loop</h3>
+      <p>Hofstadter's Gödel, Escher, Bach (1979) introduced "strange loops" as hierarchical systems that return to their starting point: a statement that refers to itself, a fugue that modulates back to its original key, an Escher drawing of hands drawing themselves. Gödel's incompleteness theorem is a strange loop: a formal system capable of expressing arithmetic can construct a statement that says "this statement is unprovable in this system" — which is true if the system is consistent, and whose truth thereby falls outside the system.</p>
+      <p>The loop doesn't break the system; it marks its horizon.</p>
+    </div>
+
+    <div class="loop-entry reveal">
+      <span class="loop-tag">music</span>
+      <h3>the groove and the tape</h3>
+      <p>Steve Reich's "It's Gonna Rain" (1965) was made from a loop of tape: a preacher's voice, duplicated, the two copies started simultaneously and allowed to drift out of phase because no two tape recorders run at exactly the same speed. The phase difference creates a slow, inexorable separation that moves through unison, canon, polyrhythm, and back toward unison — a cycle that takes minutes and produces an entirely new compositional form.</p>
+      <p>The loop is not repetition. Repetition assumes you return to the same place. A loop, if you listen closely, is always slightly somewhere else.</p>
+    </div>
+
+    <div class="loop-entry reveal">
+      <span class="loop-tag">psychology</span>
+      <h3>repetition compulsion</h3>
+      <p>Freud's Wiederholungszwang: the compulsion to repeat traumatic experiences, not in memory but in action. People recreate the structures of early relationships in later ones, not from stupidity or malice but from something that looks, from inside, like instinct or destiny. Freud thought it served a purpose: the repetition might eventually achieve a different outcome, the mastery that was absent from the original. The evidence for this is mixed.</p>
+      <p>What is well established is the compulsion: the loop runs whether you know it or not, and knowing it does not always stop it. Awareness of the loop is not the same as exiting the loop.</p>
+    </div>
+
+    <div class="loop-entry reveal">
+      <span class="loop-tag">computing</span>
+      <h3>the for loop</h3>
+      <p>The for loop is the simplest form of computational power: do this thing n times, or until a condition changes. Everything a computer does more than once is a loop. The first digital programs were largely loops interrupted by conditionals. The history of computing is in part a history of discovering which loops can be stopped — halting problem, undecidability — and which ones, by their structure, cannot.</p>
+      <p>Alan Turing proved in 1936 that no general algorithm exists for determining whether an arbitrary program will terminate. The loop that cannot be proven to stop is the limit case of all loops.</p>
+    </div>
+
+    <div class="loop-entry reveal">
+      <span class="loop-tag">philosophy</span>
+      <h3>eternal recurrence</h3>
+      <p>Nietzsche's thought experiment in The Gay Science (1882): what if this moment, and every moment, were to recur infinitely, in exactly the same sequence? He didn't present it as cosmology but as a test: could you affirm this life so thoroughly that you would choose its infinite recurrence? The idea is not comfortable. Its discomfort is the point.</p>
+      <p>The eternal recurrence is a loop, but Nietzsche's claim is that the loop changes nothing in the events themselves and everything in the quality of your relationship to them. To live as if each moment were recurring forever is to take each moment seriously — not because it is unrepeatable, but because it repeats.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('loop-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var W = 0, H = 0;
+
+    var particles = [
+      {
+        angle: 0,
+        speed: 0.008,
+        phase: 0,
+        rx: 0, ry: 0,
+        color: 'rgba(210,140,60,',
+        trail: []
+      },
+      {
+        angle: 0,
+        speed: 0.0115,
+        phase: Math.PI / 3,
+        rx: 0, ry: 0,
+        color: 'rgba(220,190,80,',
+        trail: []
+      },
+      {
+        angle: 0,
+        speed: 0.0165,
+        phase: Math.PI * 0.7,
+        rx: 0, ry: 0,
+        color: 'rgba(240,235,220,',
+        trail: []
+      }
+    ];
+
+    var TRAIL_MAX = 120;
+    var rafId;
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.32);
+      canvas.width  = W;
+      canvas.height = H;
+      canvas.style.height = H + 'px';
+
+      particles[0].rx = W * 0.32; particles[0].ry = H * 0.36;
+      particles[1].rx = W * 0.26; particles[1].ry = H * 0.28;
+      particles[2].rx = W * 0.18; particles[2].ry = H * 0.19;
+    }
+
+    function step() {
+      var cx = W * 0.5;
+      var cy = H * 0.5;
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.angle += p.speed;
+        var a = p.angle + p.phase;
+        var x = cx + p.rx * Math.cos(a);
+        var y = cy + p.ry * Math.sin(a);
+        p.trail.push({ x: x, y: y });
+        if (p.trail.length > TRAIL_MAX) p.trail.shift();
+      }
+    }
+
+    function draw() {
+      // ghost clear for trail effect
+      ctx.fillStyle = 'rgba(7,7,9,0.15)';
+      ctx.fillRect(0, 0, W, H);
+
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        var trail = p.trail;
+        var len = trail.length;
+
+        // draw trail as tiny filled circles with decreasing opacity
+        for (var j = 0; j < len; j++) {
+          var opacity = (j / len) * 0.7;
+          ctx.beginPath();
+          ctx.arc(trail[j].x, trail[j].y, 1.0, 0, Math.PI * 2);
+          ctx.fillStyle = p.color + opacity.toFixed(3) + ')';
+          ctx.fill();
+        }
+
+        // draw particle itself
+        if (len > 0) {
+          var head = trail[len - 1];
+          ctx.beginPath();
+          ctx.arc(head.x, head.y, 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = p.color + '1)';
+          ctx.fill();
+        }
+      }
+    }
+
+    function loop() {
+      step();
+      draw();
+      rafId = requestAnimationFrame(loop);
+    }
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        // clear trails on resize
+        for (var i = 0; i < particles.length; i++) {
+          particles[i].trail = [];
+        }
+        resize();
+        ctx.fillStyle = '#070709';
+        ctx.fillRect(0, 0, W, H);
+      }, 80);
+    });
+
+    resize();
+    ctx.fillStyle = '#070709';
+    ctx.fillRect(0, 0, W, H);
+    loop();
+  })();
+  </script>
+</body>
+</html>

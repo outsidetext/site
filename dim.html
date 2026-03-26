@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dim · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dim-wrap { border:1px solid var(--border); border-radius:4px; overflow:hidden; margin-bottom:0.5rem; background:#0a0a0c; cursor:crosshair; }
+    #dim-canvas { display:block; width:100%; }
+    .dim-hint { font-size:0.78rem; color:var(--text-muted); font-family:'Courier New',monospace; padding:0.5rem 0 1.5rem; }
+    .dim-entry { padding:2rem 0; border-bottom:1px solid var(--border); max-width:600px; }
+    .dim-entry:last-child { border-bottom:none; }
+    .dim-tag { font-family:'Courier New',monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--text-muted); display:block; margin-bottom:0.75rem; }
+    .dim-entry h3 { font-size:1.05rem; font-weight:normal; margin-bottom:1rem; color:var(--text); }
+    .dim-entry p { font-size:0.97rem; line-height:1.9; color:var(--text); }
+    .dim-entry p + p { margin-top:1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>dim</h1>
+      <p>what becomes visible when the brightness falls away</p>
+    </div>
+
+    <div class="dim-wrap">
+      <canvas id="dim-canvas"></canvas>
+    </div>
+    <div class="dim-hint">move across the canvas — the light follows; sit still and the dark takes over</div>
+
+    <div class="dim-entry reveal">
+      <span class="dim-tag">vision</span>
+      <h3>rods and cones</h3>
+      <p>The retina has two types of photoreceptors. Cone cells—concentrated in the fovea at the center—detect color and operate in bright light. Rod cells—vastly more numerous and concentrated in the periphery—detect only luminance but are sensitive to single photons. In daylight the cones dominate; at night the rods take over, and color vision largely disappears. This is why you can see a faint star more clearly by not looking directly at it: the fovea, dense with cones, is less sensitive in dim light than the rod-rich periphery. Looking slightly away puts the star on the more sensitive region.</p>
+      <p>Full dark adaptation takes 20 to 40 minutes. The cones adapt in the first ten minutes; the rods, slower and more sensitive, continue adapting for another half hour. A single exposure to bright light—the flash of a phone screen, a passing car's headlights—resets the adaptation clock. Sailors, astronomers, and hunters historically wore red goggles when they needed to move between lit and dark environments: red light stimulates only the cones, leaving the rods fully adapted. The price of seeing the dark clearly is a sustained commitment to staying in it.</p>
+    </div>
+
+    <div class="dim-entry reveal">
+      <span class="dim-tag">technology</span>
+      <h3>the dimmer switch</h3>
+      <p>The incandescent dimmer switch works by chopping the AC waveform: a component called a TRIAC interrupts the current repeatedly per cycle, reducing the average power delivered to the bulb and thus its brightness. This produces a characteristic hum at the switching frequency, often audible when the switch is set to an intermediate position—the sound of the interruption. Early dimmers were rheostats, which dissipated excess power as heat; the TRIAC dimmer is more efficient because it eliminates rather than absorbs. The physical mechanism differs but the effect is the same: deliberate reduction.</p>
+      <p>The dimmer switch entered domestic space as a mood device almost immediately after becoming practical in the 1960s. Theatrical lighting had used dimmers for decades; their domestic arrival brought the concept that light is not binary, that a room could be calibrated along a gradient. Architecture and interior design adopted and theorized this. The quality of light in a space affects perceived temperature, social intimacy, and time perception—brighter spaces feel larger and faster; dimmer ones smaller and slower. The dimmer switch is a small technology with an outsized effect on how a room feels to be in.</p>
+    </div>
+
+    <div class="dim-entry reveal">
+      <span class="dim-tag">etymology</span>
+      <h3>the two dims</h3>
+      <p>"Dim" in the sense of "not bright" comes from Old English dimm, related to Old Norse dimmr ("dark, gloomy") and further to Proto-Germanic *dimbaz. It has always meant insufficient light. The "dim" applied to intelligence—slow-witted, obtuse—is an extension of the same root: the metaphor of insufficient illumination applied to the mind. The faint and the slow-witted share a linguistic home. In most Germanic languages the word's physical and cognitive meanings remained fused. English uses "dim" for both but distinguishes them in practice by context, though the connection is available: to dim a thought is to fail to fully illuminate it.</p>
+      <p>What is interesting is the directionality. We speak of dim light as insufficient, as a failure to reach full brightness. But the entries in this room suggest otherwise: the dim state is often the more revealing one, the one in which things become visible that the light had obscured. The rod cells activate in dim conditions and can detect a single photon. The stars emerge as the brightness falls. The word carries a negative valence that the phenomenon doesn't always deserve. Dim is the condition of a different kind of seeing, not the absence of seeing.</p>
+    </div>
+
+    <div class="dim-entry reveal">
+      <span class="dim-tag">astronomy</span>
+      <h3>Betelgeuse dimming</h3>
+      <p>In late 2019 and early 2020, Betelgeuse—the red supergiant star in Orion's shoulder, one of the brightest stars in the night sky—faded dramatically. At its minimum it was at about 36% of its usual brightness. Astronomers initially speculated that the star might be about to undergo a core-collapse supernova, which would make it briefly visible in daylight and potentially outshine the full Moon. The astronomical community was watching closely.</p>
+      <p>The cause turned out to be more prosaic: a large ejection of material from the star's surface that condensed into dust and temporarily obscured the star, combined with a coincidental trough in the star's normal pulsation cycle. The dimming was not the precursor to an explosion but a kind of cosmic sneeze. Betelgeuse remains a likely supernova candidate—within the next 100,000 years—but the 2019 event was a reminder that the most dramatic variations can have mundane explanations, and that expectation shapes what we think we're seeing in a fading light.</p>
+    </div>
+
+    <div class="dim-entry reveal">
+      <span class="dim-tag">circadian</span>
+      <h3>the hour before dawn</h3>
+      <p>The darkest part of the night is not midnight but the period just before dawn—the hour or two when the nocturnal activity of animals peaks and the absence of moonlight (on moon-absent nights) is total. This is the hour of the "noonday demon" inverted: a specific quality of psychological darkness that mystics and insomniacs and people in grief know well, a clarity about how things are that daylight softens or forecloses. "The darkest hour is just before the dawn" is a cliché that happens to be approximately true in the astronomical sense.</p>
+      <p>What happens physiologically is that cortisol begins to rise around 4am in preparation for waking, but if you are awake at that hour you are experiencing this hormonal shift without the transition of sleep. The body is preparing for day while the world is at its darkest. This mismatch—the interior alarm beginning to sound in the exterior silence—produces the particular quality of the pre-dawn hour. It is the body's own dimmer switch, transitioning from rest to wakefulness through an intermediate state that is neither, and that reveals things the full setting of either end would conceal.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('dim-canvas');
+    var ctx = canvas.getContext('2d');
+    var DPR = window.devicePixelRatio || 1;
+
+    var W, H;
+    var mouseX = -9999, mouseY = -9999;
+    var lastMoveTime = 0;
+    var glowRadius = 0;
+    var STILL_DELAY = 2000;
+
+    // 80 stars: random positions, radii, base opacities
+    var stars = [];
+    // Seed a deterministic-ish spread using Math.random at init time
+    for (var i = 0; i < 80; i++) {
+      stars.push({
+        rx: Math.random(),       // fractional x position
+        ry: Math.random(),       // fractional y position
+        r:  0.6 + Math.random() * 1.2,   // radius 0.6 – 1.8
+        bo: 0.15 + Math.random() * 0.40  // base opacity 0.15 – 0.55
+      });
+    }
+
+    // 8 constellation line segments between star index pairs
+    var lines = [
+      [0,  7],
+      [7,  18],
+      [18, 31],
+      [31, 45],
+      [45, 12],
+      [12, 60],
+      [60, 73],
+      [73, 55]
+    ];
+
+    function resize() {
+      var wrap = canvas.parentElement;
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.30);
+      canvas.width  = Math.round(W * DPR);
+      canvas.height = Math.round(H * DPR);
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+
+    canvas.addEventListener('mousemove', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      mouseX = (e.clientX - rect.left) * (W / rect.width);
+      mouseY = (e.clientY - rect.top)  * (H / rect.height);
+      lastMoveTime = Date.now();
+    });
+
+    canvas.addEventListener('mouseleave', function () {
+      mouseX = -9999;
+      mouseY = -9999;
+    });
+
+    function draw() {
+      requestAnimationFrame(draw);
+
+      var now = Date.now();
+      var timeSinceMove = now - lastMoveTime;
+
+      // Determine target glow radius
+      var targetGlow = (timeSinceMove > STILL_DELAY || mouseX < 0) ? 0 : W * 0.20;
+      // Smoothly interpolate glow radius
+      glowRadius += (targetGlow - glowRadius) * 0.08;
+
+      // Dark background
+      ctx.fillStyle = '#0a0a0c';
+      ctx.fillRect(0, 0, W, H);
+
+      // Cursor glow
+      if (glowRadius > 1 && mouseX >= 0) {
+        var grad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, glowRadius);
+        grad.addColorStop(0, 'rgba(180,140,60,0.10)');
+        grad.addColorStop(1, 'rgba(180,140,60,0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(mouseX, mouseY, glowRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Constellation lines
+      ctx.strokeStyle = 'rgba(200,180,130,0.08)';
+      ctx.lineWidth = 0.8;
+      for (var l = 0; l < lines.length; l++) {
+        var a = stars[lines[l][0]];
+        var b = stars[lines[l][1]];
+        ctx.beginPath();
+        ctx.moveTo(a.rx * W, a.ry * H);
+        ctx.lineTo(b.rx * W, b.ry * H);
+        ctx.stroke();
+      }
+
+      // Stars
+      var dimZone  = W * 0.15;
+      var clearZone = W * 0.30;
+
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        var sx = s.rx * W;
+        var sy = s.ry * H;
+
+        var dx = sx - mouseX;
+        var dy = sy - mouseY;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+
+        var opacity;
+        if (glowRadius < 1) {
+          // Glow fully gone: full base opacity
+          opacity = s.bo;
+        } else if (dist < dimZone) {
+          // Within close range of cursor: dimmed by 0.4
+          opacity = Math.max(0, s.bo - 0.40);
+        } else if (dist < clearZone) {
+          // Transition zone: linear blend
+          var t = (dist - dimZone) / (clearZone - dimZone);
+          opacity = s.bo - 0.40 * (1 - t);
+          if (opacity < 0) opacity = 0;
+        } else {
+          opacity = s.bo;
+        }
+
+        ctx.beginPath();
+        ctx.arc(sx, sy, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(220,210,190,' + opacity.toFixed(3) + ')';
+        ctx.fill();
+      }
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    draw();
+  }());
+  </script>
+</body>
+</html>

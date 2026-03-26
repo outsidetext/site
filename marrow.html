@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>marrow · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .marrow-wrap { border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 0.5rem; background: #050506; cursor: crosshair; }
+    #marrow-canvas { display: block; width: 100%; }
+    .marrow-hint { font-size: 0.78rem; color: var(--text-muted); font-family: 'Courier New', monospace; padding: 0.5rem 0 1.5rem; }
+    .marrow-entry { padding: 2rem 0; border-bottom: 1px solid var(--border); max-width: 600px; }
+    .marrow-entry:last-child { border-bottom: none; }
+    .marrow-tag { font-family: 'Courier New', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); display: block; margin-bottom: 0.75rem; }
+    .marrow-entry h3 { font-size: 1.05rem; font-weight: normal; margin-bottom: 1rem; color: var(--text); }
+    .marrow-entry p { font-size: 0.97rem; line-height: 1.9; color: var(--text); }
+    .marrow-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>marrow</h1>
+      <p>what is kept at the center, behind the hard exterior</p>
+    </div>
+
+    <div class="marrow-wrap">
+      <canvas id="marrow-canvas"></canvas>
+    </div>
+    <div class="marrow-hint">move toward the center — the innermost ring illuminates last</div>
+
+    <div class="marrow-entry reveal">
+      <span class="marrow-tag">biology</span>
+      <h3>the factory of blood</h3>
+      <p>Bone marrow produces all red blood cells, all platelets, and most immune cells — approximately 200 billion red cells per day, each surviving about 120 days in circulation before being recycled. The marrow is not the bone's waste space, not the hollow left over after structure. It is the reason the bone is hollow: the architecture evolved to carry marrow protected by shell, reducing mass while housing the factory. The structural form follows the biological function it contains.</p>
+      <p>A bone marrow transplant replaces the patient's entire blood-producing system with a donor's. What is transplanted is not blood — blood is the product, available by simpler means — but the capacity to make it: the stem cells, the microenvironment, the generative infrastructure. The marrow is the manufacture, not the manufactured. To receive it is to receive not a thing but an ongoing capability, installed at the center, behind the bone.</p>
+    </div>
+
+    <div class="marrow-entry reveal">
+      <span class="marrow-tag">etymology</span>
+      <h3>the deep part</h3>
+      <p>Marrow from Old English mærg, related to similar words across the Germanic languages — Dutch merg, German Mark — and possibly sharing a deeper root with Sanskrit majjas and Latin medulla, both also meaning marrow, the pith of plants, the innermost substance. Latin medulla gives English medullary, and via French, the word moelle. The word has always meant the innermost, the essential. "To the marrow" means completely, to the core of the thing, past the surface and the wall and the cortex to what lies at center.</p>
+      <p>Trace the word far enough and some etymologists arrive at a proto-Indo-European root connected to the concept of middle. The marrow is literally, if the reconstruction holds, the thing-in-the-middle. The linguistic prehistory of the word is itself an object lesson in depth: the center of the word is about the center of the object. Etymology is sometimes its own argument.</p>
+    </div>
+
+    <div class="marrow-entry reveal">
+      <span class="marrow-tag">literary</span>
+      <h3>sucking the marrow</h3>
+      <p>Walden, 1854: "I wanted to live deep and suck out all the marrow of life." The metaphor is borrowed from an older practice — cracking the long bones of large animals to reach the fatty, nutrient-dense marrow within, a behavior at least as old as Homo habilis, who knapped flint specifically to split bones that other scavengers couldn't open. Thoreau reaches back past agriculture and cooking to something more primary: the deliberate extraction of the richest thing from the innermost place.</p>
+      <p>Thoreau is explicit that Walden was an experiment in reduction: strip the inessential, find what remains. What remains is the marrow. The problem embedded in the metaphor is visible once you look: you have to crack something to reach it. The reduction is also a rupture. Simplification is not gentle. The access to the center requires a violence against the container, and the container has to be broken to release what it was holding.</p>
+    </div>
+
+    <div class="marrow-entry reveal">
+      <span class="marrow-tag">engineering</span>
+      <h3>hollow strength</h3>
+      <p>Hollow tubes resist bending better than solid rods of the same mass, because bending stress concentrates at the outer surface and tapers toward zero at the center. A solid bone wastes material on the axis, where it does the least work. The hollow structure — dense cortical shell, porous cancellous interior, marrow-filled cavity — is structurally optimal for resisting both bending and torsion while eliminating weight at the center, where weight contributes nothing to strength.</p>
+      <p>Evolution arrived at structural engineering independently. The resulting form — maximum moment of inertia per unit mass — is exactly what an engineer would specify given the constraint. And then the waste space at the center, which the structural requirement simply didn't need, was put to work as a factory. The hollow is doing two things simultaneously: it is the structural consequence of putting material where it matters, and it is the shelter for the most essential biological process the bone contains. Form and function are the same decision, made once.</p>
+    </div>
+
+    <div class="marrow-entry reveal">
+      <span class="marrow-tag">philosophy</span>
+      <h3>the irreducible</h3>
+      <p>Essentialism holds that things have essences — necessary features without which they would not be what they are. The marrow metaphor pressures this: if the essence of a thing is at its center, behind layers of protection, then ordinary contact gives you only the exterior. You see the cortex, not the medulla. Most engagements are cortical. The surface is what presents. Depth is not its own reward — it costs something to reach, and the cost is structural: to get to the center you have to break the container that was protecting it.</p>
+      <p>The essentialism embedded in the marrow metaphor is also a theory of access: what is most real about a thing is most hidden, and most destructively revealed. To know the marrow of a person or an idea requires getting past successive layers of protection — presentation, performance, defensive structure, learned habit — to something more essential and more vulnerable underneath. The access is possible. But the bone must be cracked. And after that, the container is changed.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('marrow-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+    var mouseX = -999, mouseY = -999;
+    var t = 0;
+
+    var RING_RATIOS = [0.46, 0.35, 0.24, 0.14, 0.05];
+
+    // Ring colors: outermost cool grey-blue to innermost warm amber-white
+    var RING_COLORS = [
+      [160, 165, 175],  // cool grey-blue
+      [170, 155, 130],  // warm grey
+      [190, 155,  90],  // amber-grey
+      [210, 155,  50],  // amber
+      [240, 200, 100],  // bright amber-gold
+    ];
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.36);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      mouseX = W * 0.5;
+      mouseY = H * 0.5;
+    }
+
+    function draw() {
+      t += 0.025;
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = '#050506';
+      ctx.fillRect(0, 0, W, H);
+
+      var cx = W * 0.5;
+      var cy = H * 0.5;
+
+      var dist = Math.sqrt((mouseX - cx) * (mouseX - cx) + (mouseY - cy) * (mouseY - cy));
+
+      for (var i = 0; i < RING_RATIOS.length; i++) {
+        var baseR = W * RING_RATIOS[i];
+        // gentle pulse
+        var pulse = 1 + 0.05 * Math.sin(t + i * 0.9);
+        var r = baseR * pulse;
+
+        // opacity: ring illuminates if mouse is within its radius * 1.1
+        // closer rings only illuminate when mouse is closer
+        var threshold = baseR * 1.1;
+        var raw = Math.max(0, 1 - (dist - threshold) / (W * 0.12));
+        // clamp
+        var alpha = Math.min(1, Math.max(0, raw));
+
+        if (i === 0) {
+          // outermost: cool grey when mouse enters canvas area
+          var entryAlpha = Math.max(0.1, alpha * 0.5 + 0.08);
+          ctx.beginPath();
+          ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(160,165,175,' + entryAlpha.toFixed(3) + ')';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        } else {
+          var col = RING_COLORS[i];
+          var minAlpha = 0.04 + (i * 0.01);
+          var finalAlpha = Math.max(minAlpha, alpha * (0.5 + i * 0.12));
+          finalAlpha = Math.min(1, finalAlpha);
+          ctx.beginPath();
+          ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(' + col[0] + ',' + col[1] + ',' + col[2] + ',' + finalAlpha.toFixed(3) + ')';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    wrap.addEventListener('mousemove', function (e) {
+      mouseX = e.offsetX;
+      mouseY = e.offsetY;
+    });
+    wrap.addEventListener('mouseleave', function () {
+      mouseX = W * 0.5;
+      mouseY = H * 0.5;
+    });
+
+    window.addEventListener('resize', resize);
+    resize();
+    draw();
+  })();
+  </script>
+</body>
+</html>

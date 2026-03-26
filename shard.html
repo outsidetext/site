@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shard · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .shard-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: #080707;
+      cursor: crosshair;
+    }
+    #shard-canvas { display: block; width: 100%; }
+    .shard-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .shard-clear {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-top: 0.4rem;
+      display: block;
+    }
+    .shard-clear:hover { color: var(--text); }
+    .shard-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .shard-entry:last-child { border-bottom: none; }
+    .shard-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .shard-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .shard-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .shard-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>shard</h1>
+      <p>the fragment that holds the shape of the break</p>
+    </div>
+
+    <div class="shard-wrap">
+      <canvas id="shard-canvas"></canvas>
+    </div>
+    <p class="shard-hint">click to fracture — the marks accumulate</p>
+    <button class="shard-clear" id="shard-clear-btn" style="display:none">clear</button>
+
+    <div class="shard-entry reveal">
+      <span class="shard-tag">materials science</span>
+      <h3>amorphous failure</h3>
+      <p>Glass does not have a crystal structure. Its atoms are arranged in a disordered network, without the regular lattice planes along which crystalline materials preferentially fracture. This means glass has no preferred cleavage direction: it breaks wherever stress concentrates, propagating the crack through the path of least resistance as it finds it, which produces the curved, irregular fracture surfaces characteristic of conchoidal fracture.</p>
+      <p>Obsidian and flint share this property, which is why they were used for cutting tools for hundreds of thousands of years: the fracture can be controlled by a skilled knapper to produce an edge sharper than any surgical steel.</p>
+    </div>
+
+    <div class="shard-entry reveal">
+      <span class="shard-tag">archaeology</span>
+      <h3>the potsherd</h3>
+      <p>Ceramics are the most durable of all human-made materials. Wood rots. Metal corrodes. Textiles disintegrate. But fired clay, once broken, persists essentially forever. Potsherds — fragments of ceramic vessels — are the primary dating material for archaeological sites, because ceramic styles change predictably and enough examples survive to establish sequences spanning millennia. A single sherd can date a layer to within a century.</p>
+      <p>The fragment outlasts the object it was part of by orders of magnitude. What survives is not the vessel but the evidence that a vessel existed — the record held in the piece, not the whole.</p>
+    </div>
+
+    <div class="shard-entry reveal">
+      <span class="shard-tag">epistemology</span>
+      <h3>the partial picture</h3>
+      <p>A shard of information is not neutral. It carries the shape of its original context but without the anchors that gave it meaning. A sentence from the middle of an argument; a statistic without its denominator; a photograph of a gesture without knowing what preceded it. Partial information is often more dangerous than ignorance, because it provides the confidence of knowledge while systematically omitting the parts that would qualify or reverse the conclusion.</p>
+      <p>The shard looks like the whole. Its incompleteness is invisible unless you already know what is missing, which you would not need the shard to know.</p>
+    </div>
+
+    <div class="shard-entry reveal">
+      <span class="shard-tag">art</span>
+      <h3>assembled light</h3>
+      <p>Stained glass is the art of breaking light into pieces. A window is first designed as a cartoon, then cut from sheets of colored glass — each piece shaped to fit the design — then assembled with lead came and cemented together. The color is in the glass itself: metallic oxides fired into the batch produce the characteristic blues (cobalt), reds (gold), greens (copper). The light does not shine on the glass; it shines through it, and the color is what is allowed to pass.</p>
+      <p>Every stained glass window is a theory of light encoded in a pattern of controlled transmissions and controlled blockages. The image exists only when light is present from behind.</p>
+    </div>
+
+    <div class="shard-entry reveal">
+      <span class="shard-tag">theology</span>
+      <h3>tsimtsum</h3>
+      <p>In sixteenth-century Kabbalah, Rabbi Isaac Luria proposed that creation required a prior act of divine self-contraction: God withdrew into Godself to make room for a world. Into this empty space, divine light was then introduced in vessels — which shattered under the intensity. The shards of these vessels, kelipot, carry divine sparks and constitute the physical world. The task of human beings is tikkun olam, repair of the world: gathering the scattered sparks and returning them to their source.</p>
+      <p>This cosmogony begins with breakage. Creation is not construction; it is the aftermath of shattering, and the whole is assembled from what survived the fall.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas  = document.getElementById('shard-canvas');
+    var wrap    = canvas.parentElement;
+    var ctx     = canvas.getContext('2d');
+    var clearBtn = document.getElementById('shard-clear-btn');
+    var W = 0, H = 0;
+    var clicks = [];
+    var MAX_CLICKS = 8;
+    var crackData = []; // store pre-generated crack geometry per click
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.30);
+      canvas.width  = W;
+      canvas.height = H;
+      canvas.style.height = H + 'px';
+      redraw();
+    }
+
+    function rand(min, max) {
+      return min + Math.random() * (max - min);
+    }
+
+    function generateCracks(cx, cy) {
+      var numCracks = Math.floor(rand(8, 13));
+      var cracks = [];
+      for (var i = 0; i < numCracks; i++) {
+        var baseAngle = (i / numCracks) * Math.PI * 2 + rand(-0.15, 0.15);
+        var length = rand(W * 0.08, W * 0.22);
+        var steps = Math.floor(rand(18, 32));
+        var points = [{ x: cx, y: cy }];
+        var x = cx, y = cy;
+        var angle = baseAngle;
+        var stepLen = length / steps;
+        for (var s = 0; s < steps; s++) {
+          angle += rand(-0.18, 0.18);
+          x += Math.cos(angle) * stepLen;
+          y += Math.sin(angle) * stepLen;
+          points.push({ x: x, y: y });
+        }
+        // sub-cracks
+        var subCracks = [];
+        var numSubs = Math.floor(rand(0, 3));
+        for (var sb = 0; sb < numSubs; sb++) {
+          var startIdx = Math.floor(rand(3, steps - 2));
+          var sp = points[startIdx];
+          var subAngle = angle + rand(0.4, 1.1) * (Math.random() < 0.5 ? 1 : -1);
+          var subLen = rand(W * 0.02, W * 0.07);
+          var subSteps = Math.floor(rand(6, 14));
+          var subPoints = [{ x: sp.x, y: sp.y }];
+          var sx = sp.x, sy = sp.y;
+          var sa = subAngle;
+          var subStepLen = subLen / subSteps;
+          for (var ss = 0; ss < subSteps; ss++) {
+            sa += rand(-0.22, 0.22);
+            sx += Math.cos(sa) * subStepLen;
+            sy += Math.sin(sa) * subStepLen;
+            subPoints.push({ x: sx, y: sy });
+          }
+          subCracks.push(subPoints);
+        }
+        cracks.push({ points: points, subCracks: subCracks });
+      }
+      return cracks;
+    }
+
+    function drawTexture() {
+      // very faint dot texture suggesting a smooth surface
+      ctx.fillStyle = 'rgba(220,210,190,0.03)';
+      for (var i = 0; i < 600; i++) {
+        var tx = rand(0, W);
+        var ty = rand(0, H);
+        ctx.fillRect(tx, ty, 1, 1);
+      }
+    }
+
+    function drawCracks(cracks) {
+      ctx.strokeStyle = 'rgba(220,200,160,0.65)';
+      ctx.lineWidth = 0.8;
+      ctx.lineCap = 'round';
+      for (var c = 0; c < cracks.length; c++) {
+        var crack = cracks[c];
+        ctx.beginPath();
+        ctx.moveTo(crack.points[0].x, crack.points[0].y);
+        for (var p = 1; p < crack.points.length; p++) {
+          ctx.lineTo(crack.points[p].x, crack.points[p].y);
+        }
+        ctx.stroke();
+        // sub-cracks, dimmer
+        ctx.strokeStyle = 'rgba(210,185,140,0.35)';
+        ctx.lineWidth = 0.5;
+        for (var sb = 0; sb < crack.subCracks.length; sb++) {
+          var sub = crack.subCracks[sb];
+          ctx.beginPath();
+          ctx.moveTo(sub[0].x, sub[0].y);
+          for (var sp = 1; sp < sub.length; sp++) {
+            ctx.lineTo(sub[sp].x, sub[sp].y);
+          }
+          ctx.stroke();
+        }
+        // restore main style for next crack
+        ctx.strokeStyle = 'rgba(220,200,160,0.65)';
+        ctx.lineWidth = 0.8;
+      }
+    }
+
+    function redraw() {
+      ctx.fillStyle = '#080707';
+      ctx.fillRect(0, 0, W, H);
+      drawTexture();
+      for (var i = 0; i < crackData.length; i++) {
+        drawCracks(crackData[i]);
+      }
+    }
+
+    canvas.addEventListener('click', function (e) {
+      if (clicks.length >= MAX_CLICKS) return;
+      var rect = canvas.getBoundingClientRect();
+      var scaleX = W / rect.width;
+      var scaleY = H / rect.height;
+      var cx = (e.clientX - rect.left) * scaleX;
+      var cy = (e.clientY - rect.top) * scaleY;
+      clicks.push({ x: cx, y: cy });
+      crackData.push(generateCracks(cx, cy));
+      redraw();
+      clearBtn.style.display = 'block';
+    });
+
+    clearBtn.addEventListener('click', function () {
+      clicks = [];
+      crackData = [];
+      redraw();
+      clearBtn.style.display = 'none';
+    });
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        resize();
+      }, 80);
+    });
+
+    resize();
+  })();
+  </script>
+</body>
+</html>
