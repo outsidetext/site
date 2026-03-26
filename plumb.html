@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>plumb · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .plumb-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: #0c0b09;
+      cursor: pointer;
+    }
+    #plumb-canvas { display: block; width: 100%; }
+    .plumb-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .plumb-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .plumb-entry:last-child { border-bottom: none; }
+    .plumb-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .plumb-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .plumb-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .plumb-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>plumb</h1>
+      <p>the weight on the string that finds true vertical</p>
+    </div>
+
+    <div class="plumb-wrap">
+      <canvas id="plumb-canvas"></canvas>
+    </div>
+    <div class="plumb-hint">click anywhere to displace the bob — watch it find its way back</div>
+
+    <div class="plumb-entry reveal">
+      <span class="plumb-tag">tool</span>
+      <h3>the instrument that works by doing nothing</h3>
+      <p>The plumb bob — a weight on a string — has been used in construction since at least the ancient Egyptians, who used it to ensure the verticals of the pyramids. It has not been fundamentally improved in four thousand years, because it does not need to be. The principle is already optimal: suspend a weight, let it fall freely, and mark where the string points. The only required input is gravity, which is everywhere and reliable. The plumb is the only instrument that works by doing nothing. Everything you have to do is get out of the way.</p>
+      <p>Levels, lasers, gyroscopes, and digital inclinometers all estimate or calculate vertical. The plumb defines it, directly, by letting the planet do the work. Its accuracy is limited only by the precision with which you can read the position of the string, and by the stability of the air around it. In a still room, the plumb is the most accurate vertical reference available at any price.</p>
+    </div>
+
+    <div class="plumb-entry reveal">
+      <span class="plumb-tag">language</span>
+      <h3>aplomb</h3>
+      <p>The word <em>aplomb</em> comes from the French <em>à plomb</em> — by the plumb, according to the plumb, vertically. From this physical meaning — upright, not leaning — it transferred to mean self-possession: steady, unshaken by external force, not deflected from the vertical of oneself. A person of aplomb has found their plumb line and holds it even when the conditions around them shift.</p>
+      <p>The metaphor is precise. The plumb stays vertical not by resisting disturbance but by returning to rest after it. Displace the bob and it swings, but the system tends toward the one stable configuration: hanging straight. Aplomb does not mean rigid. It means reliably recovered. The person with aplomb may be disturbed, may swing, but the attractor toward which they converge is their own vertical — which they know well enough to find again.</p>
+    </div>
+
+    <div class="plumb-entry reveal">
+      <span class="plumb-tag">geodesy</span>
+      <h3>the geoid</h3>
+      <p>A plumb line does not point to the center of the Earth. It points to the local geoid — the equipotential surface of the gravitational field, which is irregular because the Earth's internal mass distribution is irregular. Mountains, dense rock formations, and ocean trenches deflect the plumb from the geometric vertical. In the Himalayas, the deflection can exceed sixty arc-seconds — nearly twenty meters of horizontal error per kilometer of vertical measurement.</p>
+      <p>The Great Trigonometrical Survey of India in the nineteenth century made systematic positioning errors because the surveyors assumed the plumb was pointing straight down and used it to measure angles to stars. The Himalayas were bending the plumb line toward themselves, and no one had accounted for this. The mountains, simply by existing and having mass, were inserting themselves into every measurement taken near them. The plumb was accurate; the assumption of what it was measuring was wrong.</p>
+    </div>
+
+    <div class="plumb-entry reveal">
+      <span class="plumb-tag">biology</span>
+      <h3>the otoliths</h3>
+      <p>The inner ear contains the vestibular system: three semicircular canals oriented at roughly right angles to each other, and within them, the otoliths — literally, "ear stones" — tiny calcium carbonate crystals embedded in a gelatinous membrane. When the head tilts, the otoliths shift under gravity, deforming the membrane and bending the hair cells beneath it. The bending is reported to the cerebellum as orientation. The body knows which way is down because it has small stones that know which way the stones want to go.</p>
+      <p>Benign paroxysmal positional vertigo (BPPV) occurs when otoliths become dislodged and migrate into the semicircular canals, where they send false rotation signals during head movement. The condition is treated by the Epley maneuver: a precise sequence of head positions that uses gravity to guide the crystals back to where they belong. The treatment is, in essence, finding plumb again — letting the stones settle back into their correct relationship with the gravitational field. The vestibular system and the plumb bob share the same working principle. They are the same instrument at different scales.</p>
+    </div>
+
+    <div class="plumb-entry reveal">
+      <span class="plumb-tag">dynamics</span>
+      <h3>the settling</h3>
+      <p>The plumb bob swings, and through friction in the pivot and air resistance, settles. Watching it converge on vertical is watching the damped harmonic oscillator find its attractor — the state the physics has been pointing to all along. The bob does not decide to rest. It arrives at rest because the system dissipates energy until no more dissipation is possible at the current amplitude, and the equilibrium is the state of minimum potential energy. It is the natural destination of the process.</p>
+      <p>This settling is a physical analog of several things that are not physics: the conversation that gradually returns to the central disagreement, the anxious mind that eventually exhausts itself back toward baseline, the temperature of an object cooling toward the ambient. Systems with damping tend toward rest. The rest is not the starting point restored; it is a different state, arrived at through the energy the swinging spent. What the bob learns from its swing is nothing. What it demonstrates is that there is a vertical, and that the system knows where it is.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('plumb-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+
+    var angle  = Math.PI / 4;   // radians from vertical
+    var omega  = 0;              // angular velocity
+    var dragging = false;
+    var dragOffX = 0;
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.38);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+
+    function pivotX()  { return W * 0.5; }
+    function pivotY()  { return H * 0.06; }
+    function stringL() { return H * 0.76; }
+    function bobR()    { return Math.max(7, W * 0.018); }
+
+    function bobPos() {
+      var L = stringL();
+      return {
+        x: pivotX() + Math.sin(angle) * L,
+        y: pivotY() + Math.cos(angle) * L
+      };
+    }
+
+    var t = 0;
+    function step() {
+      if (!dragging) {
+        var g = 9.8, L = stringL() / 100;
+        var dt = 0.016;
+        omega += -(g / L) * Math.sin(angle) * dt;
+        omega *= 0.994;  // damping
+        angle += omega * dt;
+      }
+      t++;
+    }
+
+    function draw() {
+      step();
+      ctx.fillStyle = '#0c0b09';
+      ctx.fillRect(0, 0, W, H);
+
+      var px = pivotX(), py = pivotY();
+      var bob = bobPos();
+      var L   = stringL();
+      var br  = bobR();
+
+      // vertical ghost line
+      ctx.beginPath();
+      ctx.moveTo(px, py);
+      ctx.lineTo(px, py + L + br);
+      ctx.strokeStyle = 'rgba(180,130,50,0.12)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 5]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // string
+      ctx.beginPath();
+      ctx.moveTo(px, py);
+      ctx.lineTo(bob.x, bob.y);
+      ctx.strokeStyle = 'rgba(210,170,80,0.7)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // pivot point
+      ctx.beginPath();
+      ctx.arc(px, py, 3, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(210,170,80,0.6)';
+      ctx.fill();
+
+      // bob body (tapered diamond)
+      var deg = Math.abs(angle) * 180 / Math.PI;
+      var glow = Math.min(1, 0.3 + (deg < 1 ? 0.7 : 0));
+      ctx.save();
+      ctx.translate(bob.x, bob.y);
+      ctx.rotate(angle);
+      ctx.beginPath();
+      ctx.moveTo(0, -br * 1.5);
+      ctx.lineTo(br * 0.65, 0);
+      ctx.lineTo(0, br * 1.1);
+      ctx.lineTo(-br * 0.65, 0);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(' + Math.round(200 + 55 * glow) + ',' + Math.round(140 + 30 * glow) + ',40,' + (0.8 + 0.2 * glow) + ')';
+      ctx.fill();
+      ctx.restore();
+
+      // angle readout
+      var dispAngle = (angle * 180 / Math.PI).toFixed(1);
+      ctx.fillStyle = 'rgba(180,130,50,0.5)';
+      ctx.font = '0.72rem "Courier New", monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText(dispAngle + '°', 10, H - 10);
+
+      // "true vertical" label when nearly settled
+      if (Math.abs(angle) < 0.015 && Math.abs(omega) < 0.005) {
+        ctx.fillStyle = 'rgba(180,130,50,0.6)';
+        ctx.font = '0.7rem "Courier New", monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('true vertical', px, py + L + br + 18);
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    function getAngleFromEvent(e) {
+      var rect = canvas.getBoundingClientRect();
+      var scaleX = W / rect.width;
+      var cx = (e.clientX - rect.left) * scaleX;
+      var cy = (e.clientY - rect.top) * (H / rect.height);
+      return Math.atan2(cx - pivotX(), cy - pivotY());
+    }
+
+    canvas.addEventListener('mousedown', function (e) {
+      dragging = true;
+      omega = 0;
+      angle = getAngleFromEvent(e);
+    });
+    window.addEventListener('mousemove', function (e) {
+      if (dragging) angle = getAngleFromEvent(e);
+    });
+    window.addEventListener('mouseup', function () {
+      dragging = false;
+    });
+    canvas.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      dragging = true;
+      omega = 0;
+      angle = getAngleFromEvent(e.touches[0]);
+    }, { passive: false });
+    window.addEventListener('touchmove', function (e) {
+      if (dragging) angle = getAngleFromEvent(e.touches[0]);
+    });
+    window.addEventListener('touchend', function () { dragging = false; });
+
+    window.addEventListener('resize', resize);
+    resize();
+    draw();
+  })();
+  </script>
+</body>
+</html>

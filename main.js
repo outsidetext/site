@@ -72,7 +72,12 @@
     { term: 'touch grass',   pos: 'v.', def: 'an instruction to briefly exit the digital world and encounter something with physical texture; the corrective the screen cannot provide' },
     { term: 'brain rot',     pos: 'n.', def: 'the perceived deterioration of the capacity for sustained thought; what short-form content does to the ability to tolerate things that take longer than eight seconds' },
     { term: 'era',           pos: 'n.', def: 'a defined personal epoch, now applied to brief phases: the running era, the sourdough era, the not-leaving-the-house era — each one its own coherent world' },
-    { term: 'canon event',   pos: 'n.', def: 'an experience so formative it seems to have been required — the thing that had to happen to produce the person; a retroactive inevitability' }
+    { term: 'canon event',   pos: 'n.', def: 'an experience so formative it seems to have been required — the thing that had to happen to produce the person; a retroactive inevitability' },
+    { term: 'dead reckoning', pos: 'n.', def: 'navigating by starting position, speed, and heading, without external reference; accurate until the errors compound; what you are doing most of the time, in most domains' },
+    { term: 'overclock',     pos: 'v.', def: 'to run a system faster than its rated speed; to extract performance at the cost of heat, stability, and lifespan; a metaphor for certain ways of being alive' },
+    { term: 'lag spike',     pos: 'n.', def: 'a sudden increase in latency — the moment the delay between action and consequence becomes impossible to ignore; what a crisis looks like from inside a buffered system' },
+    { term: 'fork',          pos: 'v.', def: 'to take a copy of something and develop it independently; what happens when two people who agreed diverge; the technical name for a kind of separation that leaves both parties intact' },
+    { term: 'ambient awareness', pos: 'n.', def: 'the background knowledge of others\' presence that passive signals provide — status dots, last-seen notices, the typing indicator that appears and disappears; proximity without contact' }
   ];
   var wodTerm = document.getElementById('wod-term');
   var wodPos  = document.getElementById('wod-pos');
@@ -236,7 +241,8 @@
     'rupture.html','lag.html','scaffold.html','char.html','rust.html',
     'orbit.html','void.html','mesh.html','current.html','wire.html',
     'ink.html','tangle.html','flare.html','smear.html','sieve.html',
-    'filament.html','depth.html','canopy.html','crease.html','graft.html'
+    'filament.html','depth.html','canopy.html','crease.html','graft.html',
+    'mote.html','compress.html','plumb.html','iridescence.html','stitch.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

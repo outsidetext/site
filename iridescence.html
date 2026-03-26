@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iridescence · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .irid-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: #050505;
+      cursor: crosshair;
+    }
+    #irid-canvas { display: block; width: 100%; }
+    .irid-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .irid-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .irid-entry:last-child { border-bottom: none; }
+    .irid-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .irid-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .irid-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .irid-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>iridescence</h1>
+      <p>color that lives in the structure, not the pigment — move to shift the angle</p>
+    </div>
+
+    <div class="irid-wrap">
+      <canvas id="irid-canvas"></canvas>
+    </div>
+    <div class="irid-hint">the color shifts with the angle of observation — same surface, different light</div>
+
+    <div class="irid-entry reveal">
+      <span class="irid-tag">biology</span>
+      <h3>structural color</h3>
+      <p>The blue of a morpho butterfly's wings contains no blue pigment. The color is produced by periodic nanostructures — layered lamellae on the wing scales, spaced at precisely the right interval to cause constructive interference at blue wavelengths and destructive interference at all others. If you crush the wing, the structure collapses and the blue disappears entirely. The same atoms are present; only their arrangement has changed. The color was never in the molecules. It was in the geometry.</p>
+      <p>Structural color is not unique to butterflies. Bird feathers, beetle shells, cephalopod skin, soap bubbles, and oil on water all produce iridescent color through interference. In each case, the system is built to a wavelength — a physical structure that selects for specific colors the way a prism selects them, but more precisely, and more permanently, and with none of the white space where the unselected wavelengths go. They cancel. The selected color appears. The rest is subtracted from view.</p>
+    </div>
+
+    <div class="irid-entry reveal">
+      <span class="irid-tag">physics</span>
+      <h3>thin-film interference</h3>
+      <p>When light strikes a thin film — oil on water, a soap bubble, an anti-reflection coating on a lens — it partially reflects from the top surface and partially from the bottom. The two reflected beams travel different distances before reaching the observer. Depending on the film's thickness and the angle of incidence, they arrive in or out of phase. Wavelengths that arrive in phase reinforce each other; wavelengths out of phase cancel. The color you see is the one the interference chose to keep.</p>
+      <p>As the film's thickness varies — across the surface of an oil slick, or with distance from the center of a soap bubble — different wavelengths cancel at different points, producing bands of color. The same film seen from a different angle shows different colors, because changing your viewing angle changes the effective path length difference through the film. The oil produces no color of its own. It is a record of light interfering with itself, playing out at the scale of nanometers, visible to the naked eye because the wavelength of visible light is also in the hundreds of nanometers. The geometry fits.</p>
+    </div>
+
+    <div class="irid-entry reveal">
+      <span class="irid-tag">biology</span>
+      <h3>the cephalopod skin</h3>
+      <p>Squid and cuttlefish can change color in milliseconds, not by producing or destroying pigment but by expanding and contracting cells containing reflective structures. The chromatophores — pigment-bearing cells under direct muscular control — are overlaid by iridophores that produce structural color and leucophores that scatter light broadly. The chromatophores modulate which structural colors are visible at any moment; the iridophores produce colors that shift with viewing angle. The skin is a programmable interference layer, operated in real time by a nervous system that evolved specifically to produce optical illusions.</p>
+      <p>Cephalopods are colorblind, as far as is known. Their extraordinary color production serves communication, camouflage, and predation in a medium they cannot perceive. They produce iridescent patterns they cannot see, read by others whose nervous systems are calibrated to interpret them. The performance is not for themselves. The color they generate is entirely for the receiver.</p>
+    </div>
+
+    <div class="irid-entry reveal">
+      <span class="irid-tag">technology</span>
+      <h3>the compact disc</h3>
+      <p>The data on a CD is encoded in microscopic pits on a reflective aluminum layer, read by a laser at a single wavelength. When you hold the disc in diffuse light, you see not the data but the accidental iridescence of the track geometry: the tightly packed spiral tracks — 1.6 micrometers apart — act as a diffraction grating, bending different wavelengths of white light by different angles. The rainbow is a side effect of the information architecture. The beauty is incidental to the function, and depends on it entirely.</p>
+      <p>This makes the CD an odd kind of object: a storage medium that produces visible color as a byproduct of its density. The more data it can hold, the more precisely the tracks are spaced, and the more vivid the iridescence. The rainbow on a disc is an indirect measurement of the amount of information it contains: a higher-capacity disc produces a finer diffraction pattern and a more pronounced spectral spread. You can read the density in the colors. The light is reporting on the structure.</p>
+    </div>
+
+    <div class="irid-entry reveal">
+      <span class="irid-tag">limits</span>
+      <h3>colors that cannot be painted</h3>
+      <p>Iridescent colors resist pigment reproduction. Every attempt to capture morpho-butterfly blue in paint fails — not because the right blue pigment hasn't been found, but because paint works by subtractive absorption (a blue pigment absorbs red and green and reflects what remains), while structural color works by interference (specific wavelengths are reinforced by constructive interference and returned to the observer). The two mechanisms are physically incommensurable. You cannot mix a color that changes as you move, because no mixture of absorbing materials produces light that interferes with itself.</p>
+      <p>This means there are colors that exist only in the geometry — only while the structure is intact and the light is falling on it at the right angle. They are not colors in the sense of fixed properties of a surface. They are events: conditions under which certain wavelengths are selected and others suppressed. They cannot be held. They cannot be stored. They can only be reproduced by reproducing the conditions that produce them, which requires the nanoscale structure, which requires the organism. The color of the morpho wing is inseparable from the wing.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('irid-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+    var mouseX = -1, mouseY = -1;
+    var t = 0;
+    var autoX = 0;
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.3);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+
+    function draw() {
+      t += 0.007;
+
+      // auto-drift when no mouse
+      if (mouseX < 0) {
+        autoX = W * 0.5 + Math.sin(t * 0.4) * W * 0.3;
+      }
+
+      var cx = mouseX >= 0 ? mouseX : autoX;
+      var cy = mouseY >= 0 ? mouseY : H * 0.5;
+
+      ctx.fillStyle = '#050505';
+      ctx.fillRect(0, 0, W, H);
+
+      // Draw concentric rings radiating out from the cursor point
+      var maxR = Math.sqrt(W * W + H * H);
+      var rings = 48;
+      var ringStep = maxR / rings;
+
+      for (var i = rings; i >= 0; i--) {
+        var r = i * ringStep;
+        var hue = ((i * 7.5) + t * 36 + cx * 0.25) % 360;
+        var lightness = 42 + 14 * Math.sin(i * 0.4 + t);
+        var sat = 72 + 18 * Math.sin(i * 0.22);
+        var alpha = Math.max(0, 0.55 - (i / rings) * 0.45);
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.strokeStyle = 'hsla(' + hue + ',' + sat + '%,' + lightness + '%,' + alpha + ')';
+        ctx.lineWidth = ringStep * 1.2;
+        ctx.stroke();
+      }
+
+      // Soft black vignette at edges
+      var vignette = ctx.createRadialGradient(W/2, H/2, Math.min(W,H)*0.25, W/2, H/2, Math.max(W,H)*0.75);
+      vignette.addColorStop(0, 'rgba(5,5,5,0)');
+      vignette.addColorStop(1, 'rgba(5,5,5,0.6)');
+      ctx.fillStyle = vignette;
+      ctx.fillRect(0, 0, W, H);
+
+      requestAnimationFrame(draw);
+    }
+
+    wrap.addEventListener('mousemove', function (e) {
+      mouseX = e.offsetX;
+      mouseY = e.offsetY;
+    });
+    wrap.addEventListener('mouseleave', function () {
+      mouseX = -1; mouseY = -1;
+    });
+
+    window.addEventListener('resize', resize);
+    resize();
+    draw();
+  })();
+  </script>
+</body>
+</html>
