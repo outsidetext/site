@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ink · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .ink-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      cursor: crosshair;
+    }
+    #ink-canvas { display: block; width: 100%; }
+    .ink-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .ink-clear {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .ink-clear:hover { color: var(--accent); border-color: var(--accent); }
+    .ink-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .ink-entry:last-child { border-bottom: none; }
+    .ink-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .ink-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .ink-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .ink-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>ink</h1>
+      <p>the mark that cannot be unmade</p>
+    </div>
+
+    <div class="ink-wrap">
+      <canvas id="ink-canvas"></canvas>
+    </div>
+    <div class="ink-hint">
+      <span>click anywhere to drop ink — it spreads at its own pace</span>
+      <button class="ink-clear" id="ink-clear">clear</button>
+    </div>
+
+    <div class="ink-entry reveal">
+      <span class="ink-tag">material</span>
+      <h3>the carbon suspension</h3>
+      <p>Ink is particles of carbon suspended in liquid — the liquid is the delivery mechanism, the carbon is what stays. Writing is the controlled evaporation of a suspension: the carrier departs and the record remains. What you see on the page is not the liquid that was applied but the solid left behind when the liquid completed its task and disappeared. Every written mark is the absence of something.</p>
+      <p>Iron gall ink, used for a thousand years, works differently: it reacts with the paper's iron, embedding itself chemically, making itself part of the surface rather than sitting on top of it. Letters written in iron gall ink cannot be soaked off. They are not on the paper. They have become the paper.</p>
+    </div>
+
+    <div class="ink-entry reveal">
+      <span class="ink-tag">interpretation</span>
+      <h3>the Rorschach problem</h3>
+      <p>In 1921, Hermann Rorschach published ten inkblots and a method for reading what people saw in them. The test has since been disputed, defended, refined, and abandoned in cycles — but the idea underneath it persists: that what we see in ambiguous marks reveals something about the structure that is doing the seeing. The inkblot is not the stimulus. The inkblot is the occasion for the mind to show itself.</p>
+      <p>This is true of all art and most communication. We bring interpretation to ambiguity and call what we find the meaning. The mark is a starting condition. What it becomes is a collaboration between the maker, the surface, and the person who arrives later to look. Rorschach knew this. He also knew that the inkblot had to be ambiguous enough to be genuinely open — not so shapeless as to mean nothing, not so formed as to mean only one thing.</p>
+    </div>
+
+    <div class="ink-entry reveal">
+      <span class="ink-tag">chemistry</span>
+      <h3>capillary action and bleed</h3>
+      <p>Ink bleeds into paper because paper is a network of cellulose fibers with spaces between them, and liquid moves through those spaces by capillary action — pulled without being pushed, by the adhesion between the liquid and the fiber surface. The ink follows the fiber, and the fiber determines the spread. This is why different papers produce different line qualities: the pen is the same, the ink is the same, and the line is entirely different.</p>
+      <p>Watercolor painters call it bleed and wet-on-wet and bloom — the marks that arrive when the artist releases control and lets the liquid find its own path. Some techniques depend on it. The bloom is not the mistake; the bloom is the medium reporting what it would do if left alone. What the ink does when released is information about the ink and the surface and the moment the two encountered each other.</p>
+    </div>
+
+    <div class="ink-entry reveal">
+      <span class="ink-tag">permanence</span>
+      <h3>the signed name</h3>
+      <p>The legal weight of a signature rests on its physical uniqueness — the particular way a specific hand moves through a specific name, under specific conditions, producing a mark that is almost but not quite reproducible. The signature's authority comes from its being a physical event: the pen, the ink, the pressure, the speed, the moment. The mark is the evidence that the person was there and made a deliberate gesture. Digital signatures work by different logic, which is why they require elaborate cryptographic scaffolding to achieve what a wet signature achieves simply by being what it is.</p>
+      <p>There are documents still legally valid that were signed three hundred years ago. The ink is still readable. The names are still names. The agreement is still binding. Something placed on a surface with a pen can outlast the hand that held it, the language that surrounded it, the institution that witnessed it.</p>
+    </div>
+
+    <div class="ink-entry reveal">
+      <span class="ink-tag">writing</span>
+      <h3>what the writer already knew</h3>
+      <p>There is a theory of composition that says writing does not record thought but produces it — that the act of committing something to ink is the act of finding out what you think, not reporting what you already knew. The thought exists in a different form before it is written: more fluid, more multiple, easier to escape from. The ink fixes it. You cannot write vaguely and claim you meant something precise. The ink is honest about what arrived on the page.</p>
+      <p>Writers describe the terror of the blank page as the moment before the ink touches the surface, when any sentence is still possible and none has been ruled out. The first mark eliminates an infinity of alternatives. This is why it is difficult and also why it is the only way to find out what you meant.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('ink-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+
+    var blobs = [];
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.35);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      redraw();
+    }
+
+    function getThemeColor() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      if (theme === 'dark') return { bg: '#0f0f0e', ink: 'rgba(200,190,175,' };
+      if (theme === 'sepia') return { bg: '#f5ede0', ink: 'rgba(60,35,15,' };
+      return { bg: '#faf8f4', ink: 'rgba(26,20,10,' };
+    }
+
+    function addBlob(x, y) {
+      blobs.push({
+        x: x, y: y,
+        r: 2 + Math.random() * 3,
+        maxR: 28 + Math.random() * 40,
+        speed: 0.18 + Math.random() * 0.22,
+        arms: [],
+        age: 0
+      });
+      // generate radial arms for organic spreading
+      var blob = blobs[blobs.length - 1];
+      var numArms = 6 + Math.floor(Math.random() * 5);
+      for (var i = 0; i < numArms; i++) {
+        var angle = (Math.PI * 2 * i / numArms) + (Math.random() - 0.5) * 0.6;
+        blob.arms.push({
+          angle: angle,
+          length: 0,
+          maxLength: blob.maxR * (0.6 + Math.random() * 0.6),
+          speed: blob.speed * (0.7 + Math.random() * 0.6),
+          width: 2 + Math.random() * 5
+        });
+      }
+    }
+
+    function redraw() {
+      var col = getThemeColor();
+      ctx.fillStyle = col.bg;
+      ctx.fillRect(0, 0, W, H);
+
+      blobs.forEach(function (blob) {
+        // central pool
+        var alpha = Math.min(0.85, blob.r / blob.maxR * 1.1);
+        var grd = ctx.createRadialGradient(blob.x, blob.y, 0, blob.x, blob.y, blob.r);
+        grd.addColorStop(0, col.ink + alpha + ')');
+        grd.addColorStop(0.7, col.ink + (alpha * 0.8) + ')');
+        grd.addColorStop(1, col.ink + '0)');
+        ctx.beginPath();
+        ctx.arc(blob.x, blob.y, blob.r, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+
+        // arms
+        blob.arms.forEach(function (arm) {
+          if (arm.length < 1) return;
+          var ex = blob.x + Math.cos(arm.angle) * arm.length;
+          var ey = blob.y + Math.sin(arm.angle) * arm.length;
+          ctx.beginPath();
+          ctx.moveTo(blob.x, blob.y);
+          ctx.lineTo(ex, ey);
+          ctx.strokeStyle = col.ink + (alpha * 0.55) + ')';
+          ctx.lineWidth = arm.width * (1 - arm.length / arm.maxLength * 0.7);
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        });
+      });
+    }
+
+    function update() {
+      var changed = false;
+      blobs.forEach(function (blob) {
+        if (blob.r < blob.maxR) {
+          blob.r = Math.min(blob.maxR, blob.r + blob.speed);
+          changed = true;
+        }
+        blob.arms.forEach(function (arm) {
+          if (arm.length < arm.maxLength) {
+            arm.length = Math.min(arm.maxLength, arm.length + arm.speed * (1.5 - arm.length / arm.maxLength));
+            changed = true;
+          }
+        });
+      });
+      return changed;
+    }
+
+    var animating = false;
+    function loop() {
+      if (update()) {
+        redraw();
+        requestAnimationFrame(loop);
+      } else {
+        animating = false;
+      }
+    }
+
+    function startAnim() {
+      if (!animating) {
+        animating = true;
+        requestAnimationFrame(loop);
+      }
+    }
+
+    wrap.addEventListener('click', function (e) {
+      var r = wrap.getBoundingClientRect();
+      var x = (e.clientX - r.left);
+      var y = (e.clientY - r.top);
+      addBlob(x, y);
+      startAnim();
+    });
+
+    wrap.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var r = wrap.getBoundingClientRect();
+      var t = e.touches[0];
+      addBlob(t.clientX - r.left, t.clientY - r.top);
+      startAnim();
+    }, { passive: false });
+
+    document.getElementById('ink-clear').addEventListener('click', function () {
+      blobs = [];
+      redraw();
+    });
+
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      setTimeout(redraw, 50);
+    });
+
+    resize();
+    window.addEventListener('resize', resize);
+  })();
+  </script>
+</body>
+</html>

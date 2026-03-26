@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>smear · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .smear-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      cursor: crosshair;
+      touch-action: none;
+    }
+    #smear-canvas { display: block; width: 100%; }
+    .smear-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .smear-controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .smear-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .smear-btn:hover, .smear-btn.active { color: var(--accent); border-color: var(--accent); }
+    .smear-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .smear-entry:last-child { border-bottom: none; }
+    .smear-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .smear-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .smear-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .smear-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>smear</h1>
+      <p>pigment moved across a surface by pressure</p>
+    </div>
+
+    <div class="smear-wrap">
+      <canvas id="smear-canvas"></canvas>
+    </div>
+    <div class="smear-hint">
+      <span>drag to smear — colors pick up what's already there</span>
+      <div class="smear-controls">
+        <button class="smear-btn" id="smear-clear">clear</button>
+      </div>
+    </div>
+
+    <div class="smear-entry reveal">
+      <span class="smear-tag">painting</span>
+      <h3>the loaded brush</h3>
+      <p>Oil paint is moved across a surface by pressure applied through a tool — the brush, the knife, the finger. The gesture matters. A loaded brush applied with a single decisive stroke produces a different result from the same paint worked back and forth, mixed in place with what was already there. In one case the painter decides in advance. In the other, the canvas decides, and the painter responds. Painters speak of fighting the paint or working with the paint, and the difference is not metaphorical.</p>
+      <p>Impasto — thick paint applied so it holds the shape of the stroke — is the record of a specific pressure applied at a specific moment. Vermeer's Girl with a Pearl Earring has a single white impasto highlight on the lip of the subject. That thick stroke is, exactly, Vermeer's gesture in the 1660s, preserved in the medium that received it. The pigment has not moved in three and a half centuries. The action that placed it is still visible in three dimensions.</p>
+    </div>
+
+    <div class="smear-entry reveal">
+      <span class="smear-tag">forensics</span>
+      <h3>what the smear reveals</h3>
+      <p>A blood smear, examined under a microscope, shows the cell types present in proportion to their actual proportion in the blood — the red cells, the white cells, the platelets, their morphology, their staining characteristics. The smear is not an approximation. The preparation technique — a drop of blood drawn across the slide by another slide at an angle — produces a thin region where cells are spread to a single layer and can be examined individually. The act of smearing is also the act of making things visible that could not be seen in the mass.</p>
+      <p>Forensic bloodstain analysis works similarly: the shape of a smear tells the story of a movement. A transfer smear indicates contact and sliding. A wipe indicates contact with a clean surface after the initial deposit. The direction of the smear often reveals the direction of the movement. The surface holds the testimony of what passed across it, in the geometry of the mark it left.</p>
+    </div>
+
+    <div class="smear-entry reveal">
+      <span class="smear-tag">language</span>
+      <h3>the reputation smear</h3>
+      <p>To smear someone is to apply something damaging — a claim, an association, a suspicion — across their reputation with the same gesture as paint across a surface. The smear in politics works by contact: the allegation doesn't need to be true, it needs to be adjacent, and the adjacency itself produces a stain. The mind does not easily separate the vehicle from the content. The mere conjunction of a name and a negative thing begins the transfer.</p>
+      <p>The smear is also a technique in logical rhetoric: take something true, extend it by implication beyond where the evidence goes, let the blur between what was stated and what was implied do the work. The listener fills in the middle. The speaker can always retreat to the precise claim. What lingers is the color that was transferred, not the precise statement that did the transferring.</p>
+    </div>
+
+    <div class="smear-entry reveal">
+      <span class="smear-tag">optics</span>
+      <h3>motion blur as information</h3>
+      <p>A photograph taken with a slow shutter speed produces motion blur — the moving subject smeared across the sensor's integration of time. The blur is not a failure of the image. It is accurate: it shows what was actually there across the exposure's duration, integrated into a single frame. A perfectly sharp image of a moving thing shows it at one moment and discards all the others. The smear shows the path.</p>
+      <p>Astrophotographers deliberately create star trails — exposures of hours that smear the apparent motion of stars into arcs whose curvature reveals the rotation of the Earth, whose length reveals the duration of the exposure, whose convergence point marks the celestial pole. The technical tool for seeing something that cannot be captured in a moment is extending the moment until the movement becomes visible. The smear is a record of time compressed into space.</p>
+    </div>
+
+    <div class="smear-entry reveal">
+      <span class="smear-tag">touch</span>
+      <h3>fingerprint as signature</h3>
+      <p>The fingerprint is the most intimate smear: the friction ridges of the fingertip, inked with natural oils, pressed and dragged across a surface, leaving a record of the exact geometry of the skin. The ridges are unique to each person and remain stable across a lifetime — unchanged by work or weather, reforming after injury according to the same original pattern. The identification is in the ridge topology: loops, whorls, arches, and their precise bifurcations and terminations.</p>
+      <p>The latent fingerprint — invisible until developed — is evidence that something was touched. The smear was made, the oils transferred, the air carried nothing away. The surface knows. Every time a hand touches a surface and moves, the geometry of that contact is recorded in the medium — waiting for the powder, the light, the reagent that will make visible what was always there.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('smear-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+
+    // offscreen buffer for smearing
+    var offscreen = document.createElement('canvas');
+    var octx = offscreen.getContext('2d');
+
+    var painting = false;
+    var lastX = null, lastY = null;
+    var colorIndex = 0;
+
+    // warm palette
+    var palette = [
+      [180, 80, 30],    // terracotta
+      [210, 140, 50],   // amber
+      [140, 60, 40],    // dark rust
+      [200, 110, 70],   // salmon
+      [160, 100, 30],   // ochre
+      [100, 50, 30],    // brown
+      [220, 160, 80],   // golden
+    ];
+
+    function currentColor() {
+      return palette[colorIndex % palette.length];
+    }
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.34);
+
+      // preserve existing content
+      var imgData = null;
+      if (canvas.width > 0) {
+        imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      }
+
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+      offscreen.width  = W * DPR;
+      offscreen.height = H * DPR;
+      octx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+      clearCanvas();
+    }
+
+    function clearCanvas() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      var bg = theme === 'dark' ? '#0f0f0e' : theme === 'sepia' ? '#f5ede0' : '#faf8f4';
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+      octx.fillStyle = bg;
+      octx.fillRect(0, 0, W, H);
+      octx.drawImage(canvas, 0, 0, W, H);
+    }
+
+    function smearAt(x, y, px, py) {
+      var dx = x - px, dy = y - py;
+      var dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 1) return;
+
+      var brushR = 18 + dist * 0.3;
+      var color = currentColor();
+
+      // sample a patch from the offscreen at the previous position
+      // and blend new color into the stroke
+      var sx = Math.max(0, Math.round((px - brushR) * DPR));
+      var sy = Math.max(0, Math.round((py - brushR) * DPR));
+      var sw = Math.round(brushR * 2 * DPR);
+      var sh = Math.round(brushR * 2 * DPR);
+      sw = Math.min(sw, offscreen.width - sx);
+      sh = Math.min(sh, offscreen.height - sy);
+
+      if (sw > 0 && sh > 0) {
+        var imgData = octx.getImageData(sx, sy, sw, sh);
+        // shift pixels toward the stroke direction
+        var shiftX = Math.round(dx * 0.4);
+        var shiftY = Math.round(dy * 0.4);
+        ctx.putImageData(imgData, (sx / DPR) + shiftX - brushR * 0, (sy / DPR) + shiftY - brushR * 0);
+      }
+
+      // paint new color with soft brush
+      var alpha = Math.min(0.55, 0.15 + dist * 0.008);
+      ctx.beginPath();
+      var grd = ctx.createRadialGradient(x, y, 0, x, y, brushR);
+      grd.addColorStop(0, 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ',' + alpha + ')');
+      grd.addColorStop(0.5, 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ',' + (alpha * 0.5) + ')');
+      grd.addColorStop(1, 'rgba(' + color[0] + ',' + color[1] + ',' + color[2] + ',0)');
+      ctx.arc(x, y, brushR, 0, Math.PI * 2);
+      ctx.fillStyle = grd;
+      ctx.fill();
+
+      // update offscreen
+      octx.drawImage(canvas, 0, 0, W, H);
+    }
+
+    function onStart(x, y) {
+      painting = true;
+      lastX = x; lastY = y;
+      colorIndex++;
+    }
+
+    function onMove(x, y) {
+      if (!painting) return;
+      if (lastX !== null) smearAt(x, y, lastX, lastY);
+      lastX = x; lastY = y;
+    }
+
+    function onEnd() {
+      painting = false;
+      lastX = null; lastY = null;
+    }
+
+    wrap.addEventListener('mousedown', function (e) {
+      var r = wrap.getBoundingClientRect();
+      onStart(e.clientX - r.left, e.clientY - r.top);
+    });
+    wrap.addEventListener('mousemove', function (e) {
+      var r = wrap.getBoundingClientRect();
+      onMove(e.clientX - r.left, e.clientY - r.top);
+    });
+    wrap.addEventListener('mouseup', onEnd);
+    wrap.addEventListener('mouseleave', onEnd);
+
+    wrap.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var r = wrap.getBoundingClientRect();
+      var t = e.touches[0];
+      onStart(t.clientX - r.left, t.clientY - r.top);
+    }, { passive: false });
+    wrap.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      var r = wrap.getBoundingClientRect();
+      var t = e.touches[0];
+      onMove(t.clientX - r.left, t.clientY - r.top);
+    }, { passive: false });
+    wrap.addEventListener('touchend', onEnd);
+
+    document.getElementById('smear-clear').addEventListener('click', clearCanvas);
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      setTimeout(clearCanvas, 50);
+    });
+
+    resize();
+    window.addEventListener('resize', resize);
+  })();
+  </script>
+</body>
+</html>

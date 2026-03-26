@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tangle · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .tangle-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      cursor: crosshair;
+      touch-action: none;
+    }
+    #tangle-canvas { display: block; width: 100%; }
+    .tangle-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .tangle-clear {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tangle-clear:hover { color: var(--accent); border-color: var(--accent); }
+    .tangle-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .tangle-entry:last-child { border-bottom: none; }
+    .tangle-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .tangle-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .tangle-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .tangle-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>tangle</h1>
+      <p>complexity that arrives without planning</p>
+    </div>
+
+    <div class="tangle-wrap">
+      <canvas id="tangle-canvas"></canvas>
+    </div>
+    <div class="tangle-hint">
+      <span>move slowly — lines accumulate and cross; the tangle grows</span>
+      <button class="tangle-clear" id="tangle-clear">clear</button>
+    </div>
+
+    <div class="tangle-entry reveal">
+      <span class="tangle-tag">emergence</span>
+      <h3>the complexity without an architect</h3>
+      <p>A tangle is not designed. It emerges from a sequence of simple actions, each locally reasonable, whose global consequence becomes apparent only after the fact. The headphone cable tangled itself while sitting undisturbed in a pocket. The explanation involves the thermodynamics of flexible polymers in confined spaces — in a closed system, entanglement increases because there are vastly more tangled configurations than straight ones. The cable was always going to tangle. It had no alternative.</p>
+      <p>The same logic applies to certain human situations: the conversation that never found its way back to the original point, the organizational structure that grew outward from each individual decision until no one could see the whole of it, the relationship whose history had accumulated enough that no single interpretation could account for all of it. Complexity is not added. It accretes. Each strand that crosses another doubles the number of configurations the system can occupy.</p>
+    </div>
+
+    <div class="tangle-entry reveal">
+      <span class="tangle-tag">physics</span>
+      <h3>entanglement as a technical term</h3>
+      <p>In quantum mechanics, entanglement refers to something precise and counterintuitive: two particles that have interacted share a quantum state, and measuring one instantaneously determines the state of the other, regardless of the distance between them. Einstein called it spukhafte Fernwirkung — spooky action at a distance — and spent years arguing that it couldn't be real. The experiments of the 1980s proved it was. Bell's theorem and Aspect's experiments demonstrated that entangled particles are correlated in ways that cannot be explained by any local hidden variable theory.</p>
+      <p>What this means is contested even now. One interpretation: there is no fact about the particle until measurement. Another: the particle has definite properties but they are genuinely nonlocal. The entanglement is not in the particles. It is in the relationship between them, which persists across space in a way that nothing else does. The measurement of one is already, simultaneously, the measurement of the other.</p>
+    </div>
+
+    <div class="tangle-entry reveal">
+      <span class="tangle-tag">craft</span>
+      <h3>the cable drawer</h3>
+      <p>In the mid-nineteenth century, before electric power, large workshops kept cable drawers — workers who spent the day pulling wire through dies to reduce its diameter, one pass at a time, until the cable reached the required gauge. The wire had to be kept untangled because a tangle, at industrial scale, could destroy the batch. Managing the spools was an art form, passed through apprenticeship.</p>
+      <p>Contemporary data centers have their own cable management specialists who route and dress hundreds of cables so that the infrastructure is legible: any cable can be traced, any connection identified, any replacement made without pulling the wrong thing. The tangle is the failure state. A properly dressed rack is almost aesthetically satisfying — the cables flow in orderly bundles, zip-tied, color-coded, following the shortest path. When the documentation doesn't match the physical installation, you have a tangle even if no cable touches another.</p>
+    </div>
+
+    <div class="tangle-entry reveal">
+      <span class="tangle-tag">language</span>
+      <h3>the word itself</h3>
+      <p>The etymology of tangle is disputed but the most plausible derivation runs through the Scandinavian languages — Danish tang, seaweed — suggesting the image of something that wraps around the thing trying to pass through it, resisting by adhesion rather than by force. A tangle doesn't block. It catches and holds while appearing to give way. You can move forward and find that you are bringing the tangle with you, that it has attached itself to what was moving, that untangling requires returning to the point where it began.</p>
+      <p>In mathematical knot theory, two tangles are equivalent if one can be continuously deformed into the other without cutting the strands. The study of what makes knots and tangles topologically distinct has turned out to be unexpectedly deep — connected to fundamental questions about three-dimensional manifolds, to the structure of DNA supercoiling, to quantum field theory. The tangle is more formally complex than it looks.</p>
+    </div>
+
+    <div class="tangle-entry reveal">
+      <span class="tangle-tag">experience</span>
+      <h3>the narrative tangle</h3>
+      <p>Some stories are impossible to tell without tangling. Not because the teller lacks skill but because the events themselves are tangled — because the causes interweave with the effects, because the timeline requires constant interruption, because the explanation of one thing requires knowing another thing that requires knowing the first. The tangle is the truth of it. The linear account would be a simplification that removes the essential difficulty.</p>
+      <p>Detangling requires patience and a willingness to make things temporarily worse — to loosen the knot before tightening it correctly. Pulling at both ends of a tangled cord usually makes it tighter. The correct action is counterintuitive: find the loop that is pulling everything else, release it, then find the next. There is always a sequence. Tangles are never truly random. They just look it from outside.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('tangle-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+
+    var segments = [];  // { x1, y1, x2, y2, alpha }
+    var lastX = null, lastY = null;
+    var isDrawing = false;
+    var MAX_SEGS = 1200;
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.32);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      redraw();
+    }
+
+    function getColors() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      if (theme === 'dark')  return { bg: '#0f0f0e', line: 'rgba(220,210,195,' };
+      if (theme === 'sepia') return { bg: '#f5ede0', line: 'rgba(80,48,20,' };
+      return { bg: '#faf8f4', line: 'rgba(40,30,18,' };
+    }
+
+    function redraw() {
+      var col = getColors();
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = col.bg;
+      ctx.fillRect(0, 0, W, H);
+
+      segments.forEach(function (s) {
+        ctx.beginPath();
+        ctx.moveTo(s.x1, s.y1);
+        ctx.lineTo(s.x2, s.y2);
+        ctx.strokeStyle = col.line + s.alpha + ')';
+        ctx.lineWidth = s.w;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+      });
+    }
+
+    function addSegment(x1, y1, x2, y2) {
+      if (segments.length >= MAX_SEGS) segments.shift();
+      var dx = x2 - x1, dy = y2 - y1;
+      var dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 1) return;
+      segments.push({ x1: x1, y1: y1, x2: x2, y2: y2,
+        alpha: 0.18 + Math.random() * 0.25,
+        w: 0.6 + Math.random() * 1.0 });
+    }
+
+    function onMove(x, y) {
+      if (!isDrawing) return;
+      if (lastX !== null) {
+        addSegment(lastX, lastY, x, y);
+        redraw();
+      }
+      lastX = x; lastY = y;
+    }
+
+    function onStart(x, y) {
+      isDrawing = true;
+      lastX = x; lastY = y;
+    }
+
+    function onEnd() {
+      isDrawing = false;
+      lastX = null; lastY = null;
+    }
+
+    wrap.addEventListener('mousedown', function (e) {
+      var r = wrap.getBoundingClientRect();
+      onStart(e.clientX - r.left, e.clientY - r.top);
+    });
+    wrap.addEventListener('mousemove', function (e) {
+      var r = wrap.getBoundingClientRect();
+      onMove(e.clientX - r.left, e.clientY - r.top);
+    });
+    wrap.addEventListener('mouseup', onEnd);
+    wrap.addEventListener('mouseleave', onEnd);
+
+    wrap.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var r = wrap.getBoundingClientRect();
+      var t = e.touches[0];
+      onStart(t.clientX - r.left, t.clientY - r.top);
+    }, { passive: false });
+    wrap.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      var r = wrap.getBoundingClientRect();
+      var t = e.touches[0];
+      onMove(t.clientX - r.left, t.clientY - r.top);
+    }, { passive: false });
+    wrap.addEventListener('touchend', onEnd);
+
+    document.getElementById('tangle-clear').addEventListener('click', function () {
+      segments = [];
+      redraw();
+    });
+
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      setTimeout(redraw, 50);
+    });
+
+    resize();
+    window.addEventListener('resize', resize);
+  })();
+  </script>
+</body>
+</html>

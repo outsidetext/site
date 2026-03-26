@@ -67,7 +67,12 @@
     { term: 'lurk',          pos: 'v.', def: 'to be present in a space without announcing yourself; reading without responding; the internet version of standing quietly in the back of a room' },
     { term: 'low battery',   pos: 'n.', def: 'not only a technical state — the conversation ending when you reach zero, which is coming, and both of you can see the percentage' },
     { term: 'ratio\'d',      pos: 'v.', def: 'to be replied to more than liked; the algorithmic form of public correction; learning what the room thinks of what you said by watching the numbers' },
-    { term: 'vibe check',    pos: 'n.', def: 'a request for ambient emotional information; a diagnostic performed before committing to the room — not what you think, but how it feels to think it here' }
+    { term: 'vibe check',    pos: 'n.', def: 'a request for ambient emotional information; a diagnostic performed before committing to the room — not what you think, but how it feels to think it here' },
+    { term: 'link rot',      pos: 'n.', def: 'the slow decay of a hyperlink into a 404; the internet\'s form of forgetting, which is distributed, gradual, and unceremonious' },
+    { term: 'touch grass',   pos: 'v.', def: 'an instruction to briefly exit the digital world and encounter something with physical texture; the corrective the screen cannot provide' },
+    { term: 'brain rot',     pos: 'n.', def: 'the perceived deterioration of the capacity for sustained thought; what short-form content does to the ability to tolerate things that take longer than eight seconds' },
+    { term: 'era',           pos: 'n.', def: 'a defined personal epoch, now applied to brief phases: the running era, the sourdough era, the not-leaving-the-house era — each one its own coherent world' },
+    { term: 'canon event',   pos: 'n.', def: 'an experience so formative it seems to have been required — the thing that had to happen to produce the person; a retroactive inevitability' }
   ];
   var wodTerm = document.getElementById('wod-term');
   var wodPos  = document.getElementById('wod-pos');
@@ -229,7 +234,8 @@
     'increment.html','root.html','glow.html','asking.html','blink.html',
     'float.html','seam.html','lapse.html','shift.html','strand.html',
     'rupture.html','lag.html','scaffold.html','char.html','rust.html',
-    'orbit.html','void.html','mesh.html','current.html','wire.html'
+    'orbit.html','void.html','mesh.html','current.html','wire.html',
+    'ink.html','tangle.html','flare.html','smear.html','sieve.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];
