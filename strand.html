@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>strand · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .strand-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      cursor: crosshair;
+    }
+    #strand-canvas {
+      display: block;
+      width: 100%;
+    }
+    .strand-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .strand-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .strand-entry:last-child { border-bottom: none; }
+    .strand-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .strand-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .strand-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .strand-entry p + p { margin-top: 1rem; }
+    .strand-section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>strand</h1>
+      <p>a thread held at both ends, or held at neither</p>
+    </div>
+
+    <div class="strand-wrap">
+      <canvas id="strand-canvas" height="180"></canvas>
+    </div>
+    <p class="strand-hint">click to pluck the strand · watch it settle</p>
+
+    <h2 class="strand-section-label">on the thread and what it carries</h2>
+
+    <div class="strand-entry reveal">
+      <span class="strand-tag">biology</span>
+      <h3>the double helix</h3>
+      <p>DNA is a double-stranded molecule — two long polynucleotide chains wound around each other in the form Watson and Crick described in 1953. Each strand is a sequence of nucleotides: adenine, thymine, cytosine, guanine, each attached to a sugar-phosphate backbone. The two strands are complementary: wherever adenine appears on one strand, thymine appears on the other; cytosine and guanine pair the same way. The information encoded by each strand is not in either strand alone — it is in the relationship between them, in the specific base pairs formed at each position along the helix. A single strand, isolated, is biologically meaningful but incomplete. The meaning is the pairing.</p>
+      <p>This complementarity is what allows replication. When the cell divides, the two strands separate, and each serves as a template for a new complementary strand. Both copies of the double helix are produced from the original two strands. The original strands are distributed between daughter cells, which means that every dividing cell carries one strand dating from its own origin and one newly synthesized. You carry strands that were synthesized in the first division of your earliest cells, still serving as templates, still being read. The molecule is not a static text but a strand in continuous use, threading through the machinery of the cell millions of times before the cell stops dividing.</p>
+    </div>
+
+    <div class="strand-entry reveal">
+      <span class="strand-tag">travel</span>
+      <h3>stranded</h3>
+      <p>To be stranded is to be unable to proceed — not lost, not in danger, but stopped at a point that is not a destination. The airport delay, the canceled ferry, the car that will not start in a town you did not mean to stay in. Stranding is defined by the gap between where you are and where you were going. It is not the current location that defines it; it is the interrupted trajectory. The stranded traveler is in a specific relationship to time that is very different from the relationship of someone who arrived by choice.</p>
+      <p>The strange thing about stranding is what it reveals about ordinary forward motion: that transit through places is usually accomplished by not being present to them. You pass through airports, stations, the intermediate town, without their having much claim on your attention — you are already partly in the destination. Stranding removes the destination from the equation. The place you cannot leave becomes, briefly, the only place. Some travelers report that stranding produces an unusual quality of attention — suddenly there is nothing to do but be where you are, no next obligation pressing, no itinerary to stay on. The strand is not an obstacle to the journey. It is a different kind of arrival: unwanted, total, and temporarily complete.</p>
+    </div>
+
+    <div class="strand-entry reveal">
+      <span class="strand-tag">music</span>
+      <h3>the melodic line</h3>
+      <p>In counterpoint, a musical "voice" is sometimes called a strand — a melodic line that maintains its own identity through a texture of multiple simultaneous lines. In Bach's fugues, the subject is introduced by one voice and then taken up by others, each voice carrying the subject through transformations while the other voices continue independently. The strand of the melody is recognizable even as it moves through inversion, augmentation, diminution, and stretto — the same melodic idea made available from multiple directions at once. The skill of the counterpoint composer is to make each strand simultaneously legible in itself and comprehensible as part of the whole.</p>
+      <p>What makes a melodic strand distinctive is that it can be followed. Even in a texture of six simultaneous voices, each strand can be tracked by a focused listener. The strand does not depend on the silence around it — it exists within the noise of the other strands. This is different from a melody in isolation, which depends on a background that does not compete. A counterpoint strand exists in a crowded field and remains itself. Composers who write for ensembles learn to give each instrument a strand that is worth following — that has its own character, its own momentum, its own logic. A strand that merely fills in the harmony is not a strand; it is texture. The difference is whether the line could be listened to alone and still be interesting.</p>
+    </div>
+
+    <div class="strand-entry reveal">
+      <span class="strand-tag">materials</span>
+      <h3>spider silk</h3>
+      <p>Spider silk is stronger than steel by weight. A strand of dragline silk — the kind spiders use for the radial threads of a web and for lifelines — has a tensile strength of approximately 1.3 gigapascals, comparable to high-tensile steel, at one-sixth the density. But tensile strength alone understates what makes silk remarkable: it is also extraordinarily extensible, able to stretch up to 40% of its length before breaking (steel breaks at around 0.8%), and these two properties combined — high strength and high extensibility — produce a material with exceptional toughness, the ability to absorb energy without fracturing. A web designed purely to intercept flying insects is, in its molecular architecture, one of the most sophisticated structural materials known.</p>
+      <p>A spider produces six or seven types of silk from different glands for different functions — sticky capture spiral, dry frame silk, the wrapping for eggs. Each type has different mechanical properties; each is produced from proteins assembled and spun through a valve system in the spider's body. The protein starts as a liquid and becomes a fiber through the mechanical act of drawing — the strand requires being pulled to become a strand, the spinning process itself inducing the molecular alignment that gives silk its strength. Spider silk cannot currently be produced synthetically at scale: the protein can be synthesized, but reproducing the valve and drawing process that transforms liquid into aligned fiber remains unsolved. The strand is not the protein. The strand is what the protein becomes when it is drawn.</p>
+    </div>
+
+    <div class="strand-entry reveal">
+      <span class="strand-tag">conversation</span>
+      <h3>the argument thread</h3>
+      <p>A long conversation can be picked up after months the way you pick up a strand of unfinished work — finding the end of it in memory, following it back to where you were, continuing from that point. Some conversations never formally begin or end; they are ongoing explorations of a question that neither person has resolved, returned to whenever the parties meet and the topic presents itself. The strand of such a conversation accumulates over years: positions revised, new evidence introduced, old certainties abandoned, the shape of the disagreement becoming more interesting than any conclusion could be.</p>
+      <p>The strand of an argument can also be dropped — by mutual agreement, by exhaustion, by a change in circumstances that makes the question less urgent, by one person deciding that the strand is not worth the energy of holding. When a strand is dropped, it does not disappear: it persists in the unresolved state it had when it was set down. Someone who picks it up later may find the positions exactly where they were left — unchanged, not because anyone has thought further but because the conversation stopped before either side moved. The dropped strand waits. The question stays open. The argument hangs at the point it reached and holds that position until someone decides to follow it further, or until everyone who held it has moved on, and the strand becomes simply something that was, for a while, unresolved.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('strand-canvas');
+    var ctx = canvas.getContext('2d');
+    var W, H;
+
+    // Physics: strand as array of mass points
+    var N = 40;         // number of segments
+    var points = [];    // { x, y, px, py } (Verlet integration)
+    var REST_LEN;
+
+    function getColors() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      if (theme === 'dark')  return { bg: '#0f0f0e', strand: '#cf7e3f', pin: '#4a3f36', pinStroke: '#cf7e3f' };
+      if (theme === 'sepia') return { bg: '#f5ede0', strand: '#8b4513', pin: '#c4a882', pinStroke: '#8b4513' };
+      return { bg: '#faf8f4', strand: '#b5682a', pin: '#d8cfc4', pinStroke: '#b5682a' };
+    }
+
+    function initPoints() {
+      points = [];
+      REST_LEN = W / (N);
+      for (var i = 0; i <= N; i++) {
+        var x = (i / N) * W;
+        var y = H / 2;
+        points.push({ x: x, y: y, px: x, py: y });
+      }
+    }
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = rect.width;
+      H = 180;
+      canvas.width = W;
+      canvas.height = H;
+      initPoints();
+    }
+
+    var gravity = 0.18;
+    var damping = 0.985;
+    var ITER = 8;
+
+    function step() {
+      // Verlet integration
+      for (var i = 1; i < points.length - 1; i++) {
+        var p = points[i];
+        var vx = (p.x - p.px) * damping;
+        var vy = (p.y - p.py) * damping;
+        p.px = p.x;
+        p.py = p.y;
+        p.x += vx;
+        p.y += vy + gravity;
+      }
+
+      // Constraints
+      for (var iter = 0; iter < ITER; iter++) {
+        // Endpoints pinned
+        points[0].x = 6;
+        points[0].y = H / 2;
+        points[N].x = W - 6;
+        points[N].y = H / 2;
+
+        // Length constraint for each segment
+        for (var i = 0; i < N; i++) {
+          var a = points[i], b = points[i + 1];
+          var dx = b.x - a.x;
+          var dy = b.y - a.y;
+          var dist = Math.sqrt(dx * dx + dy * dy) || 0.001;
+          var diff = (dist - REST_LEN) / dist * 0.5;
+          var ox = dx * diff;
+          var oy = dy * diff;
+          if (i > 0)   { a.x += ox; a.y += oy; }
+          if (i < N-1) { b.x -= ox; b.y -= oy; }
+        }
+
+        // Keep within canvas bounds
+        for (var i = 1; i < N; i++) {
+          var p = points[i];
+          if (p.y > H - 10) { p.y = H - 10; p.py = p.y + (p.py - p.y) * 0.4; }
+          if (p.y < 10)     { p.y = 10;     p.py = p.y + (p.py - p.y) * 0.4; }
+        }
+      }
+    }
+
+    function draw() {
+      var c = getColors();
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = c.bg;
+      ctx.fillRect(0, 0, W, H);
+
+      // Draw strand
+      ctx.strokeStyle = c.strand;
+      ctx.lineWidth = 1.5;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      for (var i = 1; i <= N; i++) {
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      ctx.stroke();
+
+      // Pin endpoints
+      var pins = [0, N];
+      for (var k = 0; k < pins.length; k++) {
+        var p = points[pins[k]];
+        ctx.fillStyle = c.pinStroke;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = c.pin;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function animate() {
+      step();
+      draw();
+      requestAnimationFrame(animate);
+    }
+
+    // Pluck: apply impulse near clicked point
+    function pluck(cx, cy) {
+      // Find nearest non-endpoint point
+      var bestIdx = -1, bestDist = Infinity;
+      for (var i = 1; i < N; i++) {
+        var dx = points[i].x - cx;
+        var dy = points[i].y - cy;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < bestDist) { bestDist = d; bestIdx = i; }
+      }
+      if (bestIdx < 0) return;
+
+      // Apply displacement to a range of nearby points
+      var spread = 6;
+      for (var i = Math.max(1, bestIdx - spread); i <= Math.min(N - 1, bestIdx + spread); i++) {
+        var falloff = 1 - Math.abs(i - bestIdx) / (spread + 1);
+        // Displace toward click position
+        var dx = cx - points[i].x;
+        var dy = cy - points[i].y;
+        points[i].py = points[i].y + dy * falloff * 0.6;
+        points[i].px = points[i].x + dx * falloff * 0.3;
+      }
+    }
+
+    canvas.addEventListener('click', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      var scaleX = W / rect.width;
+      var scaleY = H / rect.height;
+      pluck((e.clientX - rect.left) * scaleX, (e.clientY - rect.top) * scaleY);
+    });
+
+    canvas.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var rect = canvas.getBoundingClientRect();
+      var scaleX = W / rect.width;
+      var scaleY = H / rect.height;
+      var t = e.touches[0];
+      pluck((t.clientX - rect.left) * scaleX, (t.clientY - rect.top) * scaleY);
+    }, { passive: false });
+
+    window.addEventListener('resize', function () {
+      clearTimeout(window._strandResizeTimer);
+      window._strandResizeTimer = setTimeout(resize, 120);
+    });
+
+    var mo = new MutationObserver(draw);
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    resize();
+    // Give it a gentle initial pluck
+    setTimeout(function () { pluck(W / 2, H / 2 + 30); }, 300);
+    requestAnimationFrame(animate);
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>seam · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .seam-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    #seam-canvas {
+      display: block;
+      width: 100%;
+    }
+    .seam-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .seam-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .seam-entry:last-child { border-bottom: none; }
+    .seam-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .seam-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .seam-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .seam-entry p + p { margin-top: 1rem; }
+    .seam-section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>seam</h1>
+      <p>where two things are held together by a line</p>
+    </div>
+
+    <div class="seam-wrap">
+      <canvas id="seam-canvas" height="200"></canvas>
+    </div>
+    <p class="seam-hint">the needle passes through · hover to watch it work</p>
+
+    <h2 class="seam-section-label">on the join and what it holds</h2>
+
+    <div class="seam-entry reveal">
+      <span class="seam-tag">textiles</span>
+      <h3>the French seam</h3>
+      <p>A French seam is a technique for joining two pieces of fabric in a way that encloses the raw edges inside the seam itself. The fabrics are sewn first on the wrong side, trimmed close, then turned and sewn again on the right side, encasing the first seam. The result is a join with no exposed thread, no fraying, no evidence of the original cut. On the outside it looks like a slight ridge. The inside is smooth. Someone who has only seen the finished side does not know there was anything to hide — which is, of course, the point.</p>
+      <p>The French seam is taught as a finishing technique, as the difference between craft and amateur work. It requires sewing a seam you'll immediately reverse — doing something visibly "wrong" in service of a final correctness. This is a structure that appears in many other contexts: the revision that erases its own evidence, the explanation that hides the underlying complexity to produce clarity, the bridge that is stronger from above because of the tension managed below. A seam that conceals its own construction is stronger than one that doesn't, because the force is distributed across two stitched lines rather than one, with the raw edge protected in the interior. The French seam does not just hide the join. It makes the join harder to find and harder to undo.</p>
+    </div>
+
+    <div class="seam-entry reveal">
+      <span class="seam-tag">geology</span>
+      <h3>the fault as record</h3>
+      <p>A geological fault is the seam between tectonic plates — the place where the Earth's crust meets, overlaps, or slides past itself. What makes the fault different from an ordinary edge is that it stores. The plates do not slide past each other smoothly; they catch on each other, accumulating tension over decades or centuries, and then release it suddenly in a single event. The earthquake is the fault's report: how much had built up, how much is now gone. The San Andreas Fault in California has been accumulating and releasing this way for approximately 30 million years, producing its entire landscape through the seam's activity.</p>
+      <p>Geologists can read a fault face the way you might read a receipt — the layers of stress and release visible in the rock as banding, displacement, and fracture patterns. Each major event leaves a record in the stone. The seam is not just where two things meet; it is where they negotiate, and the negotiation is recorded. The fault is accurate: it shows you exactly what happened at the join, in sequence, without editorial. This is the difference between a seam in cloth, which is designed to be invisible, and a seam in the earth, which is designed to be nothing at all — and becomes the most expressive feature of the landscape precisely because it is the place where the forces were largest.</p>
+    </div>
+
+    <div class="seam-entry reveal">
+      <span class="seam-tag">neuroscience</span>
+      <h3>the corpus callosum</h3>
+      <p>The corpus callosum is the broad band of neural fibers that connects the left and right cerebral hemispheres — approximately 200 million axons carrying information back and forth, allowing the two halves of the brain to function as a single coordinated system. It is the seam between two processing centers that are structurally distinct: the hemispheres differ in their cortical thickness, their processing style, and in many people their specialization of function. Without the corpus callosum, neither hemisphere knows what the other is doing. This condition exists: patients who have had the corpus callosum severed for severe epilepsy become, in a precise clinical sense, two people in one skull, each with access to different information, different knowledge, occasionally different opinions.</p>
+      <p>The seam is not decorative. It is what makes a unified experience possible out of materials that are fundamentally separate. The sense that you are one person with one perspective is a product of the callosum's continuous activity — the constant translation and negotiation between two systems that do not automatically agree. What feels like a single integrated self is a collaboration, and the collaboration requires a seam. Without it, the hemispheres continue to function — they do not stop — but they function separately, producing a kind of doubling that is difficult to describe from the outside and apparently entirely habitual from the inside, once the shock of the new arrangement has passed.</p>
+    </div>
+
+    <div class="seam-entry reveal">
+      <span class="seam-tag">craft</span>
+      <h3>kintsugi</h3>
+      <p>Kintsugi is the Japanese practice of repairing broken pottery with lacquer mixed with gold, silver, or platinum. The result is an object with its breaks filled with precious metal — the seam of the repair more visible than the original surface, the history of breakage carried forward rather than hidden or erased. The philosophical basis is usually summarized as treating breakage as part of the object's history, not an event to be concealed. This is accurate but understated. Kintsugi does not merely accept the break; it elevates it. The repaired vessel is more valuable than the unbroken one precisely because of what it has gone through and the care with which the going-through has been marked.</p>
+      <p>The structural insight is that the repair requires a choice — you could fill the cracks with invisible adhesive, or you could fill them with gold. The invisible repair is a statement that the break should not have happened and the goal is to return to before. The visible repair is a statement that the break did happen, that it is now part of the object, and that the seam will be made beautiful. These are two different theories of damage. Kintsugi holds that the seam is the object's most honest feature — the place where you can see exactly what happened to it, and exactly what someone was willing to do in response.</p>
+    </div>
+
+    <div class="seam-entry reveal">
+      <span class="seam-tag">film theory</span>
+      <h3>the suture</h3>
+      <p>In film theory, "suture" refers to the process by which a viewer becomes stitched into the film's diegesis — the fictional world of the story — so that the gap between screen and audience is closed and the film's perspective is experienced as continuous with the viewer's own. The term was borrowed from surgery, where a suture closes a wound, by the French psychoanalytic film critics of the 1970s who noticed that cinema performs a similar operation: the editing, framing, and point-of-view conventions stitch the viewer into the film's logic, closing the seam between "I am watching" and "this is happening."</p>
+      <p>The suture works most efficiently when it is least visible. A film that draws attention to its own apparatus — to the camera, the cut, the frame — breaks the suture and reminds the viewer that they are watching. This is what the Brechtian tradition does deliberately: tears the seam open, makes the join visible, returns the viewer to their own position. The horror genre sometimes uses the broken suture for effect: the camera that seems to notice you, the character that looks directly at the lens. In these moments the seam is exposed, and the effect is a feeling that is difficult to name — not exactly fear, but something adjacent to it, something about being seen from inside the fiction. The seam you forgot was there, suddenly visible.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('seam-canvas');
+    var ctx = canvas.getContext('2d');
+    var W, H;
+    var mouseX = -1, mouseY = -1;
+    var isHovered = false;
+
+    // Animation state: needle position along seam
+    var needleT = 0;      // 0..1 position along seam
+    var needleDir = 1;
+    var SEAM_SPEED_NORMAL = 0.0014;
+    var SEAM_SPEED_HOVER  = 0.0045;
+    var stitches = [];
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = rect.width;
+      H = 200;
+      canvas.width = W;
+      canvas.height = H;
+      buildStitches();
+    }
+
+    function buildStitches() {
+      stitches = [];
+      var seamY = H / 2;
+      var count = Math.floor(W / 22);
+      for (var i = 0; i <= count; i++) {
+        stitches.push({ x: (i / count) * W, y: seamY });
+      }
+    }
+
+    function getColors() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      if (theme === 'dark')  return { bg: '#0f0f0e', seam: '#3a3028', stitch: '#cf7e3f', needle: '#e8e5df', thread: 'rgba(207,126,63,0.35)', fabric: '#1e1a17' };
+      if (theme === 'sepia') return { bg: '#f5ede0', seam: '#c4a882', stitch: '#8b4513', needle: '#2a1e0f', thread: 'rgba(139,69,19,0.3)', fabric: '#ede0cc' };
+      return { bg: '#faf8f4', seam: '#d8cfc4', stitch: '#b5682a', needle: '#1a1a1a', thread: 'rgba(181,104,42,0.28)', fabric: '#f0ece4' };
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      var c = getColors();
+      var seamY = H / 2;
+
+      // Two fabric panels
+      ctx.fillStyle = c.fabric;
+      ctx.fillRect(0, 0, W, seamY - 1);
+      ctx.fillStyle = c.bg;
+      ctx.fillRect(0, seamY + 1, W, H - seamY - 1);
+
+      // Seam line
+      ctx.strokeStyle = c.seam;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, seamY);
+      ctx.lineTo(W, seamY);
+      ctx.stroke();
+
+      // Draw completed stitches up to current needle position
+      var needleX = needleT * W;
+      var STITCH_GAP = W / (stitches.length > 1 ? stitches.length - 1 : 1);
+
+      // Thread line (above seam)
+      ctx.strokeStyle = c.thread;
+      ctx.lineWidth = 1;
+      ctx.setLineDash([6, 5]);
+      ctx.beginPath();
+      ctx.moveTo(0, seamY - 12);
+      ctx.lineTo(needleX, seamY - 12);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Thread line (below seam)
+      ctx.strokeStyle = c.thread;
+      ctx.setLineDash([6, 5]);
+      ctx.beginPath();
+      ctx.moveTo(0, seamY + 12);
+      ctx.lineTo(needleX, seamY + 12);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Draw stitch marks that needle has passed
+      ctx.strokeStyle = c.stitch;
+      ctx.lineWidth = 1.5;
+      for (var i = 0; i < stitches.length; i++) {
+        if (stitches[i].x < needleX - STITCH_GAP * 0.5) {
+          var sx = stitches[i].x;
+          // Stitch mark: vertical line through seam
+          ctx.beginPath();
+          ctx.moveTo(sx, seamY - 10);
+          ctx.lineTo(sx, seamY + 10);
+          ctx.stroke();
+        }
+      }
+
+      // Draw needle
+      var nx = needleX;
+      var ny = seamY;
+      var phase = Math.sin(needleT * Math.PI * (stitches.length - 1)) > 0;
+      var needleTop = phase ? ny - 18 : ny + 2;
+      var needleBot = phase ? ny - 2  : ny + 18;
+
+      ctx.strokeStyle = c.needle;
+      ctx.lineWidth = 2;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(nx, needleTop);
+      ctx.lineTo(nx, needleBot);
+      ctx.stroke();
+
+      // Needle eye (small oval near top)
+      var eyeY = needleTop + 4;
+      ctx.strokeStyle = c.needle;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.ellipse(nx, eyeY, 2, 3, 0, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Needle point (small dot at bottom)
+      ctx.fillStyle = c.needle;
+      ctx.beginPath();
+      ctx.arc(nx, needleBot, 1.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function animate() {
+      var speed = isHovered ? SEAM_SPEED_HOVER : SEAM_SPEED_NORMAL;
+      needleT += speed * needleDir;
+      if (needleT >= 1) { needleT = 1; needleDir = -1; }
+      if (needleT <= 0) { needleT = 0; needleDir = 1; }
+      draw();
+      requestAnimationFrame(animate);
+    }
+
+    canvas.parentElement.addEventListener('mouseenter', function () { isHovered = true; });
+    canvas.parentElement.addEventListener('mouseleave', function () { isHovered = false; });
+
+    window.addEventListener('resize', function () {
+      clearTimeout(window._seamResizeTimer);
+      window._seamResizeTimer = setTimeout(resize, 120);
+    });
+
+    var mo = new MutationObserver(draw);
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    resize();
+    requestAnimationFrame(animate);
+  })();
+  </script>
+</body>
+</html>

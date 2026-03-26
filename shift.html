@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>shift · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .shift-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    #shift-canvas {
+      display: block;
+      width: 100%;
+    }
+    .shift-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .shift-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .shift-entry:last-child { border-bottom: none; }
+    .shift-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .shift-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .shift-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .shift-entry p + p { margin-top: 1rem; }
+    .shift-section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>shift</h1>
+      <p>a change in frequency, position, or frame</p>
+    </div>
+
+    <div class="shift-wrap">
+      <canvas id="shift-canvas" height="220"></canvas>
+    </div>
+    <p class="shift-hint">the clock is live · the arc marks a working shift in real time</p>
+
+    <h2 class="shift-section-label">on the kinds of shift</h2>
+
+    <div class="shift-entry reveal">
+      <span class="shift-tag">labor</span>
+      <h3>the night shift</h3>
+      <p>A shift worker on a rotating schedule experiences a different relationship to time than someone on a fixed day schedule. The day has the same twenty-four hours, but they arrive in a different order. The world is organized around certain hours — commercial hours, social hours, the hours that assume everyone is awake at noon. The night-shift worker navigates these hours from the outside, doing their grocery shopping at 8am when the store is almost empty, sleeping through the afternoon. The day belongs to others; the night belongs to the shift.</p>
+      <p>The night shift has different sounds and different social texture. The people who are awake at 3am are awake for specific reasons: they are working, they cannot sleep, something is wrong, something very good is happening. The population of 3am is self-selected in ways the population of 2pm is not. Night-shift workers report a particular kind of camaraderie — the shared consciousness of being awake in the hours organized for sleep — and a particular kind of estrangement when daylight people ask them what they do with their evenings. The shift makes a different world out of the same hours. Not a worse world, in most accounts. A different one, with its own protocols and its own particular quality of attention.</p>
+    </div>
+
+    <div class="shift-entry reveal">
+      <span class="shift-tag">keyboard</span>
+      <h3>the modifier</h3>
+      <p>The shift key does not produce a character. It modifies the key pressed after it, converting lowercase to uppercase or accessing the secondary symbol on any key. In this respect, it is unlike every other key on the keyboard — it does not stand alone, it exists only in combination. The shift key is a frame that changes the meaning of whatever falls within it. The same physical key — the 1 key, the comma key — produces a different character depending on the frame established before it was pressed. The shift says: interpret what follows differently.</p>
+      <p>Early typewriters had a physical shift: the carriage literally shifted up to bring a second set of type into contact with the ribbon. The capital letters and the lowercase letters were on different physical levels of the same type slug, and shifting meant moving the entire carriage. The key inherited its name from this mechanism long after the mechanism was gone — keyboards have no carriage, nothing physically moves, the name is a fossil. But the logic persists: the shift key establishes a frame, and within that frame, the same keypress means something else. It doubled the alphabet without doubling the keys. It is the most efficient modifier in the history of written interface design — a single key that multiplies the available output of every other key it precedes.</p>
+    </div>
+
+    <div class="shift-entry reveal">
+      <span class="shift-tag">physics</span>
+      <h3>the Doppler shift</h3>
+      <p>The Doppler shift is the change in frequency of a wave relative to an observer moving with respect to the wave's source. As the source approaches, the waves compress — higher frequency, higher pitch. As it recedes, the waves stretch — lower frequency, lower pitch. The ambulance siren that falls in pitch as it passes is the Doppler shift in ordinary life. The fact that distant galaxies show a redshift — their light stretched toward longer wavelengths — is how Edwin Hubble determined in 1929 that the universe is expanding, and how we know how fast each galaxy is moving away from us. The frequency of the light is the galaxy's autobiography of its motion, transmitted across billions of light-years to whoever is listening.</p>
+      <p>The Doppler shift is used to detect the motion of objects too far away to observe directly: the wobble of stars caused by orbiting planets (detectable as a periodic shift in the star's spectral lines), the velocity of blood cells in echocardiography, the speed of a storm in Doppler radar. In each case, frequency is motion. The wave doesn't just carry a signal; it carries a record of the relative position and velocity of the source and receiver encoded in the shift between emitted and received frequency. The pitch is the distance collapsing or expanding, written in sound or light, readable by anyone with the right equipment and the right question.</p>
+    </div>
+
+    <div class="shift-entry reveal">
+      <span class="shift-tag">philosophy of science</span>
+      <h3>the paradigm shift</h3>
+      <p>Thomas Kuhn introduced "paradigm shift" in The Structure of Scientific Revolutions (1962) to describe the way scientific progress actually happens — not incrementally, as a continuous accumulation of knowledge, but through occasional convulsive reorganizations of the entire framework of a field. Normal science proceeds by working within the established paradigm, solving puzzles within its rules. But anomalies accumulate — observations that don't fit, results that the paradigm can't explain and can't assimilate. For a while, the anomalies are accommodated: they are treated as puzzles not yet solved, errors in measurement, special cases. But when the anomalies accumulate past a threshold, the paradigm itself becomes the problem, and a new framework that can account for the anomalies becomes possible.</p>
+      <p>The shift, when it comes, is not gradual. The new paradigm is not the old paradigm corrected; it is a different way of seeing the entire field. Kuhn observed that the shift is often generational — scientists trained in the old paradigm often cannot make the shift, and the new paradigm wins when a new generation trained within it comes to dominate the field. The process is not rational in the narrow sense: there is a period of incommensurability when the two paradigms cannot be evaluated by the same criteria, because each uses different criteria. The shift is a shift in what counts as a good question, what counts as a valid answer, and what the whole enterprise is for. The anomaly was always there. The paradigm had to become unsustainable before anyone looked.</p>
+    </div>
+
+    <div class="shift-entry reveal">
+      <span class="shift-tag">light</span>
+      <h3>color temperature</h3>
+      <p>Color temperature is measured in Kelvin and describes the spectral composition of a light source. Candlelight is approximately 1800K — orange and warm. Noon daylight is 5500–6500K — bright and blue. The color temperature of screens is typically set around 6500K, which is why prolonged screen use in the evening interferes with sleep: the blue-rich light at high Kelvin suppresses melatonin production by signaling to the circadian system that it is midday. Blue-light filtering modes — Night Shift on iPhone, Night Light on Windows — shift the color temperature down toward 2700–3000K as evening progresses, warming the screen toward the spectral quality of interior lighting.</p>
+      <p>The color temperature shift is the screen's acknowledgment that it knows what time it is and that the light appropriate for one hour may not be appropriate for another. The shift is invisible unless you compare before and after — and then it is obvious, the screen having gone from bright and cold to warm and orange, a different quality of illumination even though the content is unchanged. This is the only adjustment the screen makes for the time of day: not its content, not its notifications, not its demands — only its color. The screen shifts its light. Everything else it offers remains available at the same intensity regardless of the hour, indifferent to what the body needs the hour to be.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('shift-canvas');
+    var ctx = canvas.getContext('2d');
+    var W, H;
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = rect.width;
+      H = 220;
+      canvas.width = W;
+      canvas.height = H;
+    }
+
+    function getColors() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      if (theme === 'dark')  return { bg: '#0f0f0e', ring: '#2a2520', arc: '#cf7e3f', arcGlow: 'rgba(207,126,63,0.18)', hand: '#cf7e3f', label: '#7a7060', text: '#e8e5df', now: '#e8e5df' };
+      if (theme === 'sepia') return { bg: '#f5ede0', ring: '#d4c4a8', arc: '#8b4513', arcGlow: 'rgba(139,69,19,0.15)', hand: '#8b4513', label: '#9a7858', text: '#2a1e0f', now: '#2a1e0f' };
+      return { bg: '#faf8f4', ring: '#d8cfc4', arc: '#b5682a', arcGlow: 'rgba(181,104,42,0.13)', hand: '#b5682a', label: '#9a9080', text: '#1a1a1a', now: '#1a1a1a' };
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      var c = getColors();
+      ctx.fillStyle = c.bg;
+      ctx.fillRect(0, 0, W, H);
+
+      var cx = W / 2;
+      var cy = H / 2;
+      var R = Math.min(W, H) * 0.38;
+
+      var now = new Date();
+      var hours = now.getHours() + now.getMinutes() / 60;
+
+      // Hour ring background
+      ctx.strokeStyle = c.ring;
+      ctx.lineWidth = 10;
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Night shift arc: 22:00 to 06:00 (8 hours)
+      // Angles: hour 0 = top (-PI/2), clockwise
+      function hourToAngle(h) {
+        return (h / 24) * Math.PI * 2 - Math.PI / 2;
+      }
+      var shiftStart = 22;
+      var shiftEnd   = 30; // 30 = 6am next day
+
+      // Draw shift arc glow
+      ctx.strokeStyle = c.arcGlow;
+      ctx.lineWidth = 20;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, hourToAngle(shiftStart), hourToAngle(shiftEnd));
+      ctx.stroke();
+
+      // Draw shift arc
+      ctx.strokeStyle = c.arc;
+      ctx.lineWidth = 10;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, hourToAngle(shiftStart), hourToAngle(shiftEnd));
+      ctx.stroke();
+      ctx.lineCap = 'butt';
+
+      // Hour ticks
+      for (var h = 0; h < 24; h++) {
+        var a = hourToAngle(h);
+        var inner = h % 6 === 0 ? R - 14 : R - 8;
+        ctx.strokeStyle = c.label;
+        ctx.lineWidth = h % 6 === 0 ? 1.5 : 0.75;
+        ctx.beginPath();
+        ctx.moveTo(cx + Math.cos(a) * inner, cy + Math.sin(a) * inner);
+        ctx.lineTo(cx + Math.cos(a) * (R + 1), cy + Math.sin(a) * (R + 1));
+        ctx.stroke();
+      }
+
+      // Hour labels at 0, 6, 12, 18
+      ctx.fillStyle = c.label;
+      ctx.font = '10px Courier New, monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      var labelR = R - 28;
+      var labelHours = [0, 6, 12, 18];
+      var labelTexts = ['0', '6', '12', '18'];
+      for (var i = 0; i < labelHours.length; i++) {
+        var la = hourToAngle(labelHours[i]);
+        ctx.fillText(labelTexts[i], cx + Math.cos(la) * labelR, cy + Math.sin(la) * labelR);
+      }
+
+      // Current time hand
+      var nowAngle = hourToAngle(hours);
+      ctx.strokeStyle = c.hand;
+      ctx.lineWidth = 2;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + Math.cos(nowAngle) * (R - 4), cy + Math.sin(nowAngle) * (R - 4));
+      ctx.stroke();
+
+      // Center dot
+      ctx.fillStyle = c.hand;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 3, 0, Math.PI * 2);
+      ctx.fill();
+
+      // "night shift" label
+      var shiftMidHour = (shiftStart + shiftEnd) / 2; // 26 = 2am
+      var shiftMidAngle = hourToAngle(shiftMidHour);
+      var labelDist = R + 22;
+      ctx.fillStyle = c.arc;
+      ctx.font = '9px Courier New, monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('night shift', cx + Math.cos(shiftMidAngle) * labelDist, cy + Math.sin(shiftMidAngle) * labelDist);
+
+      // Current hour text inside
+      ctx.fillStyle = c.text;
+      ctx.font = '11px Courier New, monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      var hh = now.getHours().toString().padStart(2, '0');
+      var mm = now.getMinutes().toString().padStart(2, '0');
+      ctx.fillText(hh + ':' + mm, cx, cy + 16);
+    }
+
+    window.addEventListener('resize', function () {
+      clearTimeout(window._shiftResizeTimer);
+      window._shiftResizeTimer = setTimeout(resize, 120);
+    });
+
+    var mo = new MutationObserver(draw);
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    resize();
+    // Redraw every minute
+    draw();
+    setInterval(draw, 30000);
+  })();
+  </script>
+</body>
+</html>
