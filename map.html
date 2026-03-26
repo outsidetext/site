@@ -337,6 +337,11 @@
       { id: 'cursor',      href: 'cursor.html',      label: 'cursor',      desc: 'move to leave a trace — a canvas of fading dots; five entries on the cursor as proxy, Fitts\' law, the idle cursor, the hourglass, and the etymology of cursor as runner',     x: 0.41, y: 0.98 },
       { id: 'exhale',      href: 'exhale.html',      label: 'exhale',      desc: 'the outbreath, arriving line by line — four entries on the passive exhale, the sigh as maintenance, what releases, and why CO₂ drives breathing more than the absence of O₂',   x: 0.24, y: 0.40 },
       { id: 'recall',      href: 'recall.html',      label: 'recall',      desc: 'your trail through here — reads from local storage; the route you took, the rooms you visited, the ones you returned to',                                                        x: 0.86, y: 0.60 },
+      { id: 'increment',   href: 'increment.html',   label: 'increment',   desc: 'a counter that only goes up — stored in your browser, never reset; five entries on kaizen, cell division, compound interest, the straw, and what you are counting',    x: 0.20, y: 0.34 },
+      { id: 'root',        href: 'root.html',        label: 'root',        desc: 'a branching system growing downward — click to regrow; five entries on root architecture, the wood wide web, the rhizome, root cause analysis, and etymological roots', x: 0.71, y: 0.83 },
+      { id: 'glow',        href: 'glow.html',        label: 'glow',        desc: 'bioluminescent field — move to disturb; four entries on dinoflagellates, Cherenkov radiation, the afterglow, and light pollution',                                   x: 0.44, y: 0.92 },
+      { id: 'asking',      href: 'asking.html',      label: 'asking',      desc: 'on the act of forming the request — pure prose; five entries on Socratic ignorance, the seventy-three daily questions of childhood, prayer, who asks and who is asked, and the shape of desire', x: 0.34, y: 0.12 },
+      { id: 'blink',       href: 'blink.html',       label: 'blink',       desc: 'an eye that blinks on its own schedule — count observed blinks; five entries on blink rate and screens, Bauby\'s locked-in memoir, the photograph as frozen blink, the cursor\'s blink, and synchronized audiences', x: 0.77, y: 0.47 },
     ];
 
     var edges = [
@@ -575,6 +580,11 @@
       ['cursor','trace'], ['cursor','presence'], ['cursor','ghost'], ['cursor','witness'], ['cursor','mirror'],
       ['exhale','breathe'], ['exhale','quiet'], ['exhale','salt'], ['exhale','silence'], ['exhale','ordinary'],
       ['recall','log'], ['recall','wander'], ['recall','archive'], ['recall','accumulate'], ['recall','sediment'],
+      ['increment','tally'], ['increment','numbers'], ['increment','accumulate'], ['increment','duration'], ['increment','half-life'],
+      ['root','etymology'], ['root','ground'], ['root','strata'], ['root','anchor'], ['root','inheritance'],
+      ['glow','light'], ['glow','bioluminescence'], ['glow','ember'], ['glow','kindling'], ['glow','dark'],
+      ['asking','questions'], ['asking','oracle'], ['asking','interview'], ['asking','prayer'], ['asking','correspondence'],
+      ['blink','cursor'], ['blink','aperture'], ['blink','attention'], ['blink','exhale'], ['blink','interval'],
     ];
 
     var canvas  = document.getElementById('map-canvas');

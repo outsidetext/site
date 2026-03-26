@@ -225,7 +225,8 @@
     'shadow.html','salt.html','delay.html','pitch.html','surface.html',
     'tinnitus.html','estuary.html','spore.html','interlude.html','weathervane.html',
     'kindling.html','parenthesis.html','vantage.html','lattice.html','solitude.html',
-    'between.html','cursor.html','exhale.html','recall.html'
+    'between.html','cursor.html','exhale.html','recall.html',
+    'increment.html','root.html','glow.html','asking.html','blink.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>blink · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .blink-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    #blink-canvas {
+      display: block;
+      width: 100%;
+    }
+    .blink-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 0.5rem 0 1.25rem;
+    }
+    .blink-count-row {
+      display: flex;
+      gap: 2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .blink-stat span { color: var(--text); }
+    .blink-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .blink-entry:last-child { border-bottom: none; }
+    .blink-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .blink-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .blink-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .blink-entry p + p { margin-top: 1rem; }
+    .blink-section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>blink</h1>
+      <p>150–400 milliseconds of darkness, fifteen times per minute</p>
+    </div>
+
+    <div class="blink-wrap">
+      <canvas id="blink-canvas" height="260"></canvas>
+    </div>
+    <p class="blink-hint">the eye blinks on its own schedule · watch, or look away</p>
+
+    <div class="blink-count-row">
+      <div class="blink-stat">blinks observed: <span id="blink-count">0</span></div>
+      <div class="blink-stat">time watching: <span id="blink-time">0s</span></div>
+      <div class="blink-stat">rate: <span id="blink-rate">—</span></div>
+    </div>
+
+    <h2 class="blink-section-label">on the interval of not seeing</h2>
+
+    <div class="blink-entry reveal">
+      <span class="blink-tag">physiology</span>
+      <h3>the rate and what changes it</h3>
+      <p>The average resting blink rate is between twelve and twenty times per minute, with a typical rate around fifteen — one blink every four seconds. Each blink lasts 150 to 400 milliseconds, which means you spend roughly eight to twelve percent of your waking life with your eyes closed. This is not experienced as blindness. The brain suppresses visual input during blinks (blink suppression), fills the gap from memory, and emerges from the blink without any sense of discontinuity. The visual world does not flicker. The editing is seamless.</p>
+      <p>Blink rate decreases dramatically with attention. When reading, it drops to six to eight blinks per minute. When watching a screen — particularly during moments of high engagement — it can fall to three or four. Researchers have used blink rate as a proxy for attentional load and emotional arousal for decades. Low blink rate signals high engagement. The screen, more than any other medium, suppresses blinking — not through any design intent, but because it is very good at producing sustained attentional capture. The dry eyes that follow a long session are a direct consequence: the blink also lubricates the cornea, and its absence is noticed there first.</p>
+    </div>
+
+    <div class="blink-entry reveal">
+      <span class="blink-tag">literature</span>
+      <h3>the diving bell</h3>
+      <p>In 1995, Jean-Dominique Bauby, editor of Elle magazine, suffered a massive stroke that left him with locked-in syndrome: completely paralyzed, unable to speak, able to move only his left eyelid. He could blink. From this single remaining motor function, he composed a memoir — The Diving Bell and the Butterfly — by blinking to select letters as an assistant read through the alphabet. Each letter of the 130,000-character manuscript required, on average, two full alphabet recitations. The total took roughly 200,000 blinks and ten months. The book was published in France on March 7, 1997. Bauby died two days later.</p>
+      <p>The book is written in vivid, precise, unsentimental prose. It describes the texture of memory in extraordinary detail — the particular way light came through the windows of a restaurant where he had eaten years before, the smell of the sea, the weight of his son's hand. The blink, for Bauby, was the only output channel remaining — and through it, an entire interior world was transmitted. This is what the blink contains in the normal case too, in a structure too fast to examine: the momentary closing off of the outer world, the fraction-of-a-second in which the interior was all there was.</p>
+    </div>
+
+    <div class="blink-entry reveal">
+      <span class="blink-tag">photography</span>
+      <h3>the frozen blink</h3>
+      <p>A photograph at 1/125th of a second captures a slice of time thinner than a single blink. The shutter is the camera's blink — the moment when the sensor is exposed to light, and then the moment when the exposure ends. Unlike the eye's blink, which maintains continuity by suppressing what it misses, the camera's blink is its entire purpose: to catch exactly this instant and no other. The photograph is not a continuous recording. It is the frozen record of one very brief opening, surrounded on both sides by all the time the camera was not looking.</p>
+      <p>This is why photographs can feel uncanny in a way that video does not. The photograph is always an exception — a single moment extracted from the flow of before and after, given permanence that nothing in the actual experience had. The people in photographs are always mid-gesture, mid-sentence, mid-thought, frozen at a point they never stayed at. The camera blinked exactly once, and caught them there. They were only passing through, but the blink made them permanent.</p>
+    </div>
+
+    <div class="blink-entry reveal">
+      <span class="blink-tag">interface</span>
+      <h3>the cursor</h3>
+      <p>The blinking cursor was designed, in its original form, to draw attention to a specific point on the screen — the location where text would next appear. In the Xerox Alto's interface (1973) and in early word processors, the cursor blinked at approximately one hertz: one blink per second. This rate was chosen because it matched the threshold of peripheral attention — slow enough not to cause visual fatigue, fast enough to be noticed without focused looking. The blink made the cursor findable in the field of static text around it.</p>
+      <p>The rate was never formally standardized. Operating systems and applications implemented their own rates, converging loosely on 500–600 millisecond intervals because this felt natural. What was not designed, and was not anticipated, was the cursor blink's other function: to indicate waiting, readiness, expectation. A blinking cursor in an empty text field is one of the most anxiety-generating images in contemporary life — it means you are expected to produce something, and you have not yet started, and the cursor will keep blinking until you do. The blink was designed to attract attention. It also, secondarily, produces pressure. These are the same mechanism.</p>
+    </div>
+
+    <div class="blink-entry reveal">
+      <span class="blink-tag">timing</span>
+      <h3>what we share in the dark</h3>
+      <p>When two people watch the same film in a cinema, their blink rates synchronize. This was documented in a 2012 study: audiences watching an engaging film blinked at the same moments — typically during pauses in dialogue, transitions between scenes, or moments where attention was not required for plot tracking. The individual blinks, which had been idiosyncratic before the film started, converged into a shared rhythm. The audience was, briefly, one body blinking together — each person closing their eyes at the same moment, each person missing the same nothing.</p>
+      <p>This is what shared attention produces: synchrony. The shared laugh, the simultaneous intake of breath at the same scene, the coordinated blink — these are all the same mechanism: a stimulus that captures attention in the same way at the same time, and produces the same physical response. The cinema is engineered for this. So are concerts, sporting events, political speeches, religious ceremonies. The coordinated blink is the quietest and most invisible of the synchronies. But it suggests that the audience, for a few hours in the dark, was not entirely separate from each other. They were briefly, in the intervals between looking, the same.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('blink-canvas');
+    var ctx = canvas.getContext('2d');
+    var W, H;
+    var blinkCount = 0;
+    var startTime = Date.now();
+    var countEl = document.getElementById('blink-count');
+    var timeEl = document.getElementById('blink-time');
+    var rateEl = document.getElementById('blink-rate');
+
+    // Blink state
+    var lidY = 0; // 0 = fully open, 1 = fully closed
+    var blinking = false;
+    var nextBlinkIn = 3000 + Math.random() * 3000;
+    var blinkStart = 0;
+    var BLINK_CLOSE = 120;  // ms to close
+    var BLINK_OPEN  = 160;  // ms to reopen
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = rect.width;
+      H = 260;
+      canvas.width = W;
+      canvas.height = H;
+    }
+
+    function easeInOut(t) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    }
+
+    function getColors() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      if (theme === 'dark') return { iris: '#8a7060', pupil: '#1a1a1a', sclera: '#2a2520', lid: '#1e1a17', line: '#4a3f36' };
+      if (theme === 'sepia') return { iris: '#7a5c3a', pupil: '#1e120a', sclera: '#f5ede0', lid: '#d4c4a8', line: '#8b6040' };
+      return { iris: '#7a6050', pupil: '#0a0a0a', sclera: '#faf8f4', lid: '#e8e0d4', line: '#b5682a' };
+    }
+
+    function draw(ts) {
+      ctx.clearRect(0, 0, W, H);
+      var col = getColors();
+      var cx = W / 2;
+      var cy = H / 2;
+      var eyeW = Math.min(W * 0.55, 260);
+      var eyeH = eyeW * 0.38;
+
+      // Background
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      ctx.fillStyle = theme === 'dark' ? '#0f0f0e' : (theme === 'sepia' ? '#f5ede0' : '#faf8f4');
+      ctx.fillRect(0, 0, W, H);
+
+      // Clip to eye shape for sclera
+      ctx.save();
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, eyeW / 2, eyeH / 2, 0, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.fillStyle = col.sclera;
+      ctx.fill();
+
+      // Iris
+      var irisR = eyeH * 0.58;
+      var irisGrad = ctx.createRadialGradient(cx, cy, irisR * 0.1, cx, cy, irisR);
+      irisGrad.addColorStop(0, col.pupil);
+      irisGrad.addColorStop(0.25, col.iris);
+      irisGrad.addColorStop(1, col.iris);
+      ctx.beginPath();
+      ctx.arc(cx, cy, irisR, 0, Math.PI * 2);
+      ctx.fillStyle = irisGrad;
+      ctx.fill();
+
+      // Pupil
+      ctx.beginPath();
+      ctx.arc(cx, cy, irisR * 0.38, 0, Math.PI * 2);
+      ctx.fillStyle = col.pupil;
+      ctx.fill();
+
+      // Catchlight
+      ctx.beginPath();
+      ctx.arc(cx - irisR * 0.28, cy - irisR * 0.28, irisR * 0.1, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,0.55)';
+      ctx.fill();
+
+      // Lid — drawn as a filled rect sliding over the eye
+      var lidH = lidY * eyeH;
+      ctx.fillStyle = col.lid;
+      ctx.fillRect(cx - eyeW / 2 - 2, cy - eyeH / 2 - 2, eyeW + 4, lidH + 2);
+
+      // Lower lid partial close mirror
+      var lowerLidH = lidY * eyeH * 0.25;
+      ctx.fillRect(cx - eyeW / 2 - 2, cy + eyeH / 2 - lowerLidH, eyeW + 4, lowerLidH + 2);
+
+      ctx.restore();
+
+      // Eye outline
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, eyeW / 2, eyeH / 2, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = col.line;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    function animate(ts) {
+      var now = Date.now();
+      var elapsed = now - startTime;
+
+      // Update stats
+      countEl.textContent = blinkCount;
+      var secs = Math.floor(elapsed / 1000);
+      timeEl.textContent = secs < 60 ? secs + 's' : Math.floor(secs / 60) + 'm ' + (secs % 60) + 's';
+      if (secs > 5 && blinkCount > 0) {
+        var rate = (blinkCount / secs * 60).toFixed(1);
+        rateEl.textContent = rate + '/min';
+      }
+
+      // Blink animation
+      if (!blinking) {
+        nextBlinkIn -= 16;
+        if (nextBlinkIn <= 0) {
+          blinking = true;
+          blinkStart = now;
+          blinkCount++;
+          // Next blink: normally ~4 seconds, but varies
+          nextBlinkIn = 2500 + Math.random() * 3500;
+        }
+      } else {
+        var blinkElapsed = now - blinkStart;
+        var total = BLINK_CLOSE + BLINK_OPEN;
+        if (blinkElapsed < BLINK_CLOSE) {
+          lidY = easeInOut(blinkElapsed / BLINK_CLOSE);
+        } else if (blinkElapsed < total) {
+          lidY = easeInOut(1 - (blinkElapsed - BLINK_CLOSE) / BLINK_OPEN);
+        } else {
+          lidY = 0;
+          blinking = false;
+        }
+      }
+
+      draw(ts);
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', function () {
+      clearTimeout(window._blinkResizeTimer);
+      window._blinkResizeTimer = setTimeout(resize, 120);
+    });
+
+    resize();
+    requestAnimationFrame(animate);
+  })();
+  </script>
+</body>
+</html>

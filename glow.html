@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>glow · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .glow-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    #glow-canvas {
+      display: block;
+      width: 100%;
+    }
+    .glow-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 0.5rem 0 1.25rem;
+    }
+    .glow-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .glow-entry:last-child { border-bottom: none; }
+    .glow-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .glow-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .glow-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .glow-entry p + p { margin-top: 1rem; }
+    .glow-section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>glow</h1>
+      <p>light from living things — move to disturb</p>
+    </div>
+
+    <div class="glow-wrap">
+      <canvas id="glow-canvas" height="300"></canvas>
+    </div>
+    <p class="glow-hint">move cursor across the field · each point finds its own rhythm</p>
+
+    <h2 class="glow-section-label">on internal light</h2>
+
+    <div class="glow-entry reveal">
+      <span class="glow-tag">biology</span>
+      <h3>bioluminescence</h3>
+      <p>Bioluminescence — light produced by a living organism — is not rare. It is, by most counts, the dominant form of light production on Earth, because most of the Earth's surface is deep ocean, and in the deep ocean almost everything glows. Ninety percent of deep-sea organisms produce light through the chemical reaction of luciferin oxidized by the enzyme luciferase, releasing photons as a byproduct. The light is cold: nearly all the energy goes to photons, not heat. It is also biochemically expensive to maintain, which means organisms only produce it when it serves a function — attracting prey, deterring predators, communicating with mates, luring partners into fatal proximity.</p>
+      <p>At the ocean's surface, the most visible bioluminescence belongs to dinoflagellates — single-celled plankton that flash blue-green when disturbed. A wave breaking at night, a hand dragged through warm coastal water, a fish moving through a bloom: each creates a brief cold fire. The mechanism is mechanical transduction — the cell responds to physical pressure by triggering the chemical cascade. The ocean lights up when touched. The glow is the organism's report of contact. It has been signaling this, to anyone paying attention, for approximately 450 million years.</p>
+    </div>
+
+    <div class="glow-entry reveal">
+      <span class="glow-tag">physics</span>
+      <h3>Cherenkov radiation</h3>
+      <p>When a charged particle travels through a medium faster than light travels through that medium — not faster than light in a vacuum, but faster than light through water or glass — it emits a blue-white glow called Cherenkov radiation. It is the optical equivalent of a sonic boom: the particle outruns its own electromagnetic field, creating a wake of photons as the field collapses. The characteristic blue glow visible in nuclear reactor pools is Cherenkov radiation from high-energy electrons moving through the cooling water at near-light speed. The water slows light enough that the electrons can, briefly, outpace it.</p>
+      <p>The glow is an index of something invisible — the particle itself cannot be seen, but its relationship to the medium around it produces light. This is a common structure in physics: the thing of interest is not directly observable, but its interaction with the environment produces a measurable signature. The Cherenkov glow is not the particle. It is the shape of the particle's passage, written in photons in the water. Most things we can observe are this — not the thing itself, but the trace the thing leaves in the medium around it.</p>
+    </div>
+
+    <div class="glow-entry reveal">
+      <span class="glow-tag">physiology</span>
+      <h3>the afterglow</h3>
+      <p>The word glow describes a state that follows an event — the glow after exercise, after love, after news received well. In each case, the event has passed and something continues. Physiologically, the post-exercise glow has a partial explanation: elevated body temperature, vasodilation at the skin's surface producing visible flushing, endorphin release affecting facial expression, increased circulation carrying more oxygenated blood to the muscles and skin. These combine into a visible state that other people read as vitality. The glow is a by-product of recovery, which is itself a by-product of having pushed against a limit.</p>
+      <p>The emotional sense of glow is harder to isolate. It arrives after moments of connection, recognition, success, or shared joy — and it is clearly a felt state, not metaphorical. Something is different in the body. Heart rate is slightly elevated. Warmth is distributed differently than in cold anxiety. Attention is softer and more diffuse. The glow is what the nervous system produces when it has been fed something it was looking for. It is also brief. It does not last, and the awareness of its brevity is part of how you recognize it while it is happening.</p>
+    </div>
+
+    <div class="glow-entry reveal">
+      <span class="glow-tag">ecology</span>
+      <h3>light pollution</h3>
+      <p>Artificial light at night has made the Milky Way invisible to more than a third of humanity, including 60 percent of Europeans and 80 percent of North Americans. The glow of cities seen from orbit — the maps that circulate widely — is often described as beautiful. It is also an index of what is no longer visible from the ground. The satellite's perspective shows a concentration of light. The ground perspective shows a washed-out sky where the density of stars once provided navigation, mythology, timekeeping, and a sense of scale. What the city's glow illuminates, it simultaneously erases.</p>
+      <p>Light pollution disrupts circadian rhythms in humans, birds navigating by stars, sea turtles responding to horizon brightness, moths that use the moon for orientation. The artificial glow is experienced as a background condition by most urban humans — not noticed, because it has been present for their entire lives. The darkness it replaced is no longer remembered by most people living in it. What we cannot see, we cannot miss. The loss of the dark sky is not felt as a loss by those who have never seen the sky it displaced.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('glow-canvas');
+    var ctx = canvas.getContext('2d');
+    var W, H;
+    var dots = [];
+    var mouseX = -9999, mouseY = -9999;
+    var RAF;
+
+    function getDotColor() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      if (theme === 'dark') return { r: 80, g: 200, b: 180 };
+      if (theme === 'sepia') return { r: 160, g: 120, b: 60 };
+      return { r: 60, g: 160, b: 140 };
+    }
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = rect.width;
+      H = 300;
+      canvas.width = W;
+      canvas.height = H;
+      initDots();
+    }
+
+    function initDots() {
+      dots = [];
+      var count = Math.floor(W * H / 2200);
+      for (var i = 0; i < count; i++) {
+        dots.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          baseR: 1.5 + Math.random() * 2,
+          r: 0,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.008 + Math.random() * 0.012,
+          excite: 0
+        });
+      }
+    }
+
+    function animate() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      if (theme === 'dark') {
+        ctx.fillStyle = '#0f0f0e';
+      } else if (theme === 'sepia') {
+        ctx.fillStyle = '#f5ede0';
+      } else {
+        ctx.fillStyle = '#faf8f4';
+      }
+      ctx.fillRect(0, 0, W, H);
+
+      var col = getDotColor();
+
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        d.phase += d.speed;
+
+        // proximity to cursor excites the dot
+        var dx = d.x - mouseX;
+        var dy = d.y - mouseY;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var proximity = Math.max(0, 1 - dist / 100);
+        d.excite = Math.max(d.excite * 0.96, proximity);
+
+        var pulse = 0.5 + 0.5 * Math.sin(d.phase);
+        var exciteBoost = d.excite * 2.5;
+        d.r = d.baseR * (0.5 + pulse * 0.5 + exciteBoost);
+
+        var alpha = 0.15 + pulse * 0.45 + d.excite * 0.4;
+        alpha = Math.min(alpha, 0.95);
+
+        var glowR = d.r * (2.5 + d.excite * 4);
+        var grad = ctx.createRadialGradient(d.x, d.y, 0, d.x, d.y, glowR);
+        grad.addColorStop(0, 'rgba(' + col.r + ',' + col.g + ',' + col.b + ',' + alpha + ')');
+        grad.addColorStop(0.4, 'rgba(' + col.r + ',' + col.g + ',' + col.b + ',' + (alpha * 0.3) + ')');
+        grad.addColorStop(1, 'rgba(' + col.r + ',' + col.g + ',' + col.b + ',0)');
+
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, glowR, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // bright core
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + col.r + ',' + col.g + ',' + col.b + ',' + Math.min(alpha + 0.2, 1) + ')';
+        ctx.fill();
+      }
+
+      RAF = requestAnimationFrame(animate);
+    }
+
+    canvas.addEventListener('mousemove', function (e) {
+      var rect = canvas.getBoundingClientRect();
+      mouseX = (e.clientX - rect.left) * (W / rect.width);
+      mouseY = (e.clientY - rect.top) * (H / rect.height);
+    });
+    canvas.addEventListener('mouseleave', function () {
+      mouseX = -9999; mouseY = -9999;
+    });
+    canvas.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      var rect = canvas.getBoundingClientRect();
+      mouseX = (e.touches[0].clientX - rect.left) * (W / rect.width);
+      mouseY = (e.touches[0].clientY - rect.top) * (H / rect.height);
+    }, { passive: false });
+
+    window.addEventListener('resize', function () {
+      clearTimeout(window._glowResizeTimer);
+      window._glowResizeTimer = setTimeout(resize, 120);
+    });
+
+    resize();
+    animate();
+  })();
+  </script>
+</body>
+</html>

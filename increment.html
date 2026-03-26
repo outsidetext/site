@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>increment · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .inc-stage {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3rem 2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+    }
+    .inc-number {
+      font-family: 'Courier New', monospace;
+      font-size: 5rem;
+      font-weight: normal;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      transition: transform 0.08s ease, color 0.2s;
+      display: block;
+    }
+    .inc-number.bump {
+      transform: scale(1.06);
+      color: var(--accent);
+    }
+    .inc-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 2rem;
+    }
+    .inc-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.7rem 2.2rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .inc-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .inc-btn:active {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+    }
+    .inc-note {
+      font-size: 0.78rem;
+      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      position: absolute;
+      bottom: 0.9rem;
+      right: 1.1rem;
+    }
+    .inc-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .inc-entry:last-child { border-bottom: none; }
+    .inc-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .inc-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .inc-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .inc-entry p + p { margin-top: 1rem; }
+    .inc-section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>increment</h1>
+      <p>one more than before — stored in your browser, never reset</p>
+    </div>
+
+    <div class="inc-stage">
+      <span class="inc-number" id="inc-number">0</span>
+      <span class="inc-label" id="inc-label">times</span>
+      <button class="inc-btn" id="inc-btn">+ one more</button>
+      <span class="inc-note" id="inc-note"></span>
+    </div>
+
+    <h2 class="inc-section-label">on accumulation</h2>
+
+    <div class="inc-entry reveal">
+      <span class="inc-tag">method</span>
+      <h3>kaizen</h3>
+      <p>The Japanese manufacturing philosophy called kaizen — which translates roughly as "change for the better" — rests on a single structural observation: large improvements are not the primary mechanism of progress. The compound effect of marginal gains is. Toyota's production system, which became the model for lean manufacturing globally, was built not on breakthrough innovations but on the institutionalized expectation that every worker, at every level, would find and eliminate one small inefficiency per day. The improvements were sometimes too small to measure individually. The cumulative result transformed an industry.</p>
+      <p>The principle transfers beyond manufacturing. One percent better each day compounds to 37 times better in a year. One percent worse each day compounds to nearly zero. The arithmetic is indifferent to what you are incrementing. It does not distinguish between push-ups and apologies and hours of practice. It only cares about the direction and whether you show up again tomorrow.</p>
+    </div>
+
+    <div class="inc-entry reveal">
+      <span class="inc-tag">biology</span>
+      <h3>thirty-seven trillion</h3>
+      <p>There are approximately 37 trillion cells in the human body. Every one of them arrived by the same mechanism: one cell divided into two. The zygote that became you doubled, and those cells doubled, and those cells doubled, for roughly 47 doublings — about nine months of uninterrupted increment. No single step in this process produced a liver or a thought or a sense of direction. Each step produced only one more cell. The structure emerged from the accumulation, not from a blueprint that organized the accumulation in advance.</p>
+      <p>Cell division continues throughout life. The lining of the gut renews every three to five days. Red blood cells are replaced every four months. The skeleton is continuously remodeled. The body that reads these words is not the body that existed seven years ago in any material sense — it is a running total, an ongoing increment, a structure that maintains its form while replacing its substance. What holds the pattern across all that change is not the cells but the instructions they carry and the context they provide for each other.</p>
+    </div>
+
+    <div class="inc-entry reveal">
+      <span class="inc-tag">mathematics</span>
+      <h3>what compound interest actually is</h3>
+      <p>Compound interest is the increment applied to a number that includes all previous increments. Simple interest grows the original sum by a fixed amount each period; compound interest grows the current sum, which already includes growth. The difference between these two descriptions looks small. Over time, it is not. One thousand dollars at five percent simple interest after thirty years is two thousand five hundred dollars. At five percent compound interest, it is four thousand three hundred twenty-two dollars. The mechanism is identical — five percent — but the base changes each time, and that changes everything.</p>
+      <p>Einstein allegedly called compound interest the eighth wonder of the world. He probably didn't say it. But whoever said it understood something true: the magic is not in the rate, it's in the fact that the previous iteration is included in the next one. You are not adding to zero. You are adding to everything that came before. This is true of savings. It is also true of skill, of reputation, of damage, of kindness, and of neglect.</p>
+    </div>
+
+    <div class="inc-entry reveal">
+      <span class="inc-tag">threshold</span>
+      <h3>the straw</h3>
+      <p>There is a class of increments that are indistinguishable from each other until the final one. The straw that broke the camel's back was not heavier than the others. It was structurally identical to every straw that came before it. What differed was position: it arrived after the accumulation had reached the load limit. Every earlier straw was, in some sense, also breaking the camel's back — slowly, invisibly, contributing to a condition that would only become legible at the moment of failure.</p>
+      <p>This is why the precipitating event of a crisis almost never explains the crisis. The person who eventually says "I can't do this anymore" has been unable to do it for some time before that statement. The patience did not fail in the final moment — it had been failing incrementally, across many indistinguishable moments, and the final one was only the last. The increment that reveals the total is not the cause. It is the measurement.</p>
+    </div>
+
+    <div class="inc-entry reveal">
+      <span class="inc-tag">accounting</span>
+      <h3>what you are counting</h3>
+      <p>The number on this page is stored in your browser and never sent anywhere. It will persist until you clear your local storage, close this page in a browser that doesn't retain state, or encounter some form of data loss. It will not survive a new device or a new browser. It is local and mortal, like most things that accumulate.</p>
+      <p>What you are actually counting is harder to say. Visits to this page, technically. But also something about the specific willingness, each time, to press the button. Some visits arrive with that willingness intact. Others do not — you read, consider, and leave the number unchanged. The count reflects the overlap between being here and being in the mood to increment. Which is not nothing. That overlap has a shape. You are measuring its area.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var KEY = 'site-increment-v1';
+    var n = parseInt(localStorage.getItem(KEY) || '0', 10);
+    var numEl = document.getElementById('inc-number');
+    var noteEl = document.getElementById('inc-note');
+    var labelEl = document.getElementById('inc-label');
+    var btn = document.getElementById('inc-btn');
+
+    function render() {
+      numEl.textContent = n.toLocaleString();
+      labelEl.textContent = n === 1 ? 'time' : 'times';
+      if (n > 0) noteEl.textContent = 'stored in your browser';
+    }
+
+    render();
+
+    btn.addEventListener('click', function () {
+      n++;
+      localStorage.setItem(KEY, n);
+      render();
+      numEl.classList.remove('bump');
+      void numEl.offsetWidth; // force reflow
+      numEl.classList.add('bump');
+      setTimeout(function () { numEl.classList.remove('bump'); }, 120);
+    });
+  })();
+  </script>
+</body>
+</html>

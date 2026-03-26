@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>root · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .root-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      position: relative;
+    }
+    #root-canvas {
+      display: block;
+      width: 100%;
+      cursor: pointer;
+    }
+    .root-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 0.5rem 0 1.25rem;
+    }
+    .root-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .root-entry:last-child { border-bottom: none; }
+    .root-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .root-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .root-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .root-entry p + p { margin-top: 1rem; }
+    .root-section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>root</h1>
+      <p>growing downward — click to regrow</p>
+    </div>
+
+    <div class="root-wrap">
+      <canvas id="root-canvas" height="320"></canvas>
+    </div>
+    <p class="root-hint">the roots grow on their own · click anywhere to start over</p>
+
+    <h2 class="root-section-label">on what goes underground</h2>
+
+    <div class="root-entry reveal">
+      <span class="root-tag">botany</span>
+      <h3>the invisible majority</h3>
+      <p>In a mature forest, the root system of a single tree typically extends two to three times the width of its canopy, and reaches depths that vary by species and soil — shallow in waterlogged ground, metres deep in dry hillsides. The aboveground portion of a tree, the part we think of as the tree, represents perhaps a third of its total biomass. The rest is underground, invisible, doing the primary work. We named the tree after its least essential part.</p>
+      <p>Root architecture varies more than aboveground structure does. The taproot system sends a single main root vertically downward, anchoring the tree against wind and reaching deep water tables. The fibrous system spreads wide and shallow, maximizing surface area for absorption. The heart root is a compromise — deep but diffuse. A tree's strategy underground tells you something about the ground it expects to find: the climate it evolved in, the droughts it has had to survive, the floods it has had to endure. The root is the tree's autobiography, written in a medium that rarely gets read.</p>
+    </div>
+
+    <div class="root-entry reveal">
+      <span class="root-tag">ecology</span>
+      <h3>the wood wide web</h3>
+      <p>Trees in a forest share resources through a network of mycorrhizal fungi — the fine fungal threads that colonize root tips and extend their reach exponentially, connecting root systems across distances the roots themselves cannot span. Through this network, established trees transfer sugars to struggling seedlings in low light. Nurse trees — often the oldest, most connected — subsidize the growth of their genetic offspring and sometimes unrelated species. What looks, aboveground, like individual trees competing is, belowground, a cooperative network with its own logic of distribution.</p>
+      <p>The relationship is not altruistic in any simple sense — the fungi take a cut, the tree gets access to water and minerals it cannot reach alone, and the transfers follow gradients of abundance rather than intentional generosity. But the structural result is mutual dependence across what would otherwise be boundaries. The trees that look most separate are, underground, the most entangled. Independence is a canopy phenomenon. The ground doesn't recognize it.</p>
+    </div>
+
+    <div class="root-entry reveal">
+      <span class="root-tag">philosophy</span>
+      <h3>rhizome</h3>
+      <p>Gilles Deleuze and Félix Guattari proposed, in A Thousand Plateaus (1980), the rhizome as a model of thought in contrast to the tree. The tree-model — hierarchical, branching from a trunk, with a clear center and clear periphery — had, they argued, dominated Western philosophy and politics. The root confirms the trunk. The trunk confirms the root. The branch points back to both. Everything is subordinated to the arborescent logic of origin, lineage, and authority.</p>
+      <p>The rhizome — a grass, a tuber, a mycelial mat — works differently. It has no center. It can be entered from any point. It connects to other rhizomes horizontally, not vertically. It breaks and reconnects without hierarchy. It is, they said, the appropriate model for how meaning actually moves: not from an authorized source outward, but laterally, without guaranteed origin, without fixed destination. They were not describing a biological root. They were describing the internet twenty years before it became what they were describing.</p>
+    </div>
+
+    <div class="root-entry reveal">
+      <span class="root-tag">analysis</span>
+      <h3>root cause</h3>
+      <p>Root cause analysis is the engineering and medical discipline of finding not what failed, but what caused what failed, and continuing that backward inquiry until you reach the condition that, if changed, would prevent the failure from recurring. Surface events are not causes — they are effects. The immediate cause of the accident was the blown valve. The root cause was the maintenance schedule that hadn't been updated since the equipment changed. The root cause of that was the organizational structure that didn't route maintenance decisions through engineering. The root cause of that was the acquisition that merged two incompatible systems under pressure of time.</p>
+      <p>Most failures receive treatment at the surface level because that is faster, cheaper, and more legible. Root cause analysis is slower and more uncomfortable, because it almost always terminates in decisions — choices made by identifiable people under real constraints — rather than in mechanical failures. The valve is easier to replace than to explain why the valve was never upgraded. Fixing the valve is also less threatening. Root cause, done honestly, is always organizational. The root of a problem is a human judgment.</p>
+    </div>
+
+    <div class="root-entry reveal">
+      <span class="root-tag">etymology</span>
+      <h3>the root of the word</h3>
+      <p>The word root comes from Old Norse rót, related to Latin radix — which gives us radical, eradicate (to pull out by the roots), and radish (a root vegetable). Radical originally meant "of or pertaining to the root," and its political meaning developed from the idea of going to the root of a problem rather than treating it at the surface. A radical solution is one that does not address symptoms. Etymology, the study of word origins, is itself a kind of root cause analysis: finding the original condition from which current usage grew, following the branch back to the trunk.</p>
+      <p>The root of a word doesn't determine its current meaning — language is too dynamic for that — but it carries information about the conditions in which the concept first required a name. Companion comes from Latin com (together) + panis (bread): a companion is someone you share bread with. Disaster comes from Greek dis (bad) + aster (star): a disaster is a malign alignment of heavenly bodies, viewed from below. The root shows you what people thought was happening when they named the thing. That is worth knowing, even when the current usage has grown far from the original soil.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('root-canvas');
+    var ctx = canvas.getContext('2d');
+    var W, H;
+    var branches = [];
+    var growing = false;
+    var animId = null;
+
+    function resize() {
+      var rect = canvas.parentElement.getBoundingClientRect();
+      W = rect.width;
+      H = 320;
+      canvas.width = W;
+      canvas.height = H;
+      grow();
+    }
+
+    function getColor() {
+      var style = document.documentElement.getAttribute('data-theme') || 'light';
+      if (style === 'dark') return '#8a6a48';
+      if (style === 'sepia') return '#7a5c3a';
+      return '#6b4e35';
+    }
+
+    function grow() {
+      if (animId) cancelAnimationFrame(animId);
+      branches = [];
+      var rootX = W / 2 + (Math.random() - 0.5) * W * 0.1;
+      // Seed with one initial segment going down
+      branches.push({
+        x: rootX, y: 20,
+        dx: (Math.random() - 0.5) * 0.4,
+        dy: 1,
+        length: 0,
+        maxLength: 36 + Math.random() * 28,
+        thickness: 3.2,
+        depth: 0,
+        children: [],
+        done: false,
+        drawn: 0
+      });
+      growing = true;
+      animate();
+    }
+
+    function splitBranch(b) {
+      if (b.depth >= 7) return;
+      var nChildren = (b.depth < 2) ? 2 + (Math.random() < 0.4 ? 1 : 0) : 2;
+      var spread = 0.5 + b.depth * 0.12;
+      var baseAngle = Math.atan2(b.dy, b.dx);
+      for (var i = 0; i < nChildren; i++) {
+        var angle = baseAngle + (i - (nChildren - 1) / 2) * spread + (Math.random() - 0.5) * 0.3;
+        var mag = Math.sqrt(b.dx * b.dx + b.dy * b.dy);
+        var newDx = Math.cos(angle) * mag * (0.85 + Math.random() * 0.2);
+        var newDy = Math.sin(angle) * mag * (0.85 + Math.random() * 0.2);
+        // ensure going generally downward
+        if (newDy < 0.1) newDy = 0.1;
+        var childThickness = b.thickness * (0.6 + Math.random() * 0.15);
+        if (childThickness < 0.3) return;
+        branches.push({
+          x: b.x + b.dx * b.maxLength,
+          y: b.y + b.dy * b.maxLength,
+          dx: newDx,
+          dy: newDy,
+          length: 0,
+          maxLength: b.maxLength * (0.55 + Math.random() * 0.25),
+          thickness: childThickness,
+          depth: b.depth + 1,
+          children: [],
+          done: false,
+          drawn: 0
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, W, H);
+      var color = getColor();
+      var anyGrowing = false;
+
+      for (var i = 0; i < branches.length; i++) {
+        var b = branches[i];
+        if (!b.done) {
+          b.drawn = Math.min(b.drawn + 2.5, b.maxLength);
+          if (b.drawn >= b.maxLength) {
+            b.done = true;
+            splitBranch(b);
+          } else {
+            anyGrowing = true;
+          }
+        }
+
+        // Draw this segment
+        var alpha = Math.max(0.15, 1 - b.depth * 0.12);
+        ctx.beginPath();
+        ctx.moveTo(b.x, b.y);
+        ctx.lineTo(b.x + b.dx * b.drawn, b.y + b.dy * b.drawn);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = Math.max(0.3, b.thickness);
+        ctx.globalAlpha = alpha;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+
+      if (anyGrowing || branches.some(function (b) { return !b.done; })) {
+        animId = requestAnimationFrame(animate);
+      } else {
+        growing = false;
+      }
+    }
+
+    canvas.addEventListener('click', function () { grow(); });
+
+    window.addEventListener('resize', function () {
+      clearTimeout(window._rootResizeTimer);
+      window._rootResizeTimer = setTimeout(resize, 120);
+    });
+
+    resize();
+  })();
+  </script>
+</body>
+</html>
