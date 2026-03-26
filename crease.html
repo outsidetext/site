@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>crease · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .crease-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      cursor: crosshair;
+      touch-action: none;
+    }
+    #crease-canvas { display: block; width: 100%; }
+    .crease-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .crease-clear {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .crease-clear:hover { color: var(--accent); border-color: var(--accent); }
+    .crease-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .crease-entry:last-child { border-bottom: none; }
+    .crease-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .crease-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .crease-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .crease-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>crease</h1>
+      <p>the record of a previous fold</p>
+    </div>
+
+    <div class="crease-wrap">
+      <canvas id="crease-canvas"></canvas>
+    </div>
+    <div class="crease-hint">
+      <span>click and drag to fold — marks accumulate and slowly fade</span>
+      <button class="crease-clear" id="crease-clear">unfold</button>
+    </div>
+
+    <div class="crease-entry reveal">
+      <span class="crease-tag">material</span>
+      <h3>paper memory</h3>
+      <p>Paper remembers every fold. The fibres in a sheet run in random orientations when it is made, but folding compresses and aligns them along the fold line, permanently. After the fold is released, the paper returns to approximately flat — but the fold line remains as a slight ridge, and the paper's resistance to being folded along that line is reduced. The second fold is easier. The structural memory of the first is still there, guiding the second.</p>
+      <p>This is why origami instructions specify that you fold away from the printed side first: the crease will be more accurate if the fold goes along the paper's grain. The grain of the paper is its own history — the memory of the direction the fibres ran when the pulp was spread and dried. The fold is a second history, imposed on top of the first. A well-used piece of paper accumulates creases the way a face accumulates lines — each one the record of a specific occasion of force applied at a specific location.</p>
+    </div>
+
+    <div class="crease-entry reveal">
+      <span class="crease-tag">clothing</span>
+      <h3>intentional and unintentional</h3>
+      <p>A trouser crease is ironed in deliberately: the fold line running down the front of the leg, held in place by heat and pressure applied to the same location repeatedly until the fabric has internalized the shape. The crease is a form of instruction given to cloth — this is where you fold, consistently, predictably. Its presence or absence is legible at a distance.</p>
+      <p>The wrinkle is the accidental version: the crease that arrived without being invited, the record of sitting, sleeping, being compressed at the wrong angle for too long. Both are marks left by pressure over time. The difference between them is intention. The trouser crease says: I know where I should fold. The wrinkle says: I was somewhere for a while and took the shape of it.</p>
+    </div>
+
+    <div class="crease-entry reveal">
+      <span class="crease-tag">geology</span>
+      <h3>mountains as creases</h3>
+      <p>Mountain ranges form when tectonic plates converge and the crust, lacking anywhere to go, folds upward. The Himalayas are still rising as India continues to push into Asia at about five centimeters per year. The Alps formed when Africa moved north. What looks, at human scale, like the most permanent feature of the landscape is, at geological scale, a temporary crease in a thin layer of mobile material floating on a convecting mantle.</p>
+      <p>The crease angle records the force that made it: shallow folds suggest gentle compression over long periods; overturned folds — where the rock doubles back on itself — indicate violent, rapid collision. Geologists read mountain ranges the way graphologists read handwriting: looking for what the angles and shapes of the folds reveal about the force and direction and duration of the event that produced them. The mountain is the crust's record of being squeezed.</p>
+    </div>
+
+    <div class="crease-entry reveal">
+      <span class="crease-tag">face</span>
+      <h3>the autobiography of a line</h3>
+      <p>Smile lines — the creases that run from the outer corners of the nose to the corners of the mouth — are created by the repeated action of the zygomatic major muscle over decades. They begin faintly in early adulthood and deepen with each use. Eventually the crease is there even when the face is at rest, the permanent record of every occasion the muscle contracted. The face holds a low-resolution autobiography in its lines: where the attention went, how often, for how long.</p>
+      <p>The crease is the record of expression. A face that has smiled ten thousand times carries that evidence visibly. A face that has frowned ten thousand times carries different evidence. Not the content of any individual expression — those are unrecoverable — but the statistical weight of the habitual ones. The crease is what remains when the moment has passed.</p>
+    </div>
+
+    <div class="crease-entry reveal">
+      <span class="crease-tag">concept</span>
+      <h3>the fold as a prior state</h3>
+      <p>A crease marks where something was, not where it is. The fold was the event; the crease is the trace. Paper that was folded in half and then opened is not the same as paper that was never folded — the crease runs along the axis of the former fold, and the paper's resistance to bending elsewhere is permanently changed. The crease is where the paper became different.</p>
+      <p>This is true of most forms of sustained pressure. The relationship that ended leaves a crease in how each person moves through subsequent relationships — the angle at which they approach certain topics, the places where they fold too easily or resist too much. The crease is not damage, exactly. It is the record of a previous state, legible to anyone paying close attention, changing what comes after without preventing it.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('crease-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+
+    var lines = [];   // { x1, y1, x2, y2, age, maxAge }
+    var drawing = false;
+    var startX = 0, startY = 0;
+    var curX = 0, curY = 0;
+
+    function getColors() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      if (theme === 'dark')  return { bg: '#0f0f0e', line: '200,190,175' };
+      if (theme === 'sepia') return { bg: '#f5ede0', line: '80,50,20'    };
+      return { bg: '#faf8f4', line: '60,45,30' };
+    }
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.3);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      redraw();
+    }
+
+    function drawLine(x1, y1, x2, y2, alpha, col) {
+      // draw with subtle double stroke (shadow + crease)
+      var dx = x2 - x1, dy = y2 - y1;
+      var len = Math.sqrt(dx * dx + dy * dy);
+      if (len < 1) return;
+      var nx = -dy / len, ny = dx / len; // normal
+
+      // slight offset lines to simulate a fold ridge
+      for (var off = -0.6; off <= 0.6; off += 0.6) {
+        ctx.beginPath();
+        ctx.moveTo(x1 + nx * off, y1 + ny * off);
+        ctx.lineTo(x2 + nx * off, y2 + ny * off);
+        var a = alpha * (1 - Math.abs(off) * 0.3);
+        ctx.strokeStyle = 'rgba(' + col + ',' + a + ')';
+        ctx.lineWidth = 0.7 + (1 - Math.abs(off)) * 0.8;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+      }
+    }
+
+    var lastT = 0;
+    function redraw(ts) {
+      var dt = ts ? (ts - lastT) : 16;
+      lastT = ts || 0;
+
+      var col = getColors();
+      ctx.fillStyle = col.bg;
+      ctx.fillRect(0, 0, W, H);
+
+      var now = Date.now();
+
+      lines = lines.filter(function (l) { return now - l.born < l.maxAge; });
+
+      lines.forEach(function (l) {
+        var age = now - l.born;
+        var frac = age / l.maxAge;
+        // start bright, fade slowly
+        var alpha = (frac < 0.1) ? (frac / 0.1 * 0.6) : (0.6 * (1 - frac * 0.85));
+        drawLine(l.x1, l.y1, l.x2, l.y2, Math.max(0.02, alpha), col.line);
+      });
+
+      // draw current in-progress crease
+      if (drawing) {
+        drawLine(startX, startY, curX, curY, 0.75, col.line);
+      }
+
+      requestAnimationFrame(redraw);
+    }
+
+    function getPos(e, r) {
+      if (e.touches) {
+        return { x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top };
+      }
+      return { x: e.clientX - r.left, y: e.clientY - r.top };
+    }
+
+    wrap.addEventListener('mousedown', function (e) {
+      var r = wrap.getBoundingClientRect();
+      var p = getPos(e, r);
+      drawing = true;
+      startX = p.x; startY = p.y;
+      curX = p.x;   curY = p.y;
+    });
+    wrap.addEventListener('mousemove', function (e) {
+      if (!drawing) return;
+      var r = wrap.getBoundingClientRect();
+      var p = getPos(e, r);
+      curX = p.x; curY = p.y;
+    });
+    wrap.addEventListener('mouseup', function (e) {
+      if (!drawing) return;
+      var r = wrap.getBoundingClientRect();
+      var p = getPos(e, r);
+      var dx = p.x - startX, dy = p.y - startY;
+      if (Math.sqrt(dx * dx + dy * dy) > 4) {
+        lines.push({ x1: startX, y1: startY, x2: p.x, y2: p.y,
+          born: Date.now(), maxAge: 28000 + Math.random() * 12000 });
+      }
+      drawing = false;
+    });
+    wrap.addEventListener('mouseleave', function () { drawing = false; });
+
+    wrap.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var r = wrap.getBoundingClientRect();
+      var p = getPos(e, r);
+      drawing = true;
+      startX = p.x; startY = p.y; curX = p.x; curY = p.y;
+    }, { passive: false });
+    wrap.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      if (!drawing) return;
+      var r = wrap.getBoundingClientRect();
+      var p = getPos(e, r);
+      curX = p.x; curY = p.y;
+    }, { passive: false });
+    wrap.addEventListener('touchend', function (e) {
+      if (!drawing) return;
+      var r = wrap.getBoundingClientRect();
+      var p = { x: e.changedTouches[0].clientX - r.left, y: e.changedTouches[0].clientY - r.top };
+      var dx = p.x - startX, dy = p.y - startY;
+      if (Math.sqrt(dx * dx + dy * dy) > 4) {
+        lines.push({ x1: startX, y1: startY, x2: p.x, y2: p.y,
+          born: Date.now(), maxAge: 28000 + Math.random() * 12000 });
+      }
+      drawing = false;
+    });
+
+    document.getElementById('crease-clear').addEventListener('click', function () {
+      lines = [];
+    });
+
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      setTimeout(function () { }, 50);
+    });
+
+    resize();
+    window.addEventListener('resize', resize);
+    requestAnimationFrame(redraw);
+  })();
+  </script>
+</body>
+</html>

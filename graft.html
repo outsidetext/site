@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>graft · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .graft-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      cursor: crosshair;
+    }
+    #graft-canvas { display: block; width: 100%; }
+    .graft-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #graft-status { font-style: italic; }
+    .graft-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .graft-entry:last-child { border-bottom: none; }
+    .graft-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .graft-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .graft-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .graft-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>graft</h1>
+      <p>the joint where two things become one</p>
+    </div>
+
+    <div class="graft-wrap">
+      <canvas id="graft-canvas"></canvas>
+    </div>
+    <div class="graft-hint">
+      <span>hover the union to warm it — the graft takes at its own pace</span>
+      <span id="graft-status">establishing contact</span>
+    </div>
+
+    <div class="graft-entry reveal">
+      <span class="graft-tag">botany</span>
+      <h3>how a graft takes</h3>
+      <p>In grafting, two plants — the rootstock and the scion — are cut and pressed together at their cambium layers, the thin band of actively dividing cells just beneath the bark. If the contact is close enough, the cambium cells of each plant grow into those of the other, forming a callus, and eventually a continuous vascular system. The graft union is the place where two genetic identities became one functional organism. The rootstock provides the roots; the scion provides the canopy. They carry different DNA and will remain genetically distinct. They share only the interface.</p>
+      <p>The art of grafting is in the angle of the cut. The cut must expose maximum cambium surface and fit precisely — the closer the contact, the higher the probability that the cells will find each other. Professional grafters make the cuts in a single motion with a knife sharp enough to leave the cells undamaged. Bruised or crushed tissue doesn't callus. The graft requires that the wound be clean.</p>
+    </div>
+
+    <div class="graft-entry reveal">
+      <span class="graft-tag">medicine</span>
+      <h3>the condition of taking</h3>
+      <p>A skin graft transplants tissue from one location to another on the same body, or from a donor. Whether the graft "takes" depends on vascularization: capillaries from the wound bed must grow into the transplanted tissue within days, before the graft's existing cells die from lack of circulation. If the bed is clean and the graft is well-positioned, the vessels find their way in. If there is infection or poor contact, they don't.</p>
+      <p>An allogeneic graft — tissue from another person — faces a second challenge: immune rejection. The immune system recognizes foreign markers on the transplanted cells and attacks them. Immunosuppressants lower the rejection response, but only at the cost of general immune vulnerability. The body's defense system cannot distinguish between a beneficial graft and a pathogen — both are foreign, and the response to both is the same. What medicine has learned is that rejection is not an error. It is the immune system working correctly. The question is always whether the graft is worth the compromise.</p>
+    </div>
+
+    <div class="graft-entry reveal">
+      <span class="graft-tag">language</span>
+      <h3>the conceptual transplant</h3>
+      <p>New concepts enter existing vocabularies by something close to grafting: a word or framework from one domain is pressed against a gap in another, and if the contact is close enough, the new concept takes hold. Darwin's concept of natural selection was grafted onto economics to produce Social Darwinism — an application so far from the original that Darwin himself disowned it. Thermodynamic concepts were grafted onto information theory by Shannon, who borrowed "entropy" from physics to describe the information content of a message. The graft took: information entropy is now foundational.</p>
+      <p>The failure mode of conceptual grafting is forcing the cut — applying a framework where the contact isn't close enough to hold. The metaphor looks neat; the concepts don't actually align; and the result is a frame that feels explanatory but misleads. The criterion for a good conceptual graft is the same as for a botanical one: maximum cambium contact. The two domains must share something structural at the point of interface, not just a name.</p>
+    </div>
+
+    <div class="graft-entry reveal">
+      <span class="graft-tag">politics</span>
+      <h3>corruption as graft</h3>
+      <p>In political usage, graft refers to the corrupt use of public position for private gain — specifically, the situation in which private interest has grown into the body of public function so thoroughly that it cannot be removed without damaging the function itself. The word came from the botanical metaphor: private interest grafted onto the public institution, growing into its vascular system, taking the institution's resources as its own.</p>
+      <p>The biological insight of the metaphor is accurate: corruption is not a foreign body sitting inside a healthy institution. It is woven in. The people who would need to remove it are often the same people who benefit from it. Removing a well-established graft damages the rootstock. The question that graft-as-metaphor suggests is not whether the foreign tissue is wrong — it clearly is — but whether the cut can be made cleanly enough to preserve the function beneath.</p>
+    </div>
+
+    <div class="graft-entry reveal">
+      <span class="graft-tag">concept</span>
+      <h3>the interface as the important thing</h3>
+      <p>What grafting teaches is that the most consequential zone is always the interface — the place where two things come into contact, where different genetic programs, different immune systems, different value systems, meet. Not the rootstock, not the scion, but the joint between them. The graft union is the most stressed, the most active, the most monitored location in the grafted plant. Everything depends on what happens there.</p>
+      <p>The interface is where things either take or fail to take. Most large questions in any domain — institutional, interpersonal, ecological — are ultimately questions about interfaces: whether the contact is clean enough, the fit close enough, the damage from the cut small enough. Whether the adjacent cambiums can find each other in the dark.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('graft-canvas');
+    var wrap   = canvas.parentElement;
+    var status = document.getElementById('graft-status');
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+    var mouse = { x: -999, y: -999 };
+    var t = 0;
+
+    // Particles in two populations
+    var leftParticles  = [];
+    var rightParticles = [];
+    var NPER = 50;
+
+    function getColors() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      if (theme === 'dark')  return { bg: '#0f0f0e' };
+      if (theme === 'sepia') return { bg: '#f5ede0' };
+      return { bg: '#faf8f4' };
+    }
+
+    function makePart(side) {
+      var x = side === 'left'
+        ? 0.04 * W + Math.random() * (0.44 * W)
+        : 0.52 * W + Math.random() * (0.44 * W);
+      return {
+        x: x, y: 0.05 * H + Math.random() * 0.9 * H,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        phase: Math.random() * Math.PI * 2,
+        r: 1.4 + Math.random() * 1.4,
+        // blend 0=left color, 1=right color
+        blend: Math.random() * 0.15,
+        side: side
+      };
+    }
+
+    function initParticles() {
+      leftParticles  = []; rightParticles = [];
+      for (var i = 0; i < NPER; i++) {
+        leftParticles.push(makePart('left'));
+        rightParticles.push(makePart('right'));
+      }
+    }
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.34);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      initParticles();
+    }
+
+    function particleColor(p, theme) {
+      // left = warm earthy brown, right = cool sage green
+      var lr = theme === 'dark' ? [180, 120, 60] : [140, 85, 35];
+      var rr = theme === 'dark' ? [80, 140, 100] : [55, 110, 75];
+      var b = p.blend;
+      var r = Math.round(lr[0] * (1 - b) + rr[0] * b);
+      var g = Math.round(lr[1] * (1 - b) + rr[1] * b);
+      var c = Math.round(lr[2] * (1 - b) + rr[2] * b);
+      return [r, g, c];
+    }
+
+    // track union health (0-1)
+    var unionStrength = 0;
+
+    function draw() {
+      t += 0.01;
+
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      var col = getColors();
+      ctx.fillStyle = col.bg;
+      ctx.fillRect(0, 0, W, H);
+
+      var center = W / 2;
+
+      // draw union zone (center strip)
+      var unionW = 18 + unionStrength * 20;
+      var mouseNear = Math.abs(mouse.x - center) < 60 && mouse.y > 0;
+      if (mouseNear) unionStrength = Math.min(1, unionStrength + 0.004);
+      else unionStrength = Math.max(0, unionStrength - 0.001);
+
+      var uAlpha = 0.04 + unionStrength * 0.08;
+      var grd = ctx.createLinearGradient(center - unionW, 0, center + unionW, 0);
+      grd.addColorStop(0, 'rgba(120,100,70,0)');
+      grd.addColorStop(0.5, 'rgba(110,120,80,' + uAlpha + ')');
+      grd.addColorStop(1, 'rgba(80,130,90,0)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(center - unionW, 0, unionW * 2, H);
+
+      // center line (the cut)
+      ctx.beginPath();
+      ctx.moveTo(center, 0);
+      ctx.lineTo(center, H);
+      ctx.strokeStyle = theme === 'dark' ? 'rgba(180,160,130,0.12)' : 'rgba(80,60,40,0.1)';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([3, 5]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      var allParticles = leftParticles.concat(rightParticles);
+      var mixed = 0;
+
+      allParticles.forEach(function (p) {
+        // drift toward center gently
+        var pull = 0.0006 + unionStrength * 0.0012;
+        if (mouseNear) pull += 0.001;
+        p.vx += (center - p.x) * pull * (0.3 + Math.random() * 0.4);
+        p.vy += (H / 2 - p.y) * 0.0001;
+
+        p.x += p.vx + Math.sin(t * 1.5 + p.phase) * 0.08;
+        p.y += p.vy + Math.cos(t * 1.2 + p.phase) * 0.06;
+
+        // damping
+        p.vx *= 0.96;
+        p.vy *= 0.96;
+
+        // keep in canvas
+        if (p.x < p.r) { p.x = p.r; p.vx *= -0.5; }
+        if (p.x > W - p.r) { p.x = W - p.r; p.vx *= -0.5; }
+        if (p.y < p.r) { p.y = p.r; p.vy *= -0.5; }
+        if (p.y > H - p.r) { p.y = H - p.r; p.vy *= -0.5; }
+
+        // update blend based on proximity to center
+        var distToCenter = Math.abs(p.x - center) / (W / 2);
+        var targetBlend = p.side === 'left' ? (1 - distToCenter) * 0.5 : distToCenter * 0.5;
+        p.blend += (targetBlend - p.blend) * 0.008;
+        if (p.blend > 0.3) mixed++;
+
+        var pc = particleColor(p, theme);
+        var alpha = 0.5 + p.blend * 0.3;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + pc[0] + ',' + pc[1] + ',' + pc[2] + ',' + alpha + ')';
+        ctx.fill();
+      });
+
+      // status update
+      var frac = mixed / (allParticles.length);
+      if (frac < 0.05) status.textContent = 'establishing contact';
+      else if (frac < 0.2) status.textContent = 'callus forming';
+      else if (frac < 0.45) status.textContent = 'union taking';
+      else status.textContent = 'graft successful';
+
+      requestAnimationFrame(draw);
+    }
+
+    wrap.addEventListener('mousemove', function (e) {
+      var r = wrap.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+    });
+    wrap.addEventListener('mouseleave', function () { mouse.x = -999; mouse.y = -999; });
+    wrap.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      var r = wrap.getBoundingClientRect();
+      mouse.x = e.touches[0].clientX - r.left;
+      mouse.y = e.touches[0].clientY - r.top;
+    }, { passive: false });
+    wrap.addEventListener('touchend', function () { mouse.x = -999; mouse.y = -999; });
+
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      setTimeout(function () {}, 50);
+    });
+
+    resize();
+    window.addEventListener('resize', resize);
+    draw();
+  })();
+  </script>
+</body>
+</html>

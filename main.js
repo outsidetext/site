@@ -235,7 +235,8 @@
     'float.html','seam.html','lapse.html','shift.html','strand.html',
     'rupture.html','lag.html','scaffold.html','char.html','rust.html',
     'orbit.html','void.html','mesh.html','current.html','wire.html',
-    'ink.html','tangle.html','flare.html','smear.html','sieve.html'
+    'ink.html','tangle.html','flare.html','smear.html','sieve.html',
+    'filament.html','depth.html','canopy.html','crease.html','graft.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

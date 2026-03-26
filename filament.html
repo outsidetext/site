@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>filament · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .filament-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: #0a0806;
+      cursor: crosshair;
+    }
+    #filament-canvas { display: block; width: 100%; }
+    .filament-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .filament-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .filament-entry:last-child { border-bottom: none; }
+    .filament-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .filament-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .filament-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .filament-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>filament</h1>
+      <p>the thread through which everything passes</p>
+    </div>
+
+    <div class="filament-wrap">
+      <canvas id="filament-canvas"></canvas>
+    </div>
+    <div class="filament-hint">move to excite — the filaments carry what they're given</div>
+
+    <div class="filament-entry reveal">
+      <span class="filament-tag">incandescence</span>
+      <h3>the tungsten thread</h3>
+      <p>The tungsten filament in an incandescent bulb reaches 2700°C before it gives off visible light. At that temperature, the metal radiates across the full visible spectrum — the light is not produced but emitted, the side effect of a material being asked to carry more current than it comfortably can. This is what incandescence means: to become so hot that light appears as the overflow. The filament doesn't make light. It makes heat until heat becomes something else.</p>
+      <p>Tungsten was chosen because it has the highest melting point of any metal — 3422°C, low enough to be shaped, high enough to survive the asking. Every incandescent bulb is a controlled near-failure: hot enough to glow, not quite hot enough to dissolve. The light you read by is the signature of something held at its limit for as long as the bulb lasts.</p>
+    </div>
+
+    <div class="filament-entry reveal">
+      <span class="filament-tag">ecology</span>
+      <h3>the mycelial thread</h3>
+      <p>Underground and mostly invisible, fungal hyphae — filaments a cell wide — extend through the soil at rates of a centimeter a day, weaving into root systems, connecting trees across hundreds of meters. The mycorrhizal network doesn't move nutrients so much as it allows them to move: sugars flow from canopy to understory along concentration gradients, and the fungus takes a cut. The network didn't form to be altruistic. It formed because connection was profitable. The benefit to the ecosystem was incidental to the benefit to the fungus.</p>
+      <p>What the network can do that individual trees cannot: accumulate information. A tree under pest pressure signals its stress via chemical gradients; nearby trees, connected through the mycelium, show increased defensive chemistry before the pest arrives. This is not communication in any sense that requires a sender or a receiver. It is physics — concentration differences seeking equilibrium — with consequences that look, from outside, like coordination.</p>
+    </div>
+
+    <div class="filament-entry reveal">
+      <span class="filament-tag">light</span>
+      <h3>total internal reflection</h3>
+      <p>A fiber optic cable carries light through total internal reflection — the signal bounces off the inner surface of the glass at angles too steep to escape, traveling the length of the cable with almost no loss. The principle depends on the interface between two materials: when light tries to pass from a denser medium to a less dense one at the wrong angle, the boundary won't let it through. The cable works by controlled frustration of the light's attempt to leave.</p>
+      <p>A single fiber the width of a human hair can carry terabits per second — simultaneous conversations, transactions, streams, messages in volumes that resist imagination. What the fiber is doing, all day, without rest, is keeping light from escaping. The transmission is a side effect of containment.</p>
+    </div>
+
+    <div class="filament-entry reveal">
+      <span class="filament-tag">biology</span>
+      <h3>the nerve fiber</h3>
+      <p>The body's nervous system is a filament network with approximately 86 billion nodes and a total length, if unspooled, of several hundred thousand kilometers. The thickest fibers are myelinated — sheathed in a fatty insulating layer that forces the electrical signal to skip from node to node rather than traveling continuously, increasing speed from about one meter per second to over one hundred. The myelin sheath is not part of the neuron. It is laid down by a separate cell type whose only function is to wrap and re-wrap the axon at intervals.</p>
+      <p>The thinnest fibers carry the oldest signals: pain, temperature, the ache of inflammation. These are unmyelinated, slow, and impossible to fully suppress once activated. The system learned to prioritize them before it learned to transmit anything more complex. The filament that carries the most ancient information is also the hardest to silence.</p>
+    </div>
+
+    <div class="filament-entry reveal">
+      <span class="filament-tag">concept</span>
+      <h3>the minimum form of connection</h3>
+      <p>A filament is the thinnest form a connection can take before it stops being a connection. Thinner than a thread, thinner than a wire — a structure whose cross-section approaches zero, whose function is pure transmission and nothing else. The filament is what's left when you remove everything except the conduit.</p>
+      <p>What the filament teaches, by virtue of being so thin, is that connection does not require substance. Spider silk is thinner than a human hair and stronger than steel. Axons one micron wide carry the signal that contracts a muscle. The signal crosses because something extends between two points — not because that something is large or strong or visible. Connection scales: it can be as small as it needs to be and still do the work.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('filament-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+    var mouse  = { x: -999, y: -999 };
+
+    var nodes = [];
+    var NCOUNT = 18;
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.32);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      if (nodes.length === 0) initNodes();
+      draw();
+    }
+
+    function initNodes() {
+      nodes = [];
+      for (var i = 0; i < NCOUNT; i++) {
+        nodes.push({
+          x: 0.05 * W + Math.random() * 0.9 * W,
+          y: 0.1  * H + Math.random() * 0.8 * H,
+          vx: (Math.random() - 0.5) * 0.18,
+          vy: (Math.random() - 0.5) * 0.18,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function glow(intensity) {
+      // intensity 0–1 → amber color
+      var r = Math.round(255 * Math.min(1, intensity * 1.4));
+      var g = Math.round(160 * intensity * intensity);
+      var b = Math.round(30  * intensity * intensity);
+      return 'rgba(' + r + ',' + g + ',' + b + ',';
+    }
+
+    var t = 0;
+    function draw() {
+      t += 0.012;
+      ctx.fillStyle = '#0a0806';
+      ctx.fillRect(0, 0, W, H);
+
+      // update node positions (slow drift)
+      nodes.forEach(function (n) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0.02 * W || n.x > 0.98 * W) n.vx *= -1;
+        if (n.y < 0.02 * H || n.y > 0.98 * H) n.vy *= -1;
+      });
+
+      var maxDist = W * 0.28;
+
+      // draw filaments between nearby nodes
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var a = nodes[i], b = nodes[j];
+          var dx = b.x - a.x, dy = b.y - a.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist > maxDist) continue;
+
+          var proximity = 1 - dist / maxDist;
+
+          // mouse proximity brightens the filament
+          var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+          var mdist = Math.sqrt((mouse.x - mx) * (mouse.x - mx) + (mouse.y - my) * (mouse.y - my));
+          var mouseBright = Math.max(0, 1 - mdist / (W * 0.18));
+
+          // vibration offset perpendicular to the filament
+          var angle = Math.atan2(dy, dx) + Math.PI / 2;
+          var vib = Math.sin(t * 3.5 + a.phase + b.phase) * 2.5 * proximity;
+          var midX = mx + Math.cos(angle) * vib;
+          var midY = my + Math.sin(angle) * vib;
+
+          var intensity = (proximity * proximity * 0.25) + (mouseBright * 0.9);
+          intensity = Math.min(1, intensity);
+
+          var alpha = intensity * 0.85;
+          var width = 0.4 + intensity * 1.4;
+
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.quadraticCurveTo(midX, midY, b.x, b.y);
+          ctx.strokeStyle = glow(intensity) + alpha + ')';
+          ctx.lineWidth = width;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+
+          // bright core for highly excited filaments
+          if (intensity > 0.55) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.quadraticCurveTo(midX, midY, b.x, b.y);
+            ctx.strokeStyle = 'rgba(255,240,200,' + (intensity - 0.5) * 0.5 + ')';
+            ctx.lineWidth = width * 0.25;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // draw nodes
+      nodes.forEach(function (n) {
+        var mdist = Math.sqrt((mouse.x - n.x) * (mouse.x - n.x) + (mouse.y - n.y) * (mouse.y - n.y));
+        var bright = Math.max(0.08, 1 - mdist / (W * 0.12));
+        var r = 1.2 + bright * 1.8;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = glow(bright) + (0.4 + bright * 0.6) + ')';
+        ctx.fill();
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    wrap.addEventListener('mousemove', function (e) {
+      var r = wrap.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+    });
+    wrap.addEventListener('mouseleave', function () {
+      mouse.x = -999; mouse.y = -999;
+    });
+    wrap.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      var r = wrap.getBoundingClientRect();
+      mouse.x = e.touches[0].clientX - r.left;
+      mouse.y = e.touches[0].clientY - r.top;
+    }, { passive: false });
+    wrap.addEventListener('touchend', function () {
+      mouse.x = -999; mouse.y = -999;
+    });
+
+    resize();
+    window.addEventListener('resize', resize);
+  })();
+  </script>
+</body>
+</html>

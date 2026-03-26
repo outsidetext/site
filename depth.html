@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>depth · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .depth-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      cursor: crosshair;
+      position: relative;
+    }
+    #depth-canvas { display: block; width: 100%; }
+    #depth-label {
+      position: absolute;
+      right: 0.75rem;
+      top: 0.6rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: rgba(120,180,220,0.6);
+      pointer-events: none;
+      letter-spacing: 0.05em;
+    }
+    .depth-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .depth-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .depth-entry:last-child { border-bottom: none; }
+    .depth-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .depth-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .depth-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .depth-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>depth</h1>
+      <p>what lives below the surface</p>
+    </div>
+
+    <div class="depth-wrap">
+      <canvas id="depth-canvas"></canvas>
+      <div id="depth-label">surface</div>
+    </div>
+    <div class="depth-hint">hover to read the depth — click to release a pulse from that zone</div>
+
+    <div class="depth-entry reveal">
+      <span class="depth-tag">ocean</span>
+      <h3>the hadal zone</h3>
+      <p>Below 6000 meters, the pressure is 600 times atmospheric — equivalent to fifty jumbo jets stacked on a palm-sized area of skin. Nothing survives there by accident. The species of the hadal zone have spent hundreds of millions of years solving problems that nothing on the surface has ever encountered: how to maintain cellular integrity when water tries to compress every molecule, how to keep enzymes flexible when the thermodynamics of depth demand rigidity. Their answers are biochemical adaptations so specific that they cannot survive at lesser depths.</p>
+      <p>The deepest point in the ocean — Challenger Deep, 10,935 meters — was first reached in 1960. Since then it has been visited more times by humans than the surface of the Moon. What lives there: amphipods that have accumulated more plastic pollutants in their bodies than surface creatures, because they eat whatever sinks. The deepest places in the ocean are repositories for everything that falls.</p>
+    </div>
+
+    <div class="depth-entry reveal">
+      <span class="depth-tag">engineering</span>
+      <h3>crush depth</h3>
+      <p>Every submarine has a crush depth: the depth at which the pressure differential between the outside water and the internal atmosphere exceeds the hull's structural tolerance. Above that depth, the hull holds. Below it, implosion is instantaneous — the collapse happens in milliseconds, faster than the crew can register it. The submarine doesn't sink; it ceases to exist as a volume and becomes debris at the speed of pressure equilibrating.</p>
+      <p>Military submarines operate at classified depths, but their crush depths are typically kept 20–30% deeper than their service depths — a margin against accidents and miscalculation. The margin is also classified. The depth at which safety ends is information as sensitive as the depth at which operations occur. What the crush depth reveals is that every deep structure has a hidden number below which it cannot survive — a number that determines all its behavior without ever being spoken aloud.</p>
+    </div>
+
+    <div class="depth-entry reveal">
+      <span class="depth-tag">photography</span>
+      <h3>depth of field</h3>
+      <p>Depth of field is not a property of the scene. It is a property of the lens aperture, the focal length, and the distance from the subject — three variables whose combination determines how much of the visual field will resolve into sharpness and how much will dissolve into blur. At f/1.4, the zone of focus can be millimeters wide. At f/22, nearly everything is in focus simultaneously.</p>
+      <p>The choice of depth of field is a choice about what to exclude. A wide aperture produces shallow depth of field, which means only the selected point will be sharp and everything else will fall away into gradients of unresolvable softness. The photographer who chooses shallow depth of field is deciding, actively, to make the background irrelevant. This is not a technique. It is a claim about what matters, encoded in the ratio of the aperture to the focal length.</p>
+    </div>
+
+    <div class="depth-entry reveal">
+      <span class="depth-tag">psychology</span>
+      <h3>the layers below</h3>
+      <p>Carl Jung named his approach to the unconscious "depth psychology" — the idea that the contents of psychic life are not flat but stratified, that older, more archaic structures lie beneath the recently acquired conscious personality like geological layers beneath topsoil. What sits deepest is, in Jung's model, oldest: the archetypes, the shadow, the anima — structures so old they predate individual biography and may predate species biography, shared across cultures because they formed before cultures diverged.</p>
+      <p>Whether the deep is literally there or is a useful metaphor for something about the structure of psychic life is a question Jung sometimes answered one way and sometimes the other. What the spatial metaphor captures is the experience of excavation: that what presents at the surface is not the whole story, that the interesting material requires descent, that going deeper requires something like courage because what you find at depth is not what you put there — it arrived on its own and has been there since before you were paying attention.</p>
+    </div>
+
+    <div class="depth-entry reveal">
+      <span class="depth-tag">concept</span>
+      <h3>depth versus breadth</h3>
+      <p>There are two ways to know a subject: you can know many things about it, or you can know a few things about it very well. The choice between depth and breadth is a choice about what kind of knowing you want to do. The generalist sees connections across fields; the specialist sees structures within one. Both can miss what the other sees clearly.</p>
+      <p>What depth requires, in any domain, is time past the point of comfort. The first fifty hours in a subject feel like learning; the second fifty feel like discovering how much you don't know. True depth begins around the third hundred hours, when the surface has been exhausted and what remains is the non-obvious. This is where most people stop, because stopping there is also stopping somewhere recognizable. The non-obvious is harder to explain and produces fewer quick satisfactions. But it is where the interesting work is.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('depth-canvas');
+    var wrap   = canvas.parentElement;
+    var label  = document.getElementById('depth-label');
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+    var mouseY = -1;
+    var pulses = [];
+
+    var ZONES = [
+      { name: 'sunlight zone',     maxFrac: 0.22, r: 20,  g: 60,  b: 110 },
+      { name: 'twilight zone',     maxFrac: 0.42, r: 12,  g: 35,  b: 80  },
+      { name: 'midnight zone',     maxFrac: 0.65, r: 6,   g: 16,  b: 50  },
+      { name: 'abyssal zone',      maxFrac: 0.85, r: 3,   g: 8,   b: 28  },
+      { name: 'hadal zone',        maxFrac: 1.00, r: 1,   g: 3,   b: 14  }
+    ];
+
+    var particles = [];
+    function initParticles() {
+      particles = [];
+      for (var i = 0; i < 90; i++) {
+        var frac = Math.random();
+        particles.push({
+          x: Math.random() * W,
+          y: frac * H,
+          frac: frac,
+          r: 0.5 + (1 - frac) * 0.8 + Math.random() * 0.5,
+          vy: 0.04 + frac * 0.06 + Math.random() * 0.04,
+          vx: (Math.random() - 0.5) * 0.06,
+          alpha: 0.05 + (1 - frac * frac) * 0.35
+        });
+      }
+    }
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.45);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      initParticles();
+    }
+
+    function depthColor(frac) {
+      var r = Math.round(2  + (1 - frac) * 22);
+      var g = Math.round(8  + (1 - frac) * 55);
+      var b = Math.round(20 + (1 - frac) * 100);
+      return [r, g, b];
+    }
+
+    function draw() {
+      // gradient background
+      var grd = ctx.createLinearGradient(0, 0, 0, H);
+      grd.addColorStop(0,    'rgb(20, 65, 115)');
+      grd.addColorStop(0.22, 'rgb(12, 38, 82)');
+      grd.addColorStop(0.42, 'rgb(7, 18, 52)');
+      grd.addColorStop(0.65, 'rgb(4, 10, 32)');
+      grd.addColorStop(1,    'rgb(1, 3, 14)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, W, H);
+
+      // zone boundary lines (faint)
+      ZONES.forEach(function (z, i) {
+        if (i === ZONES.length - 1) return;
+        var y = z.maxFrac * H;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(W, y);
+        ctx.strokeStyle = 'rgba(80,140,200,0.07)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+
+      // mouse depth line
+      if (mouseY >= 0) {
+        ctx.beginPath();
+        ctx.moveTo(0, mouseY);
+        ctx.lineTo(W, mouseY);
+        ctx.strokeStyle = 'rgba(120,200,255,0.15)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      // pulses
+      pulses = pulses.filter(function (p) { return p.r < W * 0.8 && p.alpha > 0.005; });
+      pulses.forEach(function (p) {
+        p.r  += 1.2 + p.r * 0.012;
+        p.alpha *= 0.975;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(' + p.col + ',' + p.alpha + ')';
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+      });
+
+      // particles
+      particles.forEach(function (p) {
+        p.y += p.vy;
+        p.x += p.vx + Math.sin(p.y * 0.04 + p.x * 0.02) * 0.04;
+        if (p.y > H + 2) {
+          p.y = -2;
+          p.x = Math.random() * W;
+          p.frac = 0;
+        }
+        p.frac = p.y / H;
+        var col = depthColor(p.frac);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + col[0] + ',' + (col[1] + 20) + ',' + (col[2] + 40) + ',' + p.alpha + ')';
+        ctx.fill();
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    function getZoneName(frac) {
+      for (var i = 0; i < ZONES.length; i++) {
+        if (frac <= ZONES[i].maxFrac) return ZONES[i].name;
+      }
+      return 'hadal zone';
+    }
+
+    wrap.addEventListener('mousemove', function (e) {
+      var r = wrap.getBoundingClientRect();
+      mouseY = e.clientY - r.top;
+      var frac = mouseY / H;
+      var meters = Math.round(frac * 11000);
+      label.textContent = getZoneName(frac) + ' · ' + meters.toLocaleString() + 'm';
+    });
+    wrap.addEventListener('mouseleave', function () {
+      mouseY = -1;
+      label.textContent = 'surface';
+    });
+    wrap.addEventListener('click', function (e) {
+      var r  = wrap.getBoundingClientRect();
+      var cy = e.clientY - r.top;
+      var frac = cy / H;
+      var col  = depthColor(frac);
+      var brightness = Math.round(80 + (1 - frac) * 160);
+      pulses.push({
+        x: W / 2, y: cy, r: 2, alpha: 0.5,
+        col: brightness + ',' + Math.round(brightness * 0.7 + 30) + ',255'
+      });
+    });
+    wrap.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var r  = wrap.getBoundingClientRect();
+      var cy = e.touches[0].clientY - r.top;
+      var frac = cy / H;
+      var brightness = Math.round(80 + (1 - frac) * 160);
+      pulses.push({ x: W / 2, y: cy, r: 2, alpha: 0.5,
+        col: brightness + ',' + Math.round(brightness * 0.7 + 30) + ',255' });
+    }, { passive: false });
+
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      setTimeout(function () {}, 50);
+    });
+
+    resize();
+    window.addEventListener('resize', function () { resize(); });
+    draw();
+  })();
+  </script>
+</body>
+</html>

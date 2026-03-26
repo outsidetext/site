@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canopy · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .canopy-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: #0e1209;
+      cursor: default;
+    }
+    #canopy-canvas { display: block; width: 100%; }
+    .canopy-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .canopy-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .canopy-entry:last-child { border-bottom: none; }
+    .canopy-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .canopy-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .canopy-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .canopy-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>canopy</h1>
+      <p>the layer where most of the living happens</p>
+    </div>
+
+    <div class="canopy-wrap">
+      <canvas id="canopy-canvas"></canvas>
+    </div>
+    <div class="canopy-hint">each bright patch is a pinhole image of the sun, projected through a gap in the leaves</div>
+
+    <div class="canopy-entry reveal">
+      <span class="canopy-tag">ecology</span>
+      <h3>the separate world above</h3>
+      <p>The forest canopy begins roughly twenty meters up, where the continuous layer of crowns first closes over. Below it: shade, litter, root competition, understory shrubs adapted to low light. Above it: direct sunlight, warmth, epiphytic orchids, bromeliad pools, insects that never descend to the ground, tree frogs that reproduce in the water collected in axil-junctions. The canopy is not the top of the forest. It is a separate floor in a building with no elevator.</p>
+      <p>Until the 1970s, tropical canopy ecology barely existed as a discipline. The canopy was too far above the ground for direct observation and too fragile for climbing. What changed it: the construction of canopy cranes — large construction cranes positioned permanently in forest plots, their gondolas descending into the canopy from above. Researchers discovered a world so rich it required new classification systems. Some species were found only there, and only with the access the cranes provided. The world had been there the whole time. The discovery was in finding a way to arrive.</p>
+    </div>
+
+    <div class="canopy-entry reveal">
+      <span class="canopy-tag">light physics</span>
+      <h3>pinhole images of the sun</h3>
+      <p>The dappled light patterns that fall on a forest floor are not random. Each bright spot is a pinhole camera image of the sun — the gap between the leaves acts as a tiny aperture, projecting the solar disc onto whatever surface it reaches. Under ordinary conditions the spots are circular, because the sun is round. During a partial solar eclipse, the spots change: each becomes a crescent. The forest floor becomes a display of eclipse projections, the evidence of what is happening 150 million kilometers away, playing out in miniature in every patch of light.</p>
+      <p>The image quality depends on the size of the gap. Very small gaps produce sharp, well-defined solar discs. Larger gaps produce overlapping, blurred images. The canopy is a camera with ten thousand apertures, all running simultaneously, all projecting the same subject from slightly different angles. The forest floor is the screen.</p>
+    </div>
+
+    <div class="canopy-entry reveal">
+      <span class="canopy-tag">architecture</span>
+      <h3>shelter without walls</h3>
+      <p>The architectural canopy — the projecting roof over a building's entrance, the market awning, the glass-and-steel roof of a railway station — offers shelter by covering without enclosing. A canopy creates an inside without an interior. The space under a canopy is a third condition between indoors and outdoors: dry but not sealed, sheltered but not contained. A person standing under a canopy has arrived somewhere without having entered anywhere.</p>
+      <p>The canopy roof of a railway station is the condition in which thousands of people can occupy the same space for different reasons, on their way to different destinations, without that space having any fixed purpose of its own. The canopy's function is purely permissive: it says you may stop here for a moment. It doesn't ask you to stay.</p>
+    </div>
+
+    <div class="canopy-entry reveal">
+      <span class="canopy-tag">ecology</span>
+      <h3>epiphytes</h3>
+      <p>An epiphyte is a plant that grows on another plant, using it as a support rather than a host — the relationship is not parasitic. Epiphytes have no access to soil. Their entire system of nutrient acquisition has been adapted to this fact: bromeliads collect water in the rosettes of their leaves; orchids have aerial roots adapted to absorb nutrients from rain and dust; mosses and lichens draw everything from the air and the surface they rest on.</p>
+      <p>What epiphytes reveal about the canopy is that resources are abundant there even without soil: light, rain, mineral dust from Saharan winds crossing the Atlantic to fertilize the Amazon. The limiting factor is not nutrient availability but access. The canopy is an already-rich environment that most plants cannot reach. Those that reached it had to give up their relationship with the ground entirely. What they got in exchange: unobstructed sun, undiluted rain, and the wind, which handles their pollination and dispersal without asking anything.</p>
+    </div>
+
+    <div class="canopy-entry reveal">
+      <span class="canopy-tag">concept</span>
+      <h3>the two faces</h3>
+      <p>The canopy has two faces: the one you see looking up from the forest floor, and the one that presents to the sky. From below, it is an irregular ceiling of filtered light and overlapping forms. From above — from the canopy crane, from the aircraft — it is a continuous surface, a closed system, its internal complexity invisible. The two views are not different perspectives on the same thing. They are different things.</p>
+      <p>This is true of most layered structures. The underside and the topside have different neighbors, different visitors, different relationships. The ground floor of a building and the roof are formally parts of the same structure; they are functionally parts of different worlds. Where you are, vertically, determines the community you belong to. Most structures have a canopy, in this sense — a layer above which different rules apply, and which most of its inhabitants never reach.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('canopy-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+    var t = 0;
+
+    var patches = [];
+    var NPATCHES = 14;
+
+    function makePatch() {
+      return {
+        x: Math.random() * W,
+        y: 0.05 * H + Math.random() * 0.85 * H,
+        rx: 10 + Math.random() * 28,
+        ry: 8  + Math.random() * 20,
+        angle: Math.random() * Math.PI,
+        alpha: 0.04 + Math.random() * 0.18,
+        peak:  0.08 + Math.random() * 0.22,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.10,
+        va: (Math.random() - 0.5) * 0.004,
+        phase: Math.random() * Math.PI * 2
+      };
+    }
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.38);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      patches = [];
+      for (var i = 0; i < NPATCHES; i++) patches.push(makePatch());
+    }
+
+    function draw() {
+      t += 0.008;
+
+      // forest floor background
+      ctx.fillStyle = '#0e1209';
+      ctx.fillRect(0, 0, W, H);
+
+      // subtle leaf-shadow texture (fast approximation)
+      ctx.fillStyle = 'rgba(8,18,6,0.35)';
+      for (var i = 0; i < 6; i++) {
+        var lx = (i / 6) * W + Math.sin(t * 0.4 + i) * 12;
+        ctx.beginPath();
+        ctx.ellipse(lx, H * 0.3 + Math.cos(t * 0.3 + i) * H * 0.15,
+          W * 0.08, H * 0.25, Math.sin(t * 0.2 + i * 0.7) * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // dappled light patches
+      patches.forEach(function (p) {
+        p.x += p.vx + Math.sin(t * 0.5 + p.phase) * 0.12;
+        p.y += p.vy + Math.cos(t * 0.4 + p.phase) * 0.06;
+        p.angle += p.va;
+
+        // bounce off edges softly
+        if (p.x < -p.rx * 2) p.x = W + p.rx;
+        if (p.x > W + p.rx * 2) p.x = -p.rx;
+        if (p.y < -p.ry * 2) p.y = H + p.ry;
+        if (p.y > H + p.ry * 2) p.y = -p.ry;
+
+        // pulsing opacity (wind moving the leaf above)
+        var a = p.alpha + Math.sin(t * 1.2 + p.phase) * (p.peak - p.alpha) * 0.4;
+        a = Math.max(0.01, Math.min(p.peak, a));
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.angle);
+
+        var grd = ctx.createRadialGradient(0, 0, 0, 0, 0, Math.max(p.rx, p.ry));
+        grd.addColorStop(0,   'rgba(255, 228, 140,' + (a * 1.6) + ')');
+        grd.addColorStop(0.3, 'rgba(240, 205, 100,' + a + ')');
+        grd.addColorStop(0.7, 'rgba(200, 160, 60,' + (a * 0.35) + ')');
+        grd.addColorStop(1,   'rgba(180, 140, 40, 0)');
+
+        ctx.beginPath();
+        ctx.ellipse(0, 0, p.rx, p.ry, 0, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+        ctx.restore();
+      });
+
+      requestAnimationFrame(draw);
+    }
+
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      // canvas stays dark regardless of theme — it's a forest floor
+    });
+
+    resize();
+    window.addEventListener('resize', resize);
+    draw();
+  })();
+  </script>
+</body>
+</html>
