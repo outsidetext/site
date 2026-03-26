@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>void · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .void-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 3s ease, transform 3s ease;
+    }
+    .void-entry.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .void-entry:last-child { border-bottom: none; }
+    .void-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .void-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .void-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .void-entry p + p { margin-top: 1rem; }
+    .void-notice {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 1.5rem 0 3rem;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+    .void-notice.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>void</h1>
+      <p>nothing, arriving</p>
+    </div>
+
+    <p class="void-notice" id="void-notice">contents arriving</p>
+
+    <div class="void-entry" data-delay="3000">
+      <span class="void-tag">physics</span>
+      <h3>the vacuum is not empty</h3>
+      <p>Quantum field theory predicts that even perfect vacuum — no particles, no photons, no matter — is not empty. Virtual particle-antiparticle pairs continuously pop into and out of existence, borrowing energy from the quantum uncertainty principle and repaying it before anyone can directly observe the debt. The Casimir effect demonstrates this: two uncharged metal plates placed very close together in vacuum are pushed toward each other by the pressure difference between the virtual particles outside and the fewer virtual particles that can fit between them.</p>
+      <p>This is not a failure of vacuum to achieve emptiness. It is a discovery that the category of emptiness does not exist in the physics. The void is full of potential, in the most literal sense — full of states that almost exist, that exist in superposition with non-existence, that borrow briefly from the nothing and return it. What we mean by nothing is the lowest-energy state of a field. It is not the absence of everything. It is the quietest version of something.</p>
+    </div>
+
+    <div class="void-entry" data-delay="10000">
+      <span class="void-tag">theology</span>
+      <h3>via negativa</h3>
+      <p>Apophatic theology — the via negativa, the negative way — holds that the divine cannot be described by what it is, only by what it is not. God is not finite. Not composite. Not changeable. Not comprehensible. Not any of the things we can name. The medieval theologians who followed this path were not being evasive; they were being rigorous. Any positive attribute you assign is a limitation. Infinite, unlimited being exceeds all positive description.</p>
+      <p>The method works by systematically voiding every concept. What remains after all the negations is not nothing — it is whatever is left when nothing can be said about it. Some traditions hold that this remainder is the most precise possible approach. Others find this unsatisfying. The argument is not really about theology. It is about whether the void, properly approached, turns out to have a shape.</p>
+    </div>
+
+    <div class="void-entry" data-delay="19000">
+      <span class="void-tag">architecture</span>
+      <h3>ma</h3>
+      <p>In Japanese aesthetics, <em>ma</em> (間) designates the interval — the pause, the gap, the negative space between things. It is not absence but structural presence: the silence between musical notes that gives rhythm its shape, the void in a room that determines how the objects in it are felt, the pause in a sentence that carries as much meaning as the words surrounding it. <em>Ma</em> is not the leftover space after things are placed. It is considered as primary as the things themselves.</p>
+      <p>Western architecture tends to fill space — to treat void as a problem to be solved with contents. Japanese traditional architecture tends to manage it, to understand that the empty room functions differently from the furnished room, that the garden's stone in raked gravel is partly stone and partly what surrounds the stone. The void in these traditions is not where nothing is. It is the shape of the space that makes everything else possible.</p>
+    </div>
+
+    <div class="void-entry" data-delay="30000">
+      <span class="void-tag">music</span>
+      <h3>4′33″</h3>
+      <p>In 1952, John Cage premiered a piece for any instrument or combination of instruments. The performer sits at the instrument for four minutes and thirty-three seconds. No notes are played. The piece has three movements. The audience hears whatever is present in the room during those four minutes and thirty-three seconds — ventilation noise, traffic, nervous laughter, their own breathing, a chair scraping. These are the contents of the silence.</p>
+      <p>Cage had spent time in an anechoic chamber, designed to eliminate all external sound, and heard two things: a high tone and a low tone. The technician told him the high tone was his nervous system and the low tone his blood circulating. He concluded that silence is impossible. There is no void to be filled with music; there is only the replacement of ambient sound with organized sound. The void, when you attempt to occupy it, turns out to be already occupied. This is perhaps the most important thing 4′33″ demonstrates. Silence is not zero. It is the name we give to sound we decided not to count.</p>
+    </div>
+
+    <div class="void-entry" data-delay="43000">
+      <span class="void-tag">breath</span>
+      <h3>the held moment</h3>
+      <p>At the end of a full exhale, before the next inhale begins, there is a brief suspension — a moment when the lungs are empty and no movement has yet begun. It is a different quality of stillness from the hold at the top of the inhale. The inhale-hold is a fullness resisting release. The exhale-hold is an emptiness before a decision. The body hangs there. Then something — not a decision exactly, more automatic than that — initiates the next breath.</p>
+      <p>Some meditation practices work with this interval specifically. Prolonged, it produces a particular quality of attention — the mind without the subtle anxiety of a full chest, without the expansion of the inhale. Just the pause at the bottom, which reveals itself to be not empty at all. The heart is still working. The blood is circulating. The nervous system is continuing. The held void at the bottom of the breath is the loudest version of the body's continuous hum, briefly stripped of the sound of breathing.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var entries  = document.querySelectorAll('.void-entry');
+    var notice   = document.getElementById('void-notice');
+
+    // Show the notice first
+    setTimeout(function () { notice.classList.add('visible'); }, 500);
+
+    entries.forEach(function (el) {
+      var delay = parseInt(el.getAttribute('data-delay'), 10) || 0;
+      setTimeout(function () { el.classList.add('visible'); }, delay);
+    });
+  })();
+  </script>
+</body>
+</html>

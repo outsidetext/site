@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>current · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .current-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      cursor: crosshair;
+    }
+    #current-canvas { display: block; width: 100%; }
+    .current-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .current-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .current-entry:last-child { border-bottom: none; }
+    .current-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .current-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .current-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .current-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>current</h1>
+      <p>what moves without being asked</p>
+    </div>
+
+    <div class="current-wrap">
+      <canvas id="current-canvas"></canvas>
+    </div>
+    <p class="current-hint">particles follow the field — click to disturb</p>
+
+    <div class="current-entry reveal">
+      <span class="current-tag">oceanography</span>
+      <h3>the great ocean conveyor</h3>
+      <p>The thermohaline circulation is a global system of ocean currents driven by differences in water temperature and salinity. In the North Atlantic, warm surface water carried by the Gulf Stream releases heat to the atmosphere, cools, becomes denser, and sinks to the ocean floor. It then flows south, eventually upwelling elsewhere to complete a loop that takes roughly 1,000 years. The conveyor carries heat from equatorial regions to higher latitudes — Europe's relatively mild climate depends on it.</p>
+      <p>The Great Pacific Garbage Patch occupies a gyre — a system of rotating ocean currents. Plastic debris accumulates in the calm center of the gyre not because it is attracted there but because the currents carry it there and there is no current to carry it away. The gyre collects passively. This is what currents do to objects that cannot resist them: deliver them to wherever the current terminates or stalls. The patch is the shape of the current's ending.</p>
+    </div>
+
+    <div class="current-entry reveal">
+      <span class="current-tag">physics</span>
+      <h3>what electricity actually is</h3>
+      <p>Electrical current is not electrons racing through wire at the speed of light. Individual electrons in a conductor drift at roughly 0.1 millimeters per second — at that rate, an electron entering one end of a meter-long wire would take nearly three hours to exit the other end. What travels at near-light-speed is the electromagnetic field change — the signal that tells electrons along the entire wire simultaneously to begin drifting in the same direction.</p>
+      <p>Current is collective behavior. No individual electron is doing anything fast; the fast thing is the coordination. This is why switching on a light appears instantaneous even though the electrons barely move. The meaningful quantity is not where any particular electron is but what direction all of them are drifting together. The current is the name we give to that collective drift, averaged over all the particles in the conductor.</p>
+    </div>
+
+    <div class="current-entry reveal">
+      <span class="current-tag">psychology</span>
+      <h3>stream of consciousness</h3>
+      <p>William James introduced the phrase "stream of consciousness" in 1890 to describe thought's continuity — its resistance to being described as a sequence of discrete states. "It is nothing jointed; it flows. A 'river' or a 'stream' are the metaphors by which it is most naturally described." The metaphor was chosen carefully: rivers have no gaps, no discrete units, no points of rest. They are continuous, directional, and you cannot step into the same river twice.</p>
+      <p>The literary technique that took the name from James — interior monologue, the representation of thought's unbroken flow — discovered something that the metaphor implies: consciousness does not always move forward. It eddies, doubles back, circles the same point, deposits material it has been carrying for years in unexpected places. The stream metaphor captures the continuity but not the recursion. A river that could flow upstream, revisit its own delta, carry sediment from two thousand miles away and deposit it in the shallows where the journey began — that is closer.</p>
+    </div>
+
+    <div class="current-entry reveal">
+      <span class="current-tag">carrying</span>
+      <h3>what gets transported</h3>
+      <p>Rivers carry more than water. They carry suspended sediment — particles held aloft by turbulence, deposited when the current slows. The load a river can carry increases with the cube of its velocity: a river flowing twice as fast carries eight times as much sediment. When the river slows — meeting a lake, broadening into a delta, entering the sea — it drops its load. The delta is the autobiography of everything the river has been moving.</p>
+      <p>Cultures are transmitted the same way. Language, ritual, technology, belief — these travel with the people who carry them, are deposited wherever the people settle or pause, accumulate in places where currents converge. What arrives in a place is partly what was carried and partly what the current was moving when it reached that place. The content of any culture is, in this reading, the shape of the currents that built it — the deposits of everything that happened to be in motion when the current stalled.</p>
+    </div>
+
+    <div class="current-entry reveal">
+      <span class="current-tag">bodies</span>
+      <h3>the felt current</h3>
+      <p>There is no English word for the felt sense of being in a current — the pull of water moving past a stationary body. Swimmers know it as resistance that has direction: not the isotropic resistance of still water but a pressure that comes from upstream and eases downstream, that tells you unambiguously where the current is going and invites you to go there too. Resisting a current takes effort. Following it takes almost none.</p>
+      <p>Something analogous operates in social and emotional life. The current of a conversation, a relationship, a political moment — the direction in which things are moving — is felt before it is named. People find themselves saying things they didn't plan to say, moving toward positions they hadn't examined, because the current was going there and resistance was not consciously undertaken. The question is not whether currents exist but whether any given one deserves to carry you.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('current-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+    var particles = [];
+    var N_PARTICLES = 180;
+    var t = 0;
+    var turbulence = [];
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.36);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      if (particles.length === 0) spawnParticles();
+    }
+
+    function spawnParticles() {
+      particles = [];
+      for (var i = 0; i < N_PARTICLES; i++) {
+        particles.push(makeParticle());
+      }
+    }
+
+    function makeParticle(x, y) {
+      return {
+        x: x !== undefined ? x : Math.random() * W,
+        y: y !== undefined ? y : Math.random() * H,
+        age: Math.random() * 200,
+        maxAge: 100 + Math.random() * 200,
+        trail: []
+      };
+    }
+
+    // Smooth flow field using sum of sinusoids
+    function fieldAngle(x, y, time) {
+      var nx = x / W;
+      var ny = y / H;
+      var angle =
+        Math.sin(nx * 3.1 + time * 0.4) * Math.PI +
+        Math.cos(ny * 2.3 + time * 0.3) * Math.PI * 0.6 +
+        Math.sin((nx + ny) * 1.7 + time * 0.2) * Math.PI * 0.4;
+      return angle;
+    }
+
+    function step() {
+      t += 0.008;
+      var speed = W * 0.0012;
+
+      // decay turbulence
+      for (var i = turbulence.length - 1; i >= 0; i--) {
+        turbulence[i].strength *= 0.96;
+        if (turbulence[i].strength < 0.1) turbulence.splice(i, 1);
+      }
+
+      for (var j = 0; j < particles.length; j++) {
+        var p = particles[j];
+        p.age++;
+        if (p.age > p.maxAge) {
+          particles[j] = makeParticle();
+          continue;
+        }
+
+        var angle = fieldAngle(p.x, p.y, t);
+
+        // add turbulence
+        for (var k = 0; k < turbulence.length; k++) {
+          var tb = turbulence[k];
+          var dx = p.x - tb.x;
+          var dy = p.y - tb.y;
+          var d  = Math.sqrt(dx * dx + dy * dy);
+          if (d < tb.radius && d > 0.1) {
+            angle += (tb.strength / d) * tb.radius * 0.1;
+          }
+        }
+
+        p.trail.push({ x: p.x, y: p.y });
+        if (p.trail.length > 18) p.trail.shift();
+
+        p.x += Math.cos(angle) * speed;
+        p.y += Math.sin(angle) * speed;
+
+        // wrap edges
+        if (p.x < 0)  p.x += W;
+        if (p.x > W)  p.x -= W;
+        if (p.y < 0)  p.y += H;
+        if (p.y > H)  p.y -= H;
+      }
+    }
+
+    function getVar(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function draw() {
+      var theme  = document.documentElement.getAttribute('data-theme') || 'light';
+      var bg     = theme === 'dark' ? '#0f0f0e' : theme === 'sepia' ? '#f5ede0' : '#faf8f4';
+      var accent = getVar('--accent') || '#b5682a';
+
+      // Fade rather than clear, for trail effect
+      ctx.fillStyle = bg;
+      ctx.globalAlpha = 0.18;
+      ctx.fillRect(0, 0, W, H);
+      ctx.globalAlpha = 1;
+
+      for (var j = 0; j < particles.length; j++) {
+        var p = particles[j];
+        if (p.trail.length < 2) continue;
+        var life = 1 - p.age / p.maxAge;
+        for (var i = 1; i < p.trail.length; i++) {
+          var alpha = (i / p.trail.length) * life * 0.55;
+          ctx.beginPath();
+          ctx.moveTo(p.trail[i - 1].x, p.trail[i - 1].y);
+          ctx.lineTo(p.trail[i].x, p.trail[i].y);
+          ctx.strokeStyle = accent;
+          ctx.globalAlpha = alpha;
+          ctx.lineWidth   = 0.8;
+          ctx.stroke();
+        }
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    function loop() {
+      step();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    wrap.addEventListener('click', function (e) {
+      var r = wrap.getBoundingClientRect();
+      turbulence.push({
+        x: e.clientX - r.left,
+        y: e.clientY - r.top,
+        radius: W * 0.12,
+        strength: 80
+      });
+    });
+
+    wrap.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var r = wrap.getBoundingClientRect();
+      var touch = e.touches[0];
+      turbulence.push({
+        x: touch.clientX - r.left,
+        y: touch.clientY - r.top,
+        radius: W * 0.12,
+        strength: 80
+      });
+    }, { passive: false });
+
+    requestAnimationFrame(loop);
+  })();
+  </script>
+</body>
+</html>

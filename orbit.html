@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>orbit · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .orbit-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      cursor: crosshair;
+    }
+    #orbit-canvas { display: block; width: 100%; }
+    .orbit-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .orbit-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .orbit-entry:last-child { border-bottom: none; }
+    .orbit-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .orbit-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .orbit-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .orbit-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>orbit</h1>
+      <p>the path that keeps returning</p>
+    </div>
+
+    <div class="orbit-wrap">
+      <canvas id="orbit-canvas"></canvas>
+    </div>
+    <p class="orbit-hint">click to perturb the path — Kepler's second law holds throughout</p>
+
+    <div class="orbit-entry reveal">
+      <span class="orbit-tag">mechanics</span>
+      <h3>equal areas in equal times</h3>
+      <p>Kepler's second law: a line connecting a planet to its star sweeps equal areas in equal intervals of time. The planet moves faster when close to the star and slower when far. The orbit is not a constant-speed loop — it is a continuously varying negotiation between momentum and gravity, with the star at one focus of the ellipse, not its center.</p>
+      <p>The law follows from conservation of angular momentum, which is preserved because gravity acts along the line between the two bodies and exerts no torque about the star. An orbiting body, left alone, returns to the same position with the same speed it had before. The variation in speed is the same thing, described differently, as the constancy of the swept area. Physics has many ways of saying the same true thing.</p>
+    </div>
+
+    <div class="orbit-entry reveal">
+      <span class="orbit-tag">engineering</span>
+      <h3>the geostationary belt</h3>
+      <p>At exactly 35,786 kilometers above the equator, a satellite completes one orbit in 24 hours. From the ground, it appears motionless — fixed at a single point in the sky. This is not stillness but synchronization: the satellite is moving at 3.07 kilometers per second, exactly matching the rotation of Earth beneath it.</p>
+      <p>The geostationary belt is finite. There is only one such orbit, and it can hold only a limited number of satellites before signals interfere. Nations without space programs have claimed slots in the arc above their territory. The ITU allocates positions. Countries dispute them. The most contested real estate increasingly exists above the equator at a specific altitude — owned by no one, claimed by everyone, irreplaceable in a way that ground beneath cities is not.</p>
+    </div>
+
+    <div class="orbit-entry reveal">
+      <span class="orbit-tag">silence</span>
+      <h3>thirteen minutes</h3>
+      <p>On July 20, 1969, while Armstrong and Aldrin landed on the Moon, Michael Collins continued orbiting in the Command Module. For approximately 13 minutes of every 2-hour orbit, the module passed behind the Moon and was cut off from all radio contact with Earth. Collins was more isolated from humanity than any person had ever been — not merely distant but shielded, with a world between himself and everyone else.</p>
+      <p>He described it not as lonely but as peaceful. The orbit continued regardless. In each revolution, the Earth appeared on the horizon and then was hidden again, and the silence was not absence but a different quality of presence. Some orbits include a period of occultation. The path completes without acknowledgment from the other side.</p>
+    </div>
+
+    <div class="orbit-entry reveal">
+      <span class="orbit-tag">resonance</span>
+      <h3>the locked moons</h3>
+      <p>Jupiter's three inner moons — Io, Europa, and Ganymede — orbit in a 1:2:4 resonance. For every orbit Ganymede completes, Europa completes two and Io four. This arrangement is self-stabilizing: small perturbations reinforce rather than disturb it. The three moons have maintained this ratio for billions of years without external intervention.</p>
+      <p>Resonances can also clear. The Kirkwood gaps in the asteroid belt are swept clean by resonances with Jupiter — objects that drifted into those orbital periods were gradually ejected into crossing paths. Resonance is how large gravitational relationships organize smaller motion across enormous distances and enormous time. A long conversation between bodies that cannot speak, conducted entirely in rhythm.</p>
+    </div>
+
+    <div class="orbit-entry reveal">
+      <span class="orbit-tag">return</span>
+      <h3>the same coordinates, not the same moment</h3>
+      <p>The orbit ensures return, not repetition. The planet comes back to the same position in its path, not the same moment in time. Everything else has continued. What is conserved is the geometry, not the contents.</p>
+      <p>Recurring thoughts work this way. The thought that returns is not the original thought cycling — it is a thought arriving at the same coordinates after traveling through everything in between. Each return accumulates context. The question is whether the orbit is stable: some decay inward, some escape, some simply continue, carrying the same unresolved tension around the same center at the same varying speed indefinitely. The orbit doesn't answer the question it circles. It describes it, in motion, for as long as the conditions hold.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('orbit-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0, CX, CY;
+    var GM;
+    var px, py, vx, vy;
+    var trail = [];
+    var TRAIL_MAX = 500;
+
+    function resize() {
+      W  = wrap.clientWidth;
+      H  = Math.round(W * 0.38);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      CX = W * 0.5;
+      CY = H * 0.5;
+      GM = W * W * 8;
+      reset();
+    }
+
+    function reset() {
+      trail = [];
+      var r0 = W * 0.26;
+      px = CX + r0;
+      py = CY;
+      var vc = Math.sqrt(GM / r0);
+      vx = 0;
+      vy = -vc * 0.87;
+    }
+
+    function step() {
+      var substeps = 4;
+      var dt = 1 / 60 / substeps;
+      for (var s = 0; s < substeps; s++) {
+        var dx = CX - px;
+        var dy = CY - py;
+        var r2 = dx * dx + dy * dy;
+        var r  = Math.sqrt(r2);
+        if (r < 5) { reset(); return; }
+        var a  = GM / r2;
+        var ax = a * dx / r;
+        var ay = a * dy / r;
+        vx += ax * dt;
+        vy += ay * dt;
+        px += vx * dt;
+        py += vy * dt;
+      }
+      trail.push({ x: px, y: py });
+      if (trail.length > TRAIL_MAX) trail.shift();
+    }
+
+    function getVar(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function draw() {
+      var theme  = document.documentElement.getAttribute('data-theme') || 'light';
+      var bg     = theme === 'dark' ? '#0f0f0e' : theme === 'sepia' ? '#f5ede0' : '#faf8f4';
+      var accent = getVar('--accent') || '#b5682a';
+      var muted  = getVar('--border') || '#e5e2db';
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      // trail
+      for (var i = 1; i < trail.length; i++) {
+        var alpha = (i / trail.length) * 0.45;
+        ctx.beginPath();
+        ctx.moveTo(trail[i - 1].x, trail[i - 1].y);
+        ctx.lineTo(trail[i].x, trail[i].y);
+        ctx.strokeStyle = accent;
+        ctx.globalAlpha = alpha;
+        ctx.lineWidth   = 0.7;
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+
+      // star glow
+      var grd = ctx.createRadialGradient(CX, CY, 2, CX, CY, 20);
+      grd.addColorStop(0, accent);
+      grd.addColorStop(0.3, accent);
+      grd.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.globalAlpha = 0.18;
+      ctx.beginPath();
+      ctx.arc(CX, CY, 20, 0, Math.PI * 2);
+      ctx.fillStyle = grd;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+
+      // star
+      ctx.beginPath();
+      ctx.arc(CX, CY, 4, 0, Math.PI * 2);
+      ctx.fillStyle = accent;
+      ctx.fill();
+
+      // planet
+      ctx.beginPath();
+      ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = theme === 'dark' ? 'rgba(232,229,223,0.6)' : 'rgba(26,26,26,0.5)';
+      ctx.fill();
+    }
+
+    function loop() {
+      step();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    resize();
+    window.addEventListener('resize', function () { resize(); });
+
+    wrap.addEventListener('click', function (e) {
+      var r  = wrap.getBoundingClientRect();
+      var mx = e.clientX - r.left;
+      var my = e.clientY - r.top;
+      var dx = mx - px;
+      var dy = my - py;
+      var d  = Math.sqrt(dx * dx + dy * dy);
+      if (d < 1) return;
+      var impulse = W * 0.06;
+      vx += (dx / d) * impulse;
+      vy += (dy / d) * impulse;
+    });
+
+    wrap.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var r  = wrap.getBoundingClientRect();
+      var t  = e.touches[0];
+      var mx = t.clientX - r.left;
+      var my = t.clientY - r.top;
+      var dx = mx - px;
+      var dy = my - py;
+      var d  = Math.sqrt(dx * dx + dy * dy);
+      if (d < 1) return;
+      var impulse = W * 0.06;
+      vx += (dx / d) * impulse;
+      vy += (dy / d) * impulse;
+    }, { passive: false });
+
+    requestAnimationFrame(loop);
+  })();
+  </script>
+</body>
+</html>

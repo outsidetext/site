@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wire · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .wire-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      cursor: crosshair;
+    }
+    #wire-canvas { display: block; width: 100%; }
+    .wire-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .wire-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .wire-entry:last-child { border-bottom: none; }
+    .wire-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .wire-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .wire-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .wire-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>wire</h1>
+      <p>taut between two fixed points</p>
+    </div>
+
+    <div class="wire-wrap">
+      <canvas id="wire-canvas"></canvas>
+    </div>
+    <p class="wire-hint">click to pluck — harmonics accumulate, damping slowly wins</p>
+
+    <div class="wire-entry reveal">
+      <span class="wire-tag">history</span>
+      <h3>simultaneous time</h3>
+      <p>Before the telegraph, time was local. Every town set its clocks by the sun directly overhead at noon, which meant that Boston time was slightly ahead of New York time, which was ahead of Philadelphia time. This was not a problem until trains needed to run on schedules that crossed time zones. The railroad timetable, in the 1840s, was the first institution to demand that distant places agree on what time it was.</p>
+      <p>The telegraph wire made agreement possible. A signal sent along the wire arrived effectively instantaneously — at a speed that no traveler could match, across distances no clock-carrier could traverse. The wire connected clocks. When the United States Naval Observatory began transmitting a daily time signal by telegraph in 1865, every station on the line could set its clocks to the same instant. The wire didn't just connect places. It synchronized them. Simultaneity — the sense that things can be happening "at the same time" in different locations — became a practical reality, then a social fact, then an assumption so deep it was forgotten as an assumption.</p>
+    </div>
+
+    <div class="wire-entry reveal">
+      <span class="wire-tag">enclosure</span>
+      <h3>barbed wire and the end of the open range</h3>
+      <p>Joseph Glidden patented barbed wire in 1874. Within a decade, it had enclosed the American West. The open range — the unfenced grassland across which cattle had been driven for centuries, where the concept of private land ownership was practically unenforceable — disappeared within a generation. A product that cost a few cents per pound redrew the geography and economics of a continent.</p>
+      <p>What barbed wire did that smooth wire could not was stay in place on the animal's skin long enough to teach avoidance. The barbs created a memory in the animal of the boundary. One encounter with the wire was enough to establish a territorial limit that required no ongoing enforcement. The fence worked by its one-time physical lesson. The property line existed as a learned behavior in the animal's nervous system, not just as a strand of metal in the grass. The wire was the boundary's announcement; the animal's learned response was the boundary itself.</p>
+    </div>
+
+    <div class="wire-entry reveal">
+      <span class="wire-tag">physics</span>
+      <h3>standing waves and the harmonic series</h3>
+      <p>A plucked wire does not vibrate at a single frequency. It vibrates simultaneously at its fundamental frequency — the lowest mode, with the wire bowing as a single arc — and at integer multiples of that frequency: the octave, the fifth, the fourth, and so on up the harmonic series. Each higher harmonic is a standing wave that fits an additional half-wavelength into the wire's length. The character of a plucked note — its timbre, what makes a guitar sound like a guitar rather than a piano — is determined by the relative strengths of these harmonics.</p>
+      <p>The wire holds multiple frequencies simultaneously without confusion. Each harmonic is a standing wave pattern that exactly satisfies the boundary conditions at both fixed ends. The harmonics coexist not because they are independent but because the wire is linear — superposition holds, meaning patterns do not disturb each other. The wire is a space in which multiple things can be simultaneously true without contradiction, provided they are structured correctly. Each harmonic needs to resolve to zero at both ends. The constraints are strict; the solutions are multiple.</p>
+    </div>
+
+    <div class="wire-entry reveal">
+      <span class="wire-tag">tension</span>
+      <h3>tensegrity</h3>
+      <p>In 1948, Kenneth Snelson and Buckminster Fuller developed tensegrity structures — forms in which rigid compression members (struts) float in a continuous network of tension members (wires). No strut touches another strut. The structure is held in shape entirely by the balance between compression in the struts and tension in the wires. Tensegrity structures are extraordinarily strong relative to their weight, and they fail gracefully — a local failure redistributes stress rather than propagating.</p>
+      <p>The human body is a tensegrity structure. Bones are the compression elements; tendons, ligaments, and fascia are the tension network. The bones do not stack on each other like blocks. They float in tension. This is why bodywork and posture have systemic effects: a change in tension anywhere in the network redistributes load throughout. The wire is not incidental to the structure. The wire is what makes the structure possible. Compression can support, but tension is what gives the structure its coherence — its ability to transmit force fluidly across distance without collapse.</p>
+    </div>
+
+    <div class="wire-entry reveal">
+      <span class="wire-tag">threshold</span>
+      <h3>the tripwire</h3>
+      <p>A tripwire does nothing when there is no one to trip it. It has no active state, no power source, no mechanism of detection. It is inert string stretched across a path at ankle height. Its function is entirely conditional: it acts only when something crosses it, and even then it does not act directly — it triggers a secondary mechanism. The wire is the threshold, not the response.</p>
+      <p>The tripwire is one of the simplest models of a conditional system: if something crosses here, then something else happens. The sophistication of the outcome is unrelated to the simplicity of the trigger. A wire across a path can set off an elaborate chain of consequences. The wire's role in that chain is minimal: to know only whether something passed, and to report that fact. The wire asks the only question it has: did you cross? Everything else is someone else's response to the answer.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('wire-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+    var N = 120;        // number of wire segments
+    var y  = [];        // current y positions
+    var vy = [];        // velocities
+    var TENSION  = 0.28;
+    var DAMPING  = 0.994;
+    var REST_Y;
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.28);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      REST_Y = H * 0.5;
+      if (y.length === 0) {
+        y  = new Array(N).fill(REST_Y);
+        vy = new Array(N).fill(0);
+      }
+    }
+
+    function pluck(cx) {
+      var segment = Math.round((cx / W) * (N - 1));
+      segment = Math.max(1, Math.min(N - 2, segment));
+      var amp = H * 0.22;
+      for (var i = 1; i < N - 1; i++) {
+        var dist = Math.abs(i - segment);
+        var envelope = Math.max(0, 1 - dist / (N * 0.18));
+        vy[i] -= amp * envelope * 0.35;
+      }
+    }
+
+    function step() {
+      // wave equation via finite differences
+      var newY = y.slice();
+      var c2   = TENSION;
+      for (var i = 1; i < N - 1; i++) {
+        var acc = c2 * (y[i - 1] + y[i + 1] - 2 * y[i]);
+        vy[i] = (vy[i] + acc) * DAMPING;
+        newY[i] = y[i] + vy[i];
+      }
+      // fixed endpoints
+      newY[0]     = REST_Y;
+      newY[N - 1] = REST_Y;
+      y = newY;
+    }
+
+    function getVar(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function draw() {
+      var theme  = document.documentElement.getAttribute('data-theme') || 'light';
+      var bg     = theme === 'dark' ? '#0f0f0e' : theme === 'sepia' ? '#f5ede0' : '#faf8f4';
+      var accent = getVar('--accent') || '#b5682a';
+      var muted  = theme === 'dark' ? 'rgba(232,229,223,0.25)' : theme === 'sepia' ? 'rgba(42,30,15,0.22)' : 'rgba(26,26,26,0.22)';
+      var anchorColor = theme === 'dark' ? 'rgba(232,229,223,0.5)' : theme === 'sepia' ? 'rgba(42,30,15,0.45)' : 'rgba(26,26,26,0.45)';
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      // measure maximum displacement to color the wire
+      var maxDisp = 0;
+      for (var i = 0; i < N; i++) {
+        var d = Math.abs(y[i] - REST_Y);
+        if (d > maxDisp) maxDisp = d;
+      }
+      var energy = Math.min(maxDisp / (H * 0.15), 1);
+
+      // draw wire
+      ctx.beginPath();
+      ctx.moveTo(0, y[0]);
+      for (var j = 1; j < N; j++) {
+        ctx.lineTo((j / (N - 1)) * W, y[j]);
+      }
+      // blend between muted (at rest) and accent (at tension)
+      if (energy > 0.05) {
+        ctx.strokeStyle = accent;
+        ctx.globalAlpha = 0.4 + energy * 0.5;
+      } else {
+        ctx.strokeStyle = muted;
+        ctx.globalAlpha = 1;
+      }
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // anchor points
+      ctx.beginPath();
+      ctx.arc(0, REST_Y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = anchorColor;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(W, REST_Y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = anchorColor;
+      ctx.fill();
+    }
+
+    function loop() {
+      step();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    wrap.addEventListener('click', function (e) {
+      var r = wrap.getBoundingClientRect();
+      pluck(e.clientX - r.left);
+    });
+
+    wrap.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var r = wrap.getBoundingClientRect();
+      pluck(e.touches[0].clientX - r.left);
+    }, { passive: false });
+
+    // Initial gentle pluck
+    setTimeout(function () { pluck(W * 0.38); }, 400);
+
+    requestAnimationFrame(loop);
+  })();
+  </script>
+</body>
+</html>

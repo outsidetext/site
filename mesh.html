@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mesh · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .mesh-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      background: var(--bg);
+      cursor: crosshair;
+      touch-action: none;
+    }
+    #mesh-canvas { display: block; width: 100%; }
+    .mesh-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      padding: 0.5rem 0 1.5rem;
+    }
+    .mesh-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .mesh-entry:last-child { border-bottom: none; }
+    .mesh-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .mesh-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .mesh-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .mesh-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>mesh</h1>
+      <p>a structure that holds by what it leaves open</p>
+    </div>
+
+    <div class="mesh-wrap">
+      <canvas id="mesh-canvas"></canvas>
+    </div>
+    <p class="mesh-hint">move cursor across the surface — the mesh remembers the disturbance</p>
+
+    <div class="mesh-entry reveal">
+      <span class="mesh-tag">engineering</span>
+      <h3>finite element analysis</h3>
+      <p>To model how a complex object deforms under stress — a wing under aerodynamic load, a bridge under traffic, a tooth under bite force — engineers divide it into thousands of small elements connected at nodes. The mesh approximates the continuous material with a discrete network. Each element follows simple physics; the complexity emerges from the interactions at the nodes.</p>
+      <p>The accuracy of the simulation depends on the density of the mesh. A coarse mesh runs faster and misses detail. A fine mesh captures local behavior at the cost of computation. Wherever high stress is expected — around holes, at corners, along joins — engineers refine the mesh locally. The mesh is itself a kind of hypothesis about where the interesting behavior will occur. You decide in advance where to look carefully and where to approximate.</p>
+    </div>
+
+    <div class="mesh-entry reveal">
+      <span class="mesh-tag">textile</span>
+      <h3>warp and weft</h3>
+      <p>Woven fabric is a mesh: vertical threads (the warp, held under tension on the loom) interlaced with horizontal threads (the weft, pushed through by the shuttle). No thread is continuous through the whole cloth. Every thread passes alternately over and under threads running perpendicular to it. The strength of the fabric comes entirely from friction at the crossings, not from any bond between individual threads. Pull one thread free and the fabric weakens but does not fail. The mesh distributes force across all the junctions simultaneously.</p>
+      <p>The earliest woven fabrics date to at least 7000 BCE. The structure of interlaced threads is so effective that it has not fundamentally changed. Digital jacquard looms weave from computer files now, but the warp still runs vertically, the weft still crosses it, and the strength still lives at the junctions. Some solutions are terminal: once found, they do not require improvement.</p>
+    </div>
+
+    <div class="mesh-entry reveal">
+      <span class="mesh-tag">fishing</span>
+      <h3>the net catches by its holes</h3>
+      <p>A fishing net is a mesh optimized for a specific fish. The mesh size — the diameter of each opening — determines which fish pass through and which are retained. Regulators set minimum mesh sizes to allow young fish to escape. The mesh does its work through its apertures, not its material. The net itself is present only as the frame around the holes.</p>
+      <p>This is the general principle of filters: what they keep is defined by what they let through, and the designer specifies the hole, not the thread. An air filter is defined by the largest particle it stops. A legal system is defined by what it allows to pass. The mesh is a way of saying: things of this size, yes; things of that size, no. The line between them is drawn entirely by the structure of the negative space.</p>
+    </div>
+
+    <div class="mesh-entry reveal">
+      <span class="mesh-tag">neuroscience</span>
+      <h3>the retinal mesh</h3>
+      <p>The retina is not a camera with a flat sensor. It is a layered mesh of specialized cells — photoreceptors, bipolar cells, ganglion cells, horizontal cells, amacrine cells — arranged in a network that performs substantial processing before the signal reaches the optic nerve. The retina detects edges, computes contrast ratios, adapts to local light levels, and suppresses redundant information before sending anything to the brain.</p>
+      <p>What travels through the optic nerve is not an image. It is a compressed, edge-enhanced, locally normalized representation of the scene — a description of differences, not raw values. The mesh doesn't transmit; it transforms. By the time visual information leaves the eye, it has already been interpreted through approximately six million cones and ninety million rods connected by a network whose topology encodes assumptions about what the visual world contains. Seeing begins in the mesh, before the brain.</p>
+    </div>
+
+    <div class="mesh-entry reveal">
+      <span class="mesh-tag">topology</span>
+      <h3>what survives deformation</h3>
+      <p>Topology studies properties that are preserved when a shape is continuously deformed — stretched, compressed, bent — without tearing or gluing. A coffee cup and a donut are topologically identical: both have one hole, and one can be deformed into the other without cutting. A sphere and a cube are equivalent. A mesh has topological properties that survive any smooth deformation: the number of holes in the mesh, the way the vertices connect, the Euler characteristic.</p>
+      <p>This matters for the mesh because it identifies what is structure and what is appearance. The triangulation of a surface can be refined indefinitely — more vertices, smaller triangles — but its topology remains constant. The deep character of the mesh is in the connectivity, not the coordinates. What a thing fundamentally is can be read in how its parts connect, not in where they happen to sit. The mesh, deformed, is still the same mesh. Identity lives in the pattern of junctions, not the positions they hold.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('mesh-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+    var COLS, ROWS;
+    var points = [];
+    var mouseX = -1000, mouseY = -1000;
+    var INFLUENCE = 0;
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.36);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      COLS = Math.floor(W / 30) + 1;
+      ROWS = Math.floor(H / 30) + 1;
+      INFLUENCE = W * 0.09;
+      buildMesh();
+    }
+
+    function buildMesh() {
+      points = [];
+      var spacingX = W / (COLS - 1);
+      var spacingY = H / (ROWS - 1);
+      for (var r = 0; r < ROWS; r++) {
+        for (var c = 0; c < COLS; c++) {
+          points.push({
+            ox: c * spacingX,
+            oy: r * spacingY,
+            x:  c * spacingX,
+            y:  r * spacingY,
+            vx: 0,
+            vy: 0,
+            row: r,
+            col: c
+          });
+        }
+      }
+    }
+
+    function idx(r, c) { return r * COLS + c; }
+
+    function getVar(name) {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function step() {
+      var stiffness = 0.08;
+      var damping   = 0.88;
+      var mouseForce = W * 0.00035;
+
+      for (var i = 0; i < points.length; i++) {
+        var p = points[i];
+
+        // spring toward rest position
+        var dx = p.ox - p.x;
+        var dy = p.oy - p.y;
+        p.vx += dx * stiffness;
+        p.vy += dy * stiffness;
+
+        // mouse repulsion
+        var mdx = p.x - mouseX;
+        var mdy = p.y - mouseY;
+        var md  = Math.sqrt(mdx * mdx + mdy * mdy);
+        if (md < INFLUENCE && md > 0.1) {
+          var force = (1 - md / INFLUENCE) * mouseForce;
+          p.vx += (mdx / md) * force;
+          p.vy += (mdy / md) * force;
+        }
+
+        p.vx *= damping;
+        p.vy *= damping;
+        p.x  += p.vx;
+        p.y  += p.vy;
+      }
+    }
+
+    function draw() {
+      var theme  = document.documentElement.getAttribute('data-theme') || 'light';
+      var bg     = theme === 'dark' ? '#0f0f0e' : theme === 'sepia' ? '#f5ede0' : '#faf8f4';
+      var lineColor = theme === 'dark' ? 'rgba(232,229,223,0.12)' : theme === 'sepia' ? 'rgba(42,30,15,0.12)' : 'rgba(26,26,26,0.12)';
+      var dotColor  = theme === 'dark' ? 'rgba(232,229,223,0.3)'  : theme === 'sepia' ? 'rgba(42,30,15,0.28)'  : 'rgba(26,26,26,0.28)';
+      var accent    = getVar('--accent') || '#b5682a';
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.lineWidth = 0.6;
+
+      // horizontal edges
+      for (var r = 0; r < ROWS; r++) {
+        for (var c = 0; c < COLS - 1; c++) {
+          var a = points[idx(r, c)];
+          var b = points[idx(r, c + 1)];
+          var strain = Math.sqrt(Math.pow(a.x - a.ox, 2) + Math.pow(a.y - a.oy, 2)) / INFLUENCE;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          if (strain > 0.05) {
+            ctx.strokeStyle = accent;
+            ctx.globalAlpha = Math.min(strain * 0.7, 0.4);
+          } else {
+            ctx.strokeStyle = lineColor;
+            ctx.globalAlpha = 1;
+          }
+          ctx.stroke();
+        }
+      }
+      ctx.globalAlpha = 1;
+
+      // vertical edges
+      for (var r2 = 0; r2 < ROWS - 1; r2++) {
+        for (var c2 = 0; c2 < COLS; c2++) {
+          var a2 = points[idx(r2, c2)];
+          var b2 = points[idx(r2 + 1, c2)];
+          var strain2 = Math.sqrt(Math.pow(a2.x - a2.ox, 2) + Math.pow(a2.y - a2.oy, 2)) / INFLUENCE;
+          ctx.beginPath();
+          ctx.moveTo(a2.x, a2.y);
+          ctx.lineTo(b2.x, b2.y);
+          if (strain2 > 0.05) {
+            ctx.strokeStyle = accent;
+            ctx.globalAlpha = Math.min(strain2 * 0.7, 0.4);
+          } else {
+            ctx.strokeStyle = lineColor;
+            ctx.globalAlpha = 1;
+          }
+          ctx.stroke();
+        }
+      }
+      ctx.globalAlpha = 1;
+
+      // nodes
+      for (var j = 0; j < points.length; j++) {
+        var pt = points[j];
+        var disp = Math.sqrt(Math.pow(pt.x - pt.ox, 2) + Math.pow(pt.y - pt.oy, 2));
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, disp > 1 ? 1.5 : 1, 0, Math.PI * 2);
+        ctx.fillStyle = disp > 1 ? accent : dotColor;
+        ctx.globalAlpha = disp > 1 ? Math.min(disp / INFLUENCE * 3, 0.9) : 0.5;
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    function loop() {
+      step();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    function updateMouse(ex, ey) {
+      var r = wrap.getBoundingClientRect();
+      mouseX = ex - r.left;
+      mouseY = ey - r.top;
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    wrap.addEventListener('mousemove', function (e) { updateMouse(e.clientX, e.clientY); });
+    wrap.addEventListener('mouseleave', function ()  { mouseX = -1000; mouseY = -1000; });
+    wrap.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      updateMouse(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: false });
+    wrap.addEventListener('touchend', function () { mouseX = -1000; mouseY = -1000; });
+
+    requestAnimationFrame(loop);
+  })();
+  </script>
+</body>
+</html>

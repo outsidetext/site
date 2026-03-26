@@ -352,6 +352,11 @@
       { id: 'scaffold',    href: 'scaffold.html',    label: 'scaffold',    desc: 'no canvas, deliberately structural — five entries on Vygotsky\'s zone of proximal development, bamboo scaffolding in Hong Kong, Utzon resigning from the Sydney Opera House and never returning, the false front that became the building it was waiting for, and what the scaffold takes with it when it comes down', x: 0.02, y: 0.44 },
       { id: 'char',        href: 'char.html',        label: 'char',        desc: 'move cursor to char the surface — five entries on charcoal as the oldest drawing medium (35,000 years), pyrolysis as the production of form without content, the Herculaneum scrolls being read by X-ray after 1,944 years of carbonization, the conditional mark and the moment of fixation, and prescribed burns as char management', x: 0.37, y: 0.80 },
       { id: 'rust',        href: 'rust.html',        label: 'rust',        desc: 'the canvas oxidizes with each visit — five entries on iron returning to the state it thermodynamically prefers, the rust belt as a geographic archive of industrial aspiration, patina as the completed oxidation that seals and protects, Cor-Ten weathering steel designed to rust as protection, and the invisible rust that causes structural failure', x: 0.63, y: 0.78 },
+      { id: 'orbit',   href: 'orbit.html',   label: 'orbit',   desc: 'a planet traces an ellipse — click to perturb; five entries on Kepler\'s second law and equal areas, the geostationary belt as synchronized stillness, Michael Collins\'s thirteen minutes of radio silence behind the Moon, orbital resonance among Jupiter\'s moons, and the orbit as the structure that ensures return without repetition', x: 0.73, y: 0.55 },
+      { id: 'void',    href: 'void.html',    label: 'void',    desc: 'nothing, arriving slowly — text appears with long delays; five entries on quantum vacuum fluctuations and the Casimir effect, apophatic theology and the via negativa, the Japanese concept of ma as structural emptiness, John Cage\'s 4\'33\" and the impossibility of silence, and the held moment at the bottom of the exhale', x: 0.19, y: 0.92 },
+      { id: 'mesh',    href: 'mesh.html',    label: 'mesh',    desc: 'a spring grid that deforms around the cursor — five entries on finite element analysis and the mesh as hypothesis, the warp and weft of woven cloth, the fishing net that catches by its holes, the retinal mesh that processes before transmitting, and topology as the study of what survives deformation', x: 0.46, y: 0.05 },
+      { id: 'current', href: 'current.html', label: 'current', desc: 'particles follow a shifting flow field — click to disturb; five entries on the thermohaline circulation and the Great Pacific gyre, electrical current as collective electron drift, William James\'s stream of consciousness, the river\'s sediment load and what the delta records, and the felt sense of being in a current', x: 0.64, y: 0.89 },
+      { id: 'wire',    href: 'wire.html',    label: 'wire',    desc: 'a taut wire between two anchors — click to pluck; five entries on the telegraph wire synchronizing clocks across a continent, barbed wire and the enclosure of the American West, standing waves and the harmonic series, tensegrity structures and the body\'s tension network, and the tripwire as the threshold that acts only when crossed', x: 0.05, y: 0.73 },
     ];
 
     var edges = [
@@ -605,12 +610,18 @@
       ['scaffold','ground'], ['scaffold','repair'], ['scaffold','thresholds'], ['scaffold','inheritance'], ['scaffold','things'],
       ['char','ember'], ['char','fossil'], ['char','sediment'], ['char','trace'], ['char','strata'],
       ['rust','sediment'], ['rust','erosion'], ['rust','strata'], ['rust','half-life'], ['rust','accumulate'],
+      ['orbit','gravity'], ['orbit','solstice'], ['orbit','eclipse'], ['orbit','distances'], ['orbit','return'],
+      ['void','silence'], ['void','quiet'], ['void','negative'], ['void','hollow'], ['void','lacuna'],
+      ['mesh','lattice'], ['mesh','surface'], ['mesh','knot'], ['mesh','interference'], ['mesh','strata'],
+      ['current','undertow'], ['current','tide'], ['current','drift'], ['current','sediment'], ['current','estuary'],
+      ['wire','tether'], ['wire','strand'], ['wire','signal'], ['wire','frequencies'], ['wire','anchor'],
     ];
 
     var canvas  = document.getElementById('map-canvas');
     var ctx     = canvas.getContext('2d');
     var infoEl  = document.getElementById('map-info');
     var W = 0, H = 0;
+    var DPR     = window.devicePixelRatio || 1;
     var hovered = null;
     var resizeTimer;
 
@@ -741,8 +752,10 @@
       var wrap = canvas.parentElement;
       W = wrap.clientWidth;
       H = Math.round(W * 0.62);
-      canvas.width  = W;
-      canvas.height = H;
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
       draw();
     }
 
