@@ -227,7 +227,8 @@
     'kindling.html','parenthesis.html','vantage.html','lattice.html','solitude.html',
     'between.html','cursor.html','exhale.html','recall.html',
     'increment.html','root.html','glow.html','asking.html','blink.html',
-    'float.html','seam.html','lapse.html','shift.html','strand.html'
+    'float.html','seam.html','lapse.html','shift.html','strand.html',
+    'rupture.html','lag.html','scaffold.html','char.html','rust.html'
   ];
   function goRandom() {
     var dest = pages[Math.floor(Math.random() * pages.length)];

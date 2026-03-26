@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>char · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .char-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      background: var(--bg);
+      cursor: crosshair;
+      touch-action: none;
+    }
+    #char-canvas { display: block; width: 100%; }
+    .char-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .char-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .char-entry:last-child { border-bottom: none; }
+    .char-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .char-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .char-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .char-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>char</h1>
+      <p>the form that survives the burning</p>
+    </div>
+
+    <div class="char-wrap">
+      <canvas id="char-canvas"></canvas>
+    </div>
+    <p class="char-hint">move cursor to char — the shape remains after everything that was alive in it has left</p>
+
+    <div class="char-entry reveal">
+      <span class="char-tag">prehistory</span>
+      <h3>the oldest medium</h3>
+      <p>Charcoal is found in cave paintings dating to 35,000 years ago. The artist's hand moved it across the stone wall; the carbon bonded to the rock and stayed. Not because preservation was a goal — the concept of preservation, in any deliberate sense, was probably not available to the hands that made those marks. The charcoal survived because carbon, in the form of graphite, is extraordinarily chemically stable. It does not react with air, does not dissolve in water, does not oxidize under ordinary conditions. The marks endured by being inert — by having nothing left to react with, nothing remaining that the world could claim.</p>
+      <p>Artists who worked in charcoal understood something about this, even before the chemistry was understood: the mark made with charcoal is provisional until fixed, and then it is permanent. The charcoal drawing that receives no fixative lifts off with a breath. The drawing that is fixed can outlast the stone it is drawn on. The permanence is a decision, not a property of the medium. But the medium offers it, if you choose.</p>
+    </div>
+
+    <div class="char-entry reveal">
+      <span class="char-tag">chemistry</span>
+      <h3>pyrolysis</h3>
+      <p>Charring is not combustion. When wood burns with sufficient oxygen, the carbon combines with the oxygen to produce carbon dioxide and water — the material is consumed, converted into gas and heat, and nothing visible remains. Pyrolysis is different: the wood is heated without enough oxygen to complete combustion. The volatile compounds — water, resins, terpenes — escape as gas. What remains is almost pure carbon in the shape of the original material. The grain, the rings, the knots, the medullary rays: all preserved in carbon. The form survives the process that destroyed the content.</p>
+      <p>This distinction — form without content, shape without substance — is what makes charcoal different from ash. Ash is what combustion produces: the inorganic minerals that cannot be further oxidized, a gray powder with no memory of what it was. Charcoal is the carbon skeleton of the original, intact enough that you can sometimes see what tree it came from. The shape has been conserved. The thing that gave the shape its character — the water, the living cells, the wood sugars — is gone. What you hold is the record of a form without the form's original matter.</p>
+    </div>
+
+    <div class="char-entry reveal">
+      <span class="char-tag">archaeology</span>
+      <h3>Herculaneum</h3>
+      <p>When Vesuvius erupted in 79 CE, the library at the Villa of the Papyri in Herculaneum was carbonized under hundreds of meters of volcanic material. The scrolls survived as charred cylinders — brittle, black, impossible to unroll without crumbling. For nearly two centuries after their discovery in 1752, they were largely unreadable. Every attempt to physically unroll them destroyed them. The words inside were written in carbon ink on carbonized papyrus: black on black, below the resolution of any optical technique available.</p>
+      <p>Since 2019, the Vesuvius Challenge has used X-ray micro-CT scanning to detect the subtle texture differences between ink and blank papyrus on carbonized scrolls — and machine learning to read what the scans find. In 2023, the first complete words were recovered: <em>porphyras</em>, the Greek word for purple dye. The text is from an Epicurean philosophical work, probably by Philodemus of Gadara. A library sealed for 1,944 years is being read by light that never touches it. The char preserved the shape of the letters in a dimension the eye cannot see.</p>
+    </div>
+
+    <div class="char-entry reveal">
+      <span class="char-tag">drawing</span>
+      <h3>the conditional mark</h3>
+      <p>Artists distinguish between two states of a charcoal drawing: before fixative and after. Before fixative, the charcoal sits on the surface of the paper — bonded loosely, removable with a kneaded eraser or a thumb or a breath. The drawing is in process. Every mark is a decision that can be unmade. This is why charcoal is used for life drawing and compositional studies: the medium enforces provisionality. You cannot accidentally commit to something. You are always in revision.</p>
+      <p>After fixative — a spray of shellac or varnish or commercial fixative that locks the particles to the paper's fibers — the drawing is done. Not finished, necessarily, but concluded. The marks can no longer be smudged or lifted. What was a process has become a document. The artist who sprays fixative is declaring that this version, this configuration of accumulated marks, is the drawing. The conditional has become permanent. The thing that was still being decided has been decided, and the record of the decision is now the drawing.</p>
+    </div>
+
+    <div class="char-entry reveal">
+      <span class="char-tag">ecology</span>
+      <h3>controlled burns</h3>
+      <p>Some landscapes are managed with prescribed fire: deliberate, low-intensity burns that char the understory and thin the fuel load, reducing the risk of catastrophic wildfire. What the fire leaves behind — biochar — is not waste. It is a carbon sink: stable for hundreds to thousands of years, improving soil water retention, supporting microbial activity, increasing agricultural productivity. The char that results from controlled burning is the intended product. Fire management, in this context, is char management.</p>
+      <p>This knowledge is ancient. Indigenous communities in Australia, North America, and elsewhere have managed landscapes with fire for tens of thousands of years, producing the open, park-like forests that early European explorers described as naturally occurring. The landscapes were not natural. They were tended. The char was the medium. Fire as a tool does not destroy — it converts, and the conversion is carbon, stable and useful and dark, waiting in the soil for the next thing to grow.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('char-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+    // Char grid: each cell has a char value 0–1
+    var COLS = 120, ROWS = 40;
+    var grid, heat;
+    var painting = false;
+
+    function initGrid() {
+      grid = new Float32Array(COLS * ROWS);
+      heat = new Float32Array(COLS * ROWS);
+    }
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.35);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      initGrid();
+      draw();
+    }
+
+    function getStyle(prop) {
+      return getComputedStyle(document.documentElement).getPropertyValue(prop).trim();
+    }
+
+    function charAt(cx, cy, radius, amount) {
+      var cw = W / COLS, ch = H / ROWS;
+      var col = cx / cw, row = cy / ch;
+      var r   = radius / cw;
+      for (var j = Math.max(0, Math.floor(row - r)); j <= Math.min(ROWS - 1, Math.ceil(row + r)); j++) {
+        for (var i = Math.max(0, Math.floor(col - r)); i <= Math.min(COLS - 1, Math.ceil(col + r)); i++) {
+          var d = Math.hypot(i - col, j - row);
+          if (d < r) {
+            var idx = j * COLS + i;
+            heat[idx] = Math.min(1, heat[idx] + amount * (1 - d / r));
+          }
+        }
+      }
+    }
+
+    function updateGrid() {
+      for (var idx = 0; idx < COLS * ROWS; idx++) {
+        if (heat[idx] > 0) {
+          grid[idx] = Math.min(1, grid[idx] + heat[idx] * 0.04);
+          heat[idx] *= 0.88;
+          if (heat[idx] < 0.001) heat[idx] = 0;
+        }
+      }
+    }
+
+    function draw() {
+      var theme = document.documentElement.getAttribute('data-theme') || 'light';
+      var isDark = theme === 'dark';
+      var bg    = isDark ? '#0f0f0e' : theme === 'sepia' ? '#f5ede0' : '#faf8f4';
+
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      var cw = W / COLS, ch = H / ROWS;
+
+      for (var j = 0; j < ROWS; j++) {
+        for (var i = 0; i < COLS; i++) {
+          var v = grid[j * COLS + i];
+          if (v < 0.005) continue;
+
+          var hv = heat[j * COLS + i];
+          var r, g, b;
+          if (hv > 0.1) {
+            // Active heat: orange-red glow
+            r = Math.round(200 + 55 * Math.min(1, v));
+            g = Math.round(80  * (1 - v) + 40 * hv);
+            b = 10;
+          } else {
+            // Char: dark carbon
+            if (isDark) {
+              r = Math.round(30 + 20 * (1 - v));
+              g = Math.round(28 + 15 * (1 - v));
+              b = Math.round(25 + 10 * (1 - v));
+            } else {
+              r = Math.round(30 * (1 - v));
+              g = Math.round(25 * (1 - v));
+              b = Math.round(20 * (1 - v));
+            }
+          }
+          ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+          ctx.globalAlpha = Math.min(1, v * 0.85 + hv * 0.5);
+          ctx.fillRect(i * cw, j * ch, cw + 0.5, ch + 0.5);
+          ctx.globalAlpha = 1;
+        }
+      }
+
+      // Instruction when empty
+      var total = 0;
+      for (var k = 0; k < grid.length; k++) total += grid[k];
+      if (total < 1) {
+        var muted = getStyle('--text-muted') || '#888';
+        ctx.font = '11px Courier New';
+        ctx.fillStyle = muted;
+        ctx.globalAlpha = 0.4;
+        ctx.textAlign = 'center';
+        ctx.fillText('move cursor to char', W / 2, H / 2);
+        ctx.textAlign = 'left';
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    function loop() {
+      updateGrid();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    resize();
+    window.addEventListener('resize', function () {
+      resize();
+    });
+
+    function applyPos(cx, cy) {
+      var rect = wrap.getBoundingClientRect();
+      var x = (cx - rect.left) * (W / rect.width);
+      var y = (cy - rect.top)  * (H / rect.height);
+      charAt(x, y, W * 0.05, 0.25);
+    }
+
+    wrap.addEventListener('mousemove', function (e) {
+      applyPos(e.clientX, e.clientY);
+    });
+    wrap.addEventListener('touchmove', function (e) {
+      e.preventDefault();
+      Array.from(e.touches).forEach(function (t) { applyPos(t.clientX, t.clientY); });
+    }, { passive: false });
+    wrap.addEventListener('mousedown', function (e) { painting = true; applyPos(e.clientX, e.clientY); });
+    wrap.addEventListener('mouseup',   function ()  { painting = false; });
+    wrap.addEventListener('click',     function (e) { applyPos(e.clientX, e.clientY); });
+
+    requestAnimationFrame(loop);
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lag · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .lag-canvas-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      background: var(--bg);
+      cursor: none;
+    }
+    #lag-canvas { display: block; width: 100%; }
+    .lag-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .lag-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .lag-entry.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .lag-entry:last-child { border-bottom: none; }
+    .lag-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .lag-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .lag-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .lag-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>lag</h1>
+      <p>the gap between event and awareness</p>
+    </div>
+
+    <div class="lag-canvas-wrap">
+      <canvas id="lag-canvas"></canvas>
+    </div>
+    <p class="lag-hint">move the cursor — the ghost follows six hundred milliseconds behind</p>
+
+    <div class="lag-entry" data-delay="900">
+      <span class="lag-tag">neuroscience</span>
+      <h3>Libet's clock</h3>
+      <p>In 1983, Benjamin Libet asked subjects to flex their wrists whenever they felt like it, while watching a rapidly moving clock hand and reporting what time they felt the urge to move. He simultaneously measured the readiness potential — the slow brain wave that precedes voluntary movement. The result was disturbing: the readiness potential began 550 milliseconds before the movement, but subjects reported the conscious decision only 200 milliseconds before. The brain had already committed to the action before the mind knew it had decided.</p>
+      <p>The implications were debated for decades. Free will, if it exists, may be retrospective — the awareness not of a decision being made but of a decision already underway. The felt sense of choosing arrives after the choosing has begun, a post-hoc caption for a process that preceded it. Consciousness, in this account, is not the author of action but its first reader. The lag between doing and knowing you are doing is built into the architecture.</p>
+    </div>
+
+    <div class="lag-entry" data-delay="1700">
+      <span class="lag-tag">astronomy</span>
+      <h3>eight minutes</h3>
+      <p>Light from the sun takes 8 minutes and 20 seconds to reach Earth. The sun you are looking at right now — the one you would need to shade your eyes from — no longer exists in that state. You are receiving a signal that left its source before you looked up. If the sun were to disappear at this moment, you would not know for another 8 minutes. You would go about your morning, and then the light would stop arriving.</p>
+      <p>Astronomical observation is entirely observation of the past. A galaxy a billion light-years away is seen as it was a billion years ago; it may no longer exist. The further you look, the deeper the lag. Cosmologists studying the cosmic microwave background are observing light that has been traveling for 13.8 billion years — the oldest light available, the edge of what can be seen, the limit where the lag between event and awareness reaches its maximum. The present moment in cosmology is a small local anomaly.</p>
+    </div>
+
+    <div class="lag-entry" data-delay="2500">
+      <span class="lag-tag">grief</span>
+      <h3>the deferred arrival</h3>
+      <p>The person who held together during the crisis — who made the phone calls, accepted the condolences, arranged the details, sat with others in their grief — and then broke down six months later in a hardware store looking for a specific bolt. The body did not fail to process the loss. It triaged. During the emergency, other processing took precedence. The grief was queued, not suppressed, and it ran when the emergency was sufficiently over.</p>
+      <p>This is not pathology. It is lag: the ordinary gap between an event and the awareness that can be brought to bear on it. The person in shock is not unfeeling — they are managing a load that exceeds the available bandwidth. The grief arrives intact, later, in a place chosen by nothing except that the queue finally ran. The hardware store is not random. It is just the location of the moment when the system finally had the capacity.</p>
+    </div>
+
+    <div class="lag-entry" data-delay="3300">
+      <span class="lag-tag">physiology</span>
+      <h3>the reflex arc</h3>
+      <p>A spinal reflex — the knee-jerk response to a tendon tap, the rapid withdrawal from a hot surface — bypasses the brain entirely. The sensory neuron connects directly to the motor neuron in the spinal cord; the response is initiated before the signal has reached consciousness. The hand pulls back from the flame while the brain is still registering that something hot is happening. The brain learns what the hand did after the hand has already done it.</p>
+      <p>The lag between event and awareness is, in this case, the price of consciousness — the additional distance the signal must travel to reach the cortex and return. The reflex is faster because it is dumber. It does not weigh options; it responds. The conscious mind, arriving late to the situation the body has already handled, does the post-hoc work of explaining and contextualizing what it was not present for. Most of what the body does, it does before the mind has been informed.</p>
+    </div>
+
+    <div class="lag-entry" data-delay="4100">
+      <span class="lag-tag">music</span>
+      <h3>latency and feedback</h3>
+      <p>Professional musicians playing through digital audio systems can detect processing latency as low as 5 milliseconds — a delay between the moment they play and the moment they hear themselves play. Below 10ms, most people cannot consciously identify it; above 25ms, it becomes actively disorienting, disrupting the feedback loop that skilled performance depends on. The musician does not play a note and then hear it. They play into an anticipation of the sound that is already forming — and the sound confirms or corrects that anticipation in near-real time.</p>
+      <p>When the lag exceeds the threshold, the feedback loop breaks. The musician is playing blind, in the sense that the response to what they are doing arrives too late to influence what they are doing. This is the general problem of lag: not that the event did not happen, but that the awareness of it arrives too late to be useful. The lag that is harmless in ordinary hearing is catastrophic in the feedback of a performance. What you can ignore depends entirely on what you need to do with the information.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    // ── Staggered entry reveal ────────────────────────
+    var entries = document.querySelectorAll('.lag-entry');
+    entries.forEach(function (el) {
+      var delay = parseInt(el.getAttribute('data-delay'), 10) || 0;
+      setTimeout(function () {
+        el.classList.add('visible');
+      }, delay);
+    });
+
+    // ── Cursor ghost canvas ───────────────────────────
+    var canvas = document.getElementById('lag-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+
+    var GHOST_DELAY = 600; // ms
+    var history     = [];  // { x, y, t }
+    var cursor      = { x: -1, y: -1 };
+    var ghost       = { x: -1, y: -1 };
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.28);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    }
+
+    function getStyle(prop) {
+      return getComputedStyle(document.documentElement).getPropertyValue(prop).trim();
+    }
+
+    function draw() {
+      var theme  = document.documentElement.getAttribute('data-theme') || 'light';
+      var bg     = theme === 'dark' ? '#0f0f0e' : theme === 'sepia' ? '#f5ede0' : '#faf8f4';
+      var accent = getStyle('--accent') || '#b5682a';
+      var muted  = getStyle('--text-muted') || '#888';
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      // Prune old history
+      var now = performance.now();
+      var cutoff = now - GHOST_DELAY - 50;
+      while (history.length > 0 && history[0].t < cutoff) {
+        history.shift();
+      }
+
+      // Find ghost position: latest entry older than GHOST_DELAY
+      var ghostPos = null;
+      for (var i = history.length - 1; i >= 0; i--) {
+        if (now - history[i].t >= GHOST_DELAY) {
+          ghostPos = history[i];
+          break;
+        }
+      }
+
+      // Draw trail connecting current to ghost
+      if (ghostPos && cursor.x >= 0) {
+        ctx.beginPath();
+        ctx.moveTo(cursor.x, cursor.y);
+        // Walk backward through history to draw line
+        for (var j = history.length - 1; j >= 0; j--) {
+          ctx.lineTo(history[j].x, history[j].y);
+          if (now - history[j].t >= GHOST_DELAY) break;
+        }
+        ctx.strokeStyle = accent;
+        ctx.globalAlpha = 0.12;
+        ctx.lineWidth   = 1;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+
+      // Draw cursor (current position)
+      if (cursor.x >= 0) {
+        ctx.beginPath();
+        ctx.arc(cursor.x, cursor.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = accent;
+        ctx.globalAlpha = 0.9;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+
+        // Label
+        ctx.font = '10px Courier New';
+        ctx.fillStyle = accent;
+        ctx.globalAlpha = 0.5;
+        ctx.fillText('now', cursor.x + 7, cursor.y + 4);
+        ctx.globalAlpha = 1;
+      }
+
+      // Draw ghost (delayed position)
+      if (ghostPos) {
+        ctx.beginPath();
+        ctx.arc(ghostPos.x, ghostPos.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = muted;
+        ctx.globalAlpha = 0.45;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+
+        ctx.font = '10px Courier New';
+        ctx.fillStyle = muted;
+        ctx.globalAlpha = 0.35;
+        ctx.fillText('−600ms', ghostPos.x + 7, ghostPos.y + 4);
+        ctx.globalAlpha = 1;
+      }
+
+      // Center label when no cursor yet
+      if (cursor.x < 0) {
+        ctx.font = '11px Courier New';
+        ctx.fillStyle = muted;
+        ctx.globalAlpha = 0.4;
+        ctx.textAlign = 'center';
+        ctx.fillText('move cursor here', W / 2, H / 2);
+        ctx.textAlign = 'left';
+        ctx.globalAlpha = 1;
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    wrap.addEventListener('mousemove', function (e) {
+      var rect = wrap.getBoundingClientRect();
+      cursor.x = (e.clientX - rect.left) * (W / rect.width);
+      cursor.y = (e.clientY - rect.top)  * (H / rect.height);
+      history.push({ x: cursor.x, y: cursor.y, t: performance.now() });
+    });
+
+    wrap.addEventListener('mouseleave', function () {
+      cursor.x = -1;
+      cursor.y = -1;
+    });
+
+    requestAnimationFrame(draw);
+  })();
+  </script>
+</body>
+</html>

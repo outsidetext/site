@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rupture · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .rupture-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      background: var(--bg);
+      cursor: crosshair;
+    }
+    #rupture-canvas { display: block; width: 100%; }
+    .rupture-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .rupture-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .rupture-entry:last-child { border-bottom: none; }
+    .rupture-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .rupture-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .rupture-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .rupture-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>rupture</h1>
+      <p>what breaking reveals</p>
+    </div>
+
+    <div class="rupture-wrap">
+      <canvas id="rupture-canvas"></canvas>
+    </div>
+    <p class="rupture-hint">click anywhere to fracture — each break follows the grain of what came before</p>
+
+    <div class="rupture-entry reveal">
+      <span class="rupture-tag">geology</span>
+      <h3>the record in the rock</h3>
+      <p>When a fault slips, the fracture does not travel randomly through the rock. It follows the existing planes of weakness — grain boundaries, previous fractures, inclusions of softer material. The new rupture is guided by the history of all previous ruptures. Geologists read fault geometry the way a doctor reads an X-ray: the angle of the break encodes the direction of the force; the surface texture encodes the speed; the offset encodes the magnitude. Everything about how something failed is visible in the failure itself.</p>
+      <p>The San Andreas Fault has moved horizontally by over 300 kilometers over its 28-million-year life. The accumulated slip is readable in offset stream channels, mismatched rock formations, and displaced hillsides. The land on either side of the fault is, in some places, geologically foreign to itself — carried from hundreds of kilometers away, still moving. The rupture is ongoing. The record is still being written.</p>
+    </div>
+
+    <div class="rupture-entry reveal">
+      <span class="rupture-tag">conservation</span>
+      <h3>craquelure</h3>
+      <p>Old paint cracks as it ages — the solvent evaporates, the binder oxidizes, the canvas expands and contracts through decades of seasonal temperature change. The result is craquelure: a fine network of fractures that is, for art conservators, one of the primary indicators of authenticity. A Rembrandt's craquelure pattern cannot be faked. The cracks form slowly over centuries, following the specific elastic properties of that particular paint formulation, applied by those particular hands, in that particular climate. The pattern is a fingerprint of time.</p>
+      <p>Forgers have tried to accelerate craquelure with heat and chemicals. The resulting cracks are systematically wrong — too regular, too shallow, oriented in patterns that no natural aging process produces. The fracture is honest in a way the painting itself may not be. The surface that breaks tells the truth about what it was made of and how long it has been breaking.</p>
+    </div>
+
+    <div class="rupture-entry reveal">
+      <span class="rupture-tag">materials</span>
+      <h3>grain fracture</h3>
+      <p>Metals are not uniform solids. They are aggregates of microscopic crystals — grains — oriented in different directions, held together at their boundaries. When a metal fails, the fracture may travel through the grain interiors (transgranular fracture) or along the boundaries between them (intergranular fracture). Intergranular fracture exposes a surface that looks like a mosaic of tiny facets — the faces of the grains, each with its own orientation and texture. The break makes visible a structure that was invisible while the material was intact.</p>
+      <p>Failure analysis — the forensic investigation of broken components — relies on this visibility. A fractured turbine blade tells the engineer whether it failed from fatigue, overload, or corrosion; whether the metal was properly heat-treated; whether the grain boundaries had been weakened by hydrogen embrittlement. The rupture is also the report. The thing that destroyed the component is, in its destruction, the documentation of what the component was.</p>
+    </div>
+
+    <div class="rupture-entry reveal">
+      <span class="rupture-tag">voice</span>
+      <h3>the register break</h3>
+      <p>The human voice has two primary registers: chest voice, produced by the full vibration of the vocal folds, and head voice (or falsetto), produced by the edge vibration of the folds. Moving between them smoothly requires training — without it, the transition produces a crack, a brief involuntary rupture of the sound. Adolescent voices crack because the larynx is growing faster than the muscles can track. Singers crack because they pushed to the edge of their range. The voice, in breaking, reveals exactly where the boundary of control lies.</p>
+      <p>The person trying not to cry loses control of the same mechanism. The grief has been managed, contained, expressed in terms that keep it bearable — and then the voice breaks. The rupture is involuntary. It is also information. It tells anyone listening exactly what the controlled voice was working to conceal. The crack in the voice is the point where the managed and the true versions of what is being felt briefly become the same thing.</p>
+    </div>
+
+    <div class="rupture-entry reveal">
+      <span class="rupture-tag">etymology</span>
+      <h3>integer</h3>
+      <p>The Latin root of <em>integrity</em> is <em>integer</em> — whole, untouched, unhurt. The same root gives us the mathematical integer: a number with nothing after the decimal point, nothing fractional, nothing held in reserve. To have integrity, in the original sense, is to be unruptured. Not yet broken. Still all one thing.</p>
+      <p>What makes this worth noting is the asymmetry: integrity is defined by the absence of rupture, but we cannot know what a thing is made of until it breaks. The craquelure authenticates the painting. The grain fracture tells the engineer what the metal was. The cracked voice tells the listener what the controlled voice was managing. The rupture is, in this sense, the condition of legibility. Things that have never broken have never been fully read. Integrity keeps the information hidden. Rupture is what releases it.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas = document.getElementById('rupture-canvas');
+    var wrap   = canvas.parentElement;
+    var ctx    = canvas.getContext('2d');
+    var DPR    = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+    var cracks = [];
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.3);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      draw();
+    }
+
+    function getStyle(prop) {
+      return getComputedStyle(document.documentElement).getPropertyValue(prop).trim();
+    }
+
+    function branch(x, y, angle, len, depth) {
+      if (depth <= 0 || len < 3) return;
+      var segs = 3 + Math.floor(Math.random() * 3);
+      var pts  = [{ x: x, y: y }];
+      var ex   = x + Math.cos(angle) * len;
+      var ey   = y + Math.sin(angle) * len;
+      for (var i = 1; i <= segs; i++) {
+        var t  = i / segs;
+        var jx = x + (ex - x) * t + (Math.random() - 0.5) * len * 0.25;
+        var jy = y + (ey - y) * t + (Math.random() - 0.5) * len * 0.25;
+        pts.push({ x: jx, y: jy });
+      }
+      pts[pts.length - 1] = { x: ex, y: ey };
+      cracks.push({ pts: pts, born: performance.now() });
+      if (depth > 1 && Math.random() > 0.35) {
+        branch(ex, ey, angle + (Math.random() - 0.5) * 1.2, len * (0.5 + Math.random() * 0.2), depth - 1);
+      }
+      if (depth > 2 && Math.random() > 0.55) {
+        branch(ex, ey, angle - (0.3 + Math.random() * 0.8), len * (0.4 + Math.random() * 0.2), depth - 2);
+      }
+    }
+
+    function fracture(x, y) {
+      var angles = Math.floor(2 + Math.random() * 3);
+      for (var i = 0; i < angles; i++) {
+        var a = Math.random() * Math.PI * 2;
+        branch(x, y, a, 40 + Math.random() * 60, 4);
+      }
+    }
+
+    function draw() {
+      var theme  = document.documentElement.getAttribute('data-theme') || 'light';
+      var bg     = theme === 'dark' ? '#0f0f0e' : theme === 'sepia' ? '#f5ede0' : '#faf8f4';
+      var accent = getStyle('--accent') || '#b5682a';
+      var text   = getStyle('--text') || '#1a1a1a';
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, W, H);
+
+      var now = performance.now();
+      cracks.forEach(function (c) {
+        var age   = now - c.born;
+        var alpha = Math.min(1, age / 400) * 0.6;
+        ctx.beginPath();
+        ctx.moveTo(c.pts[0].x, c.pts[0].y);
+        for (var i = 1; i < c.pts.length; i++) {
+          ctx.lineTo(c.pts[i].x, c.pts[i].y);
+        }
+        ctx.strokeStyle = accent;
+        ctx.globalAlpha = alpha;
+        ctx.lineWidth   = 0.9;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      });
+    }
+
+    function loop() {
+      var needsRedraw = cracks.some(function (c) {
+        return performance.now() - c.born < 400;
+      });
+      if (needsRedraw) draw();
+      requestAnimationFrame(loop);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Seed initial cracks
+    fracture(W * 0.5, H * 0.5);
+    fracture(W * 0.25, H * 0.35);
+    fracture(W * 0.72, H * 0.6);
+    draw();
+
+    function handleClick(cx, cy) {
+      var rect = wrap.getBoundingClientRect();
+      var sx   = cx / rect.width;
+      var sy   = cy / rect.height;
+      fracture(sx * W, sy * H);
+    }
+
+    wrap.addEventListener('click', function (e) {
+      var r = wrap.getBoundingClientRect();
+      handleClick(e.clientX - r.left, e.clientY - r.top);
+    });
+    wrap.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+      var r = wrap.getBoundingClientRect();
+      var t = e.touches[0];
+      handleClick(t.clientX - r.left, t.clientY - r.top);
+    }, { passive: false });
+
+    requestAnimationFrame(loop);
+  })();
+  </script>
+</body>
+</html>

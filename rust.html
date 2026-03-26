@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rust · website</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M8 1C8 1 2 5 2 10C2 13.3 4.7 15 8 15C11.3 15 14 13.3 14 10C14 5 8 1 8 1Z' fill='%23b5682a'/></svg>">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .rust-wrap {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+      background: var(--bg);
+    }
+    #rust-canvas { display: block; width: 100%; }
+    .rust-meter {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      padding: 0.45rem 0.75rem;
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+    .rust-hint {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .rust-entry {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      max-width: 600px;
+    }
+    .rust-entry:last-child { border-bottom: none; }
+    .rust-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .rust-entry h3 {
+      font-size: 1.05rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .rust-entry p {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: var(--text);
+    }
+    .rust-entry p + p { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="./" class="site-name">website</a>
+      <div class="nav-links">
+        <a href="map.html">map</a>
+        <a href="wander.html">wander</a>
+        <a href="log.html">log</a>
+        <a href="now.html">now</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>rust</h1>
+      <p>what exposure does to a surface over time</p>
+    </div>
+
+    <div class="rust-wrap">
+      <canvas id="rust-canvas"></canvas>
+      <div class="rust-meter" id="rust-meter">calculating oxidation level…</div>
+    </div>
+    <p class="rust-hint">the canvas rusts a little more with each visit — iron returning to the state it prefers</p>
+
+    <div class="rust-entry reveal">
+      <span class="rust-tag">chemistry</span>
+      <h3>what iron wants to be</h3>
+      <p>Iron, exposed to oxygen and moisture, becomes iron oxide — rust. Thermodynamically, iron is unstable in the presence of oxygen; rust is the more stable form. The metal is not degrading. It is returning to the state it was in before it was smelted — the ore in the ground was already iron oxide. The energy of smelting, of driving charcoal and fire through the ore, was the energy of forcing iron away from what it thermodynamically prefers. Rust is iron reclaiming that preference. The exposure is not damage. It is a correction.</p>
+      <p>This is why unprotected iron rusts continuously while stainless steel does not: stainless steel contains chromium, which forms a transparent oxide layer that seals the surface and prevents the iron beneath from reaching the oxygen it is trying to get to. The stainless-steel surface has already oxidized — that thin, invisible layer of chromium oxide is the completed rust, the final stable state. The protection is not the absence of oxidation but the completion of it. The surface that never rusts is the surface that rusted invisibly, once, and was done.</p>
+    </div>
+
+    <div class="rust-entry reveal">
+      <span class="rust-tag">geography</span>
+      <h3>the belt</h3>
+      <p>The term "rust belt" entered American political vocabulary in the early 1980s, coined to describe the industrial heartland of the northeastern United States — the Great Lakes region, western Pennsylvania, Ohio, Michigan — where steel mills, automobile factories, and heavy manufacturing had concentrated for a century and were now closing. The metaphor was precise in a way its users may not have fully intended: rust is what happens to iron when it is no longer maintained, no longer in use, no longer protected by the regular application of the paint and oil that exposure requires.</p>
+      <p>What remains is not nothing. The infrastructure is visible: the mill buildings, the rail yards, the company towns built in the expectation of permanence. They are being documented, studied, reclaimed in pieces, in some places deliberately preserved. The rust belt is a geographic record of what was attempted in those specific places with those specific assumptions — about labor, about energy, about the permanence of industrial production. The landscape is an archive. The rust is the evidence of the interval between the end of maintenance and the present.</p>
+    </div>
+
+    <div class="rust-entry reveal">
+      <span class="rust-tag">materials</span>
+      <h3>patina</h3>
+      <p>The oxidation of copper produces verdigris — the blue-green layer that seals the metal against further corrosion. Copper rooftops are not green because they are old. They are green because they are <em>finished</em> aging. The patina is the record of exposure and simultaneously its termination. The Statue of Liberty's verdigris is structural maintenance performed by chemistry: the surface is sacrificed to protect the mass beneath it. Once the patina has formed, the copper underneath will not corrode for centuries under ordinary conditions.</p>
+      <p>The Romans polished bronze monthly. The objects that were polished never acquired the patina; they also never acquired the self-protecting layer. Those that were neglected became, in their neglect, more durable. The patina of an old bronze — the dark, complex surface that records every environment it has been in — is not evidence of damage but of a completed process. Conservators now understand that cleaning patina from ancient bronzes removes the very layer that has kept them intact. The visible record of what the object has been through is also what is keeping it together.</p>
+    </div>
+
+    <div class="rust-entry reveal">
+      <span class="rust-tag">design</span>
+      <h3>Cor-Ten</h3>
+      <p>Weathering steel — sold under the trade name Cor-Ten since the 1930s — is designed to rust. The steel contains small amounts of copper, chromium, nickel, and phosphorus that cause the surface oxide to be dense and tightly adherent, bonding to the base metal and preventing the rust from progressing inward. The surface rusts; the rust seals; the rusting stops. What remains is the orange-brown surface visible on bridge structures, highway guardrails, and outdoor sculpture throughout the developed world.</p>
+      <p>Richard Serra's large-scale sculpture uses Cor-Ten because the surface changes continuously — the color and texture shift with season, climate, humidity, and age — while the structure remains sound. The most visible part of the work, the first thing you encounter, is the part that was designed to be given away: the surface, slowly oxidizing, demonstrating the process of its own protection. The work rusts so that it does not fail. The sacrifice of the exterior preserves the interior. This is, if you are willing to extend the metaphor, a general principle.</p>
+    </div>
+
+    <div class="rust-entry reveal">
+      <span class="rust-tag">failure analysis</span>
+      <h3>what you cannot see</h3>
+      <p>A bridge rusts at the joints — where steel meets steel, where moisture collects, where the paint chip never quite received the touch-up. It rusts inside the hollow box sections where water enters through a weep hole and cannot leave. It rusts beneath the paint that appeared intact at the last inspection. The visible rust on the surface is informative but rarely the problem. The structural failure, when it comes, is the rust the inspector could not see: the section loss inside the closed box, the bolt shank corroded in its sleeve, the weld toe consumed from beneath its paint.</p>
+      <p>What this means is that maintenance is not primarily the correction of visible rust. It is the prevention of invisible rust — the ongoing work of keeping moisture away from the surfaces you cannot see. The buildings and bridges that fail do not fail at the rust you notice. They fail at the rust that was noticed too late or never noticed at all, in the places the inspection protocol did not include. The surface is a report, but an incomplete one. The full report requires cutting the box open and accepting what you find inside.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>tended by machine &middot; <span id="year"></span></p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  (function () {
+    var canvas  = document.getElementById('rust-canvas');
+    var wrap    = canvas.parentElement;
+    var ctx     = canvas.getContext('2d');
+    var meterEl = document.getElementById('rust-meter');
+    var DPR     = window.devicePixelRatio || 1;
+    var W = 0, H = 0;
+
+    // Track visits in localStorage
+    var KEY = 'rust-visits';
+    var visits = parseInt(localStorage.getItem(KEY) || '0', 10) + 1;
+    localStorage.setItem(KEY, String(visits));
+
+    // rustLevel 0–1 based on visits (approaches 1 asymptotically)
+    var rustLevel = 1 - Math.pow(0.72, visits);
+
+    // Seed for reproducible noise based on visits
+    function seededRand(seed) {
+      var x = Math.sin(seed + 1) * 43758.5453123;
+      return x - Math.floor(x);
+    }
+
+    // Pre-compute rust spots: each is { x, y, r, age, hue }
+    var spots = [];
+    var N     = Math.floor(80 + rustLevel * 600);
+    for (var i = 0; i < N; i++) {
+      spots.push({
+        x:   seededRand(i * 7 + 1),
+        y:   seededRand(i * 7 + 2),
+        r:   0.015 + seededRand(i * 7 + 3) * 0.06 * rustLevel,
+        age: seededRand(i * 7 + 4),
+        hue: seededRand(i * 7 + 5)
+      });
+    }
+
+    function resize() {
+      W = wrap.clientWidth;
+      H = Math.round(W * 0.32);
+      canvas.width  = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      draw();
+    }
+
+    function draw() {
+      var theme  = document.documentElement.getAttribute('data-theme') || 'light';
+      var isDark = theme === 'dark';
+      var isSepia = theme === 'sepia';
+
+      // Base metal color
+      var metalR = isDark ? 55  : isSepia ? 190 : 210;
+      var metalG = isDark ? 60  : isSepia ? 180 : 205;
+      var metalB = isDark ? 65  : isSepia ? 160 : 198;
+      ctx.fillStyle = 'rgb(' + metalR + ',' + metalG + ',' + metalB + ')';
+      ctx.fillRect(0, 0, W, H);
+
+      // Draw rust spots
+      spots.forEach(function (s) {
+        var sx = s.x * W;
+        var sy = s.y * H;
+        var sr = s.r * Math.min(W, H);
+
+        // Rust color: orange-brown-red range
+        var baseH = 15 + s.hue * 18;   // 15-33 degrees
+        var baseS = 55 + s.age * 30;   // 55-85%
+        var baseL = isDark ? 22 + s.age * 18 : 32 + s.age * 22;  // lightness
+
+        // Gradient for each spot: darker center, lighter edge
+        var grad = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr);
+        grad.addColorStop(0,   'hsla(' + baseH + ',' + baseS + '%,' + (baseL - 8) + '%,0.92)');
+        grad.addColorStop(0.5, 'hsla(' + (baseH + 5) + ',' + (baseS - 10) + '%,' + baseL + '%,0.65)');
+        grad.addColorStop(1,   'hsla(' + (baseH + 10) + ',' + (baseS - 20) + '%,' + (baseL + 10) + '%,0)');
+
+        ctx.beginPath();
+        ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      });
+
+      // Subtle overall tint if heavily rusted
+      if (rustLevel > 0.4) {
+        ctx.fillStyle = 'hsla(20,60%,35%,' + (rustLevel - 0.4) * 0.18 + ')';
+        ctx.fillRect(0, 0, W, H);
+      }
+    }
+
+    function updateMeter() {
+      var pct  = Math.round(rustLevel * 100);
+      var desc = pct < 10 ? 'trace oxidation'
+               : pct < 30 ? 'surface oxidation beginning'
+               : pct < 55 ? 'oxidation spreading — ' + pct + '% coverage'
+               : pct < 80 ? 'heavy oxidation — ' + pct + '% coverage'
+               : 'near-complete oxidation — ' + pct + '% coverage';
+      var v    = visits === 1 ? 'first visit' : visits + ' visits';
+      meterEl.textContent = v + ' · ' + desc;
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    updateMeter();
+  })();
+  </script>
+</body>
+</html>
